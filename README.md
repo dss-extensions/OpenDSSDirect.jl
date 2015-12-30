@@ -37,7 +37,7 @@ Julia has several key features for advanced operations with OpenDSS:
 * **Parallel operations** -- Julia supports several ways to process data in 
   parallel. This includes parallel operations on multiple CPU cores and 
   parallel operations on processes in a cluster. See 
-  [??8760_parallel.jl](https://github.com/tshort/OpenDSSDirect.jl/blob/master/examples/8760_parallel.jl) 
+  [examples/8760_parallel.jl](https://github.com/tshort/OpenDSSDirect.jl/blob/master/examples/8760_parallel.jl) 
   for an example of an annual simulation split among local CPU cores.
 
 * **Optimization** -- Julia has strong support for optimization.
@@ -73,10 +73,6 @@ arguments. Here is an example to set the `kW` of the active load element:
 loads(:kW_set,50.)
 ``` 
 
-For tight loops, the methods can be called with the symbol wrapped in `Val{}` 
-(`loads(Val{:kW_set}, 50.)` for the previous example). This makes the Julia
-code faster by making types stable.
-
 Here is an example setting some loads:
 
 ```julia
@@ -94,6 +90,15 @@ end
 println(loads(:Count)) 
 ```
  
+For tight loops, the methods can be called with the symbol wrapped in `Val{}`.
+The previous example is:
+
+```julia 
+loads(Val{:kW_set},50.)
+``` 
+ 
+This makes the Julia code faster by making types stable.
+
 Here is a list of methods and symbols supported:
 
 Function name | Supported first arguments
