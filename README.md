@@ -37,8 +37,8 @@ Julia has several key features for advanced operations with OpenDSS:
 * **Parallel operations** -- Julia supports several ways to process data in 
   parallel. This includes parallel operations on multiple CPU cores and 
   parallel operations on processes in a cluster. See 
-  [??8760_parallel.jl](8760_parallel.jl) for an example of an annual simulation
-  split among local CPU cores.
+  [??8760_parallel.jl](https://github.com/tshort/OpenDSSDirect.jl/blob/master/examples/8760_parallel.jl) 
+  for an example of an annual simulation split among local CPU cores.
 
 * **Optimization** -- Julia has strong support for optimization.
 
