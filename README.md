@@ -18,7 +18,7 @@ For now, this package is not registered. To install, use the following from
 within Julia:
 
 ```julia 
-Pkg.clone(https://github.com/tshort/OpenDSSDirect.jl.git)
+Pkg.clone("https://github.com/tshort/OpenDSSDirect.jl.git")
 ```
 
 This package includes OpenDSS as a library. You do not have to install OpenDSS
