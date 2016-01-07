@@ -1,9 +1,9 @@
-N = 2
-addprocs(N - 1)
+## At the command line, use `julia -p 3` to add 3 worker processes for a total of 4.
+##
 
 # Prep stuff
 @everywhere begin
-    N = 2
+    N = nprocs()
     using OpenDSSDirect
     numhours = 8760 ÷ N
     filename = joinpath(Pkg.dir(), "OpenDSSDirect", "examples", "ckt5", "Master_ckt5.dss")
