@@ -123,7 +123,7 @@ for (k,v) in gendict(Name_get = 0, Name_set = 1)
 end
 
 capacitors(::Type{Val{:AllNames}})        = DSSCore.CapacitorsV(0)
-# capacitors(::Type{Val{:States_get}})      = DSSCore.CapacitorsV(1)   # Needs to handle Int's
+capacitors(::Type{Val{:States_get}})      = DSSCore.CapacitorsV(1)
 # capacitors(::Type{Val{:States_set}}, arg) = DSSCore.CapacitorsV(2, arg)
 
 
@@ -465,13 +465,13 @@ end
 
 lines(::Type{Val{:AllNames}})         = DSSCore.LinesV(0)
 lines(::Type{Val{:RMatrix_get}})      = DSSCore.LinesV(1)
-lines(::Type{Val{:RMatrix_set}}, arg) = DSSCore.LinesV(2, arg)
+# lines(::Type{Val{:RMatrix_set}}, arg) = DSSCore.LinesV(2, arg)
 lines(::Type{Val{:XMatrix_get}})      = DSSCore.LinesV(3)
-lines(::Type{Val{:XMatrix_set}}, arg) = DSSCore.LinesV(4, arg)
+# lines(::Type{Val{:XMatrix_set}}, arg) = DSSCore.LinesV(4, arg)
 lines(::Type{Val{:CMatrix_get}})      = DSSCore.LinesV(5)
-lines(::Type{Val{:CMatrix_set}}, arg) = DSSCore.LinesV(6, arg)
+# lines(::Type{Val{:CMatrix_set}}, arg) = DSSCore.LinesV(6, arg)
 lines(::Type{Val{:Yprim_get}})        = cmplx(DSSCore.LinesV(7))
-lines(::Type{Val{:Yprim_set}}, arg)   = DSSCore.LinesV(8, arg)
+# lines(::Type{Val{:Yprim_set}}, arg)   = DSSCore.LinesV(8, arg)
 
 
 ################################################################################
@@ -558,11 +558,11 @@ for (k,v) in gendict(Name_get = 0, Name_set = 1)
 end
 
 loadshape(::Type{Val{:PMult_get}})         = DSSCore.LoadShapeV(0)
-loadshape(::Type{Val{:PMult_set}}, arg)    = DSSCore.LoadShapeV(1, arg)
+# loadshape(::Type{Val{:PMult_set}}, arg)    = DSSCore.LoadShapeV(1, arg)
 loadshape(::Type{Val{:QMult_get}})         = DSSCore.LoadShapeV(2)
-loadshape(::Type{Val{:QMult_set}}, arg)    = DSSCore.LoadShapeV(3, arg)
+# loadshape(::Type{Val{:QMult_set}}, arg)    = DSSCore.LoadShapeV(3, arg)
 loadshape(::Type{Val{:TimeArray_get}})     = DSSCore.LoadShapeV(4)
-loadshape(::Type{Val{:TimeArray_set}}, arg)= DSSCore.LoadShapeV(5, arg)
+# loadshape(::Type{Val{:TimeArray_set}}, arg)= DSSCore.LoadShapeV(5, arg)
 
 
 ################################################################################
@@ -604,11 +604,11 @@ meters(::Type{Val{:RegisterNames}})    = DSSCore.MetersV(1)
 meters(::Type{Val{:RegisterValues}})   = DSSCore.MetersV(2)
 meters(::Type{Val{:Totals}})           = DSSCore.MetersV(3)
 meters(::Type{Val{:PeakCurrent_get}})  = DSSCore.MetersV(4)
-meters(::Type{Val{:PeakCurrent_set}}, arg) = DSSCore.MetersV(5, arg)
+# meters(::Type{Val{:PeakCurrent_set}}, arg) = DSSCore.MetersV(5, arg)
 meters(::Type{Val{:CalcCurrent_get}})  = DSSCore.MetersV(6)
-meters(::Type{Val{:CalcCurrent_set}}, arg) = DSSCore.MetersV(7, arg)
+# meters(::Type{Val{:CalcCurrent_set}}, arg) = DSSCore.MetersV(7, arg)
 meters(::Type{Val{:AllocFactors_get}}) = DSSCore.MetersV(8)
-meters(::Type{Val{:AllocFactors_set}}, arg) = DSSCore.MetersV(9, arg)
+# meters(::Type{Val{:AllocFactors_set}}, arg) = DSSCore.MetersV(9, arg)
 meters(::Type{Val{:AllEndElements}})   = DSSCore.MetersV(10)
 meters(::Type{Val{:ALlBranchesInZone}})= DSSCore.MetersV(11)
 
@@ -754,8 +754,8 @@ for (k,v) in gendict(Name_get = 0, Name_set = 1,
     @eval reclosers(::Type{Val{$(Meta.quot(k))}}, arg = "") = DSSCore.ReclosersS($v, arg)
 end
 
-reclosers(::Type{Val{:AllNames}})         = ReclosersV(0)
-reclosers(::Type{Val{:RecloseIntervals}}) = ReclosersV(1)
+reclosers(::Type{Val{:AllNames}})         = DSSCore.ReclosersV(0)
+reclosers(::Type{Val{:RecloseIntervals}}) = DSSCore.ReclosersV(1)
 
 
 ################################################################################
@@ -797,7 +797,7 @@ for (k,v) in gendict(Name_get = 0, Name_set = 1,
     @eval regcontrols(::Type{Val{$(Meta.quot(k))}}, arg = "") = DSSCore.RegControlsS($v, arg)
 end
 
-regcontrols(::Type{Val{:AllNames}})         = RegControlsV(0)
+regcontrols(::Type{Val{:AllNames}})         = DSSCore.RegControlsV(0)
 
 
 ################################################################################
@@ -820,7 +820,7 @@ for (k,v) in gendict(Name_get = 0, Name_set = 1,
     @eval relays(::Type{Val{$(Meta.quot(k))}}, arg = "") = DSSCore.RelaysS($v, arg)
 end
 
-relays(::Type{Val{:AllNames}})         = RelaysV(0)
+relays(::Type{Val{:AllNames}})         = DSSCore.RelaysV(0)
 
 
 ################################################################################
@@ -849,13 +849,13 @@ for (k,v) in gendict(Name_get = 0, Name_set = 1,
     @eval sensors(::Type{Val{$(Meta.quot(k))}}, arg = "") = DSSCore.SensorsS($v, arg)
 end
 
-sensors(::Type{Val{:AllNames}})          = SensorsV(0)
-sensors(::Type{Val{:Currents_get}})      = SensorsV(1)
-sensors(::Type{Val{:Currents_set}}, arg) = SensorsV(2, arg)
-sensors(::Type{Val{:kvar_get}})          = SensorsV(3)
-sensors(::Type{Val{:kvar_set}}, arg)     = SensorsV(4, arg)
-sensors(::Type{Val{:kW_get}})            = SensorsV(5)
-sensors(::Type{Val{:kW_set}}, arg)       = SensorsV(6, arg)
+sensors(::Type{Val{:AllNames}})          = DSSCore.SensorsV(0)
+sensors(::Type{Val{:Currents_get}})      = DSSCore.SensorsV(1)
+# sensors(::Type{Val{:Currents_set}}, arg) = DSSCore.SensorsV(2, arg)
+sensors(::Type{Val{:kvar_get}})          = DSSCore.SensorsV(3)
+# sensors(::Type{Val{:kvar_set}}, arg)     = DSSCore.SensorsV(4, arg)
+sensors(::Type{Val{:kW_get}})            = DSSCore.SensorsV(5)
+# sensors(::Type{Val{:kW_set}}, arg)       = DSSCore.SensorsV(6, arg)
 
 
 ################################################################################
@@ -888,12 +888,12 @@ for (k,v) in gendict(AutoBusList_get = 0, AutoBusList_set = 1,
     @eval settings(::Type{Val{$(Meta.quot(k))}}, arg = "") = DSSCore.SettingsS($v, arg)
 end
 
-settings(::Type{Val{:UERegs_get}})            = SettingsV(0)
-settings(::Type{Val{:UERegs_set}}, arg)       = SettingsV(1, arg)
-settings(::Type{Val{:LossRegs_get}})          = SettingsV(2)
-settings(::Type{Val{:LossRegs_set}}, arg)     = SettingsV(3, arg)
-settings(::Type{Val{:VoltageBases_get}})      = SettingsV(4)
-settings(::Type{Val{:VoltageBases_set}}, arg) = SettingsV(5, arg)
+settings(::Type{Val{:UERegs_get}})            = DSSCore.SettingsV(0)
+# settings(::Type{Val{:UERegs_set}}, arg)       = DSSCore.SettingsV(1, arg)
+settings(::Type{Val{:LossRegs_get}})          = DSSCore.SettingsV(2)
+# settings(::Type{Val{:LossRegs_set}}, arg)     = DSSCore.SettingsV(3, arg)
+settings(::Type{Val{:VoltageBases_get}})      = DSSCore.SettingsV(4)
+# settings(::Type{Val{:VoltageBases_set}}, arg) = DSSCore.SettingsV(5, arg)
 
 
 ################################################################################
@@ -952,7 +952,7 @@ for (k,v) in gendict(ModeID = 0,
     @eval solution(::Type{Val{$(Meta.quot(k))}}, arg = "") = DSSCore.SolutionS($v, arg)
 end
 
-settings(::Type{Val{:EventLog}})            = SolutionV(0)
+settings(::Type{Val{:EventLog}})            = DSSCore.SolutionV(0)
 
 
 ################################################################################
@@ -979,7 +979,7 @@ for (k,v) in gendict(Name_get = 0, Name_set = 1,
     @eval swtcontrols(::Type{Val{$(Meta.quot(k))}}, arg = "") = DSSCore.SwtControlsS($v, arg)
 end
 
-swtcontrols(::Type{Val{:AllNames}})          = SensorsV(0)
+swtcontrols(::Type{Val{:AllNames}})          = DSSCore.SensorsV(0)
 
 
 ################################################################################
@@ -1006,9 +1006,9 @@ for (k,v) in gendict(BranchName_get = 0, BranchName_set = 1,
     @eval topology(::Type{Val{$(Meta.quot(k))}}, arg = "") = DSSCore.TopologyS($v, arg)
 end
 
-topology(::Type{Val{:AllLoopedPairs}})      = SensorsV(0)
-topology(::Type{Val{:AllIsolatedBranches}}) = SensorsV(1)
-topology(::Type{Val{:AllIsolatedLoads}})    = SensorsV(2)
+topology(::Type{Val{:AllLoopedPairs}})      = DSSCore.SensorsV(0)
+topology(::Type{Val{:AllIsolatedBranches}}) = DSSCore.SensorsV(1)
+topology(::Type{Val{:AllIsolatedLoads}})    = DSSCore.SensorsV(2)
 
 
 ################################################################################
@@ -1045,7 +1045,7 @@ for (k,v) in gendict(XfmrCode_get = 0, XfmrCode_set = 1,
     @eval transformers(::Type{Val{$(Meta.quot(k))}}, arg = "") = DSSCore.TransformersS($v, arg)
 end
 
-transformers(::Type{Val{:AllNames}})          = SensorsV(0)
+transformers(::Type{Val{:AllNames}})          = DSSCore.SensorsV(0)
 
 
 ################################################################################
@@ -1071,7 +1071,7 @@ for (k,v) in gendict(Name_get = 0, Name_set = 1)
     @eval vsources(::Type{Val{$(Meta.quot(k))}}, arg = "") = DSSCore.VsourcesS($v, arg)
 end
 
-vsources(::Type{Val{:AllNames}})          = SensorsV(0)
+vsources(::Type{Val{:AllNames}})          = DSSCore.SensorsV(0)
 
 
 ################################################################################
@@ -1099,7 +1099,7 @@ for (k,v) in gendict(Name_get = 0, Name_set = 1)
     @eval xycurves(::Type{Val{$(Meta.quot(k))}}, arg = "") = DSSCore.XYCurvesS($v, arg)
 end
 
-xycurves(::Type{Val{:XArray_get}})          = XYCurvesV(0)
-xycurves(::Type{Val{:XArray_set}}, arg)     = XYCurvesV(1, arg)
-xycurves(::Type{Val{:YArray_get}})          = XYCurvesV(2)
-xycurves(::Type{Val{:YArray_set}}, arg)     = XYCurvesV(3, arg)
+xycurves(::Type{Val{:XArray_get}})          = DSSCore.XYCurvesV(0)
+# xycurves(::Type{Val{:XArray_set}}, arg)     = DSSCore.XYCurvesV(1, arg)
+xycurves(::Type{Val{:YArray_get}})          = DSSCore.XYCurvesV(2)
+# xycurves(::Type{Val{:YArray_set}}, arg)     = DSSCore.XYCurvesV(3, arg)

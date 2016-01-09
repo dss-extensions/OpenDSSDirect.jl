@@ -8,6 +8,13 @@ else
     const dsslib = "C:\\portableapps\\home\\.julia\\v0.4\\OpenDSSDirect\\deps\\win32\\OpenDSSDEngine.DLL"
 end
 
+
+################################################################################
+##
+## Helpers for converting Variants
+##
+################################################################################
+
 # Mimics the structure outlined in the following:
 #   https://msdn.microsoft.com/en-us/library/windows/desktop/ms221482%28v=vs.85%29.aspx
 # Another useful link:
@@ -30,11 +37,17 @@ function fixstrings(data)
     UTF16String[fixstring(data, i) for i in 1:length(data)]
 end
 
+# for reading data from OpenDSS
 function variant{ID}(::Type{Val{ID}}, mode::Integer) 
     arg = UInt[1,2,3,4]
     ccall( (ID, dsslib), stdcall, Void, (Int32,Ptr{UInt}), mode, arg)
     if arg[1] == 0x2005    # Float64 type
         p = convert(Ptr{MSSafeArray{Float64}}, arg[2])
+        sa = pointer_to_array(p, (1,))
+        data = pointer_to_array(sa[1].pvData, (sa[1].grsabound1,))
+        return data
+    elseif arg[1] == 0x2003    # Int32 type
+        p = convert(Ptr{MSSafeArray{Int32}}, arg[2])
         sa = pointer_to_array(p, (1,))
         data = pointer_to_array(sa[1].pvData, (sa[1].grsabound1,))
         return data
@@ -45,6 +58,29 @@ function variant{ID}(::Type{Val{ID}}, mode::Integer)
         return fixstrings(data)
     end
 end
+
+# for writing data to OpenDSS -- BROKEN -- SEGFAULTS
+immutable Variant
+    typ::Cushort
+    # typ::Int64
+    ptr::Ptr{Void}
+    ptr2::Ptr{Void}
+end
+function variant{ID,T <: AbstractFloat}(::Type{Val{ID}}, mode::Integer, arg::AbstractVector{T}) 
+    # Make a Variant object
+    sa = MSSafeArray{Float64}(1, 0x0080, 0x00000008, 0, pointer(arg), length(arg), 0)
+    variant = [Variant(0x2005, pointer([sa]), C_NULL)]
+    dump(sa)
+    dump(variant)
+    ccall( (ID, OpenDSSDirect.DSSCore.dsslib), stdcall, Void, (Int32,Ptr{Void}), mode, variant)
+end
+
+
+################################################################################
+##
+## Methods
+##
+################################################################################
 
 ActiveClassI(mode::Integer,  arg::Integer)         = ccall( (:ActiveClassI, dsslib), stdcall, Int32,   (Int32,Int32),   mode, arg)
 ActiveClassS(mode::Integer,  arg::AbstractString)  = bytestring(ccall( (:ActiveClassS, dsslib), stdcall, Cstring, (Int32,Cstring), mode, arg))
@@ -132,6 +168,7 @@ LoadShapeI(mode::Integer, arg::Integer)         = ccall( (:LoadShapeI, dsslib), 
 LoadShapeF(mode::Integer, arg::Float64)         = ccall( (:LoadShapeF, dsslib), stdcall, Float64, (Int32,Float64), mode, arg)
 LoadShapeS(mode::Integer, arg::AbstractString)  = bytestring(ccall( (:LoadShapeS, dsslib), stdcall, Cstring, (Int32,Cstring), mode, arg))
 LoadShapeV(mode::Integer)  = variant(Val{:LoadShapeV}, mode)
+# LoadShapeV(mode::Integer, arg)  = variant(Val{:LoadShapeV}, mode, arg)
 
 MetersI(mode::Integer, arg::Integer)         = ccall( (:MetersI, dsslib), stdcall, Int32,   (Int32,Int32),   mode, arg)
 MetersF(mode::Integer, arg::Float64)         = ccall( (:MetersF, dsslib), stdcall, Float64, (Int32,Float64), mode, arg)
@@ -179,6 +216,7 @@ SettingsI(mode::Integer, arg::Integer)         = ccall( (:SettingsI, dsslib), st
 SettingsF(mode::Integer, arg::Float64)         = ccall( (:SettingsF, dsslib), stdcall, Float64, (Int32,Float64), mode, arg)
 SettingsS(mode::Integer, arg::AbstractString)  = bytestring(ccall( (:SettingsS, dsslib), stdcall, Cstring, (Int32,Cstring), mode, arg))
 SettingsV(mode::Integer)  = variant(Val{:SettingsV}, mode)
+# SettingsV(mode::Integer, arg)  = variant(Val{:SettingsV}, mode, arg)
 
 SolutionI(mode::Integer, arg::Integer)         = ccall( (:SolutionI, dsslib), stdcall, Int32,   (Int32,Int32),   mode, arg)
 SolutionF(mode::Integer, arg::Float64)         = ccall( (:SolutionF, dsslib), stdcall, Float64, (Int32,Float64), mode, arg)
