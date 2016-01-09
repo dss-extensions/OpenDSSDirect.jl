@@ -1,4 +1,3 @@
-using OpenDSSDirect
-using Base.Test
 
+include("basics.jl")
 

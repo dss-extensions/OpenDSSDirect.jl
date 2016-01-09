@@ -307,12 +307,12 @@ element(::Type{Val{:AllNames}})        = DSSCore.ElementV(0)
 executive(x::Symbol, arg...) = executive(Val{x}, arg...)
 
 for (k,v) in gendict(NumExecCommands = 0, NumExecOptions = 1)
-    @eval executive(::Type{Val{$(Meta.quot(k))}}, arg = 0) = DSSCore.ExecutiveI($v, arg)
+    @eval executive(::Type{Val{$(Meta.quot(k))}}, arg = 0) = DSSCore.DSSExecutiveI($v, arg)
 end
 
 for (k,v) in gendict(Command = 0, Option = 1, CommandHelp = 2, OptionHelp = 3,
                      OptionValue = 4) 
-    @eval executive(::Type{Val{$(Meta.quot(k))}}, arg = "") = DSSCore.ExecutiveS($v, arg)
+    @eval executive(::Type{Val{$(Meta.quot(k))}}, arg = "") = DSSCore.DSSExecutiveS($v, arg)
 end
 
 

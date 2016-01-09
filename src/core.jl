@@ -27,6 +27,10 @@ immutable MSSafeArray{T}
     pvData::Ptr{T}
     grsabound1::Cuint
     grsabound2::Cuint
+    # cElements1::Culong
+    # lLbound1::Clong
+    # cElements2::Culong
+    # lLbound2::Clong
 end
 
 function fixstring(data, i)
