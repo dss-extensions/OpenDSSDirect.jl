@@ -100,7 +100,7 @@ DSS.loads(Val{:kW_set},50.)
 
 This makes the Julia code faster by making types stable.
  
-To use this API, you can either use `import OpenDSSDirect` and prepend all of the functions with `DSS.`, or you can `import OpenDSSDirect` and use the functions directly. The following two are equivalent:
+To use this API, you can either use `import OpenDSSDirect` and prepend all of the functions with `DSS.`, or you can `import OpenDSSDirect.DSS` and use the functions directly. The following two are equivalent:
 
 ```julia 
 using OpenDSSDirect
