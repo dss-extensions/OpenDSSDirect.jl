@@ -9,24 +9,24 @@ const Count = 4; #Loads Count
 
 filename = joinpath(Pkg.dir(), "OpenDSSDirect", "examples", "8500-Node", "Master.dss")
 
-DSS.DSSPut_Command("clear")
-DSS.DSSPut_Command("compile $filename")
+DSSCore.DSSPut_Command("clear")
+DSSCore.DSSPut_Command("compile $filename")
 function setloads()
     for i = 1:1000
-        loadnumber = DSS.DSSLoads(First,0)
+        loadnumber = DSSCore.DSSLoads(First,0)
         while loadnumber > 0
-            DSS.DSSLoadsF(kW,50.)
-            DSS.DSSLoadsF(kvar,20.)
-            loadnumber = DSS.DSSLoads(Next,0)
+            DSSCore.DSSLoadsF(kW,50.)
+            DSSCore.DSSLoadsF(kvar,20.)
+            loadnumber = DSSCore.DSSLoads(Next,0)
         end
     end
-    return DSS.DSSLoads(Count,0)
+    return DSSCore.DSSLoads(Count,0)
 end
 @time count = setloads()
 
-DSS.DSSPut_Command("solve")
+DSSCore.DSSPut_Command("solve")
 
-DSS.CircuitI(0,1)
+DSSCore.CircuitI(0,1)
 
 dss("""
     clear

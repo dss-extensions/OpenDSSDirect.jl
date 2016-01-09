@@ -1,6 +1,6 @@
 module OpenDSSDirect
 
-include("basics.jl")
+include("core.jl")
 include("api.jl")
 
 __init__() = dss(:Start)
