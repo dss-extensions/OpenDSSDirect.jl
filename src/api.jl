@@ -1,3 +1,9 @@
+export DSS
+
+module DSS
+
+import ..DSSCore
+
 export dss, activeclass, bus, capacitors, capcontrols, circuit, cktelement,
        ctrlqueue, element, executive, progress, fuses, generators, properties,
        isource, lines, loads, loadshape, meters, monitors, parser, pdelements, 
@@ -9,6 +15,7 @@ cmplx(x) = reinterpret(Complex128, x)
 
 gendict(;args...) = Dict{Symbol,Int}(args)
 
+
 ################################################################################
 ##
 ## dss
@@ -16,14 +23,14 @@ gendict(;args...) = Dict{Symbol,Int}(args)
 ################################################################################
 dss(x::Symbol, arg...) = dss(Val{x}, arg...)
 
-for (k,v) in gendict(NumCircuits = 0, ClearAll = 1, ShowPanel = 2, Start = 3, 
-                     NumClasses = 4, NumUserClasses = 5, Reset = 6, 
-                     Allowforms_get = 7, Allowforms_set = 8)
+for (k,v) in DSS.gendict(NumCircuits = 0, ClearAll = 1, ShowPanel = 2, Start = 3, 
+                         NumClasses = 4, NumUserClasses = 5, Reset = 6, 
+                         Allowforms_get = 7, Allowforms_set = 8)
     @eval dss(::Type{Val{$(Meta.quot(k))}}, arg = 0) = DSSCore.DSSI($v, arg)
 end
 
-for (k,v) in gendict(NewCircuit = 0, Version = 1, DataPath_get = 2, 
-                     DataPath_set = 3, DefaultEditor = 4)
+for (k,v) in DSS.gendict(NewCircuit = 0, Version = 1, DataPath_get = 2, 
+                         DataPath_set = 3, DefaultEditor = 4)
     @eval dss(::Type{Val{$(Meta.quot(k))}}, arg = "") = DSSCore.DSSS($v, arg)
 end
 
@@ -1103,3 +1110,6 @@ xycurves(::Type{Val{:XArray_get}})          = DSSCore.XYCurvesV(0)
 # xycurves(::Type{Val{:XArray_set}}, arg)     = DSSCore.XYCurvesV(1, arg)
 xycurves(::Type{Val{:YArray_get}})          = DSSCore.XYCurvesV(2)
 # xycurves(::Type{Val{:YArray_set}}, arg)     = DSSCore.XYCurvesV(3, arg)
+
+end # module
+

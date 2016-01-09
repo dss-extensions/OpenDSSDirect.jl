@@ -28,6 +28,8 @@ DSSCore.DSSPut_Command("solve")
 
 DSSCore.CircuitI(0,1)
 
+using OpenDSSDirect.DSS
+
 dss("""
     clear
     compile $filename

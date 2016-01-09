@@ -58,6 +58,7 @@ You can also splice in Julia values with string interpolation. Here is an
 example of using `dss`:
 
 ```julia
+using OpenDSSDirect
 filename = "C:/OpenDSS/electricdss/IEEETestCases/8500-Node/Master.dss"
 dss("""
     clear
@@ -81,25 +82,70 @@ dss("""
     clear
     compile $filename
 """)
-loadnumber = loads(:First)
+loadnumber = DSS.loads(:First)
 while loadnumber > 0
-    loads(:kW_set,50.)
-    loads(:kvar_set,20.)
-    loadnumber = loads(:Next)
+    DSS.loads(:kW_set,50.)
+    DSS.loads(:kvar_set,20.)
+    loadnumber = DSS.loads(:Next)
 end
-println(loads(:Count)) 
+println(DSS.loads(:Count)) 
 ```
  
 For tight loops, the methods can be called with the symbol wrapped in `Val{}`.
 The previous example is:
 
 ```julia 
-loads(Val{:kW_set},50.)
+DSS.loads(Val{:kW_set},50.)
 ``` 
- 
-This makes the Julia code faster by making types stable.
 
-Here is a list of functions supported:
+This makes the Julia code faster by making types stable.
+ 
+To use this API, you can either use `import OpenDSSDirect` and prepend all of the functions with `DSS.`, or you can `import OpenDSSDirect` and use the functions directly. The following two are equivalent:
+
+```julia 
+using OpenDSSDirect
+DSS.circuit(:TotalPower)
+``` 
+Importing the DSS module:
+```julia 
+using OpenDSSDirect.DSS
+circuit(:TotalPower)
+``` 
+
+Many of the functions that return arrays convert to complex numbers where appropriate. Here is an example session:
+
+```julia
+julia> using OpenDSSDirect.DSS
+
+julia> filename = joinpath(Pkg.dir(), "OpenDSSDirect", "examples", "8500-Node", "Master.dss");
+
+julia> dss("""
+           clear
+           compile $filename
+       """)
+
+julia> solution(:Solve);
+
+julia> circuit(:Losses)
+1.218242333223247e6 + 2.798391857088721e6im
+
+julia> circuit(:TotalPower)
+-12004.740450109337 - 1471.1749507157301im
+
+julia> circuit(:SetActiveElement, "Capacitor.CAPBank3")
+"6075"
+
+julia> cktelement(:Voltages)
+6-element Array{Complex{Float64},1}:
+  5390.82-4652.32im
+ -6856.89-2274.93im
+  1284.62+7285.18im
+      0.0+0.0im
+      0.0+0.0im
+      0.0+0.0im
+```
+
+Here is a list of functions supported by this API:
 
 * activeclass 
 * bus 
@@ -141,25 +187,25 @@ To find the parameters and directives for each function, use `methods(fun)`.
 
 The main API is built on the low-level API documented 
 [here](http://svn.code.sf.net/p/electricdss/code/trunk/Distrib/Doc/OpenDSS_Direct_DLL.pdf).
+The low-level API is implemented in the `DSSCore` module.
 Here is an example using the low-level API:
 
 ```julia
-DSS.DSSPut_Command("clear")
-DSS.DSSPut_Command("compile (C:/OpenDSS/electricdss/IEEETestCases/8500-Node/Master.dss)")
-loadnumber = DSS.DSSLoads(0,0)
+DSSCore.DSSPut_Command("clear")
+DSSCore.DSSPut_Command("compile (C:/OpenDSS/electricdss/IEEETestCases/8500-Node/Master.dss)")
+loadnumber = DSSCore.DSSLoads(0,0)
 while loadnumber > 0
-    DSS.DSSLoadsF(1,50.)
-    DSS.DSSLoadsF(5,20.)
-    loadnumber = DSS.DSSLoads(1,0)
+    DSSCore.DSSLoadsF(1,50.)
+    DSSCore.DSSLoadsF(5,20.)
+    loadnumber = DSSCore.DSSLoads(1,0)
 end
-println(DSS.DSSLoads(4,0)) 
+println(DSSCore.DSSLoads(4,0)) 
 ```
 
-Integer (I), floating-point (F), and string (S) functions are supported. The
-variant (V) functions are not available at this time. The low-level API
-functions are not exported. These functions are available in the `DSS` module.
+Integer (I), floating-point (F), string (S), and variant (V) functions are
+supported. The low-level API functions are not exported. 
 
 # Limitations
 
-The functions with "_set" parameters that use Variants are not implemented. An example is `SettingsV(5, arg)` where `arg` is an Array. Variants are normally array inputs. There are not many of these in the direct API, and most can be handled with the text interface or other functions.  
+The functions with "_set" parameters that use Variants are not implemented. An example is `SettingsV(5, arg)` where `arg` is an Array. Variants are normally array inputs. There are not many of these in the direct API, and most can be handled with the text interface or other functions. Functions with "_get" parameters that retrieve Variants are supported. 
 
