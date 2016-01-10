@@ -25,7 +25,7 @@ dss(x::Symbol, arg...) = dss(Val{x}, arg...)
 
 for (k,v) in DSS.gendict(NumCircuits = 0, ClearAll = 1, ShowPanel = 2, Start = 3, 
                          NumClasses = 4, NumUserClasses = 5, Reset = 6, 
-                         Allowforms_get = 7, Allowforms_set = 8)
+                         AllowForms_get = 7, AllowForms_set = 8)
     @eval dss(::Type{Val{$(Meta.quot(k))}}, arg = 0) = DSSCore.DSSI($v, arg)
 end
 
