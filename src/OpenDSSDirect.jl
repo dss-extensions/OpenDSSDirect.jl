@@ -13,11 +13,11 @@ function __init__()
     
     global commandhelp = Dict{ASCIIString, ASCIIString}()
     for i in 1:DSS.executive(:NumCommands)
-        commandhelp[DSS.executive(:Command, string(i))] = DSS.executive(:CommandHelp, string(i))
+        commandhelp[lowercase(DSS.executive(:Command, string(i)))] = DSS.executive(:CommandHelp, string(i))
     end
     global optionhelp = Dict{ASCIIString, ASCIIString}()
     for i in 1:DSS.executive(:NumOptions)
-        optionhelp[DSS.executive(:Option, string(i))] = DSS.executive(:OptionHelp, string(i))
+        optionhelp[lowercase(DSS.executive(:Option, string(i)))] = DSS.executive(:OptionHelp, string(i))
     end
     
     if isdefined(Base, :active_repl)

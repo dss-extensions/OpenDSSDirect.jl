@@ -11,28 +11,6 @@ function run_dss_repl()
 
     main_mode = mirepl.interface.modes[1]
 
-    # Setup the repl panel
-    panel = LineEdit.Prompt("DSS> ";
-        # Copy colors from the prompt object
-        prompt_prefix=Base.text_colors[:blue],
-        prompt_suffix=main_mode.prompt_suffix,
-        on_enter = s->true)
-
-    hp = main_mode.hist
-    hp.mode_mapping[:dss] = panel
-    panel.hist = hp
-
-    panel.on_done = REPL.respond(repl,panel; pass_empty = false) do line
-        if !isempty(line)
-            :( print(OpenDSSDirect.DSS.dss($line)) )
-        else
-            :(  )
-        end
-    end
-
-
-    push!(mirepl.interface.modes,panel)
-
     const dss_keymap = Dict{Any,Any}(
         ']' => function (s,args...)
             if isempty(s)
@@ -44,14 +22,71 @@ function run_dss_repl()
                 LineEdit.edit_insert(s,']')
             end
         end
+        # 'x' => function (s,args...)
+        #     s.mode_state[main_mode] = LineEdit.init_state(repl.t,main_mode)
+        #     LineEdit.transition(s,main_mode)
+        # end
     )
+    const dsshelp_keymap = Dict{Any,Any}(
+        '?' => function (s,args...)
+            if isempty(s)
+                if !haskey(s.mode_state,panelhelp)
+                    s.mode_state[panelhelp] = LineEdit.init_state(repl.t,panelhelp)
+                end
+                LineEdit.transition(s,panelhelp)
+            else
+                LineEdit.edit_insert(s,'?')
+            end
+        end
+    )
+    # Setup the repl panel
+    panel = LineEdit.Prompt("DSS> ";
+        # Copy colors from the prompt object
+        prompt_prefix=Base.text_colors[:blue],
+        prompt_suffix=main_mode.prompt_suffix,
+        # on_enter = s->true)
+        on_enter = Base.REPL.return_callback)
+    panelhelp = LineEdit.Prompt("DSS help?> ";
+        # Copy colors from the prompt object
+        prompt_prefix=Base.text_colors[:magenta],
+        prompt_suffix=main_mode.prompt_suffix,
+        on_enter = s->true)
+
+    hp = main_mode.hist
+    hp.mode_mapping[:dss] = panel
+    hp.mode_mapping[:dsshelp] = panelhelp
+    panel.hist = hp
+    panelhelp.hist = hp
+
+    panel.on_done = REPL.respond(repl,panel; pass_empty = false) do line
+        if !isempty(line)
+            :( print(OpenDSSDirect.DSS.dss($line)) )
+        else
+            :(  )
+        end
+    end
+    panelhelp.on_done = REPL.respond(repl,panel; pass_empty = false) do line
+        if !isempty(line)
+            quote
+                println(get(OpenDSSDirect.commandhelp, lowercase($line), ""))
+                println(get(OpenDSSDirect.optionhelp, lowercase($line), ""))
+            end 
+        else
+            :(  )
+        end
+    end
+
+
+    push!(mirepl.interface.modes,panel)
+    push!(mirepl.interface.modes,panelhelp)
 
     search_prompt, skeymap = LineEdit.setup_search_keymap(hp)
     mk = REPL.mode_keymap(main_mode)
 
     b = Dict{Any,Any}[skeymap, mk, LineEdit.history_keymap, LineEdit.default_keymap, LineEdit.escape_defaults]
-    panel.keymap_dict = LineEdit.keymap(b)
 
     main_mode.keymap_dict = LineEdit.keymap_merge(main_mode.keymap_dict, dss_keymap);
+    panel.keymap_dict = LineEdit.keymap_merge(LineEdit.keymap(b), dsshelp_keymap);
+    panelhelp.keymap_dict = LineEdit.keymap(b)
     nothing
 end
