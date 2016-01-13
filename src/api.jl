@@ -1202,7 +1202,7 @@ baremodule Options
     const LogNormal = 3
     const AddGen = 1
     const AddCap = 2
-    const ControlOFF = ‐1
+    const ControlOFF = -1
 end # baremodule
 
 
