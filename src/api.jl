@@ -1239,9 +1239,9 @@ LoadStatus flags - options include:
 
 """
 baremodule LoadStatus
-    Variable = 0
-    Fixed = 1
-    Exempt = 2
+    const Variable = 0
+    const Fixed = 1
+    const Exempt = 2
 end # baremodule
 
 """
@@ -1258,14 +1258,14 @@ LoadModels flags - options include:
 
 """
 baremodule LoadModels
-    ConstPQ = 1
-    ConstZ = 2
-    Motor = 3
-    CVR = 4
-    ConstI = 5
-    ConstPFixedQ = 6
-    ConstPFixedX = 7
-    ZIPV = 8
+    const ConstPQ = 1
+    const ConstZ = 2
+    const Motor = 3
+    const CVR = 4
+    const ConstI = 5
+    const ConstPFixedQ = 6
+    const ConstPFixedX = 7
+    const ZIPV = 8
 end # baremodule
 
 """
