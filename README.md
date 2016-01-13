@@ -84,8 +84,8 @@ dss("""
 """)
 loadnumber = DSS.loads(:First)
 while loadnumber > 0
-    DSS.loads(:kW_set,50.)
-    DSS.loads(:kvar_set,20.)
+    DSS.loads(:kW, 50.)
+    DSS.loads(:kvar, 20.)
     loadnumber = DSS.loads(:Next)
 end
 println(DSS.loads(:Count)) 
@@ -95,7 +95,7 @@ For tight loops, the methods can be called with the symbol wrapped in `Val{}`.
 The previous example is:
 
 ```julia 
-DSS.loads(Val{:kW_set},50.)
+DSS.loads(Val{:kW}, 50.)
 ``` 
 
 This makes the Julia code faster by making types stable.
@@ -219,7 +219,7 @@ Here is a list of functions supported by this API:
 * vsources
 * xycurves
 
-To find the parameters and directives for each function, use `methods(fun)`.
+To find the parameters and directives for each function, use help for each function.
 
 # Low-level API
 
@@ -231,13 +231,13 @@ Here is an example using the low-level API:
 ```julia
 DSSCore.DSSPut_Command("clear")
 DSSCore.DSSPut_Command("compile (C:/OpenDSS/electricdss/IEEETestCases/8500-Node/Master.dss)")
-loadnumber = DSSCore.DSSLoads(0,0)
+loadnumber = DSSCore.DSSLoads(0, 0)
 while loadnumber > 0
-    DSSCore.DSSLoadsF(1,50.)
-    DSSCore.DSSLoadsF(5,20.)
-    loadnumber = DSSCore.DSSLoads(1,0)
+    DSSCore.DSSLoadsF(1, 50.)
+    DSSCore.DSSLoadsF(5, 20.)
+    loadnumber = DSSCore.DSSLoads(1, 0)
 end
-println(DSSCore.DSSLoads(4,0)) 
+println(DSSCore.DSSLoads(4, 0)) 
 ```
 
 Integer (I), floating-point (F), string (S), and variant (V) functions are
@@ -245,5 +245,5 @@ supported. The low-level API functions are not exported.
 
 # Limitations
 
-The functions with "_set" parameters that use Variants are not implemented. An example is `SettingsV(5, arg)` where `arg` is an Array. Variants are normally array inputs. There are not many of these in the direct API, and most can be handled with the text interface or other functions. Functions with "_get" parameters that retrieve Variants are supported. 
+The functions with input parameters that are Variants are not implemented. An example is `SettingsV(5, arg)` where `arg` is an Array. These variants are normally array inputs. There are not many of these in the direct API, and most can be handled with the text interface or other functions. Functions that retrieve Variants are supported. 
 

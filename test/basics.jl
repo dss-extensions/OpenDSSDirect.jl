@@ -11,10 +11,10 @@ dss("""
     compile $filename
 """)
 loadnumber = DSS.loads(Val{:First})
-@test DSS.loads(Val{:Name_get}) == "138236b0"
+@test DSS.loads(Val{:Name}) == "138236b0"
 while loadnumber > 0
-    DSS.loads(Val{:kW_set},50.)
-    DSS.loads(Val{:kvar_set},20.)
+    DSS.loads(Val{:kW},50.)
+    DSS.loads(Val{:kvar},20.)
     loadnumber = DSS.loads(Val{:Next})
 end
 @test DSS.loads(:Count) == 1177
@@ -35,12 +35,12 @@ dss("""
 """)
 
 loadnumber = loads(Val{:First})
-@test loads(Val{:Name_get}) == "138236b0"
+@test loads(Val{:Name}) == "138236b0"
 kWsum = 0.0
 kvarsum = 0.0
 while loadnumber > 0
-    kWsum += loads(Val{:kW_get})
-    kvarsum += loads(Val{:kvar_get})
+    kWsum += loads(Val{:kW})
+    kvarsum += loads(Val{:kvar})
     loadnumber = loads(Val{:Next})
 end
 
@@ -55,7 +55,7 @@ for i in 1:n
 end
 @test_approx_eq_eps linelosssum.re circuit(:LineLosses).re * 1000  50
 
-@test solution(:Mode_get) == 0
+@test solution(:Mode) == 0
 
 circuit(:Losses)
 circuit(:SubstationLosses)

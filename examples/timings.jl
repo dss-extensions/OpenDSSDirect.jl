@@ -38,8 +38,8 @@ function setloads2()
     for i = 1:1000
         loadnumber = loads(Val{:First})
         while loadnumber > 0
-            loads(Val{:kW_set},50.)
-            loads(Val{:kvar_set},20.)
+            loads(Val{:kW},50.)
+            loads(Val{:kvar},20.)
             loadnumber = loads(Val{:Next})
         end
     end
