@@ -251,6 +251,25 @@ DSS help?> solve
 Perform the solution of the present solution mode. You can set any option that you can set with the Set command (see Set). The Solve command is virtually synonymous with the Set command except that a solution is performed after the options are processed.
 ```
 
+Several flag variables are also defined:
+
+* `MonitorModes`, `SolveModes`, `Options`, `CapControlModes`, `ActionCodes`, 
+  `LoadStatus`, `LoadModels`, `LineUnits`
+
+Each of these has multiple entries defined. See the help for each of these for the flags defined and their meaning. For example, here are the flags defined for `CapControlModes`.
+
+* `Current` : Current control, ON and OFF settings on CT secondary
+* `Voltage` : Voltage control, ON and OFF settings on the PT secondary base
+* `KVAR` : kvar control, ON and OFF settings on PT / CT base
+* `Time` : Time control ON and OFF settings are seconds from midnight
+* `PF` : ON and OFF settings are power factor, negative for leading
+
+Here is an example of use: 
+
+```julia
+capcontrols(:Mode, CapControlModes.KVAR)
+```
+
 # Low-level API
 
 The main API is built on the low-level API documented 

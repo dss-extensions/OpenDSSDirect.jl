@@ -1073,6 +1073,9 @@ circuit reports an overload or undervoltage violation. The function returns the 
 ##
 ################################################################################
 
+export MonitorModes, SolveModes, Options, CapControlModes, ActionCodes, 
+       LoadStatus, LoadModels, LineUnits
+
 """
 CapControlModes flags - options include:
 
@@ -1124,7 +1127,174 @@ baremodule MonitorModes
     const PosOnly = 64
 end # baremodule
 
+"""
+SolveModes flags - options include:
 
+* `SnapShot` : Solve a single snapshot power flow
+* `DutyCycle` : Solve following Duty Cycle load shapes
+* `Direct` : Solve direct (forced admittance model
+* `Daily` : Solve following Daily load shapes
+* `Monte1` : Monte Carlo Mode 1
+* `Monte2` :  Monte Carlo Mode 2
+* `Monte3` :  Monte Carlo Mode 3
+* `FaultStudy` : Fault study at all buses
+* `Yearly` : Solve following Yearly load shapes
+* `MonteFault` : Monte carlo Fault Study
+* `PeakDay` : Solves for Peak Day using Daily load curve
+* `LD1` : Load‐duration Mode 1
+* `LD2` :  Load‐Duration Mode 2
+* `AutoAdd` :  Auto add generators or capacitors
+* `Harmonic` :   (no Help string available)
+* `Dynamic`
+
+"""
+baremodule SolveModes
+    const SnapShot = 0
+    const Daily = 1
+    const Yearly = 2
+    const Monte1 = 3
+    const LD1 = 4
+    const PeakDay = 5
+    const DutyCycle = 6
+    const Direct = 7
+    const MonteFault = 8
+    const FaultStudy = 9
+    const Monte2 = 10
+    const Monte3 = 11
+    const LD2 = 12
+    const AutoAdd = 13
+    const Dynamic = 14
+    const Harmonic = 15
+end # baremodule
+
+"""
+Options flags - options include:
+
+* `PowerFlow` :  Power Flow load model option
+* `Admittance` :  Admittance load model option
+* `NormalSolve` :  Solution algorithm option ‐ Normal solution mode
+* `NewtonSolve` :  Solution algorithm option ‐ Newton solution
+* `Static` :  Control Mode option ‐ Static
+* `Event` :  Control Mode Option ‐ Event driven solution mode
+* `Time` :  Control mode option ‐ Time driven mode
+* `Multiphase` :  Circuit model is multiphase (default)
+* `PositiveSeq` :  Circuit model is positive sequence model only
+* `Gaussian` :  Random mode = Gaussian
+* `Uniform` :  Random mode = Uniform
+* `LogNormal` :  Random Mode = Log normal
+* `AddGen` :  Add generators in AutoAdd mode
+* `AddCap` :  Add capacitors in AutoAdd mode
+* `ControlOFF` :  Control Mode OFF = ‐1
+
+"""
+baremodule Options
+    const PowerFlow = 1
+    const Admittance = 2
+    const NormalSolve = 0
+    const NewtonSolve = 1
+    const Static = 0
+    const Event = 1
+    const Time = 2
+    const Multiphase = 0
+    const PositiveSeq = 1
+    const Gaussian = 1
+    const Uniform = 2
+    const LogNormal = 3
+    const AddGen = 1
+    const AddCap = 2
+    const ControlOFF = ‐1
+end # baremodule
+
+
+"""
+ActionCodes flags - options include:
+
+* `None` :  No action
+* `Open` :  Open a switch
+* `Close` :  Close a switch
+* `Reset` :  Reset to the shelf state (unlocked, closed for a switch
+* `Lock` :  Lock a switch, prventing both manual and automatic operation
+* `Unlock` :  Unlock a switch, permitting both manual and automatic operation
+* `TapUp` :  Move a regulator tap up
+* `TapDown` : Move a regulator tap down
+
+"""
+baremodule ActionCodes
+    None = 0
+    Open = 1
+    Close = 2
+    Reset = 3
+    Lock = 4
+    Unlock = 5
+    TapUp = 6
+    TapDown = 7
+end # baremodule
+
+"""
+LoadStatus flags - options include:
+
+* `Variable`
+* `Fixed`
+* `Exempt`
+
+"""
+baremodule LoadStatus
+    Variable = 0
+    Fixed = 1
+    Exempt = 2
+end # baremodule
+
+"""
+LoadModels flags - options include:
+
+* `ConstPQ`
+* `ConstZ`
+* `Motor`
+* `CVR`
+* `ConstI`
+* `ConstPFixedQ`
+* `ConstPFixedX`
+* `ZIPV`
+
+"""
+baremodule LoadModels
+    ConstPQ = 1
+    ConstZ = 2
+    Motor = 3
+    CVR = 4
+    ConstI = 5
+    ConstPFixedQ = 6
+    ConstPFixedX = 7
+    ZIPV = 8
+end # baremodule
+
+"""
+LineUnits flags - options include:
+
+* `None` :  No line length unit.
+* `Miles` :  Line length units in miles.
+* `kFt` :  Line length units are in thousand feet.
+* `km` :  Line length units are km.
+* `meter` :  Line length units are meters.
+* `ft` :  Line units in feet.
+* `inch` :  Line length units are inches.
+* `cm` :  Line units are cm.
+* `mm` :  Line length units are mm.
+* `Maxnum` : Maximum number of line units constants.
+
+"""
+baremodule LineUnits
+    const None = 0
+    const Miles = 1
+    const kFt = 2
+    const km = 3
+    const meter = 4
+    const ft = 5
+    const inch = 6
+    const cm = 7
+    const mm = 8
+    const Maxnum = 9
+end # baremodule
 
 end # module
 
