@@ -219,7 +219,37 @@ Here is a list of functions supported by this API:
 * vsources
 * xycurves
 
-To find the parameters and directives for each function, use help for each function.
+To find the parameters and directives for each function, use help for each function. See below for an example. The DSS mode also has help. Hit `?` at the `DSS>` prompt, and enter options or commands you want help on.
+
+```julia
+julia> using OpenDSSDirect.DSS
+
+julia> circuit
+circuit (generic function with 44 methods)
+
+help?> circuit
+search: circuit
+
+  circuit(:YCurrents) – Vector of doubles containing complex injection currents for the present solution.
+
+  circuit(:YNodeOrder) – The names of the nodes in the same order as the Y matrix
+
+  circuit(:YNodeVArray) – Complex array of actual node voltages in same order as SystemY matrix.
+
+  circuit(:AllNodeNamesByPhase) – Returns a variant array of strings in order corresponding to
+  AllNodeDistancesByPhase, AllNodeVmagByPhase, AllNodeVmagPUByPhase. Returns only those names whose phase
+  designator matches the specified Phase.
+
+  {truncated...}
+  
+DSS> clear
+
+DSS help?> clear
+Clear all circuits currently in memory.
+
+DSS help?> solve
+Perform the solution of the present solution mode. You can set any option that you can set with the Set command (see Set). The Solve command is virtually synonymous with the Set command except that a solution is performed after the options are processed.
+```
 
 # Low-level API
 
