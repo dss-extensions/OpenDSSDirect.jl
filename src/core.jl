@@ -140,7 +140,7 @@ DSSLoadsS(mode::Integer, arg::AbstractString = "")    = bytestring(ccall( (:DSSL
 DSSLoadsV(mode::Integer)  = variant(Val{:DSSLoadsV}, mode)
 
 DSSProgressI(mode::Integer, arg::Integer = 0)           = ccall( (:DSSProgressI, dsslib), stdcall, Int32,   (Int32,Int32),   mode, arg)
-DSSProgressS(mode::Integer,  arg::AbstractString)  = bytestring(ccall( (:DSSProgressS, dsslib), stdcall, Cstring, (Int32,Cstring), mode, arg))
+DSSProgressS(mode::Integer,  arg::AbstractString = "")  = bytestring(ccall( (:DSSProgressS, dsslib), stdcall, Cstring, (Int32,Cstring), mode, arg))
 
 DSSPut_Command(cmd) = bytestring(ccall( (:DSSPut_Command, dsslib), stdcall, Cstring, (Cstring,), cmd))
 
@@ -157,7 +157,7 @@ GeneratorsF(mode::Integer, arg::Float64 = 0.0)           = ccall( (:GeneratorsF,
 GeneratorsS(mode::Integer, arg::AbstractString = "")    = bytestring(ccall( (:GeneratorsS, dsslib), stdcall, Cstring, (Int32,Cstring), mode, arg))
 GeneratorsV(mode::Integer)  = variant(Val{:GeneratorsV}, mode)
 
-IDSSProperties(mode::Integer,  arg::AbstractString)  = bytestring(ccall( (:IDSSProperties, dsslib), stdcall, Cstring, (Int32,Cstring), mode, arg))
+DSSProperties(mode::Integer,  arg::AbstractString = "")  = bytestring(ccall( (:DSSProperties, dsslib), stdcall, Cstring, (Int32,Cstring), mode, arg))
 
 IsourceI(mode::Integer, arg::Integer = 0)           = ccall( (:IsourceI, dsslib), stdcall, Int32,   (Int32,Int32),   mode, arg)
 IsourceF(mode::Integer, arg::Float64 = 0.0)           = ccall( (:IsourceF, dsslib), stdcall, Float64, (Int32,Float64), mode, arg)

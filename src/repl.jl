@@ -67,15 +67,11 @@ function run_dss_repl()
     end
     panelhelp.on_done = REPL.respond(repl,panel; pass_empty = false) do line
         if !isempty(line)
-            quote
-                println(get(OpenDSSDirect.commandhelp, lowercase($line), ""))
-                println(get(OpenDSSDirect.optionhelp, lowercase($line), ""))
-            end 
+            :( OpenDSSDirect.help($line) )
         else
             :(  )
         end
     end
-
 
     push!(mirepl.interface.modes,panel)
     push!(mirepl.interface.modes,panelhelp)
@@ -88,5 +84,20 @@ function run_dss_repl()
     main_mode.keymap_dict = LineEdit.keymap_merge(main_mode.keymap_dict, dss_keymap);
     panel.keymap_dict = LineEdit.keymap_merge(LineEdit.keymap(b), dsshelp_keymap);
     panelhelp.keymap_dict = LineEdit.keymap(b)
+    nothing
+end
+
+function help(line)
+    println(get(OpenDSSDirect.commandhelp, lowercase(line), ""))
+    println(get(OpenDSSDirect.optionhelp, lowercase(line), ""))
+    classes = OpenDSSDirect.DSS.dss(:Classes)
+    if lowercase(line) == "classes"
+        map(println, classes)
+    end
+    if any(classes .== line)
+        OpenDSSDirect.DSS.circuit(:SetActiveClass, line)
+        OpenDSSDirect.DSS.circuit(:FirstElement)
+        map(println, OpenDSSDirect.DSS.element(:AllPropertyNames))
+    end
     nothing
 end

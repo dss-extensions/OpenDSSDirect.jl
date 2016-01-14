@@ -13,16 +13,7 @@ using OpenDSSDirect.DSS
         clear
         compile $filename
 
-        New monitor.ckt5_totalizedmonitor Transformer.MDV_SUB_1 term=2 mode=1 
-        New monitor.ckt5_mon element=Line.MDV201_connector terminal=1 mode=0 Residual=yes
-        New monitor.ckt5_mon_p element=Line.MDV201_connector terminal=1 mode=1 Ppolar=No
-
         Solve  ! This executes a snaphot power flow solution of the circuit
-
-        set mode=yearly number=$numhours
-        set demand=true
-        set DIVerbose=true
-        set voltexceptionreport = true
     """)
 
 function runpart(i)
@@ -31,6 +22,10 @@ function runpart(i)
     end
     dss(""" 
         set casename=ckt5_$i
+        set mode=yearly number=$numhours
+        set demand=true
+        set DIVerbose=true
+        set voltexceptionreport = true
         set Year=1        ! This statement resets all meters
         set hour=$((i-1) * numhours)
         solve
