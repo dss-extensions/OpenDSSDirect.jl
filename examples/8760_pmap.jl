@@ -12,8 +12,8 @@ using OpenDSSDirect.DSS
     dss("""
         clear
         compile $filename
-
         Solve  ! This executes a snaphot power flow solution of the circuit
+        set mode=yearly number=$numhours
     """)
 
 function runpart(i)
@@ -22,7 +22,6 @@ function runpart(i)
     end
     dss(""" 
         set casename=ckt5_$i
-        set mode=yearly number=$numhours
         set demand=true
         set DIVerbose=true
         set voltexceptionreport = true
