@@ -1,4 +1,4 @@
-## At the command line, use `julia -p 3` to add 3 worker processes for a total of 4.
+## At the command line, use `julia -p 4` to add 4 worker processes.
 ##
 
 using OpenDSSDirect.DSS
@@ -15,8 +15,9 @@ using OpenDSSDirect.DSS
         Solve  ! This executes a snaphot power flow solution of the circuit
         set mode=yearly number=$numhours
     """)
+end
 
-function runpart(i)
+@everywhere function runpart(i)
     if i == N   # last one may not have the same number of hours
         dss("set number=$(8760 - (N-1) * numhours)")
     end
@@ -32,7 +33,7 @@ function runpart(i)
     """)
 end
 
-end
+
 
 @time res = pmap(runpart, 1:N)
 
