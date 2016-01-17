@@ -257,4 +257,18 @@ XYCurvesF(mode::Integer, arg::Float64 = 0.0)           = ccall( (:XYCurvesF, dss
 XYCurvesS(mode::Integer, arg::AbstractString = "")    = bytestring(ccall( (:XYCurvesS, dsslib), stdcall, Cstring, (Int32,Cstring), mode, arg))
 XYCurvesV(mode::Integer)  = variant(Val{:XYCurvesV}, mode)
 
+function getYsparse()
+    hY   = Ref{UInt32}(0)
+    nBus = Ref{UInt32}(0)
+    nNZ  = Ref{UInt32}(0)
+    res = ccall( (:InitAndGetYparams, dsslib), stdcall, UInt32, (Ref{UInt32}, Ref{UInt32}, Ref{UInt32}), hY, nBus, nNZ)
+    colptr = Array(UInt32, nBus[] + 1)
+    rowidx = Array(UInt32, nNZ[])
+    cvals  = Array(Complex128, nNZ[])
+    ccall((:GetCompressedYMatrix, dsslib), stdcall, Void, 
+          (UInt32, UInt32, UInt32, Vector{UInt32}, Vector{UInt32}, Vector{Complex128}), 
+          hY[], nBus[], nNZ[], colptr, rowidx, cvals)
+    Y = SparseMatrixCSC(nBus[], nBus[], colptr+1, rowidx+1, cvals)
+end
+
 end # module
