@@ -262,13 +262,17 @@ function getYsparse()
     nBus = Ref{UInt32}(0)
     nNZ  = Ref{UInt32}(0)
     res = ccall( (:InitAndGetYparams, dsslib), stdcall, UInt32, (Ref{UInt32}, Ref{UInt32}, Ref{UInt32}), hY, nBus, nNZ)
-    colptr = Array(UInt32, nBus[] + 1)
-    rowidx = Array(UInt32, nNZ[])
-    cvals  = Array(Complex128, nNZ[])
-    ccall((:GetCompressedYMatrix, dsslib), stdcall, Void, 
-          (UInt32, UInt32, UInt32, Vector{UInt32}, Vector{UInt32}, Vector{Complex128}), 
-          hY[], nBus[], nNZ[], colptr, rowidx, cvals)
-    Y = SparseMatrixCSC(nBus[], nBus[], colptr+1, rowidx+1, cvals)
+    # Set up pointer references--these are all allocated on the OpenDSS side
+    colptr = Ref{Ptr{UInt32}}(0) 
+    rowidxptr = Ref{Ptr{UInt32}}(0) 
+    cvalsptr = Ref{Ptr{Complex128}}(0) 
+    jnk = ccall((:GetCompressedYMatrix, dsslib), stdcall, Void, 
+          (UInt32, UInt32, UInt32, Ref{Ptr{UInt32}}, Ref{Ptr{UInt32}}, Ref{Ptr{Complex128}}), 
+          hY[], nBus[], nNZ[], colptr, rowidxptr, cvalsptr)
+    colidx = pointer_to_array(colptr[], nBus[] + 1)
+    rowidx = pointer_to_array(rowidxptr[], nNZ[])
+    cvals = pointer_to_array(cvalsptr[], nNZ[])
+    Y = SparseMatrixCSC(nBus[], nBus[], [Int(x+1) for x in colidx], [Int(x+1) for x in rowidx], cvals)
 end
 
 end # module
