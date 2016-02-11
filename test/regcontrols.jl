@@ -17,6 +17,8 @@ init8500()
 @test regcontrols(:MaxTapChange) == 16
 @test regcontrols(:MaxTapChange, regcontrols(:MaxTapChange)) == 0
 @test regcontrols(:Count) == 12
+@test regcontrols(:TapNumber) == 2
+@test regcontrols(:TapNumber, regcontrols(:TapNumber)) == 0
 @test regcontrols(:CTPrimary) ≈ 300.0
 @test regcontrols(:CTPrimary, regcontrols(:CTPrimary)) ≈ 0.0
 @test regcontrols(:PTRatio) ≈ 60.0

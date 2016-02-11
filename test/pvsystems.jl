@@ -27,6 +27,8 @@ solve  ! solves at the specified irradiance and temperature
 @test pvsystems(:kvar, pvsystems(:kvar)) ≈ 0.0
 @test pvsystems(:pf) ≈ 1.0
 @test pvsystems(:pf, pvsystems(:pf)) ≈ 0.0
+@test pvsystems(:kVARated) ≈ 500.0
+@test pvsystems(:kVARated, pvsystems(:kVARated)) ≈ 0.0
 
 end # testset
 
