@@ -3,9 +3,9 @@ export DSSCore
 module DSSCore  # lower-level, basic API
 
 if Int == Int64
-    const dsslib = "$(Pkg.dir())\\OpenDSSDirect\\deps\\win64\\OpenDSSDEngine.DLL"
+    const dsslib = "$(Pkg.dir())\\OpenDSSDirect\\deps\\win64\\OpenDSSDirect.DLL"
 else
-    const dsslib = "$(Pkg.dir())\\OpenDSSDirect\\deps\\win32\\OpenDSSDEngine.DLL"
+    const dsslib = "$(Pkg.dir())\\OpenDSSDirect\\deps\\win32\\OpenDSSDirect.DLL"
 end
 
 
