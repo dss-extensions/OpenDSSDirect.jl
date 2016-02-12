@@ -300,7 +300,7 @@ controlling an OpenDSS solution. These functions include
 `getYsparse`, `getI`, `getV`, 
 `ZeroInjCurr`, `GetSourceInjCurrents`, `GetPCInjCurr`, `SystemYChanged`, 
 `SystemYChanged`, `BuildYMatrixD`, `UseAuxCurrents`, `UseAuxCurrents`, 
-`AddInAuxCurrents`, and `SolveSystem`. 
+`AddInAuxCurrents`, and `SolveSystem`. Each of these have docstrings.
 
 # Limitations
 
