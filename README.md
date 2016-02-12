@@ -48,7 +48,10 @@ Julia has several key features for advanced operations with OpenDSS:
   in Julia. The basic idea is to run a custom solution as described in 
   [OpenDSS Solution Interface.pdf](http://svn.code.sf.net/p/electricdss/code/trunk/Distrib/Doc/OpenDSS%20Solution%20Interface.pdf).
   Custom control or power control elements can be implemented between each
-  model iteration.
+  model iteration. See 
+  [examples/low-level-solver.jl](https://github.com/tshort/OpenDSSDirect.jl/blob/master/examples/low-level-solver.jl) 
+  for an example with a custom solver, including a case with an alternate sparse
+  matrix solver.
 
 # Main API
 
@@ -291,6 +294,13 @@ println(DSSCore.DSSLoads(4, 0))
 
 Integer (I), floating-point (F), string (S), and variant (V) functions are
 supported. The low-level API functions are not exported. 
+
+This low-level API also includes several functions for directly accessing and 
+controlling an OpenDSS solution. These functions include 
+`getYsparse`, `getI`, `getV`, 
+`ZeroInjCurr`, `GetSourceInjCurrents`, `GetPCInjCurr`, `SystemYChanged`, 
+`SystemYChanged`, `BuildYMatrixD`, `UseAuxCurrents`, `UseAuxCurrents`, 
+`AddInAuxCurrents`, and `SolveSystem`. 
 
 # Limitations
 

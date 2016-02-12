@@ -257,6 +257,9 @@ XYCurvesF(mode::Integer, arg::Float64 = 0.0)           = ccall( (:XYCurvesF, dss
 XYCurvesS(mode::Integer, arg::AbstractString = "")    = bytestring(ccall( (:XYCurvesS, dsslib), stdcall, Cstring, (Int32,Cstring), mode, arg))
 XYCurvesV(mode::Integer)  = variant(Val{:XYCurvesV}, mode)
 
+"""
+`getYsparse()` -- Return the system sparse Y matrix.
+"""
 function getYsparse()
     hY   = Ref{UInt32}(0)
     nBus = Ref{UInt32}(0)
@@ -274,5 +277,70 @@ function getYsparse()
     cvals = pointer_to_array(cvalsptr[], nNZ[])
     Y = SparseMatrixCSC(nBus[], nBus[], [Int(x+1) for x in colidx], [Int(x+1) for x in rowidx], cvals)
 end
+
+"""
+`getI()` -- Return the complex vector of current injections. 
+
+The size of the vector is one more than the number of nodes in the system. This
+is the same current injection array used in OpenDSS internally, so the current
+injections can be updated for custom solutions. This could be used to implement
+a custom power control component.
+"""
+function getI()
+    Iref   = Ref{Ptr{Complex128}}(0)
+    ccall( (:getIpointer, dsslib), stdcall, Void, (Ref{Ptr{Complex128}}, ), Iref)
+    numnodes = CircuitI(2) + 1
+    pointer_to_array(Iref[], numnodes)
+end
+
+"""
+`getV()` -- Return the complex vector of node voltages. 
+
+The size of the vector is one more than the number of nodes in the system. The
+first element is ground (zero volts). This is the same voltage array
+used in OpenDSS internally, so the voltages can be updated for custom solutions. 
+"""
+function getV()
+    Vref   = Ref{Ptr{Complex128}}(0)
+    ccall( (:getVpointer, dsslib), stdcall, Void, (Ref{Ptr{Complex128}}, ), Vref)
+    numnodes = CircuitI(2) + 1
+    pointer_to_array(Vref[], numnodes)
+end
+
+"`ZeroInjCurr()` -- Zero out the current injections vector."
+ZeroInjCurr()          = ccall( (:ZeroInjCurr, dsslib), stdcall, Void, ())
+
+"`GetSourceInjCurrents()` -- Update the current injections vector with source injections."
+GetSourceInjCurrents() = ccall( (:GetSourceInjCurrents, dsslib), stdcall, Void, ())
+
+"`GetPCInjCurr()` -- Update the current injections vector with injections from power control elements like loads."
+GetPCInjCurr()         = ccall( (:GetPCInjCurr, dsslib), stdcall, Void, ())
+
+"`SystemYChanged()` -- Bool indicating whether the system Y matrix has changed."
+SystemYChanged()       = ccall( (:SystemYChanged, dsslib), stdcall, Int32, (Int32, Int32), 0, 0) == 1
+
+"`SystemYChanged(arg)` -- Set the status of whether the system Y matrix has changed."
+SystemYChanged(arg)    = ccall( (:SystemYChanged, dsslib), stdcall, Int32, (Int32, Int32), 1, arg)
+
+"""
+`BuildYMatrixD(buildops::Integer, doallocate)` -- Rebuild the system Y matrix. 
+
+* `buildops::Integer` indicates the type of build. `0 == WHOLEMATRIX` and `1 == SERIESONLY`.
+* `doallocate::Bool` is used to determine whether to allocate the Y matrix.
+
+"""
+BuildYMatrixD(BuildOps, AllocateVI) = ccall( (:BuildYMatrixD, dsslib), stdcall, Void, (Int32, Int32), BuildOps, AllocateVI)
+
+"`UseAuxCurrents()` -- Bool indicating whether to use auxiliary currents."
+UseAuxCurrents()       = ccall( (:UseAuxCurrents, dsslib), stdcall, Int32, (Int32, Int32), 0, 0) == 1
+
+"`UseAuxCurrents(arg)` -- Set the status of whether to use auxiliary currents."
+UseAuxCurrents(arg)    = ccall( (:UseAuxCurrents, dsslib), stdcall, Int32, (Int32, Int32), 1, arg)
+
+"`UseAuxCurrents(arg)` -- ??"
+AddInAuxCurrents(arg)  = ccall( (:AddInAuxCurrents, dsslib), stdcall, Void, (Int32, ), arg)
+
+"`SolveSystem()` -- Update the system node voltages based on the vector of current injections."
+SolveSystem(arg)       = ccall( (:SolveSystem, dsslib), stdcall, Int32, (Array{Complex128}, ), arg)
 
 end # module
