@@ -34,7 +34,7 @@ function normalsolution()
 end
 
 """
-Alternative `solvecircuit` using Julia's built-in sparse solver.
+Alternative `normalsolution` using Julia's built-in sparse solver.
 Equivalent to `DSS.solution(:SolveNoControl)` or `ActiveCircuit.Solution.DoNormalSolution` in Pascal.
 """
 function normalsolution_alt()
