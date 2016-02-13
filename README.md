@@ -53,12 +53,11 @@ Julia has several key features for advanced operations with OpenDSS:
   for an example with a custom solver, including a case with an alternate sparse
   matrix solver.
 
-# Main API
+# Main API (module DSS)
 
 The `dss` function is the main function for passing commands to OpenDSS. You can
-pass multi-line commands with `dss`, but continuation lines are not allowed. 
-You can also splice in Julia values with string interpolation. Here is an 
-example of using `dss`:
+pass multi-line commands with `dss`. You can also splice in Julia values with
+string interpolation. Here is an  example of using `dss`:
 
 ```julia
 using OpenDSSDirect
@@ -70,49 +69,41 @@ dss("""
 ```
 
 Several functions are available for setting OpenDSS variables, getting values,
-and initiating commands. The first argument is a symbol followed by zero or more
-arguments. Here is an example to set the `kW` of the active load element:
+and initiating commands. Each of these is in one of several modules. Here is an 
+example to set the `kW` of the active load element:
 
 ```julia 
-loads(:kW_set,50.)
+Loads.kW(50.)
 ``` 
 
 Here is an example setting some loads:
 
 ```julia
+using OpenDSSDirect
 filename = "C:/OpenDSS/electricdss/IEEETestCases/8500-Node/Master.dss"
 dss("""
     clear
     compile $filename
 """)
-loadnumber = DSS.loads(:First)
+loadnumber = DSS.Loads.First()
 while loadnumber > 0
-    DSS.loads(:kW, 50.)
-    DSS.loads(:kvar, 20.)
-    loadnumber = DSS.loads(:Next)
+    DSS.Loads.kW(50.)
+    DSS.Loads.kvar(20.)
+    loadnumber = DSS.Loads.Next()
 end
-println(DSS.loads(:Count)) 
+println(DSS.Loads.Count()) 
 ```
- 
-For tight loops, the methods can be called with the symbol wrapped in `Val{}`.
-The previous example is:
-
-```julia 
-DSS.loads(Val{:kW}, 50.)
-``` 
-
-This makes the Julia code faster by making types stable.
  
 To use this API, you can either use `import OpenDSSDirect` and prepend all of the functions with `DSS.`, or you can `import OpenDSSDirect.DSS` and use the functions directly. The following two are equivalent:
 
 ```julia 
 using OpenDSSDirect
-DSS.circuit(:TotalPower)
+DSS.Circuit.TotalPower()
 ``` 
 Importing the DSS module:
 ```julia 
 using OpenDSSDirect.DSS
-circuit(:TotalPower)
+Circuit.TotalPower()
 ``` 
 
 Many of the functions that return arrays convert to complex numbers where appropriate. Here is an example session:
@@ -127,18 +118,18 @@ julia> dss("""
            compile $filename
        """)
 
-julia> solution(:Solve);
+julia> Solution.Solve();
 
-julia> circuit(:Losses)
+julia> Circuit.Losses()
 1.218242333223247e6 + 2.798391857088721e6im
 
-julia> circuit(:TotalPower)
+julia> Circuit.TotalPower()
 -12004.740450109337 - 1471.1749507157301im
 
-julia> circuit(:SetActiveElement, "Capacitor.CAPBank3")
+julia> Circuit.SetActiveElement("Capacitor.CAPBank3")
 "6075"
 
-julia> cktelement(:Voltages)
+julia> CktElement.Voltages()
 6-element Array{Complex{Float64},1}:
   5390.82-4652.32im
  -6856.89-2274.93im
@@ -146,6 +137,69 @@ julia> cktelement(:Voltages)
       0.0+0.0im
       0.0+0.0im
       0.0+0.0im
+```
+
+Here is a list of modules supported by this API. Each module has several functions.
+
+* `ActiveClass`
+* `Basic`
+* `Bus`
+* `Capacitors`
+* `CapControls`
+* `Circuit`
+* `CktElement`
+* `CtrlQueue`
+* `Element`
+* `Executive`
+* `Fuses`
+* `Generators`
+* `Isource`
+* `Lines`
+* `Loads`
+* `LoadShape`
+* `Meters`
+* `Monitors`
+* `Parser`
+* `PDElements`
+* `Progress`
+* `PVSystems`
+* `Reclosers`
+* `RegControls`
+* `Relays`
+* `Sensors`
+* `Settings`
+* `Solution`
+* `SwtControls`
+* `Topology`
+* `Transformers`
+* `Vsources`
+* `XYCurves`
+
+To find the functions available in each module, use Julia's help for each module (initiated by hitting `?`). See below for an example. 
+
+```julia
+julia> using OpenDSSDirect.DSS
+
+help?> Circuit
+search: Circuit
+
+  module Circuit – Functions for interfacing with the active OpenDSS circuit.
+
+  Circuit.NumCktElements() – Number of CktElements in the circuit
+
+  Circuit.NumBuses() – Total number of Buses in the circuit
+
+  Circuit.NumNodes() – Total number of Nodes in the circuit
+
+  Circuit.FirstPCElement() – Sets the first enabled Power Conversion (PC) element in the circuit to be active; if not successful returns a 0
+
+  Circuit.NextPCElement() – Sets the next enabled Power Conversion (PC) element in the circuit to be active; if not successful returns a 0
+
+  Circuit.FirstPDElement() – Sets the first enabled Power Delivery (PD) element in the circuit to be active; if not successful returns a 0
+
+  Circuit.NextPDElement() – Sets the next enabled Power Delivery (PD) element in the circuit to be active; if not successful returns a 0
+
+  {truncated...}
 ```
 
 OpenDSSDirect also includes a custom REPL mode for entering OpenDSS commands directly. This is similar to the Help (`?`) and Shell (`;`) modes. Use the right square bracket (`]`) to enter DSS mode. Hit backspace on a blank line to exit. Here is an example:
@@ -186,65 +240,9 @@ Control Mode = STATIC
 Load Model = PowerFlow
 ```
 
-Here is a list of functions supported by this API:
-
-* activeclass 
-* bus 
-* capacitors 
-* capcontrols 
-* circuit 
-* cktelement 
-* ctrlqueue 
-* dss 
-* element 
-* executive 
-* fuses 
-* generators 
-* isource 
-* lines 
-* loads 
-* loadshape 
-* meters 
-* monitors 
-* parser 
-* pdelements 
-* progress 
-* pvsystems 
-* reclosers 
-* regcontrols 
-* relays 
-* sensors 
-* settings 
-* solution 
-* swtcontrols
-* topology
-* transformers
-* vsources
-* xycurves
-
-To find the parameters and directives for each function, use help for each function. See below for an example. The DSS mode also has help. Hit `?` at the `DSS>` prompt, and enter options or commands you want help on.
+The DSS mode also has help. Hit `?` at the `DSS>` prompt, and enter options or commands you want help on. 
 
 ```julia
-julia> using OpenDSSDirect.DSS
-
-julia> circuit
-circuit (generic function with 44 methods)
-
-help?> circuit
-search: circuit
-
-  circuit(:YCurrents) – Vector of doubles containing complex injection currents for the present solution.
-
-  circuit(:YNodeOrder) – The names of the nodes in the same order as the Y matrix
-
-  circuit(:YNodeVArray) – Complex array of actual node voltages in same order as SystemY matrix.
-
-  circuit(:AllNodeNamesByPhase) – Returns a variant array of strings in order corresponding to
-  AllNodeDistancesByPhase, AllNodeVmagByPhase, AllNodeVmagPUByPhase. Returns only those names whose phase
-  designator matches the specified Phase.
-
-  {truncated...}
-  
 DSS> clear
 
 DSS help?> clear
@@ -270,10 +268,10 @@ Each of these has multiple entries defined. See the help for each of these for t
 Here is an example of use: 
 
 ```julia
-capcontrols(:Mode, CapControlModes.KVAR)
+CapControls.Mode(CapControlModes.KVAR)
 ```
 
-# Low-level API
+# Low-level API (module DSSCore)
 
 The main API is built on the low-level API documented 
 [here](http://svn.code.sf.net/p/electricdss/code/trunk/Distrib/Doc/OpenDSS_Direct_DLL.pdf).
@@ -304,5 +302,5 @@ controlling an OpenDSS solution. These functions include
 
 # Limitations
 
-The functions with input parameters that are Variants are not implemented. An example is `SettingsV(5, arg)` where `arg` is an Array. These variants are normally array inputs. There are not many of these in the direct API, and most can be handled with the text interface or other functions. Functions that retrieve Variants are supported. 
+The functions with input parameters that are Variants are not implemented. An example is `DSSCore.SettingsV(5, arg)` where `arg` is an Array. These variants are normally array inputs. There are not many of these in the direct API, and most can be handled with the text interface or other functions. Functions that retrieve Variants are supported. 
 

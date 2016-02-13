@@ -36,14 +36,14 @@ dss("""
 """)
 function setloads2()
     for i = 1:1000
-        loadnumber = loads(Val{:First})
+        loadnumber = Loads.First()
         while loadnumber > 0
-            loads(Val{:kW},50.)
-            loads(Val{:kvar},20.)
-            loadnumber = loads(Val{:Next})
+            Loads.kW(50.)
+            Loads.kvar(20.)
+            loadnumber = Loads.Next()
         end
     end
-    return loads(:Count)
+    return Loads.Count()
 end
 @time count = setloads2()
 

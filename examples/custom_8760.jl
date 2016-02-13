@@ -14,29 +14,29 @@ filename = joinpath(basepath, "Master_ckt5.dss")
 """)
 
 function scaleloads(k, basekw, basekvar)
-    loadnumber = loads(Val{:First})
+    loadnumber = Loads.First()
     for i in 1:length(basekw)
-        loads(Val{:kW},   k * basekw[i])
-        loads(Val{:kvar}, k * basekvar[i])
-        loadnumber = loads(Val{:Next})
+        Loads.kW(  k * basekw[i])
+        Loads.kvar(k * basekvar[i])
+        loadnumber = Loads.Next()
     end
 end
 function run_loads(loadshape)
-    nloads = loads(Val{:Count})
+    nloads = Loads.Count()
     basekw = Array(Float64, nloads)
     basekvar = Array(Float64, nloads)
-    loadnumber = loads(Val{:First})
+    loadnumber = Loads.First()
     for i in 1:length(basekw)
-        basekw[i]   = loads(Val{:kW})
-        basekvar[i] = loads(Val{:kvar})
-        loadnumber = loads(Val{:Next})
+        basekw[i]   = Loads.kW()
+        basekvar[i] = Loads.kvar()
+        loadnumber = Loads.Next()
     end
     n = length(loadshape)
     result = Array(Int, n)
     for i in 1:n
         scaleloads(loadshape[i], basekw, basekvar) 
-        solution(Val{:Solve})
-        result[i] = solution(Val{:Iterations})
+        Solution.Solve()
+        result[i] = Solution.Iterations()
     end
     return result
 end

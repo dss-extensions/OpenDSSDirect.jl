@@ -4,10 +4,10 @@
 using OpenDSSDirect
 
 """
-Equivalent to `DSS.solution(:SolveNoControl)` or `ActiveCircuit.Solution.DoNormalSolution` in Pascal.
+Equivalent to `DSS.Solution.SolveNoControl()` or `ActiveCircuit.Solution.DoNormalSolution` in Pascal.
 """
 function normalsolution()
-    nodeVbase = abs(DSS.circuit(:AllBusVolts)) ./ DSS.circuit(:AllBusMagPu)   # KLUDGE!
+    nodeVbase = abs(DSS.Circuit.AllBusVolts()) ./ DSS.Circuit.AllBusMagPu()   # KLUDGE!
     WHOLEMATRIX = 2
     NORMALSOLVE = 0
     nodeV = DSSCore.getV()
@@ -35,10 +35,10 @@ end
 
 """
 Alternative `normalsolution` using Julia's built-in sparse solver.
-Equivalent to `DSS.solution(:SolveNoControl)` or `ActiveCircuit.Solution.DoNormalSolution` in Pascal.
+Equivalent to `DSS.Solution.SolveNoControl()` or `ActiveCircuit.Solution.DoNormalSolution` in Pascal.
 """
 function normalsolution_alt()
-    nodeVbase = abs(DSS.circuit(:AllBusVolts)) ./ DSS.circuit(:AllBusMagPu)   # KLUDGE!
+    nodeVbase = abs(DSS.Circuit.AllBusVolts()) ./ DSS.Circuit.AllBusMagPu()   # KLUDGE!
     WHOLEMATRIX = 2
     NORMALSOLVE = 0
     nodeV = DSSCore.getV()
@@ -81,15 +81,15 @@ end
 Equivalent to `ActiveCircuit.Solution.SolveSnap` in Pascal (the default solve mode).
 """
 function solvesnap()
-    DSS.solution(:InitSnap)
+    DSS.Solution.InitSnap()
     solveYdirect()
     while true
         ## Increment the ControlIteration:
-        i = DSS.solution(Val{:ControlIterations}) + 1
-        DSS.solution(Val{:ControlIterations}, i) 
+        i = DSS.Solution.ControlIterations() + 1
+        DSS.Solution.ControlIterations(i) 
         result = normalsolution()
-        DSS.solution(Val{:CheckControls})
-        if DSS.solution(Val{:ControlActionsDone}) == 1
+        DSS.Solution.CheckControls()
+        if DSS.Solution.ControlActionsDone() == 1
             return i
         end
         if i > 10
@@ -118,7 +118,7 @@ function converged(nodeV, lastVmag, nodeVbase, tolerance = 0.0001)
             maxerr = err 
         end
     end
-    DSS.solution(Val{:Converged}, maxerr < tolerance)
+    DSS.Solution.Converged(maxerr < tolerance)
     return maxerr < tolerance
 end
 
@@ -131,23 +131,23 @@ init8500() = dss("""
 
 function testnormalsolution()
     init8500()
-    DSS.solution(:SolveNoControl)
-    v1 = DSS.circuit(:AllBusVMag)
+    DSS.Solution.SolveNoControl()
+    v1 = DSS.Circuit.AllBusVMag()
     init8500()
     i = normalsolution()
-    v2 = DSS.circuit(:AllBusVMag)
+    v2 = DSS.Circuit.AllBusVMag()
     init8500()
     i = normalsolution_alt()
-    v3 = DSS.circuit(:AllBusVMag)
+    v3 = DSS.Circuit.AllBusVMag()
     (v1, v2, v3)
 end
 
 function testsnap()
     init8500()
-    DSS.solution(:Solve)
-    v1 = DSS.circuit(:AllBusVMag)
+    DSS.Solution.Solve()
+    v1 = DSS.Circuit.AllBusVMag()
     init8500()
     i = solvesnap()
-    v2 = DSS.circuit(:AllBusVMag)
+    v2 = DSS.Circuit.AllBusVMag()
     (v1, v2, i)
 end

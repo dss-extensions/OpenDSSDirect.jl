@@ -8,74 +8,74 @@ dss("""
     Redirect  Fuses.dss
 """)
 
-@testset "meters" begin 
+@testset "Meters" begin 
 
-@test meters(:First) == 1
-@test meters(:Next) == 0
-@test meters(:Reset) == 0
-@test meters(:ResetAll) == 0
-@test meters(:Sample) == 0
-@test meters(:Save) == 0
-@test meters(:MeteredTerminal) == 1
-@test meters(:MeteredTerminal, meters(:MeteredTerminal)) == 0
-@test meters(:DIFilesAreOpen) == 0
-# # # @test meters(:SampleAll) == 0    # ERROR
-@test meters(:SaveAll) == 0
-@test meters(:OpenAllDIFiles) == 0
-@test meters(:CloseAllDIFiles) == 0
-# # # @test meters(:CountEndElements) == 0    # ERROR
-@test meters(:Count) == 1
-@test meters(:CountBranches) == 4881
-@test meters(:SequenceList) == 1
-@test meters(:SequenceList, meters(:SequenceList)) == 0
-# @test meters(:DoReliabilityCalc, 0) == 0
-@test meters(:SeqListSize) == 4881
-@test meters(:TotalCustomers) == 0
-@test meters(:NumSections) == 0
-@test meters(:SetActiveSection, 1) == 0
-@test meters(:OCPDeviceType) == 0
-@test meters(:NumSectionCustomers) == 0
-@test meters(:NumSectionBranches) == 0
-@test meters(:SectSeqidx) == 0
-@test meters(:SectTotalCust) == 0
-@test meters(:SAIFI) ≈ 0.0
-@test meters(:SAIFIkW) ≈ 0.0
-@test meters(:SAIDI) ≈ 0.0
-@test meters(:CustInterrupts) ≈ 0.0
-@test meters(:AvgRepairTime) ≈ 0.0
-@test meters(:FaultRateXRepairHrs) ≈ 0.0
-@test meters(:SumBranchFltRates) ≈ 0.0
-# @test meters(:TotalCustomers) == 1177
-# @test meters(:NumSections) == 30
-# @test meters(:SetActiveSection, 1) == 0
-# @test meters(:OCPDeviceType) == 1
-# @test meters(:NumSectionCustomers) == 28
-# @test meters(:NumSectionBranches) == 105
-# @test meters(:SectSeqidx) == 21
-# @test meters(:SectTotalCust) == 28
-# @test meters(:SAIFI) ≈ 9.875348385699192
-# @test meters(:SAIFIkW) ≈ 9.171172946672693
-# @test meters(:SAIDI) ≈ 29.62604515709752
-# @test meters(:CustInterrupts) ≈ 11623.28504996795
-# @test meters(:AvgRepairTime) ≈ 2.9999999999999987
-# @test meters(:FaultRateXRepairHrs) ≈ 2372.91137653651
-# @test meters(:SumBranchFltRates) ≈ 790.9704588455037
-@test meters(:Name) == "m1"
-@test meters(:Name, meters(:Name)) == "0"
-@test meters(:MeteredElement) == "line.ln5815900-1"
-@test meters(:MeteredElement, meters(:MeteredElement)) == "0"
-@test meters(:AllNames) == Any[]
-@test meters(:RegisterNames) == Any[]
-# @show meters(:RegisterValues, meters(:RegisterValues))
-@test meters(:Totals) == Any[]
-@test meters(:PeakCurrent) == Any[]
-# @show meters(:PeakCurrent, meters(:PeakCurrent))
-@test meters(:CalcCurrent) == Any[]
-# @show meters(:CalcCurrent, meters(:CalcCurrent))
-@test meters(:AllocFactors) == Any[]
-# @show meters(:AllocFactors, meters(:AllocFactors))
-# @show meters(:AllEndElements)
-# # # @show meters(:AllBranchesInZone)    # ERROR
+@test Meters.First() == 1
+@test Meters.Next() == 0
+@test Meters.Reset() == 0
+@test Meters.ResetAll() == 0
+@test Meters.Sample() == 0
+@test Meters.Save() == 0
+@test Meters.MeteredTerminal() == 1
+@test Meters.MeteredTerminal(Meters.MeteredTerminal()) == 0
+@test Meters.DIFilesAreOpen() == 0
+# # # @test Meters.SampleAll() == 0    # ERROR
+@test Meters.SaveAll() == 0
+@test Meters.OpenAllDIFiles() == 0
+@test Meters.CloseAllDIFiles() == 0
+# # # @test Meters.CountEndElements() == 0    # ERROR
+@test Meters.Count() == 1
+@test Meters.CountBranches() == 4881
+@test Meters.SequenceList() == 1
+@test Meters.SequenceList(Meters.SequenceList()) == 0
+# @test Meters.DoReliabilityCalc(0) == 0
+@test Meters.SeqListSize() == 4881
+@test Meters.TotalCustomers() == 0
+@test Meters.NumSections() == 0
+@test Meters.SetActiveSection(1) == 0
+@test Meters.OCPDeviceType() == 0
+@test Meters.NumSectionCustomers() == 0
+@test Meters.NumSectionBranches() == 0
+@test Meters.SectSeqidx() == 0
+@test Meters.SectTotalCust() == 0
+@test Meters.SAIFI() ≈ 0.0
+@test Meters.SAIFIkW() ≈ 0.0
+@test Meters.SAIDI() ≈ 0.0
+@test Meters.CustInterrupts() ≈ 0.0
+@test Meters.AvgRepairTime() ≈ 0.0
+@test Meters.FaultRateXRepairHrs() ≈ 0.0
+@test Meters.SumBranchFltRates() ≈ 0.0
+# @test Meters.TotalCustomers() == 1177
+# @test Meters.NumSections() == 30
+# @test Meters.SetActiveSection(1) == 0
+# @test Meters.OCPDeviceType() == 1
+# @test Meters.NumSectionCustomers() == 28
+# @test Meters.NumSectionBranches() == 105
+# @test Meters.SectSeqidx() == 21
+# @test Meters.SectTotalCust() == 28
+# @test Meters.SAIFI() ≈ 9.875348385699192
+# @test Meters.SAIFIkW() ≈ 9.171172946672693
+# @test Meters.SAIDI() ≈ 29.62604515709752
+# @test Meters.CustInterrupts() ≈ 11623.28504996795
+# @test Meters.AvgRepairTime() ≈ 2.9999999999999987
+# @test Meters.FaultRateXRepairHrs() ≈ 2372.91137653651
+# @test Meters.SumBranchFltRates() ≈ 790.9704588455037
+@test Meters.Name() == "m1"
+@test Meters.Name(Meters.Name()) == "0"
+@test Meters.MeteredElement() == "line.ln5815900-1"
+@test Meters.MeteredElement(Meters.MeteredElement()) == "0"
+@test Meters.AllNames() == Any[]
+@test Meters.RegisterNames() == Any[]
+# @show Meters.RegisterValues(Meters.RegisterValues())
+@test Meters.Totals() == Any[]
+@test Meters.PeakCurrent() == Any[]
+# @show Meters.PeakCurrent(Meters.PeakCurrent())
+@test Meters.CalcCurrent() == Any[]
+# @show Meters.CalcCurrent(Meters.CalcCurrent())
+@test Meters.AllocFactors() == Any[]
+# @show Meters.AllocFactors(Meters.AllocFactors())
+# @show Meters.AllEndElements()
+# # # @show Meters.AllBranchesInZone()    # ERROR
 
 end # testset
 

@@ -2,15 +2,15 @@ include("init.jl")
 init8500()
 
 
-@testset "executive" begin 
+@testset "Executive" begin 
 
-@test executive(:NumCommands) == 104
-@test executive(:NumOptions) == 105
-@test executive(:Command, "2") == "Edit"
-@test executive(:Option, "2") == "element"
-@test executive(:CommandHelp, "2")[1:7] == "Edit an"
-@test executive(:OptionHelp, "2")[1:8] == "Sets the"
-@test executive(:OptionValue, "2") == "vreg4_c"
+@test Executive.NumCommands() == 104
+@test Executive.NumOptions() == 105
+@test Executive.Command("2") == "Edit"
+@test Executive.Option("2") == "element"
+@test Executive.CommandHelp("2")[1:7] == "Edit an"
+@test Executive.OptionHelp("2")[1:8] == "Sets the"
+@test Executive.OptionValue("2") == "vreg4_c"
 
 end # testset
 

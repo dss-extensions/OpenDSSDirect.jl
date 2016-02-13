@@ -2,28 +2,28 @@ include("init.jl")
 init8500()
 
 
-@testset "topology" begin 
+@testset "Topology" begin 
 
-@test topology(:NumLoops) == 599
-@test topology(:NumIsolatedBranches) == 5
-@test topology(:NumIsolatedLoads) == 0
-@test topology(:First) == 1
-@test topology(:Next) == 1
-@test topology(:ActiveBranch) == 1
-@test topology(:ForwardBranch) == 1
-@test topology(:BackwardBranch) == 1
-@test topology(:LoopedBranch) == 0
-@test topology(:ParallelBranch) == 0
-@test topology(:FirstLoad) == 0
-@test topology(:NextLoad) == 0
-@test topology(:ActiveLevel) == 1
-@test topology(:BranchName) == "Reactor.hvmv_sub_hsb"
-@test topology(:BranchName, topology(:BranchName)) == ""
-@test topology(:BusName) == "sourcebus"
-@test topology(:BusName, topology(:BusName)) == ""
-@test topology(:AllLoopedPairs)[end] == "Transformer.feeder_regc"
-# @test topology(:AllIsolatedBranches)[end] == "Transformer.feeder_regc"
-@test topology(:AllIsolatedLoads) == ["NONE"]
+@test Topology.NumLoops() == 599
+@test Topology.NumIsolatedBranches() == 5
+@test Topology.NumIsolatedLoads() == 0
+@test Topology.First() == 1
+@test Topology.Next() == 1
+@test Topology.ActiveBranch() == 1
+@test Topology.ForwardBranch() == 1
+@test Topology.BackwardBranch() == 1
+@test Topology.LoopedBranch() == 0
+@test Topology.ParallelBranch() == 0
+@test Topology.FirstLoad() == 0
+@test Topology.NextLoad() == 0
+@test Topology.ActiveLevel() == 1
+@test Topology.BranchName() == "Reactor.hvmv_sub_hsb"
+@test Topology.BranchName(Topology.BranchName()) == ""
+@test Topology.BusName() == "sourcebus"
+@test Topology.BusName(Topology.BusName()) == ""
+@test Topology.AllLoopedPairs()[end] == "Transformer.feeder_regc"
+# @test Topology.AllIsolatedBranches()[end] == "Transformer.feeder_regc"
+@test Topology.AllIsolatedLoads() == ["NONE"]
 
 end # testset
 

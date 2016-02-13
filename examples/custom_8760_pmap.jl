@@ -13,32 +13,32 @@ using OpenDSSDirect.DSS
         compile $filename
         Solve  ! This executes a snaphot power flow solution of the circuit
     """)
-    const nloads = loads(Val{:Count})
+    const nloads = Loads.Count()
     const basekw = Array(Float64, nloads)
     const basekvar = Array(Float64, nloads)
     function init()
-        loadnumber = loads(Val{:First})
+        loadnumber = Loads.First()
         for i in 1:length(basekw)
-            basekw[i]   = loads(Val{:kW})
-            basekvar[i] = loads(Val{:kvar})
-            loadnumber = loads(Val{:Next})
+            basekw[i]   = Loads.kW()
+            basekvar[i] = Loads.kvar()
+            loadnumber = Loads.Next()
         end
     end
     init()
     function scaleloads(k)
-        loadnumber = loads(Val{:First})
+        loadnumber = Loads.First()
         for i in 1:length(basekw)
-            loads(Val{:kW},   k * basekw[i])
-            loads(Val{:kvar}, k * basekvar[i])
-            loadnumber = loads(Val{:Next})
+            Loads.kW(k * basekw[i])
+            Loads.kvar(k * basekvar[i])
+            loadnumber = Loads.Next()
         end
     end
     function run_loads(idx)
         result = Array(Complex128, length(idx))
         for i in 1:length(idx)
             scaleloads(loadshape[idx[i]]) 
-            solution(Val{:Solve})
-            result[i] = circuit(:TotalPower)
+            Solution.Solve()
+            result[i] = Circuit.TotalPower()
         end
         result
     end

@@ -6,35 +6,35 @@ dss("""
     solve
 """)
 
-@testset "loadshape" begin 
+@testset "LoadShape" begin 
 
-@test loadshape(:Count) == 4
-@test loadshape(:First) == 1
-@test loadshape(:Next) == 2
-@test loadshape(:Npts) == 8760
-@test loadshape(:Npts, loadshape(:Npts)) == 0
-@test loadshape(:Normalize) == 0
-@test loadshape(:UseActual) == 0
-@test loadshape(:UseActual, loadshape(:UseActual)) == 0
-@test loadshape(:HrInterval) ≈ 1.0
-@test loadshape(:HrInterval, loadshape(:HrInterval)) ≈ 0.0
-@test loadshape(:MinInterval) ≈ 60.0
-@test loadshape(:MinInterval, loadshape(:MinInterval)) ≈ 0.0
-@test loadshape(:PBase) ≈ 0.0
-@test loadshape(:PBase, loadshape(:PBase)) ≈ 0.0
-@test loadshape(:QBase) ≈ 0.0
-@test loadshape(:QBase, loadshape(:QBase)) ≈ 0.0
-@test loadshape(:SInterval) ≈ 3600.0
-@test loadshape(:SInterval, loadshape(:SInterval)) ≈ 0.0
-@test loadshape(:Name) == "residential"
-@test loadshape(:Name, loadshape(:Name)) == ""
-@test loadshape(:AllNames) == ["default","residential","commercial_sm","commercial_md"]
-@test loadshape(:PMult)[end] ≈ 0.366545
-# @test loadshape(:PMult, loadshape(:PMult))
-@test loadshape(:QMult) ≈ [0.0]
-# @test loadshape(:QMult, loadshape(:QMult))
-@test loadshape(:TimeArray) ≈ [0.0]
-# @test loadshape(:TimeArray, loadshape(:TimeArray))
+@test LoadShape.Count() == 4
+@test LoadShape.First() == 1
+@test LoadShape.Next() == 2
+@test LoadShape.Npts() == 8760
+@test LoadShape.Npts(LoadShape.Npts()) == 0
+@test LoadShape.Normalize() == 0
+@test LoadShape.UseActual() == 0
+@test LoadShape.UseActual(LoadShape.UseActual()) == 0
+@test LoadShape.HrInterval() ≈ 1.0
+@test LoadShape.HrInterval(LoadShape.HrInterval()) ≈ 0.0
+@test LoadShape.MinInterval() ≈ 60.0
+@test LoadShape.MinInterval(LoadShape.MinInterval()) ≈ 0.0
+@test LoadShape.PBase() ≈ 0.0
+@test LoadShape.PBase(LoadShape.PBase()) ≈ 0.0
+@test LoadShape.QBase() ≈ 0.0
+@test LoadShape.QBase(LoadShape.QBase()) ≈ 0.0
+@test LoadShape.SInterval() ≈ 3600.0
+@test LoadShape.SInterval(LoadShape.SInterval()) ≈ 0.0
+@test LoadShape.Name() == "residential"
+@test LoadShape.Name(LoadShape.Name()) == ""
+@test LoadShape.AllNames() == ["default","residential","commercial_sm","commercial_md"]
+@test LoadShape.PMult()[end] ≈ 0.366545
+# @test LoadShape.PMult(LoadShape.PMult())
+@test LoadShape.QMult() ≈ [0.0]
+# @test LoadShape.QMult(LoadShape.QMult())
+@test LoadShape.TimeArray() ≈ [0.0]
+# @test LoadShape.TimeArray(LoadShape.TimeArray())
 
 end # testset
 

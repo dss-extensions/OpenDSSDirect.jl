@@ -2,51 +2,51 @@ include("init.jl")
 init8500()
 
 
-@testset "circuit" begin 
+@testset "Circuit" begin 
 
-@test circuit(:NumCktElements) == 6103
-@test circuit(:NumBuses) == 4876
-@test circuit(:NumNodes) == 8541
-@test circuit(:FirstPCElement) == 1
-@test circuit(:NextPCElement) == 2
-@test circuit(:FirstPDElement) == 1
-@test circuit(:NextPDElement) == 2
-@test circuit(:Sample) == 0
-@test circuit(:SaveSample) == 0
-@test circuit(:SetActiveBusi, 2) == 0
-@test circuit(:FirstElement) == 1
-@test circuit(:NextElement) == 2
-@test circuit(:UpdateStorage) == 0
-@test circuit(:ParentPDElement) == 0
-@test circuit(:EndOfTimeStepUpdate) == 0
-# @test circuit(:Capacity, 10.0, 20.0) ≈ 0.0    # ERROR
-@test circuit(:Name) == "ieee8500"
-@test circuit(:Disable, circuit(:AllElementNames)[10]) == ""
-@test circuit(:Enable, circuit(:AllElementNames)[10]) == ""
-@test circuit(:SetActiveElement, circuit(:AllElementNames)[10]) == "9"
-@test circuit(:SetActiveBus, circuit(:AllBusNames)[10]) == "9"
-@test circuit(:SetActiveClass, activeclass(:ActiveClassName)) == "16"
-@test circuit(:Losses) ≈ 1.218242333223247e6 + 2.798391857088721e6im
-@test circuit(:LineLosses) ≈ 1042.0872998508387 + 1674.1606828559168im
-@test circuit(:SubstationLosses) ≈ 65.18947074155649 + 752.3006305284744im
-@test circuit(:TotalPower) ≈ -12004.740450109337 - 1471.1749507157301im 
-@test circuit(:AllBusVolts)[end] ≈ -85.01962676301814 + 84.47523352214344im
-@test circuit(:AllBusVMag)[end] ≈ 0.9980241903846725
-@test circuit(:AllElementNames)[end] == "RegControl.vreg4_c"
-@test circuit(:AllBusNames)[end] == "sx3784018a"
-@test circuit(:AllElementLosses)[end] ≈ 0.0
-@test circuit(:AllBusMagPu)[end] ≈ 0.9980241903846725
-@test circuit(:AllNodeNames)[end] == "sx3784018a.2"
-# @show circuit(:SystemY)
-@test circuit(:AllBusDistances)[end] ≈ 0.0
-@test circuit(:AllNodeDistances)[end] ≈ 0.0
-# @test circuit(:AllNodeVmagByPhase)[end]    # ERROR
-# @test circuit(:AllNodeVmagPUByPhase)[end]    # ERROR
-# @test circuit(:AllNodeDistancesByPhase)[end]    # ERROR
-# @test circuit(:AllNodeNamesByPhase)[end]    # ERROR
-@test circuit(:YNodeVArray)[end] ≈ -85.01962676301814 + 84.47523352214344im
-@test circuit(:YNodeOrder)[end] == "SX3784018A.2"
-@test circuit(:YCurrents)[end] ≈ 0.032757937074590515 - 0.054281873453359im
+@test Circuit.NumCktElements() == 6103
+@test Circuit.NumBuses() == 4876
+@test Circuit.NumNodes() == 8541
+@test Circuit.FirstPCElement() == 1
+@test Circuit.NextPCElement() == 2
+@test Circuit.FirstPDElement() == 1
+@test Circuit.NextPDElement() == 2
+@test Circuit.Sample() == 0
+@test Circuit.SaveSample() == 0
+@test Circuit.SetActiveBusi(2) == 0
+@test Circuit.FirstElement() == 1
+@test Circuit.NextElement() == 2
+@test Circuit.UpdateStorage() == 0
+@test Circuit.ParentPDElement() == 0
+@test Circuit.EndOfTimeStepUpdate() == 0
+# @test Circuit.Capacity(10.0, 20.0) ≈ 0.0    # ERROR
+@test Circuit.Name() == "ieee8500"
+@test Circuit.Disable(Circuit.AllElementNames()[10]) == ""
+@test Circuit.Enable(Circuit.AllElementNames()[10]) == ""
+@test Circuit.SetActiveElement(Circuit.AllElementNames()[10]) == "9"
+@test Circuit.SetActiveBus(Circuit.AllBusNames()[10]) == "9"
+@test Circuit.SetActiveClass(ActiveClass.ActiveClassName()) == "16"
+@test Circuit.Losses() ≈ 1.218242333223247e6 + 2.798391857088721e6im
+@test Circuit.LineLosses() ≈ 1042.0872998508387 + 1674.1606828559168im
+@test Circuit.SubstationLosses() ≈ 65.18947074155649 + 752.3006305284744im
+@test Circuit.TotalPower() ≈ -12004.740450109337 - 1471.1749507157301im 
+@test Circuit.AllBusVolts()[end] ≈ -85.01962676301814 + 84.47523352214344im
+@test Circuit.AllBusVMag()[end] ≈ 0.9980241903846725
+@test Circuit.AllElementNames()[end] == "RegControl.vreg4_c"
+@test Circuit.AllBusNames()[end] == "sx3784018a"
+@test Circuit.AllElementLosses()[end] ≈ 0.0
+@test Circuit.AllBusMagPu()[end] ≈ 0.9980241903846725
+@test Circuit.AllNodeNames()[end] == "sx3784018a.2"
+# @show Circuit.SystemY()
+@test Circuit.AllBusDistances()[end] ≈ 0.0
+@test Circuit.AllNodeDistances()[end] ≈ 0.0
+# @test Circuit.AllNodeVmagByPhase()[end]    # ERROR
+# @test Circuit.AllNodeVmagPUByPhase()[end]    # ERROR
+# @test Circuit.AllNodeDistancesByPhase()[end]    # ERROR
+# @test Circuit.AllNodeNamesByPhase()[end]    # ERROR
+@test Circuit.YNodeVArray()[end] ≈ -85.01962676301814 + 84.47523352214344im
+@test Circuit.YNodeOrder()[end] == "SX3784018A.2"
+@test Circuit.YCurrents()[end] ≈ 0.032757937074590515 - 0.054281873453359im
 
 end # testset
 

@@ -26,7 +26,7 @@ end
         set demand=true
         set DIVerbose=true
         set voltexceptionreport = true
-        set Year=1        ! This statement resets all meters
+        set Year=1        ! This statement resets all Meters
         set hour=$((i-1) * numhours)
         solve
         closeDI

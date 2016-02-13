@@ -12,7 +12,7 @@ filename = joinpath(Pkg.dir(), "OpenDSSDirect", "examples", "ckt5", "Master_ckt5
     set demand=true
     set DIVerbose=true
     set voltexceptionreport = true
-    set Year=1        ! This statement resets all meters
+    set Year=1        ! This statement resets all Meters
     solve
     closeDI
 """)

@@ -13,39 +13,39 @@ new Recloser.A monitoredobj=Line.LN5587291-1 monitoredterm=1 switchedobj=Line.LN
 new Recloser.B like=A monitoredobj=Line.LN5860423-1 monitoredterm=1 switchedobj=Line.LN5860423-1 switchedterm=1
 """)
 
-@testset "reclosers" begin 
+@testset "Reclosers" begin 
 
-@test reclosers(:Count) == 2
-@test reclosers(:First) == 1
-@test reclosers(:Next) == 2
-@test reclosers(:MonitoredTerm) == 1
-@test reclosers(:MonitoredTerm, reclosers(:MonitoredTerm)) == 0
-@test reclosers(:SwitchedTerm) == 1
-@test reclosers(:SwitchedTerm, reclosers(:SwitchedTerm)) == 0
-@test reclosers(:NumFast) == 1
-@test reclosers(:NumFast, reclosers(:NumFast)) == 0
-@test reclosers(:Shots) == 4
-@test reclosers(:Shots, reclosers(:Shots)) == 0
-@test reclosers(:Open) == 0
-@test reclosers(:Close) == 0
-@test reclosers(:Idx) == 1
-@test reclosers(:Idx, reclosers(:Idx)) == 0
-@test reclosers(:PhaseTrip) ≈ 200.0
-@test reclosers(:PhaseTrip, reclosers(:PhaseTrip)) ≈ 0.0
-@test reclosers(:PhaseInst) ≈ 0.0
-@test reclosers(:PhaseInst, reclosers(:PhaseInst)) ≈ 0.0
-@test reclosers(:GroundTrip) ≈ 1.0
-@test reclosers(:GroundTrip, reclosers(:GroundTrip)) ≈ 0.0
-@test reclosers(:GroundInst) ≈ 0.0
-@test reclosers(:GroundInst, reclosers(:GroundInst)) ≈ 0.0
-@test reclosers(:Name) == "a"
-@test reclosers(:Name, reclosers(:Name)) == ""
-@test reclosers(:MonitoredObj) == "line.ln5587291-1"
-@test reclosers(:MonitoredObj, reclosers(:MonitoredObj)) == ""
-@test reclosers(:SwitchedObj) == "line.ln5587291-1"
-@test reclosers(:SwitchedObj, reclosers(:SwitchedObj)) == ""
-@test reclosers(:AllNames) == ["a", "b"]
-@test reclosers(:RecloseIntervals) ≈ [2.0,2.0,5.0]
+@test Reclosers.Count() == 2
+@test Reclosers.First() == 1
+@test Reclosers.Next() == 2
+@test Reclosers.MonitoredTerm() == 1
+@test Reclosers.MonitoredTerm(Reclosers.MonitoredTerm()) == 0
+@test Reclosers.SwitchedTerm() == 1
+@test Reclosers.SwitchedTerm(Reclosers.SwitchedTerm()) == 0
+@test Reclosers.NumFast() == 1
+@test Reclosers.NumFast(Reclosers.NumFast()) == 0
+@test Reclosers.Shots() == 4
+@test Reclosers.Shots(Reclosers.Shots()) == 0
+@test Reclosers.Open() == 0
+@test Reclosers.Close() == 0
+@test Reclosers.Idx() == 1
+@test Reclosers.Idx(Reclosers.Idx()) == 0
+@test Reclosers.PhaseTrip() ≈ 200.0
+@test Reclosers.PhaseTrip(Reclosers.PhaseTrip()) ≈ 0.0
+@test Reclosers.PhaseInst() ≈ 0.0
+@test Reclosers.PhaseInst(Reclosers.PhaseInst()) ≈ 0.0
+@test Reclosers.GroundTrip() ≈ 1.0
+@test Reclosers.GroundTrip(Reclosers.GroundTrip()) ≈ 0.0
+@test Reclosers.GroundInst() ≈ 0.0
+@test Reclosers.GroundInst(Reclosers.GroundInst()) ≈ 0.0
+@test Reclosers.Name() == "a"
+@test Reclosers.Name(Reclosers.Name()) == ""
+@test Reclosers.MonitoredObj() == "line.ln5587291-1"
+@test Reclosers.MonitoredObj(Reclosers.MonitoredObj()) == ""
+@test Reclosers.SwitchedObj() == "line.ln5587291-1"
+@test Reclosers.SwitchedObj(Reclosers.SwitchedObj()) == ""
+@test Reclosers.AllNames() == ["a", "b"]
+@test Reclosers.RecloseIntervals() ≈ [2.0,2.0,5.0]
 
 end # testset
 

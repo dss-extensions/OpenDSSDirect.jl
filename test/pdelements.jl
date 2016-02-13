@@ -2,27 +2,27 @@ include("init.jl")
 init8500()
 
 
-@testset "pdelements" begin 
+@testset "PDElements" begin 
 
-@test pdelements(:Count) == 4904
-@test pdelements(:First) == 1
-@test pdelements(:Next) == 1
-@test pdelements(:IsShunt) == 0
-@test pdelements(:NumCustomers) == 0
-@test pdelements(:TotalCustomers) == 0
-# @test pdelements(:ParentPDElement)      # ERROR
-@test pdelements(:FromTerminal) == 1
-@test pdelements(:SectionID) == 0
-@test pdelements(:FaultRate) ≈ 0.1
-@test pdelements(:FaultRate, pdelements(:FaultRate)) ≈ 0.0
-@test pdelements(:PctPermanent) ≈ 20.0
-@test pdelements(:PctPermanent, pdelements(:PctPermanent)) ≈ 0.0
-@test pdelements(:Lambda) ≈ 0.0
-@test pdelements(:AccumulatedL) ≈ 0.0
-@test pdelements(:RepairTime) ≈ 3.0
-@test pdelements(:TotalMiles) ≈ 0.0
-@test pdelements(:Name) == "Line.ln5502549-1" 
-@test pdelements(:Name, pdelements(:Name)) == "0"
+@test PDElements.Count() == 4904
+@test PDElements.First() == 1
+@test PDElements.Next() == 1
+@test PDElements.IsShunt() == 0
+@test PDElements.NumCustomers() == 0
+@test PDElements.TotalCustomers() == 0
+# @test PDElements.ParentPDElement()      # ERROR
+@test PDElements.FromTerminal() == 1
+@test PDElements.SectionID() == 0
+@test PDElements.FaultRate() ≈ 0.1
+@test PDElements.FaultRate(PDElements.FaultRate()) ≈ 0.0
+@test PDElements.PctPermanent() ≈ 20.0
+@test PDElements.PctPermanent(PDElements.PctPermanent()) ≈ 0.0
+@test PDElements.Lambda() ≈ 0.0
+@test PDElements.AccumulatedL() ≈ 0.0
+@test PDElements.RepairTime() ≈ 3.0
+@test PDElements.TotalMiles() ≈ 0.0
+@test PDElements.Name() == "Line.ln5502549-1" 
+@test PDElements.Name(PDElements.Name()) == "0"
 
 end # testset
 

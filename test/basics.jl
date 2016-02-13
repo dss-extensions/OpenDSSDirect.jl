@@ -17,7 +17,7 @@ while loadnumber > 0
     DSS.loads(Val{:kvar},20.)
     loadnumber = DSS.loads(Val{:Next})
 end
-@test DSS.loads(:Count) == 1177
+@test DSS.loads.Count() == 1177
 
 end # module
 
@@ -45,23 +45,23 @@ while loadnumber > 0
 end
 
 linelosssum = 0.0im
-linenumber = lines(Val{:First})
-n = lines(Val{:Count})
+linenumber = Lines(Val{:First})
+n = Lines(Val{:Count})
 linelosses = zeros(Complex128, n)
 for i in 1:n
-    linelosssum += cktelement(Val{:Losses})[1]
-    linelosses[i] = cktelement(Val{:Losses})[1]
-    linenumber = lines(Val{:Next})
+    linelosssum += CktElement(Val{:Losses})[1]
+    linelosses[i] = CktElement(Val{:Losses})[1]
+    linenumber = Lines(Val{:Next})
 end
-@test_approx_eq_eps linelosssum.re circuit(:LineLosses).re * 1000  50
+@test_approx_eq_eps linelosssum.re circuit.LineLosses().re * 1000  50
 
-@test solution(:Mode) == 0
+@test solution.Mode() == 0
 
-circuit(:Losses)
-circuit(:SubstationLosses)
-circuit(:LineLosses)
-circuit(:TotalPower)
-circuit(:AllElementLosses)
-circuit(:AllBusNames)
+circuit.Losses()
+circuit.SubstationLosses()
+circuit.LineLosses()
+circuit.TotalPower()
+circuit.AllElementLosses()
+circuit.AllBusNames()
 
 end # module

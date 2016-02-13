@@ -2,27 +2,27 @@ include("init.jl")
 init8500()
 
 
-@testset "capacitors" begin 
+@testset "Capacitors" begin 
 
-@test capacitors(:First) == 1
-@test capacitors(:Next) == 2
-@test capacitors(:Count) == 10
-@test capacitors(:NumSteps) == 1
-@test capacitors(:NumSteps, capacitors(:NumSteps)) == 0
-@test capacitors(:IsDelta) == false
-@test capacitors(:IsDelta, capacitors(:IsDelta)) == 0
-@test capacitors(:AddStep) == 0
-@test capacitors(:SubtractStep) == 0
-@test capacitors(:AvailableSteps) == 1
-@test capacitors(:Open) == 0
-@test capacitors(:Close) == 0
-@test capacitors(:kV) ≈ 7.2
-@test capacitors(:kV, capacitors(:kV)) ≈ 0.0
-@test capacitors(:kvar) ≈ 300.0
-@test capacitors(:kvar, capacitors(:kvar)) ≈ 0.0
-@test capacitors(:Name) == "capbank2b"
-@test capacitors(:Name, capacitors(:Name)) == "0"
-@test capacitors(:AllNames)[end] == "capbank3"
-@test capacitors(:States) == [1]
+@test Capacitors.First() == 1
+@test Capacitors.Next() == 2
+@test Capacitors.Count() == 10
+@test Capacitors.NumSteps() == 1
+@test Capacitors.NumSteps(Capacitors.NumSteps()) == 0
+@test Capacitors.IsDelta() == false
+@test Capacitors.IsDelta(Capacitors.IsDelta()) == 0
+@test Capacitors.AddStep() == 0
+@test Capacitors.SubtractStep() == 0
+@test Capacitors.AvailableSteps() == 1
+@test Capacitors.Open() == 0
+@test Capacitors.Close() == 0
+@test Capacitors.kV() ≈ 7.2
+@test Capacitors.kV(Capacitors.kV()) ≈ 0.0
+@test Capacitors.kvar() ≈ 300.0
+@test Capacitors.kvar(Capacitors.kvar()) ≈ 0.0
+@test Capacitors.Name() == "capbank2b"
+@test Capacitors.Name(Capacitors.Name()) == "0"
+@test Capacitors.AllNames()[end] == "capbank3"
+@test Capacitors.States() == [1]
 
 end # testset

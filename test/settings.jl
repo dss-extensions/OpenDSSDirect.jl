@@ -2,41 +2,41 @@ include("init.jl")
 init8500()
 
 
-@testset "settings" begin 
+@testset "Settings" begin 
 
-@test settings(:AllowDuplicates) == 0
-@test settings(:AllowDuplicates, settings(:AllowDuplicates)) == 0
-@test settings(:ZoneLock) == 0
-@test settings(:ZoneLock, settings(:ZoneLock)) == 0
-@test settings(:CktModel) == 1
-@test settings(:CktModel, settings(:CktModel)) == 0
-@test settings(:Trapezoidal) == 0
-@test settings(:Trapezoidal, settings(:Trapezoidal)) == 0
-@test settings(:AllocationFactors, 1.0) ≈ 0.0
-@test settings(:NormVminpu) ≈ 0.95
-@test settings(:NormVminpu, settings(:NormVminpu)) ≈ 0.0
-@test settings(:NormVmaxpu) ≈ 1.05
-@test settings(:NormVmaxpu, settings(:NormVmaxpu)) ≈ 0.0
-@test settings(:EmergVminpu) ≈ 0.9
-@test settings(:EmergVminpu, settings(:EmergVminpu)) ≈ 0.0
-@test settings(:EmergVmaxpu) ≈ 1.08
-@test settings(:EmergVmaxpu, settings(:EmergVmaxpu)) ≈ 0.0
-@test settings(:UEWeight) ≈ 1.0
-@test settings(:UEWeight, settings(:UEWeight)) ≈ 0.0
-@test settings(:LossWeight) ≈ 1.0
-@test settings(:LossWeight, settings(:LossWeight)) ≈ 0.0
-@test settings(:PriceSignal) ≈ 25.0
-@test settings(:PriceSignal, settings(:PriceSignal)) ≈ 0.0
-@test settings(:AutoBusList) == ""
-@test settings(:AutoBusList, settings(:AutoBusList)) == ""
-@test settings(:PriceCurve) == ""
-# @test settings(:PriceCurve, settings(:PriceCurve)) == ""
-@test settings(:UERegs) == [10]
-# @test settings(:UERegs, settings(:UERegs))
-@test settings(:LossRegs) == [13]
-# @test settings(:LossRegs, settings(:LossRegs))
-@test settings(:VoltageBases) == [115.0,12.47,0.48,0.208]
-# @test settings(:VoltageBases, settings(:VoltageBases))
+@test Settings.AllowDuplicates() == 0
+@test Settings.AllowDuplicates(Settings.AllowDuplicates()) == 0
+@test Settings.ZoneLock() == 0
+@test Settings.ZoneLock(Settings.ZoneLock()) == 0
+@test Settings.CktModel() == 1
+@test Settings.CktModel(Settings.CktModel()) == 0
+@test Settings.Trapezoidal() == 0
+@test Settings.Trapezoidal(Settings.Trapezoidal()) == 0
+@test Settings.AllocationFactors(1.0) ≈ 0.0
+@test Settings.NormVminpu() ≈ 0.95
+@test Settings.NormVminpu(Settings.NormVminpu()) ≈ 0.0
+@test Settings.NormVmaxpu() ≈ 1.05
+@test Settings.NormVmaxpu(Settings.NormVmaxpu()) ≈ 0.0
+@test Settings.EmergVminpu() ≈ 0.9
+@test Settings.EmergVminpu(Settings.EmergVminpu()) ≈ 0.0
+@test Settings.EmergVmaxpu() ≈ 1.08
+@test Settings.EmergVmaxpu(Settings.EmergVmaxpu()) ≈ 0.0
+@test Settings.UEWeight() ≈ 1.0
+@test Settings.UEWeight(Settings.UEWeight()) ≈ 0.0
+@test Settings.LossWeight() ≈ 1.0
+@test Settings.LossWeight(Settings.LossWeight()) ≈ 0.0
+@test Settings.PriceSignal() ≈ 25.0
+@test Settings.PriceSignal(Settings.PriceSignal()) ≈ 0.0
+@test Settings.AutoBusList() == ""
+@test Settings.AutoBusList(Settings.AutoBusList()) == ""
+@test Settings.PriceCurve() == ""
+# @test Settings.PriceCurve(Settings.PriceCurve()) == ""
+@test Settings.UERegs() == [10]
+# @test Settings.UERegs(Settings.UERegs())
+@test Settings.LossRegs() == [13]
+# @test Settings.LossRegs(Settings.LossRegs())
+@test Settings.VoltageBases() == [115.0,12.47,0.48,0.208]
+# @test Settings.VoltageBases(Settings.VoltageBases())
 
 end # testset
 

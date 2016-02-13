@@ -13,22 +13,22 @@ calcv
 solve  ! solves at the specified irradiance and temperature
 """)
 
-@testset "pvsystems" begin 
+@testset "PVsystems" begin 
 
-@test pvsystems(:Count) == 1
-@test pvsystems(:First) == 1
-@test pvsystems(:Next) == 0
-@test pvsystems(:Idx) == 1
-@test pvsystems(:Idx, pvsystems(:Idx)) == 0
-@test pvsystems(:Irradiance) ≈ 0.8
-@test pvsystems(:Irradiance, pvsystems(:Irradiance)) ≈ 0.0
-@test pvsystems(:kW) ≈ 382.66666666666674
-@test pvsystems(:kvar) ≈ 0.0
-@test pvsystems(:kvar, pvsystems(:kvar)) ≈ 0.0
-@test pvsystems(:pf) ≈ 1.0
-@test pvsystems(:pf, pvsystems(:pf)) ≈ 0.0
-@test pvsystems(:kVARated) ≈ 500.0
-@test pvsystems(:kVARated, pvsystems(:kVARated)) ≈ 0.0
+@test PVsystems.Count() == 1
+@test PVsystems.First() == 1
+@test PVsystems.Next() == 0
+@test PVsystems.Idx() == 1
+@test PVsystems.Idx(PVsystems.Idx()) == 0
+@test PVsystems.Irradiance() ≈ 0.8
+@test PVsystems.Irradiance(PVsystems.Irradiance()) ≈ 0.0
+@test PVsystems.kW() ≈ 382.66666666666674
+@test PVsystems.kvar() ≈ 0.0
+@test PVsystems.kvar(PVsystems.kvar()) ≈ 0.0
+@test PVsystems.pf() ≈ 1.0
+@test PVsystems.pf(PVsystems.pf()) ≈ 0.0
+@test PVsystems.kVARated() ≈ 500.0
+@test PVsystems.kVARated(PVsystems.kVARated()) ≈ 0.0
 
 end # testset
 

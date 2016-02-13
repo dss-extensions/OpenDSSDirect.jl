@@ -90,14 +90,14 @@ end
 function help(line)
     println(get(OpenDSSDirect.commandhelp, lowercase(line), ""))
     println(get(OpenDSSDirect.optionhelp, lowercase(line), ""))
-    classes = OpenDSSDirect.DSS.dss(:Classes)
+    classes = OpenDSSDirect.DSS.Basic.Classes()
     if lowercase(line) == "classes"
         map(println, classes)
     end
     if any(classes .== line)
-        OpenDSSDirect.DSS.circuit(:SetActiveClass, line)
-        OpenDSSDirect.DSS.circuit(:FirstElement)
-        map(println, OpenDSSDirect.DSS.element(:AllPropertyNames))
+        OpenDSSDirect.DSS.Circuit.SetActiveClass(line)
+        OpenDSSDirect.DSS.Circuit.FirstElement()
+        map(println, OpenDSSDirect.DSS.Element.AllPropertyNames())
     end
     nothing
 end

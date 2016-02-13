@@ -2,24 +2,24 @@ include("init.jl")
 init8500()
 
 
-@testset "swtcontrols" begin 
+@testset "SwtControls" begin 
 
-@show swtcontrols(:First)
-@show swtcontrols(:Next)
-@show swtcontrols(:Action)
-@show swtcontrols(:Action, swtcontrols(:Action))
-@show swtcontrols(:IsLocked)
-@show swtcontrols(:IsLocked, swtcontrols(:IsLocked))
-@show swtcontrols(:SwitchedTerm)
-@show swtcontrols(:SwitchedTerm, swtcontrols(:SwitchedTerm))
-@show swtcontrols(:Count)
-@show swtcontrols(:Delay)
-@show swtcontrols(:Delay, swtcontrols(:Delay))
-@show swtcontrols(:Name)
-@show swtcontrols(:Name, swtcontrols(:Name))
-@show swtcontrols(:SwitchedObj)
-@show swtcontrols(:SwitchedObj, swtcontrols(:SwitchedObj))
-@show swtcontrols(:AllNames)
+@show SwtControls.First()
+@show SwtControls.Next()
+@show SwtControls.Action()
+@show SwtControls.Action(SwtControls.Action())
+@show SwtControls.IsLocked()
+@show SwtControls.IsLocked(SwtControls.IsLocked())
+@show SwtControls.SwitchedTerm()
+@show SwtControls.SwitchedTerm(SwtControls.SwitchedTerm())
+@show SwtControls.Count()
+@show SwtControls.Delay()
+@show SwtControls.Delay(SwtControls.Delay())
+@show SwtControls.Name()
+@show SwtControls.Name(SwtControls.Name())
+@show SwtControls.SwitchedObj()
+@show SwtControls.SwitchedObj(SwtControls.SwitchedObj())
+@show SwtControls.AllNames()
 
 end # testset
 

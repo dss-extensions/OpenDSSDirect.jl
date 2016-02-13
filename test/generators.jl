@@ -6,38 +6,38 @@ dss("""
     solve
 """)
 
-@testset "generators" begin 
+@testset "Generators" begin 
 
-@test generators(:First) == 1
-@test generators(:Next) == 0
-@test generators(:ForcedON) == 0
-@test generators(:ForcedON, generators(:ForcedON)) == 0
-@test generators(:Phases) == 3
-@test generators(:Phases, generators(:Phases)) == 0
-@test generators(:Count) == 1
-@test generators(:Idx) == 1
-@test generators(:Idx, generators(:Idx)) == 0
-@test generators(:Model) == 1
-@test generators(:Model, generators(:Model)) == 0
-@test generators(:kV) ≈ 0.48
-@test generators(:kV, generators(:kV)) ≈ 0.0
-@test generators(:kW) ≈ 1000.0
-@test generators(:kW, generators(:kW)) ≈ 0.0
-@test generators(:kvar) ≈ 0.0
-@test generators(:kvar, generators(:kvar)) ≈ 0.0
-@test generators(:PF) ≈ 1.0
-@test generators(:PF, generators(:PF)) ≈ 0.0
-@test generators(:kVARated) ≈ 1000.0
-@test generators(:kVARated, generators(:kVARated)) ≈ 0.0
-@test generators(:Vmaxpu) ≈ 1.1
-@test generators(:Vmaxpu, generators(:Vmaxpu)) ≈ 0.0
-@test generators(:Vminpu) ≈ 0.9
-@test generators(:Vminpu, generators(:Vminpu)) ≈ 0.0
-@test generators(:Name) == "g_m1125934"
-@test generators(:Name, generators(:Name)) == ""
-@test generators(:AllNames) == ["g_m1125934"]
-@test generators(:RegisterNames) == ["kWh","kvarh","Max kW","Max kVA","Hours","\$"]
-@test generators(:RegisterValues) == [0.0,0.0,0.0,0.0,0.0,0.0]
+@test Generators.First() == 1
+@test Generators.Next() == 0
+@test Generators.ForcedON() == 0
+@test Generators.ForcedON(Generators.ForcedON()) == 0
+@test Generators.Phases() == 3
+@test Generators.Phases(Generators.Phases()) == 0
+@test Generators.Count() == 1
+@test Generators.Idx() == 1
+@test Generators.Idx(Generators.Idx()) == 0
+@test Generators.Model() == 1
+@test Generators.Model(Generators.Model()) == 0
+@test Generators.kV() ≈ 0.48
+@test Generators.kV(Generators.kV()) ≈ 0.0
+@test Generators.kW() ≈ 1000.0
+@test Generators.kW(Generators.kW()) ≈ 0.0
+@test Generators.kvar() ≈ 0.0
+@test Generators.kvar(Generators.kvar()) ≈ 0.0
+@test Generators.PF() ≈ 1.0
+@test Generators.PF(Generators.PF()) ≈ 0.0
+@test Generators.kVARated() ≈ 1000.0
+@test Generators.kVARated(Generators.kVARated()) ≈ 0.0
+@test Generators.Vmaxpu() ≈ 1.1
+@test Generators.Vmaxpu(Generators.Vmaxpu()) ≈ 0.0
+@test Generators.Vminpu() ≈ 0.9
+@test Generators.Vminpu(Generators.Vminpu()) ≈ 0.0
+@test Generators.Name() == "g_m1125934"
+@test Generators.Name(Generators.Name()) == ""
+@test Generators.AllNames() == ["g_m1125934"]
+@test Generators.RegisterNames() == ["kWh","kvarh","Max kW","Max kVA","Hours","\$"]
+@test Generators.RegisterValues() == [0.0,0.0,0.0,0.0,0.0,0.0]
 
 end # testset
 

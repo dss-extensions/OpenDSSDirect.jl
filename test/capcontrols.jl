@@ -2,39 +2,39 @@ include("init.jl")
 init8500()
 
 
-@testset "capcontrols" begin 
+@testset "CapControls" begin 
 
-@test capcontrols(:First) == 1
-@test capcontrols(:Next) == 2
-@test capcontrols(:Mode) == 2
-@test capcontrols(:Mode, capcontrols(:Mode)) == 0
-@test capcontrols(:MonitoredTerm) == 1
-@test capcontrols(:MonitoredTerm, capcontrols(:MonitoredTerm)) == 0
-@test capcontrols(:UseVoltOverride)
-@test capcontrols(:UseVoltOverride, capcontrols(:UseVoltOverride)) == 0
-@test capcontrols(:Count) == 9
-@test capcontrols(:CTRatio) ≈ 1.0
-@test capcontrols(:CTRatio, capcontrols(:CTRatio)) ≈ 0.0
-@test capcontrols(:PTRatio) ≈ 1.0
-@test capcontrols(:PTRatio, capcontrols(:PTRatio)) ≈ 0.0
-@test capcontrols(:ONSetting) ≈ 150.0
-@test capcontrols(:ONSetting, capcontrols(:ONSetting)) ≈ 0.0
-@test capcontrols(:OFFSetting) ≈ -225.0 
-@test capcontrols(:OFFSetting, capcontrols(:OFFSetting)) ≈ 0.0
-@test capcontrols(:Vmax) ≈ 7740.0
-@test capcontrols(:Vmax, capcontrols(:Vmax)) ≈ 0.0
-@test capcontrols(:Vmin) ≈ 7110.0
-@test capcontrols(:Vmin, capcontrols(:Vmin)) ≈ 0.0
-@test capcontrols(:Delay) ≈ 101.0
-@test capcontrols(:Delay, capcontrols(:Delay)) ≈ 0.0
-@test capcontrols(:DelayOff) ≈ 101.0
-@test capcontrols(:DelayOff, capcontrols(:DelayOff)) ≈ 0.0
-@test capcontrols(:Name) == "capbank2b_ctrl"
-@test capcontrols(:Name, capcontrols(:Name)) == "0"
-@test capcontrols(:Capacitor) == "capbank2b"
-@test capcontrols(:Capacitor, capcontrols(:Capacitor)) == "0"
-@test capcontrols(:MonitoredObj) == "line.cap_1b"
-@test capcontrols(:MonitoredObj, capcontrols(:MonitoredObj)) == "0"
-@test capcontrols(:AllNames)[end] == "capbank0c_ctrl"
+@test CapControls.First() == 1
+@test CapControls.Next() == 2
+@test CapControls.Mode() == 2
+@test CapControls.Mode(CapControls.Mode()) == 0
+@test CapControls.MonitoredTerm() == 1
+@test CapControls.MonitoredTerm(CapControls.MonitoredTerm()) == 0
+@test CapControls.UseVoltOverride()
+@test CapControls.UseVoltOverride(CapControls.UseVoltOverride()) == 0
+@test CapControls.Count() == 9
+@test CapControls.CTRatio() ≈ 1.0
+@test CapControls.CTRatio(CapControls.CTRatio()) ≈ 0.0
+@test CapControls.PTRatio() ≈ 1.0
+@test CapControls.PTRatio(CapControls.PTRatio()) ≈ 0.0
+@test CapControls.ONSetting() ≈ 150.0
+@test CapControls.ONSetting(CapControls.ONSetting()) ≈ 0.0
+@test CapControls.OFFSetting() ≈ -225.0 
+@test CapControls.OFFSetting(CapControls.OFFSetting()) ≈ 0.0
+@test CapControls.Vmax() ≈ 7740.0
+@test CapControls.Vmax(CapControls.Vmax()) ≈ 0.0
+@test CapControls.Vmin() ≈ 7110.0
+@test CapControls.Vmin(CapControls.Vmin()) ≈ 0.0
+@test CapControls.Delay() ≈ 101.0
+@test CapControls.Delay(CapControls.Delay()) ≈ 0.0
+@test CapControls.DelayOff() ≈ 101.0
+@test CapControls.DelayOff(CapControls.DelayOff()) ≈ 0.0
+@test CapControls.Name() == "capbank2b_ctrl"
+@test CapControls.Name(CapControls.Name()) == "0"
+@test CapControls.Capacitor() == "capbank2b"
+@test CapControls.Capacitor(CapControls.Capacitor()) == "0"
+@test CapControls.MonitoredObj() == "line.cap_1b"
+@test CapControls.MonitoredObj(CapControls.MonitoredObj()) == "0"
+@test CapControls.AllNames()[end] == "capbank0c_ctrl"
 
 end # testset
