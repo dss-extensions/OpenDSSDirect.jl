@@ -43,8 +43,8 @@ end
 
 # for reading data from OpenDSS
 function variant{ID}(::Type{Val{ID}}, mode::Integer) 
-    arg = UInt[1,2,3,4]
-    ccall( (ID, dsslib), stdcall, Void, (Int32,Ptr{UInt}), mode, arg)
+    arg = UInt64[1,2,3,4]
+    ccall( (ID, dsslib), stdcall, Void, (Int32,Ptr{UInt64}), mode, arg)
     if arg[1] == 0x0001   # data not changed
         return []
     elseif arg[1] == 0x2005    # Float64 type
