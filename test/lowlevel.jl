@@ -1,12 +1,10 @@
-include("$(Pkg.dir())/OpenDSSDirect/examples/low-level-solver.jl")
+include("$(dirname(@__FILE__))/../examples/low-level-solver.jl")
 
-if !isdefined(Test, symbol("@testset"))
-    if VERSION >= v"0.5-"
-        using Base.Test
-    else
-        using BaseTestNext
-        const Test = BaseTestNext
-    end
+if VERSION >= v"0.5-"
+    using Base.Test
+elseif !isdefined(Test, symbol("@testset"))
+    using BaseTestNext
+    const Test = BaseTestNext
 end
 
 isclose(x, y) = maximum(abs(x - y) ./ abs(x)) < 0.0005

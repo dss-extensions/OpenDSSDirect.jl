@@ -22,7 +22,7 @@ Pkg.clone("https://github.com/tshort/OpenDSSDirect.jl.git")
 ```
 
 This package includes OpenDSS as a library. You do not have to install OpenDSS
-separately. In particular, it includes the OpenDSSDEngine.DLL that implements
+separately. In particular, it includes the OpenDSSDirect.DLL that implements
 the direct-access API.
 
 # Features
