@@ -1,3 +1,6 @@
+
+@testset "XYCurves" begin 
+
 include("init.jl")
 init8500()
 
@@ -5,8 +8,6 @@ dss("""
 New XYCurve.MyPvsT npts=4  xarray=[0  25  75  100]  yarray=[1.2 1.0 0.8  0.6] 
 New XYCurve.MyEff npts=4  xarray=[.1  .2  .4  1.0]  yarray=[.86  .9  .93  .97]  
 """)
-
-@testset "XYCurves" begin 
 
 @test XYCurves.Count() == 2
 @test XYCurves.First() == 1
