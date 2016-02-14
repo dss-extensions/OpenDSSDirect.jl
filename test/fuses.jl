@@ -16,8 +16,8 @@ dss("Redirect  Fuses.dss")
 @test Fuses.Idx() == 30
 @test Fuses.Idx(Fuses.Idx()) == 0
 @test Fuses.NumPhases() == 1
-@test Fuses.RatedCurrent() ≈ 10.0
-@test Fuses.RatedCurrent(Fuses.RatedCurrent()) ≈ 0.0
+@test Fuses.RatedCurrent() ≋ 10.0
+@test Fuses.RatedCurrent(Fuses.RatedCurrent()) ≋ 0.0
 @test Fuses.Name() == "ln6991377-9"
 @test Fuses.Name(Fuses.Name()) == ""
 @test Fuses.MonitoredObj() == "line.ln6991377-9"

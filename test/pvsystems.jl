@@ -20,15 +20,15 @@ solve  ! solves at the specified irradiance and temperature
 @test PVsystems.Next() == 0
 @test PVsystems.Idx() == 1
 @test PVsystems.Idx(PVsystems.Idx()) == 0
-@test PVsystems.Irradiance() ≈ 0.8
-@test PVsystems.Irradiance(PVsystems.Irradiance()) ≈ 0.0
-@test PVsystems.kW() ≈ 382.66666666666674
-@test PVsystems.kvar() ≈ 0.0
-@test PVsystems.kvar(PVsystems.kvar()) ≈ 0.0
-@test PVsystems.pf() ≈ 1.0
-@test PVsystems.pf(PVsystems.pf()) ≈ 0.0
-@test PVsystems.kVARated() ≈ 500.0
-@test PVsystems.kVARated(PVsystems.kVARated()) ≈ 0.0
+@test PVsystems.Irradiance() ≋ 0.8
+@test PVsystems.Irradiance(PVsystems.Irradiance()) ≋ 0.0
+@test PVsystems.kW() ≋ 382.66666666666674
+@test PVsystems.kvar() ≋ 0.0
+@test PVsystems.kvar(PVsystems.kvar()) ≋ 0.0
+@test PVsystems.pf() ≋ 1.0
+@test PVsystems.pf(PVsystems.pf()) ≋ 0.0
+@test PVsystems.kVARated() ≋ 500.0
+@test PVsystems.kVARated(PVsystems.kVARated()) ≋ 0.0
 
 end # testset
 

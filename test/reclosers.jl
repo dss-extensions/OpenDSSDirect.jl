@@ -30,14 +30,14 @@ new Recloser.B like=A monitoredobj=Line.LN5860423-1 monitoredterm=1 switchedobj=
 @test Reclosers.Close() == 0
 @test Reclosers.Idx() == 1
 @test Reclosers.Idx(Reclosers.Idx()) == 0
-@test Reclosers.PhaseTrip() ≈ 200.0
-@test Reclosers.PhaseTrip(Reclosers.PhaseTrip()) ≈ 0.0
-@test Reclosers.PhaseInst() ≈ 0.0
-@test Reclosers.PhaseInst(Reclosers.PhaseInst()) ≈ 0.0
-@test Reclosers.GroundTrip() ≈ 1.0
-@test Reclosers.GroundTrip(Reclosers.GroundTrip()) ≈ 0.0
-@test Reclosers.GroundInst() ≈ 0.0
-@test Reclosers.GroundInst(Reclosers.GroundInst()) ≈ 0.0
+@test Reclosers.PhaseTrip() ≋ 200.0
+@test Reclosers.PhaseTrip(Reclosers.PhaseTrip()) ≋ 0.0
+@test Reclosers.PhaseInst() ≋ 0.0
+@test Reclosers.PhaseInst(Reclosers.PhaseInst()) ≋ 0.0
+@test Reclosers.GroundTrip() ≋ 1.0
+@test Reclosers.GroundTrip(Reclosers.GroundTrip()) ≋ 0.0
+@test Reclosers.GroundInst() ≋ 0.0
+@test Reclosers.GroundInst(Reclosers.GroundInst()) ≋ 0.0
 @test Reclosers.Name() == "a"
 @test Reclosers.Name(Reclosers.Name()) == ""
 @test Reclosers.MonitoredObj() == "line.ln5587291-1"
@@ -45,7 +45,7 @@ new Recloser.B like=A monitoredobj=Line.LN5860423-1 monitoredterm=1 switchedobj=
 @test Reclosers.SwitchedObj() == "line.ln5587291-1"
 @test Reclosers.SwitchedObj(Reclosers.SwitchedObj()) == ""
 @test Reclosers.AllNames() == ["a", "b"]
-@test Reclosers.RecloseIntervals() ≈ [2.0,2.0,5.0]
+@test Reclosers.RecloseIntervals() ≋ [2.0,2.0,5.0]
 
 end # testset
 

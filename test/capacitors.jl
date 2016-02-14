@@ -16,10 +16,10 @@ init8500()
 @test Capacitors.AvailableSteps() == 1
 @test Capacitors.Open() == 0
 @test Capacitors.Close() == 0
-@test Capacitors.kV() ≈ 7.2
-@test Capacitors.kV(Capacitors.kV()) ≈ 0.0
-@test Capacitors.kvar() ≈ 300.0
-@test Capacitors.kvar(Capacitors.kvar()) ≈ 0.0
+@test Capacitors.kV() ≋ 7.2
+@test Capacitors.kV(Capacitors.kV()) ≋ 0.0
+@test Capacitors.kvar() ≋ 300.0
+@test Capacitors.kvar(Capacitors.kvar()) ≋ 0.0
 @test Capacitors.Name() == "capbank2b"
 @test Capacitors.Name(Capacitors.Name()) == "0"
 @test Capacitors.AllNames()[end] == "capbank3"

@@ -35,9 +35,9 @@ dss("""
 @test Monitors.AllNames() == ["m1"]
 @test Monitors.ByteStream() == nothing
 @test Monitors.DblHourS()[1] == " V1"
-@test Monitors.DblHour() ≈ [0.0]
-@test Monitors.DblFreqS() ≈ [0.0]
-@test Monitors.DblFreq() ≈ [0.0]
+@test Monitors.DblHour() ≋ [0.0]
+@test Monitors.DblFreqS() ≋ [0.0]
+@test Monitors.DblFreq() ≋ [0.0]
 
 end # testset
 

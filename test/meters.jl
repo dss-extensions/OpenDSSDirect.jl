@@ -38,13 +38,13 @@ dss("""
 @test Meters.NumSectionBranches() == 0
 @test Meters.SectSeqidx() == 0
 @test Meters.SectTotalCust() == 0
-@test Meters.SAIFI() ≈ 0.0
-@test Meters.SAIFIkW() ≈ 0.0
-@test Meters.SAIDI() ≈ 0.0
-@test Meters.CustInterrupts() ≈ 0.0
-@test Meters.AvgRepairTime() ≈ 0.0
-@test Meters.FaultRateXRepairHrs() ≈ 0.0
-@test Meters.SumBranchFltRates() ≈ 0.0
+@test Meters.SAIFI() ≋ 0.0
+@test Meters.SAIFIkW() ≋ 0.0
+@test Meters.SAIDI() ≋ 0.0
+@test Meters.CustInterrupts() ≋ 0.0
+@test Meters.AvgRepairTime() ≋ 0.0
+@test Meters.FaultRateXRepairHrs() ≋ 0.0
+@test Meters.SumBranchFltRates() ≋ 0.0
 # @test Meters.TotalCustomers() == 1177
 # @test Meters.NumSections() == 30
 # @test Meters.SetActiveSection(1) == 0
@@ -53,13 +53,13 @@ dss("""
 # @test Meters.NumSectionBranches() == 105
 # @test Meters.SectSeqidx() == 21
 # @test Meters.SectTotalCust() == 28
-# @test Meters.SAIFI() ≈ 9.875348385699192
-# @test Meters.SAIFIkW() ≈ 9.171172946672693
-# @test Meters.SAIDI() ≈ 29.62604515709752
-# @test Meters.CustInterrupts() ≈ 11623.28504996795
-# @test Meters.AvgRepairTime() ≈ 2.9999999999999987
-# @test Meters.FaultRateXRepairHrs() ≈ 2372.91137653651
-# @test Meters.SumBranchFltRates() ≈ 790.9704588455037
+# @test Meters.SAIFI() ≋ 9.875348385699192
+# @test Meters.SAIFIkW() ≋ 9.171172946672693
+# @test Meters.SAIDI() ≋ 29.62604515709752
+# @test Meters.CustInterrupts() ≋ 11623.28504996795
+# @test Meters.AvgRepairTime() ≋ 2.9999999999999987
+# @test Meters.FaultRateXRepairHrs() ≋ 2372.91137653651
+# @test Meters.SumBranchFltRates() ≋ 790.9704588455037
 @test Meters.Name() == "m1"
 @test Meters.Name(Meters.Name()) == "0"
 @test Meters.MeteredElement() == "line.ln5815900-1"
