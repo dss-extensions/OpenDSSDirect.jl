@@ -17,8 +17,8 @@ Lines.Next()
 @test CktElement.HasSwitchControl() == false
 @test CktElement.HasVoltControl() == false
 @test CktElement.NumControls() == 0
-# @show CktElement.OCPDevIndex()     # ERROR
-# @show CktElement.OCPDevType()     # ERROR
+@test CktElement.OCPDevIndex() == 0
+@test CktElement.OCPDevType() == 0
 @test CktElement.Enabled()
 @test CktElement.Enabled(CktElement.Enabled()) == 0
 @test CktElement.NormalAmps() ≋ 400.0
