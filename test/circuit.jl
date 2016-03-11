@@ -19,7 +19,7 @@ init8500()
 @test Circuit.UpdateStorage() == 0
 @test Circuit.ParentPDElement() == 0
 @test Circuit.EndOfTimeStepUpdate() == 0
-# @test Circuit.Capacity(10.0, 20.0) ≋ 0.0    # ERROR
+# @test Circuit.Capacity(10.0, 20.0) ≋ 0.0    # ERROR - Form popup related to energy meter
 @test Circuit.Name() == "ieee8500"
 @test Circuit.Disable(Circuit.AllElementNames()[10]) == ""
 @test Circuit.Enable(Circuit.AllElementNames()[10]) == ""

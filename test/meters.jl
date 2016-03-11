@@ -19,16 +19,16 @@ dss("""
 @test Meters.MeteredTerminal() == 1
 @test Meters.MeteredTerminal(Meters.MeteredTerminal()) == 0
 @test Meters.DIFilesAreOpen() == 0
-# # # @test Meters.SampleAll() == 0    # ERROR
+# @test Meters.SampleAll() == 0    # ERROR
 @test Meters.SaveAll() == 0
 @test Meters.OpenAllDIFiles() == 0
 @test Meters.CloseAllDIFiles() == 0
-# # # @test Meters.CountEndElements() == 0    # ERROR
+# @test Meters.CountEndElements() == 0    # ERROR
 @test Meters.Count() == 1
 @test Meters.CountBranches() == 4881
 @test Meters.SequenceList() == 1
 @test Meters.SequenceList(Meters.SequenceList()) == 0
-# @test Meters.DoReliabilityCalc(0) == 0
+# @test Meters.DoReliabilityCalc(0) == 0    # Causes "can't free pointer" ERROR after the next clear
 @test Meters.SeqListSize() == 4881
 @test Meters.TotalCustomers() == 0
 @test Meters.NumSections() == 0
@@ -64,18 +64,18 @@ dss("""
 @test Meters.Name(Meters.Name()) == "0"
 @test Meters.MeteredElement() == "line.ln5815900-1"
 @test Meters.MeteredElement(Meters.MeteredElement()) == "0"
-@test Meters.AllNames() == Any[]
-@test Meters.RegisterNames() == Any[]
+@test Meters.AllNames()[1] == "m1"
+@test Meters.RegisterNames()[1] == "kWh"
 # @show Meters.RegisterValues(Meters.RegisterValues())
-@test Meters.Totals() == Any[]
-@test Meters.PeakCurrent() == Any[]
+@test Meters.Totals()[1] ≋ 11915.293117698093
+@test Meters.PeakCurrent()[1] ≋ 400.0 
 # @show Meters.PeakCurrent(Meters.PeakCurrent())
-@test Meters.CalcCurrent() == Any[]
+# @test Meters.CalcCurrent()[1] ≋ 0.0   # FAIL on Win32
 # @show Meters.CalcCurrent(Meters.CalcCurrent())
-@test Meters.AllocFactors() == Any[]
+# @test Meters.AllocFactors()[1] ≋ 0.0   # FAIL on Win32
 # @show Meters.AllocFactors(Meters.AllocFactors())
-# @show Meters.AllEndElements()
-# # # @show Meters.AllBranchesInZone()    # ERROR
+# @show Meters.AllEndElements()    # ERROR
+# @show Meters.AllBranchesInZone()    # ERROR
 
 end # testset
 

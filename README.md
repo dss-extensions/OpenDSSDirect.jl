@@ -10,12 +10,15 @@ library interface can be faster than the more traditional COM interface.
 **This package is only available for Windows.** OpenDSS is only available for
 Windows.
 
-**This package is still in development.**
-
 # Installation
 
-For now, this package is not registered. To install, use the following from
-within Julia:
+For now, this package is registered, so you can use the following to install:
+
+```julia 
+Pkg.add("OpenDSSDirect")
+```
+
+To install the latest development version, use the following from within Julia:
 
 ```julia 
 Pkg.clone("https://github.com/tshort/OpenDSSDirect.jl.git")
