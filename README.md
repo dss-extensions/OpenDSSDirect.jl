@@ -11,6 +11,6 @@ Windows.
 
 # Documentation
 
-* **[Released documentation](https://tshort.github.io/DataFrames.jl/release/)**
+* **[Released documentation](https://tshort.github.io/OpenDSSDirect.jl/release/)**
 
-* **[Development docs](https://tshort.github.io/DataFrames.jl/latest/)**
+* **[Development docs](https://tshort.github.io/OpenDSSDirect.jl/latest/)**
