@@ -7,7 +7,6 @@ makedocs(
     # options
     modules = [OpenDSSDirect.DSS, OpenDSSDirect.DSSCore],
     doctest = false,
-    julia   = "release",
     clean   = false
 )
 
@@ -20,5 +19,6 @@ custom_deps() = run(`pip install --user pygments mkdocs mkdocs-material`)
 deploydocs(
     # options
     deps = custom_deps,
+    julia   = "release",
     repo = "github.com/tshort/OpenDSSDirect.jl.git"
 )
