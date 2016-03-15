@@ -7,6 +7,7 @@ makedocs(
     # options
     modules = [OpenDSSDirect.DSS, OpenDSSDirect.DSSCore],
     doctest = false,
+    julia   = "release",
     clean   = false
 )
 
