@@ -1,0 +1,39 @@
+site_name:        OpenDSSDirect.jl
+repo_url:         https://github.com/tshort/OpenDSSDirect.jl
+site_description: Direct-mode interface to OpenDSS, a distribution system simulator for electric power systems
+site_author:      Tom Short
+
+theme: material
+
+extra:
+  palette:
+    primary: 'indigo'
+    accent:  'blue'
+
+extra_css:
+  - assets/Lapidary.css
+
+markdown_extensions:
+  - codehilite
+  - extra
+  - tables
+  - fenced_code
+
+extra_javascript:
+  - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML
+  - assets/mathjaxhelper.js
+
+docs_dir: 'build'
+
+pages:
+- Home: index.md
+- Manual:
+  - Introduction: introduction.md
+  - API: api.md
+  - Flag objects: flags.md
+  - DSS mode: dssmode.md
+  - Low level API: lowlevel.md
+- About:
+  - Release notes: ../NEWS.md
+  - License: ../LICENSE.md
+
