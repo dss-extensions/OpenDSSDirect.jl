@@ -1,4 +1,4 @@
-VERSION >= v"0.4.0-dev+6521" && __precompile__()
+VERSION >= v"0.4.0-dev+6521" && OS_NAME == :Windows && __precompile__()
 
 module OpenDSSDirect
 
@@ -10,7 +10,7 @@ import .DSS.dss
 export dss
 
 
-function __init__()
+@windows_only function __init__()
     DSS.Basic.Start()
     
     global commandhelp = Dict{ASCIIString, ASCIIString}()

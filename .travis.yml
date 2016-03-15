@@ -1,0 +1,17 @@
+
+# Documentation: http://docs.travis-ci.com/user/languages/julia/
+language: julia
+os:
+  - linux
+julia:
+  - release
+notifications:
+  email: false
+
+# Dummy script -- Windows only, so no tests.
+script:
+  - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
+  - julia -e 'Pkg.clone(pwd())'
+
+after_success:
+  - julia -e 'cd(Pkg.dir("OpenDSSDirect")); Pkg.clone("https://github.com/MichaelHatherly/Lapidary.jl"); include(joinpath("docs", "make.jl"))'

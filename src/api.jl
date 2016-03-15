@@ -1,5 +1,6 @@
 export DSS
 
+"Module with the main API for OpenDSSDirect"
 module DSS
 
 import ..DSSCore

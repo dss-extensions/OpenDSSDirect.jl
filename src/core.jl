@@ -1,6 +1,7 @@
 export DSSCore
 
-module DSSCore  # lower-level, basic API
+"Module with the low-level API for OpenDSSDirect"
+module DSSCore 
 
 if Int == Int64
     const dsslib = "$(dirname(@__FILE__))\\..\\deps\\win64\\OpenDSSDirect.DLL"
