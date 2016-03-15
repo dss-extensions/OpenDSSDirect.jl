@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8"><![endif]-->
+<!--[if IE 9 ]><html class="no-js ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    
+      
+        <title>DSS mode - OpenDSSDirect.jl</title>
+      
+      
+      
+      
+        <meta name="author" content="Tom Short">
+      
+    
+    <meta property="og:url" content="None">
+    <meta property="og:title" content="OpenDSSDirect.jl">
+    <meta property="og:image" content="None/../">
+    <meta name="apple-mobile-web-app-title" content="OpenDSSDirect.jl">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon-e565ddfa3b.ico">
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon-e565ddfa3b.ico">
+    <style>
+      @font-face {
+      	font-family: 'Icon';
+      	src: url('../assets/fonts/icon.eot?52m981');
+      	src: url('../assets/fonts/icon.eot?#iefix52m981')
+               format('embedded-opentype'),
+      		   url('../assets/fonts/icon.woff?52m981')
+               format('woff'),
+      		   url('../assets/fonts/icon.ttf?52m981')
+               format('truetype'),
+      		   url('../assets/fonts/icon.svg?52m981#icon')
+               format('svg');
+      	font-weight: normal;
+      	font-style: normal;
+      }
+    </style>
+    <link rel="stylesheet" href="../assets/stylesheets/application-20d5debb47.css">
+    
+      <link rel="stylesheet" href="../assets/stylesheets/palettes-05ab2406df.css">
+    
+    
+      
+      
+      
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu+Mono">
+      <style>
+        body, input {
+          font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+        }
+        pre, code {
+          font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+        }
+      </style>
+    
+    
+      <link rel="stylesheet" href="../assets/Lapidary.css">
+    
+    <script src="../assets/javascripts/modernizr-4ab42b99fd.js"></script>
+    
+  </head>
+  
+  
+  
+  <body class="palette-primary-indigo palette-accent-blue">
+    
+      
+      
+    
+    <div class="backdrop">
+      <div class="backdrop-paper"></div>
+    </div>
+    <input class="toggle" type="checkbox" id="toggle-drawer">
+    <input class="toggle" type="checkbox" id="toggle-search">
+    <label class="toggle-button overlay" for="toggle-drawer"></label>
+    <header class="header">
+      <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        
+          <span class="path">
+            
+              
+                Manual <i class="icon icon-link"></i>
+              
+            
+          </span>
+        
+        DSS mode
+      </div>
+    </div>
+    
+    
+    <div class="button button-search" role="button" aria-label="Search">
+      <label class="toggle-button icon icon-search" title="Search" for="toggle-search"></label>
+    </div>
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+    </header>
+    <main class="main">
+      
+      <div class="drawer">
+        <nav aria-label="Navigation">
+  
+  <a href="https://github.com/tshort/OpenDSSDirect.jl" class="project">
+    <div class="banner">
+      
+      <div class="name">
+        <strong>OpenDSSDirect.jl </strong>
+        
+          <br>
+          tshort/OpenDSSDirect.jl
+        
+      </div>
+    </div>
+  </a>
+  <div class="scrollable">
+    <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            
+            <a href="https://github.com/tshort/OpenDSSDirect.jl/archive/master.zip" target="_blank" title="Download" data-action="download">
+              <i class="icon icon-download"></i> Download
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/tshort/OpenDSSDirect.jl/stargazers" target="_blank" title="Stargazers" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
+      
+      <div class="toc">
+        <ul>
+          
+            
+  <li>
+    <a class="" title="Home" href="..">
+      Home
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <span class="section">Manual</span>
+    <ul>
+      
+        
+  <li>
+    <a class="" title="Introduction" href="../introduction/">
+      Introduction
+    </a>
+    
+  </li>
+
+      
+        
+  <li>
+    <a class="" title="API" href="../api/">
+      API
+    </a>
+    
+  </li>
+
+      
+        
+  <li>
+    <a class="" title="Flag objects" href="../flags/">
+      Flag objects
+    </a>
+    
+  </li>
+
+      
+        
+  <li>
+    <a class="current" title="DSS mode" href="./">
+      DSS mode
+    </a>
+    
+      
+        
+      
+      
+    
+  </li>
+
+      
+        
+  <li>
+    <a class="" title="Low level API" href="../lowlevel/">
+      Low level API
+    </a>
+    
+  </li>
+
+      
+    </ul>
+  </li>
+
+          
+            
+  <li>
+    <span class="section">About</span>
+    <ul>
+      
+        
+  <li>
+    <a class="" title="Release notes" href="../NEWS/">
+      Release notes
+    </a>
+    
+  </li>
+
+      
+        
+  <li>
+    <a class="" title="License" href="../LICENSE/">
+      License
+    </a>
+    
+  </li>
+
+      
+    </ul>
+  </li>
+
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+      </div>
+      <article class="article">
+        <div class="wrapper">
+          
+          <p><a id='dss-repl-mode'></a></p>
+<h1 id="dss-repl-mode">DSS REPL Mode</h1>
+<p>OpenDSSDirect also includes a custom REPL mode for entering OpenDSS commands directly. This is similar to the Help (<code>?</code>) and Shell (<code>;</code>) modes. Use the right square bracket (<code>]</code>) to enter DSS mode. Hit backspace on a blank line to exit. Here is an example:</p>
+<div class="codehilite"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span> <span class="k">using</span> <span class="n">OpenDSSDirect</span>
+
+<span class="n">DSS</span><span class="o">&gt;</span> <span class="n">compile</span> <span class="n">C</span><span class="p">:</span>\\<span class="n">portableapps</span>\\<span class="n">home</span>\\<span class="o">.</span><span class="n">julia</span>\\<span class="n">v0</span><span class="o">.</span><span class="mi">4</span>\\<span class="n">OpenDSSDirect</span>\\<span class="n">examples</span>\\<span class="mi">8500</span><span class="o">-</span><span class="n">Node</span>\\<span class="n">Master</span><span class="o">.</span><span class="n">dss</span>
+
+<span class="n">DSS</span><span class="o">&gt;</span> <span class="n">solve</span>
+
+<span class="n">DSS</span><span class="o">&gt;</span> <span class="n">summary</span>
+<span class="n">Status</span> <span class="o">=</span> <span class="n">NOT</span> <span class="n">Solved</span>
+<span class="n">Solution</span> <span class="n">Mode</span> <span class="o">=</span> <span class="n">Snap</span>
+<span class="n">Number</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">Load</span> <span class="n">Mult</span> <span class="o">=</span> <span class="mf">1.000</span>
+<span class="n">Devices</span> <span class="o">=</span> <span class="mi">6103</span>
+<span class="n">Buses</span> <span class="o">=</span> <span class="mi">4876</span>
+<span class="n">Nodes</span> <span class="o">=</span> <span class="mi">8541</span>
+<span class="n">Control</span> <span class="n">Mode</span> <span class="o">=</span><span class="n">STATIC</span>
+<span class="n">Total</span> <span class="n">Iterations</span> <span class="o">=</span> <span class="mi">23</span>
+<span class="n">Control</span> <span class="n">Iterations</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">Max</span> <span class="n">Sol</span> <span class="n">Iter</span> <span class="o">=</span> <span class="mi">15</span>
+
+ <span class="o">-</span> <span class="n">Circuit</span> <span class="n">Summary</span> <span class="o">-</span>
+
+<span class="n">Year</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">Hour</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">Max</span> <span class="n">pu</span><span class="o">.</span> <span class="n">voltage</span> <span class="o">=</span> <span class="mf">1.0991</span>
+<span class="n">Min</span> <span class="n">pu</span><span class="o">.</span> <span class="n">voltage</span> <span class="o">=</span> <span class="mf">0.91736</span>
+<span class="n">Total</span> <span class="n">Active</span> <span class="n">Power</span><span class="p">:</span>   <span class="mf">12.0047</span> <span class="n">MW</span>
+<span class="n">Total</span> <span class="n">Reactive</span> <span class="n">Power</span><span class="p">:</span> <span class="mf">1.47117</span> <span class="n">Mvar</span>
+<span class="n">Total</span> <span class="n">Active</span> <span class="n">Losses</span><span class="p">:</span>   <span class="mf">1.21824</span> <span class="n">MW</span><span class="p">,</span> <span class="p">(</span><span class="mf">10.15</span> <span class="o">%</span><span class="p">)</span>
+<span class="n">Total</span> <span class="n">Reactive</span> <span class="n">Losses</span><span class="p">:</span> <span class="mf">2.79839</span> <span class="n">Mvar</span>
+<span class="n">Frequency</span> <span class="o">=</span> <span class="mi">60</span> <span class="n">Hz</span>
+<span class="n">Mode</span> <span class="o">=</span> <span class="n">Snap</span>
+<span class="n">Control</span> <span class="n">Mode</span> <span class="o">=</span> <span class="n">STATIC</span>
+<span class="n">Load</span> <span class="n">Model</span> <span class="o">=</span> <span class="n">PowerFlow</span>
+</pre></div>
+
+
+<p>The DSS mode also has help. Hit <code>?</code> at the <code>DSS&gt;</code> prompt, and enter options or commands you want help on. </p>
+<div class="codehilite"><pre><span></span><span class="n">DSS</span><span class="o">&gt;</span> <span class="n">clear</span>
+
+<span class="n">DSS</span> <span class="n">help</span><span class="o">?&gt;</span> <span class="n">clear</span>
+<span class="n">Clear</span> <span class="n">all</span> <span class="n">circuits</span> <span class="n">currently</span> <span class="k">in</span> <span class="n">memory</span><span class="o">.</span>
+
+<span class="n">DSS</span> <span class="n">help</span><span class="o">?&gt;</span> <span class="n">solve</span>
+<span class="n">Perform</span> <span class="n">the</span> <span class="n">solution</span> <span class="n">of</span> <span class="n">the</span> <span class="n">present</span> <span class="n">solution</span> <span class="n">mode</span><span class="o">.</span> <span class="n">You</span> <span class="n">can</span> <span class="n">set</span> <span class="n">any</span> <span class="n">option</span> <span class="n">that</span> <span class="n">you</span> <span class="n">can</span> <span class="n">set</span> <span class="n">with</span> <span class="n">the</span> <span class="n">Set</span> <span class="n">command</span> <span class="p">(</span><span class="n">see</span> <span class="n">Set</span><span class="p">)</span><span class="o">.</span> <span class="n">The</span> <span class="n">Solve</span> <span class="n">command</span> <span class="nb">is</span> <span class="n">virtually</span> <span class="n">synonymous</span> <span class="n">with</span> <span class="n">the</span> <span class="n">Set</span> <span class="n">command</span> <span class="n">except</span> <span class="n">that</span> <span class="n">a</span> <span class="n">solution</span> <span class="nb">is</span> <span class="n">performed</span> <span class="n">after</span> <span class="n">the</span> <span class="n">options</span> <span class="n">are</span> <span class="n">processed</span><span class="o">.</span>
+</pre></div>
+          <aside class="copyright" role="note">
+            
+            Documentation built with
+            <a href="http://www.mkdocs.org" target="_blank">MkDocs</a>
+            using the
+            <a href="http://squidfunk.github.io/mkdocs-material/" target="_blank">
+              Material
+            </a>
+            theme.
+          </aside>
+          
+            <footer class="footer">
+              
+  <nav class="pagination" aria-label="Footer">
+    <div class="previous">
+      
+        <a href="../flags/" title="Flag objects">
+          <span class="direction">
+            Previous
+          </span>
+          <div class="page">
+            <div class="button button-previous" role="button" aria-label="Previous">
+              <i class="icon icon-back"></i>
+            </div>
+            <div class="stretch">
+              <div class="title">
+                Flag objects
+              </div>
+            </div>
+          </div>
+        </a>
+      
+    </div>
+    <div class="next">
+      
+        <a href="../lowlevel/" title="Low level API">
+          <span class="direction">
+            Next
+          </span>
+          <div class="page">
+            <div class="stretch">
+              <div class="title">
+                Low level API
+              </div>
+            </div>
+            <div class="button button-next" role="button" aria-label="Next">
+              <i class="icon icon-forward"></i>
+            </div>
+          </div>
+        </a>
+      
+    </div>
+  </nav>
+
+            </footer>
+          
+        </div>
+      </article>
+      <div class="results" role="status" aria-live="polite">
+        <div class="scrollable">
+          <div class="wrapper">
+            <div class="meta"></div>
+            <div class="list"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      var base_url = '..';
+      var repo_id  = 'tshort/OpenDSSDirect.jl';
+    </script>
+    <script src="../assets/javascripts/application-997097ee0c.js"></script>
+    
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    
+      <script src="../assets/mathjaxhelper.js"></script>
+    
+    
+  </body>
+</html>

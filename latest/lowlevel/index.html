@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8"><![endif]-->
+<!--[if IE 9 ]><html class="no-js ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    
+      
+        <title>Low level API - OpenDSSDirect.jl</title>
+      
+      
+      
+      
+        <meta name="author" content="Tom Short">
+      
+    
+    <meta property="og:url" content="None">
+    <meta property="og:title" content="OpenDSSDirect.jl">
+    <meta property="og:image" content="None/../">
+    <meta name="apple-mobile-web-app-title" content="OpenDSSDirect.jl">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon-e565ddfa3b.ico">
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon-e565ddfa3b.ico">
+    <style>
+      @font-face {
+      	font-family: 'Icon';
+      	src: url('../assets/fonts/icon.eot?52m981');
+      	src: url('../assets/fonts/icon.eot?#iefix52m981')
+               format('embedded-opentype'),
+      		   url('../assets/fonts/icon.woff?52m981')
+               format('woff'),
+      		   url('../assets/fonts/icon.ttf?52m981')
+               format('truetype'),
+      		   url('../assets/fonts/icon.svg?52m981#icon')
+               format('svg');
+      	font-weight: normal;
+      	font-style: normal;
+      }
+    </style>
+    <link rel="stylesheet" href="../assets/stylesheets/application-20d5debb47.css">
+    
+      <link rel="stylesheet" href="../assets/stylesheets/palettes-05ab2406df.css">
+    
+    
+      
+      
+      
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu+Mono">
+      <style>
+        body, input {
+          font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+        }
+        pre, code {
+          font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+        }
+      </style>
+    
+    
+      <link rel="stylesheet" href="../assets/Lapidary.css">
+    
+    <script src="../assets/javascripts/modernizr-4ab42b99fd.js"></script>
+    
+  </head>
+  
+  
+  
+  <body class="palette-primary-indigo palette-accent-blue">
+    
+      
+      
+    
+    <div class="backdrop">
+      <div class="backdrop-paper"></div>
+    </div>
+    <input class="toggle" type="checkbox" id="toggle-drawer">
+    <input class="toggle" type="checkbox" id="toggle-search">
+    <label class="toggle-button overlay" for="toggle-drawer"></label>
+    <header class="header">
+      <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        
+          <span class="path">
+            
+              
+                Manual <i class="icon icon-link"></i>
+              
+            
+          </span>
+        
+        Low level API
+      </div>
+    </div>
+    
+    
+    <div class="button button-search" role="button" aria-label="Search">
+      <label class="toggle-button icon icon-search" title="Search" for="toggle-search"></label>
+    </div>
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+    </header>
+    <main class="main">
+      
+      <div class="drawer">
+        <nav aria-label="Navigation">
+  
+  <a href="https://github.com/tshort/OpenDSSDirect.jl" class="project">
+    <div class="banner">
+      
+      <div class="name">
+        <strong>OpenDSSDirect.jl </strong>
+        
+          <br>
+          tshort/OpenDSSDirect.jl
+        
+      </div>
+    </div>
+  </a>
+  <div class="scrollable">
+    <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            
+            <a href="https://github.com/tshort/OpenDSSDirect.jl/archive/master.zip" target="_blank" title="Download" data-action="download">
+              <i class="icon icon-download"></i> Download
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/tshort/OpenDSSDirect.jl/stargazers" target="_blank" title="Stargazers" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
+      
+      <div class="toc">
+        <ul>
+          
+            
+  <li>
+    <a class="" title="Home" href="..">
+      Home
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <span class="section">Manual</span>
+    <ul>
+      
+        
+  <li>
+    <a class="" title="Introduction" href="../introduction/">
+      Introduction
+    </a>
+    
+  </li>
+
+      
+        
+  <li>
+    <a class="" title="API" href="../api/">
+      API
+    </a>
+    
+  </li>
+
+      
+        
+  <li>
+    <a class="" title="Flag objects" href="../flags/">
+      Flag objects
+    </a>
+    
+  </li>
+
+      
+        
+  <li>
+    <a class="" title="DSS mode" href="../dssmode/">
+      DSS mode
+    </a>
+    
+  </li>
+
+      
+        
+  <li>
+    <a class="current" title="Low level API" href="./">
+      Low level API
+    </a>
+    
+      
+        
+      
+      
+        <ul>
+          
+            <li class="anchor">
+              <a title="Limitations" href="#limitations">
+                Limitations
+              </a>
+            </li>
+          
+        </ul>
+      
+    
+  </li>
+
+      
+    </ul>
+  </li>
+
+          
+            
+  <li>
+    <span class="section">About</span>
+    <ul>
+      
+        
+  <li>
+    <a class="" title="Release notes" href="../NEWS/">
+      Release notes
+    </a>
+    
+  </li>
+
+      
+        
+  <li>
+    <a class="" title="License" href="../LICENSE/">
+      License
+    </a>
+    
+  </li>
+
+      
+    </ul>
+  </li>
+
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+      </div>
+      <article class="article">
+        <div class="wrapper">
+          
+          <p><a id='low-level-api-module-dsscore'></a></p>
+<h1 id="low-level-api-module-dsscore">Low-level API (module DSSCore)</h1>
+<p>The main API is built on the low-level API documented  <a href="http://svn.code.sf.net/p/electricdss/code/trunk/Distrib/Doc/OpenDSS_Direct_DLL.pdf">here</a>. The low-level API is implemented in the <code>DSSCore</code> module. Here is an example using the low-level API:</p>
+<div class="codehilite"><pre><span></span><span class="n">DSSCore</span><span class="o">.</span><span class="n">DSSPut_Command</span><span class="p">(</span><span class="s">&quot;clear&quot;</span><span class="p">)</span>
+<span class="n">DSSCore</span><span class="o">.</span><span class="n">DSSPut_Command</span><span class="p">(</span><span class="s">&quot;compile (C:/OpenDSS/electricdss/IEEETestCases/8500-Node/Master.dss)&quot;</span><span class="p">)</span>
+<span class="n">loadnumber</span> <span class="o">=</span> <span class="n">DSSCore</span><span class="o">.</span><span class="n">DSSLoads</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">while</span> <span class="n">loadnumber</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="n">DSSCore</span><span class="o">.</span><span class="n">DSSLoadsF</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">50.</span><span class="p">)</span>
+    <span class="n">DSSCore</span><span class="o">.</span><span class="n">DSSLoadsF</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">20.</span><span class="p">)</span>
+    <span class="n">loadnumber</span> <span class="o">=</span> <span class="n">DSSCore</span><span class="o">.</span><span class="n">DSSLoads</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="n">println</span><span class="p">(</span><span class="n">DSSCore</span><span class="o">.</span><span class="n">DSSLoads</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> 
+</pre></div>
+
+
+<p>Integer (I), floating-point (F), string (S), and variant (V) functions are supported. The low-level API functions are not exported. </p>
+<p>This low-level API also includes several functions for directly accessing and  controlling an OpenDSS solution. These functions include </p>
+<ul>
+<li><a href="./#OpenDSSDirect.DSSCore.AddInAuxCurrents"><code>AddInAuxCurrents</code></a></li>
+<li><a href="./#OpenDSSDirect.DSSCore.BuildYMatrixD"><code>BuildYMatrixD</code></a></li>
+<li><a href="./#OpenDSSDirect.DSSCore.GetPCInjCurr"><code>GetPCInjCurr</code></a></li>
+<li><a href="./#OpenDSSDirect.DSSCore.GetSourceInjCurrents"><code>GetSourceInjCurrents</code></a></li>
+<li><a href="./#OpenDSSDirect.DSSCore.SolveSystem"><code>SolveSystem</code></a></li>
+<li><a href="./#OpenDSSDirect.DSSCore.SystemYChanged"><code>SystemYChanged</code></a></li>
+<li><a href="./#OpenDSSDirect.DSSCore.UseAuxCurrents"><code>UseAuxCurrents</code></a></li>
+<li><a href="./#OpenDSSDirect.DSSCore.ZeroInjCurr"><code>ZeroInjCurr</code></a></li>
+<li><a href="./#OpenDSSDirect.DSSCore.getI"><code>getI</code></a></li>
+<li><a href="./#OpenDSSDirect.DSSCore.getV"><code>getV</code></a></li>
+<li><a href="./#OpenDSSDirect.DSSCore.getYsparse"><code>getYsparse</code></a></li>
+</ul>
+<p>...</p>
+<p><a id='OpenDSSDirect.DSSCore.getI' href='#OpenDSSDirect.DSSCore.getI'>#</a><strong>OpenDSSDirect.DSSCore.getI</strong> &mdash; <em>Function</em>.</p>
+<hr />
+<p><code>getI()</code> – Return the complex vector of current injections. </p>
+<p>The size of the vector is one more than the number of nodes in the system. This is the same current injection array used in OpenDSS internally, so the current injections can be updated for custom solutions. This could be used to implement a custom power control component.</p>
+<p><a id='OpenDSSDirect.DSSCore.getV' href='#OpenDSSDirect.DSSCore.getV'>#</a><strong>OpenDSSDirect.DSSCore.getV</strong> &mdash; <em>Function</em>.</p>
+<hr />
+<p><code>getV()</code> – Return the complex vector of node voltages. </p>
+<p>The size of the vector is one more than the number of nodes in the system. The first element is ground (zero volts). This is the same voltage array used in OpenDSS internally, so the voltages can be updated for custom solutions. </p>
+<p><a id='OpenDSSDirect.DSSCore.getYsparse' href='#OpenDSSDirect.DSSCore.getYsparse'>#</a><strong>OpenDSSDirect.DSSCore.getYsparse</strong> &mdash; <em>Function</em>.</p>
+<hr />
+<p><code>getYsparse()</code> – Return the system sparse Y matrix.</p>
+<p><a id='OpenDSSDirect.DSSCore.ZeroInjCurr' href='#OpenDSSDirect.DSSCore.ZeroInjCurr'>#</a><strong>OpenDSSDirect.DSSCore.ZeroInjCurr</strong> &mdash; <em>Function</em>.</p>
+<hr />
+<p><code>ZeroInjCurr()</code> – Zero out the current injections vector.</p>
+<p><a id='OpenDSSDirect.DSSCore.GetSourceInjCurrents' href='#OpenDSSDirect.DSSCore.GetSourceInjCurrents'>#</a><strong>OpenDSSDirect.DSSCore.GetSourceInjCurrents</strong> &mdash; <em>Function</em>.</p>
+<hr />
+<p><code>GetSourceInjCurrents()</code> – Update the current injections vector with source injections.</p>
+<p><a id='OpenDSSDirect.DSSCore.GetPCInjCurr' href='#OpenDSSDirect.DSSCore.GetPCInjCurr'>#</a><strong>OpenDSSDirect.DSSCore.GetPCInjCurr</strong> &mdash; <em>Function</em>.</p>
+<hr />
+<p><code>GetPCInjCurr()</code> – Update the current injections vector with injections from power control elements like loads.</p>
+<p><a id='OpenDSSDirect.DSSCore.SystemYChanged' href='#OpenDSSDirect.DSSCore.SystemYChanged'>#</a><strong>OpenDSSDirect.DSSCore.SystemYChanged</strong> &mdash; <em>Function</em>.</p>
+<hr />
+<p><code>SystemYChanged(arg)</code> – Set the status of whether the system Y matrix has changed.</p>
+<p><code>SystemYChanged()</code> – Bool indicating whether the system Y matrix has changed.</p>
+<p><a id='OpenDSSDirect.DSSCore.BuildYMatrixD' href='#OpenDSSDirect.DSSCore.BuildYMatrixD'>#</a><strong>OpenDSSDirect.DSSCore.BuildYMatrixD</strong> &mdash; <em>Function</em>.</p>
+<hr />
+<p><code>BuildYMatrixD(buildops::Integer, doallocate)</code> – Rebuild the system Y matrix. </p>
+<ul>
+<li><code>buildops::Integer</code> indicates the type of build. <code>0 == WHOLEMATRIX</code> and <code>1 == SERIESONLY</code>.</li>
+<li><code>doallocate::Bool</code> is used to determine whether to allocate the Y matrix.</li>
+</ul>
+<p><a id='OpenDSSDirect.DSSCore.UseAuxCurrents' href='#OpenDSSDirect.DSSCore.UseAuxCurrents'>#</a><strong>OpenDSSDirect.DSSCore.UseAuxCurrents</strong> &mdash; <em>Function</em>.</p>
+<hr />
+<p><code>UseAuxCurrents(arg)</code> – Set the status of whether to use auxiliary currents.</p>
+<p><code>UseAuxCurrents()</code> – Bool indicating whether to use auxiliary currents.</p>
+<p><a id='OpenDSSDirect.DSSCore.AddInAuxCurrents' href='#OpenDSSDirect.DSSCore.AddInAuxCurrents'>#</a><strong>OpenDSSDirect.DSSCore.AddInAuxCurrents</strong> &mdash; <em>Function</em>.</p>
+<hr />
+<p><code>UseAuxCurrents(arg)</code> – ??</p>
+<p><a id='OpenDSSDirect.DSSCore.SolveSystem' href='#OpenDSSDirect.DSSCore.SolveSystem'>#</a><strong>OpenDSSDirect.DSSCore.SolveSystem</strong> &mdash; <em>Function</em>.</p>
+<hr />
+<p><code>SolveSystem()</code> – Update the system node voltages based on the vector of current injections.</p>
+<p><a id='limitations'></a></p>
+<h2 id="limitations">Limitations</h2>
+<p>The functions with input parameters that are Variants are not implemented. An example is <code>DSSCore.SettingsV(5, arg)</code> where <code>arg</code> is an Array. These variants are normally array inputs. There are not many of these in the direct API, and most can be handled with the text interface or other functions. Functions that retrieve Variants are supported. </p>
+          <aside class="copyright" role="note">
+            
+            Documentation built with
+            <a href="http://www.mkdocs.org" target="_blank">MkDocs</a>
+            using the
+            <a href="http://squidfunk.github.io/mkdocs-material/" target="_blank">
+              Material
+            </a>
+            theme.
+          </aside>
+          
+            <footer class="footer">
+              
+  <nav class="pagination" aria-label="Footer">
+    <div class="previous">
+      
+        <a href="../dssmode/" title="DSS mode">
+          <span class="direction">
+            Previous
+          </span>
+          <div class="page">
+            <div class="button button-previous" role="button" aria-label="Previous">
+              <i class="icon icon-back"></i>
+            </div>
+            <div class="stretch">
+              <div class="title">
+                DSS mode
+              </div>
+            </div>
+          </div>
+        </a>
+      
+    </div>
+    <div class="next">
+      
+        <a href="../NEWS/" title="Release notes">
+          <span class="direction">
+            Next
+          </span>
+          <div class="page">
+            <div class="stretch">
+              <div class="title">
+                Release notes
+              </div>
+            </div>
+            <div class="button button-next" role="button" aria-label="Next">
+              <i class="icon icon-forward"></i>
+            </div>
+          </div>
+        </a>
+      
+    </div>
+  </nav>
+
+            </footer>
+          
+        </div>
+      </article>
+      <div class="results" role="status" aria-live="polite">
+        <div class="scrollable">
+          <div class="wrapper">
+            <div class="meta"></div>
+            <div class="list"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      var base_url = '..';
+      var repo_id  = 'tshort/OpenDSSDirect.jl';
+    </script>
+    <script src="../assets/javascripts/application-997097ee0c.js"></script>
+    
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    
+      <script src="../assets/mathjaxhelper.js"></script>
+    
+    
+  </body>
+</html>
