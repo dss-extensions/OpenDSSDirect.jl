@@ -34,6 +34,6 @@ pages:
   - DSS mode: dssmode.md
   - Low level API: lowlevel.md
 - About:
-  - Release notes: ../NEWS.md
-  - License: ../LICENSE.md
+  - Release notes: ../../NEWS.md
+  - License: ../../LICENSE.md
 
