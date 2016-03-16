@@ -12,12 +12,6 @@
     
         
     <url>
-     <loc>None/introduction/</loc>
-     <lastmod>2016-03-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
      <loc>None/api/</loc>
      <lastmod>2016-03-16</lastmod>
      <changefreq>daily</changefreq>
@@ -41,18 +35,24 @@
      <changefreq>daily</changefreq>
     </url>
         
+    <url>
+     <loc>None/docindex/</loc>
+     <lastmod>2016-03-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
     
         
     <url>
-     <loc>None/../../NEWS/</loc>
+     <loc>None/NEWS/</loc>
      <lastmod>2016-03-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/../../LICENSE/</loc>
+     <loc>None/LICENSE/</loc>
      <lastmod>2016-03-16</lastmod>
      <changefreq>daily</changefreq>
     </url>

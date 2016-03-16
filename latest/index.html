@@ -174,14 +174,20 @@
         <ul>
           
             <li class="anchor">
-              <a title="Contents" href="#contents">
-                Contents
+              <a title="Installation" href="#installation">
+                Installation
               </a>
             </li>
           
             <li class="anchor">
-              <a title="Documentation Index" href="#documentation-index">
-                Documentation Index
+              <a title="Features" href="#features">
+                Features
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Contents" href="#contents">
+                Contents
               </a>
             </li>
           
@@ -195,15 +201,6 @@
   <li>
     <span class="section">Documentation</span>
     <ul>
-      
-        
-  <li>
-    <a class="" title="Introduction" href="introduction/">
-      Introduction
-    </a>
-    
-  </li>
-
       
         
   <li>
@@ -241,6 +238,15 @@
   </li>
 
       
+        
+  <li>
+    <a class="" title="Index" href="docindex/">
+      Index
+    </a>
+    
+  </li>
+
+      
     </ul>
   </li>
 
@@ -252,7 +258,7 @@
       
         
   <li>
-    <a class="" title="Release notes" href="../../NEWS/">
+    <a class="" title="Release notes" href="NEWS/">
       Release notes
     </a>
     
@@ -261,7 +267,7 @@
       
         
   <li>
-    <a class="" title="License" href="../../LICENSE/">
+    <a class="" title="License" href="LICENSE/">
       License
     </a>
     
@@ -286,72 +292,42 @@
 <h1 id="opendssdirect">OpenDSSDirect</h1>
 <p><a href="http://smartgrid.epri.com/SimulationTool.aspx">OpenDSS</a> is an open-source distribution system simulator. This Julia package implements a "direct" library interface to OpenDSS. See <a href="http://svn.code.sf.net/p/electricdss/code/trunk/Distrib/Doc/OpenDSS_Direct_DLL.pdf">this documentation</a> for detailed information on the direct library interface to OpenDSS. The direct library interface can be faster than the more traditional COM interface.</p>
 <p><strong>This package is only available for Windows.</strong> OpenDSS is only available for Windows.</p>
+<p><a id='installation'></a></p>
+<h2 id="installation">Installation</h2>
+<p>For now, this package is registered, so you can use the following to install:</p>
+<div class="codehilite"><pre><span></span><span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;OpenDSSDirect&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>To install the latest development version, use the following from within Julia:</p>
+<div class="codehilite"><pre><span></span><span class="n">Pkg</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="s">&quot;https://github.com/tshort/OpenDSSDirect.jl.git&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>This package includes OpenDSS as a library. You do not have to install OpenDSS separately. In particular, it includes the OpenDSSDirect.DLL that implements the direct-access API.</p>
+<p><a id='features'></a></p>
+<h2 id="features">Features</h2>
+<p><a href="http://julialang.org/">Julia</a> is a fast, flexible numerical language with Matlab-like syntax. Like Python or Matlab, scripting OpenDSS can be used for  Monte-Carlo batch runs, parameter sweeps, post processing and plotting of  results, and more. </p>
+<p>Julia has several key features for advanced operations with OpenDSS:</p>
+<ul>
+<li>
+<p><strong>Parallel operations</strong> – Julia supports several ways to process data in    parallel. This includes parallel operations on multiple CPU cores and    parallel operations on processes in a cluster. See    <a href="https://github.com/tshort/OpenDSSDirect.jl/blob/master/examples/8760_parallel.jl">examples/8760_parallel.jl</a>    for an example of an annual simulation split among local CPU cores.</p>
+</li>
+<li>
+<p><strong>Optimization</strong> – Julia has strong support for optimization.</p>
+</li>
+<li>
+<p><strong>Custom solutions and custom models</strong> – Because Julia compiles to codes    that run as quickly as C programs, it is possible to implement custom   solutions, and these custom solutions can contain custom models implemented   in Julia. The basic idea is to run a custom solution as described in    <a href="http://svn.code.sf.net/p/electricdss/code/trunk/Distrib/Doc/OpenDSS%20Solution%20Interface.pdf">OpenDSS Solution Interface.pdf</a>.   Custom control or power control elements can be implemented between each   model iteration. See    <a href="https://github.com/tshort/OpenDSSDirect.jl/blob/master/examples/low-level-solver.jl">examples/low-level-solver.jl</a>    for an example with a custom solver, including a case with an alternate sparse   matrix solver.</p>
+</li>
+</ul>
 <p><a id='contents'></a></p>
 <h2 id="contents">Contents</h2>
 <ul>
-<li><a href="introduction/#introduction">Introduction</a></li>
 <li><a href="api/#main-api-module-dss">Main API (module DSS)</a></li>
 <li><a href="flags/#flag-objects">Flag objects</a></li>
 <li><a href="dssmode/#dss-repl-mode">DSS REPL Mode</a></li>
 <li><a href="lowlevel/#low-level-api-module-dsscore">Low-level API (module DSSCore)</a></li>
-</ul>
-<p><a id='documentation-index'></a></p>
-<h2 id="documentation-index">Documentation Index</h2>
-<ul>
-<li><a href="api/#OpenDSSDirect.DSS.ActiveClass"><code>ActiveClass</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Basic"><code>Basic</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Bus"><code>Bus</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.CapControls"><code>CapControls</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Capacitors"><code>Capacitors</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Circuit"><code>Circuit</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.CktElement"><code>CktElement</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.CtrlQueue"><code>CtrlQueue</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Element"><code>Element</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Executive"><code>Executive</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Fuses"><code>Fuses</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Generators"><code>Generators</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Isource"><code>Isource</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Lines"><code>Lines</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.LoadShape"><code>LoadShape</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Loads"><code>Loads</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Meters"><code>Meters</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Monitors"><code>Monitors</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.PDElements"><code>PDElements</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.PVsystems"><code>PVsystems</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Parser"><code>Parser</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Progress"><code>Progress</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Properties"><code>Properties</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Reclosers"><code>Reclosers</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.RegControls"><code>RegControls</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Relays"><code>Relays</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Sensors"><code>Sensors</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Settings"><code>Settings</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Solution"><code>Solution</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.SwtControls"><code>SwtControls</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Topology"><code>Topology</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Transformers"><code>Transformers</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.Vsources"><code>Vsources</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.XYCurves"><code>XYCurves</code></a></li>
-<li><a href="api/#OpenDSSDirect.DSS.dss"><code>dss</code></a></li>
-<li><a href="flags/#OpenDSSDirect.DSS.ActionCodes"><code>ActionCodes</code></a></li>
-<li><a href="flags/#OpenDSSDirect.DSS.CapControlModes"><code>CapControlModes</code></a></li>
-<li><a href="flags/#OpenDSSDirect.DSS.LineUnits"><code>LineUnits</code></a></li>
-<li><a href="flags/#OpenDSSDirect.DSS.LoadModels"><code>LoadModels</code></a></li>
-<li><a href="flags/#OpenDSSDirect.DSS.LoadStatus"><code>LoadStatus</code></a></li>
-<li><a href="flags/#OpenDSSDirect.DSS.MonitorModes"><code>MonitorModes</code></a></li>
-<li><a href="flags/#OpenDSSDirect.DSS.Options"><code>Options</code></a></li>
-<li><a href="flags/#OpenDSSDirect.DSS.SolveModes"><code>SolveModes</code></a></li>
-<li><a href="lowlevel/#OpenDSSDirect.DSSCore.AddInAuxCurrents"><code>AddInAuxCurrents</code></a></li>
-<li><a href="lowlevel/#OpenDSSDirect.DSSCore.BuildYMatrixD"><code>BuildYMatrixD</code></a></li>
-<li><a href="lowlevel/#OpenDSSDirect.DSSCore.GetPCInjCurr"><code>GetPCInjCurr</code></a></li>
-<li><a href="lowlevel/#OpenDSSDirect.DSSCore.GetSourceInjCurrents"><code>GetSourceInjCurrents</code></a></li>
-<li><a href="lowlevel/#OpenDSSDirect.DSSCore.SolveSystem"><code>SolveSystem</code></a></li>
-<li><a href="lowlevel/#OpenDSSDirect.DSSCore.SystemYChanged"><code>SystemYChanged</code></a></li>
-<li><a href="lowlevel/#OpenDSSDirect.DSSCore.UseAuxCurrents"><code>UseAuxCurrents</code></a></li>
-<li><a href="lowlevel/#OpenDSSDirect.DSSCore.ZeroInjCurr"><code>ZeroInjCurr</code></a></li>
-<li><a href="lowlevel/#OpenDSSDirect.DSSCore.getI"><code>getI</code></a></li>
-<li><a href="lowlevel/#OpenDSSDirect.DSSCore.getV"><code>getV</code></a></li>
-<li><a href="lowlevel/#OpenDSSDirect.DSSCore.getYsparse"><code>getYsparse</code></a></li>
+<li><a href="docindex/#documentation-index">Documentation Index</a></li>
 </ul>
           <aside class="copyright" role="note">
             
@@ -372,14 +348,14 @@
     </div>
     <div class="next">
       
-        <a href="introduction/" title="Introduction">
+        <a href="api/" title="API">
           <span class="direction">
             Next
           </span>
           <div class="page">
             <div class="stretch">
               <div class="title">
-                Introduction
+                API
               </div>
             </div>
             <div class="button button-next" role="button" aria-label="Next">

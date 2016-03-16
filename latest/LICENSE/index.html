@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     
       
-        <title>Introduction - OpenDSSDirect.jl</title>
+        <title>License - OpenDSSDirect.jl</title>
       
       
       
@@ -95,12 +95,12 @@
           <span class="path">
             
               
-                Documentation <i class="icon icon-link"></i>
+                About <i class="icon icon-link"></i>
               
             
           </span>
         
-        Introduction
+        License
       </div>
     </div>
     
@@ -179,36 +179,6 @@
       
         
   <li>
-    <a class="current" title="Introduction" href="./">
-      Introduction
-    </a>
-    
-      
-        
-      
-      
-        <ul>
-          
-            <li class="anchor">
-              <a title="Installation" href="#installation">
-                Installation
-              </a>
-            </li>
-          
-            <li class="anchor">
-              <a title="Features" href="#features">
-                Features
-              </a>
-            </li>
-          
-        </ul>
-      
-    
-  </li>
-
-      
-        
-  <li>
     <a class="" title="API" href="../api/">
       API
     </a>
@@ -243,6 +213,15 @@
   </li>
 
       
+        
+  <li>
+    <a class="" title="Index" href="../docindex/">
+      Index
+    </a>
+    
+  </li>
+
+      
     </ul>
   </li>
 
@@ -263,9 +242,12 @@
       
         
   <li>
-    <a class="" title="License" href="../LICENSE/">
+    <a class="current" title="License" href="./">
       License
     </a>
+    
+      
+      
     
   </li>
 
@@ -284,35 +266,46 @@
       <article class="article">
         <div class="wrapper">
           
-          <p><a id='introduction'></a></p>
-<h1 id="introduction">Introduction</h1>
-<p><a id='installation'></a></p>
-<h2 id="installation">Installation</h2>
-<p>For now, this package is registered, so you can use the following to install:</p>
-<div class="codehilite"><pre><span></span><span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;OpenDSSDirect&quot;</span><span class="p">)</span>
-</pre></div>
-
-
-<p>To install the latest development version, use the following from within Julia:</p>
-<div class="codehilite"><pre><span></span><span class="n">Pkg</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="s">&quot;https://github.com/tshort/OpenDSSDirect.jl.git&quot;</span><span class="p">)</span>
-</pre></div>
-
-
-<p>This package includes OpenDSS as a library. You do not have to install OpenDSS separately. In particular, it includes the OpenDSSDirect.DLL that implements the direct-access API.</p>
-<p><a id='features'></a></p>
-<h2 id="features">Features</h2>
-<p><a href="http://julialang.org/">Julia</a> is a fast, flexible numerical language with Matlab-like syntax. Like Python or Matlab, scripting OpenDSS can be used for  Monte-Carlo batch runs, parameter sweeps, post processing and plotting of  results, and more. </p>
-<p>Julia has several key features for advanced operations with OpenDSS:</p>
+            <h1>License</h1>
+          
+          <p>The OpenDSSDirect.jl package is licensed under the MIT "Expat" License:</p>
+<blockquote>
+<p>Copyright (c) 2015: Electric Power Research Institute.</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+</blockquote>
+<p>This package also includes dynamic libraries for OpenDSS. OpenDSS is Copyright (c) 2008-2015, Electric Power Research Institute, Inc. It is published under a three-clause BSD license. See here:</p>
 <ul>
-<li>
-<p><strong>Parallel operations</strong> – Julia supports several ways to process data in    parallel. This includes parallel operations on multiple CPU cores and    parallel operations on processes in a cluster. See    <a href="https://github.com/tshort/OpenDSSDirect.jl/blob/master/examples/8760_parallel.jl">examples/8760_parallel.jl</a>    for an example of an annual simulation split among local CPU cores.</p>
-</li>
-<li>
-<p><strong>Optimization</strong> – Julia has strong support for optimization.</p>
-</li>
-<li>
-<p><strong>Custom solutions and custom models</strong> – Because Julia compiles to codes    that run as quickly as C programs, it is possible to implement custom   solutions, and these custom solutions can contain custom models implemented   in Julia. The basic idea is to run a custom solution as described in    <a href="http://svn.code.sf.net/p/electricdss/code/trunk/Distrib/Doc/OpenDSS%20Solution%20Interface.pdf">OpenDSS Solution Interface.pdf</a>.   Custom control or power control elements can be implemented between each   model iteration. See    <a href="https://github.com/tshort/OpenDSSDirect.jl/blob/master/examples/low-level-solver.jl">examples/low-level-solver.jl</a>    for an example with a custom solver, including a case with an alternate sparse   matrix solver.</p>
-</li>
+<li>http://sourceforge.net/p/electricdss/code/HEAD/tree/trunk/License.txt</li>
+<li>http://sourceforge.net/p/electricdss/code/HEAD/tree/trunk/</li>
+</ul>
+<p>This package also includes dynamic libraries for KLUSolve.   KLUSolve 1.0 is Copyright (c) 2008, EnerNex Corporation.  It is published under the LGPL, version 2.1 or later. For  code and license information, see the following:</p>
+<ul>
+<li>http://sourceforge.net/p/klusolve/code/HEAD/tree/</li>
+<li>http://sourceforge.net/p/klusolve/code/HEAD/tree/License.txt</li>
+</ul>
+<p>KLUSolve contains open-source copyrighted code as follows. These are also released under the LGPL, version 2.1 or later.</p>
+<p>KLU Version 1.0, May 31, 2007, by Timothy A. Davis and Ekanathan Palamadai. Copyright (C) 2004-2007, University of Florida.</p>
+<ul>
+<li>http://sourceforge.net/p/klusolve/code/HEAD/tree/KLU/</li>
+</ul>
+<p>CSparse: a Concise Sparse Matrix package. Version 2.2.0, Copyright (c) 2006-2007, Timothy A. Davis, Mar 31, 2007.</p>
+<ul>
+<li>http://sourceforge.net/p/klusolve/code/HEAD/tree/CSparse/</li>
+<li>http://sourceforge.net/p/klusolve/code/HEAD/tree/CSparse/Doc/License.txt</li>
+</ul>
+<p>AMD Version 2.2, Copyright (c) 2007 by Timothy A. Davis, Patrick R. Amestoy, and Iain S. Duff.</p>
+<ul>
+<li>http://sourceforge.net/p/klusolve/code/HEAD/tree/AMD/</li>
+</ul>
+<p>BTF Version 1.0, May 31, 2007, by Timothy A. Davis Copyright (C) 2004-2007, University of Florida</p>
+<ul>
+<li>http://sourceforge.net/p/klusolve/code/HEAD/tree/BTF/</li>
+</ul>
+<p>CZSparse, Copyright (c) 2008, EnerNex Corporation.</p>
+<ul>
+<li>http://sourceforge.net/p/klusolve/code/HEAD/tree/CZSparse/</li>
 </ul>
           <aside class="copyright" role="note">
             
@@ -330,7 +323,7 @@
   <nav class="pagination" aria-label="Footer">
     <div class="previous">
       
-        <a href=".." title="OpenDSSDirect">
+        <a href="../NEWS/" title="Release notes">
           <span class="direction">
             Previous
           </span>
@@ -340,7 +333,7 @@
             </div>
             <div class="stretch">
               <div class="title">
-                OpenDSSDirect
+                Release notes
               </div>
             </div>
           </div>
@@ -348,22 +341,6 @@
       
     </div>
     <div class="next">
-      
-        <a href="../api/" title="API">
-          <span class="direction">
-            Next
-          </span>
-          <div class="page">
-            <div class="stretch">
-              <div class="title">
-                API
-              </div>
-            </div>
-            <div class="button button-next" role="button" aria-label="Next">
-              <i class="icon icon-forward"></i>
-            </div>
-          </div>
-        </a>
       
     </div>
   </nav>
