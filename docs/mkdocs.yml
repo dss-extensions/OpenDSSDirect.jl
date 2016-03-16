@@ -28,12 +28,12 @@ docs_dir: 'build'
 pages:
 - OpenDSSDirect: index.md
 - Documentation:
-  - Introduction: introduction.md
   - API: api.md
   - Flag objects: flags.md
   - DSS mode: dssmode.md
   - Low level API: lowlevel.md
+  - Index: docindex.md
 - About:
-  - Release notes: ../../NEWS.md
-  - License: ../../LICENSE.md
+  - Release notes: NEWS.md
+  - License: LICENSE.md
 
