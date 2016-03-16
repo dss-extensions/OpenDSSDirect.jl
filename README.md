@@ -11,7 +11,7 @@ Windows.
 
 ### Documentation
 
-* **[Current released package documentation](https://tshort.github.io/OpenDSSDirect.jl/release/)**
+* **[Current released package documentation](https://tshort.github.io/OpenDSSDirect.jl/stable/)**
 
 The documentation for the development version of this package is 
 [here](https://tshort.github.io/OpenDSSDirect.jl/latest/).
