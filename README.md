@@ -9,8 +9,9 @@ OpenDSS is an open-source distribution system simulator.
 **This package is only available for Windows.** OpenDSS is only available for
 Windows.
 
-# Documentation
+### Documentation
 
-* **[Released documentation](https://tshort.github.io/OpenDSSDirect.jl/release/)**
+* **[Current released package documentation](https://tshort.github.io/OpenDSSDirect.jl/release/)**
 
-* **[Development docs](https://tshort.github.io/OpenDSSDirect.jl/latest/)**
+The documentation for the development version of this package is 
+[here](https://tshort.github.io/OpenDSSDirect.jl/latest/).
