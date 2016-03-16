@@ -20,7 +20,7 @@ Windows.
         "dssmode.md",
         "lowlevel.md"
     ]
-    Depth = 2
+    Depth = 1
 
 ## Documentation Index
 
