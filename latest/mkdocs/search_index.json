@@ -257,8 +257,13 @@
         }, 
         {
             "location": "/NEWS/", 
-            "text": "OpenDSSDirect v0.1.1 Release Notes\n\n\n\n\nInitial release", 
+            "text": "OpenDSSDirect v0.2.0 Release Notes\n\n\n\n\nAdd Documentation\n\n\nUpdate DLL's\n\n\n\n\n\n\nOpenDSSDirect v0.1.1 Release Notes\n\n\n\n\nInitial release", 
             "title": "Release notes"
+        }, 
+        {
+            "location": "/NEWS/#opendssdirect-v020-release-notes", 
+            "text": "Add Documentation  Update DLL's", 
+            "title": "OpenDSSDirect v0.2.0 Release Notes"
         }, 
         {
             "location": "/NEWS/#opendssdirect-v011-release-notes", 
