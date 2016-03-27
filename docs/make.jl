@@ -1,4 +1,4 @@
-using Lapidary, OpenDSSDirect
+using Documenter, OpenDSSDirect
 
 # Build documentation.
 # ====================
