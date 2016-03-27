@@ -27,8 +27,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
     
-    <link rel="shortcut icon" type="image/x-icon" href="./assets/images/favicon-e565ddfa3b.ico">
-    <link rel="icon" type="image/x-icon" href="./assets/images/favicon-e565ddfa3b.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="./None">
+    <link rel="icon" type="image/x-icon" href="./None">
     <style>
       @font-face {
       	font-family: 'Icon';
@@ -45,7 +45,7 @@
       	font-style: normal;
       }
     </style>
-    <link rel="stylesheet" href="./assets/stylesheets/application-20d5debb47.css">
+    <link rel="stylesheet" href="./assets/stylesheets/application-54f87043f3.css">
     
       <link rel="stylesheet" href="./assets/stylesheets/palettes-05ab2406df.css">
     
@@ -64,7 +64,7 @@
       </style>
     
     
-      <link rel="stylesheet" href="./assets/Lapidary.css">
+      <link rel="stylesheet" href="./assets/Documenter.css">
     
     <script src="./assets/javascripts/modernizr-4ab42b99fd.js"></script>
     
@@ -131,7 +131,12 @@
     <div class="banner">
       
       <div class="name">
-        <strong>OpenDSSDirect.jl </strong>
+        <strong>
+          OpenDSSDirect.jl
+          <span class="version">
+            
+          </span>
+        </strong>
         
           <br>
           tshort/OpenDSSDirect.jl
@@ -288,11 +293,11 @@
       <article class="article">
         <div class="wrapper">
           
-          <p><a id='opendssdirect'></a></p>
+          <p><a id='OpenDSSDirect-1'></a></p>
 <h1 id="opendssdirect">OpenDSSDirect</h1>
 <p><a href="http://smartgrid.epri.com/SimulationTool.aspx">OpenDSS</a> is an open-source distribution system simulator. This Julia package implements a "direct" library interface to OpenDSS. See <a href="http://svn.code.sf.net/p/electricdss/code/trunk/Distrib/Doc/OpenDSS_Direct_DLL.pdf">this documentation</a> for detailed information on the direct library interface to OpenDSS. The direct library interface can be faster than the more traditional COM interface.</p>
 <p><strong>This package is only available for Windows.</strong> OpenDSS is only available for Windows.</p>
-<p><a id='installation'></a></p>
+<p><a id='Installation-1'></a></p>
 <h2 id="installation">Installation</h2>
 <p>For now, this package is registered, so you can use the following to install:</p>
 <div class="codehilite"><pre><span></span><span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;OpenDSSDirect&quot;</span><span class="p">)</span>
@@ -305,7 +310,7 @@
 
 
 <p>This package includes OpenDSS as a library. You do not have to install OpenDSS separately. In particular, it includes the OpenDSSDirect.DLL that implements the direct-access API.</p>
-<p><a id='features'></a></p>
+<p><a id='Features-1'></a></p>
 <h2 id="features">Features</h2>
 <p><a href="http://julialang.org/">Julia</a> is a fast, flexible numerical language with Matlab-like syntax. Like Python or Matlab, scripting OpenDSS can be used for  Monte-Carlo batch runs, parameter sweeps, post processing and plotting of  results, and more. </p>
 <p>Julia has several key features for advanced operations with OpenDSS:</p>
@@ -320,14 +325,14 @@
 <p><strong>Custom solutions and custom models</strong> – Because Julia compiles to codes    that run as quickly as C programs, it is possible to implement custom   solutions, and these custom solutions can contain custom models implemented   in Julia. The basic idea is to run a custom solution as described in    <a href="http://svn.code.sf.net/p/electricdss/code/trunk/Distrib/Doc/OpenDSS%20Solution%20Interface.pdf">OpenDSS Solution Interface.pdf</a>.   Custom control or power control elements can be implemented between each   model iteration. See    <a href="https://github.com/tshort/OpenDSSDirect.jl/blob/master/examples/low-level-solver.jl">examples/low-level-solver.jl</a>    for an example with a custom solver, including a case with an alternate sparse   matrix solver.</p>
 </li>
 </ul>
-<p><a id='contents'></a></p>
+<p><a id='Contents-1'></a></p>
 <h2 id="contents">Contents</h2>
 <ul>
-<li><a href="api/#main-api-module-dss">Main API (module DSS)</a></li>
-<li><a href="flags/#flag-objects">Flag objects</a></li>
-<li><a href="dssmode/#dss-repl-mode">DSS REPL Mode</a></li>
-<li><a href="lowlevel/#low-level-api-module-dsscore">Low-level API (module DSSCore)</a></li>
-<li><a href="docindex/#documentation-index">Documentation Index</a></li>
+<li><a href="api/#Main-API-(module-DSS)-1">Main API (module DSS)</a></li>
+<li><a href="flags/#Flag-objects-1">Flag objects</a></li>
+<li><a href="dssmode/#DSS-REPL-Mode-1">DSS REPL Mode</a></li>
+<li><a href="lowlevel/#Low-level-API-(module-DSSCore)-1">Low-level API (module DSSCore)</a></li>
+<li><a href="docindex/#Documentation-Index-1">Documentation Index</a></li>
 </ul>
           <aside class="copyright" role="note">
             
