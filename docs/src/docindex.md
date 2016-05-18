@@ -1,5 +1,6 @@
 
 # Documentation Index
 
-    {index}
-    Pages = ["api.md", "flags.md", "lowlevel.md"]
+```@index
+Pages = ["api.md", "flags.md", "lowlevel.md"]
+```
