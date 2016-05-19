@@ -1,6 +1,7 @@
 
-    {meta}
-    CurrentModule = OpenDSSDirect.DSS
+```@meta
+CurrentModule = OpenDSSDirect.DSS
+```
 
 # Main API (module DSS)
 
@@ -18,12 +19,12 @@ dss("""
 ```
 
 Several functions are available for setting OpenDSS variables, getting values,
-and initiating commands. Each of these is in one of several modules. Here is an 
+and initiating commands. Each of these is in one of several modules. Here is an
 example to set the `kW` of the active load element:
 
-```julia 
+```julia
 Loads.kW(50.)
-``` 
+```
 
 Here is an example setting some loads:
 
@@ -40,20 +41,20 @@ while loadnumber > 0
     DSS.Loads.kvar(20.)
     loadnumber = DSS.Loads.Next()
 end
-println(DSS.Loads.Count()) 
+println(DSS.Loads.Count())
 ```
- 
+
 To use this API, you can either use `import OpenDSSDirect` and prepend all of the functions with `DSS.`, or you can `import OpenDSSDirect.DSS` and use the functions directly. The following two are equivalent:
 
-```julia 
+```julia
 using OpenDSSDirect
 DSS.Circuit.TotalPower()
-``` 
+```
 Importing the DSS module:
-```julia 
+```julia
 using OpenDSSDirect.DSS
 Circuit.TotalPower()
-``` 
+```
 
 Many of the functions that return arrays convert to complex numbers where appropriate. Here is an example session:
 
@@ -88,7 +89,7 @@ julia> CktElement.Voltages()
       0.0+0.0im
 ```
 
-To find the functions available in each module, use Julia's help for each module (initiated by hitting `?`). See below for an example. 
+To find the functions available in each module, use Julia's help for each module (initiated by hitting `?`). See below for an example.
 
 ```julia
 julia> using OpenDSSDirect.DSS
@@ -117,182 +118,215 @@ search: Circuit
 
 Here is a list of modules supported by this API. Each module has several functions.
 
-    {index}
-    Pages = ["api.md"]
+```@index
+Pages = ["api.md"]
+```
 
 ## `dss`
 
-    {docs}
-    dss
-    
+```@docs
+dss
+```
+
 ## `ActiveClass`
 
-    {docs}
-    ActiveClass
-    
+```@docs
+ActiveClass
+```
+
 ## `Basic`
 
-    {docs}
-    Basic
-    
+```@docs
+Basic
+```
+
 ## `Bus`
 
-    {docs}
-    Bus
-    
+```@docs
+Bus
+```
+
 ## `Capacitors`
 
-    {docs}
-    Capacitors
-    
+```@docs
+Capacitors
+```
+
 ## `CapControls`
 
-    {docs}
-    CapControls
-    
+```@docs
+CapControls
+
 ## `Circuit`
 
-    {docs}
-    Circuit
-    
+```@docs
+Circuit
+```
+
 ## `CktElement`
 
-    {docs}
-    CktElement
-    
+```@docs
+CktElement
+```
+
 ## `CtrlQueue`
 
-    {docs}
-    CtrlQueue
-    
+```@docs
+CtrlQueue
+```
+
 ## `Element`
 
-    {docs}
-    Element
-    
+```@docs
+Element
+```
+
 ## `Executive`
 
-    {docs}
-    Executive
-    
+```@docs
+Executive
+```
+
 ## `Fuses`
 
-    {docs}
-    Fuses
-    
+```@docs
+Fuses
+```
+
 ## `Generators`
 
-    {docs}
-    Generators
-    
+```@docs
+Generators
+```
+
 ## `Isource`
 
-    {docs}
-    Isource
-    
+```@docs
+Isource
+```
+
 ## `Lines`
 
-    {docs}
-    Lines
-    
+```@docs
+Lines
+```
+
 ## `Loads`
 
-    {docs}
-    Loads
-    
+```@docs
+Loads
+```
+
 ## `LoadShape`
 
-    {docs}
-    LoadShape
-    
+```@docs
+LoadShape
+```
+
 ## `Meters`
 
-    {docs}
-    Meters
-    
+```@docs
+Meters
+```
+
 ## `Monitors`
 
-    {docs}
-    Monitors
-    
+```@docs
+Monitors
+```
+
 ## `Parser`
 
-    {docs}
-    Parser
-    
+```@docs
+Parser
+```
+
 ## `PDElements`
 
-    {docs}
-    PDElements
-    
+```@docs
+PDElements
+```
+
 ## `Progress`
 
-    {docs}
-    Progress
-    
+```@docs
+Progress
+```
+
 ## `Properties`
 
-    {docs}
-    Properties
-    
+```@docs
+Properties
+```
+
 ## `PVsystems`
 
-    {docs}
-    PVsystems
-    
+```@docs
+PVsystems
+```
+
 ## `Reclosers`
 
-    {docs}
-    Reclosers
-    
+```@docs
+Reclosers
+```
+
 ## `RegControls`
 
-    {docs}
-    RegControls
-    
+```@docs
+RegControls
+```
+
 ## `Relays`
 
-    {docs}
-    Relays
-    
+```@docs
+Relays
+```
+
 ## `Sensors`
 
-    {docs}
-    Sensors
-    
+```@docs
+Sensors
+```
+
 ## `Settings`
 
-    {docs}
-    Settings
-    
+```@docs
+Settings
+```
+
 ## `Solution`
 
-    {docs}
-    Solution
-    
+```@docs
+Solution
+```
+
 ## `SwtControls`
 
-    {docs}
-    SwtControls
-    
+```@docs
+SwtControls
+```
+
 ## `Topology`
 
-    {docs}
-    Topology
-    
+```@docs
+Topology
+```
+
 ## `Transformers`
 
-    {docs}
-    Transformers
-    
+```@docs
+Transformers
+```
+
 ## `Vsources`
 
-    {docs}
-    Vsources
-    
+```@docs
+Vsources
+```
+
 ## `XYCurves`
 
-    {docs}
-    XYCurves
-    
-
+```@docs
+XYCurves
+```
