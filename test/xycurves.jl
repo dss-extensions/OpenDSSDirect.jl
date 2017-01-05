@@ -1,7 +1,7 @@
 
 @testset "XYCurves" begin 
 
-include("init.jl")
+
 init8500()
 
 dss("""

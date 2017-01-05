@@ -36,11 +36,11 @@ immutable MSSafeArray{T}
 end
 
 function fixstring(data, i)
-    len = unsafe_wrap(Array, convert(Ptr{UInt16}, data[i]-4), (1,))[1]
-    UTF16String(unsafe_wrap(Array, data[i], (len,)))
+    len = unsafe_wrap(Array, convert(Ptr{UInt16}, data[i]-4), (1,))[1] ÷ 2
+    transcode(String, unsafe_wrap(Array, data[i], (len,)))
 end
 function fixstrings(data)
-    UTF16String[fixstring(data, i) for i in 1:length(data)]
+    String[fixstring(data, i) for i in 1:length(data)]
 end
 
 # for reading data from OpenDSS
@@ -60,11 +60,11 @@ function variant{ID}(::Type{Val{ID}}, mode::Integer)
         data = unsafe_wrap(Array, sa[1].pvData, (sa[1].grsabound1,))
         return data
     elseif arg[1] == 0x2008    # Cstring type
-        p = convert(Ptr{MSSafeArray{Ptr{UInt8}}}, arg[2])
+        p = convert(Ptr{MSSafeArray{Ptr{UInt16}}}, arg[2])
         sa = unsafe_wrap(Array, p, (1,))
         data = unsafe_wrap(Array, sa[1].pvData, (sa[1].grsabound1,))
         if data == [C_NULL]
-            return UTF16String[]
+            return String[]
         else
             return fixstrings(data)
         end
