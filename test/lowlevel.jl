@@ -1,13 +1,6 @@
 include("$(dirname(@__FILE__))/../examples/low-level-solver.jl")
 
-if VERSION >= v"0.5-"
-    using Base.Test
-elseif !isdefined(Test, Symbol("@testset"))
-    using BaseTestNext
-    const Test = BaseTestNext
-end
-
-isclose(x, y) = maximum(abs(x - y) ./ abs(x)) < 0.0005
+isclose(x, y) = maximum(abs(x - y) ./ abs(x)) < 0.0006
 howclose(x, y) = maximum(abs(x - y) ./ abs(x))
 
 @testset "bus" begin 
