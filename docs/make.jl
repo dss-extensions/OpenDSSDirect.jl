@@ -19,8 +19,8 @@ makedocs(
               "dssmode.md",
               "Low-level API" => "lowlevel.md",
               "docindex.md"],
-        "Release notes" => "../../NEWS.md",
-        "License" => "../../LICENSE.md"]
+        "Release notes" => "NEWS.md",
+        "License" => "LICENSE.md"]
 )
 
 # Deploy built documentation from Travis.
