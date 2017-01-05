@@ -1,13 +1,5 @@
 using Documenter, OpenDSSDirect
 
-# Setup
-# =====
-
-cd(Pkg.dir("OpenDSSDirect", "docs"))
-cp("../NEWS.md", "src/NEWS.md", remove_destination=true)
-cp("../LICENSE.md", "src/LICENSE.md", remove_destination=true)
-
-
 # Build documentation.
 # ====================
 
