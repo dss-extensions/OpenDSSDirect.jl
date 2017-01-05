@@ -124,29 +124,29 @@ end
 
 
 
-init8500() = dss("""
+init8500a() = dss("""
     clear
     compile $(Pkg.dir())/OpenDSSDirect/examples/8500-Node/Master.dss
 """)
 
 function testnormalsolution()
-    init8500()
+    init8500a()
     DSS.Solution.SolveNoControl()
     v1 = DSS.Circuit.AllBusVMag()
-    init8500()
+    init8500a()
     i = normalsolution()
     v2 = DSS.Circuit.AllBusVMag()
-    init8500()
+    init8500a()
     i = normalsolution_alt()
     v3 = DSS.Circuit.AllBusVMag()
     (v1, v2, v3)
 end
 
 function testsnap()
-    init8500()
+    init8500a()
     DSS.Solution.Solve()
     v1 = DSS.Circuit.AllBusVMag()
-    init8500()
+    init8500a()
     i = solvesnap()
     v2 = DSS.Circuit.AllBusVMag()
     (v1, v2, i)

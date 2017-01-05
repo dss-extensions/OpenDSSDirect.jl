@@ -156,6 +156,7 @@ Capacitors
 
 ```@docs
 CapControls
+```
 
 ## `Circuit`
 

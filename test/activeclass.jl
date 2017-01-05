@@ -1,4 +1,4 @@
-include("init.jl")
+
 init8500()
 
 @testset "ActiveClass" begin 

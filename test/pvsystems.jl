@@ -1,4 +1,4 @@
-include("init.jl")
+
 dss("""
 clear
 New Circuit.PVSystem  basekv=12.47  Isc3=1000 Isc1=900
