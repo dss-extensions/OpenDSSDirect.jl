@@ -3,8 +3,10 @@ using Documenter, OpenDSSDirect
 # Setup
 # =====
 
-# cp("NEWS.md", "docs/src/NEWS.md", remove_destination=true)
-# cp("LICENSE.md", "docs/src/LICENSE.md", remove_destination=true)
+cd(Pkg.dir("OpenDSSDirect", "docs"))
+cp("../NEWS.md", "src/NEWS.md", remove_destination=true)
+cp("../LICENSE.md", "src/LICENSE.md", remove_destination=true)
+
 
 # Build documentation.
 # ====================
