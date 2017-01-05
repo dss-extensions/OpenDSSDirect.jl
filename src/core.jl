@@ -9,8 +9,6 @@ else
     const dsslib = "$(dirname(@__FILE__))\\..\\deps\\win32\\OpenDSSDirect.DLL"
 end
 
-using LegacyStrings
-
 ################################################################################
 ##
 ## Helpers for converting Variants
