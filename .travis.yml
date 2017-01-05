@@ -14,4 +14,4 @@ script:
   - julia -e 'Pkg.clone(pwd())'
 
 after_success:
-  - julia -e 'cd(Pkg.dir("OpenDSSDirect")); Pkg.clone("https://github.com/MichaelHatherly/Documenter.jl"); include(joinpath("docs", "make.jl"))'
+  - julia -e 'cd(Pkg.dir("OpenDSSDirect")); Pkg.clone("https://github.com/JuliaDocs/Documenter.jl"); include(joinpath("docs", "make.jl"))'

@@ -56,7 +56,7 @@ function def_helper(nargs, mod, f, idx, newf, helpstr, fexpr = :(_))
         push!(extraargs, :arg)
     elseif nargs > 1
         argstr = string(["arg$i, " for i in nargs - 1]..., "arg", nargs)
-        append!(extraargs, Any[symbol(string("arg", i)) for i in 1:nargs])
+        append!(extraargs, Any[Symbol(string("arg", i)) for i in 1:nargs])
     end
     helpstr = string("`", mod, ".", newf, "(", argstr, ")` -- ", helpstr)
     freplace = :(DSSCore.$f($idx))

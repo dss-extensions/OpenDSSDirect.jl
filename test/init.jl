@@ -3,7 +3,7 @@ using OpenDSSDirect.DSS
 
 if VERSION >= v"0.5-"
     using Base.Test
-elseif !isdefined(Test, symbol("@testset"))
+elseif !isdefined(Test, Symbol("@testset"))
     using BaseTestNext
     const Test = BaseTestNext
 end

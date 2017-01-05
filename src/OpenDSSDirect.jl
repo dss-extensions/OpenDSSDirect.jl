@@ -1,4 +1,4 @@
-VERSION >= v"0.4.0-dev+6521" && OS_NAME == :Windows && __precompile__()
+is_windows() && __precompile__()
 
 module OpenDSSDirect
 
@@ -10,14 +10,14 @@ import .DSS.dss
 export dss
 
 
-@windows_only function __init__()
+is_windows() && function __init__()
     DSS.Basic.Start()
     
-    global commandhelp = Dict{ASCIIString, ASCIIString}()
+    global commandhelp = Dict{String, String}()
     for i in 1:DSS.Executive.NumCommands()
         commandhelp[lowercase(DSS.Executive.Command(string(i)))] = DSS.Executive.CommandHelp(string(i))
     end
-    global optionhelp = Dict{ASCIIString, ASCIIString}()
+    global optionhelp = Dict{String, String}()
     for i in 1:DSS.Executive.NumOptions()
         optionhelp[lowercase(DSS.Executive.Option(string(i)))] = DSS.Executive.OptionHelp(string(i))
     end
