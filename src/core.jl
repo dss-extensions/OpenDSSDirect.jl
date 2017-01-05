@@ -41,24 +41,32 @@ function fixstrings(data)
     String[fixstring(data, i) for i in 1:length(data)]
 end
 
+immutable VArg
+    dtype::UInt64
+    p::Ptr{Void}
+    dum1::UInt64
+    dum2::UInt64
+end
+
 # for reading data from OpenDSS
 function variant{ID}(::Type{Val{ID}}, mode::Integer) 
-    arg = UInt64[1,2,3,4]
-    ccall( (ID, dsslib), stdcall, Void, (Int32,Ptr{UInt64}), mode, arg)
-    if arg[1] == 0x0001   # data not changed
+    arg = Ref(VArg(0,C_NULL,0,0))
+    ccall( (ID, dsslib), stdcall, Void, (Int32,Ref{VArg}), mode, arg)
+    arg = arg[]
+    if arg.dtype == 0x0001   # data not changed
         return []
-    elseif arg[1] == 0x2005    # Float64 type
-        p = convert(Ptr{MSSafeArray{Float64}}, arg[2])
+    elseif arg.dtype == 0x2005    # Float64 type
+        p = convert(Ptr{MSSafeArray{Float64}}, arg.p)
         sa = unsafe_wrap(Array, p, (1,))
         data = unsafe_wrap(Array, sa[1].pvData, (sa[1].grsabound1,))
         return data
-    elseif arg[1] == 0x2003    # Int32 type
-        p = convert(Ptr{MSSafeArray{Int32}}, arg[2])
+    elseif arg.dtype == 0x2003    # Int32 type
+        p = convert(Ptr{MSSafeArray{Int32}}, arg.p)
         sa = unsafe_wrap(Array, p, (1,))
         data = unsafe_wrap(Array, sa[1].pvData, (sa[1].grsabound1,))
         return data
-    elseif arg[1] == 0x2008    # Cstring type
-        p = convert(Ptr{MSSafeArray{Ptr{UInt16}}}, arg[2])
+    elseif arg.dtype == 0x2008    # Cstring type
+        p = convert(Ptr{MSSafeArray{Ptr{UInt16}}}, arg.p)
         sa = unsafe_wrap(Array, p, (1,))
         data = unsafe_wrap(Array, sa[1].pvData, (sa[1].grsabound1,))
         if data == [C_NULL]
