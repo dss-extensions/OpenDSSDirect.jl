@@ -1,3 +1,7 @@
+### OpenDSSDirect v0.3.1 Release Notes
+
+- Update to OpenDSS version 7.6.5_18
+
 ### OpenDSSDirect v0.3.0 Release Notes
 
 - Update to Julia v0.5

@@ -1,3 +1,5 @@
+using Base.Test
+
 
 include("lowlevel.jl")
 
