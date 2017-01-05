@@ -7,6 +7,7 @@ cd(Pkg.dir("OpenDSSDirect", "docs"))
 cp("../NEWS.md", "src/NEWS.md", remove_destination=true)
 cp("../LICENSE.md", "src/LICENSE.md", remove_destination=true)
 
+
 # Build documentation.
 # ====================
 
@@ -26,8 +27,8 @@ makedocs(
               "dssmode.md",
               "Low-level API" => "lowlevel.md",
               "docindex.md"],
-        "Release notes" => "NEWS.md",
-        "License" => "LICENSE.md"]
+        "Release notes" => "../../NEWS.md",
+        "License" => "../../LICENSE.md"]
 )
 
 # Deploy built documentation from Travis.
