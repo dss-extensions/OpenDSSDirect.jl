@@ -44,7 +44,10 @@ using OpenDSSDirect.DSS
         result
     end
 
-    N = nprocs()
+    N = nprocs() - 1
+    if N == 0
+        N = 1
+    end
     n = length(loadshape)
     numhours = 8760 ÷ N
 
