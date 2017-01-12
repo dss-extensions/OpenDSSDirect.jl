@@ -1,4 +1,4 @@
-is_windows() && __precompile__()
+__precompile__(false)
 
 module OpenDSSDirect
 
@@ -10,7 +10,7 @@ import .DSS.dss
 export dss
 
 
-is_windows() && function __init__()
+# function __init__()
     DSS.Basic.Start()
     
     global commandhelp = Dict{String, String}()
@@ -25,6 +25,6 @@ is_windows() && function __init__()
     if isdefined(Base, :active_repl)
         run_dss_repl()
     end
-end
+# end
 
 end # module

@@ -34,6 +34,7 @@ using OpenDSSDirect.DSS
         end
     end
     function run_loads(idx)
+        println(idx)
         result = Array(Complex128, length(idx))
         for i in 1:length(idx)
             scaleloads(loadshape[idx[i]]) 
@@ -43,7 +44,6 @@ using OpenDSSDirect.DSS
         result
     end
 
-
     N = nprocs()
     n = length(loadshape)
     numhours = 8760 ÷ N
@@ -52,4 +52,3 @@ end # @everywhere
 
 @time res = pmap(run_loads, 
                  [(1 + (i-1)*numhours) : (i*numhours) for i in 1:N])
-

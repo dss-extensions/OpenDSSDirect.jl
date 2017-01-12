@@ -57,10 +57,10 @@ end
 
 @test Solution.Mode() == 0
 
-Circuit.Losses()
-Circuit.SubstationLosses()
-Circuit.LineLosses()
-Circuit.TotalPower()
+@show Circuit.Losses()
+@show Circuit.SubstationLosses()
+@show Circuit.LineLosses()
+@show Circuit.TotalPower()
 Circuit.AllElementLosses()
 Circuit.AllBusNames()
 
