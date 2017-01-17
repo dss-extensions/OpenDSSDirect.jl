@@ -1,7 +1,7 @@
 using Base.Test
 
 
-# include("lowlevel.jl")
+include("lowlevel.jl")
 # include("basics.jl")
 
 include("init.jl")
