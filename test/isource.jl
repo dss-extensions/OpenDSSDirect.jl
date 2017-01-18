@@ -4,17 +4,17 @@ init8500()
 
 @testset "Isource" begin 
 
-@show Isource.Count()
-@show Isource.First()
-@show Isource.Next()
-@show Isource.Amps()
-@show Isource.Amps(Isource.Amps())
-@show Isource.AngleDeg()
-@show Isource.AngleDeg(Isource.AngleDeg())
-@show Isource.Frequency()
-@show Isource.Frequency(Isource.Frequency())
-@show Isource.Name()
-@show Isource.Name(Isource.Name())
-@show Isource.AllNames()
+@test Isource.Count() == 0
+@test Isource.First() == 0
+@test Isource.Next() == 0
+@test Isource.Amps() == 0.0
+@test Isource.Amps(Isource.Amps()) == 0.0
+@test Isource.AngleDeg() == 0.0
+@test Isource.AngleDeg(Isource.AngleDeg()) == 0.0
+@test Isource.Frequency() == 0.0
+@test Isource.Frequency(Isource.Frequency()) == 0.0
+@test Isource.Name() == "vreg4_c"
+# @test Isource.Name(Isource.Name())
+@test Isource.AllNames()[end] == "NONE"
 
 end # testset
