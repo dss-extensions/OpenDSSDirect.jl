@@ -1,3 +1,7 @@
+### OpenDSSDirect v0.3.2 Release Notes
+
+- Support Linux that's compiled by Lazarus/FPC
+
 ### OpenDSSDirect v0.3.1 Release Notes
 
 - Update to OpenDSS version 7.6.5_18

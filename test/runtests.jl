@@ -2,6 +2,7 @@ using Base.Test
 
 
 include("lowlevel.jl")
+include("basics.jl")
 
 include("init.jl")
 
@@ -14,10 +15,10 @@ include("cktelement.jl")
 # include("ctrlqueue.jl")
 include("element.jl")
 include("executive.jl")
-include("progress.jl")
+# include("progress.jl")
 include("fuses.jl")
 include("generators.jl")
-# include("isource.jl")
+include("isource.jl")
 include("lines.jl")
 include("loads.jl")
 include("loadshape.jl")
@@ -37,8 +38,3 @@ include("topology.jl")
 include("transformers.jl")
 include("vsources.jl")
 include("xycurves.jl")  # commented out because of win32 failure
-
-
-
-
-

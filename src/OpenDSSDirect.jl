@@ -1,4 +1,4 @@
-is_windows() && __precompile__()
+__precompile__()
 
 module OpenDSSDirect
 
@@ -10,7 +10,7 @@ import .DSS.dss
 export dss
 
 
-is_windows() && function __init__()
+function __init__()
     DSS.Basic.Start()
     
     global commandhelp = Dict{String, String}()

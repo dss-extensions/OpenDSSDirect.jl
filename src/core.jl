@@ -3,10 +3,14 @@ export DSSCore
 "Module with the low-level API for OpenDSSDirect"
 module DSSCore 
 
-if Int == Int64
-    const dsslib = "$(dirname(@__FILE__))\\..\\deps\\win64\\OpenDSSDirect.DLL"
+if is_windows()
+    if Int == Int64
+        const dsslib = "$(dirname(@__FILE__))\\..\\deps\\win64\\OpenDSSDirect.DLL"
+    else
+        const dsslib = "$(dirname(@__FILE__))\\..\\deps\\win32\\OpenDSSDirect.DLL"
+    end
 else
-    const dsslib = "$(dirname(@__FILE__))\\..\\deps\\win32\\OpenDSSDirect.DLL"
+    const dsslib = "$(dirname(@__FILE__))/../deps/libopendssdirect.so"
 end
 
 ################################################################################
@@ -19,23 +23,28 @@ end
 #   https://msdn.microsoft.com/en-us/library/windows/desktop/ms221482%28v=vs.85%29.aspx
 # Another useful link:
 #   http://www.quickmacros.com/help/Tables/IDP_VARIANT.html
-immutable MSSafeArray{T}
-    cDims::Cushort
-    fFeatures::Cushort
-    cbElements::Culong
-    cLocks::Culong
-    pvData::Ptr{T}
-    grsabound1::Cuint
-    grsabound2::Cuint
-    # cElements1::Culong
-    # lLbound1::Clong
-    # cElements2::Culong
-    # lLbound2::Clong
+immutable TVarArray{T}
+    dimcount::UInt8
+    flags::UInt8
+    elementsize::UInt32
+    lockcount::UInt32
+    data::Ptr{T}
+    length::Cuint
+    lbound::Cuint
 end
 
-function fixstring(data, i)
-    len = unsafe_wrap(Array, convert(Ptr{UInt16}, data[i]-4), (1,))[1] ÷ 2
-    transcode(String, unsafe_wrap(Array, data[i], (len,)))
+if is_windows()   # is_windows is used as a proxy for is_delphi 
+    # With Delphi, each string is stored as an array of two-byte arrays with a 4-byte header giving the number of bytes in the string.
+    function fixstring(data, i)
+        len = unsafe_wrap(Array, convert(Ptr{UInt8}, data[i] - 4), (1,))[1] ÷ 2
+        transcode(String, unsafe_wrap(Array, data[i], (len,)))
+    end
+else
+    # With Free Pascal, each string is stored as an array of two-byte arrays with an 8-byte header giving the number of characters in the string.
+    function fixstring(data, i)
+        len = unsafe_wrap(Array, convert(Ptr{UInt8}, data[i] - 8), 1)[1]
+        transcode(String, unsafe_wrap(Array, data[i], (len,)))
+    end
 end
 function fixstrings(data)
     String[fixstring(data, i) for i in 1:length(data)]
@@ -56,19 +65,19 @@ function variant{ID}(::Type{Val{ID}}, mode::Integer)
     if arg.dtype == 0x0001   # data not changed
         return []
     elseif arg.dtype == 0x2005    # Float64 type
-        p = convert(Ptr{MSSafeArray{Float64}}, arg.p)
+        p = convert(Ptr{TVarArray{Float64}}, arg.p)
         sa = unsafe_wrap(Array, p, (1,))
-        data = unsafe_wrap(Array, sa[1].pvData, (sa[1].grsabound1,))
+        data = unsafe_wrap(Array, sa[1].data, (sa[1].length,))
         return data
     elseif arg.dtype == 0x2003    # Int32 type
-        p = convert(Ptr{MSSafeArray{Int32}}, arg.p)
+        p = convert(Ptr{TVarArray{Int32}}, arg.p)
         sa = unsafe_wrap(Array, p, (1,))
-        data = unsafe_wrap(Array, sa[1].pvData, (sa[1].grsabound1,))
+        data = unsafe_wrap(Array, sa[1].data, (sa[1].length,))
         return data
     elseif arg.dtype == 0x2008    # Cstring type
-        p = convert(Ptr{MSSafeArray{Ptr{UInt16}}}, arg.p)
+        p = convert(Ptr{TVarArray{Ptr{UInt16}}}, arg.p)
         sa = unsafe_wrap(Array, p, (1,))
-        data = unsafe_wrap(Array, sa[1].pvData, (sa[1].grsabound1,))
+        data = unsafe_wrap(Array, sa[1].data, (sa[1].length,))
         if data == [C_NULL]
             return String[]
         else
@@ -88,8 +97,6 @@ function variant{ID,T <: AbstractFloat}(::Type{Val{ID}}, mode::Integer, arg::Abs
     # Make a Variant object
     sa = MSSafeArray{Float64}(1, 0x0080, 0x00000008, 0, pointer(arg), length(arg), 0)
     variant = [Variant(0x2005, pointer([sa]), C_NULL)]
-    dump(sa)
-    dump(variant)
     ccall( (ID, OpenDSSDirect.DSSCore.dsslib), cdecl, Void, (Int32,Ptr{Void}), mode, variant)
 end
 

@@ -23,7 +23,7 @@ and initiating commands. Each of these is in one of several modules. Here is an
 example to set the `kW` of the active load element:
 
 ```julia
-Loads.kW(50.)
+DSS.Loads.kW(50.)
 ```
 
 Here is an example setting some loads:

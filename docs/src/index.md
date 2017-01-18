@@ -7,9 +7,6 @@ documentation](http://svn.code.sf.net/p/electricdss/code/trunk/Distrib/Doc/OpenD
 for detailed information on the direct library interface to OpenDSS. The direct
 library interface can be faster than the more traditional COM interface.
 
-**This package is only available for Windows.** OpenDSS is only available for
-Windows.
-
 ## Installation
 
 For now, this package is registered, so you can use the following to install:
@@ -21,12 +18,22 @@ Pkg.add("OpenDSSDirect")
 To install the latest development version, use the following from within Julia:
 
 ```julia
-Pkg.clone("https://github.com/tshort/OpenDSSDirect.jl.git")
+Pkg.checkout("OpenDSSDirect")
 ```
 
 This package includes OpenDSS as a library. You do not have to install OpenDSS
-separately. In particular, it includes the OpenDSSDirect.DLL that implements
-the direct-access API.
+separately. In particular, it includes the OpenDSSDirect dynamically linked
+library that implements the direct-access API.
+
+Note that this should work on 32- and 64-bit Windows systems and 64-bit Linux
+systems. The Windows dynamic-linked libraries are taken from the official
+libraries ccompiled by Delphi. The Linux library is based on the LazDSS branch.
+The Linux library was compiled on an older version of Linux (Centos 6.4). It 
+should run on most newer versions of Linux. If it does not, you can try compiling
+the library on your system. It should also be possible to extend this to support
+Apple Mac OS because LazDSS supports that. Including DLL binaries is not the
+best practices, but this works well enough for now. Installing and compiling
+Lazarus and LazDSS is not easy to do as part of package installation.
 
 ## Features
 
@@ -55,6 +62,33 @@ Julia has several key features for advanced operations with OpenDSS:
   [examples/low-level-solver.jl](https://github.com/tshort/OpenDSSDirect.jl/blob/master/examples/low-level-solver.jl)
   for an example with a custom solver, including a case with an alternate sparse
   matrix solver.
+
+## Example
+
+The `dss` function is the main function for passing commands to OpenDSS. 
+After that, a number of modules are available to access different data structures
+in OpenDSS. Here is an example summing the kW and kvar from loads using the 
+`Loads` module:
+
+```julia
+using OpenDSSDirect.DSS
+filename = Pkg.dir("OpenDSSDirect", "examples", "8500-Node", "Master.dss")
+dss("""
+    clear
+    compile $filename
+    solve
+""")
+
+loadnumber = Loads.First()
+kWsum = 0.0
+kvarsum = 0.0
+while loadnumber > 0
+    kWsum += Loads.kW()
+    kvarsum += Loads.kvar()
+    loadnumber = Loads.Next()
+end
+```
+
 
 ## Contents
 
