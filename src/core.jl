@@ -33,15 +33,6 @@ immutable TVarArray{T}
     lbound::Cuint
 end
 
-function mylen(x::Ptr{UInt16})
-    for i in 1:1000
-        if unsafe_wrap(Array, convert(Ptr{UInt16}, x + 2i), 1)[1] == 0
-            return i-1
-        end
-    end
-    return -1
-end
-
 if is_windows()   # is_windows is used as a proxy for is_delphi 
     # With Delphi, each string is stored as an array of two-byte arrays with a 4-byte header giving the number of bytes in the string.
     function fixstring(data, i)

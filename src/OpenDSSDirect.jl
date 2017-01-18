@@ -10,7 +10,7 @@ import .DSS.dss
 export dss
 
 
-# function __init__()
+function __init__()
     DSS.Basic.Start()
     
     global commandhelp = Dict{String, String}()
@@ -25,6 +25,6 @@ export dss
     if isdefined(Base, :active_repl)
         run_dss_repl()
     end
-# end
+end
 
 end # module
