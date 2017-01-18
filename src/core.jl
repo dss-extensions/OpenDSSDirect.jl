@@ -51,7 +51,7 @@ function fixstrings(data)
 end
 
 immutable VArg
-    dtype::UInt16
+    dtype::UInt64
     p::Ptr{Void}
     dum1::UInt64
     dum2::UInt64
