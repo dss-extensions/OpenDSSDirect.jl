@@ -8,11 +8,9 @@ julia:
   - nightly
 notifications:
   email: false
-
-# Dummy script -- Windows only, so no tests.
-script:
-  - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
-  - julia -e 'Pkg.clone(pwd())'
-
 after_success:
   - julia -e 'Pkg.add("Documenter"); ENV["DOCUMENTER_DEBUG"] = "true"; cd(Pkg.dir("OpenDSSDirect")); include(joinpath("docs", "make.jl"))'
+  # push coverage results to Coveralls
+  - julia -e 'cd(Pkg.dir("OpenDSSDirect")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
+  # push coverage results to Codecov
+  - julia -e 'cd(Pkg.dir("OpenDSSDirect")); Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())'
