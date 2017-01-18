@@ -26,4 +26,3 @@ init8500()
 @test Topology.AllIsolatedLoads() == ["NONE"]
 
 end # testset
-

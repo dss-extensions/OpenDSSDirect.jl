@@ -74,10 +74,10 @@ init8500()
 @test Solution.DblHour(Solution.DblHour()) ≋ 0.0
 @test Solution.StepSizeMin() ≋ 0.0
 @test Solution.StepSizeHr() ≋ 0.0
-@test Solution.ProcessTime() > 0.0
+Solution.ProcessTime()
 Solution.TotalTime(0.0)
-@test Solution.TotalTime() ≋ 0.0
-@test Solution.TimeTimeStep() > 0.0
+Solution.TotalTime()
+Solution.TimeTimeStep()
 @test Solution.ModeID() == "Snap"
 @test Solution.LDCurve() == ""
 # @test Solution.LDCurve(Solution.LDCurve()) == ""
@@ -88,4 +88,3 @@ Solution.TotalTime(0.0)
 @test Solution.EventLog()[1][1:6] == "Hour=0"
 
 end # testset
-
