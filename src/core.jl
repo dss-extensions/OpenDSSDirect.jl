@@ -23,20 +23,6 @@ end
 #   https://msdn.microsoft.com/en-us/library/windows/desktop/ms221482%28v=vs.85%29.aspx
 # Another useful link:
 #   http://www.quickmacros.com/help/Tables/IDP_VARIANT.html
-immutable MSSafeArray{T}
-    cDims::Cushort
-    fFeatures::Cushort
-    cbElements::Culong
-    cLocks::Culong
-    pvData::Ptr{T}
-    grsabound1::Cuint
-    grsabound2::Cuint
-    # cElements1::Culong
-    # lLbound1::Clong
-    # cElements2::Culong
-    # lLbound2::Clong
-end
-
 immutable TVarArray{T}
     dimcount::UInt8
     flags::UInt8
@@ -55,13 +41,19 @@ function mylen(x::Ptr{UInt16})
     end
     return -1
 end
-    
-function fixstring(data, i)
-    len = unsafe_wrap(Array, convert(Ptr{UInt8}, data[i] - 8), 1)[1]
-    # @show mylen(data[i])
-    transcode(String, unsafe_wrap(Array, data[i], (len,)))
-    # transcode(String, data[i])
-    # unsafe_string(data[i], 5)
+
+if is_windows()   # is_windows is used as a proxy for is_delphi 
+    # With Delphi, each string is stored as an array of two-byte arrays with a 4-byte header giving the number of bytes in the string.
+    function fixstring(data, i)
+        len = unsafe_wrap(Array, convert(Ptr{UInt8}, data[i] - 4), (1,))[1] ÷ 2
+        transcode(String, unsafe_wrap(Array, data[i], (len,)))
+    end
+else
+    # With Free Pascal, each string is stored as an array of two-byte arrays with an 8-byte header giving the number of characters in the string.
+    function fixstring(data, i)
+        len = unsafe_wrap(Array, convert(Ptr{UInt8}, data[i] - 8), 1)[1]
+        transcode(String, unsafe_wrap(Array, data[i], (len,)))
+    end
 end
 function fixstrings(data)
     String[fixstring(data, i) for i in 1:length(data)]
