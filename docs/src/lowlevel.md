@@ -26,7 +26,7 @@ Integer (I), floating-point (F), string (S), and variant (V) functions are
 supported. The low-level API functions are not exported.
 
 This low-level API also includes several functions for directly accessing and
-controlling an OpenDSS solution. These functions include
+controlling an OpenDSS solution. These functions include:
 
 ```@index
 Pages = ["lowlevel.md"]
