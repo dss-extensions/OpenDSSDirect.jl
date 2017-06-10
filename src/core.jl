@@ -12,7 +12,7 @@ if is_windows()
 elseif is_linux()
     const dsslib = "$(dirname(@__FILE__))/../deps/linux/libopendssdirect.so"
 elseif is_apple()
-    const dsslib = "$(dirname(@__FILE__))/../deps/apple/usr/lib/libopendssdirect.dylib"
+    const dsslib = "$(dirname(@__FILE__))/../deps/apple/usr/Lib/libopendssdirect.dylib"
 end
 
 ################################################################################
