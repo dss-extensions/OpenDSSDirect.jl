@@ -825,7 +825,7 @@ import ..@def, ..DSSCore, ..cmplx, ..reshapemat, ..reshape2, ..addhelp!, ..colle
 @def	0	Monitors	MonitorsS	3	Element	"The full name of element being monitored by the active Monitor."	
 @def	1	Monitors	MonitorsS	4	Element	"Set the full name of element being monitored by the active Monitor."	
 @def	0	Monitors	MonitorsV	0	AllNames	"An array of all Monitor names (array of strings)."	
-@def	0	Monitors	MonitorsV	1	ByteStream	"A byte array containing monitor stream values. Make sure a "save" is done first (standard solution modes do this automatically)."	
+@def	0	Monitors	MonitorsV	1	ByteStream	"A byte array containing monitor stream values. Make sure a 'save' is done first (standard solution modes do this automatically)."	
 @def	0	Monitors	MonitorsV	2	DblHourS	"The header string; vector of strings containing Channel Names."	
 @def	0	Monitors	MonitorsV	3	DblHour	"A vector of doubles containing time value in hours for the time-sampled monitor values; empty if frequency-sampled values for harmonics solution (see dblFreq)."	
 @def	0	Monitors	MonitorsV	4	DblFreqS	"A vector of doubles containing time values for harmonics mode solutions; empty for time mode solutions (use dblHour)."	
