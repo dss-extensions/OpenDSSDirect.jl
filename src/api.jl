@@ -877,7 +877,7 @@ import ..@def, ..DSSCore, ..cmplx, ..reshapemat, ..reshape2, ..addhelp!, ..colle
 @def	0	PDElements	PDElementsI	4	NumCustomers	"Get the number of customers in this branch."	
 @def	0	PDElements	PDElementsI	5	TotalCustomers	"Get the total number of customers from this branch to the end of the zone."	
 @def	0	PDElements	PDElementsI	6	ParentPDElement	"Set the parent PD element to be the active circuit element. Returns 0 if no more elements upline."	
-@def	0	PDElements	PDElementsI	7	FromTerminal	"Get the number of the terminal of active PD element that is on the "from" side. This is set after the meter zone is determined."	
+@def	0	PDElements	PDElementsI	7	FromTerminal	"Get the number of the terminal of active PD element that is on the 'from' side. This is set after the meter zone is determined."	
 @def	0	PDElements	PDElementsI	8	SectionID	"Get the integer ID of the feeder section that this PDElement branch is part of."	
 @def	0	PDElements	PDElementsF	0	FaultRate	"Get the number of failures per year. For LINE elements: Number of failures per unit length per year."	
 @def	1	PDElements	PDElementsF	1	FaultRate	"Set the number of failures per year. For LINE elements: Number of failures per unit length per year."	
