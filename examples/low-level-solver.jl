@@ -137,7 +137,7 @@ function testnormalsolution()
     i = normalsolution()
     v2 = DSS.Circuit.AllBusVMag()
     init8500a()
-    i = normalsolution_alt()
+    #i = normalsolution_alt()
     v3 = DSS.Circuit.AllBusVMag()
     (v1, v2, v3)
 end
