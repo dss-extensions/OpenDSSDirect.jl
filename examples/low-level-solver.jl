@@ -7,7 +7,7 @@ using OpenDSSDirect
 Equivalent to `DSS.Solution.SolveNoControl()` or `ActiveCircuit.Solution.DoNormalSolution` in Pascal.
 """
 function normalsolution()
-    nodeVbase = abs(DSS.Circuit.AllBusVolts()) ./ DSS.Circuit.AllBusMagPu()   # KLUDGE!
+    nodeVbase = abs.(DSS.Circuit.AllBusVolts()) ./ DSS.Circuit.AllBusMagPu()   # KLUDGE!
     WHOLEMATRIX = 2
     NORMALSOLVE = 0
     nodeV = DSSCore.getV()
@@ -38,7 +38,7 @@ Alternative `normalsolution` using Julia's built-in sparse solver.
 Equivalent to `DSS.Solution.SolveNoControl()` or `ActiveCircuit.Solution.DoNormalSolution` in Pascal.
 """
 function normalsolution_alt()
-    nodeVbase = abs(DSS.Circuit.AllBusVolts()) ./ DSS.Circuit.AllBusMagPu()   # KLUDGE!
+    nodeVbase = abs.(DSS.Circuit.AllBusVolts()) ./ DSS.Circuit.AllBusMagPu()   # KLUDGE!
     WHOLEMATRIX = 2
     NORMALSOLVE = 0
     nodeV = DSSCore.getV()
@@ -105,11 +105,11 @@ Check for convervence, and set the DSS status variable `Converged`.
 function converged(nodeV, lastVmag, nodeVbase, tolerance = 0.0001)
     maxerr = 0.0
     for i in 2:length(nodeV)
-        Vmag = abs(nodeV[i])
+        Vmag = abs.(nodeV[i])
         if nodeVbase[i-1] > 0.0     # if base specified, use it; otherwise go on present magnitude
-            err = abs(Vmag - lastVmag[i]) / nodeVbase[i-1]
+            err = abs.(Vmag - lastVmag[i]) / nodeVbase[i-1]
         elseif Vmag != 0.0
-            err = abs(1 - lastVmag[i]/Vmag)
+            err = abs.(1 - lastVmag[i]/Vmag)
         else
             err = 0.0
         end
