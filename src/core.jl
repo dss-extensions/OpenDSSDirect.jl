@@ -18,9 +18,9 @@ elseif is_apple()
 end
 
 ################################################################################
-##
-## Helpers for converting Variants
-##
+###
+### Helpers for converting Variants
+###
 ################################################################################
 
 # Mimics the structure outlined in the following:
