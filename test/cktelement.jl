@@ -24,7 +24,7 @@ Lines.Next()
 @test CktElement.NormalAmps(CktElement.NormalAmps()) ≋ 0.0
 @test CktElement.EmergAmps() ≋ 600.0
 @test CktElement.EmergAmps(CktElement.EmergAmps()) ≋ 0.0
-@test CktElement.Variablei() ≋ 0.0
+# @test CktElement.Variablei() ≋ 0.0
 @test CktElement.Name() == "Line.ln5502549-1"
 @test CktElement.DisplayName() == "Line_ln5502549-1"
 @test CktElement.DisplayName(CktElement.DisplayName()) == ""
