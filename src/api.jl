@@ -342,7 +342,7 @@ import ..@def, ..DSSCore, ..cmplx, ..reshapemat, ..reshape2, ..addhelp!, ..colle
 @def	1	CktElement	CktElementF	1	NormalAmps	"Set the normal ampere rating for PD Elements"	
 @def	0	CktElement	CktElementF	2	EmergAmps	"Emergency Ampere Rating for PD elements"	
 @def	1	CktElement	CktElementF	3	EmergAmps	"Set the emergency Ampere Rating for PD elements"	
-@def	0	CktElement	CktElementF	4	Variablei	"For PCElement, get the value of a variable by integer index."	
+@def	1	CktElement	CktElementF	4	Variablei	"For PCElement, get the value of a variable by integer index."	
 @def	0	CktElement	CktElementS	0	Name	"Full Name of Active Circuit Element"	
 @def	0	CktElement	CktElementS	1	DisplayName	"Display name of the object (not necessarily unique)"	
 @def	1	CktElement	CktElementS	2	DisplayName	"Set the display name of the object (not necessarily unique)"	
