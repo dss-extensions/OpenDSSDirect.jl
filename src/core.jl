@@ -9,14 +9,18 @@ if is_windows()
     else
         const dsslib = "$(dirname(@__FILE__))\\..\\deps\\win32\\OpenDSSDirect.DLL"
     end
-else
-    const dsslib = "$(dirname(@__FILE__))/../deps/libopendssdirect.so"
+elseif is_linux()
+    const dsslib = "$(dirname(@__FILE__))/../deps/linux/libopendssdirect.so"
+elseif is_apple()
+    const klulib = "$(dirname(@__FILE__))/../deps/apple/usr/Lib/libklusolve.dylib"
+    run(`cp $klulib /usr/local/lib`)
+    const dsslib = "$(dirname(@__FILE__))/../deps/apple/usr/Lib/libopendssdirect.dylib"
 end
 
 ################################################################################
-##
-## Helpers for converting Variants
-##
+###
+### Helpers for converting Variants
+###
 ################################################################################
 
 # Mimics the structure outlined in the following:
