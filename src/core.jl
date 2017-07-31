@@ -9,8 +9,13 @@ if is_windows()
     else
         const dsslib = "$(dirname(@__FILE__))\\..\\deps\\win32\\OpenDSSDirect.DLL"
     end
-else
-    const dsslib = "$(dirname(@__FILE__))/../deps/libopendssdirect.so"
+elseif is_linux()
+    const dsslib = "$(dirname(@__FILE__))/../deps/linux/libopendssdirect.so"
+elseif is_apple()
+    cd("$(dirname(@__FILE__))/../deps/apple/x64/") do 
+        Libdl.dlopen("libklusolve.dylib")
+    end
+    const dsslib = "$(dirname(@__FILE__))/../deps/apple/x64/libopendssdirect.dylib"
 end
 
 ################################################################################
