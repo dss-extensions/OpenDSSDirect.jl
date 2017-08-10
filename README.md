@@ -6,7 +6,7 @@ OpenDSS is an open-source distribution system simulator.
  
 [![Build status](https://ci.appveyor.com/api/projects/status/github/tshort/OpenDSSDirect.jl?svg=true&branch=master)](https://ci.appveyor.com/project/tshort/opendssdirect-jl/branch/master)
 
-**This package is now available for Windows and Linux.** 
+**This package is now available for Windows, Mac, and Linux.** 
 
 ### Documentation
 
