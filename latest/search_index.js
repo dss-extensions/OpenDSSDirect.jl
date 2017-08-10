@@ -733,7 +733,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Low-level API",
     "title": "OpenDSSDirect.DSSCore.getI",
     "category": "Function",
-    "text": "getI() – Return the complex vector of current injections. \n\nThe size of the vector is one more than the number of nodes in the system. This is the same current injection array used in OpenDSS internally, so the current injections can be updated for custom solutions. This could be used to implement a custom power control component.\n\n\n\n"
+    "text": "getI() – Return the complex vector of current injections.\n\nThe size of the vector is one more than the number of nodes in the system. This is the same current injection array used in OpenDSS internally, so the current injections can be updated for custom solutions. This could be used to implement a custom power control component.\n\n\n\n"
 },
 
 {
@@ -741,7 +741,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Low-level API",
     "title": "OpenDSSDirect.DSSCore.getV",
     "category": "Function",
-    "text": "getV() – Return the complex vector of node voltages. \n\nThe size of the vector is one more than the number of nodes in the system. The first element is ground (zero volts). This is the same voltage array used in OpenDSS internally, so the voltages can be updated for custom solutions. \n\n\n\n"
+    "text": "getV() – Return the complex vector of node voltages.\n\nThe size of the vector is one more than the number of nodes in the system. The first element is ground (zero volts). This is the same voltage array used in OpenDSS internally, so the voltages can be updated for custom solutions.\n\n\n\n"
 },
 
 {
@@ -789,7 +789,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Low-level API",
     "title": "OpenDSSDirect.DSSCore.BuildYMatrixD",
     "category": "Function",
-    "text": "BuildYMatrixD(buildops::Integer, doallocate) – Rebuild the system Y matrix. \n\nbuildops::Integer indicates the type of build. 0 == WHOLEMATRIX and 1 == SERIESONLY.\ndoallocate::Bool is used to determine whether to allocate the Y matrix.\n\n\n\n"
+    "text": "BuildYMatrixD(buildops::Integer, doallocate) – Rebuild the system Y matrix.\n\nbuildops::Integer indicates the type of build. 0 == WHOLEMATRIX and 1 == SERIESONLY.\ndoallocate::Bool is used to determine whether to allocate the Y matrix.\n\n\n\n"
 },
 
 {
