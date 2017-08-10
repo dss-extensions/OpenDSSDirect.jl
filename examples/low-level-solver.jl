@@ -19,7 +19,7 @@ function normalsolution()
 
         # The above call could change the primitive Y matrix, so have to check
         if DSSCore.SystemYChanged()
-            DSSCore.BuildYMatrixD(WHOLEMATRIX, false) 
+            DSSCore.BuildYMatrixD(WHOLEMATRIX, false)
         end
 
         if DSSCore.UseAuxCurrents()
@@ -52,7 +52,7 @@ function normalsolution_alt()
 
         # The above call could change the primitive Y matrix, so have to check
         if DSSCore.SystemYChanged()
-            DSSCore.BuildYMatrixD(WHOLEMATRIX, false) 
+            DSSCore.BuildYMatrixD(WHOLEMATRIX, false)
             Y = DSSCore.getYsparse()
         end
 
@@ -86,7 +86,7 @@ function solvesnap()
     while true
         ## Increment the ControlIteration:
         i = DSS.Solution.ControlIterations() + 1
-        DSS.Solution.ControlIterations(i) 
+        DSS.Solution.ControlIterations(i)
         result = normalsolution()
         DSS.Solution.CheckControls()
         if DSS.Solution.ControlActionsDone() == 1
@@ -115,7 +115,7 @@ function converged(nodeV, lastVmag, nodeVbase, tolerance = 0.0001)
         end
         lastVmag[i] = Vmag
         if err > maxerr
-            maxerr = err 
+            maxerr = err
         end
     end
     DSS.Solution.Converged(maxerr < tolerance)
