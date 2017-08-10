@@ -1,7 +1,7 @@
 export DSSCore
 
 "Module with the low-level API for OpenDSSDirect"
-module DSSCore 
+module DSSCore
 
 if is_windows()
     if Int == Int64
@@ -12,10 +12,7 @@ if is_windows()
 elseif is_linux()
     const dsslib = "$(dirname(@__FILE__))/../deps/linux/libopendssdirect.so"
 elseif is_apple()
-    cd("$(dirname(@__FILE__))/../deps/apple/x64/") do 
-        Libdl.dlopen("libklusolve.dylib")
-    end
-    const dsslib = "$(dirname(@__FILE__))/../deps/apple/x64/libopendssdirect.dylib"
+    const dsslib = "$(dirname(@__FILE__))/../deps/apple/libopendssdirect.dylib"
 end
 
 ################################################################################
@@ -38,7 +35,7 @@ immutable TVarArray{T}
     lbound::Cuint
 end
 
-if is_windows()   # is_windows is used as a proxy for is_delphi 
+if is_windows()   # is_windows is used as a proxy for is_delphi
     # With Delphi, each string is stored as an array of two-byte arrays with a 4-byte header giving the number of bytes in the string.
     function fixstring(data, i)
         len = unsafe_wrap(Array, convert(Ptr{UInt8}, data[i] - 4), (1,))[1] ÷ 2
@@ -63,7 +60,7 @@ immutable VArg
 end
 
 # for reading data from OpenDSS
-function variant{ID}(::Type{Val{ID}}, mode::Integer) 
+function variant{ID}(::Type{Val{ID}}, mode::Integer)
     arg = Ref(VArg(0,C_NULL,0,0))
     ccall( (ID, dsslib), cdecl, Void, (Int32,Ref{VArg}), mode, arg)
     arg = arg[]
@@ -98,7 +95,7 @@ immutable Variant
     ptr::Ptr{Void}
     ptr2::Ptr{Void}
 end
-function variant{ID,T <: AbstractFloat}(::Type{Val{ID}}, mode::Integer, arg::AbstractVector{T}) 
+function variant{ID,T <: AbstractFloat}(::Type{Val{ID}}, mode::Integer, arg::AbstractVector{T})
     # Make a Variant object
     sa = MSSafeArray{Float64}(1, 0x0080, 0x00000008, 0, pointer(arg), length(arg), 0)
     variant = [Variant(0x2005, pointer([sa]), C_NULL)]
@@ -286,11 +283,11 @@ function getYsparse()
     nNZ  = Ref{UInt32}(0)
     res = ccall( (:InitAndGetYparams, dsslib), cdecl, UInt32, (Ref{UInt32}, Ref{UInt32}, Ref{UInt32}), hY, nBus, nNZ)
     # Set up pointer references--these are all allocated on the OpenDSS side
-    colptr = Ref{Ptr{UInt32}}(0) 
-    rowidxptr = Ref{Ptr{UInt32}}(0) 
-    cvalsptr = Ref{Ptr{Complex128}}(0) 
-    jnk = ccall((:GetCompressedYMatrix, dsslib), cdecl, Void, 
-          (UInt32, UInt32, UInt32, Ref{Ptr{UInt32}}, Ref{Ptr{UInt32}}, Ref{Ptr{Complex128}}), 
+    colptr = Ref{Ptr{UInt32}}(0)
+    rowidxptr = Ref{Ptr{UInt32}}(0)
+    cvalsptr = Ref{Ptr{Complex128}}(0)
+    jnk = ccall((:GetCompressedYMatrix, dsslib), cdecl, Void,
+          (UInt32, UInt32, UInt32, Ref{Ptr{UInt32}}, Ref{Ptr{UInt32}}, Ref{Ptr{Complex128}}),
           hY[], nBus[], nNZ[], colptr, rowidxptr, cvalsptr)
     colidx = unsafe_wrap(Array, colptr[], nBus[] + 1)
     rowidx = unsafe_wrap(Array, rowidxptr[], nNZ[])
@@ -299,7 +296,7 @@ function getYsparse()
 end
 
 """
-`getI()` -- Return the complex vector of current injections. 
+`getI()` -- Return the complex vector of current injections.
 
 The size of the vector is one more than the number of nodes in the system. This
 is the same current injection array used in OpenDSS internally, so the current
@@ -314,11 +311,11 @@ function getI()
 end
 
 """
-`getV()` -- Return the complex vector of node voltages. 
+`getV()` -- Return the complex vector of node voltages.
 
 The size of the vector is one more than the number of nodes in the system. The
 first element is ground (zero volts). This is the same voltage array
-used in OpenDSS internally, so the voltages can be updated for custom solutions. 
+used in OpenDSS internally, so the voltages can be updated for custom solutions.
 """
 function getV()
     Vref   = Ref{Ptr{Complex128}}(0)
@@ -343,7 +340,7 @@ SystemYChanged()       = ccall( (:SystemYChanged, dsslib), cdecl, Int32, (Int32,
 SystemYChanged(arg)    = ccall( (:SystemYChanged, dsslib), cdecl, Int32, (Int32, Int32), 1, arg)
 
 """
-`BuildYMatrixD(buildops::Integer, doallocate)` -- Rebuild the system Y matrix. 
+`BuildYMatrixD(buildops::Integer, doallocate)` -- Rebuild the system Y matrix.
 
 * `buildops::Integer` indicates the type of build. `0 == WHOLEMATRIX` and `1 == SERIESONLY`.
 * `doallocate::Bool` is used to determine whether to allocate the Y matrix.
