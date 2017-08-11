@@ -8,6 +8,8 @@ OpenDSS is an open-source distribution system simulator.
 
 **This package is now available for Windows, Mac, and Linux.** 
 
+See [OpenDSSDirect.py](https://github.com/NREL/OpenDSSDirect.py/) for a cross-platform package for Python with the same API.
+
 ### Documentation
 
 * **[Current released package documentation](https://tshort.github.io/OpenDSSDirect.jl/stable/)**
