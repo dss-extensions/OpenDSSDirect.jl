@@ -1,3 +1,7 @@
+### OpenDSSDirect v0.4.0 Release Notes
+
+- Support Mac that's compiled by Lazarus/FPC
+
 ### OpenDSSDirect v0.3.2 Release Notes
 
 - Support Linux that's compiled by Lazarus/FPC

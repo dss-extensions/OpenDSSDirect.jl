@@ -44,6 +44,7 @@ function normalsolution_alt()
     nodeV = DSSCore.getV()
     nodeI = DSSCore.getI()
     Y = DSSCore.getYsparse()
+    Yp = lufact(Y)
     lastVmag = zeros(length(nodeV))
     for i in 1:100
         DSSCore.ZeroInjCurr()
@@ -54,12 +55,13 @@ function normalsolution_alt()
         if DSSCore.SystemYChanged()
             DSSCore.BuildYMatrixD(WHOLEMATRIX, false)
             Y = DSSCore.getYsparse()
+            Yp = lufact(Y)
         end
 
         if DSSCore.UseAuxCurrents()
             DSSCore.AddInAuxCurrents(NORMALSOLVE)
         end
-        nodeV[2:end] = Y \ nodeI[2:end]      # Use Julia's built-in solver
+        nodeV[2:end] = Yp \ nodeI[2:end]      # Use Julia's built-in solver
         if converged(nodeV, lastVmag, nodeVbase) && i > 1
             return i
         end

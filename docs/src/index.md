@@ -26,14 +26,15 @@ separately. In particular, it includes the OpenDSSDirect dynamically linked
 library that implements the direct-access API.
 
 Note that this should work on 32- and 64-bit Windows systems and 64-bit Linux
-systems. The Windows dynamic-linked libraries are taken from the official
+and Mac systems. The Windows dynamic-linked libraries are taken from the official
 libraries ccompiled by Delphi. The Linux library is based on the LazDSS branch.
 The Linux library was compiled on an older version of Linux (Centos 6.4). It 
 should run on most newer versions of Linux. If it does not, you can try compiling
-the library on your system. It should also be possible to extend this to support
-Apple Mac OS because LazDSS supports that. Including DLL binaries is not the
-best practices, but this works well enough for now. Installing and compiling
+the library on your system. Including DLL binaries is not the
+best practice, but this works well enough for now. Installing and compiling
 Lazarus and LazDSS is not easy to do as part of package installation.
+
+For compiling libraries, please see [OpenDSSDirect.make](https://github.com/Muxelmann/OpenDSSDirect.make).
 
 ## Features
 
