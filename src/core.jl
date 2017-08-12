@@ -9,10 +9,12 @@ if is_windows()
     else
         const dsslib = "$(dirname(@__FILE__))\\..\\deps\\win32\\OpenDSSDirect.DLL"
     end
-elseif is_linux()
+elseif Sys.MACHINE == "x86_64-pc-linux-gnu" 
     const dsslib = "$(dirname(@__FILE__))/../deps/linux/libopendssdirect.so"
-elseif is_apple()
+elseif startswith(Sys.MACHINE, "x86_64-apple-darwin")
     const dsslib = "$(dirname(@__FILE__))/../deps/apple/libopendssdirect.dylib"
+else
+    error("OpenDSS libraries are not available for $(Sys.MACHINE)")
 end
 
 ################################################################################
