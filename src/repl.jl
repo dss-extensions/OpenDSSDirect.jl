@@ -1,4 +1,5 @@
-import Base: LineEdit, REPL
+import REPL
+import REPL: LineEdit
 
 ## This code was adapted from the following:
 ##    https://github.com/Keno/Gallium.jl/blob/1ef7111880495f3c5a7989d88a5fbc60e7eeb285/src/lldbrepl.jl
@@ -11,7 +12,7 @@ function run_dss_repl()
 
     main_mode = mirepl.interface.modes[1]
 
-    const dss_keymap = Dict{Any,Any}(
+    dss_keymap = Dict{Any,Any}(
         ']' => function (s,args...)
             if isempty(s)
                 if !haskey(s.mode_state,panel)
@@ -27,7 +28,7 @@ function run_dss_repl()
         #     LineEdit.transition(s,main_mode)
         # end
     )
-    const dsshelp_keymap = Dict{Any,Any}(
+    dsshelp_keymap = Dict{Any,Any}(
         '?' => function (s,args...)
             if isempty(s)
                 if !haskey(s.mode_state,panelhelp)
@@ -45,7 +46,7 @@ function run_dss_repl()
         prompt_prefix=Base.text_colors[:blue],
         prompt_suffix=main_mode.prompt_suffix,
         # on_enter = s->true)
-        on_enter = Base.REPL.return_callback)
+        on_enter = REPL.return_callback)
     panelhelp = LineEdit.Prompt("DSS help?> ";
         # Copy colors from the prompt object
         prompt_prefix=Base.text_colors[:magenta],

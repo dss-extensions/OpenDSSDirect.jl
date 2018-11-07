@@ -2,6 +2,7 @@
 ## interface in DSSCore.
 
 using OpenDSSDirect
+import LinearAlgebra: lu
 
 """
 Equivalent to `DSS.Solution.SolveNoControl()` or `ActiveCircuit.Solution.DoNormalSolution` in Pascal.
@@ -44,7 +45,7 @@ function normalsolution_alt()
     nodeV = DSSCore.getV()
     nodeI = DSSCore.getI()
     Y = DSSCore.getYsparse()
-    Yp = lufact(Y)
+    Yp = lu(Y)
     lastVmag = zeros(length(nodeV))
     for i in 1:100
         DSSCore.ZeroInjCurr()
@@ -55,7 +56,7 @@ function normalsolution_alt()
         if DSSCore.SystemYChanged()
             DSSCore.BuildYMatrixD(WHOLEMATRIX, false)
             Y = DSSCore.getYsparse()
-            Yp = lufact(Y)
+            Yp = lu(Y)
         end
 
         if DSSCore.UseAuxCurrents()
@@ -128,7 +129,7 @@ end
 
 init8500a() = dss("""
     clear
-    compile $(Pkg.dir())/OpenDSSDirect/examples/8500-Node/Master.dss
+    compile $(dirname(pathof(OpenDSSDirect)))/../examples/8500-Node/Master.dss
 """)
 
 function testnormalsolution()
@@ -139,7 +140,7 @@ function testnormalsolution()
     i = normalsolution()
     v2 = DSS.Circuit.AllBusVMag()
     init8500a()
-    if !is_apple()
+    if !Sys.isapple()
         i = normalsolution_alt()
     end
     v3 = DSS.Circuit.AllBusVMag()

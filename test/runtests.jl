@@ -1,5 +1,5 @@
-using Base.Test
-
+using Test
+import SparseArrays: SparseMatrixCSC
 
 include("lowlevel.jl")
 include("basics.jl")

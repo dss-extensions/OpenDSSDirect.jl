@@ -2,7 +2,7 @@
 init8500()
     
 dss("""
-    redirect $(Pkg.dir())/OpenDSSDirect/examples/8500-Node/Generators.dss
+    redirect $(dirname(pathof(OpenDSSDirect)))/../examples/8500-Node/Generators.dss
     solve
 """)
 

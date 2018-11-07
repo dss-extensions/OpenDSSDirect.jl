@@ -2,7 +2,7 @@
 init8500()
 
 dss("""
-    redirect $(Pkg.dir())/OpenDSSDirect/examples/ckt5/Loadshapes_ckt5.dss
+    redirect $(dirname(pathof(OpenDSSDirect)))/../examples/ckt5/Loadshapes_ckt5.dss
     solve
 """)
 

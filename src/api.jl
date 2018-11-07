@@ -25,7 +25,7 @@ gendict(;args...) = Dict{Symbol,Int}(args)
 Execute the OpenDSS text command `arg`.
 """
 function dss(arg::AbstractString) 
-    nLines = length(matchall(r"\n", arg)) + 1
+    nLines = length(collect(eachmatch(r"\n", arg))) + 1
     if nLines == 1 && arg != ""
         DSSCore.DSSPut_Command(arg)
     elseif nLines > 1
@@ -75,7 +75,7 @@ macro def(args...)
     def_helper(args...)
 end
 
-cmplx(x) = reinterpret(Complex128, x)
+cmplx(x) = reinterpret(ComplexF64, x)
 
 function reshapemat(x)
     N = length(x)
@@ -95,7 +95,7 @@ function reshape2(x)
     end
 end
 
-const collectedhelp = ObjectIdDict()
+const collectedhelp = IdDict()
 
 function addhelp!(mod, str)
     collectedhelp[mod] = string(get(collectedhelp, mod, ""), "\n\n", str)

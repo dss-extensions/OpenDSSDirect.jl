@@ -27,7 +27,7 @@ dss("""
 @test Monitors.NumChannels() == 12
 @test Monitors.Terminal() == 1
 @test Monitors.Terminal(Monitors.Terminal()) == 0
-@test contains(Monitors.FileName(), "IEEE8500_Mon_m1")
+@test occursin("IEEE8500_Mon_m1", Monitors.FileName())
 @test Monitors.Name() == "m1"
 @test Monitors.Name(Monitors.Name()) == "0"
 @test Monitors.Element() == "line.ln5815900-1"

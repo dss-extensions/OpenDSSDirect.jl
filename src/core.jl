@@ -3,7 +3,9 @@ export DSSCore
 "Module with the low-level API for OpenDSSDirect"
 module DSSCore
 
-if is_windows()
+import SparseArrays: SparseMatrixCSC
+
+if Sys.iswindows()
     if Int == Int64
         const dsslib = "$(dirname(@__FILE__))\\..\\deps\\win64\\OpenDSSDirect.DLL"
     else
@@ -27,7 +29,7 @@ end
 #   https://msdn.microsoft.com/en-us/library/windows/desktop/ms221482%28v=vs.85%29.aspx
 # Another useful link:
 #   http://www.quickmacros.com/help/Tables/IDP_VARIANT.html
-immutable TVarArray{T}
+struct TVarArray{T}
     dimcount::UInt8
     flags::UInt8
     elementsize::UInt32
@@ -37,7 +39,7 @@ immutable TVarArray{T}
     lbound::Cuint
 end
 
-if is_windows()   # is_windows is used as a proxy for is_delphi
+if Sys.iswindows()   # Sys.iswindows is used as a proxy for is_delphi
     # With Delphi, each string is stored as an array of two-byte arrays with a 4-byte header giving the number of bytes in the string.
     function fixstring(data, i)
         len = unsafe_wrap(Array, convert(Ptr{UInt8}, data[i] - 4), (1,))[1] ÷ 2
@@ -54,17 +56,17 @@ function fixstrings(data)
     String[fixstring(data, i) for i in 1:length(data)]
 end
 
-immutable VArg
+struct VArg
     dtype::UInt64
-    p::Ptr{Void}
+    p::Ptr{Nothing}
     dum1::UInt64
     dum2::UInt64
 end
 
 # for reading data from OpenDSS
-function variant{ID}(::Type{Val{ID}}, mode::Integer)
+function variant(::Type{Val{ID}}, mode::Integer) where ID
     arg = Ref(VArg(0,C_NULL,0,0))
-    ccall( (ID, dsslib), cdecl, Void, (Int32,Ref{VArg}), mode, arg)
+    ccall( (ID, dsslib), cdecl, Nothing, (Int32,Ref{VArg}), mode, arg)
     arg = arg[]
     if arg.dtype == 0x0001   # data not changed
         return []
@@ -91,17 +93,17 @@ function variant{ID}(::Type{Val{ID}}, mode::Integer)
 end
 
 # for writing data to OpenDSS -- BROKEN -- SEGFAULTS
-immutable Variant
+struct Variant
     typ::Cushort
     # typ::Int64
-    ptr::Ptr{Void}
-    ptr2::Ptr{Void}
+    ptr::Ptr{Nothing}
+    ptr2::Ptr{Nothing}
 end
-function variant{ID,T <: AbstractFloat}(::Type{Val{ID}}, mode::Integer, arg::AbstractVector{T})
+function variant(::Type{Val{ID}}, mode::Integer, arg::AbstractVector{T}) where {ID, T <: AbstractFloat}
     # Make a Variant object
     sa = MSSafeArray{Float64}(1, 0x0080, 0x00000008, 0, pointer(arg), length(arg), 0)
     variant = [Variant(0x2005, pointer([sa]), C_NULL)]
-    ccall( (ID, OpenDSSDirect.DSSCore.dsslib), cdecl, Void, (Int32,Ptr{Void}), mode, variant)
+    ccall( (ID, OpenDSSDirect.DSSCore.dsslib), cdecl, Nothing, (Int32,Ptr{Nothing}), mode, variant)
 end
 
 
@@ -287,9 +289,9 @@ function getYsparse()
     # Set up pointer references--these are all allocated on the OpenDSS side
     colptr = Ref{Ptr{UInt32}}(0)
     rowidxptr = Ref{Ptr{UInt32}}(0)
-    cvalsptr = Ref{Ptr{Complex128}}(0)
-    jnk = ccall((:GetCompressedYMatrix, dsslib), cdecl, Void,
-          (UInt32, UInt32, UInt32, Ref{Ptr{UInt32}}, Ref{Ptr{UInt32}}, Ref{Ptr{Complex128}}),
+    cvalsptr = Ref{Ptr{ComplexF64}}(0)
+    jnk = ccall((:GetCompressedYMatrix, dsslib), cdecl, Nothing,
+          (UInt32, UInt32, UInt32, Ref{Ptr{UInt32}}, Ref{Ptr{UInt32}}, Ref{Ptr{ComplexF64}}),
           hY[], nBus[], nNZ[], colptr, rowidxptr, cvalsptr)
     colidx = unsafe_wrap(Array, colptr[], nBus[] + 1)
     rowidx = unsafe_wrap(Array, rowidxptr[], nNZ[])
@@ -306,8 +308,8 @@ injections can be updated for custom solutions. This could be used to implement
 a custom power control component.
 """
 function getI()
-    Iref   = Ref{Ptr{Complex128}}(0)
-    ccall( (:getIpointer, dsslib), cdecl, Void, (Ref{Ptr{Complex128}}, ), Iref)
+    Iref   = Ref{Ptr{ComplexF64}}(0)
+    ccall( (:getIpointer, dsslib), cdecl, Nothing, (Ref{Ptr{ComplexF64}}, ), Iref)
     numnodes = CircuitI(2) + 1
     unsafe_wrap(Array, Iref[], numnodes)
 end
@@ -320,20 +322,20 @@ first element is ground (zero volts). This is the same voltage array
 used in OpenDSS internally, so the voltages can be updated for custom solutions.
 """
 function getV()
-    Vref   = Ref{Ptr{Complex128}}(0)
-    ccall( (:getVpointer, dsslib), cdecl, Void, (Ref{Ptr{Complex128}}, ), Vref)
+    Vref   = Ref{Ptr{ComplexF64}}(0)
+    ccall( (:getVpointer, dsslib), cdecl, Nothing, (Ref{Ptr{ComplexF64}}, ), Vref)
     numnodes = CircuitI(2) + 1
     unsafe_wrap(Array, Vref[], numnodes)
 end
 
 "`ZeroInjCurr()` -- Zero out the current injections vector."
-ZeroInjCurr()          = ccall( (:ZeroInjCurr, dsslib), cdecl, Void, ())
+ZeroInjCurr()          = ccall( (:ZeroInjCurr, dsslib), cdecl, Nothing, ())
 
 "`GetSourceInjCurrents()` -- Update the current injections vector with source injections."
-GetSourceInjCurrents() = ccall( (:GetSourceInjCurrents, dsslib), cdecl, Void, ())
+GetSourceInjCurrents() = ccall( (:GetSourceInjCurrents, dsslib), cdecl, Nothing, ())
 
 "`GetPCInjCurr()` -- Update the current injections vector with injections from power control elements like loads."
-GetPCInjCurr()         = ccall( (:GetPCInjCurr, dsslib), cdecl, Void, ())
+GetPCInjCurr()         = ccall( (:GetPCInjCurr, dsslib), cdecl, Nothing, ())
 
 "`SystemYChanged()` -- Bool indicating whether the system Y matrix has changed."
 SystemYChanged()       = ccall( (:SystemYChanged, dsslib), cdecl, Int32, (Int32, Int32), 0, 0) == 1
@@ -348,7 +350,7 @@ SystemYChanged(arg)    = ccall( (:SystemYChanged, dsslib), cdecl, Int32, (Int32,
 * `doallocate::Bool` is used to determine whether to allocate the Y matrix.
 
 """
-BuildYMatrixD(BuildOps, AllocateVI) = ccall( (:BuildYMatrixD, dsslib), cdecl, Void, (Int32, Int32), BuildOps, AllocateVI)
+BuildYMatrixD(BuildOps, AllocateVI) = ccall( (:BuildYMatrixD, dsslib), cdecl, Nothing, (Int32, Int32), BuildOps, AllocateVI)
 
 "`UseAuxCurrents()` -- Bool indicating whether to use auxiliary currents."
 UseAuxCurrents()       = ccall( (:UseAuxCurrents, dsslib), cdecl, Int32, (Int32, Int32), 0, 0) == 1
@@ -357,9 +359,9 @@ UseAuxCurrents()       = ccall( (:UseAuxCurrents, dsslib), cdecl, Int32, (Int32,
 UseAuxCurrents(arg)    = ccall( (:UseAuxCurrents, dsslib), cdecl, Int32, (Int32, Int32), 1, arg)
 
 "`UseAuxCurrents(arg)` -- ??"
-AddInAuxCurrents(arg)  = ccall( (:AddInAuxCurrents, dsslib), cdecl, Void, (Int32, ), arg)
+AddInAuxCurrents(arg)  = ccall( (:AddInAuxCurrents, dsslib), cdecl, Nothing, (Int32, ), arg)
 
 "`SolveSystem()` -- Update the system node voltages based on the vector of current injections."
-SolveSystem(arg)       = ccall( (:SolveSystem, dsslib), cdecl, Int32, (Array{Complex128}, ), arg)
+SolveSystem(arg)       = ccall( (:SolveSystem, dsslib), cdecl, Int32, (Array{ComplexF64}, ), arg)
 
 end # module
