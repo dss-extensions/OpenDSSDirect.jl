@@ -39,7 +39,7 @@ module Lines
 
     """Zero Sequence capacitance, nanofarads per unit length."""
     function C0(Value)
-        lib.Lines_Set_C0(Cstring(pointer(Value)))
+        lib.Lines_Set_C0(Value)
     end
 
     """Positive Sequence capacitance, nanofarads per unit length."""
@@ -107,7 +107,7 @@ module Lines
     end
 
     """Name of LineCode object that defines the impedances."""
-    function LineCode()
+    function LineCode(Value::String)
         lib.Lines_Set_LineCode(Cstring(pointer(Value)))
     end
 
@@ -117,7 +117,7 @@ module Lines
     end
 
     """Specify the name of the Line element to set it active."""
-    function Name()
+    function Name(Value::String)
         lib.Lines_Set_Name(Cstring(pointer(Value)))
     end
 
@@ -199,6 +199,7 @@ module Lines
     """Resistance matrix (full), ohms per unit length. Array of doubles."""
     function RMatrix()
         return get_float64_array(lib.Lines_Get_Rmatrix)
+    end
 
     """Resistance matrix (full), ohms per unit length. Array of doubles."""
     function RMatrix(Value)
@@ -212,7 +213,7 @@ module Lines
     end
 
     """Line spacing code"""
-    function Spacing()
+    function Spacing(Value::String)
         lib.Lines_Set_Spacing(Cstring(pointer(Value)))
     end
 
@@ -270,7 +271,8 @@ module Lines
 
     """Yprimitive: Does Nothing at present on Put; Dangerous"""
     function Yprim()
-        return get_float64_array(lib.Lines_Get_Yprim)
+        r = get_complex64_array(lib.Lines_Get_Yprim)
+        return reshape(r, (Int(length(r)/2), Int(length(r)/2)))
     end
 
     """Yprimitive: Does Nothing at present on Put; Dangerous"""

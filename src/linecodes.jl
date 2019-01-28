@@ -21,6 +21,7 @@ module LineCodes
     """Positive-sequence capacitance, nF per unit length"""
     function C1()
         return lib.LineCodes_Get_C1()
+    end
 
     """Positive-sequence capacitance, nF per unit length"""
     function C1(Value)
@@ -64,12 +65,11 @@ module LineCodes
 
     """Name of active LineCode"""
     function Name()
-        # Getter
         return get_string(lib.LineCodes_Get_Name())
     end
 
     """Name of active LineCode"""
-    function Name()
+    function Name(Value::String)
         lib.LineCodes_Set_Name(Cstring(pointer(Value)))
     end
 
@@ -100,6 +100,7 @@ module LineCodes
     """Zero-Sequence Resistance, ohms per unit length"""
     function R0()
         return lib.LineCodes_Get_R0()
+    end
 
     """Zero-Sequence Resistance, ohms per unit length"""
     function R0(Value)
@@ -128,7 +129,6 @@ module LineCodes
     end
 
     function Units()
-        # Getter
         return lib.LineCodes_Get_Units()
     end
 

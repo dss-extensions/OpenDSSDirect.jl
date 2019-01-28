@@ -7,7 +7,7 @@ function Close()
     lib.Fuses_Close()
 end
 
-function IsBlown()
+function IsBlown()::Bool
     return lib.Fuses_IsBlown() != 0
 end
 
@@ -120,7 +120,6 @@ end
 (write) Full name of the circuit element switch that the fuse controls. Defaults to MonitoredObj.
 """
 function SwitchedObj()
-    # Getter
     return get_string(lib.Fuses_Get_SwitchedObj())
 end
 

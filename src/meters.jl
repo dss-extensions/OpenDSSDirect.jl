@@ -151,6 +151,7 @@ module Meters
         end
 
         return result
+    end
 
     """
     (read) Get/Set the active meter  name.

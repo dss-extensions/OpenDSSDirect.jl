@@ -118,7 +118,7 @@ module Circuit
     """(read-only) Complex array of all bus, node voltages from most recent solution"""
     function AllBusVolts()
         # TODO: return
-        return get_float64_array(lib.Circuit_Get_AllBusVolts)
+        return get_complex64_array(lib.Circuit_Get_AllBusVolts)
     end
 
     """(read-only) Array of total losses (complex) in each circuit element"""
@@ -146,15 +146,14 @@ module Circuit
     end
 
     """(read-only) Complex total line losses in the circuit"""
-    function LineLosses()
-        # TODO: return
-        return get_float64_array(lib.Circuit_Get_LineLosses)
+    function LineLosses()::Complex
+        return get_complex64(lib.Circuit_Get_LineLosses)
     end
 
     """(read-only) Total losses in active circuit, complex number (two-element array of double)."""
-    function Losses()
+    function Losses()::Complex
         # TODO: return
-        return get_float64_array(lib.Circuit_Get_Losses)
+        return get_complex64(lib.Circuit_Get_Losses)
     end
 
     """(read-only) Name of the active circuit."""
@@ -184,9 +183,9 @@ module Circuit
     end
 
     """(read-only) Complex losses in all transformers designated to substations."""
-    function SubstationLosses()
+    function SubstationLosses()::Complex
         # TODO: return
-        return get_float64_array(lib.Circuit_Get_SubstationLosses)
+        return get_complex64(lib.Circuit_Get_SubstationLosses)
     end
 
     """(read-only) System Y matrix (after a solution has been performed)"""
@@ -196,15 +195,15 @@ module Circuit
     end
 
     """(read-only) Total power, watts delivered to the circuit"""
-    function TotalPower()
+    function TotalPower()::Complex
         # TODO: return
-        return get_float64_array(lib.Circuit_Get_TotalPower)
+        return get_complex64(lib.Circuit_Get_TotalPower)
     end
 
     """(read-only) Array of doubles containing complex injection currents for the present solution. Is is the "I" vector of I=YV"""
     function YCurrents()
         # TODO: return
-        return get_float64_array(lib.Circuit_Get_YCurrents)
+        return get_complex64_array(lib.Circuit_Get_YCurrents)
     end
 
     """(read-only) Array of strings containing the names of the nodes in the same order as the Y matrix"""
@@ -216,7 +215,7 @@ module Circuit
     """(read-only) Complex array of actual node voltages in same order as SystemY matrix."""
     function YNodeVArray()
         # TODO: return
-        return get_float64_array(lib.Circuit_Get_YNodeVarray)
+        return get_complex64_array(lib.Circuit_Get_YNodeVarray)
     end
 
 end

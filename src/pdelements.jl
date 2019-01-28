@@ -20,7 +20,7 @@ function FaultRate()
 end
 
 """Get/Set Number of failures per year. For LINE elements: Number of failures per unit length per year. """
-function FaultRate()
+function FaultRate(Value)
     lib.PDElements_Set_FaultRate(Value)
 end
 

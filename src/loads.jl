@@ -1,5 +1,8 @@
 module Loads
 
+    using ..lib
+    using ..utils
+
     """(read-only) Array of strings containing all Load names"""
     function AllNames()
         return get_string_array(lib.Loads_Get_AllNames)
@@ -57,6 +60,7 @@ module Loads
 
     function Class()
         return lib.Loads_Get_Class_()
+    end
 
     function Class(Value)
         lib.Loads_Set_Class_(Value)
@@ -78,7 +82,7 @@ module Loads
     end
 
     """Name of the growthshape curve for yearly load growth factors."""
-    function Growth()
+    function Growth(Value::String)
         lib.Loads_Set_Growth(Cstring(pointer(Value)))
     end
 
@@ -187,7 +191,7 @@ module Loads
         return get_string(lib.Loads_Get_Spectrum())
     end
 
-    function Spectrum()
+    function Spectrum(Value::String)
         lib.Loads_Set_Spectrum(Cstring(pointer(Value)))
     end
 
@@ -257,7 +261,7 @@ module Loads
     end
 
     """Name of yearly duration loadshape"""
-    function Yearly()
+    function Yearly(Value::String)
         lib.Loads_Set_Yearly(Cstring(pointer(Value)))
     end
 
@@ -283,7 +287,7 @@ module Loads
     end
 
     """Name of the loadshape for a daily load profile."""
-    function Daily()
+    function Daily(Value::String)
         lib.Loads_Set_daily(Cstring(pointer(Value)))
     end
 
@@ -293,7 +297,7 @@ module Loads
     end
 
     """Name of the loadshape for a duty cycle simulation."""
-    function Duty(Value)
+    function Duty(Value::String)
         lib.Loads_Set_duty(Cstring(pointer(Value)))
     end
 

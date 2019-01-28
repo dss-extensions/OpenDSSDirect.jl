@@ -67,7 +67,7 @@ module Monitors
     """Full object name of element being monitored."""
     function Element()
         result = get_string(lib.Monitors_Get_Element())
-        if result == "":
+        if result == ""
             return "0"
         end
 
@@ -150,12 +150,12 @@ module Monitors
     end
 
     """(read-only) Array of doubles containing frequency values for harmonics mode solutions; Empty for time mode solutions (use dblHour)"""
-    function dblFreq()
+    function DblFreq()
         return get_float64_array(lib.Monitors_Get_dblFreq)
     end
 
     """(read-only) Array of doubles containgin time value in hours for time-sampled monitor values; Empty if frequency-sampled values for harmonics solution  (see dblFreq)"""
-    function dblHour()
+    function DblHour()
         return get_float64_array(lib.Monitors_Get_dblHour)
     end
 

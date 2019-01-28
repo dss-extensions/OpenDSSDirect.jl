@@ -1,4 +1,4 @@
-module PVSystems
+module PVsystems
 
 using ..lib
 using ..utils
@@ -46,7 +46,7 @@ end
 (read) Get the name of the active PVSystem
 (write) Set the name of the active PVSystem
 """
-function Name()
+function Name(Value::String)
     lib.PVSystems_Set_Name(Cstring(pointer(Value)))
 end
 

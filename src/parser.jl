@@ -51,6 +51,7 @@ module Parser
     """String to be parsed. Loading this string resets the Parser to the beginning of the line. Then parse off the tokens in sequence."""
     function CmdString()
         return get_string(lib.Parser_Get_CmdString())
+    end
 
     """String to be parsed. Loading this string resets the Parser to the beginning of the line. Then parse off the tokens in sequence."""
     function CmdString(Value::String)

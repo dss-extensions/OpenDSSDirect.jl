@@ -19,7 +19,7 @@ module Bus
     """(read-only) Complex Double array of Sequence Voltages (0, 1, 2) at this Bus."""
     function CplxSeqVoltages()
         # TODO: Implement return
-        return get_float64_array(lib.Bus_Get_CplxSeqVoltages)
+        return get_complex64_array(lib.Bus_Get_CplxSeqVoltages)
     end
 
     """(read-only) Accumulated customer outage durations"""
@@ -45,7 +45,7 @@ module Bus
     """(read-only) Short circuit currents at bus; Complex Array."""
     function Isc()
         # TODO: Implement return
-        return get_float64_array(lib.Bus_Get_Isc)
+        return get_complex64_array(lib.Bus_Get_Isc)
     end
 
     """(read-only) Accumulated failure rate downstream from this bus; faults per year"""
@@ -99,7 +99,7 @@ module Bus
     """(read-only) For 2- and 3-phase buses, returns array of complex numbers represetin L-L voltages in volts. Returns -1.0 for 1-phase bus. If more than 3 phases, returns only first 3."""
     function VLL()
         # TODO: return
-        return get_float64_array(lib.Bus_Get_VLL)
+        return get_complex64_array(lib.Bus_Get_VLL)
     end
 
     """(read-only) Variant Array of doubles containing voltages in Magnitude (VLN), angle (deg) """
@@ -111,37 +111,37 @@ module Bus
     """(read-only) Open circuit voltage; Complex array."""
     function Voc()
         # TODO: return
-        return get_float64_array(lib.Bus_Get_Voc)
+        return get_complex64_array(lib.Bus_Get_Voc)
     end
 
     """(read-only) Complex array of voltages at this bus."""
     function Voltages()
         # TODO: return
-        return get_float64_array(lib.Bus_Get_Voltages)
+        return get_complex64_array(lib.Bus_Get_Voltages)
     end
 
     """(read-only) Complex array of Ysc matrix at bus. Column by column."""
     function YscMatrix()
         # TODO: return
-        return get_float64_array(lib.Bus_Get_YscMatrix)
+        return get_complex64_array(lib.Bus_Get_YscMatrix)
     end
 
     """(read-only) Complex Zero-Sequence short circuit impedance at bus."""
     function Zsc0()
         # TODO: return
-        return get_float64_array(lib.Bus_Get_Zsc0)
+        return get_complex64(lib.Bus_Get_Zsc0)
     end
 
     """(read-only) Complex Positive-Sequence short circuit impedance at bus.."""
     function Zsc1()
         # TODO: return
-        return get_float64_array(lib.Bus_Get_Zsc1)
+        return get_complex64(lib.Bus_Get_Zsc1)
     end
 
     """(read-only) Complex array of Zsc matrix at bus. Column by column."""
     function ZscMatrix()
         # TODO: return
-        return get_float64_array(lib.Bus_Get_ZscMatrix)
+        return get_complex64_array(lib.Bus_Get_ZscMatrix)
     end
 
     """(read-only) Base voltage at bus in kV"""
@@ -152,7 +152,7 @@ module Bus
     """(read-only) Returns Complex array of pu L-L voltages for 2- and 3-phase buses. Returns -1.0 for 1-phase bus. If more than 3 phases, returns only 3 phases."""
     function puVLL()
         # TODO: return
-        return get_float64_array(lib.Bus_Get_puVLL)
+        return get_complex64_array(lib.Bus_Get_puVLL)
     end
 
     """(read-only) Array of doubles containig voltage magnitude, angle pairs in per unit"""
@@ -164,7 +164,7 @@ module Bus
     """(read-only) Complex Array of pu voltages at the bus."""
     function PuVoltage()
         # TODO: return
-        return get_float64_array(lib.Bus_Get_puVoltages)
+        return get_complex64_array(lib.Bus_Get_puVoltages)
     end
 
     """X Coordinate for bus (double) (Getter)"""

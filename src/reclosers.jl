@@ -45,6 +45,7 @@ module Reclosers
     """Ground (3I0) trip multiplier or actual amps"""
     function GroundTrip()
         return lib.Reclosers_Get_GroundTrip()
+    end
 
     """Ground (3I0) trip multiplier or actual amps"""
     function GroundTrip(Value)
@@ -95,6 +96,7 @@ module Reclosers
     """Number of fast shots"""
     function NumFast()
         return lib.Reclosers_Get_NumFast()
+    end
 
     """Number of fast shots"""
     function NumFast(Value)
@@ -155,6 +157,7 @@ module Reclosers
     """Terminal number of the controlled device being switched by the Recloser"""
     function SwitchedTerm()
         return lib.Reclosers_Get_SwitchedTerm()
+    end
 
     """Terminal number of the controlled device being switched by the Recloser"""
     function SwitchedTerm(Value)

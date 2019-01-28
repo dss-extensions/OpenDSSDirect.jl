@@ -1,5 +1,8 @@
 module ActiveClass
 
+    using ..lib
+    using ..utils
+
     """(read-only) Returns name of active class."""
     function ActiveClassName()
         get_string(lib.ActiveClass_Get_ActiveClassName())

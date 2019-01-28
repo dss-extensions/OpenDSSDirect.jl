@@ -65,22 +65,23 @@ module CktElement
 
     """(read-only) Complex double array of Sequence Currents for all conductors of all terminals of active circuit element."""
     function CplxSeqCurrents()
-        return get_float64_array(lib.CktElement_Get_CplxSeqCurrents)
+        return get_complex64_array(lib.CktElement_Get_CplxSeqCurrents)
     end
 
     """(read-only) Complex double array of Sequence Voltage for all terminals of active circuit element."""
     function CplxSeqVoltages()
-        return get_float64_array(lib.CktElement_Get_CplxSeqVoltages)
+        return get_complex64_array(lib.CktElement_Get_CplxSeqVoltages)
     end
 
     """(read-only) Complex array of currents into each conductor of each terminal"""
     function Currents()
-        return get_float64_array(lib.CktElement_Get_Currents)
+        return get_complex64_array(lib.CktElement_Get_Currents)
     end
 
     """(read-only) Currents in magnitude, angle format as a array of doubles."""
     function CurrentsMagAng()
-        return get_float64_array(lib.CktElement_Get_CurrentsMagAng)
+        r = get_float64_array(lib.CktElement_Get_CurrentsMagAng)
+        return reshape(r, (2, Int(length(r)/2)))
     end
 
     """Display name of the object (not necessarily unique) (Getter)"""
@@ -115,8 +116,8 @@ module CktElement
     end
 
     """Boolean indicating that element is currently in the circuit."""
-    function Enabled(Value::Float64)
-        lib.CktElement_Set_Enabled(Value)
+    function Enabled(Value::Bool)
+        lib.CktElement_Set_Enabled(Value ? 1 : 0)
     end
 
     """(read-only) Name of the Energy Meter this element is assigned to."""
@@ -151,7 +152,7 @@ module CktElement
 
     """(read-only) Total losses in the element: two-element complex array"""
     function Losses()
-        return get_float64_array(lib.CktElement_Get_Losses)
+        return get_complex64_array(lib.CktElement_Get_Losses)
     end
 
     """(read-only) Full Name of Active Circuit Element"""
@@ -217,17 +218,18 @@ module CktElement
 
     """(read-only) Complex array of losses by phase"""
     function PhaseLosses()
-        return get_float64_array(lib.CktElement_Get_PhaseLosses)
+        return get_complex64_array(lib.CktElement_Get_PhaseLosses)
     end
 
     """(read-only) Complex array of powers into each conductor of each terminal"""
     function Powers()
-        return get_float64_array(lib.CktElement_Get_Powers)
+        return get_complex64_array(lib.CktElement_Get_Powers)
     end
 
     """(read-only) Residual currents for each terminal: (mag, angle)"""
     function Residuals()
-        return get_float64_array(lib.CktElement_Get_Residuals)
+        r = get_float64_array(lib.CktElement_Get_Residuals)
+        return reshape(r, (2, Int(length(r)/2)))
     end
 
     """(read-only) Double array of symmetrical component currents into each 3-phase terminal"""
@@ -237,7 +239,7 @@ module CktElement
 
     """(read-only) Double array of sequence powers into each 3-phase teminal"""
     function SeqPowers()
-        return get_float64_array(lib.CktElement_Get_SeqPowers)
+        return get_complex64_array(lib.CktElement_Get_SeqPowers)
     end
 
     """(read-only) Double array of symmetrical component voltages at each 3-phase terminal"""
@@ -247,17 +249,20 @@ module CktElement
 
     """(read-only) Complex array of voltages at terminals"""
     function Voltages()
-        return get_float64_array(lib.CktElement_Get_Voltages)
+        return get_complex64_array(lib.CktElement_Get_Voltages)
     end
 
     """(read-only) Voltages at each conductor in magnitude, angle form as array of doubles."""
     function VoltagesMagAng()
-        return get_float64_array(lib.CktElement_Get_VoltagesMagAng)
+        r = get_float64_array(lib.CktElement_Get_VoltagesMagAng)
+        return reshape(r, (2, Int(length(r)/2)))
     end
 
     """(read-only) YPrim matrix, column order, complex numbers (paired)"""
     function YPrim()
-        return get_float64_array(lib.CktElement_Get_Yprim)
+        r = get_complex64_array(lib.CktElement_Get_Yprim)
+        # TODO: should we transpose here?
+        return reshape(r, (Int(length(r)/2), Int(length(r)/2)))
     end
 
 end

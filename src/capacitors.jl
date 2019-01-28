@@ -1,5 +1,8 @@
 module Capacitors
 
+    using ..lib
+    using ..utils
+
     function AddStep()::Bool
         return lib.Capacitors_AddStep() != 0
     end
@@ -43,9 +46,8 @@ module Capacitors
     end
 
     """Delta connection or wye? (Setter)"""
-    function IsDelta(Value::UInt16)
-        # TODO: should Value be Bool instead?
-        lib.Capacitors_Set_IsDelta(Value)
+    function IsDelta(Value::Bool)
+        lib.Capacitors_Set_IsDelta(Value ? 1 : 0)
     end
 
     """Sets the active Capacitor by Name. (Getter)"""
@@ -64,7 +66,7 @@ module Capacitors
     end
 
     """Number of steps (default 1) for distributing and switching the total bank kVAR. (Getter)"""
-    function NumSteps():Int
+    function NumSteps()::Int
         return lib.Capacitors_Get_NumSteps()
     end
 

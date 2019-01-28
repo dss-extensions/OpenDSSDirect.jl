@@ -18,7 +18,7 @@ module XYCurves
     (read) Name of active XYCurve Object
     (write) Get Name of active XYCurve Object
     """
-    function Name(*args)
+    function Name()
         return get_string(lib.XYCurves_Get_Name())
     end
 
@@ -36,7 +36,7 @@ module XYCurves
     end
 
     """Get/Set Number of points in X-Y curve"""
-    function Npts(*args)
+    function Npts()
         return lib.XYCurves_Get_Npts()
     end
 
@@ -46,7 +46,7 @@ module XYCurves
     end
 
     """Get/Set X values as a Array of doubles. Set Npts to max number expected if setting"""
-    function XArray(*args)
+    function XArray()
         return get_float64_array(lib.XYCurves_Get_Xarray)
     end
 
@@ -57,7 +57,7 @@ module XYCurves
     end
 
     """Factor to scale X values from original curve"""
-    function XScale(*args)
+    function XScale()
         return lib.XYCurves_Get_Xscale()
     end
 
@@ -67,7 +67,7 @@ module XYCurves
     end
 
     """Amount to shift X value from original curve"""
-    function XShift(*args)
+    function XShift()
         return lib.XYCurves_Get_Xshift()
     end
 
@@ -77,7 +77,7 @@ module XYCurves
     end
 
     """Get/Set Y values in curve; Set Npts to max number expected if setting"""
-    function YArray(*args)
+    function YArray()
         return get_float64_array(lib.XYCurves_Get_Yarray)
     end
 
@@ -91,7 +91,7 @@ module XYCurves
     (read) Factor to scale Y values from original curve
     (write) Amount to scale Y values from original curve. Represents a curve shift.
     """
-    function YScale(*args)
+    function YScale()
         return lib.XYCurves_Get_Yscale()
     end
 
@@ -104,7 +104,7 @@ module XYCurves
     end
 
     """amount to shift Y valiue from original curve"""
-    function YShift(*args)
+    function YShift()
         return lib.XYCurves_Get_Yshift()
     end
 
@@ -114,7 +114,7 @@ module XYCurves
     end
 
     """Set X value or get interpolated value after setting Y"""
-    function X(*args)
+    function X()
         return lib.XYCurves_Get_x()
     end
 
@@ -127,7 +127,7 @@ module XYCurves
     (read) Y value for present X or set this value then get corresponding X
     (write) Set Y value or get interpolated Y value after setting X
     """
-    function Y(*args)
+    function Y()
         return lib.XYCurves_Get_y()
     end
 

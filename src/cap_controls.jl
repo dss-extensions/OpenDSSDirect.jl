@@ -1,5 +1,8 @@
 module CapControls
 
+    using ..lib
+    using ..utils
+
     function Reset()
         lib.CapControls_Reset()
     end
@@ -10,7 +13,7 @@ module CapControls
     end
 
     """Transducer ratio from pirmary current to control current. (Getter)"""
-    function CTRatio()
+    function CTRatio()::Float64
         return lib.CapControls_Get_CTratio()
     end
 
@@ -143,13 +146,13 @@ module CapControls
     end
 
     """Enables Vmin and Vmax to override the control Mode (Getter)"""
-    function UseVoltOverride()::UInt16
+    function UseVoltOverride()::Bool
         return lib.CapControls_Get_UseVoltOverride() != 0
     end
 
     """Enables Vmin and Vmax to override the control Mode (Setter)"""
-    function UseVoltOverride(Value::UInt16)
-        lib.CapControls_Set_UseVoltOverride(Value)
+    function UseVoltOverride(Value::Bool)
+        lib.CapControls_Set_UseVoltOverride(Value ? 1 : 0)
     end
 
     """With VoltOverride, swtich off whenever PT voltage exceeds this level. (Getter)"""

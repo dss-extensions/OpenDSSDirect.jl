@@ -4,6 +4,8 @@
 using OpenDSSDirect
 import LinearAlgebra: lu
 
+const DSS = OpenDSSDirect
+
 """
 Equivalent to `DSS.Solution.SolveNoControl()` or `ActiveCircuit.Solution.DoNormalSolution` in Pascal.
 """
@@ -127,7 +129,7 @@ end
 
 
 
-init8500a() = dss("""
+init8500a() = DSS.Text.Command("""
     clear
     compile $(dirname(pathof(OpenDSSDirect)))/../examples/8500-Node/Master.dss
 """)

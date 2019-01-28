@@ -121,7 +121,6 @@ end
 
 """Array of doubles containing the Q multipliers."""
 function QMult()
-    # Getter
     return get_float64_array(lib.LoadShapes_Get_Qmult)
 end
 

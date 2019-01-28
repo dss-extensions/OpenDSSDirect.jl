@@ -68,6 +68,7 @@ end
 """Number of phases"""
 function Phases()
     return lib.Generators_Get_Phases()
+end
 
 """Number of phases"""
 function Phases(Value)
