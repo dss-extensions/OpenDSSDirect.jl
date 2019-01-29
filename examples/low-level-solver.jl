@@ -2,7 +2,7 @@
 ## interface in DSSCore.
 
 using OpenDSSDirect
-import LinearAlgebra: lu
+# import LinearAlgebra: lu
 
 const DSS = OpenDSSDirect
 

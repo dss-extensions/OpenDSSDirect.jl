@@ -93,55 +93,46 @@ module Circuit
 
     """(read-only) Returns distance from each bus to parent EnergyMeter. Corresponds to sequence in AllBusNames."""
     function AllBusDistances()
-        # TODO: return
         return get_float64_array(lib.Circuit_Get_AllBusDistances)
     end
 
     """(read-only) Array of strings containing names of all buses in circuit (see AllNodeNames)."""
     function AllBusNames()
-        # TODO: return
         return get_string_array(lib.Circuit_Get_AllBusNames)
     end
 
     """(read-only) Array of magnitudes (doubles) of voltages at all buses"""
     function AllBusVMag()
-        # TODO: return
         return get_float64_array(lib.Circuit_Get_AllBusVmag)
     end
 
     """(read-only) Double Array of all bus voltages (each node) magnitudes in Per unit"""
     function AllBusMagPu()
-        # TODO: return
         return get_float64_array(lib.Circuit_Get_AllBusVmagPu)
     end
 
     """(read-only) Complex array of all bus, node voltages from most recent solution"""
     function AllBusVolts()
-        # TODO: return
         return get_complex64_array(lib.Circuit_Get_AllBusVolts)
     end
 
     """(read-only) Array of total losses (complex) in each circuit element"""
     function AllElementLosses()
-        # TODO: return
         return get_float64_array(lib.Circuit_Get_AllElementLosses)
     end
 
     """(read-only) Array of strings containing Full Name of all elements."""
     function AllElementNames()
-        # TODO: return
         return get_string_array(lib.Circuit_Get_AllElementNames)
     end
 
     """(read-only) Returns an array of distances from parent EnergyMeter for each Node. Corresponds to AllBusVMag sequence."""
     function AllNodeDistances()
-        # TODO: return
         return get_float64_array(lib.Circuit_Get_AllNodeDistances)
     end
 
     """(read-only) Array of strings containing full name of each node in system in same order as returned by AllBusVolts, etc."""
     function AllNodeNames()
-        # TODO: return
         return get_string_array(lib.Circuit_Get_AllNodeNames)
     end
 
@@ -152,13 +143,11 @@ module Circuit
 
     """(read-only) Total losses in active circuit, complex number (two-element array of double)."""
     function Losses()::Complex
-        # TODO: return
         return get_complex64(lib.Circuit_Get_Losses)
     end
 
     """(read-only) Name of the active circuit."""
     function Name()
-        # TODO: return
         return get_string(lib.Circuit_Get_Name())
     end
 
@@ -184,37 +173,31 @@ module Circuit
 
     """(read-only) Complex losses in all transformers designated to substations."""
     function SubstationLosses()::Complex
-        # TODO: return
         return get_complex64(lib.Circuit_Get_SubstationLosses)
     end
 
     """(read-only) System Y matrix (after a solution has been performed)"""
     function SystemY()
-        # TODO: return
         return get_float64_array(lib.Circuit_Get_SystemY)
     end
 
     """(read-only) Total power, watts delivered to the circuit"""
     function TotalPower()::Complex
-        # TODO: return
         return get_complex64(lib.Circuit_Get_TotalPower)
     end
 
     """(read-only) Array of doubles containing complex injection currents for the present solution. Is is the "I" vector of I=YV"""
     function YCurrents()
-        # TODO: return
         return get_complex64_array(lib.Circuit_Get_YCurrents)
     end
 
     """(read-only) Array of strings containing the names of the nodes in the same order as the Y matrix"""
     function YNodeOrder()
-        # TODO: return
         return get_string_array(lib.Circuit_Get_YNodeOrder)
     end
 
     """(read-only) Complex array of actual node voltages in same order as SystemY matrix."""
     function YNodeVArray()
-        # TODO: return
         return get_complex64_array(lib.Circuit_Get_YNodeVarray)
     end
 

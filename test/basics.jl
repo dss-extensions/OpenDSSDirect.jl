@@ -3,14 +3,15 @@ module X
 using OpenDSSDirect
 using Test
 
+const DSS = OpenDSSDirect
+
 @testset "basicsX" begin
 
-    filename = string("$(dirname(@__FILE__))/../examples/8500-Node/Master.dss")
-
-    dss("""
+    filename = string("$(dirname(@__FILE__))/../examples/8500-Node/Master.dss" |> normpath)
+    OpenDSSDirect.Text.Command("""
         clear
-        compile $filename
-    """)
+        redirect $filename
+        """)
     loadnumber = DSS.Loads.First()
     @test DSS.Loads.Name() == "138236b0"
     while loadnumber > 0
@@ -26,49 +27,49 @@ end # module
 
 module Y
 
-using OpenDSSDirect.DSS
+using OpenDSSDirect
 using Test
+const DSS = OpenDSSDirect
 
 @testset "basicsY" begin
 
     filename = string("$(dirname(@__FILE__))/../examples/8500-Node/Master.dss")
 
-
-    dss("""
+    DSS.Text.Command("""
         clear
-        compile $filename
+        redirect $filename
         solve
-    """)
+        """)
 
-    loadnumber = Loads.First()
-    @test Loads.Name() == "138236b0"
+    loadnumber = DSS.Loads.First()
+    @test DSS.Loads.Name() == "138236b0"
     kWsum = 0.0
     kvarsum = 0.0
     while loadnumber > 0
-        kWsum += Loads.kW()
-        kvarsum += Loads.kvar()
-        loadnumber = Loads.Next()
+        kWsum += DSS.Loads.kW()
+        kvarsum += DSS.Loads.kvar()
+        loadnumber = DSS.Loads.Next()
     end
 
     linelosssum = 0.0im
-    linenumber = Lines.First()
-    n = Lines.Count()
+    linenumber = DSS.Lines.First()
+    n = DSS.Lines.Count()
     linelosses = zeros(ComplexF64, n)
     for i in 1:n
-        linelosssum += CktElement.Losses()[1]
-        linelosses[i] = CktElement.Losses()[1]
-        linenumber = Lines.Next()
+        linelosssum += DSS.CktElement.Losses()[1]
+        linelosses[i] = DSS.CktElement.Losses()[1]
+        linenumber = DSS.Lines.Next()
     end
-    @test linelosssum.re ≈ (Circuit.LineLosses().re * 1000)  atol=50
+    @test linelosssum.re ≈ (DSS.Circuit.LineLosses().re * 1000)  atol=50
 
-    @test Solution.Mode() == 0
+    @test DSS.Solution.Mode() == 0
 
-    Circuit.Losses()
-    Circuit.SubstationLosses()
-    Circuit.LineLosses()
-    Circuit.TotalPower()
-    Circuit.AllElementLosses()
-    Circuit.AllBusNames()
+    DSS.Circuit.Losses()
+    DSS.Circuit.SubstationLosses()
+    DSS.Circuit.LineLosses()
+    DSS.Circuit.TotalPower()
+    DSS.Circuit.AllElementLosses()
+    DSS.Circuit.AllBusNames()
 
 end
 

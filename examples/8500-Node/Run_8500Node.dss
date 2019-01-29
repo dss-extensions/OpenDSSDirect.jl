@@ -20,29 +20,29 @@ Set Maxiterations=20     ! Sometimes the solution takes more than the default 15
 
 Solve
 
-Show Voltage LN Nodes
-Show Currents Elem Resid
-Show Powers kVA elem
+! Show Voltage LN Nodes
+! Show Currents Elem Resid
+! Show Powers kVA elem
 
-Set ShowExport=yes
-Export Currents
-Export Powers
-Export voltages
+! Set ShowExport=yes
+! Export Currents
+! Export Powers
+! Export voltages
 
 // *********************** Plotting *****************************
 
-Set markCapacitors=yes  CapMarkersize=3
-Set markRegulators=yes  RegMarkersize=5
+! Set markCapacitors=yes  CapMarkersize=3
+! Set markRegulators=yes  RegMarkersize=5
 
-Plot Circuit Power Max=5000 dots=n labels=n  C1=Blue  1ph=3   ! $00FF0000
+! Plot Circuit Power Max=5000 dots=n labels=n  C1=Blue  1ph=3   ! $00FF0000
 
-Plot Circuit voltage Max=0 dots=n n  C1=Blue C2=$FF00FF  1ph=3
+! Plot Circuit voltage Max=0 dots=n n  C1=Blue C2=$FF00FF  1ph=3
 
-plot circuit Losses Max=50 dots=n labels=n subs=y C1=Blue
+! plot circuit Losses Max=50 dots=n labels=n subs=y C1=Blue
 
-plot profile ph=all
-plot profile ph=1
+! plot profile ph=all
+! plot profile ph=1
 
-summary
+! summary
 
-show taps
+! show taps

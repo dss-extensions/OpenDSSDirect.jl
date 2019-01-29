@@ -21,7 +21,6 @@ module Capacitors
 
     """(read-only) Array of strings with all Capacitor names in the circuit."""
     function AllNames()
-        # TODO: return
         return get_string_array(lib.Capacitors_Get_AllNames)
     end
 

@@ -2,89 +2,89 @@
 init8500()
 
 
-@testset "Solution" begin 
+@testset "Solution" begin
 
-@test Solution.Solve() == 0
+@test Solution.Solve() == nothing
 @test Solution.Mode() == 0
-@test Solution.Mode(Solution.Mode()) == 0
+@test Solution.Mode(Solution.Mode()) == nothing
 @test Solution.Hour() == 0
-@test Solution.Hour(Solution.Hour()) == 0
+@test Solution.Hour(Solution.Hour()) == nothing
 @test Solution.Year() == 0
-@test Solution.Year(Solution.Year()) == 0
+@test Solution.Year(Solution.Year()) == nothing
 @test Solution.Iterations() == 45
 @test Solution.MaxIterations() == 15
-@test Solution.MaxIterations(Solution.MaxIterations()) == 0
+@test Solution.MaxIterations(Solution.MaxIterations()) == nothing
 @test Solution.Number() == 1
-@test Solution.Number(Solution.Number()) == 0
+@test Solution.Number(Solution.Number()) == nothing
 @test Solution.Random() == 1
-@test Solution.Random(Solution.Random()) == 0
+# @test Solution.Random(Solution.Random()) == nothing
 @test Solution.LoadModel() == 1
-@test Solution.LoadModel(Solution.LoadModel()) == 0
+@test Solution.LoadModel(Solution.LoadModel()) == nothing
 @test Solution.AddType() == 1
-@test Solution.AddType(Solution.AddType()) == 0
+@test Solution.AddType(Solution.AddType()) == nothing
 @test Solution.Algorithm() == 0
-@test Solution.Algorithm(Solution.Algorithm()) == 0
+@test Solution.Algorithm(Solution.Algorithm()) == nothing
 @test Solution.ControlMode() == 0
-@test Solution.ControlMode(Solution.ControlMode()) == 0
+@test Solution.ControlMode(Solution.ControlMode()) == nothing
 @test Solution.ControlIterations() == 5
-@test Solution.ControlIterations(Solution.ControlIterations()) == 0
+@test Solution.ControlIterations(Solution.ControlIterations()) == nothing
 @test Solution.MaxControlIterations() == 10
-@test Solution.MaxControlIterations(Solution.MaxControlIterations()) == 0
-@test Solution.SampleDoControlActions() == 0
-@test Solution.CheckFaultStatus() == 0
-@test Solution.SolveDirect() == 0
-@test Solution.SolvePFlow() == 0
-@test Solution.SolveNoControl() == 0
-@test Solution.SolvePlusControl() == 0
-@test Solution.InitSnap() == 0
-@test Solution.CheckControls() == 0
-@test Solution.SampleControlDevices() == 0
-@test Solution.DoControlActions() == 0
-@test Solution.BuildYMatrix() == 0
+@test Solution.MaxControlIterations(Solution.MaxControlIterations()) == nothing
+@test Solution.SampleDoControlActions() == nothing
+@test Solution.CheckFaultStatus() == nothing
+@test Solution.SolveDirect() == nothing
+@test Solution.SolvePFlow() == nothing
+@test Solution.SolveNoControl() == nothing
+@test Solution.SolvePlusControl() == nothing
+@test Solution.InitSnap() == nothing
+@test Solution.CheckControls() == nothing
+@test Solution.SampleControlDevices() == nothing
+@test Solution.DoControlActions() == nothing
+# @test Solution.BuildYMatrix() == 0
 @test Solution.SystemYChanged() == 0
 @test Solution.Converged() == 1
-@test Solution.Converged(Solution.Converged()) == 0
+@test Solution.Converged(Solution.Converged()) == nothing
 @test Solution.TotalIterations() == 2
 @test Solution.MostIterationsDone() == 0
 @test Solution.ControlActionsDone() == 1
-@test Solution.ControlActionsDone(Solution.ControlActionsDone()) == 0
-@test Solution.FinishTimeStep() == 0
-@test Solution.Cleanup() == 0
+@test Solution.ControlActionsDone(Solution.ControlActionsDone()) == nothing
+@test Solution.FinishTimeStep() == nothing
+@test Solution.Cleanup() == nothing
 @test Solution.Frequency() ≋ 60.0
-@test Solution.Frequency(Solution.Frequency()) ≋ 0.0
+@test Solution.Frequency(Solution.Frequency()) == nothing
 @test Solution.Seconds() ≋ 0.001
-@test Solution.Seconds(Solution.Seconds()) ≋ 0.0
+@test Solution.Seconds(Solution.Seconds()) == nothing
 @test Solution.StepSize() ≋ 0.001
-@test Solution.StepSize(Solution.StepSize()) ≋ 0.0
+@test Solution.StepSize(Solution.StepSize()) == nothing
 @test Solution.LoadMult() ≋ 1.0
-@test Solution.LoadMult(Solution.LoadMult()) ≋ 0.0
+@test Solution.LoadMult(Solution.LoadMult()) == nothing
 @test Solution.Convergence() ≋ 0.0001
-@test Solution.Convergence(Solution.Convergence()) ≋ 0.0
+@test Solution.Convergence(Solution.Convergence()) == nothing
 @test Solution.PctGrowth() ≋ 2.499999999999991
-@test Solution.PctGrowth(Solution.PctGrowth()) ≋ 0.0
+@test Solution.PctGrowth(Solution.PctGrowth()) == nothing
 @test Solution.GenkW() ≋ 1000.0
-@test Solution.GenkW(Solution.GenkW()) ≋ 0.0
+@test Solution.GenkW(Solution.GenkW()) == nothing
 @test Solution.GenPF() ≋ 1.0
-@test Solution.GenPF(Solution.GenPF()) ≋ 0.0
+@test Solution.GenPF(Solution.GenPF()) == nothing
 @test Solution.Capkvar() ≋ 600.0
-@test Solution.Capkvar(Solution.Capkvar()) ≋ 0.0
+@test Solution.Capkvar(Solution.Capkvar()) == nothing
 @test Solution.GenMult() ≋ 1.0
-@test Solution.GenMult(Solution.GenMult()) ≋ 0.0
+@test Solution.GenMult(Solution.GenMult()) == nothing
 @test Solution.DblHour() ≋ 2.7777777777777776e-7
-@test Solution.DblHour(Solution.DblHour()) ≋ 0.0
-@test Solution.StepSizeMin() ≋ 0.0
-@test Solution.StepSizeHr() ≋ 0.0
+@test Solution.DblHour(Solution.DblHour()) == nothing
+# @test Solution.StepSizeMin() ≋ 0.0
+# @test Solution.StepSizeHr() ≋ 0.0
 Solution.ProcessTime()
 Solution.TotalTime(0.0)
 Solution.TotalTime()
 Solution.TimeTimeStep()
 @test Solution.ModeID() == "Snap"
 @test Solution.LDCurve() == ""
-# @test Solution.LDCurve(Solution.LDCurve()) == ""
+# @test Solution.LDCurve(Solution.LDCurve()) == nothing
 @test Solution.DefaultDaily() == "default"
-@test Solution.DefaultDaily(Solution.DefaultDaily()) == ""
+@test Solution.DefaultDaily(Solution.DefaultDaily()) == nothing
 @test Solution.DefaultYearly() == "default"
-@test Solution.DefaultYearly(Solution.DefaultYearly()) == ""
+@test Solution.DefaultYearly(Solution.DefaultYearly()) == nothing
 @test Solution.EventLog()[1][1:6] == "Hour=0"
 
 end # testset

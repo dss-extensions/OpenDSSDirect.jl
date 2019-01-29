@@ -1,10 +1,15 @@
 
-using OpenDSSDirect.DSS
+using OpenDSSDirect
 
-init8500() = dss("""
-    clear
-    compile $(dirname(@__FILE__))/../examples/8500-Node/Master.dss
-    solve
-""")
+function init8500()
+    master = joinpath(dirname(@__FILE__), "../examples/8500-Node/Master.dss") |> abspath
+    OpenDSSDirect.Text.Command("""
+        clear
+        redirect $master
+        solve
+    """)
+
+    return dirname(master) |> abspath
+end
 
 ≋(x,y) = isapprox(x,y,rtol=0.000001)

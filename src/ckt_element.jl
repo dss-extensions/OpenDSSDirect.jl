@@ -58,7 +58,7 @@ module CktElement
     (write) Array of strings. Set Bus definitions for each terminal is connected.
     """
     function BusNames(Value::String)
-        # TODO:
+        # TODO: prepare_string_array
         Value, ValuePtr, ValueCount = prepare_string_array(Value)
         lib.CktElement_Set_BusNames(ValuePtr, ValueCount)
     end

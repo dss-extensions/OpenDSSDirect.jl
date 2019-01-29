@@ -2,7 +2,7 @@
 init8500()
 
 
-@testset "Sensors" begin 
+@testset "Sensors" begin
 
 @show Sensors.Count()
 @show Sensors.First()

@@ -1,7 +1,5 @@
 module Generators
 
-# TODO: add types for function arguments and return types
-
 using ..lib
 using ..utils
 

@@ -21,8 +21,7 @@ module Basic
 
     """(read-only) List of DSS intrinsic classes (names of the classes)"""
     function Classes()
-        # TODO: return get_string_array(lib.DSS_Get_Classes)
-        lib.DSS_Get_Classes
+        return get_string_array(lib.DSS_Get_Classes)
     end
 
     """DSS Data File Path.  Default path for reports, etc. from DSS (Getter)"""

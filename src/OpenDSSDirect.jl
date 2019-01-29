@@ -45,7 +45,6 @@ export XYCurves
 export YMatrix
 
 const path = @__DIR__
-const path = @__DIR__
 if Sys.iswindows()
     const LIBRARY = joinpath(path, "../deps/win64/dss_capi_v7.dll") |> normpath
 elseif Sys.islinux()

@@ -2,21 +2,21 @@
 init8500()
 
 
-@testset "Bus" begin 
+@testset "Bus" begin
 
 Circuit.SetActiveBus("M1047751")
 
 @test Bus.NumNodes() == 1
 @test Bus.ZscRefresh() == 1
 @test Bus.Coorddefined() == true
-@test Bus.GetUniqueNodeNumber() == 0
+@test Bus.GetUniqueNodeNumber(0) == 0
 @test Bus.N_Customers() == 0
 @test Bus.SectionID() == 0
 @test Bus.kVBase() ≋ 7.199557856794634
 @test Bus.X() == 1.67080628884553e6
-@test Bus.X(Bus.X()) == 0.0
+@test Bus.X(Bus.X()) == nothing
 @test Bus.Y() ≋ 1.22880000004359e7
-@test Bus.Y(Bus.Y()) == 0.0
+@test Bus.Y(Bus.Y()) == nothing
 @test Bus.Distance() == 0.0
 @test Bus.Lambda() == 0.0
 @test Bus.N_interrupts() == 0.0

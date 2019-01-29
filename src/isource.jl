@@ -1,7 +1,5 @@
 module Isource
 
-# TODO : add type information
-
     using ..lib
     using ..utils
 

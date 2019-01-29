@@ -1,14 +1,14 @@
 
 init8500()
 
-@testset "ActiveClass" begin 
+@testset "ActiveClass" begin
 
 @test ActiveClass.First() == 1
 @test ActiveClass.Next() == 2
 @test ActiveClass.NumElements() == 12
 @test ActiveClass.Count() == 12
 @test ActiveClass.Name() == "feeder_regb"
-@test ActiveClass.Name(ActiveClass.Name()) == "0"
+@test ActiveClass.Name(ActiveClass.Name()) == nothing
 @test ActiveClass.ActiveClassName() == "RegControl"
 x = ActiveClass.AllNames()
 @test length(x) == ActiveClass.Count()

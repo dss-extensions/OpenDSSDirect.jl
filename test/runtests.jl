@@ -1,5 +1,4 @@
 using Test
-import SparseArrays: SparseMatrixCSC
 
 include("lowlevel.jl")
 include("basics.jl")
@@ -22,7 +21,7 @@ include("isource.jl")
 include("lines.jl")
 include("loads.jl")
 include("loadshape.jl")
-include("meters.jl")  # commented out because of win32 failure
+include("meters.jl")
 include("monitors.jl")
 # include("parser.jl")
 include("pdelements.jl")
@@ -37,4 +36,5 @@ include("solution.jl")
 include("topology.jl")
 include("transformers.jl")
 include("vsources.jl")
-include("xycurves.jl")  # commented out because of win32 failure
+include("xycurves.jl")
+include("ymatrix.jl")
