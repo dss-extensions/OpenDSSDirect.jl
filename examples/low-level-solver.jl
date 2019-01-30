@@ -13,22 +13,22 @@ function normalsolution()
     nodeVbase = abs.(DSS.Circuit.AllBusVolts()) ./ DSS.Circuit.AllBusMagPu()   # KLUDGE!
     WHOLEMATRIX = 2
     NORMALSOLVE = 0
-    nodeV = DSSCore.getV()
+    nodeV = DSS.YMatrix.getV()
     lastVmag = zeros(length(nodeV))
     for i in 1:100
-        DSSCore.ZeroInjCurr()
-        DSSCore.GetSourceInjCurrents()  # sources
-        DSSCore.GetPCInjCurr()  # Get the injection currents from all the power conversion devices and feeders
+        DSS.YMatrix.ZeroInjCurr()
+        DSS.YMatrix.GetSourceInjCurrents()  # sources
+        DSS.YMatrix.GetPCInjCurr()  # Get the injection currents from all the power conversion devices and feeders
 
         # The above call could change the primitive Y matrix, so have to check
-        if DSSCore.SystemYChanged()
-            DSSCore.BuildYMatrixD(WHOLEMATRIX, false)
+        if DSS.YMatrix.SystemYChanged()
+            DSS.YMatrix.BuildYMatrixD(WHOLEMATRIX, false)
         end
 
-        if DSSCore.UseAuxCurrents()
-            DSSCore.AddInAuxCurrents(NORMALSOLVE)
+        if DSS.YMatrix.UseAuxCurrents()
+            DSS.YMatrix.AddInAuxCurrents(NORMALSOLVE)
         end
-        DSSCore.SolveSystem(nodeV)
+        DSS.YMatrix.SolveSystem(nodeV)
         if converged(nodeV, lastVmag, nodeVbase) && i > 1
             return i
         end
@@ -44,25 +44,25 @@ function normalsolution_alt()
     nodeVbase = abs.(DSS.Circuit.AllBusVolts()) ./ DSS.Circuit.AllBusMagPu()   # KLUDGE!
     WHOLEMATRIX = 2
     NORMALSOLVE = 0
-    nodeV = DSSCore.getV()
-    nodeI = DSSCore.getI()
-    Y = DSSCore.getYsparse()
+    nodeV = DSS.YMatrix.getV()
+    nodeI = DSS.YMatrix.getI()
+    Y = DSS.YMatrix.getYsparse()
     Yp = lu(Y)
     lastVmag = zeros(length(nodeV))
     for i in 1:100
-        DSSCore.ZeroInjCurr()
-        DSSCore.GetSourceInjCurrents()  # sources
-        DSSCore.GetPCInjCurr()  # Get the injection currents from all the power conversion devices and feeders
+        DSS.YMatrix.ZeroInjCurr()
+        DSS.YMatrix.GetSourceInjCurrents()  # sources
+        DSS.YMatrix.GetPCInjCurr()  # Get the injection currents from all the power conversion devices and feeders
 
         # The above call could change the primitive Y matrix, so have to check
-        if DSSCore.SystemYChanged()
-            DSSCore.BuildYMatrixD(WHOLEMATRIX, false)
-            Y = DSSCore.getYsparse()
+        if DSS.YMatrix.SystemYChanged()
+            DSS.YMatrix.BuildYMatrixD(WHOLEMATRIX, false)
+            Y = DSS.YMatrix.getYsparse()
             Yp = lu(Y)
         end
 
-        if DSSCore.UseAuxCurrents()
-            DSSCore.AddInAuxCurrents(NORMALSOLVE)
+        if DSS.YMatrix.UseAuxCurrents()
+            DSS.YMatrix.AddInAuxCurrents(NORMALSOLVE)
         end
         nodeV[2:end] = Yp \ nodeI[2:end]      # Use Julia's built-in solver
         if converged(nodeV, lastVmag, nodeVbase) && i > 1
@@ -76,10 +76,10 @@ end
 Equivalent to `ActiveCircuit.Solution.SolveYDirect` in Pascal.
 """
 function solveYdirect()
-    DSSCore.ZeroInjCurr()
-    DSSCore.GetSourceInjCurrents()  # sources
-    nodeV = DSSCore.getV()
-    DSSCore.SolveSystem(nodeV)
+    DSS.YMatrix.ZeroInjCurr()
+    DSS.YMatrix.GetSourceInjCurrents()  # sources
+    nodeV = DSS.YMatrix.getV()
+    DSS.YMatrix.SolveSystem(nodeV)
 end
 
 """
