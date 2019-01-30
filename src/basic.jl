@@ -11,7 +11,7 @@ module Basic
         lib.DSS_Reset()
     end
 
-    function SetActiveClass(ClassName::String)
+    function SetActiveClass(ClassName::String)::Int
         return lib.DSS_SetActiveClass(Cstring(pointer(ClassName)))
     end
 
@@ -20,12 +20,12 @@ module Basic
     end
 
     """(read-only) List of DSS intrinsic classes (names of the classes)"""
-    function Classes()
+    function Classes()::Vector{String}
         return get_string_array(lib.DSS_Get_Classes)
     end
 
     """DSS Data File Path.  Default path for reports, etc. from DSS (Getter)"""
-    function DataPath()
+    function DataPath()::String
         return get_string(lib.DSS_Get_DataPath())
     end
 
@@ -35,37 +35,37 @@ module Basic
     end
 
     """(read-only) Returns the path name for the default text editor."""
-    function DefaultEditor()
+    function DefaultEditor()::String
         return get_string(lib.DSS_Get_DefaultEditor())
     end
 
     """(read-only) Number of Circuits currently defined"""
-    function NumCircuits()
+    function NumCircuits()::Int
         return lib.DSS_Get_NumCircuits()
     end
 
     """(read-only) Number of DSS intrinsic classes"""
-    function NumClasses()
+    function NumClasses()::Int
         return lib.DSS_Get_NumClasses()
     end
 
     """(read-only) Number of user-defined classes"""
-    function NumUserClasses()
+    function NumUserClasses()::Int
         return lib.DSS_Get_NumUserClasses()
     end
 
     """(read-only) List of user-defined classes"""
-    function UserClasses()
+    function UserClasses()::Vector{String}
         return get_string_array(lib.DSS_Get_UserClasses)
     end
 
     """(read-only) Get version string for the DSS."""
-    function Version()
+    function Version()::String
         return get_string(lib.DSS_Get_Version())
     end
 
     """Gets/sets whether text output is allowed (Getter)"""
-    function AllowForms()
+    function AllowForms()::Bool
         return lib.DSS_Get_AllowForms() != 0
     end
 
@@ -79,7 +79,7 @@ module Basic
         return 0
     end
 
-    function NewCircuit(name::String)
+    function NewCircuit(name::String)::String
         lib.DSS_NewCircuit(Cstring(pointer(name)))
         error_num = lib.Error_Get_Number()
         if ~(error_num == 0)

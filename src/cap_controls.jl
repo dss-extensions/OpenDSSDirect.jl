@@ -8,7 +8,7 @@ module CapControls
     end
 
     """(read-only) Array of strings with all CapControl names."""
-    function AllNames()
+    function AllNames()::Vector{String}
         return get_string_array(lib.CapControls_Get_AllNames)
     end
 
@@ -23,7 +23,7 @@ module CapControls
     end
 
     """Name of the Capacitor that is controlled. (Getter)"""
-    function Capacitor()
+    function Capacitor()::String
         return get_string(lib.CapControls_Get_Capacitor())
     end
 

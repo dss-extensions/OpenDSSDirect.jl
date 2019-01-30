@@ -31,17 +31,17 @@ module CktElement
     end
 
     """(read-only) Array containing all property names of the active device."""
-    function AllPropertyNames()
+    function AllPropertyNames()::Vector{String}
         return get_string_array(lib.CktElement_Get_AllPropertyNames)
     end
 
     """(read-only) Array of strings listing all the published variable names, if a PCElement. Otherwise, null string."""
-    function AllVariableNames()
+    function AllVariableNames()::Vector{String}
         return get_string_array(lib.CktElement_Get_AllVariableNames)
     end
 
     """(read-only) Array of doubles. Values of state variables of active element if PC element."""
-    function AllVariableValues()
+    function AllVariableValues()::Vector{Float64}
         return get_float64_array(lib.CktElement_Get_AllVariableValues)
     end
 
@@ -49,7 +49,7 @@ module CktElement
     (read) Array of strings. Get  Bus definitions to which each terminal is connected. 0-based array.
     (write) Array of strings. Set Bus definitions for each terminal is connected.
     """
-    function BusNames()
+    function BusNames()::Vector{String}
         return get_string_array(lib.CktElement_Get_BusNames)
     end
 
@@ -64,28 +64,28 @@ module CktElement
     end
 
     """(read-only) Complex double array of Sequence Currents for all conductors of all terminals of active circuit element."""
-    function CplxSeqCurrents()
+    function CplxSeqCurrents()::Vector{ComplexF64}
         return get_complex64_array(lib.CktElement_Get_CplxSeqCurrents)
     end
 
     """(read-only) Complex double array of Sequence Voltage for all terminals of active circuit element."""
-    function CplxSeqVoltages()
+    function CplxSeqVoltages()::Vector{ComplexF64}
         return get_complex64_array(lib.CktElement_Get_CplxSeqVoltages)
     end
 
     """(read-only) Complex array of currents into each conductor of each terminal"""
-    function Currents()
+    function Currents()::Vector{ComplexF64}
         return get_complex64_array(lib.CktElement_Get_Currents)
     end
 
     """(read-only) Currents in magnitude, angle format as a array of doubles."""
-    function CurrentsMagAng()
+    function CurrentsMagAng()::Array{Float64, 2}
         r = get_float64_array(lib.CktElement_Get_CurrentsMagAng)
         return reshape(r, (2, Int(length(r)/2)))
     end
 
     """Display name of the object (not necessarily unique) (Getter)"""
-    function DisplayName()
+    function DisplayName()::String
         return get_string(lib.CktElement_Get_DisplayName())
     end
 
@@ -121,17 +121,17 @@ module CktElement
     end
 
     """(read-only) Name of the Energy Meter this element is assigned to."""
-    function EnergyMeter()
+    function EnergyMeter()::String
         return get_string(lib.CktElement_Get_EnergyMeter())
     end
 
     """(read-only) globally unique identifier for this object"""
-    function GUID()
+    function GUID()::String
         return get_string(lib.CktElement_Get_GUID())
     end
 
     """(read-only) Pointer to this object"""
-    function Handle()
+    function Handle()::Int
         return lib.CktElement_Get_Handle()
     end
 
@@ -151,17 +151,17 @@ module CktElement
     end
 
     """(read-only) Total losses in the element: two-element complex array"""
-    function Losses()
+    function Losses()::Vector{ComplexF64}
         return get_complex64_array(lib.CktElement_Get_Losses)
     end
 
     """(read-only) Full Name of Active Circuit Element"""
-    function Name()
+    function Name()::String
         return get_string(lib.CktElement_Get_Name())
     end
 
     """(read-only) Array of integer containing the node numbers (representing phases, for example) for each conductor of each terminal. """
-    function NodeOrder()
+    function NodeOrder()::Vector{Int}
         return get_int32_array(lib.CktElement_Get_NodeOrder)
     end
 
@@ -182,7 +182,7 @@ module CktElement
     end
 
     """(read-only) Number of Conductors per Terminal"""
-    function NumConductors()
+    function NumConductors()::Int
         return lib.CktElement_Get_NumConductors()
     end
 
@@ -217,49 +217,49 @@ module CktElement
     end
 
     """(read-only) Complex array of losses by phase"""
-    function PhaseLosses()
+    function PhaseLosses()::Vector{ComplexF64}
         return get_complex64_array(lib.CktElement_Get_PhaseLosses)
     end
 
     """(read-only) Complex array of powers into each conductor of each terminal"""
-    function Powers()
+    function Powers()::Vector{ComplexF64}
         return get_complex64_array(lib.CktElement_Get_Powers)
     end
 
     """(read-only) Residual currents for each terminal: (mag, angle)"""
-    function Residuals()
+    function Residuals()::Array{Float64, 2}
         r = get_float64_array(lib.CktElement_Get_Residuals)
         return reshape(r, (2, Int(length(r)/2)))
     end
 
     """(read-only) Double array of symmetrical component currents into each 3-phase terminal"""
-    function SeqCurrents()
+    function SeqCurrents()::Vector{Float64}
         return get_float64_array(lib.CktElement_Get_SeqCurrents)
     end
 
     """(read-only) Double array of sequence powers into each 3-phase teminal"""
-    function SeqPowers()
+    function SeqPowers()::Vector{ComplexF64}
         return get_complex64_array(lib.CktElement_Get_SeqPowers)
     end
 
     """(read-only) Double array of symmetrical component voltages at each 3-phase terminal"""
-    function SeqVoltages()
+    function SeqVoltages()::Vector{Float64}
         return get_float64_array(lib.CktElement_Get_SeqVoltages)
     end
 
     """(read-only) Complex array of voltages at terminals"""
-    function Voltages()
+    function Voltages()::Vector{ComplexF64}
         return get_complex64_array(lib.CktElement_Get_Voltages)
     end
 
     """(read-only) Voltages at each conductor in magnitude, angle form as array of doubles."""
-    function VoltagesMagAng()
+    function VoltagesMagAng()::Array{Float64, 2}
         r = get_float64_array(lib.CktElement_Get_VoltagesMagAng)
         return reshape(r, (2, Int(length(r)/2)))
     end
 
     """(read-only) YPrim matrix, column order, complex numbers (paired)"""
-    function YPrim()
+    function YPrim()::Array{ComplexF64, 2}
         r = get_complex64_array(lib.CktElement_Get_Yprim)
         # TODO: should we transpose here?
         return reshape(r, (Int(length(r)/2), Int(length(r)/2)))

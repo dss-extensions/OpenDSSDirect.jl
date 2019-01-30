@@ -4,7 +4,7 @@ module Monitors
     using ..utils
 
     """(read-only) Array of doubles for the specified channel  (usage: MyArray = DSSMonitor.Channel(i)) A Save or SaveAll  should be executed first. Done automatically by most standard solution modes."""
-    function Channel(Index)
+    function Channel(Index::Int)::Vector{Float64}
         return get_float64_array(lib.Monitors_Get_Channel, Index)
     end
 
@@ -45,12 +45,12 @@ module Monitors
     end
 
     """(read-only) Array of all Monitor Names"""
-    function AllNames()
+    function AllNames()::Vector{String}
         return get_string_array(lib.Monitors_Get_AllNames)
     end
 
     """(read-only) Byte Array containing monitor stream values. Make sure a "save" is done first (standard solution modes do this automatically)"""
-    function ByteStream()
+    function ByteStream()::Vector{Int8}
         result = get_int8_array(lib.Monitors_Get_ByteStream)
         if result == [0]
             return []
@@ -60,102 +60,98 @@ module Monitors
     end
 
     """(read-only) Number of Monitors"""
-    function Count()
+    function Count()::Int
         return lib.Monitors_Get_Count()
     end
 
     """Full object name of element being monitored."""
-    function Element()
+    function Element()::String
         result = get_string(lib.Monitors_Get_Element())
-        if result == ""
-            return "0"
-        end
-
         return result
     end
 
     """Full object name of element being monitored."""
-    function Element(Value)
+    function Element(Value::String)
         lib.Monitors_Set_Element(Cstring(pointer(Value)))
     end
 
     """(read-only) Name of CSV file associated with active Monitor."""
-    function FileName()
+    function FileName()::String
         return get_string(lib.Monitors_Get_FileName())
     end
 
     """(read-only) Monitor File Version (integer)"""
-    function FileVersion()
+    function FileVersion()::Int
         return lib.Monitors_Get_FileVersion()
     end
 
     """(read-only) Sets the first Monitor active.  Returns 0 if no monitors."""
-    function First()
+    function First()::Int
         return lib.Monitors_Get_First()
     end
 
     """(read-only) Header string;  Array of strings containing Channel names"""
-    function Header()
+    function Header()::Vector{String}
         return get_string_array(lib.Monitors_Get_Header)
     end
 
     """Set Monitor mode (bitmask integer - see DSS Help)"""
-    function Mode()
+    function Mode()::Int
         return lib.Monitors_Get_Mode()
     end
 
     """Set Monitor mode (bitmask integer - see DSS Help)"""
-    function Mode(Value)
+    function Mode(Value::Int)
         lib.Monitors_Set_Mode(Value)
     end
 
     """Sets the active Monitor object by name"""
-    function Name()
+    function Name()::String
         return get_string(lib.Monitors_Get_Name())
     end
 
     """Sets the active Monitor object by name"""
-    function Name(Value)
+    function Name(Value::String)
         lib.Monitors_Set_Name(Cstring(pointer(Value)))
     end
 
     """(read-only) Sets next monitor active.  Returns 0 if no more."""
-    function Next()
+    function Next()::Int
         return lib.Monitors_Get_Next()
     end
 
     """(read-only) Number of Channels in the active Monitor"""
-    function NumChannels()
+    function NumChannels()::Int
         return lib.Monitors_Get_NumChannels()
     end
 
     """(read-only) Size of each record in ByteStream (Integer). Same as NumChannels."""
-    function RecordSize()
+    function RecordSize()::Int
         return lib.Monitors_Get_RecordSize()
     end
 
     """(read-only) Number of Samples in Monitor at Present"""
-    function SampleCount()
+    function SampleCount()::Int
         return lib.Monitors_Get_SampleCount()
     end
 
     """Terminal number of element being monitored."""
-    function Terminal()
+    function Terminal()::Int
         return lib.Monitors_Get_Terminal()
     end
 
     """Terminal number of element being monitored."""
-    function Terminal(Value)
+    function Terminal(Value::Int)
         lib.Monitors_Set_Terminal(Value)
     end
 
     """(read-only) Array of doubles containing frequency values for harmonics mode solutions; Empty for time mode solutions (use dblHour)"""
-    function DblFreq()
+    function DblFreq()::Vector{Float64}
         return get_float64_array(lib.Monitors_Get_dblFreq)
     end
 
     """(read-only) Array of doubles containgin time value in hours for time-sampled monitor values; Empty if frequency-sampled values for harmonics solution  (see dblFreq)"""
-    function DblHour()
+    function DblHour()::Vector{Float64}
         return get_float64_array(lib.Monitors_Get_dblHour)
     end
 

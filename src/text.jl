@@ -17,7 +17,11 @@ module Text
             # TODO: lib.CheckForError()
             push!(r, Result())
         end
-        return join(r, "\n")
+        res = join(r, "\n") |> strip
+        if length(res) > 0
+            @warn "Result of running OpenDSS Command: $res"
+        end
+        return res
     end
 
     """(read-only) Result string for the last command."""

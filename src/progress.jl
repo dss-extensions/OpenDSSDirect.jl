@@ -17,7 +17,7 @@ module Progress
     end
 
     """(write-only) Percent progress to indicate [0..100]"""
-    function PctProgress(Value)
+    function PctProgress(Value::Int)
         lib.DSSProgress_Set_PctProgress(Value)
     end
 

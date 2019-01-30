@@ -7,8 +7,8 @@ module Meters
         lib.Meters_CloseAllDIFiles()
     end
 
-    function DoReliabilityCalc(AssumeRestoration)
-        lib.Meters_DoReliabilityCalc(AssumeRestoration)
+    function DoReliabilityCalc(AssumeRestoration::Bool)
+        lib.Meters_DoReliabilityCalc(AssumeRestoration ? 1 : 0)
     end
 
     function OpenAllDIFiles()
@@ -39,104 +39,109 @@ module Meters
         lib.Meters_SaveAll()
     end
 
-    function SetActiveSection(SectIdx)
+    function SetActiveSection(SectIdx::Int)
         lib.Meters_SetActiveSection(SectIdx)
     end
 
     """(read-only) Wide string list of all branches in zone of the active energymeter object."""
-    function AllBranchesInZone()
+    function AllBranchesInZone()::Vector{String}
         return get_string_array(lib.Meters_Get_AllBranchesInZone)
     end
 
     """(read-only) Array of names of all zone end elements."""
-    function AllEndElements()
+    function AllEndElements()::Vector{String}
         return get_string_array(lib.Meters_Get_AllEndElements)
     end
 
     """(read-only) Array of all energy Meter names"""
-    function AllNames()
+    function AllNames()::Vector{String}
         return get_string_array(lib.Meters_Get_AllNames)
     end
 
     """Array of doubles: set the phase allocation factors for the active meter."""
-    function AllocFactors()
+    function AllocFactors()::Vector{Float64}
         return get_float64_array(lib.Meters_Get_AllocFactors)
     end
 
     """Array of doubles: set the phase allocation factors for the active meter."""
-    function AllocFactors(Value)
+    function AllocFactors(Value::Vector{Float64})
+        @error "Not implemented yet. Please contact the developer."
+        # TODO: prepare_float64_array
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         lib.Meters_Set_AllocFactors(ValuePtr, ValueCount)
     end
 
     """(read-only) Average Repair time in this section of the meter zone"""
-    function AvgRepairTime()
+    function AvgRepairTime()::Float64
         return lib.Meters_Get_AvgRepairTime()
     end
 
     """Set the magnitude of the real part of the Calculated Current (normally determined by solution) for the Meter to force some behavior on Load Allocation"""
-    function CalcCurrent()
+    function CalcCurrent()::Vector{Float64}
         return get_float64_array(lib.Meters_Get_CalcCurrent)
     end
 
     """Set the magnitude of the real part of the Calculated Current (normally determined by solution) for the Meter to force some behavior on Load Allocation"""
-    function CalcCurrent(Value)
+    function CalcCurrent(Value::Vector{Float64})
+        @error "Not implemented yet. Please contact the developer."
+        # TODO: prepare_float64_array
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         lib.Meters_Set_CalcCurrent(ValuePtr, ValueCount)
     end
 
     """(read-only) Number of Energy Meters in the Active Circuit"""
-    function Count()
+    function Count()::Int
         return lib.Meters_Get_Count()
     end
 
     """(read-only) Number of branches in Active energymeter zone. (Same as sequencelist size)"""
-    function CountBranches()
+    function CountBranches()::Int
         return lib.Meters_Get_CountBranches()
     end
 
     """(read-only) Number of zone end elements in the active meter zone."""
-    function CountEndElements()
+    function CountEndElements()::Int
         return lib.Meters_Get_CountEndElements()
     end
 
     """(read-only) Total customer interruptions for this Meter zone based on reliability calcs."""
-    function CustInterrupts()
+    function CustInterrupts()::Float64
+        # TODO: should this be Int?
         return lib.Meters_Get_CustInterrupts()
     end
 
     """(read-only) Global Flag in the DSS to indicate if Demand Interval (DI) files have been properly opened."""
-    function DIFilesAreOpen()
+    function DIFilesAreOpen()::Bool
         return lib.Meters_Get_DIFilesAreOpen() != 0
     end
 
     """(read-only) Sum of Fault Rate time Repair Hrs in this section of the meter zone"""
-    function FaultRateXRepairHrs()
+    function FaultRateXRepairHrs()::Float64
         return lib.Meters_Get_FaultRateXRepairHrs()
     end
 
     """(read-only) Set the first energy Meter active. Returns 0 if none."""
-    function First()
+    function First()::Int
         return lib.Meters_Get_First()
     end
 
     """Set Name of metered element"""
-    function MeteredElement()
+    function MeteredElement()::String
         return get_string(lib.Meters_Get_MeteredElement())
     end
 
     """Set Name of metered element"""
-    function MeteredElement(Value)
+    function MeteredElement(Value::String)
         lib.Meters_Set_MeteredElement(Cstring(pointer(Value)))
     end
 
     """set Number of Metered Terminal"""
-    function MeteredTerminal()
+    function MeteredTerminal()::Int
         return lib.Meters_Get_MeteredTerminal()
     end
 
     """set Number of Metered Terminal"""
-    function MeteredTerminal(Value)
+    function MeteredTerminal(Value::Int)
         lib.Meters_Set_MeteredTerminal(Value)
     end
 
@@ -144,12 +149,8 @@ module Meters
     (read) Get/Set the active meter  name.
     (write) Set a meter to be active by name.
     """
-    function Name()
+    function Name()::String
         result = get_string(lib.Meters_Get_Name())
-        if result == ""
-            return "0"
-        end
-
         return result
     end
 
@@ -157,108 +158,111 @@ module Meters
     (read) Get/Set the active meter  name.
     (write) Set a meter to be active by name.
     """
-    function Name(Value)
+    function Name(Value::String)
         lib.Meters_Set_Name(Cstring(pointer(Value)))
     end
 
     """(read-only) Sets the next energy Meter active.  Returns 0 if no more."""
-    function Next()
+    function Next()::Int
         return lib.Meters_Get_Next()
     end
 
     """(read-only) Number of branches (lines) in this section"""
-    function NumSectionBranches()
+    function NumSectionBranches()::Int
         return lib.Meters_Get_NumSectionBranches()
     end
 
     """(read-only) Number of Customers in the active section."""
-    function NumSectionCustomers()
+    function NumSectionCustomers()::Int
         return lib.Meters_Get_NumSectionCustomers()
     end
 
     """(read-only) Number of feeder sections in this meter's zone"""
-    function NumSections()
+    function NumSections()::Int
         return lib.Meters_Get_NumSections()
     end
 
     """(read-only) Type of OCP device. 1=Fuse; 2=Recloser; 3=Relay"""
-    function OCPDeviceType()
+    function OCPDeviceType()::Int
+        # TODO: use enum here?
         return lib.Meters_Get_OCPDeviceType()
     end
 
     """Array of doubles to set values of Peak Current property"""
-    function PeakCurrent()
+    function PeakCurrent()::Vector{Float64}
         return get_float64_array(lib.Meters_Get_Peakcurrent)
     end
 
     """Array of doubles to set values of Peak Current property"""
-    function PeakCurrent(Value)
+    function PeakCurrent(Value::Vector{Float64})
+        @error "Not implemented yet. Please contact the developer."
+        # TODO: prepare_float64_array
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         lib.Meters_Set_Peakcurrent(ValuePtr, ValueCount)
     end
 
     """(read-only) Array of strings containing the names of the registers."""
-    function RegisterNames()
+    function RegisterNames()::Vector{String}
         return get_string_array(lib.Meters_Get_RegisterNames)
     end
 
     """(read-only) Array of all the values contained in the Meter registers for the active Meter."""
-    function RegisterValues()
+    function RegisterValues()::Vector{Float64}
         return get_float64_array(lib.Meters_Get_RegisterValues)
     end
 
     """(read-only) SAIDI for this meter's zone. Execute DoReliabilityCalc first."""
-    function SAIDI()
+    function SAIDI()::Float64
         return lib.Meters_Get_SAIDI()
     end
 
     """(read-only) Returns SAIFI for this meter's Zone. Execute Reliability Calc method first."""
-    function SAIFI()
+    function SAIFI()::Float64
         return lib.Meters_Get_SAIFI()
     end
 
     """(read-only) SAIFI based on kW rather than number of customers. Get after reliability calcs."""
-    function SAIFIkW()
+    function SAIFIkW()::Float64
         return lib.Meters_Get_SAIFIKW()
     end
 
     """(read-only) SequenceIndex of the branch at the head of this section"""
-    function SectSeqidx()
+    function SectSeqidx()::Int
         return lib.Meters_Get_SectSeqIdx()
     end
 
     """(read-only) Total Customers downline from this section"""
-    function SectTotalCust()
+    function SectTotalCust()::Int
         return lib.Meters_Get_SectTotalCust()
     end
 
     """(read-only) Size of Sequence List"""
-    function SeqListSize()
+    function SeqListSize()::Int
         return lib.Meters_Get_SeqListSize()
     end
 
     """Get/set Index into Meter's SequenceList that contains branch pointers in lexical order. Earlier index guaranteed to be upline from later index. Sets PDelement active."""
-    function SequenceList()
+    function SequenceList()::Int
         return lib.Meters_Get_SequenceIndex()
     end
 
     """Get/set Index into Meter's SequenceList that contains branch pointers in lexical order. Earlier index guaranteed to be upline from later index. Sets PDelement active."""
-    function SequenceList(Value)
+    function SequenceList(Value::Int)
         lib.Meters_Set_SequenceIndex(Value)
     end
 
     """(read-only) Sum of the branch fault rates in this section of the meter's zone"""
-    function SumBranchFltRates()
+    function SumBranchFltRates()::Float64
         return lib.Meters_Get_SumBranchFltRates()
     end
 
     """(read-only) Total Number of customers in this zone (downline from the EnergyMeter)"""
-    function TotalCustomers()
+    function TotalCustomers()::Int
         return lib.Meters_Get_TotalCustomers()
     end
 
     """(read-only) Totals of all registers of all meters"""
-    function Totals()
+    function Totals()::Vector{Float64}
         return get_float64_array(lib.Meters_Get_Totals)
     end
 

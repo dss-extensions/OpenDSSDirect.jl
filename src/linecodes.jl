@@ -4,67 +4,68 @@ module LineCodes
     using ..utils
 
     """(read-only) Array of strings with names of all devices"""
-    function AllNames()
+    function AllNames()::Vector{String}
         return get_string_array(lib.LineCodes_Get_AllNames)
     end
 
     """Zero-sequence capacitance, nF per unit length"""
-    function C0()
+    function C0()::Float64
         return lib.LineCodes_Get_C0()
     end
 
     """Zero-sequence capacitance, nF per unit length"""
-    function C0(Value)
+    function C0(Value::Float64)
         lib.LineCodes_Set_C0(Value)
     end
 
     """Positive-sequence capacitance, nF per unit length"""
-    function C1()
+    function C1()::Float64
         return lib.LineCodes_Get_C1()
     end
 
     """Positive-sequence capacitance, nF per unit length"""
-    function C1(Value)
+    function C1(Value::Float64)
         lib.LineCodes_Set_C1(Value)
     end
 
     """Capacitance matrix, nF per unit length"""
-    function Cmatrix()
+    function Cmatrix()::Vector{Float64}
         return get_float64_array(lib.LineCodes_Get_Cmatrix)
     end
 
     """Capacitance matrix, nF per unit length"""
-    function Cmatrix(Value)
+    function Cmatrix(Value::Vector{Float64})
+        # TODO: prepare_float64_array
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         lib.LineCodes_Set_Cmatrix(ValuePtr, ValueCount)
     end
 
     """(read-only) Number of LineCodes"""
-    function Count()
+    function Count()::Int
         return lib.LineCodes_Get_Count()
     end
 
     """Emergency ampere rating"""
-    function EmergAmps()
+    function EmergAmps()::Float64
         return lib.LineCodes_Get_EmergAmps()
     end
 
     """Emergency ampere rating"""
-    function EmergAmps(Value)
+    function EmergAmps(Value::Float64)
         lib.LineCodes_Set_EmergAmps(Value)
     end
 
-    function First()
+    function First()::Int
         return lib.LineCodes_Get_First()
     end
 
     """(read-only) Flag denoting whether impedance data were entered in symmetrical components"""
-    function IsZ1Z0()
+    function IsZ1Z0()::Bool
         return lib.LineCodes_Get_IsZ1Z0() != 0
     end
 
     """Name of active LineCode"""
-    function Name()
+    function Name()::String
         return get_string(lib.LineCodes_Get_Name())
     end
 
@@ -73,96 +74,98 @@ module LineCodes
         lib.LineCodes_Set_Name(Cstring(pointer(Value)))
     end
 
-    function Next()
+    function Next()::Int
         return lib.LineCodes_Get_Next()
     end
 
     """Normal Ampere rating"""
-    function NormAmps()
+    function NormAmps()::Float64
         return lib.LineCodes_Get_NormAmps()
     end
 
     """Normal Ampere rating"""
-    function NormAmps(Value)
+    function NormAmps(Value::Float64)
         lib.LineCodes_Set_NormAmps(Value)
     end
 
     """Number of Phases"""
-    function Phases()
+    function Phases()::Int
         return lib.LineCodes_Get_Phases()
     end
 
     """Number of Phases"""
-    function Phases(Value)
+    function Phases(Value::String)
         lib.LineCodes_Set_Phases(Value)
     end
 
     """Zero-Sequence Resistance, ohms per unit length"""
-    function R0()
+    function R0()::Float64
         return lib.LineCodes_Get_R0()
     end
 
     """Zero-Sequence Resistance, ohms per unit length"""
-    function R0(Value)
+    function R0(Value::Float64)
         lib.LineCodes_Set_R0(Value)
     end
 
     """Positive-sequence resistance ohms per unit length"""
-    function R1()
+    function R1()::Float64
         return lib.LineCodes_Get_R1()
     end
 
     """Positive-sequence resistance ohms per unit length"""
-    function R1(Value)
+    function R1(Value::Float64)
         lib.LineCodes_Set_R1(Value)
     end
 
     """Resistance matrix, ohms per unit length"""
-    function Rmatrix()
+    function Rmatrix()::Vector{Float64}
         return get_float64_array(lib.LineCodes_Get_Rmatrix)
     end
 
     """Resistance matrix, ohms per unit length"""
-    function Rmatrix(Value)
+    function Rmatrix(Value::Vector{Float64})
+        # TODO: prepare_float64_array
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         lib.LineCodes_Set_Rmatrix(ValuePtr, ValueCount)
     end
 
-    function Units()
+    function Units()::Int
         return lib.LineCodes_Get_Units()
     end
 
-    function Units(Value)
+    function Units(Value::Int)
         lib.LineCodes_Set_Units(Value)
     end
 
     """Zero Sequence Reactance, Ohms per unit length"""
-    function X0()
+    function X0()::Float64
         return lib.LineCodes_Get_X0()
     end
 
     """Zero Sequence Reactance, Ohms per unit length"""
-    function X0(Value)
+    function X0(Value::Float64)
         lib.LineCodes_Set_X0(Value)
     end
 
     """Posiive-sequence reactance, ohms per unit length"""
-    function X1()
+    function X1()::Float64
         return lib.LineCodes_Get_X1()
     end
 
     """Posiive-sequence reactance, ohms per unit length"""
-    function X1(Value)
+    function X1(Value::Float64)
         lib.LineCodes_Set_X1(Value)
     end
 
     """Reactance matrix, ohms per unit length"""
-    function Xmatrix()
+    function Xmatrix()::Vector{Float64}
         return get_float64_array(lib.LineCodes_Get_Xmatrix)
     end
 
     """Reactance matrix, ohms per unit length"""
-    function Xmatrix(Value)
+    function Xmatrix(Value::Vector{Float64})
+        # TODO: prepare_float64_array
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         lib.LineCodes_Set_Xmatrix(ValuePtr, ValueCount)
     end

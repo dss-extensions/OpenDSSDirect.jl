@@ -5,7 +5,7 @@ module Vsources
     using ..utils
 
     """(read-only) Names of all Vsource objects in the circuit"""
-    function AllNames()
+    function AllNames()::Vector{String}
         return get_string_array(lib.Vsources_Get_AllNames)
     end
 
@@ -13,7 +13,7 @@ module Vsources
     (read) Phase angle of first phase in degrees
     (write) phase angle in degrees
     """
-    function AngleDeg()
+    function AngleDeg()::Float64
         return lib.Vsources_Get_AngleDeg()
     end
 
@@ -21,37 +21,37 @@ module Vsources
     (read) Phase angle of first phase in degrees
     (write) phase angle in degrees
     """
-    function AngleDeg(Value)
+    function AngleDeg(Value::Float64)
         lib.Vsources_Set_AngleDeg(Value)
     end
 
     """Source voltage in kV"""
-    function BasekV()
+    function BasekV()::Float64
         return lib.Vsources_Get_BasekV()
     end
 
     """Source voltage in kV"""
-    function BasekV(Value)
+    function BasekV(Value::Float64)
         lib.Vsources_Set_BasekV(Value)
     end
 
     """(read-only) Number of Vsource Object"""
-    function Count()
+    function Count()::Int
         return lib.Vsources_Get_Count()
     end
 
     """(read-only) Sets the first VSOURCE to be active; Returns 0 if none"""
-    function First()
+    function First()::Int
         return lib.Vsources_Get_First()
     end
 
     """Source frequency in Hz"""
-    function Frequency()
+    function Frequency()::Float64
         return lib.Vsources_Get_Frequency()
     end
 
     """Source frequency in Hz"""
-    function Frequency(Value)
+    function Frequency(Value::Float64)
         lib.Vsources_Set_Frequency(Value)
     end
 
@@ -59,7 +59,7 @@ module Vsources
     (read) Get Active VSOURCE name
     (write) Set Active VSOURCE by Name
     """
-    function Name()
+    function Name()::String
         return get_string(lib.Vsources_Get_Name())
     end
 
@@ -72,17 +72,17 @@ module Vsources
     end
 
     """(read-only) Sets the next VSOURCE object to be active; returns zero if no more"""
-    function Next()
+    function Next()::Int
         return lib.Vsources_Get_Next()
     end
 
     """Number of phases"""
-    function Phases()
+    function Phases()::Int
         return lib.Vsources_Get_Phases()
     end
 
     """Number of phases"""
-    function Phases(Value)
+    function Phases(Value::Int)
         lib.Vsources_Set_Phases(Value)
     end
 
@@ -90,7 +90,7 @@ module Vsources
     (read) Source pu voltage.
     (write) Per-unit value of source voltage based on kV
     """
-    function PU()
+    function PU()::Float64
         return lib.Vsources_Get_pu()
     end
 
@@ -98,7 +98,7 @@ module Vsources
     (read) Source pu voltage.
     (write) Per-unit value of source voltage based on kV
     """
-    function PU(Value)
+    function PU(Value::Float64)
         lib.Vsources_Set_pu(Value)
     end
 

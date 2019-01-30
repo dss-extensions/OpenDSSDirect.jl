@@ -12,17 +12,17 @@ module Reclosers
     end
 
     """(read-only) Array of strings with names of all Reclosers in Active Circuit"""
-    function AllNames()
+    function AllNames()::Vector{String}
         return get_string_array(lib.Reclosers_Get_AllNames)
     end
 
     """(read-only) Number of Reclosers in active circuit."""
-    function Count()
+    function Count()::Int
         return lib.Reclosers_Get_Count()
     end
 
     """(read-only) Set First Recloser to be Active Ckt Element. Returns 0 if none."""
-    function First()
+    function First()::Int
         return lib.Reclosers_Get_First()
     end
 
@@ -30,7 +30,7 @@ module Reclosers
     (read) Ground (3I0) instantaneous trip setting - curve multipler or actual amps.
     (write) Ground (3I0) trip instantaneous multiplier or actual amps
     """
-    function GroundInst()
+    function GroundInst()::Float64
         return lib.Reclosers_Get_GroundInst()
     end
 
@@ -38,17 +38,17 @@ module Reclosers
     (read) Ground (3I0) instantaneous trip setting - curve multipler or actual amps.
     (write) Ground (3I0) trip instantaneous multiplier or actual amps
     """
-    function GroundInst(Value)
+    function GroundInst(Value::Float64)
         lib.Reclosers_Set_GroundInst(Value)
     end
 
     """Ground (3I0) trip multiplier or actual amps"""
-    function GroundTrip()
+    function GroundTrip()::Float64
         return lib.Reclosers_Get_GroundTrip()
     end
 
     """Ground (3I0) trip multiplier or actual amps"""
-    function GroundTrip(Value)
+    function GroundTrip(Value::Float64)
         lib.Reclosers_Set_GroundTrip(Value)
     end
 
@@ -56,7 +56,7 @@ module Reclosers
     (read) Full name of object this Recloser is monitoring.
     (write) Set monitored object by full name.
     """
-    function MonitoredObj()
+    function MonitoredObj()::String
         return get_string(lib.Reclosers_Get_MonitoredObj())
     end
 
@@ -69,17 +69,17 @@ module Reclosers
     end
 
     """Terminal number of Monitored object for the Recloser """
-    function MonitoredTerm()
+    function MonitoredTerm()::Int
         return lib.Reclosers_Get_MonitoredTerm()
     end
 
     """Terminal number of Monitored object for the Recloser """
-    function MonitoredTerm(Value)
+    function MonitoredTerm(Value::Int)
         lib.Reclosers_Set_MonitoredTerm(Value)
     end
 
     """Get Name of active Recloser or set the active Recloser by name."""
-    function Name()
+    function Name()::String
         return get_string(lib.Reclosers_Get_Name())
     end
 
@@ -89,27 +89,27 @@ module Reclosers
     end
 
     """(read-only) Iterate to the next recloser in the circuit. Returns zero if no more."""
-    function Next()
+    function Next()::Int
         return lib.Reclosers_Get_Next()
     end
 
     """Number of fast shots"""
-    function NumFast()
+    function NumFast()::Int
         return lib.Reclosers_Get_NumFast()
     end
 
     """Number of fast shots"""
-    function NumFast(Value)
+    function NumFast(Value::Int)
         lib.Reclosers_Set_NumFast(Value)
     end
 
     """Phase instantaneous curve multipler or actual amps"""
-    function PhaseInst()
+    function PhaseInst()::Float64
         return lib.Reclosers_Get_PhaseInst()
     end
 
     """Phase instantaneous curve multipler or actual amps"""
-    function PhaseInst(Value)
+    function PhaseInst(Value::Float64)
         lib.Reclosers_Set_PhaseInst(Value)
     end
 
@@ -117,7 +117,7 @@ module Reclosers
     (read) Phase trip curve multiplier or actual amps
     (write) Phase Trip multiplier or actual amps
     """
-    function PhaseTrip()
+    function PhaseTrip()::Float64
         return lib.Reclosers_Get_PhaseTrip()
     end
 
@@ -125,7 +125,7 @@ module Reclosers
     (read) Phase trip curve multiplier or actual amps
     (write) Phase Trip multiplier or actual amps
     """
-    function PhaseTrip(Value)
+    function PhaseTrip(Value::Float64)
         lib.Reclosers_Set_PhaseTrip(Value)
     end
 
@@ -135,17 +135,17 @@ module Reclosers
     end
 
     """Number of shots to lockout (fast + delayed)"""
-    function Shots()
+    function Shots()::Int
         return lib.Reclosers_Get_Shots()
     end
 
     """Number of shots to lockout (fast + delayed)"""
-    function Shots(Value)
+    function Shots(Value::Int)
         lib.Reclosers_Set_Shots(Value)
     end
 
     """Full name of the circuit element that is being switched by the Recloser."""
-    function SwitchedObj()
+    function SwitchedObj()::String
         return get_string(lib.Reclosers_Get_SwitchedObj())
     end
 
@@ -155,22 +155,22 @@ module Reclosers
     end
 
     """Terminal number of the controlled device being switched by the Recloser"""
-    function SwitchedTerm()
+    function SwitchedTerm()::Int
         return lib.Reclosers_Get_SwitchedTerm()
     end
 
     """Terminal number of the controlled device being switched by the Recloser"""
-    function SwitchedTerm(Value)
+    function SwitchedTerm(Value::Int)
         lib.Reclosers_Set_SwitchedTerm(Value)
     end
 
     """Get/Set the active Recloser by index into the recloser list.  1..Count"""
-    function Idx()
+    function Idx()::Int
         return lib.Reclosers_Get_idx()
     end
 
     """Get/Set the active Recloser by index into the recloser list.  1..Count"""
-    function Idx(Value)
+    function Idx(Value::Int)
         lib.Reclosers_Set_idx(Value)
     end
 

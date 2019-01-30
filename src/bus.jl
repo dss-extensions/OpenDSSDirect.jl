@@ -17,7 +17,7 @@ module Bus
     end
 
     """(read-only) Complex Double array of Sequence Voltages (0, 1, 2) at this Bus."""
-    function CplxSeqVoltages()
+    function CplxSeqVoltages()::Vector{ComplexF64}
         return get_complex64_array(lib.Bus_Get_CplxSeqVoltages)
     end
 
@@ -42,7 +42,7 @@ module Bus
     end
 
     """(read-only) Short circuit currents at bus; Complex Array."""
-    function Isc()
+    function Isc()::Vector{ComplexF64}
         return get_complex64_array(lib.Bus_Get_Isc)
     end
 
@@ -67,7 +67,7 @@ module Bus
     end
 
     """(read-only) Integer Array of Node Numbers defined at the bus in same order as the voltages."""
-    function Nodes()
+    function Nodes()::Vector{Int}
         return get_int32_array(lib.Bus_Get_Nodes)
     end
 
@@ -82,7 +82,7 @@ module Bus
     end
 
     """(read-only) Double Array of sequence voltages at this bus."""
-    function SeqVoltages()
+    function SeqVoltages()::Vector{Float64}
         return get_float64_array(lib.Bus_Get_SeqVoltages)
     end
 
@@ -92,27 +92,27 @@ module Bus
     end
 
     """(read-only) For 2- and 3-phase buses, returns array of complex numbers represetin L-L voltages in volts. Returns -1.0 for 1-phase bus. If more than 3 phases, returns only first 3."""
-    function VLL()
+    function VLL()::Vector{ComplexF64}
         return get_complex64_array(lib.Bus_Get_VLL)
     end
 
     """(read-only) Variant Array of doubles containing voltages in Magnitude (VLN), angle (deg) """
-    function VMagAngle()
+    function VMagAngle()::Vector{Float64}
         return get_float64_array(lib.Bus_Get_VMagAngle)
     end
 
     """(read-only) Open circuit voltage; Complex array."""
-    function Voc()
+    function Voc()::Vector{ComplexF64}
         return get_complex64_array(lib.Bus_Get_Voc)
     end
 
     """(read-only) Complex array of voltages at this bus."""
-    function Voltages()
+    function Voltages()::Vector{ComplexF64}
         return get_complex64_array(lib.Bus_Get_Voltages)
     end
 
     """(read-only) Complex array of Ysc matrix at bus. Column by column."""
-    function YscMatrix()
+    function YscMatrix()::Vector{ComplexF64}
         return get_complex64_array(lib.Bus_Get_YscMatrix)
     end
 
@@ -127,7 +127,7 @@ module Bus
     end
 
     """(read-only) Complex array of Zsc matrix at bus. Column by column."""
-    function ZscMatrix()
+    function ZscMatrix()::Vector{ComplexF64}
         return get_complex64_array(lib.Bus_Get_ZscMatrix)
     end
 
@@ -137,17 +137,17 @@ module Bus
     end
 
     """(read-only) Returns Complex array of pu L-L voltages for 2- and 3-phase buses. Returns -1.0 for 1-phase bus. If more than 3 phases, returns only 3 phases."""
-    function puVLL()
+    function puVLL()::Vector{ComplexF64}
         return get_complex64_array(lib.Bus_Get_puVLL)
     end
 
     """(read-only) Array of doubles containig voltage magnitude, angle pairs in per unit"""
-    function puVmagAngle()
+    function puVmagAngle()::Vector{Float64}
         return get_float64_array(lib.Bus_Get_puVmagAngle)
     end
 
     """(read-only) Complex Array of pu voltages at the bus."""
-    function PuVoltage()
+    function PuVoltage()::Vector{ComplexF64}
         return get_complex64_array(lib.Bus_Get_puVoltages)
     end
 

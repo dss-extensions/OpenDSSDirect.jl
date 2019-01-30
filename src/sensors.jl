@@ -12,43 +12,45 @@ module Sensors
     end
 
     """(read-only) Array of Sensor names."""
-    function AllNames()
+    function AllNames()::Vector{String}
         return get_string_array(lib.Sensors_Get_AllNames)
     end
 
     """(read-only) Number of Sensors in Active Circuit."""
-    function Count()
+    function Count()::Int
         return lib.Sensors_Get_Count()
     end
 
     """Array of doubles for the line current measurements; don't use with kWS and kVARS."""
-    function Currents()
+    function Currents()::Vector{Float64}
         return get_float64_array(lib.Sensors_Get_Currents)
     end
 
     """Array of doubles for the line current measurements; don't use with kWS and kVARS."""
-    function Currents(Value)
+    function Currents(Value::Vector{Float64})
+        @error "Not implemented yet. Please contact the developer."
+        # TODO: prepare_float64_array
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         lib.Sensors_Set_Currents(ValuePtr, ValueCount)
     end
 
     """(read-only) Sets the first sensor active. Returns 0 if none."""
-    function First()
+    function First()::Int
         return lib.Sensors_Get_First()
     end
 
     """True if measured voltages are line-line. Currents are always line currents."""
-    function IsDelta()
+    function IsDelta()::Bool
         return lib.Sensors_Get_IsDelta() != 0
     end
 
     """True if measured voltages are line-line. Currents are always line currents."""
-    function IsDelta(Value)
-        lib.Sensors_Set_IsDelta(Value)
+    function IsDelta(Value::Bool)
+        lib.Sensors_Set_IsDelta(Value ? 1 : 0)
     end
 
     """Full Name of the measured element"""
-    function MeteredElement()
+    function MeteredElement()::String
         return get_string(lib.Sensors_Get_MeteredElement())
     end
 
@@ -58,12 +60,12 @@ module Sensors
     end
 
     """Number of the measured terminal in the measured element."""
-    function MeteredTerminal()
+    function MeteredTerminal()::Int
         return lib.Sensors_Get_MeteredTerminal()
     end
 
     """Number of the measured terminal in the measured element."""
-    function MeteredTerminal(Value)
+    function MeteredTerminal(Value::Int)
         lib.Sensors_Set_MeteredTerminal(Value)
     end
 
@@ -71,7 +73,7 @@ module Sensors
     (read) Name of the active sensor.
     (write) Set the active Sensor by name.
     """
-    function Name()
+    function Name()::String
         return get_string(lib.Sensors_Get_Name())
     end
 
@@ -84,79 +86,83 @@ module Sensors
     end
 
     """(read-only) Sets the next Sensor active. Returns 0 if no more."""
-    function Next()
+    function Next()::Int
         return lib.Sensors_Get_Next()
     end
 
     """Assumed percent error in the Sensor measurement. Default is 1."""
-    function PctError()
+    function PctError()::Int
         return lib.Sensors_Get_PctError()
     end
 
     """Assumed percent error in the Sensor measurement. Default is 1."""
-    function PctError(Value)
+    function PctError(Value::Int)
         lib.Sensors_Set_PctError(Value)
     end
 
     """True if voltage measurements are 1-3, 3-2, 2-1."""
-    function ReverseDelta()
+    function ReverseDelta()::Bool
         return lib.Sensors_Get_ReverseDelta() != 0
     end
 
     """True if voltage measurements are 1-3, 3-2, 2-1."""
-    function ReverseDelta(Value)
-        lib.Sensors_Set_ReverseDelta(Value)
+    function ReverseDelta(Value::Bool)
+        lib.Sensors_Set_ReverseDelta(Value ? 1 : 0)
     end
 
     """Weighting factor for this Sensor measurement with respect to other Sensors. Default is 1."""
-    function Weight()
+    function Weight()::Float64
         return lib.Sensors_Get_Weight()
     end
 
     """Weighting factor for this Sensor measurement with respect to other Sensors. Default is 1."""
-    function Weight(Value)
+    function Weight(Value::Float64)
         lib.Sensors_Set_Weight(Value)
     end
 
     """Array of doubles for Q measurements. Overwrites Currents with a new estimate using kWS."""
-    function kvar()
+    function kvar()::Vector{Float64}
         return get_float64_array(lib.Sensors_Get_kVARS)
     end
 
     """Array of doubles for Q measurements. Overwrites Currents with a new estimate using kWS."""
-    function kvar(Value)
+    function kvar(Value::Vector{Float64})
+        @error "Not implemented yet. Please contact the developer."
+        # TODO: prepare_float64_arrat
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         lib.Sensors_Set_kVARS(ValuePtr, ValueCount)
     end
 
     """Array of doubles for the LL or LN (depending on Delta connection) voltage measurements."""
-    function kVS()
+    function kVS()::Vector{Float64}
         return get_float64_array(lib.Sensors_Get_kVS)
     end
 
     """Array of doubles for the LL or LN (depending on Delta connection) voltage measurements."""
-    function kVS(Value)
+    function kVS(Value::Vector{Float64})
+        @error "Not implemented yet. Please contact the developer."
+        # TODO: prepare_float64_arrat
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         lib.Sensors_Set_kVS(ValuePtr, ValueCount)
     end
 
     """Voltage base for the sensor measurements. LL for 2 and 3-phase sensors, LN for 1-phase sensors."""
-    function kVBase()
+    function kVBase()::Float64
         return lib.Sensors_Get_kVbase()
     end
 
     """Voltage base for the sensor measurements. LL for 2 and 3-phase sensors, LN for 1-phase sensors."""
-    function kVBase(Value)
+    function kVBase(Value::Float64)
         lib.Sensors_Set_kVbase(Value)
     end
 
     """Array of doubles for P measurements. Overwrites Currents with a new estimate using kVARS."""
-    function kW()
+    function kW()::Vector{Float64}
         return get_float64_array(lib.Sensors_Get_kWS)
     end
 
     """Array of doubles for P measurements. Overwrites Currents with a new estimate using kVARS."""
-    function kW(Value)
+    function kW(Value::Vector{Float64})
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         lib.Sensors_Set_kWS(ValuePtr, ValueCount)
     end

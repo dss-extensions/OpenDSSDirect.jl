@@ -5,12 +5,12 @@ module XYCurves
     using ..utils
 
     """(read-only) Number of XYCurve Objects"""
-    function Count()
+    function Count()::Int
         return lib.XYCurves_Get_Count()
     end
 
     """(read-only) Sets first XYcurve object active; returns 0 if none."""
-    function First()
+    function First()::Int
         return lib.XYCurves_Get_First()
     end
 
@@ -18,7 +18,7 @@ module XYCurves
     (read) Name of active XYCurve Object
     (write) Get Name of active XYCurve Object
     """
-    function Name()
+    function Name()::String
         return get_string(lib.XYCurves_Get_Name())
     end
 
@@ -31,58 +31,60 @@ module XYCurves
     end
 
     """(read-only) Advances to next XYCurve object; returns 0 if no more objects of this class"""
-    function Next()
+    function Next()::Int
         return lib.XYCurves_Get_Next()
     end
 
     """Get/Set Number of points in X-Y curve"""
-    function Npts()
+    function Npts()::Int
         return lib.XYCurves_Get_Npts()
     end
 
     """Get/Set Number of points in X-Y curve"""
-    function Npts(Value)
+    function Npts(Value::Int)
         lib.XYCurves_Set_Npts(Value)
     end
 
     """Get/Set X values as a Array of doubles. Set Npts to max number expected if setting"""
-    function XArray()
+    function XArray()::Vector{Float64}
         return get_float64_array(lib.XYCurves_Get_Xarray)
     end
 
     """Get/Set X values as a Array of doubles. Set Npts to max number expected if setting"""
-    function XArray(Value)
+    function XArray(Value::Vector{Float64})
+        # TODO: prepare_float64_array
+        @error "Not implemented yet. Please contact the developers."
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         lib.XYCurves_Set_Xarray(ValuePtr, ValueCount)
     end
 
     """Factor to scale X values from original curve"""
-    function XScale()
+    function XScale()::Float64
         return lib.XYCurves_Get_Xscale()
     end
 
     """Factor to scale X values from original curve"""
-    function XScale(Value)
+    function XScale(Value::Float64)
         lib.XYCurves_Set_Xscale(Value)
     end
 
     """Amount to shift X value from original curve"""
-    function XShift()
+    function XShift()::Float64
         return lib.XYCurves_Get_Xshift()
     end
 
     """Amount to shift X value from original curve"""
-    function XShift(Value)
+    function XShift(Value::Float64)
         lib.XYCurves_Set_Xshift(Value)
     end
 
     """Get/Set Y values in curve; Set Npts to max number expected if setting"""
-    function YArray()
+    function YArray()::Float64
         return get_float64_array(lib.XYCurves_Get_Yarray)
     end
 
     """Get/Set Y values in curve; Set Npts to max number expected if setting"""
-    function YArray(Value)
+    function YArray(Value::Float64)
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         lib.XYCurves_Set_Yarray(ValuePtr, ValueCount)
     end
@@ -91,7 +93,7 @@ module XYCurves
     (read) Factor to scale Y values from original curve
     (write) Amount to scale Y values from original curve. Represents a curve shift.
     """
-    function YScale()
+    function YScale()::Float64
         return lib.XYCurves_Get_Yscale()
     end
 
@@ -99,27 +101,27 @@ module XYCurves
     (read) Factor to scale Y values from original curve
     (write) Amount to scale Y values from original curve. Represents a curve shift.
     """
-    function YScale(Value)
+    function YScale(Value::Float64)
         lib.XYCurves_Set_Yscale(Value)
     end
 
     """amount to shift Y valiue from original curve"""
-    function YShift()
+    function YShift()::Float64
         return lib.XYCurves_Get_Yshift()
     end
 
     """amount to shift Y valiue from original curve"""
-    function YShift(Value)
+    function YShift(Value::Float64)
         lib.XYCurves_Set_Yshift(Value)
     end
 
     """Set X value or get interpolated value after setting Y"""
-    function X()
+    function X()::Float64
         return lib.XYCurves_Get_x()
     end
 
     """Set X value or get interpolated value after setting Y"""
-    function X(Value)
+    function X(Value::Float64)
         lib.XYCurves_Set_x(Value)
     end
 
@@ -127,7 +129,7 @@ module XYCurves
     (read) Y value for present X or set this value then get corresponding X
     (write) Set Y value or get interpolated Y value after setting X
     """
-    function Y()
+    function Y()::Float64
         return lib.XYCurves_Get_y()
     end
 
@@ -135,7 +137,7 @@ module XYCurves
     (read) Y value for present X or set this value then get corresponding X
     (write) Set Y value or get interpolated Y value after setting X
     """
-    function Y(Value)
+    function Y(Value::Float64)
         lib.XYCurves_Set_y(Value)
     end
 

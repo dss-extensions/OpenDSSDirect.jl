@@ -28,7 +28,7 @@ OpenDSSDirect.Text.Command("""
 @test Meters.CountBranches() == 4881
 @test Meters.SequenceList() == 1
 @test Meters.SequenceList(Meters.SequenceList()) == nothing
-@test Meters.DoReliabilityCalc(0) == nothing
+@test Meters.DoReliabilityCalc(false) == nothing
 @test Meters.SeqListSize() == 4881
 @test Meters.TotalCustomers() == 1177
 @test Meters.NumSections() == 30

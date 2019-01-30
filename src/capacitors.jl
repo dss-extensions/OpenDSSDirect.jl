@@ -20,7 +20,7 @@ module Capacitors
     end
 
     """(read-only) Array of strings with all Capacitor names in the circuit."""
-    function AllNames()
+    function AllNames()::Vector{String}
         return get_string_array(lib.Capacitors_Get_AllNames)
     end
 
@@ -40,7 +40,7 @@ module Capacitors
     end
 
     """Delta connection or wye? (Getter)"""
-    function IsDelta()
+    function IsDelta()::Bool
         return lib.Capacitors_Get_IsDelta() != 0
     end
 
@@ -77,19 +77,20 @@ module Capacitors
     """
     (read) A array of  integer [0..numsteps-1] indicating state of each step. If value is -1 an error has occurred.
     """
-    function States()
+    function States()::Vector{Int32}
         return get_int32_array(lib.Capacitors_Get_States)
     end
 
     """(write) Array of integer [0 ..numSteps-1] indicating the state of each step"""
     function States(Value)
+        # TODO: implement prepare_int32_array
+        @warn "This function is not implemented, please contact the developers."
         Value, ValuePtr, ValueCount = prepare_int32_array(Value)
         lib.Capacitors_Set_States(ValuePtr, ValueCount)
     end
 
     """Bank kV rating. Use LL for 2 or 3 phases, or actual can rating for 1 phase. (Getter)"""
     function kV()::Float64
-        # Getter
         return lib.Capacitors_Get_kV()
     end
 
