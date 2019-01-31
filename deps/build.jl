@@ -10,7 +10,7 @@ const OPENDSS_VERSION = "0.10.0"
 
 function download(::Type{MacOS})
 
-    url = "https://anaconda.org/PMeira/dss_python/$OPENDSS_VERSION/download/osx-64/dss_python-$OPENDSS_VERSION-py37_0.tar.bz2"
+    url = "https://anaconda.org/PMeira/dss_python/$(OPENDSS_VERSION)/download/osx-64/dss_python-$(OPENDSS_VERSION)-py37_0.tar.bz2"
     @show url
     filename = joinpath(@__DIR__, "dss_python.tar.bz2") |> normpath
     Base.download(url, filename)
@@ -29,7 +29,7 @@ end
 
 function download(::Type{Linux})
 
-    url = "https://anaconda.org/PMeira/dss_python/$OPENDSS_VERSION/download/linux-64/dss_python-$OPENDSS_VERSION-py36hf484d3e_0.tar.bz2"
+    url = "https://anaconda.org/PMeira/dss_python/$(OPENDSS_VERSION)/download/linux-64/dss_python-$(OPENDSS_VERSION)-py36hf484d3e_0.tar.bz2"
     @show url
     filename = joinpath(@__DIR__, "dss_python.tar.bz2") |> normpath
     Base.download(url, filename)
@@ -40,8 +40,8 @@ function download(::Type{Linux})
     rm(joinpath(@__DIR__, "dss_python.tar.bz2"), force=true)
 
     mkpath(joinpath(@__DIR__, "linux"))
-    cp(joinpath(@__DIR__, "dss_python/lib/python3.6/site-packages/dss/libdss_capi_v7.so") |> normpath, joinpath(@__DIR__, "linux", "libdss_capi_v7.so") |> normpath)
-    cp(joinpath(@__DIR__, "dss_python/lib/python3.6/site-packages/dss/libklusolve.so") |> normpath, joinpath(@__DIR__, "linux", "libklusolve.so") |> normpath)
+    cp(joinpath(@__DIR__, "dss_python/lib/python3.6/site-packages/dss/libdss_capi_v7.so") |> normpath, joinpath(@__DIR__, "linux", "libdss_capi_v7.so") |> normpath, force=true)
+    cp(joinpath(@__DIR__, "dss_python/lib/python3.6/site-packages/dss/libklusolve.so") |> normpath, joinpath(@__DIR__, "linux", "libklusolve.so") |> normpath, force=true)
     rm(joinpath(@__DIR__, "dss_python"), force=true, recursive=true)
     println("Success")
 end
@@ -54,7 +54,7 @@ function download(::Type{Windows})
         BIT = 32
     end
 
-    url = "https://anaconda.org/PMeira/dss_python/$OPENDSS_VERSION/download/win-$BIT/dss_python-$OPENDSS_VERSION-py37_0.tar.bz2"
+    url = "https://anaconda.org/PMeira/dss_python/$(OPENDSS_VERSION)/download/win-$BIT/dss_python-$(OPENDSS_VERSION)-py37_0.tar.bz2"
     @show url
     filename = joinpath(@__DIR__, "dss_python.tar.bz2") |> normpath
     Base.download(url, filename)

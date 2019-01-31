@@ -44,33 +44,11 @@ import Libdl
 
 const path = @__DIR__
 if Sys.iswindows()
-    const LIBRARY = joinpath(path, "../deps/windows/dss_capi_v7.dll") |> normpath
+    const LIBRARY = joinpath(path, "../deps/windows/dss_capi_v7.dll") |> abspath
 elseif Sys.islinux()
-    const LIBRARY = joinpath(path, "../deps/linux/libdss_capi_v7.so") |> normpath
+    const LIBRARY = joinpath(path, "../deps/linux/libdss_capi_v7.so") |> abspath
 else
-    const LIBRARY = joinpath(path, "../deps/apple/libdss_capi_v7.dylib") |> normpath
-end
-
-function __init__()
-
-    if Sys.iswindows()
-        KLUSOLVE_LIBRARY = joinpath(path, "../deps/windows/libklusolve.dll") |> normpath
-    elseif Sys.islinux()
-        KLUSOLVE_LIBRARY = joinpath(path, "../deps/linux/libklusolve.so") |> normpath
-    elseif Sys.isapple()
-        KLUSOLVE_LIBRARY = joinpath(path, "../deps/apple/libklusolve.dylib") |> normpath
-    else
-        error("Unknown operating system. Cannot use OpenDSSDirect")
-    end
-
-    if Libdl.dlopen(KLUSOLVE_LIBRARY) == C_NULL
-        error("$KLUSOLVE_LIBRARY cannot be opened. Please check 'deps/build.log' for more information.")
-    end
-
-    if Libdl.dlopen(LIBRARY) == C_NULL
-        error("$LIBRARY cannot be opened. Please check 'deps/build.log' for more information.")
-    end
-
+    const LIBRARY = joinpath(path, "../deps/apple/libdss_capi_v7.dylib") |> abspath
 end
 
 include("CEnum.jl")
@@ -117,6 +95,45 @@ include("transformers.jl")
 include("vsources.jl")
 include("xycurves.jl")
 include("ymatrix.jl")
+
+include("repl.jl")
+
+function __init__()
+
+    if Sys.iswindows()
+        KLUSOLVE_LIBRARY = joinpath(path, "../deps/windows/libklusolve.dll") |> abspath
+    elseif Sys.islinux()
+        KLUSOLVE_LIBRARY = joinpath(path, "../deps/linux/libklusolve.so") |> abspath
+    elseif Sys.isapple()
+        KLUSOLVE_LIBRARY = joinpath(path, "../deps/apple/libklusolve.dylib") |> abspath
+    else
+        error("Unknown operating system. Cannot use OpenDSSDirect")
+    end
+
+    if Libdl.dlopen(KLUSOLVE_LIBRARY) == C_NULL
+        error("$KLUSOLVE_LIBRARY cannot be opened. Please check 'deps/build.log' for more information.")
+    end
+
+    if Libdl.dlopen(LIBRARY) == C_NULL
+        error("$LIBRARY cannot be opened. Please check 'deps/build.log' for more information.")
+    end
+
+    if ~ Sys.islinux()
+        global commandhelp = Dict{String, String}()
+        for i in 1:OpenDSSDirect.Executive.NumCommands()
+            commandhelp[lowercase(OpenDSSDirect.Executive.Command(i))] = OpenDSSDirect.Executive.CommandHelp(i)
+        end
+        global optionhelp = Dict{String, String}()
+        for i in 1:OpenDSSDirect.Executive.NumOptions()
+            optionhelp[lowercase(OpenDSSDirect.Executive.Option(i))] = OpenDSSDirect.Executive.OptionHelp(i)
+        end
+
+        # if isdefined(Base, :active_repl)
+            # OpenDSSDirect.Repl.run_dss_repl()
+        # end
+    end
+
+end
 
 
 end # module
