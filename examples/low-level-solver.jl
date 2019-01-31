@@ -2,7 +2,7 @@
 ## interface in DSSCore.
 
 using OpenDSSDirect
-# import LinearAlgebra: lu
+import LinearAlgebra: lu
 
 const DSS = OpenDSSDirect
 
@@ -142,9 +142,7 @@ function testnormalsolution()
     i = normalsolution()
     v2 = DSS.Circuit.AllBusVMag()
     init8500a()
-    if !Sys.isapple()
-        i = normalsolution_alt()
-    end
+    i = normalsolution_alt()
     v3 = DSS.Circuit.AllBusVMag()
     (v1, v2, v3)
 end

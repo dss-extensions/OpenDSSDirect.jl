@@ -94,13 +94,13 @@ end
 
 function prepare_float64_array(value::Array{ComplexF64, 2})
     r, c = size(value)
-    value = reshape(value, r*c, 1)
+    value = reshape(value, 1, r*c)
     arr = Vector{Float64}([])
     for v in value
         push!(arr, v.re)
         push!(arr, v.im)
     end
-    prepare_float64_array(value)
+    prepare_float64_array(arr)
 end
 
 function prepare_string_array(value::Vector{String})
@@ -121,5 +121,25 @@ end
 
 
 struct OpenDSSDirectException <: Exception end
+
+"""
+Return a column-format `NamedTuple` of all attributes of the given Module.
+
+Example:
+
+    nt = OpenDSSDirect.Utils.table(Loads)
+    nt.kW
+    df = DataFrame(nt)
+"""
+function table(m::Module)
+    m.First()
+    nt = NamedTuple{tuple(m._columns...)}([getfield(m, col)()] for col in m._columns)
+    while m.Next() > 0
+        for col in m._columns
+            push!(getfield(nt, col), getfield(m, col)())
+        end
+    end
+    return nt
+end
 
 end

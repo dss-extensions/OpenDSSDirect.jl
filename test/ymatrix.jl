@@ -3,12 +3,20 @@
 
 init8500()
 
-data, indices, indptr = YMatrix.getYsparse()
-@test length(data) == 46299
-@test length(indices) == 46299
-@test length(indptr) == 8542
+ymatrix = YMatrix.getYsparse()
+@test ymatrix[1,1] ≋ -1000.067575299307im
+@test ymatrix[1,10] ≋ 0.0im
 
-# @show YMatrix.IVector()
+# ymatrix = YMatrix.getYsparse()
+
+@test YMatrix.getV() |> length == 8542
+@test YMatrix.getI() |> length == 8542
+
+@test YMatrix.SystemYChanged() == false
+@test YMatrix.SystemYChanged(YMatrix.SystemYChanged()) == nothing
+
+@test YMatrix.UseAuxCurrents() == false
+@test YMatrix.UseAuxCurrents(YMatrix.UseAuxCurrents()) == nothing
 
 end # testset
 

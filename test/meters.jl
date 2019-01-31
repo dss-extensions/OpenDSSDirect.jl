@@ -19,11 +19,11 @@ OpenDSSDirect.Text.Command("""
 @test Meters.MeteredTerminal() == 1
 @test Meters.MeteredTerminal(Meters.MeteredTerminal()) == nothing
 @test Meters.DIFilesAreOpen() == 0
-# @test Meters.SampleAll() == 0    # TODO: segfault
+@test_broken Meters.SampleAll() == 0    # TODO: segfault
 @test Meters.SaveAll() == nothing
 @test Meters.OpenAllDIFiles() == nothing
 @test Meters.CloseAllDIFiles() == nothing
-# @test Meters.CountEndElements() == 0    # TODO: segfault
+@test_broken Meters.CountEndElements() == 0    # TODO: segfault
 @test Meters.Count() == 1
 @test Meters.CountBranches() == 4881
 @test Meters.SequenceList() == 1
@@ -59,8 +59,8 @@ OpenDSSDirect.Text.Command("""
 @test Meters.CalcCurrent(Meters.CalcCurrent()) == nothing
 @test 1 + Meters.AllocFactors()[1] ≋ 1 + 0.0
 @test Meters.AllocFactors(Meters.AllocFactors()) == nothing
-# @show Meters.AllEndElements()    # TODO: segfaults
-# @show Meters.AllBranchesInZone()    # TODO: segfaults
+@test_broken Meters.AllEndElements()    # TODO: segfaults
+@test_broken Meters.AllBranchesInZone()    # TODO: segfaults
 
 end # testset
 

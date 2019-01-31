@@ -389,5 +389,44 @@ module Loads
         Lib.Loads_Set_xfkVA(Value)
     end
 
+    _columns = [
+        :AllocationFactor,
+        :CVRCurve,
+        :CVRvars,
+        :CVRwatts,
+        :CFactor,
+        :Class,
+        :Growth,
+        :IsDelta,
+        :Model,
+        :Name,
+        :NumCust,
+        :PF,
+        :PctMean,
+        :PctStdDev,
+        :RelWeighting,
+        :Rneut,
+        :Spectrum,
+        :Status,
+        :Vmaxpu,
+        :VminEmerg,
+        :VminNorm,
+        :Vminpu,
+        :Xneut,
+        :Yearly,
+        :ZipV,
+        :Daily,
+        :Duty,
+        :Idx,
+        :kV,
+        :kW,
+        :kVABase,
+        :kvar,
+        :kWh,
+        :kWhDays,
+        :puSeriesRL,
+        :XfkVA,
+    ]
+
 end
 

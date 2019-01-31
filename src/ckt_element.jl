@@ -19,7 +19,7 @@ module CktElement
 
     """(read-only) For PCElement, get the value of a variable by integer index."""
     function Variablei(Idx::Int, Code::Int)::Float64
-        return Lib.CktElement_Get_Variablei(Idx, Code)
+        return Lib.CktElement_Get_Variablei(Int32(Idx), Ref{Int32}(Code))
     end
 
     function IsOpen(Term::Int, Phs::Int)::Bool

@@ -2,9 +2,10 @@ module YMatrix
 
     using ..Lib
     using ..Utils
+    using SparseArrays
 
     """Return as (data, indices, indptr) that can fed into scipy.sparse.csc_matrix"""
-    function getYsparse(factor=true)
+    function getYsparse(factor=true)::SparseArrays.SparseMatrixCSC{Complex{Float64},Int64}
         nBus = Ref(UInt32(0))
         nNz = Ref(UInt32(0))
 
@@ -21,7 +22,7 @@ module YMatrix
             data = Array(reinterpret(ComplexF64, unsafe_wrap(Array, cValsPtr[], Int(nNz[]) * 2) |> copy))
             indices = unsafe_wrap(Array, RowIdxPtr[], Int(nNz[])) |> copy
             indptr = unsafe_wrap(Array, ColPtr[], (Int(nBus[]) + 1)) |> copy
-            res = (data, indices, indptr)
+            res = SparseMatrixCSC(nBus[], nBus[], indptr .+ 1, indices .+ 1, data)
         end
         Lib.DSS_Dispose_PInteger(ColPtr)
         Lib.DSS_Dispose_PInteger(RowIdxPtr)
@@ -42,58 +43,59 @@ module YMatrix
         Lib.YMatrix_GetPCInjCurr()
     end
 
-    function BuildYMatrixD(BuildOps, AllocateVI)
-        Lib.YMatrix_BuildYMatrixD(BuildOps, AllocateVI)
+    function BuildYMatrixD(BuildOps::Int, AllocateVI::Bool)
+        Lib.YMatrix_BuildYMatrixD(BuildOps, AllocateVI ? 1 : 0)
     end
 
-    function AddInAuxCurrents(SType)
+    function AddInAuxCurrents(SType::Int)
         Lib.YMatrix_AddInAuxCurrents(SType)
     end
 
     """Get access to the internal Current pointer"""
     function IVector()
-        IvectorPtr = Ref{Ptr{Cdouble}}()
+        IvectorPtr = Ref{Ptr{Float64}}()
         Lib.YMatrix_getIpointer(IvectorPtr)
-        return IvectorPtr[]
+        return convert(Ptr{ComplexF64}, IvectorPtr[])
     end
 
     """Get access to the internal Voltage pointer"""
     function VVector()
-        VvectorPtr = Ref{Ptr{Cdouble}}()
+        VvectorPtr = Ref{Ptr{Float64}}()
         Lib.YMatrix_getVpointer(VvectorPtr)
+        return convert(Ptr{ComplexF64}, VvectorPtr[])
     end
 
     """Get the data from the internal Current pointer"""
-    function getI()
+    function getI()::Vector{ComplexF64}
         IvectorPtr = IVector()
-        return unsafe_wrap(Array, IvectorPtr, (Lib.Circuit_Get_NumNodes() + 1) * 2)
+        return unsafe_wrap(Array, IvectorPtr, Lib.Circuit_Get_NumNodes() + 1)
     end
 
     """Get the data from the internal Voltage pointer"""
-    function getV()
+    function getV()::Vector{ComplexF64}
         VvectorPtr = VVector()
-        return unsafe_wrap(Array, VvectorPtr[], (Lib.Circuit_Get_NumNodes() + 1) * 2)
+        return unsafe_wrap(Array, VvectorPtr, Lib.Circuit_Get_NumNodes() + 1)
     end
 
-    function SolveSystem(NodeV)
-        @warn "Not implemented. Please contact the developer"
-        # TODO: implement SolveSystem
+    function SolveSystem(NodeV)::Int
+        NodeV = Ref{Ptr{Cdouble}}(pointer(NodeV))
+        return Lib.YMatrix_SolveSystem(NodeV)
     end
 
-    function SystemYChanged()
-        return Lib.YMatrix_Get_SystemYChanged()
+    function SystemYChanged()::Bool
+        return Lib.YMatrix_Get_SystemYChanged() != 0
     end
 
-    function SystemYChanged(Value)
-        Lib.YMatrix_Set_SystemYChanged(Value)
+    function SystemYChanged(Value::Bool)
+        Lib.YMatrix_Set_SystemYChanged(Value ? 1 : 0)
     end
 
-    function UseAuxCurrents()
-        return Lib.YMatrix_Get_UseAuxCurrents()
+    function UseAuxCurrents()::Bool
+        return Lib.YMatrix_Get_UseAuxCurrents() != 0
     end
 
-    function UseAuxCurrents(Value)
-        Lib.YMatrix_Set_UseAuxCurrents(Value)
+    function UseAuxCurrents(Value::Bool)
+        Lib.YMatrix_Set_UseAuxCurrents(Value ? 1 : 0)
     end
 
 end

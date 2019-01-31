@@ -30,7 +30,7 @@ module Transformers
 
     """Active Winding maximum tap in per-unit."""
     function MaxTap()::Float64
-        # TODO: should this be Int64
+        # TODO: should this be Int64?
         return Lib.Transformers_Get_MaxTap()
     end
 
