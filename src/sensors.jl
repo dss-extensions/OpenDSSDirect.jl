@@ -28,7 +28,7 @@ module Sensors
 
     """Array of doubles for the line current measurements; don't use with kWS and kVARS."""
     function Currents(Value::Vector{Float64})
-        @error "Not implemented yet. Please contact the developer."
+        error("Not implemented yet. Please contact the developer.")
         # TODO: prepare_float64_array
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         Lib.Sensors_Set_Currents(ValuePtr, ValueCount)
@@ -127,7 +127,7 @@ module Sensors
 
     """Array of doubles for Q measurements. Overwrites Currents with a new estimate using kWS."""
     function kvar(Value::Vector{Float64})
-        @error "Not implemented yet. Please contact the developer."
+        error("Not implemented yet. Please contact the developer.")
         # TODO: prepare_float64_arrat
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         Lib.Sensors_Set_kVARS(ValuePtr, ValueCount)
@@ -140,7 +140,7 @@ module Sensors
 
     """Array of doubles for the LL or LN (depending on Delta connection) voltage measurements."""
     function kVS(Value::Vector{Float64})
-        @error "Not implemented yet. Please contact the developer."
+        error("Not implemented yet. Please contact the developer.")
         # TODO: prepare_float64_arrat
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         Lib.Sensors_Set_kVS(ValuePtr, ValueCount)

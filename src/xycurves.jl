@@ -53,7 +53,7 @@ module XYCurves
     """Get/Set X values as a Array of doubles. Set Npts to max number expected if setting"""
     function XArray(Value::Vector{Float64})
         # TODO: prepare_float64_array
-        @error "Not implemented yet. Please contact the developers."
+        error("Not implemented yet. Please contact the developers.")
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         Lib.XYCurves_Set_Xarray(ValuePtr, ValueCount)
     end
@@ -86,7 +86,7 @@ module XYCurves
     """Get/Set Y values in curve; Set Npts to max number expected if setting"""
     function YArray(Value::Vector{Float64})
         # TODO: prepare_float64_array
-        @error "Not implemented yet. Please contact the developers."
+        error("Not implemented yet. Please contact the developers.")
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         Lib.XYCurves_Set_Yarray(ValuePtr, ValueCount)
     end

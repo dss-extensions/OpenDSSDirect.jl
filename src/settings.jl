@@ -70,7 +70,7 @@ module Settings
 
     """Integer array defining which energy meter registers to use for computing losses"""
     function LossRegs(Value::Vector{Int})
-        @error "Not implemented yet. Please contact the developers."
+        error("Not implemented yet. Please contact the developers.")
         # TODO: prepare_int32_array
         Value, ValuePtr, ValueCount = prepare_int32_array(Value)
         Lib.Settings_Set_LossRegs(ValuePtr, ValueCount)
@@ -143,7 +143,7 @@ module Settings
 
     """Array of Integers defining energy meter registers to use for computing UE"""
     function UERegs(Value::Vector{Int})
-        @error "Not implemented yet. Please contact the developers."
+        error("Not implemented yet. Please contact the developers.")
         # TODO: prepare_int32_array
         Value, ValuePtr, ValueCount = prepare_int32_array(Value)
         Lib.Settings_Set_UEregs(ValuePtr, ValueCount)
@@ -166,7 +166,7 @@ module Settings
 
     """Array of doubles defining the legal voltage bases in kV L-L"""
     function VoltageBases(Value::Vector{Float64})
-        @error "Not implemented yet. Please contact the developers."
+        error("Not implemented yet. Please contact the developers.")
         # TODO: prepare_float64_array
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         Lib.Settings_Set_VoltageBases(ValuePtr, ValueCount)
