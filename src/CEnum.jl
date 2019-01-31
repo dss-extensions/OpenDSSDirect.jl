@@ -58,14 +58,14 @@ end
 
 macro cenum(name, args...)
     if Meta.isexpr(name, :curly)
-        typename, type = name.args
+        typename, kind = name.args
         typename = esc(typename)
-        typesize = 8*sizeof(getfield(Base, type))
-        typedef_expr = :(primitive type $typename <: CEnum.Cenum{$type} $typesize end)
+        typesize = 8*sizeof(getfield(Base, kind))
+        typedef_expr = :(primitive type $typename <: CEnum.Cenum{$kind} $typesize end)
     elseif isa(name, Symbol)
         # default to UInt32
         typename = esc(name)
-        type = UInt32
+        kind = UInt32
         typedef_expr = :(primitive type $typename <: CEnum.Cenum{UInt32} 32 end)
     else
         error("Name must be symbol or Name{Type}. Found: $name")
@@ -101,7 +101,7 @@ macro cenum(name, args...)
         $typedef_expr
         function Base.convert(::Type{$typename}, x::Integer)
             is_member($typename, x) || Base.Enums.enum_argument_error($(Expr(:quote, name)), x)
-            Base.bitcast($typename, convert($type, x))
+            Base.bitcast($typename, convert($kind, x))
         end
         CEnum.enum_names(::Type{$typename}) = tuple($(map(x-> Expr(:quote, first(x)), name_values)...))
         CEnum.enum_values(::Type{$typename}) = $values

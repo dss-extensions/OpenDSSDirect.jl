@@ -80,11 +80,13 @@ module XYCurves
 
     """Get/Set Y values in curve; Set Npts to max number expected if setting"""
     function YArray()::Vector{Float64}
-        return get_float64_array(lib.XYCurves_Get_Yarray)
+        return get_float64_array(Lib.XYCurves_Get_Yarray)
     end
 
     """Get/Set Y values in curve; Set Npts to max number expected if setting"""
-    function YArray(Value::Float64)
+    function YArray(Value::Vector{Float64})
+        # TODO: prepare_float64_array
+        @error "Not implemented yet. Please contact the developers."
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         Lib.XYCurves_Set_Yarray(ValuePtr, ValueCount)
     end
