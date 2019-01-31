@@ -1,77 +1,77 @@
 module Basic
 
-    using ..utils
-    using ..lib
+    using ..Lib
+    using ..Utils
 
     function ClearAll()
-        lib.DSS_ClearAll()
+        Lib.DSS_ClearAll()
     end
 
     function Reset()
-        lib.DSS_Reset()
+        Lib.DSS_Reset()
     end
 
     function SetActiveClass(ClassName::String)::Int
-        return lib.DSS_SetActiveClass(Cstring(pointer(ClassName)))
+        return Lib.DSS_SetActiveClass(Cstring(pointer(ClassName)))
     end
 
     function Start(code::Int)
-        return lib.DSS_Start(code) != 0
+        return Lib.DSS_Start(code) != 0
     end
 
     """(read-only) List of DSS intrinsic classes (names of the classes)"""
     function Classes()::Vector{String}
-        return get_string_array(lib.DSS_Get_Classes)
+        return get_string_array(Lib.DSS_Get_Classes)
     end
 
     """DSS Data File Path.  Default path for reports, etc. from DSS (Getter)"""
     function DataPath()::String
-        return get_string(lib.DSS_Get_DataPath())
+        return get_string(Lib.DSS_Get_DataPath())
     end
 
     """DSS Data File Path.  Default path for reports, etc. from DSS (Setter)"""
     function DataPath(Value::String)
-        lib.DSS_Set_DataPath(Cstring(pointer(Value)))
+        Lib.DSS_Set_DataPath(Cstring(pointer(Value)))
     end
 
     """(read-only) Returns the path name for the default text editor."""
     function DefaultEditor()::String
-        return get_string(lib.DSS_Get_DefaultEditor())
+        return get_string(Lib.DSS_Get_DefaultEditor())
     end
 
     """(read-only) Number of Circuits currently defined"""
     function NumCircuits()::Int
-        return lib.DSS_Get_NumCircuits()
+        return Lib.DSS_Get_NumCircuits()
     end
 
     """(read-only) Number of DSS intrinsic classes"""
     function NumClasses()::Int
-        return lib.DSS_Get_NumClasses()
+        return Lib.DSS_Get_NumClasses()
     end
 
     """(read-only) Number of user-defined classes"""
     function NumUserClasses()::Int
-        return lib.DSS_Get_NumUserClasses()
+        return Lib.DSS_Get_NumUserClasses()
     end
 
     """(read-only) List of user-defined classes"""
     function UserClasses()::Vector{String}
-        return get_string_array(lib.DSS_Get_UserClasses)
+        return get_string_array(Lib.DSS_Get_UserClasses)
     end
 
     """(read-only) Get version string for the DSS."""
     function Version()::String
-        return get_string(lib.DSS_Get_Version())
+        return get_string(Lib.DSS_Get_Version())
     end
 
     """Gets/sets whether text output is allowed (Getter)"""
     function AllowForms()::Bool
-        return lib.DSS_Get_AllowForms() != 0
+        return Lib.DSS_Get_AllowForms() != 0
     end
 
     """Gets/sets whether text output is allowed (Setter)"""
     function AllowForms(Value::String)
-        lib.DSS_Set_AllowForms(Cstring(pointer(Value)))
+        Lib.DSS_Set_AllowForms(Cstring(pointer(Value)))
     end
 
     function ShowPanel()
@@ -80,10 +80,10 @@ module Basic
     end
 
     function NewCircuit(name::String)::String
-        lib.DSS_NewCircuit(Cstring(pointer(name)))
-        error_num = lib.Error_Get_Number()
+        Lib.DSS_NewCircuit(Cstring(pointer(name)))
+        error_num = Lib.Error_Get_Number()
         if ~(error_num == 0)
-            description = get_string(lib.Error_Get_Description())
+            description = get_string(Lib.Error_Get_Description())
             throw(
                 OpenDSSDirectException(
                     "[ERROR $error_num] $description"

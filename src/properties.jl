@@ -1,16 +1,16 @@
 module Properties
 
-    using ..lib
-    using ..utils
+    using ..Lib
+    using ..Utils
 
     """(read-only) Description of the property."""
     function Description()::String
-        return get_string(lib.DSSProperty_Get_Description())
+        return get_string(Lib.DSSProperty_Get_Description())
     end
 
     """(read-only) Name of Property"""
     function Name()::String
-        return get_string(lib.DSSProperty_Get_Name())
+        return get_string(Lib.DSSProperty_Get_Name())
     end
 
     """

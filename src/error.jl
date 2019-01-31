@@ -1,7 +1,7 @@
 module Error
 
-    using ..lib
-    using ..utils
+    using ..Lib
+    using ..Utils
 
     """(read-only) Description of error for last operation"""
     function Description()::String

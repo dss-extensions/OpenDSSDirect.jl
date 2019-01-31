@@ -1,28 +1,28 @@
 module Fuses
 
-    using ..lib
-    using ..utils
+    using ..Lib
+    using ..Utils
 
     function Close()
-        lib.Fuses_Close()
+        Lib.Fuses_Close()
     end
 
     function IsBlown()::Bool
-        return lib.Fuses_IsBlown() != 0
+        return Lib.Fuses_IsBlown() != 0
     end
 
     function Open()
-        lib.Fuses_Open()
+        Lib.Fuses_Open()
     end
 
     """(read-only) Array of strings containing names of all Fuses in the circuit"""
     function AllNames()::Vector{String}
-        return get_string_array(lib.Fuses_Get_AllNames)
+        return get_string_array(Lib.Fuses_Get_AllNames)
     end
 
     """(read-only) Number of Fuse elements in the circuit"""
     function Count()::Int
-        return lib.Fuses_Get_Count()
+        return Lib.Fuses_Get_Count()
     end
 
     """
@@ -30,7 +30,7 @@ module Fuses
     (write) Fixed delay time in seconds added to the fuse blowing time to represent fuse clear or other delay.
     """
     function Delay()::Float64
-        return lib.Fuses_Get_Delay()
+        return Lib.Fuses_Get_Delay()
     end
 
 
@@ -39,22 +39,22 @@ module Fuses
     (write) Fixed delay time in seconds added to the fuse blowing time to represent fuse clear or other delay.
     """
     function Delay(Value::Float64)
-        lib.Fuses_Set_Delay(Value)
+        Lib.Fuses_Set_Delay(Value)
     end
 
     """(read-only) Set the first Fuse to be the active fuse. Returns 0 if none."""
     function First()::Int
-        return lib.Fuses_Get_First()
+        return Lib.Fuses_Get_First()
     end
 
     """Full name of the circuit element to which the fuse is connected."""
     function MonitoredObj()::String
-        return get_string(lib.Fuses_Get_MonitoredObj())
+        return get_string(Lib.Fuses_Get_MonitoredObj())
     end
 
     """Full name of the circuit element to which the fuse is connected."""
     function MonitoredObj(Value::String)
-        lib.Fuses_Set_MonitoredObj(Cstring(pointer(Value)))
+        Lib.Fuses_Set_MonitoredObj(Cstring(pointer(Value)))
     end
 
     """
@@ -62,7 +62,7 @@ module Fuses
     (write) Number of the terminal to which the fuse is connected
     """
     function MonitoredTerm()::Int
-        return lib.Fuses_Get_MonitoredTerm()
+        return Lib.Fuses_Get_MonitoredTerm()
     end
 
     """
@@ -70,7 +70,7 @@ module Fuses
     (write) Number of the terminal to which the fuse is connected
     """
     function MonitoredTerm(Value::Int)
-        lib.Fuses_Set_MonitoredTerm(Value)
+        Lib.Fuses_Set_MonitoredTerm(Value)
     end
 
     """
@@ -78,7 +78,7 @@ module Fuses
     (write) Set the active Fuse element by name.
     """
     function Name()::String
-        return get_string(lib.Fuses_Get_Name())
+        return get_string(Lib.Fuses_Get_Name())
     end
 
     """
@@ -86,17 +86,17 @@ module Fuses
     (write) Set the active Fuse element by name.
     """
     function Name(Value::String)
-        lib.Fuses_Set_Name(Cstring(pointer(Value)))
+        Lib.Fuses_Set_Name(Cstring(pointer(Value)))
     end
 
     """(read-only) Advance the active Fuse element pointer to the next fuse. Returns 0 if no more fuses."""
     function Next()::Int
-        return lib.Fuses_Get_Next()
+        return Lib.Fuses_Get_Next()
     end
 
     """(read-only) Number of phases, this fuse. """
     function NumPhases()::Int
-        return lib.Fuses_Get_NumPhases()
+        return Lib.Fuses_Get_NumPhases()
     end
 
     """
@@ -104,7 +104,7 @@ module Fuses
     (write) Multiplier or actual fuse amps for the TCC curve. Defaults to 1.0. Has to correspond to the Current axis of TCCcurve object.
     """
     function RatedCurrent()::Float64
-        return lib.Fuses_Get_RatedCurrent()
+        return Lib.Fuses_Get_RatedCurrent()
     end
 
     """
@@ -112,7 +112,7 @@ module Fuses
     (write) Multiplier or actual fuse amps for the TCC curve. Defaults to 1.0. Has to correspond to the Current axis of TCCcurve object.
     """
     function RatedCurrent(Value::Float64)
-        lib.Fuses_Set_RatedCurrent(Value)
+        Lib.Fuses_Set_RatedCurrent(Value)
     end
 
     """
@@ -120,7 +120,7 @@ module Fuses
     (write) Full name of the circuit element switch that the fuse controls. Defaults to MonitoredObj.
     """
     function SwitchedObj()::String
-        return get_string(lib.Fuses_Get_SwitchedObj())
+        return get_string(Lib.Fuses_Get_SwitchedObj())
     end
 
     """
@@ -128,7 +128,7 @@ module Fuses
     (write) Full name of the circuit element switch that the fuse controls. Defaults to MonitoredObj.
     """
     function SwitchedObj(Value::String)
-        lib.Fuses_Set_SwitchedObj(Cstring(pointer(Value)))
+        Lib.Fuses_Set_SwitchedObj(Cstring(pointer(Value)))
     end
 
     """
@@ -136,7 +136,7 @@ module Fuses
     (write) Number of the terminal of the controlled element containing the switch controlled by the fuse.
     """
     function SwitchedTerm()::Int
-        return lib.Fuses_Get_SwitchedTerm()
+        return Lib.Fuses_Get_SwitchedTerm()
     end
 
     """
@@ -144,17 +144,17 @@ module Fuses
     (write) Number of the terminal of the controlled element containing the switch controlled by the fuse.
     """
     function SwitchedTerm(Value::Int)
-        lib.Fuses_Set_SwitchedTerm(Value)
+        Lib.Fuses_Set_SwitchedTerm(Value)
     end
 
     """Name of the TCCcurve object that determines fuse blowing."""
     function TCCCurve()::String
-        return get_string(lib.Fuses_Get_TCCcurve())
+        return get_string(Lib.Fuses_Get_TCCcurve())
     end
 
     """Name of the TCCcurve object that determines fuse blowing."""
     function TCCCurve(Value::String)
-        lib.Fuses_Set_TCCcurve(Cstring(pointer(Value)))
+        Lib.Fuses_Set_TCCcurve(Cstring(pointer(Value)))
     end
 
     """
@@ -162,7 +162,7 @@ module Fuses
     (write) Set Fuse active by index into the list of fuses. 1..count
     """
     function Idx()::Int
-        return lib.Fuses_Get_idx()
+        return Lib.Fuses_Get_idx()
     end
 
     """
@@ -170,7 +170,7 @@ module Fuses
     (write) Set Fuse active by index into the list of fuses. 1..count
     """
     function Idx(Value::Int)
-        lib.Fuses_Set_idx(Value)
+        Lib.Fuses_Set_idx(Value)
     end
 
 end

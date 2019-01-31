@@ -1,4 +1,4 @@
-module utils
+module Utils
 
 using ..OpenDSSDirect
 
@@ -26,7 +26,7 @@ function get_string_array(func::Function)::Vector{String}
             push!(data, unsafe_string(p))
         end
     end
-    OpenDSSDirect.lib.DSS_Dispose_PPAnsiChar(ptr, cnt[2])
+    OpenDSSDirect.Lib.DSS_Dispose_PPAnsiChar(ptr, cnt[2])
     return data
 end
 
@@ -38,7 +38,7 @@ function get_int32_array(func::Function)::Vector{Int}
     for i in 1:cnt[1]
         push!(data, Int(unsafe_load(ptr[], i)))
     end
-    OpenDSSDirect.lib.DSS_Dispose_PInteger(ptr)
+    OpenDSSDirect.Lib.DSS_Dispose_PInteger(ptr)
     return data
 end
 
@@ -50,7 +50,7 @@ function get_int8_array(func::Function)::Vector{Int8}
     for i in 1:cnt[1]
         push!(data, unsafe_load(ptr[], i))
     end
-    OpenDSSDirect.lib.DSS_Dispose_PByte(ptr)
+    OpenDSSDirect.Lib.DSS_Dispose_PByte(ptr)
     return data
 end
 
@@ -63,7 +63,7 @@ function get_float64_array(func::Function)::Vector{Float64}
     for i in 1:cnt[1]
         push!(data, unsafe_load(ptr[], i))
     end
-    OpenDSSDirect.lib.DSS_Dispose_PDouble(ptr)
+    OpenDSSDirect.Lib.DSS_Dispose_PDouble(ptr)
     return data
 end
 
@@ -75,7 +75,7 @@ function get_complex64_array(func::Function)::Vector{ComplexF64}
     for i in 1:2:cnt[1]
         push!(data, ComplexF64(unsafe_load(ptr[], i), unsafe_load(ptr[], i+1)))
     end
-    OpenDSSDirect.lib.DSS_Dispose_PDouble(ptr)
+    OpenDSSDirect.Lib.DSS_Dispose_PDouble(ptr)
     return data
 end
 

@@ -1,11 +1,11 @@
 module Text
 
-    using ..lib
-    using ..utils
+    using ..Lib
+    using ..Utils
 
     """Input command string for the DSS. (Getter)"""
     function Command()::String
-        get_string(lib.Text_Get_Command())
+        get_string(Lib.Text_Get_Command())
     end
 
     """Input command string for the DSS. (Setter)"""
@@ -13,8 +13,8 @@ module Text
         Value = readlines(IOBuffer(Value))
         r = Vector{String}([])
         for v in Value
-            lib.Text_Set_Command(v)
-            # TODO: lib.CheckForError()
+            Lib.Text_Set_Command(v)
+            # TODO: Lib.CheckForError()
             push!(r, Result())
         end
         res = join(r, "\n") |> strip
@@ -26,7 +26,7 @@ module Text
 
     """(read-only) Result string for the last command."""
     function Result()::String
-        get_string(lib.Text_Get_Result())
+        get_string(Lib.Text_Get_Result())
     end
 
 end

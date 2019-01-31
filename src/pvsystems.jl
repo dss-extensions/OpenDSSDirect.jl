@@ -1,21 +1,21 @@
 module PVsystems
 
-    using ..lib
-    using ..utils
+    using ..Lib
+    using ..Utils
 
     """(read-only) Vairant array of strings with all PVSystem names"""
     function AllNames()::Vector{String}
-        return get_string_array(lib.PVSystems_Get_AllNames)
+        return get_string_array(Lib.PVSystems_Get_AllNames)
     end
 
     """(read-only) Number of PVSystems"""
     function Count()::Int
-        return lib.PVSystems_Get_Count()
+        return Lib.PVSystems_Get_Count()
     end
 
     """(read-only) Set first PVSystem active; returns 0 if none."""
     function First()::Int
-        return lib.PVSystems_Get_First()
+        return Lib.PVSystems_Get_First()
     end
 
     """
@@ -23,7 +23,7 @@ module PVsystems
     (write) Set the present Irradiance value in W/sq-m
     """
     function Irradiance()::Float64
-        return lib.PVSystems_Get_Irradiance()
+        return Lib.PVSystems_Get_Irradiance()
     end
 
     """
@@ -31,7 +31,7 @@ module PVsystems
     (write) Set the present Irradiance value in W/sq-m
     """
     function Irradiance(Value::Float64)
-        lib.PVSystems_Set_Irradiance(Value)
+        Lib.PVSystems_Set_Irradiance(Value)
     end
 
     """
@@ -39,7 +39,7 @@ module PVsystems
     (write) Set the name of the active PVSystem
     """
     function Name()::String
-        return get_string(lib.PVSystems_Get_Name())
+        return get_string(Lib.PVSystems_Get_Name())
     end
 
     """
@@ -47,12 +47,12 @@ module PVsystems
     (write) Set the name of the active PVSystem
     """
     function Name(Value::String)
-        lib.PVSystems_Set_Name(Cstring(pointer(Value)))
+        Lib.PVSystems_Set_Name(Cstring(pointer(Value)))
     end
 
     """(read-only) Sets next PVSystem active; returns 0 if no more."""
     function Next()::Int
-        return lib.PVSystems_Get_Next()
+        return Lib.PVSystems_Get_Next()
     end
 
     """
@@ -60,7 +60,7 @@ module PVsystems
     (write) Set PF
     """
     function pf()::Float64
-        return lib.PVSystems_Get_PF()
+        return Lib.PVSystems_Get_PF()
     end
 
     """
@@ -68,17 +68,17 @@ module PVsystems
     (write) Set PF
     """
     function pf(Value::Float64)
-        lib.PVSystems_Set_PF(Value)
+        Lib.PVSystems_Set_PF(Value)
     end
 
     """(read-only) Variant Array of PVSYSTEM energy meter register names"""
     function RegisterNames()::Vector{String}
-        return get_string_array(lib.PVSystems_Get_RegisterNames)
+        return get_string_array(Lib.PVSystems_Get_RegisterNames)
     end
 
     """(read-only) Array of doubles containing values in PVSystem registers."""
     function RegisterValues()::Vector{Float64}
-        return get_float64_array(lib.PVSystems_Get_RegisterValues)
+        return get_float64_array(Lib.PVSystems_Get_RegisterValues)
     end
 
     """
@@ -86,7 +86,7 @@ module PVsystems
     (write) Get/Set Active PVSystem by index:  1.. Count
     """
     function Idx()::Int
-        return lib.PVSystems_Get_idx()
+        return Lib.PVSystems_Get_idx()
     end
 
     """
@@ -94,7 +94,7 @@ module PVsystems
     (write) Get/Set Active PVSystem by index:  1.. Count
     """
     function Idx(Value::Int)
-        lib.PVSystems_Set_idx(Value)
+        Lib.PVSystems_Set_idx(Value)
     end
 
     """
@@ -102,7 +102,7 @@ module PVsystems
     (write) Set kva rated
     """
     function kVARated()::Float64
-        return lib.PVSystems_Get_kVArated()
+        return Lib.PVSystems_Get_kVArated()
     end
 
     """
@@ -110,12 +110,12 @@ module PVsystems
     (write) Set kva rated
     """
     function kVARated(Value::Float64)
-        lib.PVSystems_Set_kVArated(Value)
+        Lib.PVSystems_Set_kVArated(Value)
     end
 
     """(read-only) get kW output"""
     function kW()::Float64
-        return lib.PVSystems_Get_kW()
+        return Lib.PVSystems_Get_kW()
     end
 
     """
@@ -123,7 +123,7 @@ module PVsystems
     (write) Set kvar output value
     """
     function kvar()::Float64
-        return lib.PVSystems_Get_kvar()
+        return Lib.PVSystems_Get_kvar()
     end
 
     """
@@ -131,7 +131,7 @@ module PVsystems
     (write) Set kvar output value
     """
     function kvar(Value::Float64)
-        lib.PVSystems_Set_kvar(Value)
+        Lib.PVSystems_Set_kvar(Value)
     end
 
 end

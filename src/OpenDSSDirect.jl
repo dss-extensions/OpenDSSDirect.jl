@@ -1,8 +1,6 @@
 
 module OpenDSSDirect
 
-export LIBRARY
-
 export ActiveClass
 export Basic
 export Bus
@@ -54,7 +52,6 @@ else
 end
 
 function __init__()
-
 
     if Sys.iswindows()
         KLUSOLVE_LIBRARY = joinpath(path, "../deps/windows/libklusolve.dll") |> normpath
