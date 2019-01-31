@@ -24,5 +24,6 @@ init8500()
 @test Capacitors.Name(Capacitors.Name()) == nothing
 @test Capacitors.AllNames()[end] == "capbank3"
 @test Capacitors.States() == [1]
+@test Capacitors.States(Capacitors.States()) == nothing
 
 end # testset

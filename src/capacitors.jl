@@ -83,8 +83,6 @@ module Capacitors
 
     """(write) Array of integer [0 ..numSteps-1] indicating the state of each step"""
     function States(Value)
-        # TODO: implement prepare_int32_array
-        @warn "This function is not implemented, please contact the developers."
         Value, ValuePtr, ValueCount = prepare_int32_array(Value)
         Lib.Capacitors_Set_States(ValuePtr, ValueCount)
     end

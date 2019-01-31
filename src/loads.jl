@@ -277,8 +277,6 @@ module Loads
 
     """Array of 7  doubles with values for ZIPV property of the LOAD object"""
     function ZipV(Value::Vector{Float64})
-        error("Not implemented yet. Please contact the developer.")
-        # TODO: implement prepare_float64_array
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         Lib.Loads_Set_ZIPV(ValuePtr, ValueCount)
     end

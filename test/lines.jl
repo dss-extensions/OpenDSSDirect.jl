@@ -58,7 +58,7 @@ init8500()
 @test Lines.CMatrix(Lines.CMatrix()) == nothing
 @test Lines.Yprim() ≋ [14.151460302936526 - 7.897357479424346im -14.151460302936526 + 7.897357517772179im
                       -14.151460302936526 + 7.897357517772179im 14.151460302936526 - 7.897357479424346im]
-# @test Lines.Yprim(Lines.Yprim())
+@test Lines.Yprim(Lines.Yprim())
 
 end # testset
 

@@ -57,8 +57,7 @@ module CktElement
     (read) Array of strings. Get  Bus definitions to which each terminal is connected. 0-based array.
     (write) Array of strings. Set Bus definitions for each terminal is connected.
     """
-    function BusNames(Value::String)
-        # TODO: prepare_string_array
+    function BusNames(Value::Vector{String})
         Value, ValuePtr, ValueCount = prepare_string_array(Value)
         Lib.CktElement_Set_BusNames(ValuePtr, ValueCount)
     end

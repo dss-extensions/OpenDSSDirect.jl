@@ -9,8 +9,8 @@ Lines.Next()
 @test CktElement.NumTerminals() == 2
 @test CktElement.NumConductors() == 1
 @test CktElement.NumPhases() == 1
-# @test CktElement.Open() == 0
-# @test CktElement.Close() == 0
+# @test CktElement.Open() == nothing
+# @test CktElement.Close() == nothing
 # @test CktElement.IsOpen() == 0
 @test CktElement.NumProperties() == 35
 @test CktElement.HasSwitchControl() == false
@@ -24,7 +24,7 @@ Lines.Next()
 @test CktElement.NormalAmps(CktElement.NormalAmps()) == nothing
 @test CktElement.EmergAmps() ≋ 600.0
 @test CktElement.EmergAmps(CktElement.EmergAmps()) == nothing
-# @test CktElement.Variablei() ≋ 0.0
+# @test CktElement.Variablei(0, 0) ≋ 0.0
 @test CktElement.Name() == "Line.ln5502549-1"
 @test CktElement.DisplayName() == "Line_ln5502549-1"
 @test CktElement.DisplayName(CktElement.DisplayName()) == nothing
@@ -32,7 +32,7 @@ Lines.Next()
 @test CktElement.EnergyMeter() == ""
 # @test CktElement.Controller() == ""     # TODO: fix me
 @test CktElement.BusNames() == ["m1009763.2","l2673322.2"]
-# @test CktElement.BusNames(CktElement.BusNames()) == ""
+@test CktElement.BusNames(CktElement.BusNames()) == nothing
 @test CktElement.Voltages() ≋ [-7497.624369108318 - 1716.7400531450096im,-7497.520821355775 - 1716.6870938210561im]
 @test CktElement.Currents() ≋ [-1.8835247914830688 + 0.06801433374494081im,1.8836564559605904 - 0.06858936508069746im]
 @test CktElement.Powers() ≋ [14.005198445515209 + 3.7434683767653216im,-14.00500702103834 - 3.747898919956358im]

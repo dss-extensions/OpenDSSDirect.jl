@@ -65,8 +65,6 @@ module Meters
 
     """Array of doubles: set the phase allocation factors for the active meter."""
     function AllocFactors(Value::Vector{Float64})
-        error("Not implemented yet. Please contact the developer.")
-        # TODO: prepare_float64_array
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         Lib.Meters_Set_AllocFactors(ValuePtr, ValueCount)
     end
@@ -83,8 +81,6 @@ module Meters
 
     """Set the magnitude of the real part of the Calculated Current (normally determined by solution) for the Meter to force some behavior on Load Allocation"""
     function CalcCurrent(Value::Vector{Float64})
-        error("Not implemented yet. Please contact the developer.")
-        # TODO: prepare_float64_array
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         Lib.Meters_Set_CalcCurrent(ValuePtr, ValueCount)
     end
@@ -195,8 +191,6 @@ module Meters
 
     """Array of doubles to set values of Peak Current property"""
     function PeakCurrent(Value::Vector{Float64})
-        error("Not implemented yet. Please contact the developer.")
-        # TODO: prepare_float64_array
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         Lib.Meters_Set_Peakcurrent(ValuePtr, ValueCount)
     end

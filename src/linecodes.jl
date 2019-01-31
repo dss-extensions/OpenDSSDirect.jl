@@ -35,7 +35,6 @@ module LineCodes
 
     """Capacitance matrix, nF per unit length"""
     function Cmatrix(Value::Vector{Float64})
-        # TODO: prepare_float64_array
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         Lib.LineCodes_Set_Cmatrix(ValuePtr, ValueCount)
     end
@@ -125,7 +124,6 @@ module LineCodes
 
     """Resistance matrix, ohms per unit length"""
     function Rmatrix(Value::Vector{Float64})
-        # TODO: prepare_float64_array
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         Lib.LineCodes_Set_Rmatrix(ValuePtr, ValueCount)
     end
@@ -165,7 +163,6 @@ module LineCodes
 
     """Reactance matrix, ohms per unit length"""
     function Xmatrix(Value::Vector{Float64})
-        # TODO: prepare_float64_array
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         Lib.LineCodes_Set_Xmatrix(ValuePtr, ValueCount)
     end

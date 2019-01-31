@@ -203,8 +203,6 @@ module Lines
 
     """Resistance matrix (full), ohms per unit length. Array of doubles."""
     function RMatrix(Value::Vector{Float64})
-        error("Not implemented yet. Please contact the developer.")
-        # TODO: prepare_float64_array
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         Lib.Lines_Set_Rmatrix(ValuePtr, ValueCount)
     end
@@ -279,8 +277,6 @@ module Lines
 
     """Yprimitive: Does Nothing at present on Put; Dangerous"""
     function Yprim(Value::Array{ComplexF64, 2})
-        error("Not implemented yet. Please contact the developer.")
-        # TODO: prepare_float64_array
         Value, ValuePtr, ValueCount = prepare_float64_array(Value)
         Lib.Lines_Set_Yprim(ValuePtr, ValueCount)
     end

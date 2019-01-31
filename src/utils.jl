@@ -9,6 +9,9 @@ export get_int32_array
 export get_float64_array
 export get_complex64_array
 export get_complex64
+export prepare_float64_array
+export prepare_int32_array
+export prepare_string_array
 export OpenDSSDirectException
 
 function get_string(cstring::Cstring)::String
@@ -82,6 +85,40 @@ end
 function get_complex64(func::Function)::ComplexF64
     return get_complex64_array(func)[1]
 end
+
+function prepare_float64_array(value::Vector{Float64})
+    ptr = pointer(value)
+    cnt = size(value)[1]
+    return value, ptr, cnt
+end
+
+function prepare_float64_array(value::Array{ComplexF64, 2})
+    r, c = size(value)
+    value = reshape(value, r*c, 1)
+    arr = Vector{Float64}([])
+    for v in value
+        push!(arr, v.re)
+        push!(arr, v.im)
+    end
+    prepare_float64_array(value)
+end
+
+function prepare_string_array(value::Vector{String})
+    ptr = pointer(value)
+    cnt = size(value)[1]
+    return value, ptr, cnt
+end
+
+function prepare_int32_array(value::Vector{Int32})
+    ptr = pointer(value)
+    cnt = size(value)[1]
+    return value, ptr, cnt
+end
+
+function prepare_int32_array(value::Vector{Int64})
+    prepare_int32_array(Vector{Int32}(value))
+end
+
 
 struct OpenDSSDirectException <: Exception end
 
