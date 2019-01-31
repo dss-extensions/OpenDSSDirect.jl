@@ -40,6 +40,8 @@ export Vsources
 export XYCurves
 export YMatrix
 
+export dss
+
 import Libdl
 
 const path = @__DIR__
@@ -113,7 +115,7 @@ function __init__()
         error("$LIBRARY cannot be opened. Please check 'deps/build.log' for more information.")
     end
 
-    if ~ Sys.islinux()
+    if !Sys.islinux()
         global commandhelp = Dict{String, String}()
         for i in 1:OpenDSSDirect.Executive.NumCommands()
             commandhelp[lowercase(OpenDSSDirect.Executive.Command(i))] = OpenDSSDirect.Executive.CommandHelp(i)
@@ -127,6 +129,8 @@ function __init__()
             # OpenDSSDirect.Repl.run_dss_repl()
         # end
     end
+
+    global dss = OpenDSSDirect.Text.Command
 
 end
 

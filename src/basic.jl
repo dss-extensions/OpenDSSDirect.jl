@@ -82,7 +82,7 @@ module Basic
     function NewCircuit(name::String)::String
         Lib.DSS_NewCircuit(Cstring(pointer(name)))
         error_num = Lib.Error_Get_Number()
-        if ~(error_num == 0)
+        if (error_num != 0)
             description = get_string(Lib.Error_Get_Description())
             throw(
                 OpenDSSDirectException(

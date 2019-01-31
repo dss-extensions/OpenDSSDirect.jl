@@ -3,6 +3,8 @@ module Text
     using ..Lib
     using ..Utils
 
+    export dss
+
     """Input command string for the DSS. (Getter)"""
     function Command()::String
         get_string(Lib.Text_Get_Command())
@@ -28,6 +30,8 @@ module Text
     function Result()::String
         get_string(Lib.Text_Get_Result())
     end
+
+    const dss = Command
 
 end
 
