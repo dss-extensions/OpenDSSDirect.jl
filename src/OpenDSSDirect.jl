@@ -55,9 +55,16 @@ function __init__()
 
     if Sys.iswindows()
         KLUSOLVE_LIBRARY = joinpath(path, "../deps/windows/libklusolve.dll") |> normpath
-        if Libdl.dlopen(KLUSOLVE_LIBRARY) == C_NULL
-            error("$KLUSOLVE_LIBRARY cannot be opened. Please check 'deps/build.log' for more information.")
-        end
+    elseif Sys.islinux()
+        KLUSOLVE_LIBRARY = joinpath(path, "../deps/linux/libklusolve.so") |> normpath
+    elseif Sys.isapple()
+        KLUSOLVE_LIBRARY = joinpath(path, "../deps/apple/libklusolve.dylib") |> normpath
+    else
+        error("Unknown operating system. Cannot use OpenDSSDirect")
+    end
+
+    if Libdl.dlopen(KLUSOLVE_LIBRARY) == C_NULL
+        error("$KLUSOLVE_LIBRARY cannot be opened. Please check 'deps/build.log' for more information.")
     end
 
     if Libdl.dlopen(LIBRARY) == C_NULL
