@@ -32,6 +32,8 @@ init8500()
 @show Sensors.kvar(Sensors.kvar())
 @show Sensors.kW()
 @show Sensors.kW(Sensors.kW())
+@show Sensors.kVS()
+@show Sensors.kVS(Sensors.kVS())
 
 end # testset
 

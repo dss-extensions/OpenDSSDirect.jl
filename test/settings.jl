@@ -32,11 +32,11 @@ init8500()
 @test Settings.PriceCurve() == ""
 @test Settings.PriceCurve(Settings.PriceCurve()) == nothing
 @test Settings.UERegs() == [10]
-# @test Settings.UERegs(Settings.UERegs())
+# @test Settings.UERegs(Settings.UERegs()) == nothing
 @test Settings.LossRegs() == [13]
-# @test Settings.LossRegs(Settings.LossRegs())
+# @test Settings.LossRegs(Settings.LossRegs()) == nothing
 @test Settings.VoltageBases() == [115.0,12.47,0.48,0.208]
-# @test Settings.VoltageBases(Settings.VoltageBases())
+@test Settings.VoltageBases(Settings.VoltageBases()) == nothing
 
 end # testset
 

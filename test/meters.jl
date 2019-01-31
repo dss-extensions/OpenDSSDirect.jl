@@ -19,11 +19,11 @@ OpenDSSDirect.Text.Command("""
 @test Meters.MeteredTerminal() == 1
 @test Meters.MeteredTerminal(Meters.MeteredTerminal()) == nothing
 @test Meters.DIFilesAreOpen() == 0
-# @test Meters.SampleAll() == 0    # ERROR
+# @test Meters.SampleAll() == 0    # TODO: segfault
 @test Meters.SaveAll() == nothing
 @test Meters.OpenAllDIFiles() == nothing
 @test Meters.CloseAllDIFiles() == nothing
-# @test Meters.CountEndElements() == 0    # ERROR
+# @test Meters.CountEndElements() == 0    # TODO: segfault
 @test Meters.Count() == 1
 @test Meters.CountBranches() == 4881
 @test Meters.SequenceList() == 1
@@ -51,16 +51,16 @@ OpenDSSDirect.Text.Command("""
 @test Meters.MeteredElement(Meters.MeteredElement()) == nothing
 @test Meters.AllNames()[1] == "m1"
 @test Meters.RegisterNames()[1] == "kWh"
-# @show Meters.RegisterValues(Meters.RegisterValues())
+# @test Meters.RegisterValues(Meters.RegisterValues()) == nothing
 @test Meters.Totals()[1] ≋ 11915.293117698093
 @test Meters.PeakCurrent()[1] ≋ 400.0
-# @show Meters.PeakCurrent(Meters.PeakCurrent())
-# @test Meters.CalcCurrent()[1] ≋ 0.0   # FAIL on Win32
-# @show Meters.CalcCurrent(Meters.CalcCurrent())
-# @test Meters.AllocFactors()[1] ≋ 0.0   # FAIL on Win32
-# @show Meters.AllocFactors(Meters.AllocFactors())
-# @show Meters.AllEndElements()    # ERROR
-# @show Meters.AllBranchesInZone()    # ERROR
+@test Meters.PeakCurrent(Meters.PeakCurrent()) == nothing
+@test 1 + Meters.CalcCurrent()[1] ≋ 1 + 0.0
+@test Meters.CalcCurrent(Meters.CalcCurrent()) == nothing
+@test 1 + Meters.AllocFactors()[1] ≋ 1 + 0.0
+@test Meters.AllocFactors(Meters.AllocFactors()) == nothing
+# @show Meters.AllEndElements()    # TODO: segfaults
+# @show Meters.AllBranchesInZone()    # TODO: segfaults
 
 end # testset
 

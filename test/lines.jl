@@ -51,11 +51,11 @@ init8500()
 @test Lines.Spacing(Lines.Spacing()) == nothing
 @test Lines.AllNames()[end] == "tpx2224500658a0"
 @test Lines.RMatrix() ≋ [1.67466]
-# @test Lines.RMatrix(Lines.RMatrix())
+@test Lines.RMatrix(Lines.RMatrix()) == nothing
 @test Lines.XMatrix() ≋ [0.93456]
-# @test Lines.XMatrix(Lines.XMatrix())
+@test Lines.XMatrix(Lines.XMatrix()) == nothing
 @test Lines.CMatrix() ≋ [6.322849999999999]
-# @test Lines.CMatrix(Lines.CMatrix())
+@test Lines.CMatrix(Lines.CMatrix()) == nothing
 @test Lines.Yprim() ≋ [14.151460302936526 - 7.897357479424346im -14.151460302936526 + 7.897357517772179im
                       -14.151460302936526 + 7.897357517772179im 14.151460302936526 - 7.897357479424346im]
 # @test Lines.Yprim(Lines.Yprim())

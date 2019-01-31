@@ -30,11 +30,11 @@ OpenDSSDirect.Text.Command("""
 @test LoadShape.Name(LoadShape.Name()) == nothing
 @test LoadShape.AllNames() == ["default","residential","commercial_sm","commercial_md"]
 @test LoadShape.PMult()[end] ≋ 0.366545
-# @test LoadShape.PMult(LoadShape.PMult())
+@test LoadShape.PMult(LoadShape.PMult()) == nothing
 @test LoadShape.QMult() ≋ [0.0]
-# @test LoadShape.QMult(LoadShape.QMult())
+@test LoadShape.QMult(LoadShape.QMult()) == nothing
 @test LoadShape.TimeArray() ≋ [0.0]
-# @test LoadShape.TimeArray(LoadShape.TimeArray())
+@test LoadShape.TimeArray(LoadShape.TimeArray()) == nothing
 
 end # testset
 

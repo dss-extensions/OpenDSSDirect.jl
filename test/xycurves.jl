@@ -29,9 +29,9 @@ New XYCurve.MyEff npts=4  xarray=[.1  .2  .4  1.0]  yarray=[.86  .9  .93  .97]
 @test XYCurves.Name() == "myeff"
 @test XYCurves.Name(XYCurves.Name()) == nothing
 @test XYCurves.XArray()[1] ≋ 0.1
-# @show XYCurves.XArray(XYCurves.XArray())
+@test XYCurves.XArray(XYCurves.XArray()) == nothing
 @test XYCurves.YArray()[1] ≋ 0.86
-# @show XYCurves.YArray(XYCurves.YArray())
+@test XYCurves.YArray(XYCurves.YArray()) == nothing
 
 end # testset
 

@@ -79,7 +79,8 @@ init8500()
 @test Loads.Growth(Loads.Growth()) == nothing
 @test Loads.AllNames()[end] == "2224500658a0"
 @test Loads.ZipV() == Float64[]
-# @test Loads.ZipV(Loads.ZipV())
+@test Loads.ZipV(Float64[1.0, 1.0, 2.0, 2.0, 3.0, 3.0, 4.0]) == nothing
+@test Loads.ZipV() ≋ Float64[1.0, 1.0, 2.0, 2.0, 3.0, 3.0, 4.0] # TODO: Does not work for less than 7 elements?
 
 end # testset
 
