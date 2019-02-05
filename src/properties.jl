@@ -10,20 +10,17 @@ module Properties
         $(TypedDocStringExtensions.DOCSTRING)
         """
 
-    """(read-only) Description of the property."""
+    """Description of the property."""
     function Description()::String
         return Utils.get_string(Lib.DSSProperty_Get_Description())
     end
 
-    """(read-only) Name of Property"""
+    """Name of Property"""
     function Name()::String
         return Utils.get_string(Lib.DSSProperty_Get_Name())
     end
 
-    """
-    Sets the current DSS property based on a 1-based integer (or integer as
-    a string) as an property index, or a string as a property name.
-    """
+    """Sets the current DSS property based on a 1-based integer (or integer as a string) as an property index, or a string as a property name."""
     function _setCurrentProperty(argIndex::Int)
         if argIndex <= 0
             error("argIndex must be positive, not $argIndex.")
@@ -41,18 +38,18 @@ module Properties
 
     end
 
-    """(read-only) Value of Property"""
+    """Value of Property (Getter)"""
     function Value()::String
         return Utils.get_string(Lib.DSSProperty_Get_Val())
     end
 
-    """(read-only) Value of Property (getter)"""
+    """Value of Property of Index or Name (getter)"""
     function Value(argIndex_or_Name::Union{String, Int})::String
         _setCurrentProperty(argIndex_or_Name)
         return Utils.get_string(Lib.DSSProperty_Get_Val())
     end
 
-    """(read-only) Value of Property (setter)"""
+    """Value of Property of Index or Name (setter)"""
     function Value(argIndex_or_Name::Union{String, Int}, Value::String)
         _setCurrentProperty(argIndex_or_Name)
         Lib.DSSProperty_Set_Val(Value)

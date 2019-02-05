@@ -39,3 +39,5 @@ include("transformers.jl")
 include("vsources.jl")
 include("xycurves.jl")
 include("ymatrix.jl")
+
+include("examples.jl")

@@ -10,11 +10,12 @@ module CapControls
         $(TypedDocStringExtensions.DOCSTRING)
         """
 
+    """Reset Capacitor Controls"""
     function Reset()
         Lib.CapControls_Reset()
     end
 
-    """(read-only) Array of strings with all CapControl names."""
+    """Array of strings with all CapControl names."""
     function AllNames()::Vector{String}
         return Utils.get_string_array(Lib.CapControls_Get_AllNames)
     end
@@ -39,15 +40,17 @@ module CapControls
         Lib.CapControls_Set_Capacitor(Cstring(pointer(Value)))
     end
 
-    """(read-only) Number of CapControls in Active Circuit"""
+    """Number of CapControls in Active Circuit"""
     function Count()::Int
         return Lib.CapControls_Get_Count()
     end
 
+    """Dead Time for Capacitor Control (Getter)"""
     function DeadTime()::Float64
         return Lib.CapControls_Get_DeadTime()
     end
 
+    """Dead Time for Capacitor Control (Setter)"""
     function DeadTime(Value::Float64)
         Lib.CapControls_Set_DeadTime(Value)
     end
@@ -72,7 +75,7 @@ module CapControls
         Lib.CapControls_Set_DelayOff(Value)
     end
 
-    """(read-only) Sets the first CapControl as active. Return 0 if none."""
+    """Sets the first CapControl as active. Return 0 if none."""
     function First()::Int
         return Lib.CapControls_Get_First()
     end
@@ -117,7 +120,7 @@ module CapControls
         Lib.CapControls_Set_Name(Cstring(pointer(Value)))
     end
 
-    """(read-only) Gets the next CapControl in the circut. Returns 0 if none."""
+    """Gets the next CapControl in the circut. Returns 0 if none."""
     function Next()::Int
         return Lib.CapControls_Get_Next()
     end

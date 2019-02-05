@@ -10,19 +10,19 @@ module Parser
         $(TypedDocStringExtensions.DOCSTRING)
         """
 
-    """(read-only) Use this property to parse a Matrix token in OpenDSS format.  Returns square matrix of order specified. Order same as default Fortran order: column by column."""
+    """Use this property to parse a Matrix token in OpenDSS format.  Returns square matrix of order specified. Order same as default Fortran order: column by column."""
     function Matrix(ExpectedOrder)::Vector{Float64}
         error("Not implemented yet. Please contact the developer.")
         return Utils.get_float64_array(Lib.Parser_Get_Matrix, ExpectedOrder)
     end
 
-    """(read-only) Use this property to parse a matrix token specified in lower triangle form. Symmetry is forced."""
+    """Use this property to parse a matrix token specified in lower triangle form. Symmetry is forced."""
     function SymMatrix(ExpectedOrder)::Vector{Float64}
         error("Not implemented yet. Please contact the developer.")
         return Utils.get_float64_array(Lib.Parser_Get_SymMatrix, ExpectedOrder)
     end
 
-    """(read-only) Returns token as array of doubles. For parsing quoted array syntax."""
+    """Returns token as array of doubles. For parsing quoted array syntax."""
     function Vector(ExpectedSize)::Vector{Float64}
         error("Not implemented yet. Please contact the developer.")
         return Utils.get_float64_array(Lib.Parser_Get_Vector, ExpectedSize)
@@ -42,18 +42,12 @@ module Parser
         Lib.Parser_Set_AutoIncrement(Value ? 1 : 0)
     end
 
-    """
-    (read) Get String containing the the characters for Quoting in OpenDSS scripts. Matching pairs defined in EndQuote. Default is "'([{.
-    (write) Set String containing the the characters for Quoting in OpenDSS scripts. Matching pairs defined in EndQuote. Default is "'([{.
-    """
+    """String containing the the characters for Quoting in OpenDSS scripts. Matching pairs defined in EndQuote. Default is "'([{."""
     function BeginQuote()::String
         return Utils.get_string(Lib.Parser_Get_BeginQuote())
     end
 
-    """
-    (read) Get String containing the the characters for Quoting in OpenDSS scripts. Matching pairs defined in EndQuote. Default is "'([{.
-    (write) Set String containing the the characters for Quoting in OpenDSS scripts. Matching pairs defined in EndQuote. Default is "'([{.
-    """
+    """String containing the the characters for Quoting in OpenDSS scripts. Matching pairs defined in EndQuote. Default is "'([{."""
     function BeginQuote(Value::String)
         Lib.Parser_Set_BeginQuote(Value)
     end
@@ -68,7 +62,7 @@ module Parser
         Lib.Parser_Set_CmdString(Value)
     end
 
-    """(read-only) Return next parameter as a double."""
+    """Return next parameter as a double."""
     function DblValue()::Float64
         return Lib.Parser_Get_DblValue()
     end
@@ -83,43 +77,37 @@ module Parser
         Lib.Parser_Set_Delimiters(Value)
     end
 
-    """String containing characters, in order, that match the beginning quote characters in BeginQuote. Default is "')]}"""
+    """String containing characters, in order, that match the beginning quote characters in BeginQuote. Default is "')]} (Getter)"""
     function EndQuote()::String
         return Utils.get_string(Lib.Parser_Get_EndQuote())
     end
 
-    """String containing characters, in order, that match the beginning quote characters in BeginQuote. Default is "')]}"""
+    """String containing characters, in order, that match the beginning quote characters in BeginQuote. Default is "')]} (Setter)"""
     function EndQuote(Value::String)
         Lib.Parser_Set_EndQuote(Value)
     end
 
-    """(read-only) Return next parameter as a long integer."""
+    """Return next parameter as a long integer."""
     function IntValue()::Int
         return Lib.Parser_Get_IntValue()
     end
 
-    """(read-only) Get next token and return tag name (before = sign) if any. See AutoIncrement."""
+    """Get next token and return tag name (before = sign) if any. See AutoIncrement."""
     function NextParam()::String
         return Utils.get_string(Lib.Parser_Get_NextParam())
     end
 
-    """(read-only) Return next parameter as a string"""
+    """Return next parameter as a string"""
     function StrValue()::String
         return Utils.get_string(Lib.Parser_Get_StrValue())
     end
 
-    """
-    (read) Get the characters used for White space in the command string.  Default is blank and Tab.
-    (write) Set the characters used for White space in the command string.  Default is blank and Tab.
-    """
+    """Characters used for White space in the command string.  Default is blank and Tab. (Getter)"""
     function WhiteSpace()::String
         return Utils.get_string(Lib.Parser_Get_WhiteSpace())
     end
 
-    """
-    (read) Get the characters used for White space in the command string.  Default is blank and Tab.
-    (write) Set the characters used for White space in the command string.  Default is blank and Tab.
-    """
+    """Characters used for White space in the command string.  Default is blank and Tab. (Setter)"""
     function WhiteSpace(Value::String)
         Lib.Parser_Set_WhiteSpace(Value)
     end

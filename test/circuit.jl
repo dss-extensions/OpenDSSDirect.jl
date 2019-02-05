@@ -37,7 +37,10 @@ init8500()
 @test Circuit.AllElementLosses()[end] ≋ 0.0
 @test Circuit.AllBusMagPu()[end] ≋ 0.9980241903846725
 @test Circuit.AllNodeNames()[end] == "sx3784018a.2"
-# @show Circuit.SystemY()
+if typeof(1) == Int64
+    # results in OutOfMemoryError on x86 Windows
+    @test Circuit.SystemY()[1, 1] == 0.0 - 1000.067575299307im
+end
 @test Circuit.AllBusDistances()[end] ≋ 0.0
 @test Circuit.AllNodeDistances()[end] ≋ 0.0
 # @test Circuit.AllNodeVmagByPhase()[end] # ERROR

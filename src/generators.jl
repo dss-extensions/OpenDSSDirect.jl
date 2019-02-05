@@ -10,17 +10,17 @@ module Generators
         $(TypedDocStringExtensions.DOCSTRING)
         """
 
-    """(read-only) Array of names of all Generator objects."""
+    """Array of names of all Generator objects."""
     function AllNames()::Vector{String}
         return Utils.get_string_array(Lib.Generators_Get_AllNames)
     end
 
-    """(read-only) Number of Generator Objects in Active Circuit"""
+    """Number of Generator Objects in Active Circuit"""
     function Count()::Int
         return Lib.Generators_Get_Count()
     end
 
-    """(read-only) Sets first Generator to be active.  Returns 0 if none."""
+    """Sets first Generator to be active.  Returns 0 if none."""
     function First()::Int
         return Lib.Generators_Get_First()
     end
@@ -55,7 +55,7 @@ module Generators
         Lib.Generators_Set_Name(Cstring(pointer(Value)))
     end
 
-    """(read-only) Sets next Generator to be active.  Returns 0 if no more."""
+    """Sets next Generator to be active.  Returns 0 if no more."""
     function Next()::Int
         return Lib.Generators_Get_Next()
     end
@@ -80,12 +80,12 @@ module Generators
         Lib.Generators_Set_Phases(Value)
     end
 
-    """(read-only) Array of Names of all generator energy meter registers"""
+    """Array of Names of all generator energy meter registers"""
     function RegisterNames()::Vector{String}
         return Utils.get_string_array(Lib.Generators_Get_RegisterNames)
     end
 
-    """(read-only) Array of valus in generator energy meter registers."""
+    """Array of valus in generator energy meter registers."""
     function RegisterValues()::Vector{Float64}
         return Utils.get_float64_array(Lib.Generators_Get_RegisterValues)
     end
@@ -110,52 +110,52 @@ module Generators
         Lib.Generators_Set_Vminpu(Value)
     end
 
-    """Get/Set active Generator by index into generators list.  1..Count"""
+    """Active Generator by index into generators list.  1..Count (Getter)"""
     function Idx()::Int
         return Lib.Generators_Get_idx()
     end
 
-    """Get/Set active Generator by index into generators list.  1..Count"""
+    """Active Generator by index into generators list.  1..Count (Setter)"""
     function Idx(Value::Int)
         Lib.Generators_Set_idx(Value)
     end
 
-    """Voltage base for the active generator, kV"""
+    """Voltage base for the active generator, kV (Getter)"""
     function kV()::Float64
         return Lib.Generators_Get_kV()
     end
 
-    """Voltage base for the active generator, kV"""
+    """Voltage base for the active generator, kV (Setter)"""
     function kV(Value::Float64)
         Lib.Generators_Set_kV(Value)
     end
 
-    """kVA rating of the generator"""
+    """kVA rating of the generator (Getter)"""
     function kVARated()::Float64
         return Lib.Generators_Get_kVArated()
     end
 
-    """kVA rating of the generator"""
+    """kVA rating of the generator (Setter)"""
     function kVARated(Value::Float64)
         Lib.Generators_Set_kVArated(Value)
     end
 
-    """kW output for the active generator. kvar is updated for current power factor."""
+    """kW output for the active generator. kvar is updated for current power factor. (Getter)"""
     function kW()::Float64
         return Lib.Generators_Get_kW()
     end
 
-    """kW output for the active generator. kvar is updated for current power factor."""
+    """kW output for the active generator. kvar is updated for current power factor. (Setter)"""
     function kW(Value::Float64)
         Lib.Generators_Set_kW(Value)
     end
 
-    """kvar output for the active generator. Updates power factor based on present kW value."""
+    """kvar output for the active generator. Updates power factor based on present kW value. (Getter)"""
     function kvar()::Float64
         return Lib.Generators_Get_kvar()
     end
 
-    """kvar output for the active generator. Updates power factor based on present kW value."""
+    """kvar output for the active generator. Updates power factor based on present kW value. (Setter)"""
     function kvar(Value::Float64)
         Lib.Generators_Set_kvar(Value)
     end

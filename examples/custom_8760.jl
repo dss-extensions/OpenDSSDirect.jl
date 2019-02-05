@@ -22,6 +22,7 @@ function scaleloads(k, basekw, basekvar)
     end
 end
 function run_loads(loadshape)
+
     nloads = Loads.Count()
     basekw = Array{Float64}(undef, nloads)
     basekvar = Array{Float64}(undef, nloads)
@@ -34,12 +35,14 @@ function run_loads(loadshape)
     n = length(loadshape)
     result = Array{Int}(undef, n)
     for i in 1:n
-        scaleloads(loadshape[i], basekw, basekvar) 
+        scaleloads(loadshape[i], basekw, basekvar)
         Solution.Solve()
         result[i] = Solution.Iterations()
     end
     return result
 end
 
-@time x  = run_loads(loadshape) 
+@time x  = run_loads(loadshape)
 # @time xs = run_loads(sort(loadshape))
+
+nothing

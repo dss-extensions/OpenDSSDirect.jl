@@ -19,21 +19,21 @@ module Text
 
     """Input command string for the DSS. (Setter)"""
     function Command(Value::String)::String
-        Value = readlines(IOBuffer(Value))
+        value = readlines(IOBuffer(Value))
         r = Vector{String}([])
-        for v in Value
+        for v in value
             Lib.Text_Set_Command(v)
             # TODO: Lib.CheckForError()
             push!(r, Result())
+            if length(r[end]) > 0
+                @warn "Result of running OpenDSS Command \"$v\" is: $(r[end])"
+            end
         end
         res = join(r, "\n") |> strip
-        if length(res) > 0
-            @warn "Result of running OpenDSS Command: $res"
-        end
         return res
     end
 
-    """(read-only) Result string for the last command."""
+    """Result string for the last command."""
     function Result()::String
         return Utils.get_string(Lib.Text_Get_Result())
     end

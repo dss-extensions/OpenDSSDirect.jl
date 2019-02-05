@@ -14,7 +14,7 @@ module YMatrix
 
 
     """Return as (data, indices, indptr) that can fed into scipy.sparse.csc_matrix"""
-    function getYsparse(factor=true)::SparseArrays.SparseMatrixCSC{Complex{Float64},Int64}
+    function getYsparse(factor=true)::SparseArrays.SparseMatrixCSC{Complex{Float64},Int}
         nBus = Ref(UInt32(0))
         nNz = Ref(UInt32(0))
 
@@ -40,22 +40,27 @@ module YMatrix
         return res
     end
 
+    """Zero Current Injections"""
     function ZeroInjCurr()
         Lib.YMatrix_ZeroInjCurr()
     end
 
+    """Get Source Current Injections"""
     function GetSourceInjCurrents()
         Lib.YMatrix_GetSourceInjCurrents()
     end
 
+    """Get PC Current Injections"""
     function GetPCInjCurr()
         Lib.YMatrix_GetPCInjCurr()
     end
 
+    """Build Y MatrixD"""
     function BuildYMatrixD(BuildOps::Int, AllocateVI::Bool)
         Lib.YMatrix_BuildYMatrixD(BuildOps, AllocateVI ? 1 : 0)
     end
 
+    """Add in auxiliary currents"""
     function AddInAuxCurrents(SType::Int)
         Lib.YMatrix_AddInAuxCurrents(SType)
     end
@@ -86,23 +91,28 @@ module YMatrix
         return unsafe_wrap(Array, VvectorPtr, Lib.Circuit_Get_NumNodes() + 1)
     end
 
-    function SolveSystem(NodeV)::Int
+    """Solve System for V"""
+    function SolveSystem(NodeV::Vector{ComplexF64})::Int
         NodeV = Ref{Ptr{Cdouble}}(pointer(NodeV))
         return Lib.YMatrix_SolveSystem(NodeV)
     end
 
+    """SystemY has changed (Getter)"""
     function SystemYChanged()::Bool
         return Lib.YMatrix_Get_SystemYChanged() != 0
     end
 
+    """SystemY has changed (Setter)"""
     function SystemYChanged(Value::Bool)
         Lib.YMatrix_Set_SystemYChanged(Value ? 1 : 0)
     end
 
+    """Use auxiliary currents (Getter)"""
     function UseAuxCurrents()::Bool
         return Lib.YMatrix_Get_UseAuxCurrents() != 0
     end
 
+    """Use auxiliary currents (Setter)"""
     function UseAuxCurrents(Value::Bool)
         Lib.YMatrix_Set_UseAuxCurrents(Value ? 1 : 0)
     end

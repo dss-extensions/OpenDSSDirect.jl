@@ -71,15 +71,13 @@ function get_float64_array(func::Function)::Vector{Float64}
 end
 
 function get_complex64_array(func::Function)::Vector{ComplexF64}
-    ptr = Ref{Ptr{Cdouble}}([])
-    cnt = Vector{Cint}([0, 0])
-    func(ptr, cnt)
-    data = Vector{ComplexF64}([])
-    for i in 1:2:cnt[1]
-        push!(data, ComplexF64(unsafe_load(ptr[], i), unsafe_load(ptr[], i+1)))
+    r = get_float64_array(func)
+    if length(r) == 1
+        return ComplexF64[]
+    else
+        r = Array(reinterpret(ComplexF64, r))
     end
-    OpenDSSDirect.Lib.DSS_Dispose_PDouble(ptr)
-    return data
+    return r
 end
 
 function get_complex64(func::Function)::ComplexF64

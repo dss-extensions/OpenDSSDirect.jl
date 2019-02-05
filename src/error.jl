@@ -10,12 +10,12 @@ module Error
         $(TypedDocStringExtensions.DOCSTRING)
         """
 
-    """(read-only) Description of error for last operation"""
+    """Description of error for last operation"""
     function Description()::String
         return Utils.get_string(lib.Error_Get_Description())
     end
 
-    """(read-only) Error Number"""
+    """Error Number"""
     function Number()::Int
         return lib.Error_Get_Number()
     end

@@ -10,94 +10,82 @@ module Relays
         $(TypedDocStringExtensions.DOCSTRING)
         """
 
-    """(read-only) Array of strings containing names of all Relay elements"""
+    """Array of strings containing names of all Relay elements"""
     function AllNames()::Vector{String}
         return Utils.get_string_array(Lib.Relays_Get_AllNames)
     end
 
-    """(read-only) Number of Relays in circuit"""
+    """Number of Relays in circuit"""
     function Count()::Int
         return Lib.Relays_Get_Count()
     end
 
-    """(read-only) Set First Relay active. If none, returns 0."""
+    """Set First Relay active. If none, returns 0."""
     function First()::Int
         return Lib.Relays_Get_First()
     end
 
-    """Full name of object this Relay is monitoring."""
+    """Full name of object this Relay is monitoring. (Getter)"""
     function MonitoredObj()::String
         return Utils.get_string(Lib.Relays_Get_MonitoredObj())
     end
 
-    """Full name of object this Relay is monitoring."""
+    """Full name of object this Relay is monitoring. (Setter)"""
     function MonitoredObj(Value::String)
         Lib.Relays_Set_MonitoredObj(Value)
     end
 
-    """Number of terminal of monitored element that this Relay is monitoring."""
+    """Number of terminal of monitored element that this Relay is monitoring. (Getter)"""
     function MonitoredTerm()::Int
         return Lib.Relays_Get_MonitoredTerm()
     end
 
-    """Number of terminal of monitored element that this Relay is monitoring."""
+    """Number of terminal of monitored element that this Relay is monitoring. (Setter)"""
     function MonitoredTerm(Value::Int)
         Lib.Relays_Set_MonitoredTerm(Value)
     end
 
-    """
-    (read) Get name of active relay.
-    (write) Set Relay active by name
-    """
+    """Name of active relay. (Getter)"""
     function Name()::String
         return Utils.get_string(Lib.Relays_Get_Name())
     end
 
-    """
-    (read) Get name of active relay.
-    (write) Set Relay active by name
-    """
+    """Name of active relay. (Setter)"""
     function Name(Value::String)
         Lib.Relays_Set_Name(Value)
     end
 
-    """(read-only) Advance to next Relay object. Returns 0 when no more relays."""
+    """Advance to next Relay object. Returns 0 when no more relays."""
     function Next()::Int
         return Lib.Relays_Get_Next()
     end
 
-    """Full name of element that will be switched when relay trips."""
+    """Full name of element that will be switched when relay trips. (Getter)"""
     function SwitchedObj()::String
         return Utils.get_string(Lib.Relays_Get_SwitchedObj())
     end
 
-    """Full name of element that will be switched when relay trips."""
+    """Full name of element that will be switched when relay trips. (Setter)"""
     function SwitchedObj(Value::String)
         Lib.Relays_Set_SwitchedObj(Value)
     end
 
-    """Terminal number of the switched object that will be opened when the relay trips."""
+    """Terminal number of the switched object that will be opened when the relay trips. (Getter)"""
     function SwitchedTerm()::Int
         return Lib.Relays_Get_SwitchedTerm()
     end
 
-    """Terminal number of the switched object that will be opened when the relay trips."""
+    """Terminal number of the switched object that will be opened when the relay trips. (Setter)"""
     function SwitchedTerm(Value::Int)
         Lib.Relays_Set_SwitchedTerm(Value)
     end
 
-    """
-    (read) Get/Set active Relay by index into the Relay list. 1..Count
-    (write) Get/Set Relay active by index into relay list. 1..Count
-    """
+    """Active Relay by index into the Relay list. 1..Count (Getter)"""
     function Idx()::Int
         return Lib.Relays_Get_idx()
     end
 
-    """
-    (read) Get/Set active Relay by index into the Relay list. 1..Count
-    (write) Get/Set Relay active by index into relay list. 1..Count
-    """
+    """Active Relay by index into the Relay list. 1..Count (Setter)"""
     function Idx(Value::Int)
         Lib.Relays_Set_idx(Value)
     end

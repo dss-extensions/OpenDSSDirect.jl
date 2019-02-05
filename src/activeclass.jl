@@ -11,25 +11,25 @@ module ActiveClass
         """
 
 
-    """(read-only) Returns name of active class."""
+    """Returns name of active class."""
     function ActiveClassName()::String
         return Utils.get_string(Lib.ActiveClass_Get_ActiveClassName())
     end
 
 
-    """(read-only) Array of strings consisting of all element names in the active class."""
+    """Array of strings consisting of all element names in the active class."""
     function AllNames()::Vector{String}
         return Utils.get_string_array(Lib.ActiveClass_Get_AllNames)
     end
 
 
-    """(read-only) Number of elements in Active Class. Same as NumElements Property."""
+    """Number of elements in Active Class. Same as NumElements Property."""
     function Count()::Int
         return Lib.ActiveClass_Get_Count()
     end
 
 
-    """(read-only) Sets first element in the active class to be the active DSS object. If object is a CktElement, ActiveCktELment also points to this element. Returns 0 if none."""
+    """Sets first element in the active class to be the active DSS object. If object is a CktElement, ActiveCktELment also points to this element. Returns 0 if none."""
     function First()::Int
         return Lib.ActiveClass_Get_First()
     end
@@ -46,13 +46,13 @@ module ActiveClass
     end
 
 
-    """(read-only) Sets next element in active class to be the active DSS object. If object is a CktElement, ActiveCktElement also points to this element.  Returns 0 if no more."""
+    """Sets next element in active class to be the active DSS object. If object is a CktElement, ActiveCktElement also points to this element.  Returns 0 if no more."""
     function Next()::Int
         return Lib.ActiveClass_Get_Next()
     end
 
 
-    """(read-only) Number of elements in this class. Same as Count property."""
+    """Number of elements in this class. Same as Count property."""
     function NumElements()::Int
         return Lib.ActiveClass_Get_NumElements()
     end

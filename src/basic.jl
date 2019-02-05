@@ -10,23 +10,27 @@ module Basic
         $(TypedDocStringExtensions.DOCSTRING)
         """
 
+    """Clear All"""
     function ClearAll()
         Lib.DSS_ClearAll()
     end
 
+    """Reset"""
     function Reset()
         Lib.DSS_Reset()
     end
 
+    """Set the Active Class"""
     function SetActiveClass(ClassName::String)::Int
         return Lib.DSS_SetActiveClass(ClassName)
     end
 
+    """Set the start code"""
     function Start(code::Int)
         return Lib.DSS_Start(code) != 0
     end
 
-    """(read-only) List of DSS intrinsic classes (names of the classes)"""
+    """List of DSS intrinsic classes (names of the classes)"""
     function Classes()::Vector{String}
         return Utils.get_string_array(Lib.DSS_Get_Classes)
     end
@@ -41,32 +45,32 @@ module Basic
         Lib.DSS_Set_DataPath(Cstring(pointer(Value)))
     end
 
-    """(read-only) Returns the path name for the default text editor."""
+    """Returns the path name for the default text editor."""
     function DefaultEditor()::String
         return Utils.get_string(Lib.DSS_Get_DefaultEditor())
     end
 
-    """(read-only) Number of Circuits currently defined"""
+    """Number of Circuits currently defined"""
     function NumCircuits()::Int
         return Lib.DSS_Get_NumCircuits()
     end
 
-    """(read-only) Number of DSS intrinsic classes"""
+    """Number of DSS intrinsic classes"""
     function NumClasses()::Int
         return Lib.DSS_Get_NumClasses()
     end
 
-    """(read-only) Number of user-defined classes"""
+    """Number of user-defined classes"""
     function NumUserClasses()::Int
         return Lib.DSS_Get_NumUserClasses()
     end
 
-    """(read-only) List of user-defined classes"""
+    """List of user-defined classes"""
     function UserClasses()::Vector{String}
         return Utils.get_string_array(Lib.DSS_Get_UserClasses)
     end
 
-    """(read-only) Get version string for the DSS."""
+    """Get version string for the DSS."""
     function Version()::String
         return Utils.get_string(Lib.DSS_Get_Version())
     end
@@ -86,6 +90,7 @@ module Basic
         return 0
     end
 
+    """Create a new circuit"""
     function NewCircuit(name::String)::String
         Lib.DSS_NewCircuit(Cstring(pointer(name)))
         error_num = Lib.Error_Get_Number()

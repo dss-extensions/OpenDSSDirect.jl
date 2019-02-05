@@ -10,53 +10,58 @@ module CtrlQueue
         $(TypedDocStringExtensions.DOCSTRING)
         """
 
+    """Clear actions for Control Queue"""
     function ClearActions()
         Lib.CtrlQueue_ClearActions()
     end
 
+    """Clear queue for Control Queue"""
     function ClearQueue()
         Lib.CtrlQueue_ClearQueue()
     end
 
-    function Delete(ActionHandle)::Int
+    """Delete action handle for Control Queue"""
+    function Delete(ActionHandle::Int)::Int
         Lib.CtrlQueue_Delete(ActionHandle)
     end
 
+    """Do all actions"""
     function DoAllQueue()
         Lib.CtrlQueue_DoAllQueue()
     end
 
+    """Show queue"""
     function Show()
         Lib.CtrlQueue_Show()
     end
 
-    """(read-only) Code for the active action. Long integer code to tell the control device what to do"""
+    """Code for the active action. Long integer code to tell the control device what to do"""
     function ActionCode()::Int
         # TODO: return enum?
         return Lib.CtrlQueue_Get_ActionCode()
     end
 
-    """(read-only) Handle (User defined) to device that must act on the pending action."""
+    """Handle (User defined) to device that must act on the pending action."""
     function DeviceHandle()::Int
         return Lib.CtrlQueue_Get_DeviceHandle()
     end
 
-    """(read-only) Number of Actions on the current actionlist (that have been popped off the control queue by CheckControlActions)"""
+    """Number of Actions on the current actionlist (that have been popped off the control queue by CheckControlActions)"""
     function NumActions()::Int
         return Lib.CtrlQueue_Get_NumActions()
     end
 
-    """(read-only) Pops next action off the action list and makes it the active action. Returns zero if none."""
+    """Pops next action off the action list and makes it the active action. Returns zero if none."""
     function PopAction()::Int
         return Lib.CtrlQueue_Get_PopAction()
     end
 
-    """(read-only) Array of strings containing the entire queue in CSV format"""
+    """Array of strings containing the entire queue in CSV format"""
     function Queue()::Vector{String}
         return Utils.get_string_array(Lib.CtrlQueue_Get_Queue)
     end
 
-    """(read-only) Number of items on the OpenDSS control Queue"""
+    """Number of items on the OpenDSS control Queue"""
     function QueueSize()::Int
         return Lib.CtrlQueue_Get_QueueSize()
     end

@@ -17,3 +17,5 @@ filename = joinpath(@__DIR__, "ckt5", "Master_ckt5.dss")
     closeDI
 """)
 
+nothing
+
