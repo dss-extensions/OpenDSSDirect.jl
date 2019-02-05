@@ -1,6 +1,8 @@
 
 module OpenDSSDirect
 
+__precompile__(true)
+
 export ActiveClass
 export Basic
 export Bus
@@ -107,6 +109,8 @@ include("ymatrix.jl")
 
 include("repl.jl")
 
+const dss = OpenDSSDirect.Text.Command
+
 function __init__()
 
     if Libdl.dlopen(KLUSOLVE_LIBRARY) == C_NULL
@@ -131,8 +135,6 @@ function __init__()
             # OpenDSSDirect.Repl.run_dss_repl()
         # end
     end
-
-    global dss = OpenDSSDirect.Text.Command
 
 end
 
