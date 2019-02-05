@@ -49,11 +49,11 @@ module Properties
     """(read-only) Value of Property (getter)"""
     function Value(argIndex_or_Name::Union{String, Int})::String
         _setCurrentProperty(argIndex_or_Name)
-        return get_string(Lib.DSSProperty_Get_Val())
+        return Utils.get_string(Lib.DSSProperty_Get_Val())
     end
 
     """(read-only) Value of Property (setter)"""
-    function Value(argIndex::Union{String, Int}, Value::String)
+    function Value(argIndex_or_Name::Union{String, Int}, Value::String)
         _setCurrentProperty(argIndex_or_Name)
         Lib.DSSProperty_Set_Val(Value)
     end

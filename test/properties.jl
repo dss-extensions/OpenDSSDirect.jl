@@ -23,5 +23,10 @@ Properties._setCurrentProperty("transformer")
 @test Properties.Description() == "Name of Transformer element to which the RegControl is connected. Do not specify the full object name; \"Transformer\" is assumed for the object class.  Example:\r\n\r\nTransformer=Xfmr1"
 @test Properties.Name() == "transformer"
 
+@test Properties.Value("transformer") == "VREG4_C"
+
+@test Properties.Value("transformer", "VREG4_C_new") == nothing
+@test Properties.Value("transformer") == "VREG4_C_new"
+
 end # testset
 
