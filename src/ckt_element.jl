@@ -1,7 +1,14 @@
 module CktElement
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     function Close(Term::Int, Phs::Int)
         Lib.CktElement_Close(Term, Phs)
@@ -9,7 +16,7 @@ module CktElement
 
     """(read-only) Full name of the i-th controller attached to this element. Ex: str = Controller(2).  See NumControls to determine valid index range"""
     function Controller(idx::Int)::String
-        return get_string(Lib.CktElement_Get_Controller(idx))
+        return Utils.get_string(Lib.CktElement_Get_Controller(idx))
     end
 
     """(read-only) For PCElement, get the value of a variable by name. If Code>0 Then no variable by this name or not a PCelement."""
@@ -32,17 +39,17 @@ module CktElement
 
     """(read-only) Array containing all property names of the active device."""
     function AllPropertyNames()::Vector{String}
-        return get_string_array(Lib.CktElement_Get_AllPropertyNames)
+        return Utils.get_string_array(Lib.CktElement_Get_AllPropertyNames)
     end
 
     """(read-only) Array of strings listing all the published variable names, if a PCElement. Otherwise, null string."""
     function AllVariableNames()::Vector{String}
-        return get_string_array(Lib.CktElement_Get_AllVariableNames)
+        return Utils.get_string_array(Lib.CktElement_Get_AllVariableNames)
     end
 
     """(read-only) Array of doubles. Values of state variables of active element if PC element."""
     function AllVariableValues()::Vector{Float64}
-        return get_float64_array(Lib.CktElement_Get_AllVariableValues)
+        return Utils.get_float64_array(Lib.CktElement_Get_AllVariableValues)
     end
 
     """
@@ -50,7 +57,7 @@ module CktElement
     (write) Array of strings. Set Bus definitions for each terminal is connected.
     """
     function BusNames()::Vector{String}
-        return get_string_array(Lib.CktElement_Get_BusNames)
+        return Utils.get_string_array(Lib.CktElement_Get_BusNames)
     end
 
     """
@@ -58,34 +65,34 @@ module CktElement
     (write) Array of strings. Set Bus definitions for each terminal is connected.
     """
     function BusNames(Value::Vector{String})
-        Value, ValuePtr, ValueCount = prepare_string_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_string_array(Value)
         Lib.CktElement_Set_BusNames(ValuePtr, ValueCount)
     end
 
     """(read-only) Complex double array of Sequence Currents for all conductors of all terminals of active circuit element."""
     function CplxSeqCurrents()::Vector{ComplexF64}
-        return get_complex64_array(Lib.CktElement_Get_CplxSeqCurrents)
+        return Utils.get_complex64_array(Lib.CktElement_Get_CplxSeqCurrents)
     end
 
     """(read-only) Complex double array of Sequence Voltage for all terminals of active circuit element."""
     function CplxSeqVoltages()::Vector{ComplexF64}
-        return get_complex64_array(Lib.CktElement_Get_CplxSeqVoltages)
+        return Utils.get_complex64_array(Lib.CktElement_Get_CplxSeqVoltages)
     end
 
     """(read-only) Complex array of currents into each conductor of each terminal"""
     function Currents()::Vector{ComplexF64}
-        return get_complex64_array(Lib.CktElement_Get_Currents)
+        return Utils.get_complex64_array(Lib.CktElement_Get_Currents)
     end
 
     """(read-only) Currents in magnitude, angle format as a array of doubles."""
     function CurrentsMagAng()::Array{Float64, 2}
-        r = get_float64_array(Lib.CktElement_Get_CurrentsMagAng)
+        r = Utils.get_float64_array(Lib.CktElement_Get_CurrentsMagAng)
         return reshape(r, (2, Int(length(r)/2)))
     end
 
     """Display name of the object (not necessarily unique) (Getter)"""
     function DisplayName()::String
-        return get_string(Lib.CktElement_Get_DisplayName())
+        return Utils.get_string(Lib.CktElement_Get_DisplayName())
     end
 
     """Display name of the object (not necessarily unique) (Setter)"""
@@ -121,12 +128,12 @@ module CktElement
 
     """(read-only) Name of the Energy Meter this element is assigned to."""
     function EnergyMeter()::String
-        return get_string(Lib.CktElement_Get_EnergyMeter())
+        return Utils.get_string(Lib.CktElement_Get_EnergyMeter())
     end
 
     """(read-only) globally unique identifier for this object"""
     function GUID()::String
-        return get_string(Lib.CktElement_Get_GUID())
+        return Utils.get_string(Lib.CktElement_Get_GUID())
     end
 
     """(read-only) Pointer to this object"""
@@ -151,17 +158,17 @@ module CktElement
 
     """(read-only) Total losses in the element: two-element complex array"""
     function Losses()::Vector{ComplexF64}
-        return get_complex64_array(Lib.CktElement_Get_Losses)
+        return Utils.get_complex64_array(Lib.CktElement_Get_Losses)
     end
 
     """(read-only) Full Name of Active Circuit Element"""
     function Name()::String
-        return get_string(Lib.CktElement_Get_Name())
+        return Utils.get_string(Lib.CktElement_Get_Name())
     end
 
     """(read-only) Array of integer containing the node numbers (representing phases, for example) for each conductor of each terminal. """
     function NodeOrder()::Vector{Int}
-        return get_int32_array(Lib.CktElement_Get_NodeOrder)
+        return Utils.get_int32_array(Lib.CktElement_Get_NodeOrder)
     end
 
     """
@@ -217,49 +224,49 @@ module CktElement
 
     """(read-only) Complex array of losses by phase"""
     function PhaseLosses()::Vector{ComplexF64}
-        return get_complex64_array(Lib.CktElement_Get_PhaseLosses)
+        return Utils.get_complex64_array(Lib.CktElement_Get_PhaseLosses)
     end
 
     """(read-only) Complex array of powers into each conductor of each terminal"""
     function Powers()::Vector{ComplexF64}
-        return get_complex64_array(Lib.CktElement_Get_Powers)
+        return Utils.get_complex64_array(Lib.CktElement_Get_Powers)
     end
 
     """(read-only) Residual currents for each terminal: (mag, angle)"""
     function Residuals()::Array{Float64, 2}
-        r = get_float64_array(Lib.CktElement_Get_Residuals)
+        r = Utils.get_float64_array(Lib.CktElement_Get_Residuals)
         return reshape(r, (2, Int(length(r)/2)))
     end
 
     """(read-only) Double array of symmetrical component currents into each 3-phase terminal"""
     function SeqCurrents()::Vector{Float64}
-        return get_float64_array(Lib.CktElement_Get_SeqCurrents)
+        return Utils.get_float64_array(Lib.CktElement_Get_SeqCurrents)
     end
 
     """(read-only) Double array of sequence powers into each 3-phase teminal"""
     function SeqPowers()::Vector{ComplexF64}
-        return get_complex64_array(Lib.CktElement_Get_SeqPowers)
+        return Utils.get_complex64_array(Lib.CktElement_Get_SeqPowers)
     end
 
     """(read-only) Double array of symmetrical component voltages at each 3-phase terminal"""
     function SeqVoltages()::Vector{Float64}
-        return get_float64_array(Lib.CktElement_Get_SeqVoltages)
+        return Utils.get_float64_array(Lib.CktElement_Get_SeqVoltages)
     end
 
     """(read-only) Complex array of voltages at terminals"""
     function Voltages()::Vector{ComplexF64}
-        return get_complex64_array(Lib.CktElement_Get_Voltages)
+        return Utils.get_complex64_array(Lib.CktElement_Get_Voltages)
     end
 
     """(read-only) Voltages at each conductor in magnitude, angle form as array of doubles."""
     function VoltagesMagAng()::Array{Float64, 2}
-        r = get_float64_array(Lib.CktElement_Get_VoltagesMagAng)
+        r = Utils.get_float64_array(Lib.CktElement_Get_VoltagesMagAng)
         return reshape(r, (2, Int(length(r)/2)))
     end
 
     """(read-only) YPrim matrix, column order, complex numbers (paired)"""
     function YPrim()::Array{ComplexF64, 2}
-        r = get_complex64_array(Lib.CktElement_Get_Yprim)
+        r = Utils.get_complex64_array(Lib.CktElement_Get_Yprim)
         # TODO: should we transpose here?
         return reshape(r, (Int(length(r)/2), Int(length(r)/2)))
     end

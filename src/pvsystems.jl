@@ -1,11 +1,18 @@
 module PVsystems
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     """(read-only) Vairant array of strings with all PVSystem names"""
     function AllNames()::Vector{String}
-        return get_string_array(Lib.PVSystems_Get_AllNames)
+        return Utils.get_string_array(Lib.PVSystems_Get_AllNames)
     end
 
     """(read-only) Number of PVSystems"""
@@ -39,7 +46,7 @@ module PVsystems
     (write) Set the name of the active PVSystem
     """
     function Name()::String
-        return get_string(Lib.PVSystems_Get_Name())
+        return Utils.get_string(Lib.PVSystems_Get_Name())
     end
 
     """
@@ -73,12 +80,12 @@ module PVsystems
 
     """(read-only) Variant Array of PVSYSTEM energy meter register names"""
     function RegisterNames()::Vector{String}
-        return get_string_array(Lib.PVSystems_Get_RegisterNames)
+        return Utils.get_string_array(Lib.PVSystems_Get_RegisterNames)
     end
 
     """(read-only) Array of doubles containing values in PVSystem registers."""
     function RegisterValues()::Vector{Float64}
-        return get_float64_array(Lib.PVSystems_Get_RegisterValues)
+        return Utils.get_float64_array(Lib.PVSystems_Get_RegisterValues)
     end
 
     """

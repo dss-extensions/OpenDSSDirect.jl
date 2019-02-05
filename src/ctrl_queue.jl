@@ -1,7 +1,14 @@
 module CtrlQueue
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     function ClearActions()
         Lib.CtrlQueue_ClearActions()
@@ -46,7 +53,7 @@ module CtrlQueue
 
     """(read-only) Array of strings containing the entire queue in CSV format"""
     function Queue()::Vector{String}
-        return get_string_array(Lib.CtrlQueue_Get_Queue)
+        return Utils.get_string_array(Lib.CtrlQueue_Get_Queue)
     end
 
     """(read-only) Number of items on the OpenDSS control Queue"""

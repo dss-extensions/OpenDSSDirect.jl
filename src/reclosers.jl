@@ -1,7 +1,14 @@
 module Reclosers
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     function Close()
         Lib.Reclosers_Close()
@@ -13,7 +20,7 @@ module Reclosers
 
     """(read-only) Array of strings with names of all Reclosers in Active Circuit"""
     function AllNames()::Vector{String}
-        return get_string_array(Lib.Reclosers_Get_AllNames)
+        return Utils.get_string_array(Lib.Reclosers_Get_AllNames)
     end
 
     """(read-only) Number of Reclosers in active circuit."""
@@ -57,7 +64,7 @@ module Reclosers
     (write) Set monitored object by full name.
     """
     function MonitoredObj()::String
-        return get_string(Lib.Reclosers_Get_MonitoredObj())
+        return Utils.get_string(Lib.Reclosers_Get_MonitoredObj())
     end
 
     """
@@ -80,7 +87,7 @@ module Reclosers
 
     """Get Name of active Recloser or set the active Recloser by name."""
     function Name()::String
-        return get_string(Lib.Reclosers_Get_Name())
+        return Utils.get_string(Lib.Reclosers_Get_Name())
     end
 
     """Get Name of active Recloser or set the active Recloser by name."""
@@ -131,7 +138,7 @@ module Reclosers
 
     """(read-only) Variant Array of Doubles: reclose intervals, s, between shots."""
     function RecloseIntervals()
-        return get_float64_array(Lib.Reclosers_Get_RecloseIntervals)
+        return Utils.get_float64_array(Lib.Reclosers_Get_RecloseIntervals)
     end
 
     """Number of shots to lockout (fast + delayed)"""
@@ -146,7 +153,7 @@ module Reclosers
 
     """Full name of the circuit element that is being switched by the Recloser."""
     function SwitchedObj()::String
-        return get_string(Lib.Reclosers_Get_SwitchedObj())
+        return Utils.get_string(Lib.Reclosers_Get_SwitchedObj())
     end
 
     """Full name of the circuit element that is being switched by the Recloser."""

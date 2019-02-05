@@ -1,7 +1,14 @@
 module Capacitors
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     function AddStep()::Bool
         return Lib.Capacitors_AddStep() != 0
@@ -21,7 +28,7 @@ module Capacitors
 
     """(read-only) Array of strings with all Capacitor names in the circuit."""
     function AllNames()::Vector{String}
-        return get_string_array(Lib.Capacitors_Get_AllNames)
+        return Utils.get_string_array(Lib.Capacitors_Get_AllNames)
     end
 
     """(read-only) Number of Steps available in cap bank to be switched ON."""
@@ -51,7 +58,7 @@ module Capacitors
 
     """Sets the active Capacitor by Name. (Getter)"""
     function Name()::String
-        return get_string(Lib.Capacitors_Get_Name())
+        return Utils.get_string(Lib.Capacitors_Get_Name())
     end
 
     """Sets the active Capacitor by Name. (Setter)"""
@@ -78,12 +85,12 @@ module Capacitors
     (read) A array of  integer [0..numsteps-1] indicating state of each step. If value is -1 an error has occurred.
     """
     function States()::Vector{Int32}
-        return get_int32_array(Lib.Capacitors_Get_States)
+        return Utils.get_int32_array(Lib.Capacitors_Get_States)
     end
 
     """(write) Array of integer [0 ..numSteps-1] indicating the state of each step"""
     function States(Value)
-        Value, ValuePtr, ValueCount = prepare_int32_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_int32_array(Value)
         Lib.Capacitors_Set_States(ValuePtr, ValueCount)
     end
 

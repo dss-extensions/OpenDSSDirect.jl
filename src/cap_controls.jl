@@ -1,7 +1,14 @@
 module CapControls
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     function Reset()
         Lib.CapControls_Reset()
@@ -9,7 +16,7 @@ module CapControls
 
     """(read-only) Array of strings with all CapControl names."""
     function AllNames()::Vector{String}
-        return get_string_array(Lib.CapControls_Get_AllNames)
+        return Utils.get_string_array(Lib.CapControls_Get_AllNames)
     end
 
     """Transducer ratio from pirmary current to control current. (Getter)"""
@@ -24,7 +31,7 @@ module CapControls
 
     """Name of the Capacitor that is controlled. (Getter)"""
     function Capacitor()::String
-        return get_string(Lib.CapControls_Get_Capacitor())
+        return Utils.get_string(Lib.CapControls_Get_Capacitor())
     end
 
     """Name of the Capacitor that is controlled. (Setter)"""
@@ -82,7 +89,7 @@ module CapControls
 
     """Full name of the element that PT and CT are connected to. (Getter)"""
     function MonitoredObj()::String
-        return get_string(Lib.CapControls_Get_MonitoredObj())
+        return Utils.get_string(Lib.CapControls_Get_MonitoredObj())
     end
 
     """Full name of the element that PT and CT are connected to. (Setter)"""
@@ -102,7 +109,7 @@ module CapControls
 
     """Sets a CapControl active by name. (Getter)"""
     function Name()::String
-        return get_string(Lib.CapControls_Get_Name())
+        return Utils.get_string(Lib.CapControls_Get_Name())
     end
 
     """Sets a CapControl active by name. (Getter)"""

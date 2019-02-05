@@ -1,8 +1,15 @@
 
 module LoadShape
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     function New(Name)
         return Lib.LoadShapes_New(Cstring(pointer(Name)))
@@ -14,7 +21,7 @@ module LoadShape
 
     """(read-only) Array of strings containing names of all Loadshape objects currently defined."""
     function AllNames()
-        return get_string_array(Lib.LoadShapes_Get_AllNames)
+        return Utils.get_string_array(Lib.LoadShapes_Get_AllNames)
     end
 
     """(read-only) Number of Loadshape objects currently defined in Loadshape collection"""
@@ -52,7 +59,7 @@ module LoadShape
     (write) Set the active Loadshape by name
     """
     function Name()
-        return get_string(Lib.LoadShapes_Get_Name())
+        return Utils.get_string(Lib.LoadShapes_Get_Name())
     end
 
     """
@@ -97,7 +104,7 @@ module LoadShape
     (write) Array of doubles containing the P array for the Loadshape.
     """
     function PMult()
-        return get_float64_array(Lib.LoadShapes_Get_Pmult)
+        return Utils.get_float64_array(Lib.LoadShapes_Get_Pmult)
     end
 
     """
@@ -105,7 +112,7 @@ module LoadShape
     (write) Array of doubles containing the P array for the Loadshape.
     """
     function PMult(Value)
-        Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.LoadShapes_Set_Pmult(ValuePtr, ValueCount)
     end
 
@@ -121,23 +128,23 @@ module LoadShape
 
     """Array of doubles containing the Q multipliers."""
     function QMult()
-        return get_float64_array(Lib.LoadShapes_Get_Qmult)
+        return Utils.get_float64_array(Lib.LoadShapes_Get_Qmult)
     end
 
     """Array of doubles containing the Q multipliers."""
     function QMult(Value)
-        Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.LoadShapes_Set_Qmult(ValuePtr, ValueCount)
     end
 
     """Time array in hours correscponding to P and Q multipliers when the Interval=0."""
     function TimeArray()
-        return get_float64_array(Lib.LoadShapes_Get_TimeArray)
+        return Utils.get_float64_array(Lib.LoadShapes_Get_TimeArray)
     end
 
     """Time array in hours correscponding to P and Q multipliers when the Interval=0."""
     function TimeArray(Value)
-        Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.LoadShapes_Set_TimeArray(ValuePtr, ValueCount)
     end
 

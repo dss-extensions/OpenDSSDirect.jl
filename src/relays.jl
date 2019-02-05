@@ -1,11 +1,18 @@
 module Relays
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     """(read-only) Array of strings containing names of all Relay elements"""
     function AllNames()::Vector{String}
-        return get_string_array(Lib.Relays_Get_AllNames)
+        return Utils.get_string_array(Lib.Relays_Get_AllNames)
     end
 
     """(read-only) Number of Relays in circuit"""
@@ -20,7 +27,7 @@ module Relays
 
     """Full name of object this Relay is monitoring."""
     function MonitoredObj()::String
-        return get_string(Lib.Relays_Get_MonitoredObj())
+        return Utils.get_string(Lib.Relays_Get_MonitoredObj())
     end
 
     """Full name of object this Relay is monitoring."""
@@ -43,7 +50,7 @@ module Relays
     (write) Set Relay active by name
     """
     function Name()::String
-        return get_string(Lib.Relays_Get_Name())
+        return Utils.get_string(Lib.Relays_Get_Name())
     end
 
     """
@@ -61,7 +68,7 @@ module Relays
 
     """Full name of element that will be switched when relay trips."""
     function SwitchedObj()::String
-        return get_string(Lib.Relays_Get_SwitchedObj())
+        return Utils.get_string(Lib.Relays_Get_SwitchedObj())
     end
 
     """Full name of element that will be switched when relay trips."""

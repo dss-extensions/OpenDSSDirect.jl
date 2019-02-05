@@ -1,7 +1,14 @@
 module SwtControls
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     function Reset()
         Lib.SwtControls_Reset()
@@ -19,7 +26,7 @@ module SwtControls
 
     """(read-only) Array of strings with all SwtControl names in the active circuit."""
     function AllNames()::Vector{String}
-        return get_string_array(Lib.SwtControls_Get_AllNames)
+        return Utils.get_string_array(Lib.SwtControls_Get_AllNames)
     end
 
     function Count()::Int
@@ -53,7 +60,7 @@ module SwtControls
 
     """Sets a SwtControl active by Name."""
     function Name()::String
-        return get_string(Lib.SwtControls_Get_Name())
+        return Utils.get_string(Lib.SwtControls_Get_Name())
     end
 
     """Sets a SwtControl active by Name."""
@@ -100,7 +107,7 @@ module SwtControls
 
     """Full name of the switched element."""
     function SwitchedObj()::String
-        return get_string(Lib.SwtControls_Get_SwitchedObj())
+        return Utils.get_string(Lib.SwtControls_Get_SwitchedObj())
     end
 
     """Full name of the switched element."""

@@ -1,8 +1,15 @@
 
 module XYCurves
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     """(read-only) Number of XYCurve Objects"""
     function Count()::Int
@@ -19,7 +26,7 @@ module XYCurves
     (write) Get Name of active XYCurve Object
     """
     function Name()::String
-        return get_string(Lib.XYCurves_Get_Name())
+        return Utils.get_string(Lib.XYCurves_Get_Name())
     end
 
     """
@@ -47,12 +54,12 @@ module XYCurves
 
     """Get/Set X values as a Array of doubles. Set Npts to max number expected if setting"""
     function XArray()::Vector{Float64}
-        return get_float64_array(Lib.XYCurves_Get_Xarray)
+        return Utils.get_float64_array(Lib.XYCurves_Get_Xarray)
     end
 
     """Get/Set X values as a Array of doubles. Set Npts to max number expected if setting"""
     function XArray(Value::Vector{Float64})
-        Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.XYCurves_Set_Xarray(ValuePtr, ValueCount)
     end
 
@@ -78,12 +85,12 @@ module XYCurves
 
     """Get/Set Y values in curve; Set Npts to max number expected if setting"""
     function YArray()::Vector{Float64}
-        return get_float64_array(Lib.XYCurves_Get_Yarray)
+        return Utils.get_float64_array(Lib.XYCurves_Get_Yarray)
     end
 
     """Get/Set Y values in curve; Set Npts to max number expected if setting"""
     function YArray(Value::Vector{Float64})
-        Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.XYCurves_Set_Yarray(ValuePtr, ValueCount)
     end
 

@@ -1,13 +1,20 @@
 module Text
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     export dss
 
     """Input command string for the DSS. (Getter)"""
     function Command()::String
-        get_string(Lib.Text_Get_Command())
+        return Utils.get_string(Lib.Text_Get_Command())
     end
 
     """Input command string for the DSS. (Setter)"""
@@ -28,7 +35,7 @@ module Text
 
     """(read-only) Result string for the last command."""
     function Result()::String
-        get_string(Lib.Text_Get_Result())
+        return Utils.get_string(Lib.Text_Get_Result())
     end
 
     const dss = Command

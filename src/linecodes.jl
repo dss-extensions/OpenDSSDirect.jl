@@ -1,11 +1,18 @@
 module LineCodes
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     """(read-only) Array of strings with names of all devices"""
     function AllNames()::Vector{String}
-        return get_string_array(Lib.LineCodes_Get_AllNames)
+        return Utils.get_string_array(Lib.LineCodes_Get_AllNames)
     end
 
     """Zero-sequence capacitance, nF per unit length"""
@@ -30,12 +37,12 @@ module LineCodes
 
     """Capacitance matrix, nF per unit length"""
     function Cmatrix()::Vector{Float64}
-        return get_float64_array(Lib.LineCodes_Get_Cmatrix)
+        return Utils.get_float64_array(Lib.LineCodes_Get_Cmatrix)
     end
 
     """Capacitance matrix, nF per unit length"""
     function Cmatrix(Value::Vector{Float64})
-        Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.LineCodes_Set_Cmatrix(ValuePtr, ValueCount)
     end
 
@@ -65,7 +72,7 @@ module LineCodes
 
     """Name of active LineCode"""
     function Name()::String
-        return get_string(Lib.LineCodes_Get_Name())
+        return Utils.get_string(Lib.LineCodes_Get_Name())
     end
 
     """Name of active LineCode"""
@@ -119,12 +126,12 @@ module LineCodes
 
     """Resistance matrix, ohms per unit length"""
     function Rmatrix()::Vector{Float64}
-        return get_float64_array(Lib.LineCodes_Get_Rmatrix)
+        return Utils.get_float64_array(Lib.LineCodes_Get_Rmatrix)
     end
 
     """Resistance matrix, ohms per unit length"""
     function Rmatrix(Value::Vector{Float64})
-        Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.LineCodes_Set_Rmatrix(ValuePtr, ValueCount)
     end
 
@@ -158,12 +165,12 @@ module LineCodes
 
     """Reactance matrix, ohms per unit length"""
     function Xmatrix()::Vector{Float64}
-        return get_float64_array(Lib.LineCodes_Get_Xmatrix)
+        return Utils.get_float64_array(Lib.LineCodes_Get_Xmatrix)
     end
 
     """Reactance matrix, ohms per unit length"""
     function Xmatrix(Value::Vector{Float64})
-        Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.LineCodes_Set_Xmatrix(ValuePtr, ValueCount)
     end
 

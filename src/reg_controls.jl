@@ -1,7 +1,14 @@
 module RegControls
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     function Reset()
         Lib.RegControls_Reset()
@@ -9,7 +16,7 @@ module RegControls
 
     """(read-only) Array of strings containing all RegControl names"""
     function AllNames()::Vector{String}
-        return get_string_array(Lib.RegControls_Get_AllNames)
+        return Utils.get_string_array(Lib.RegControls_Get_AllNames)
     end
 
     """CT primary ampere rating (secondary is 0.2 amperes)"""
@@ -114,7 +121,7 @@ module RegControls
 
     """Name of a remote regulated bus, in lieu of LDC settings"""
     function MonitoredBus()::String
-        return get_string(Lib.RegControls_Get_MonitoredBus())
+        return Utils.get_string(Lib.RegControls_Get_MonitoredBus())
     end
 
     """Name of a remote regulated bus, in lieu of LDC settings"""
@@ -127,7 +134,7 @@ module RegControls
     (write) Sets a RegControl active by name
     """
     function Name()::String
-        return get_string(Lib.RegControls_Get_Name())
+        return Utils.get_string(Lib.RegControls_Get_Name())
     end
 
     """
@@ -225,7 +232,7 @@ module RegControls
 
     """Name of the transformer this regulator controls"""
     function Transformer()::String
-        return get_string(Lib.RegControls_Get_Transformer())
+        return Utils.get_string(Lib.RegControls_Get_Transformer())
     end
 
     """Name of the transformer this regulator controls"""

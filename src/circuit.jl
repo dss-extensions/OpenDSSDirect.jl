@@ -33,22 +33,22 @@ module Circuit
 
     """(read-only) Returns an array of doubles representing the distances to parent EnergyMeter. Sequence of array corresponds to other node ByPhase properties."""
     function AllNodeDistancesByPhase(Phase)::Vector{Float64}
-        return get_float64_array(Lib.Circuit_Get_AllNodeDistancesByPhase, Phase)
+        return Utils.get_float64_array(Lib.Circuit_Get_AllNodeDistancesByPhase, Phase)
     end
 
     """(read-only) Return array of strings of the node names for the By Phase criteria. Sequence corresponds to other ByPhase properties."""
     function AllNodeNamesByPhase(Phase)::Vector{String}
-        return get_string_array(Lib.Circuit_Get_AllNodeNamesByPhase, Phase)
+        return Utils.get_string_array(Lib.Circuit_Get_AllNodeNamesByPhase, Phase)
     end
 
     """(read-only) Returns Array of doubles represent voltage magnitudes for nodes on the specified phase."""
     function AllNodeVmagByPhase(Phase)::Vector{Float64}
-        return get_float64_array(Lib.Circuit_Get_AllNodeVmagByPhase, Phase)
+        return Utils.get_float64_array(Lib.Circuit_Get_AllNodeVmagByPhase, Phase)
     end
 
     """(read-only) Returns array of per unit voltage magnitudes for each node by phase"""
     function AllNodeVmagPUByPhase(Phase)::Vector{Float64}
-        return get_float64_array(Lib.Circuit_Get_AllNodeVmagPUByPhase, Phase)
+        return Utils.get_float64_array(Lib.Circuit_Get_AllNodeVmagPUByPhase, Phase)
     end
 
     function NextElement()::Int
@@ -93,62 +93,62 @@ module Circuit
 
     """(read-only) Returns distance from each bus to parent EnergyMeter. Corresponds to sequence in AllBusNames."""
     function AllBusDistances()::Vector{Float64}
-        return get_float64_array(Lib.Circuit_Get_AllBusDistances)
+        return Utils.get_float64_array(Lib.Circuit_Get_AllBusDistances)
     end
 
     """(read-only) Array of strings containing names of all buses in circuit (see AllNodeNames)."""
     function AllBusNames()::Vector{String}
-        return get_string_array(Lib.Circuit_Get_AllBusNames)
+        return Utils.get_string_array(Lib.Circuit_Get_AllBusNames)
     end
 
     """(read-only) Array of magnitudes (doubles) of voltages at all buses"""
     function AllBusVMag()::Vector{Float64}
-        return get_float64_array(Lib.Circuit_Get_AllBusVmag)
+        return Utils.get_float64_array(Lib.Circuit_Get_AllBusVmag)
     end
 
     """(read-only) Double Array of all bus voltages (each node) magnitudes in Per unit"""
     function AllBusMagPu()::Vector{Float64}
-        return get_float64_array(Lib.Circuit_Get_AllBusVmagPu)
+        return Utils.get_float64_array(Lib.Circuit_Get_AllBusVmagPu)
     end
 
     """(read-only) Complex array of all bus, node voltages from most recent solution"""
     function AllBusVolts()::Vector{ComplexF64}
-        return get_complex64_array(Lib.Circuit_Get_AllBusVolts)
+        return Utils.get_complex64_array(Lib.Circuit_Get_AllBusVolts)
     end
 
     """(read-only) Array of total losses (complex) in each circuit element"""
     function AllElementLosses()::Vector{Float64}
-        return get_float64_array(Lib.Circuit_Get_AllElementLosses)
+        return Utils.get_float64_array(Lib.Circuit_Get_AllElementLosses)
     end
 
     """(read-only) Array of strings containing Full Name of all elements."""
     function AllElementNames()::Vector{String}
-        return get_string_array(Lib.Circuit_Get_AllElementNames)
+        return Utils.get_string_array(Lib.Circuit_Get_AllElementNames)
     end
 
     """(read-only) Returns an array of distances from parent EnergyMeter for each Node. Corresponds to AllBusVMag sequence."""
     function AllNodeDistances()::Vector{Float64}
-        return get_float64_array(Lib.Circuit_Get_AllNodeDistances)
+        return Utils.get_float64_array(Lib.Circuit_Get_AllNodeDistances)
     end
 
     """(read-only) Array of strings containing full name of each node in system in same order as returned by AllBusVolts, etc."""
     function AllNodeNames()::Vector{String}
-        return get_string_array(Lib.Circuit_Get_AllNodeNames)
+        return Utils.get_string_array(Lib.Circuit_Get_AllNodeNames)
     end
 
     """(read-only) Complex total line losses in the circuit"""
     function LineLosses()::Complex
-        return get_complex64(Lib.Circuit_Get_LineLosses)
+        return Utils.get_complex64(Lib.Circuit_Get_LineLosses)
     end
 
     """(read-only) Total losses in active circuit, complex number (two-element array of double)."""
     function Losses()::Complex
-        return get_complex64(Lib.Circuit_Get_Losses)
+        return Utils.get_complex64(Lib.Circuit_Get_Losses)
     end
 
     """(read-only) Name of the active circuit."""
     function Name()::String
-        return get_string(Lib.Circuit_Get_Name())
+        return Utils.get_string(Lib.Circuit_Get_Name())
     end
 
     """(read-only) Total number of Buses in the circuit."""
@@ -173,32 +173,33 @@ module Circuit
 
     """(read-only) Complex losses in all transformers designated to substations."""
     function SubstationLosses()::Complex
-        return get_complex64(Lib.Circuit_Get_SubstationLosses)
+        return Utils.get_complex64(Lib.Circuit_Get_SubstationLosses)
     end
 
     """(read-only) System Y matrix (after a solution has been performed)"""
     function SystemY()::Vector{Float64}
-        return get_float64_array(Lib.Circuit_Get_SystemY)
+        # TODO: return Matrix{ComplexF64} instead of Vector{Float64}?
+        return Utils.get_float64_array(Lib.Circuit_Get_SystemY)
     end
 
     """(read-only) Total power, watts delivered to the circuit"""
     function TotalPower()::Complex
-        return get_complex64(Lib.Circuit_Get_TotalPower)
+        return Utils.get_complex64(Lib.Circuit_Get_TotalPower)
     end
 
     """(read-only) Array of doubles containing complex injection currents for the present solution. Is is the "I" vector of I=YV"""
     function YCurrents()::Vector{ComplexF64}
-        return get_complex64_array(Lib.Circuit_Get_YCurrents)
+        return Utils.get_complex64_array(Lib.Circuit_Get_YCurrents)
     end
 
     """(read-only) Array of strings containing the names of the nodes in the same order as the Y matrix"""
     function YNodeOrder()::Vector{String}
-        return get_string_array(Lib.Circuit_Get_YNodeOrder)
+        return Utils.get_string_array(Lib.Circuit_Get_YNodeOrder)
     end
 
     """(read-only) Complex array of actual node voltages in same order as SystemY matrix."""
     function YNodeVArray()::Vector{ComplexF64}
-        return get_complex64_array(Lib.Circuit_Get_YNodeVarray)
+        return Utils.get_complex64_array(Lib.Circuit_Get_YNodeVarray)
     end
 
 end

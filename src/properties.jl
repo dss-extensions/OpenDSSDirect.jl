@@ -1,16 +1,23 @@
 module Properties
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     """(read-only) Description of the property."""
     function Description()::String
-        return get_string(Lib.DSSProperty_Get_Description())
+        return Utils.get_string(Lib.DSSProperty_Get_Description())
     end
 
     """(read-only) Name of Property"""
     function Name()::String
-        return get_string(Lib.DSSProperty_Get_Name())
+        return Utils.get_string(Lib.DSSProperty_Get_Name())
     end
 
     """

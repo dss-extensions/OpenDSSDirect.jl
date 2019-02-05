@@ -1,8 +1,15 @@
 
 module PDElements
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     """(read-only) accummulated failure rate for this branch on downline"""
     function AccumulatedL()::Float64
@@ -46,7 +53,7 @@ module PDElements
 
     """Get/Set name of active PD Element. Returns null string if active element is not PDElement type."""
     function Name()::String
-        return get_string(Lib.PDElements_Get_Name())
+        return Utils.get_string(Lib.PDElements_Get_Name())
     end
 
     """Get/Set name of active PD Element. Returns null string if active element is not PDElement type."""

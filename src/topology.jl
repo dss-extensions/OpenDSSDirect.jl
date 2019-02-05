@@ -1,7 +1,14 @@
 module Topology
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     """(read-only) Returns index of the active branch"""
     function ActiveBranch()::Int
@@ -15,17 +22,17 @@ module Topology
 
     """(read-only) Array of all isolated branch names."""
     function AllIsolatedBranches()::Vector{String}
-        return get_string_array(Lib.Topology_Get_AllIsolatedBranches)
+        return Utils.get_string_array(Lib.Topology_Get_AllIsolatedBranches)
     end
 
     """(read-only) Array of all isolated load names."""
     function AllIsolatedLoads()::Vector{String}
-        return get_string_array(Lib.Topology_Get_AllIsolatedLoads)
+        return Utils.get_string_array(Lib.Topology_Get_AllIsolatedLoads)
     end
 
     """(read-only) Array of all looped element names, by pairs."""
     function AllLoopedPairs()::Vector{String}
-        return get_string_array(Lib.Topology_Get_AllLoopedPairs)
+        return Utils.get_string_array(Lib.Topology_Get_AllLoopedPairs)
     end
 
     """(read-only) Move back toward the source, return index of new active branch, or 0 if no more."""
@@ -35,7 +42,7 @@ module Topology
 
     """Name of the active branch."""
     function BranchName()::String
-        return get_string(Lib.Topology_Get_BranchName())
+        return Utils.get_string(Lib.Topology_Get_BranchName())
     end
 
     """Name of the active branch."""
@@ -45,7 +52,7 @@ module Topology
 
     """Set the active branch to one containing this bus, return index or 0 if not found"""
     function BusName()::String
-        return get_string(Lib.Topology_Get_BusName())
+        return Utils.get_string(Lib.Topology_Get_BusName())
     end
 
     """Set the active branch to one containing this bus, return index or 0 if not found"""

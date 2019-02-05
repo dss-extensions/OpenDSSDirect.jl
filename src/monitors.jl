@@ -1,11 +1,18 @@
 module Monitors
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     """(read-only) Array of doubles for the specified channel  (usage: MyArray = DSSMonitor.Channel(i)) A Save or SaveAll  should be executed first. Done automatically by most standard solution modes."""
     function Channel(Index::Int)::Vector{Float64}
-        return get_float64_array(Lib.Monitors_Get_Channel, Index)
+        return Utils.get_float64_array(Lib.Monitors_Get_Channel, Index)
     end
 
     function Process()
@@ -46,12 +53,12 @@ module Monitors
 
     """(read-only) Array of all Monitor Names"""
     function AllNames()::Vector{String}
-        return get_string_array(Lib.Monitors_Get_AllNames)
+        return Utils.get_string_array(Lib.Monitors_Get_AllNames)
     end
 
     """(read-only) Byte Array containing monitor stream values. Make sure a "save" is done first (standard solution modes do this automatically)"""
     function ByteStream()::Vector{Int8}
-        result = get_int8_array(Lib.Monitors_Get_ByteStream)
+        result = Utils.get_int8_array(Lib.Monitors_Get_ByteStream)
         if result == [0]
             return []
         end
@@ -66,7 +73,7 @@ module Monitors
 
     """Full object name of element being monitored."""
     function Element()::String
-        result = get_string(Lib.Monitors_Get_Element())
+        result = Utils.get_string(Lib.Monitors_Get_Element())
         return result
     end
 
@@ -77,7 +84,7 @@ module Monitors
 
     """(read-only) Name of CSV file associated with active Monitor."""
     function FileName()::String
-        return get_string(Lib.Monitors_Get_FileName())
+        return Utils.get_string(Lib.Monitors_Get_FileName())
     end
 
     """(read-only) Monitor File Version (integer)"""
@@ -92,7 +99,7 @@ module Monitors
 
     """(read-only) Header string;  Array of strings containing Channel names"""
     function Header()::Vector{String}
-        return get_string_array(Lib.Monitors_Get_Header)
+        return Utils.get_string_array(Lib.Monitors_Get_Header)
     end
 
     """Set Monitor mode (bitmask integer - see DSS Help)"""
@@ -107,7 +114,7 @@ module Monitors
 
     """Sets the active Monitor object by name"""
     function Name()::String
-        return get_string(Lib.Monitors_Get_Name())
+        return Utils.get_string(Lib.Monitors_Get_Name())
     end
 
     """Sets the active Monitor object by name"""
@@ -147,12 +154,12 @@ module Monitors
 
     """(read-only) Array of doubles containing frequency values for harmonics mode solutions; Empty for time mode solutions (use dblHour)"""
     function DblFreq()::Vector{Float64}
-        return get_float64_array(Lib.Monitors_Get_dblFreq)
+        return Utils.get_float64_array(Lib.Monitors_Get_dblFreq)
     end
 
     """(read-only) Array of doubles containgin time value in hours for time-sampled monitor values; Empty if frequency-sampled values for harmonics solution  (see dblFreq)"""
     function DblHour()::Vector{Float64}
-        return get_float64_array(Lib.Monitors_Get_dblHour)
+        return Utils.get_float64_array(Lib.Monitors_Get_dblHour)
     end
 
 end

@@ -1,8 +1,17 @@
 module YMatrix
 
-    using ..Lib
-    using ..Utils
     using SparseArrays
+
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
+
 
     """Return as (data, indices, indptr) that can fed into scipy.sparse.csc_matrix"""
     function getYsparse(factor=true)::SparseArrays.SparseMatrixCSC{Complex{Float64},Int64}

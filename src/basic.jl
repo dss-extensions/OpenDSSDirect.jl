@@ -1,7 +1,14 @@
 module Basic
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     function ClearAll()
         Lib.DSS_ClearAll()
@@ -12,7 +19,7 @@ module Basic
     end
 
     function SetActiveClass(ClassName::String)::Int
-        return Lib.DSS_SetActiveClass(Cstring(pointer(ClassName)))
+        return Lib.DSS_SetActiveClass(ClassName)
     end
 
     function Start(code::Int)
@@ -21,12 +28,12 @@ module Basic
 
     """(read-only) List of DSS intrinsic classes (names of the classes)"""
     function Classes()::Vector{String}
-        return get_string_array(Lib.DSS_Get_Classes)
+        return Utils.get_string_array(Lib.DSS_Get_Classes)
     end
 
     """DSS Data File Path.  Default path for reports, etc. from DSS (Getter)"""
     function DataPath()::String
-        return get_string(Lib.DSS_Get_DataPath())
+        return Utils.get_string(Lib.DSS_Get_DataPath())
     end
 
     """DSS Data File Path.  Default path for reports, etc. from DSS (Setter)"""
@@ -36,7 +43,7 @@ module Basic
 
     """(read-only) Returns the path name for the default text editor."""
     function DefaultEditor()::String
-        return get_string(Lib.DSS_Get_DefaultEditor())
+        return Utils.get_string(Lib.DSS_Get_DefaultEditor())
     end
 
     """(read-only) Number of Circuits currently defined"""
@@ -56,12 +63,12 @@ module Basic
 
     """(read-only) List of user-defined classes"""
     function UserClasses()::Vector{String}
-        return get_string_array(Lib.DSS_Get_UserClasses)
+        return Utils.get_string_array(Lib.DSS_Get_UserClasses)
     end
 
     """(read-only) Get version string for the DSS."""
     function Version()::String
-        return get_string(Lib.DSS_Get_Version())
+        return Utils.get_string(Lib.DSS_Get_Version())
     end
 
     """Gets/sets whether text output is allowed (Getter)"""
@@ -83,7 +90,7 @@ module Basic
         Lib.DSS_NewCircuit(Cstring(pointer(name)))
         error_num = Lib.Error_Get_Number()
         if (error_num != 0)
-            description = get_string(Lib.Error_Get_Description())
+            description = Utils.get_string(Lib.Error_Get_Description())
             throw(
                 OpenDSSDirectException(
                     "[ERROR $error_num] $description"

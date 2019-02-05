@@ -58,6 +58,8 @@ else
     error("Unknown operating system. Cannot use OpenDSSDirect")
 end
 
+include("docstringextensions.jl")
+
 include("CEnum.jl")
 
 include("lib.jl")

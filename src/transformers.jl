@@ -1,12 +1,19 @@
 
 module Transformers
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     """(read-only) Array of strings with all Transformer names in the active circuit."""
     function AllNames()::Vector{String}
-        return get_string_array(Lib.Transformers_Get_AllNames)
+        return Utils.get_string_array(Lib.Transformers_Get_AllNames)
     end
 
     function Count()::Int
@@ -51,7 +58,7 @@ module Transformers
 
     """Sets a Transformer active by Name."""
     function Name()::String
-        return get_string(Lib.Transformers_Get_Name())
+        return Utils.get_string(Lib.Transformers_Get_Name())
     end
 
     """Sets a Transformer active by Name."""
@@ -126,7 +133,7 @@ module Transformers
 
     """Name of an XfrmCode that supplies electircal parameters for this Transformer."""
     function XfmrCode()::String
-        return get_string(Lib.Transformers_Get_XfmrCode())
+        return Utils.get_string(Lib.Transformers_Get_XfmrCode())
     end
 
     """Name of an XfrmCode that supplies electircal parameters for this Transformer."""

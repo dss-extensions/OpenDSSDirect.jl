@@ -1,11 +1,18 @@
 module Loads
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     """(read-only) Array of strings containing all Load names"""
     function AllNames()::Vector{String}
-        return get_string_array(Lib.Loads_Get_AllNames)
+        return Utils.get_string_array(Lib.Loads_Get_AllNames)
     end
 
     """Factor for allocating loads by connected xfkva"""
@@ -20,7 +27,7 @@ module Loads
 
     """Name of a loadshape with both Mult and Qmult, for CVR factors as a function of time."""
     function CVRCurve()::String
-        return get_string(Lib.Loads_Get_CVRcurve())
+        return Utils.get_string(Lib.Loads_Get_CVRcurve())
     end
 
     """Name of a loadshape with both Mult and Qmult, for CVR factors as a function of time."""
@@ -78,7 +85,7 @@ module Loads
 
     """Name of the growthshape curve for yearly load growth factors."""
     function Growth()::String
-        return get_string(Lib.Loads_Get_Growth())
+        return Utils.get_string(Lib.Loads_Get_Growth())
     end
 
     """Name of the growthshape curve for yearly load growth factors."""
@@ -108,7 +115,7 @@ module Loads
 
     """Set active load by name."""
     function Name()::String
-        return get_string(Lib.Loads_Get_Name())
+        return Utils.get_string(Lib.Loads_Get_Name())
     end
 
     """Set active load by name."""
@@ -188,7 +195,7 @@ module Loads
     end
 
     function Spectrum()::String
-        return get_string(Lib.Loads_Get_Spectrum())
+        return Utils.get_string(Lib.Loads_Get_Spectrum())
     end
 
     function Spectrum(Value::String)
@@ -257,7 +264,7 @@ module Loads
 
     """Name of yearly duration loadshape"""
     function Yearly()::String
-        return get_string(Lib.Loads_Get_Yearly())
+        return Utils.get_string(Lib.Loads_Get_Yearly())
     end
 
     """Name of yearly duration loadshape"""
@@ -267,7 +274,7 @@ module Loads
 
     """Array of 7  doubles with values for ZIPV property of the LOAD object"""
     function ZipV()::Vector{Float64}
-        result = get_float64_array(Lib.Loads_Get_ZIPV)
+        result = Utils.get_float64_array(Lib.Loads_Get_ZIPV)
         if result == [0.0]
             return []
         end
@@ -277,13 +284,13 @@ module Loads
 
     """Array of 7  doubles with values for ZIPV property of the LOAD object"""
     function ZipV(Value::Vector{Float64})
-        Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.Loads_Set_ZIPV(ValuePtr, ValueCount)
     end
 
     """Name of the loadshape for a daily load profile."""
     function Daily()::String
-        return get_string(Lib.Loads_Get_daily())
+        return Utils.get_string(Lib.Loads_Get_daily())
     end
 
     """Name of the loadshape for a daily load profile."""
@@ -293,7 +300,7 @@ module Loads
 
     """Name of the loadshape for a duty cycle simulation."""
     function Duty()::String
-        return get_string(Lib.Loads_Get_duty())
+        return Utils.get_string(Lib.Loads_Get_duty())
     end
 
     """Name of the loadshape for a duty cycle simulation."""

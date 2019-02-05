@@ -1,7 +1,14 @@
 module Fuses
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     function Close()
         Lib.Fuses_Close()
@@ -17,7 +24,7 @@ module Fuses
 
     """(read-only) Array of strings containing names of all Fuses in the circuit"""
     function AllNames()::Vector{String}
-        return get_string_array(Lib.Fuses_Get_AllNames)
+        return Utils.get_string_array(Lib.Fuses_Get_AllNames)
     end
 
     """(read-only) Number of Fuse elements in the circuit"""
@@ -49,7 +56,7 @@ module Fuses
 
     """Full name of the circuit element to which the fuse is connected."""
     function MonitoredObj()::String
-        return get_string(Lib.Fuses_Get_MonitoredObj())
+        return Utils.get_string(Lib.Fuses_Get_MonitoredObj())
     end
 
     """Full name of the circuit element to which the fuse is connected."""
@@ -78,7 +85,7 @@ module Fuses
     (write) Set the active Fuse element by name.
     """
     function Name()::String
-        return get_string(Lib.Fuses_Get_Name())
+        return Utils.get_string(Lib.Fuses_Get_Name())
     end
 
     """
@@ -120,7 +127,7 @@ module Fuses
     (write) Full name of the circuit element switch that the fuse controls. Defaults to MonitoredObj.
     """
     function SwitchedObj()::String
-        return get_string(Lib.Fuses_Get_SwitchedObj())
+        return Utils.get_string(Lib.Fuses_Get_SwitchedObj())
     end
 
     """
@@ -149,7 +156,7 @@ module Fuses
 
     """Name of the TCCcurve object that determines fuse blowing."""
     function TCCCurve()::String
-        return get_string(Lib.Fuses_Get_TCCcurve())
+        return Utils.get_string(Lib.Fuses_Get_TCCcurve())
     end
 
     """Name of the TCCcurve object that determines fuse blowing."""

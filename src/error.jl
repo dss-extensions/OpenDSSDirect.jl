@@ -1,11 +1,18 @@
 module Error
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     """(read-only) Description of error for last operation"""
     function Description()::String
-        return get_string(lib.Error_Get_Description())
+        return Utils.get_string(lib.Error_Get_Description())
     end
 
     """(read-only) Error Number"""

@@ -1,12 +1,19 @@
 
 module Vsources
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     """(read-only) Names of all Vsource objects in the circuit"""
     function AllNames()::Vector{String}
-        return get_string_array(Lib.Vsources_Get_AllNames)
+        return Utils.get_string_array(Lib.Vsources_Get_AllNames)
     end
 
     """
@@ -60,7 +67,7 @@ module Vsources
     (write) Set Active VSOURCE by Name
     """
     function Name()::String
-        return get_string(Lib.Vsources_Get_Name())
+        return Utils.get_string(Lib.Vsources_Get_Name())
     end
 
     """

@@ -1,11 +1,18 @@
 module Generators
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     """(read-only) Array of names of all Generator objects."""
     function AllNames()::Vector{String}
-        return get_string_array(Lib.Generators_Get_AllNames)
+        return Utils.get_string_array(Lib.Generators_Get_AllNames)
     end
 
     """(read-only) Number of Generator Objects in Active Circuit"""
@@ -40,7 +47,7 @@ module Generators
 
     """Sets a generator active by name."""
     function Name()::String
-        return get_string(Lib.Generators_Get_Name())
+        return Utils.get_string(Lib.Generators_Get_Name())
     end
 
     """Sets a generator active by name."""
@@ -75,12 +82,12 @@ module Generators
 
     """(read-only) Array of Names of all generator energy meter registers"""
     function RegisterNames()::Vector{String}
-        return get_string_array(Lib.Generators_Get_RegisterNames)
+        return Utils.get_string_array(Lib.Generators_Get_RegisterNames)
     end
 
     """(read-only) Array of valus in generator energy meter registers."""
     function RegisterValues()::Vector{Float64}
-        return get_float64_array(Lib.Generators_Get_RegisterValues)
+        return Utils.get_float64_array(Lib.Generators_Get_RegisterValues)
     end
 
     """Vmaxpu for generator model"""

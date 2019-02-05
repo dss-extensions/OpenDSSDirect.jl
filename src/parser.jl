@@ -1,24 +1,31 @@
 module Parser
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     """(read-only) Use this property to parse a Matrix token in OpenDSS format.  Returns square matrix of order specified. Order same as default Fortran order: column by column."""
     function Matrix(ExpectedOrder)::Vector{Float64}
         error("Not implemented yet. Please contact the developer.")
-        return get_float64_array(Lib.Parser_Get_Matrix, ExpectedOrder)
+        return Utils.get_float64_array(Lib.Parser_Get_Matrix, ExpectedOrder)
     end
 
     """(read-only) Use this property to parse a matrix token specified in lower triangle form. Symmetry is forced."""
     function SymMatrix(ExpectedOrder)::Vector{Float64}
         error("Not implemented yet. Please contact the developer.")
-        return get_float64_array(Lib.Parser_Get_SymMatrix, ExpectedOrder)
+        return Utils.get_float64_array(Lib.Parser_Get_SymMatrix, ExpectedOrder)
     end
 
     """(read-only) Returns token as array of doubles. For parsing quoted array syntax."""
     function Vector(ExpectedSize)::Vector{Float64}
         error("Not implemented yet. Please contact the developer.")
-        return get_float64_array(Lib.Parser_Get_Vector, ExpectedSize)
+        return Utils.get_float64_array(Lib.Parser_Get_Vector, ExpectedSize)
     end
 
     function ResetDelimiters()
@@ -40,7 +47,7 @@ module Parser
     (write) Set String containing the the characters for Quoting in OpenDSS scripts. Matching pairs defined in EndQuote. Default is "'([{.
     """
     function BeginQuote()::String
-        return get_string(Lib.Parser_Get_BeginQuote())
+        return Utils.get_string(Lib.Parser_Get_BeginQuote())
     end
 
     """
@@ -53,7 +60,7 @@ module Parser
 
     """String to be parsed. Loading this string resets the Parser to the beginning of the line. Then parse off the tokens in sequence."""
     function CmdString()::String
-        return get_string(Lib.Parser_Get_CmdString())
+        return Utils.get_string(Lib.Parser_Get_CmdString())
     end
 
     """String to be parsed. Loading this string resets the Parser to the beginning of the line. Then parse off the tokens in sequence."""
@@ -68,7 +75,7 @@ module Parser
 
     """String defining hard delimiters used to separate token on the command string. Default is , and =. The = separates token name from token value. These override whitesspace to separate tokens."""
     function Delimiters()::String
-        return get_string(Lib.Parser_Get_Delimiters())
+        return Utils.get_string(Lib.Parser_Get_Delimiters())
     end
 
     """String defining hard delimiters used to separate token on the command string. Default is , and =. The = separates token name from token value. These override whitesspace to separate tokens."""
@@ -78,7 +85,7 @@ module Parser
 
     """String containing characters, in order, that match the beginning quote characters in BeginQuote. Default is "')]}"""
     function EndQuote()::String
-        return get_string(Lib.Parser_Get_EndQuote())
+        return Utils.get_string(Lib.Parser_Get_EndQuote())
     end
 
     """String containing characters, in order, that match the beginning quote characters in BeginQuote. Default is "')]}"""
@@ -93,12 +100,12 @@ module Parser
 
     """(read-only) Get next token and return tag name (before = sign) if any. See AutoIncrement."""
     function NextParam()::String
-        return get_string(Lib.Parser_Get_NextParam())
+        return Utils.get_string(Lib.Parser_Get_NextParam())
     end
 
     """(read-only) Return next parameter as a string"""
     function StrValue()::String
-        return get_string(Lib.Parser_Get_StrValue())
+        return Utils.get_string(Lib.Parser_Get_StrValue())
     end
 
     """
@@ -106,7 +113,7 @@ module Parser
     (write) Set the characters used for White space in the command string.  Default is blank and Tab.
     """
     function WhiteSpace()::String
-        return get_string(Lib.Parser_Get_WhiteSpace())
+        return Utils.get_string(Lib.Parser_Get_WhiteSpace())
     end
 
     """

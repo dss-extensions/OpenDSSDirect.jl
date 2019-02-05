@@ -1,7 +1,14 @@
 module Solution
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     function BuildYMatrix(BuildOption::Int, AllocateVI::Int)
         Lib.Solution_BuildYMatrix(BuildOption, AllocateVI)
@@ -135,7 +142,7 @@ module Solution
 
     """Default daily load shape (defaults to "Default")"""
     function DefaultDaily()::String
-        return get_string(Lib.Solution_Get_DefaultDaily())
+        return Utils.get_string(Lib.Solution_Get_DefaultDaily())
     end
 
     """Default daily load shape (defaults to "Default")"""
@@ -145,7 +152,7 @@ module Solution
 
     """Default Yearly load shape (defaults to "Default")"""
     function DefaultYearly()::String
-        return get_string(Lib.Solution_Get_DefaultYearly())
+        return Utils.get_string(Lib.Solution_Get_DefaultYearly())
     end
 
     """Default Yearly load shape (defaults to "Default")"""
@@ -155,7 +162,7 @@ module Solution
 
     """(read-only) Array of strings containing the Event Log"""
     function EventLog()::Vector{String}
-        return get_string_array(Lib.Solution_Get_EventLog)
+        return Utils.get_string_array(Lib.Solution_Get_EventLog)
     end
 
     """Set the Frequency for next solution"""
@@ -231,7 +238,7 @@ module Solution
 
     """Load-Duration Curve name for LD modes"""
     function LDCurve()::String
-        return get_string(Lib.Solution_Get_LDCurve())
+        return Utils.get_string(Lib.Solution_Get_LDCurve())
     end
 
     """Load-Duration Curve name for LD modes"""
@@ -307,7 +314,7 @@ module Solution
 
     """(read-only) ID (text) of the present solution mode"""
     function ModeID()::String
-        return get_string(Lib.Solution_Get_ModeID())
+        return Utils.get_string(Lib.Solution_Get_ModeID())
     end
 
     """(read-only) Max number of iterations required to converge at any control iteration of the most recent solution."""

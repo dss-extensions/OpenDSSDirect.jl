@@ -1,7 +1,14 @@
 module Meters
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     function CloseAllDIFiles()
         Lib.Meters_CloseAllDIFiles()
@@ -47,28 +54,28 @@ module Meters
     """(read-only) Wide string list of all branches in zone of the active energymeter object."""
     function AllBranchesInZone()::Vector{String}
         error("Not implemented. Please contact the developers.")
-        return get_string_array(Lib.Meters_Get_AllBranchesInZone)
+        return Utils.get_string_array(Lib.Meters_Get_AllBranchesInZone)
     end
 
     """(read-only) Array of names of all zone end elements."""
     function AllEndElements()::Vector{String}
         error("Not implemented. Please contact the developers.")
-        return get_string_array(Lib.Meters_Get_AllEndElements)
+        return Utils.get_string_array(Lib.Meters_Get_AllEndElements)
     end
 
     """(read-only) Array of all energy Meter names"""
     function AllNames()::Vector{String}
-        return get_string_array(Lib.Meters_Get_AllNames)
+        return Utils.get_string_array(Lib.Meters_Get_AllNames)
     end
 
     """Array of doubles: set the phase allocation factors for the active meter."""
     function AllocFactors()::Vector{Float64}
-        return get_float64_array(Lib.Meters_Get_AllocFactors)
+        return Utils.get_float64_array(Lib.Meters_Get_AllocFactors)
     end
 
     """Array of doubles: set the phase allocation factors for the active meter."""
     function AllocFactors(Value::Vector{Float64})
-        Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.Meters_Set_AllocFactors(ValuePtr, ValueCount)
     end
 
@@ -79,12 +86,12 @@ module Meters
 
     """Set the magnitude of the real part of the Calculated Current (normally determined by solution) for the Meter to force some behavior on Load Allocation"""
     function CalcCurrent()::Vector{Float64}
-        return get_float64_array(Lib.Meters_Get_CalcCurrent)
+        return Utils.get_float64_array(Lib.Meters_Get_CalcCurrent)
     end
 
     """Set the magnitude of the real part of the Calculated Current (normally determined by solution) for the Meter to force some behavior on Load Allocation"""
     function CalcCurrent(Value::Vector{Float64})
-        Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.Meters_Set_CalcCurrent(ValuePtr, ValueCount)
     end
 
@@ -127,7 +134,7 @@ module Meters
 
     """Set Name of metered element"""
     function MeteredElement()::String
-        return get_string(Lib.Meters_Get_MeteredElement())
+        return Utils.get_string(Lib.Meters_Get_MeteredElement())
     end
 
     """Set Name of metered element"""
@@ -150,8 +157,7 @@ module Meters
     (write) Set a meter to be active by name.
     """
     function Name()::String
-        result = get_string(Lib.Meters_Get_Name())
-        return result
+        return Utils.get_string(Lib.Meters_Get_Name())
     end
 
     """
@@ -190,23 +196,23 @@ module Meters
 
     """Array of doubles to set values of Peak Current property"""
     function PeakCurrent()::Vector{Float64}
-        return get_float64_array(Lib.Meters_Get_Peakcurrent)
+        return Utils.get_float64_array(Lib.Meters_Get_Peakcurrent)
     end
 
     """Array of doubles to set values of Peak Current property"""
     function PeakCurrent(Value::Vector{Float64})
-        Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.Meters_Set_Peakcurrent(ValuePtr, ValueCount)
     end
 
     """(read-only) Array of strings containing the names of the registers."""
     function RegisterNames()::Vector{String}
-        return get_string_array(Lib.Meters_Get_RegisterNames)
+        return Utils.get_string_array(Lib.Meters_Get_RegisterNames)
     end
 
     """(read-only) Array of all the values contained in the Meter registers for the active Meter."""
     function RegisterValues()::Vector{Float64}
-        return get_float64_array(Lib.Meters_Get_RegisterValues)
+        return Utils.get_float64_array(Lib.Meters_Get_RegisterValues)
     end
 
     """(read-only) SAIDI for this meter's zone. Execute DoReliabilityCalc first."""
@@ -261,7 +267,7 @@ module Meters
 
     """(read-only) Totals of all registers of all meters"""
     function Totals()::Vector{Float64}
-        return get_float64_array(Lib.Meters_Get_Totals)
+        return Utils.get_float64_array(Lib.Meters_Get_Totals)
     end
 
 end

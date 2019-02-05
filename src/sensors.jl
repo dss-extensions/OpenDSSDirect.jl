@@ -1,7 +1,14 @@
 module Sensors
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     function Reset()
         Lib.Sensors_Reset()
@@ -13,7 +20,7 @@ module Sensors
 
     """(read-only) Array of Sensor names."""
     function AllNames()::Vector{String}
-        return get_string_array(Lib.Sensors_Get_AllNames)
+        return Utils.get_string_array(Lib.Sensors_Get_AllNames)
     end
 
     """(read-only) Number of Sensors in Active Circuit."""
@@ -23,12 +30,12 @@ module Sensors
 
     """Array of doubles for the line current measurements; don't use with kWS and kVARS."""
     function Currents()::Vector{Float64}
-        return get_float64_array(Lib.Sensors_Get_Currents)
+        return Utils.get_float64_array(Lib.Sensors_Get_Currents)
     end
 
     """Array of doubles for the line current measurements; don't use with kWS and kVARS."""
     function Currents(Value::Vector{Float64})
-        Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.Sensors_Set_Currents(ValuePtr, ValueCount)
     end
 
@@ -49,7 +56,7 @@ module Sensors
 
     """Full Name of the measured element"""
     function MeteredElement()::String
-        return get_string(Lib.Sensors_Get_MeteredElement())
+        return Utils.get_string(Lib.Sensors_Get_MeteredElement())
     end
 
     """Full Name of the measured element"""
@@ -72,7 +79,7 @@ module Sensors
     (write) Set the active Sensor by name.
     """
     function Name()::String
-        return get_string(Lib.Sensors_Get_Name())
+        return Utils.get_string(Lib.Sensors_Get_Name())
     end
 
     """
@@ -120,23 +127,23 @@ module Sensors
 
     """Array of doubles for Q measurements. Overwrites Currents with a new estimate using kWS."""
     function kvar()::Vector{Float64}
-        return get_float64_array(Lib.Sensors_Get_kVARS)
+        return Utils.get_float64_array(Lib.Sensors_Get_kVARS)
     end
 
     """Array of doubles for Q measurements. Overwrites Currents with a new estimate using kWS."""
     function kvar(Value::Vector{Float64})
-        Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.Sensors_Set_kVARS(ValuePtr, ValueCount)
     end
 
     """Array of doubles for the LL or LN (depending on Delta connection) voltage measurements."""
     function kVS()::Vector{Float64}
-        return get_float64_array(Lib.Sensors_Get_kVS)
+        return Utils.get_float64_array(Lib.Sensors_Get_kVS)
     end
 
     """Array of doubles for the LL or LN (depending on Delta connection) voltage measurements."""
     function kVS(Value::Vector{Float64})
-        Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.Sensors_Set_kVS(ValuePtr, ValueCount)
     end
 
@@ -152,12 +159,12 @@ module Sensors
 
     """Array of doubles for P measurements. Overwrites Currents with a new estimate using kVARS."""
     function kW()::Vector{Float64}
-        return get_float64_array(Lib.Sensors_Get_kWS)
+        return Utils.get_float64_array(Lib.Sensors_Get_kWS)
     end
 
     """Array of doubles for P measurements. Overwrites Currents with a new estimate using kVARS."""
     function kW(Value::Vector{Float64})
-        Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.Sensors_Set_kWS(ValuePtr, ValueCount)
     end
 

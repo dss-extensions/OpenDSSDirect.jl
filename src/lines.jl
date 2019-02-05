@@ -1,7 +1,14 @@
 module Lines
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     function New(Name::String)
         return Lib.Lines_New(Cstring(pointer(Name)))
@@ -9,12 +16,12 @@ module Lines
 
     """(read-only) Names of all Line Objects"""
     function AllNames()::Vector{String}
-        return get_string_array(Lib.Lines_Get_AllNames)
+        return Utils.get_string_array(Lib.Lines_Get_AllNames)
     end
 
     """Name of bus for terminal 1."""
     function Bus1()::String
-        return get_string(Lib.Lines_Get_Bus1())
+        return Utils.get_string(Lib.Lines_Get_Bus1())
     end
 
     """Name of bus for terminal 1."""
@@ -24,7 +31,7 @@ module Lines
 
     """Name of bus for terminal 2."""
     function Bus2()::String
-        return get_string(Lib.Lines_Get_Bus2())
+        return Utils.get_string(Lib.Lines_Get_Bus2())
     end
 
     """Name of bus for terminal 2."""
@@ -53,11 +60,11 @@ module Lines
     end
 
     function CMatrix()::Vector{Float64}
-        return get_float64_array(Lib.Lines_Get_Cmatrix)
+        return Utils.get_float64_array(Lib.Lines_Get_Cmatrix)
     end
 
     function CMatrix(Value::Vector{Float64})
-        Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.Lines_Set_Cmatrix(ValuePtr, ValueCount)
     end
 
@@ -83,7 +90,7 @@ module Lines
 
     """Line geometry code"""
     function Geometry()::String
-        return get_string(Lib.Lines_Get_Geometry())
+        return Utils.get_string(Lib.Lines_Get_Geometry())
     end
 
     """Line geometry code"""
@@ -103,7 +110,7 @@ module Lines
 
     """Name of LineCode object that defines the impedances."""
     function LineCode()::String
-        return get_string(Lib.Lines_Get_LineCode())
+        return Utils.get_string(Lib.Lines_Get_LineCode())
     end
 
     """Name of LineCode object that defines the impedances."""
@@ -113,7 +120,7 @@ module Lines
 
     """Specify the name of the Line element to set it active."""
     function Name()::String
-        return get_string(Lib.Lines_Get_Name())
+        return Utils.get_string(Lib.Lines_Get_Name())
     end
 
     """Specify the name of the Line element to set it active."""
@@ -198,18 +205,18 @@ module Lines
 
     """Resistance matrix (full), ohms per unit length. Array of doubles."""
     function RMatrix()::Vector{Float64}
-        return get_float64_array(Lib.Lines_Get_Rmatrix)
+        return Utils.get_float64_array(Lib.Lines_Get_Rmatrix)
     end
 
     """Resistance matrix (full), ohms per unit length. Array of doubles."""
     function RMatrix(Value::Vector{Float64})
-        Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.Lines_Set_Rmatrix(ValuePtr, ValueCount)
     end
 
     """Line spacing code"""
     function Spacing()::String
-        return get_string(Lib.Lines_Get_Spacing())
+        return Utils.get_string(Lib.Lines_Get_Spacing())
     end
 
     """Line spacing code"""
@@ -261,23 +268,23 @@ module Lines
     end
 
     function XMatrix()::Vector{Float64}
-        return get_float64_array(Lib.Lines_Get_Xmatrix)
+        return Utils.get_float64_array(Lib.Lines_Get_Xmatrix)
     end
 
     function XMatrix(Value::Vector{Float64})
-        Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.Lines_Set_Xmatrix(ValuePtr, ValueCount)
     end
 
     """Yprimitive: Does Nothing at present on Put; Dangerous"""
     function Yprim()::Array{ComplexF64, 2}
-        r = get_complex64_array(Lib.Lines_Get_Yprim)
+        r = Utils.get_complex64_array(Lib.Lines_Get_Yprim)
         return reshape(r, (Int(length(r)/2), Int(length(r)/2)))
     end
 
     """Yprimitive: Does Nothing at present on Put; Dangerous"""
     function Yprim(Value::Array{ComplexF64, 2})
-        Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.Lines_Set_Yprim(ValuePtr, ValueCount)
     end
 

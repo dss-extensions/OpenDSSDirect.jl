@@ -1,11 +1,18 @@
 module Isource
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     """(read-only) Array of strings containing names of all ISOURCE elements."""
     function AllNames()::Vector{String}
-        return get_string_array(Lib.ISources_Get_AllNames)
+        return Utils.get_string_array(Lib.ISources_Get_AllNames)
     end
 
     """Magnitude of the ISOURCE in amps"""
@@ -53,7 +60,7 @@ module Isource
     (write) Set Active ISOURCE by name
     """
     function Name()::String
-        return get_string(Lib.ISources_Get_Name())
+        return Utils.get_string(Lib.ISources_Get_Name())
     end
 
     """

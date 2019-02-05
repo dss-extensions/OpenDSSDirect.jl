@@ -1,31 +1,38 @@
 module Executive
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     """(read-only) Get i-th command"""
     function Command(i::Int)::String
-        return get_string(Lib.DSS_Executive_Get_Command(i))
+        return Utils.get_string(Lib.DSS_Executive_Get_Command(i))
     end
 
     """(read-only) Get help string for i-th command"""
     function CommandHelp(i::Int)::String
-        return get_string(Lib.DSS_Executive_Get_CommandHelp(i))
+        return Utils.get_string(Lib.DSS_Executive_Get_CommandHelp(i))
     end
 
     """(read-only) Get i-th option"""
     function Option(i::Int)::String
-        return get_string(Lib.DSS_Executive_Get_Option(i))
+        return Utils.get_string(Lib.DSS_Executive_Get_Option(i))
     end
 
     """(read-only) Get help string for i-th option"""
     function OptionHelp(i::Int)::String
-        return get_string(Lib.DSS_Executive_Get_OptionHelp(i))
+        return Utils.get_string(Lib.DSS_Executive_Get_OptionHelp(i))
     end
 
     """(read-only) Get present value of i-th option"""
     function OptionValue(i::Int)::String
-        return get_string(Lib.DSS_Executive_Get_OptionValue(i))
+        return Utils.get_string(Lib.DSS_Executive_Get_OptionValue(i))
     end
 
     """(read-only) Number of DSS Executive Commands"""

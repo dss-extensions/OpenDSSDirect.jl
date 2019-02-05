@@ -1,7 +1,14 @@
 module Settings
 
-    using ..Lib
-    using ..Utils
+    import ..Lib
+    import ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     """{True | False*} Designates whether to allow duplicate names of objects"""
     function AllowDuplicates()::Bool
@@ -15,7 +22,7 @@ module Settings
 
     """List of Buses or (File=xxxx) syntax for the AutoAdd solution mode."""
     function AutoBusList()::String
-        return get_string(Lib.Settings_Get_AutoBusList())
+        return Utils.get_string(Lib.Settings_Get_AutoBusList())
     end
 
     """List of Buses or (File=xxxx) syntax for the AutoAdd solution mode."""
@@ -65,12 +72,12 @@ module Settings
 
     """Integer array defining which energy meter registers to use for computing losses"""
     function LossRegs()::Vector{Int}
-        return get_int32_array(Lib.Settings_Get_LossRegs)
+        return Utils.get_int32_array(Lib.Settings_Get_LossRegs)
     end
 
     """Integer array defining which energy meter registers to use for computing losses"""
     function LossRegs(Value::Vector{Int})
-        Value, ValuePtr, ValueCount = prepare_int32_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_int32_array(Value)
         Lib.Settings_Set_LossRegs(ValuePtr, ValueCount)
     end
 
@@ -106,7 +113,7 @@ module Settings
 
     """Name of LoadShape object that serves as the source of price signal data for yearly simulations, etc."""
     function PriceCurve()::String
-        return get_string(Lib.Settings_Get_PriceCurve())
+        return Utils.get_string(Lib.Settings_Get_PriceCurve())
     end
 
     """Name of LoadShape object that serves as the source of price signal data for yearly simulations, etc."""
@@ -136,12 +143,12 @@ module Settings
 
     """Array of Integers defining energy meter registers to use for computing UE"""
     function UERegs()::Vector{Int}
-        return get_int32_array(Lib.Settings_Get_UEregs)
+        return Utils.get_int32_array(Lib.Settings_Get_UEregs)
     end
 
     """Array of Integers defining energy meter registers to use for computing UE"""
     function UERegs(Value::Vector{Int})
-        Value, ValuePtr, ValueCount = prepare_int32_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_int32_array(Value)
         Lib.Settings_Set_UEregs(ValuePtr, ValueCount)
     end
 
@@ -157,12 +164,12 @@ module Settings
 
     """Array of doubles defining the legal voltage bases in kV L-L"""
     function VoltageBases()::Vector{Float64}
-        return get_float64_array(Lib.Settings_Get_VoltageBases)
+        return Utils.get_float64_array(Lib.Settings_Get_VoltageBases)
     end
 
     """Array of doubles defining the legal voltage bases in kV L-L"""
     function VoltageBases(Value::Vector{Float64})
-        Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.Settings_Set_VoltageBases(ValuePtr, ValueCount)
     end
 
