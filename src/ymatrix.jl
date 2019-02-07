@@ -13,8 +13,8 @@ module YMatrix
         """
 
 
-    """Return as (data, indices, indptr) that can fed into scipy.sparse.csc_matrix"""
-    function getYsparse(factor=true)::SparseArrays.SparseMatrixCSC{Complex{Float64},Int}
+    """Return SparseMatrixCSC of ComplexF64"""
+    function getYsparse(factor::Bool=true)::SparseArrays.SparseMatrixCSC{Complex{Float64},Int}
         nBus = Ref(UInt32(0))
         nNz = Ref(UInt32(0))
 
@@ -25,7 +25,7 @@ module YMatrix
         Lib.YMatrix_GetCompressedYMatrix(factor ? 1 : 0, nBus, nNz, ColPtr, RowIdxPtr, cValsPtr)
 
         if Int(nBus[]) == 0 || Int(nNz[]) == 0
-            res = nothing
+            res = sparse(ComplexF64[], ComplexF64[], ComplexF64[])
         else
             # return as (data, indices, indptr) that can fed into scipy.sparse.csc_matrix
             data = Array(reinterpret(ComplexF64, unsafe_wrap(Array, cValsPtr[], Int(nNz[]) * 2) |> copy))

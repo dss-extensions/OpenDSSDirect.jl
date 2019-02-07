@@ -17,12 +17,26 @@ function DSE.format(::FullMethodSignatures, buf, doc)
         println(buf)
         println(buf, "```julia")
         for group in groups
-            for method in group
-                printmethod(buf, binding, func, method, typesig)
-                println(buf)
+            if length(group) == 1
+                for method in group
+                    printmethod(buf, binding, func, method, typesig)
+                    println(buf)
+                end
+            else
+                # If function has default arguments, revert to default printmethod
+                for (i, method) in enumerate(group)
+                    if i == length(group)
+                        t = typesig
+                    else
+                        t = typesig.a
+                        typesig = typesig.b
+                    end
+                    printmethod(buf, binding, func, method, t)
+                    println(buf)
+                end
             end
         end
-        println(buf, "\n```\n")
+        println(buf, "\n```")
     end
 end
 
@@ -43,10 +57,12 @@ function printmethod(buffer::IOBuffer, binding::Docs.Binding, func, method::Meth
         join(buffer, kws, ", ")
     end
     print(buffer, ")")
+    rt = Base.return_types(func, typesig)[1]
+    if rt !== Nothing
+        print(buffer, "::$rt")
+    end
     return buffer
 end
-
-printmethod(b, f, m, t) = String(take!(printmethod(IOBuffer(), b, f, m, t)))
 
 end
 
