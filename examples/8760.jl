@@ -1,6 +1,6 @@
 using OpenDSSDirect
 
-filename = joinpath(Pkg.dir(), "OpenDSSDirect", "examples", "ckt5", "Master_ckt5.dss")
+filename = joinpath(@__DIR__, "ckt5", "Master_ckt5.dss")
 
 @time dss("""
     clear
@@ -16,4 +16,6 @@ filename = joinpath(Pkg.dir(), "OpenDSSDirect", "examples", "ckt5", "Master_ckt5
     solve
     closeDI
 """)
+
+nothing
 

@@ -1,14 +1,14 @@
 ## At the command line, use `julia -p 4` to add 4 worker processes.
 ##
 
-using OpenDSSDirect.DSS
+using OpenDSSDirect, Distributed
 
 # Prep stuff
 @everywhere begin
     N = nprocs() - 1
-    using OpenDSSDirect.DSS
+    using OpenDSSDirect
     numhours = 8760 ÷ N
-    filename = joinpath(Pkg.dir(), "OpenDSSDirect", "examples", "ckt5", "Master_ckt5.dss")
+    filename = joinpath(@__DIR__, "ckt5", "Master_ckt5.dss")
     dss("""
         clear
         compile $filename

@@ -1,67 +1,76 @@
 module X
 
 using OpenDSSDirect
-using Base.Test
+using Test
 
+const DSS = OpenDSSDirect
 
-filename = string("$(dirname(@__FILE__))/../examples/8500-Node/Master.dss")
+@testset "basicsX" begin
 
-dss("""
-    clear
-    compile $filename
-""")
-loadnumber = DSS.Loads.First()
-@test DSS.Loads.Name() == "138236b0"
-while loadnumber > 0
-    DSS.Loads.kW(50.)
-    DSS.Loads.kvar(20.)
-    loadnumber = DSS.Loads.Next()
+    filename = string("$(dirname(@__FILE__))/../examples/8500-Node/Master.dss" |> normpath)
+    OpenDSSDirect.Text.Command("""
+        clear
+        redirect $filename
+        """)
+    loadnumber = DSS.Loads.First()
+    @test DSS.Loads.Name() == "138236b0"
+    while loadnumber > 0
+        DSS.Loads.kW(50.)
+        DSS.Loads.kvar(20.)
+        loadnumber = DSS.Loads.Next()
+    end
+    @test DSS.Loads.Count() == 1177
+
 end
-@test DSS.Loads.Count() == 1177
 
 end # module
 
 module Y
 
-using OpenDSSDirect.DSS
-using Base.Test
+using OpenDSSDirect
+using Test
+const DSS = OpenDSSDirect
 
-filename = string("$(dirname(@__FILE__))/../examples/8500-Node/Master.dss")
+@testset "basicsY" begin
 
-dss("""
-    clear
-    compile $filename
-    solve
-""")
+    filename = string("$(dirname(@__FILE__))/../examples/8500-Node/Master.dss")
 
-loadnumber = Loads.First()
-@test Loads.Name() == "138236b0"
-kWsum = 0.0
-kvarsum = 0.0
-while loadnumber > 0
-    kWsum += Loads.kW()
-    kvarsum += Loads.kvar()
-    loadnumber = Loads.Next()
+    DSS.Text.Command("""
+        clear
+        redirect $filename
+        solve
+        """)
+
+    loadnumber = DSS.Loads.First()
+    @test DSS.Loads.Name() == "138236b0"
+    kWsum = 0.0
+    kvarsum = 0.0
+    while loadnumber > 0
+        kWsum += DSS.Loads.kW()
+        kvarsum += DSS.Loads.kvar()
+        loadnumber = DSS.Loads.Next()
+    end
+
+    linelosssum = 0.0im
+    linenumber = DSS.Lines.First()
+    n = DSS.Lines.Count()
+    linelosses = zeros(ComplexF64, n)
+    for i in 1:n
+        linelosssum += DSS.CktElement.Losses()[1]
+        linelosses[i] = DSS.CktElement.Losses()[1]
+        linenumber = DSS.Lines.Next()
+    end
+    @test linelosssum.re ≈ (DSS.Circuit.LineLosses().re * 1000)  atol=50
+
+    @test DSS.Solution.Mode() == 0
+
+    DSS.Circuit.Losses()
+    DSS.Circuit.SubstationLosses()
+    DSS.Circuit.LineLosses()
+    DSS.Circuit.TotalPower()
+    DSS.Circuit.AllElementLosses()
+    DSS.Circuit.AllBusNames()
+
 end
-
-linelosssum = 0.0im
-linenumber = Lines.First()
-n = Lines.Count()
-linelosses = zeros(Complex128, n)
-for i in 1:n
-    linelosssum += CktElement.Losses()[1]
-    linelosses[i] = CktElement.Losses()[1]
-    linenumber = Lines.Next()
-end
-@test_approx_eq_eps linelosssum.re Circuit.LineLosses().re * 1000  50
-
-@test Solution.Mode() == 0
-
-Circuit.Losses()
-Circuit.SubstationLosses()
-Circuit.LineLosses()
-Circuit.TotalPower()
-Circuit.AllElementLosses()
-Circuit.AllBusNames()
 
 end # module

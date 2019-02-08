@@ -3,3 +3,6 @@
 *.jl.mem
 docs/build/
 docs/site/
+*.csv
+deps/*
+!deps/build.jl

@@ -2,7 +2,7 @@
 init8500()
 
 
-@testset "Topology" begin 
+@testset "Topology" begin
 
 @test Topology.NumLoops() == 599
 @test Topology.NumIsolatedBranches() == 5
@@ -18,9 +18,9 @@ init8500()
 @test Topology.NextLoad() == 0
 @test Topology.ActiveLevel() == 1
 @test Topology.BranchName() == "Reactor.hvmv_sub_hsb"
-@test Topology.BranchName(Topology.BranchName()) == ""
+@test Topology.BranchName(Topology.BranchName()) == nothing
 @test Topology.BusName() == "sourcebus"
-@test Topology.BusName(Topology.BusName()) == ""
+@test Topology.BusName(Topology.BusName()) == nothing
 @test Topology.AllLoopedPairs()[end] == "Transformer.feeder_regc"
 # @test Topology.AllIsolatedBranches()[end] == "Transformer.feeder_regc"
 @test Topology.AllIsolatedLoads() == ["NONE"]

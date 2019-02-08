@@ -2,7 +2,7 @@
 init8500()
 
 
-@testset "Sensors" begin 
+@testset "Sensors" begin
 
 @show Sensors.Count()
 @show Sensors.First()
@@ -32,6 +32,8 @@ init8500()
 @show Sensors.kvar(Sensors.kvar())
 @show Sensors.kW()
 @show Sensors.kW(Sensors.kW())
+@show Sensors.kVS()
+@show Sensors.kVS(Sensors.kVS())
 
 end # testset
 

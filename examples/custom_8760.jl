@@ -1,8 +1,8 @@
 ## This example shows a custom 8760-hour run. It adjusts all loads at each time step
 
-using OpenDSSDirect.DSS
+using OpenDSSDirect
 
-basepath = joinpath(Pkg.dir(), "OpenDSSDirect", "examples", "ckt5")
+basepath = joinpath(@__DIR__, "ckt5")
 include(joinpath(basepath, "../loadshape.jl"))
 filename = joinpath(basepath, "Master_ckt5.dss")
 
@@ -22,9 +22,10 @@ function scaleloads(k, basekw, basekvar)
     end
 end
 function run_loads(loadshape)
+
     nloads = Loads.Count()
-    basekw = Array(Float64, nloads)
-    basekvar = Array(Float64, nloads)
+    basekw = Array{Float64}(undef, nloads)
+    basekvar = Array{Float64}(undef, nloads)
     loadnumber = Loads.First()
     for i in 1:length(basekw)
         basekw[i]   = Loads.kW()
@@ -32,14 +33,16 @@ function run_loads(loadshape)
         loadnumber = Loads.Next()
     end
     n = length(loadshape)
-    result = Array(Int, n)
+    result = Array{Int}(undef, n)
     for i in 1:n
-        scaleloads(loadshape[i], basekw, basekvar) 
+        scaleloads(loadshape[i], basekw, basekvar)
         Solution.Solve()
         result[i] = Solution.Iterations()
     end
     return result
 end
 
-@time x  = run_loads(loadshape) 
+@time x  = run_loads(loadshape)
 # @time xs = run_loads(sort(loadshape))
+
+nothing
