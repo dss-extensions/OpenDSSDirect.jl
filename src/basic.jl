@@ -81,8 +81,8 @@ module Basic
     end
 
     """Gets/sets whether text output is allowed (Setter)"""
-    function AllowForms(Value::String)
-        Lib.DSS_Set_AllowForms(Cstring(pointer(Value)))
+    function AllowForms(Value::Bool)
+        Lib.DSS_Set_AllowForms(Value ? 1 : 0)
     end
 
     function ShowPanel()

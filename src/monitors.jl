@@ -12,6 +12,7 @@ module Monitors
 
     """(read-only) Array of doubles for the specified channel  (usage: MyArray = DSSMonitor.Channel(i)) A Save or SaveAll  should be executed first. Done automatically by most standard solution modes."""
     function Channel(Index::Int)::Vector{Float64}
+        error("Not implemented yet. Please contact the developer.")
         return Utils.get_float64_array(Lib.Monitors_Get_Channel, Index)
     end
 

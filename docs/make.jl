@@ -5,10 +5,12 @@ using Documenter, OpenDSSDirect
 
 makedocs(
     # options
-    modules = [OpenDSSDirect.DSS, OpenDSSDirect.DSSCore],
+    modules = [
+               OpenDSSDirect,
+              ],
     doctest = false,
     clean = false,
-    format = :html,
+    format = Documenter.HTML(),
     sitename = "OpenDSSDirect.jl",
     authors = "Tom Short",
     pages = Any[
@@ -31,6 +33,6 @@ deploydocs(
     deps = nothing,
     make = nothing,
     target = "build",
-    julia = "0.5",
-    repo = "github.com/tshort/OpenDSSDirect.jl.git"
+    julia = "0.7",
+    repo = "github.com/NREL/OpenDSSDirect.jl.git"
 )

@@ -22,7 +22,7 @@ module CktElement
 
     """For PCElement, get the value of a variable by name. If Code>0 Then no variable by this name or not a PCElement."""
     function Variable(MyVarName::String, Code::Int)::Float64
-        return Lib.CktElement_Get_Variable(MyVarName, Code)
+        return Lib.CktElement_Get_Variable(MyVarName, Ref{Int32}(Code))
     end
 
     """For PCElement, get the value of a variable by integer index."""

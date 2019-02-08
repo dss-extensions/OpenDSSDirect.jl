@@ -11,7 +11,7 @@ module Lines
         """
 
     """Create new Line object"""
-    function New(Name::String)
+    function New(Name::String)::Int
         return Lib.Lines_New(Cstring(pointer(Name)))
     end
 

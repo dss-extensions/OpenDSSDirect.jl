@@ -1,16 +1,16 @@
 
 ```@meta
-CurrentModule = OpenDSSDirect.DSS
+CurrentModule = OpenDSSDirect
 ```
 
 # Flag objects
 
 Several flag variables are also defined, each with multiple entries defined.
 
-Here is an example of use of `CapControlModes.KVAR`:
+Here is an example of use of `CapControlModes_KVAR`:
 
 ```julia
-CapControls.Mode(CapControlModes.KVAR)
+CapControls.Mode(Lib.CapControlModes_KVAR)
 ```
 
 ```@index
@@ -18,12 +18,12 @@ Pages = ["flags.md"]
 ```
 
 ```@docs
-ActionCodes
-CapControlModes
-LineUnits
-LoadModels
-LoadStatus
-Options
-MonitorModes
-SolveModes
+Lib.ActionCodes
+Lib.CapControlModes
+Lib.LineUnits
+Lib.LoadModels
+Lib.LoadStatus
+Lib.Options
+Lib.MonitorModes
+Lib.SolveModes
 ```

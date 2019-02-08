@@ -21,7 +21,7 @@ module CtrlQueue
     end
 
     """Delete action handle for Control Queue"""
-    function Delete(ActionHandle::Int)::Int
+    function Delete(ActionHandle::Int)
         Lib.CtrlQueue_Delete(ActionHandle)
     end
 

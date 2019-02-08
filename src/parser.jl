@@ -77,12 +77,12 @@ module Parser
         Lib.Parser_Set_Delimiters(Value)
     end
 
-    """String containing characters, in order, that match the beginning quote characters in BeginQuote. Default is "')]} (Getter)"""
+    """String containing characters, in order, that match the beginning quote characters in BeginQuote. Default is `"')]}` (Getter)"""
     function EndQuote()::String
         return Utils.get_string(Lib.Parser_Get_EndQuote())
     end
 
-    """String containing characters, in order, that match the beginning quote characters in BeginQuote. Default is "')]} (Setter)"""
+    """String containing characters, in order, that match the beginning quote characters in BeginQuote. Default is `"')]}` (Setter)"""
     function EndQuote(Value::String)
         Lib.Parser_Set_EndQuote(Value)
     end
