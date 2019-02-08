@@ -2,6 +2,13 @@ module Circuit
 
     using ..Lib
     using ..Utils
+    import ..TypedDocStringExtensions
+
+    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
+        """
+        $(TypedDocStringExtensions.FULLSIGNATURES)
+        $(TypedDocStringExtensions.DOCSTRING)
+        """
 
     """Compute capacity"""
     function Capacity(Start, Increment)::Float64
@@ -40,21 +47,25 @@ module Circuit
 
     """Returns an array of doubles representing the distances to parent EnergyMeter. Sequence of array corresponds to other node ByPhase properties."""
     function AllNodeDistancesByPhase(Phase)::Vector{Float64}
+        error("Not implemented yet. Please contact the developer.")
         return Utils.get_float64_array(Lib.Circuit_Get_AllNodeDistancesByPhase, Phase)
     end
 
     """Return array of strings of the node names for the By Phase criteria. Sequence corresponds to other ByPhase properties."""
     function AllNodeNamesByPhase(Phase)::Vector{String}
+        error("Not implemented yet. Please contact the developer.")
         return Utils.get_string_array(Lib.Circuit_Get_AllNodeNamesByPhase, Phase)
     end
 
     """Returns Array of doubles represent voltage magnitudes for nodes on the specified phase."""
     function AllNodeVmagByPhase(Phase)::Vector{Float64}
+        error("Not implemented yet. Please contact the developer.")
         return Utils.get_float64_array(Lib.Circuit_Get_AllNodeVmagByPhase, Phase)
     end
 
     """Returns array of per unit voltage magnitudes for each node by phase"""
     function AllNodeVmagPUByPhase(Phase)::Vector{Float64}
+        error("Not implemented yet. Please contact the developer.")
         return Utils.get_float64_array(Lib.Circuit_Get_AllNodeVmagPUByPhase, Phase)
     end
 

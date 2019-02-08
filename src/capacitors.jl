@@ -41,7 +41,7 @@ module Capacitors
     end
 
     """Number of Capacitor objects in active circuit."""
-    function Count():Int
+    function Count()::Int
         return Lib.Capacitors_Get_Count()
     end
 
@@ -86,7 +86,7 @@ module Capacitors
     end
 
     """Array of  integer [0..numsteps-1] indicating state of each step. If value is -1 an error has occurred. (Getter)"""
-    function States()::Vector{Int32}
+    function States()::Vector{Int}
         return Utils.get_int32_array(Lib.Capacitors_Get_States)
     end
 

@@ -1,12 +1,15 @@
 
 # DSS REPL Mode
 
-OpenDSSDirect also includes a custom REPL mode for entering OpenDSS commands directly. This is similar to the Help (`?`) and Shell (`;`) modes. Use the right square bracket (`]`) to enter DSS mode. Hit backspace on a blank line to exit. Here is an example:
+OpenDSSDirect also includes a custom REPL mode for entering OpenDSS commands directly.
+This is similar to the Help (`?`) and Shell (`;`) modes.
+Use the right parenthesis (`)`) to enter DSS mode.
+Hit backspace on a blank line to exit. Here is an example:
 
 ```julia
 julia> using OpenDSSDirect
 
-DSS> compile C:\\portableapps\\home\\.julia\\v0.4\\OpenDSSDirect\\examples\\8500-Node\\Master.dss
+DSS> compile C:\\portableapps\\home\\.julia\\v0.7\\OpenDSSDirect\\examples\\8500-Node\\Master.dss
 
 DSS> solve
 
@@ -39,7 +42,7 @@ Control Mode = STATIC
 Load Model = PowerFlow
 ```
 
-The DSS mode also has help. Hit `?` at the `DSS>` prompt, and enter options or commands you want help on. 
+The DSS mode also has help. Hit `?` at the `DSS>` prompt, and enter options or commands you want help on.
 
 ```julia
 DSS> clear

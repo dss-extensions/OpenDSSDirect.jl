@@ -1,6 +1,6 @@
 
 ```@meta
-CurrentModule = OpenDSSDirect.DSS
+CurrentModule = OpenDSSDirect
 ```
 
 # Main API (module DSS)
@@ -23,7 +23,7 @@ and initiating commands. Each of these is in one of several modules. Here is an
 example to set the `kW` of the active load element:
 
 ```julia
-DSS.Loads.kW(50.)
+Loads.kW(50.)
 ```
 
 Here is an example setting some loads:
@@ -35,31 +35,31 @@ dss("""
     clear
     compile $filename
 """)
-loadnumber = DSS.Loads.First()
+loadnumber = Loads.First()
 while loadnumber > 0
-    DSS.Loads.kW(50.)
-    DSS.Loads.kvar(20.)
-    loadnumber = DSS.Loads.Next()
+    Loads.kW(50.)
+    Loads.kvar(20.)
+    loadnumber = Loads.Next()
 end
-println(DSS.Loads.Count())
+println(Loads.Count())
 ```
 
-To use this API, you can either use `import OpenDSSDirect` and prepend all of the functions with `DSS.`, or you can `import OpenDSSDirect.DSS` and use the functions directly. The following two are equivalent:
+To use this API, you can either use `import OpenDSSDirect` and prepend all calls with `OpenDSSDirect`, or you can run `using OpenDSSDirect` and use the functions within each module directly. The following two are equivalent:
 
 ```julia
-using OpenDSSDirect
-DSS.Circuit.TotalPower()
+import OpenDSSDirect
+OpenDSSDirect.Circuit.TotalPower()
 ```
 Importing the DSS module:
 ```julia
-using OpenDSSDirect.DSS
+using OpenDSSDirect
 Circuit.TotalPower()
 ```
 
 Many of the functions that return arrays convert to complex numbers where appropriate. Here is an example session:
 
 ```julia
-julia> using OpenDSSDirect.DSS
+julia> using OpenDSSDirect
 
 julia> filename = joinpath(Pkg.dir(), "OpenDSSDirect", "examples", "8500-Node", "Master.dss");
 
@@ -77,7 +77,7 @@ julia> Circuit.TotalPower()
 -12004.740450109337 - 1471.1749507157301im
 
 julia> Circuit.SetActiveElement("Capacitor.CAPBank3")
-"6075"
+6075
 
 julia> CktElement.Voltages()
 6-element Array{Complex{Float64},1}:
@@ -92,7 +92,7 @@ julia> CktElement.Voltages()
 To find the functions available in each module, use Julia's help for each module (initiated by hitting `?`). See below for an example.
 
 ```julia
-julia> using OpenDSSDirect.DSS
+julia> using OpenDSSDirect
 
 help?> Circuit
 search: Circuit
@@ -118,216 +118,275 @@ search: Circuit
 
 Here is a list of modules supported by this API. Each module has several functions.
 
-```@index
-Pages = ["api.md"]
-```
-
 ## `dss`
 
 ```@docs
-dss
+OpenDSSDirect.dss
 ```
 
 ## `ActiveClass`
 
-```@docs
-ActiveClass
+```@autodocs
+Modules = [ActiveClass]
+Order   = [:function, :type]
 ```
 
 ## `Basic`
 
-```@docs
-Basic
+```@autodocs
+Modules = [Basic]
+Order   = [:function, :type]
 ```
 
 ## `Bus`
 
-```@docs
-Bus
+```@autodocs
+Modules = [Bus]
+Order   = [:function, :type]
 ```
 
 ## `Capacitors`
 
-```@docs
-Capacitors
+```@autodocs
+Modules = [Capacitors]
+Order   = [:function, :type]
 ```
 
 ## `CapControls`
 
-```@docs
-CapControls
+```@autodocs
+Modules = [CapControls]
+Order   = [:function, :type]
 ```
 
 ## `Circuit`
 
-```@docs
-Circuit
+```@autodocs
+Modules = [Circuit]
+Order   = [:function, :type]
 ```
 
 ## `CktElement`
 
-```@docs
-CktElement
+```@autodocs
+Modules = [CktElement]
+Order   = [:function, :type]
 ```
 
 ## `CtrlQueue`
 
-```@docs
-CtrlQueue
+```@autodocs
+Modules = [CtrlQueue]
+Order   = [:function, :type]
 ```
 
 ## `Element`
 
-```@docs
-Element
+```@autodocs
+Modules = [Element]
+Order   = [:function, :type]
+```
+
+## `Error`
+
+```@autodocs
+Modules = [Error]
+Order   = [:function, :type]
 ```
 
 ## `Executive`
 
-```@docs
-Executive
+```@autodocs
+Modules = [Executive]
+Order   = [:function, :type]
 ```
 
 ## `Fuses`
 
-```@docs
-Fuses
+```@autodocs
+Modules = [Fuses]
+Order   = [:function, :type]
 ```
 
 ## `Generators`
 
-```@docs
-Generators
+```@autodocs
+Modules = [Generators]
+Order   = [:function, :type]
 ```
 
 ## `Isource`
 
-```@docs
-Isource
+```@autodocs
+Modules = [Isource]
+Order   = [:function, :type]
+```
+
+## `LineCodes`
+
+```@autodocs
+Modules = [LineCodes]
+Order   = [:function, :type]
 ```
 
 ## `Lines`
 
-```@docs
-Lines
+```@autodocs
+Modules = [Lines]
+Order   = [:function, :type]
 ```
 
 ## `Loads`
 
-```@docs
-Loads
+```@autodocs
+Modules = [Loads]
+Order   = [:function, :type]
 ```
 
 ## `LoadShape`
 
-```@docs
-LoadShape
+```@autodocs
+Modules = [LoadShape]
+Order   = [:function, :type]
 ```
 
 ## `Meters`
 
-```@docs
-Meters
+```@autodocs
+Modules = [Meters]
+Order   = [:function, :type]
 ```
 
 ## `Monitors`
 
-```@docs
-Monitors
+```@autodocs
+Modules = [Monitors]
+Order   = [:function, :type]
 ```
 
 ## `Parser`
 
-```@docs
-Parser
+```@autodocs
+Modules = [Parser]
+Order   = [:function, :type]
 ```
 
 ## `PDElements`
 
-```@docs
-PDElements
+```@autodocs
+Modules = [PDElements]
+Order   = [:function, :type]
 ```
 
 ## `Progress`
 
-```@docs
-Progress
+```@autodocs
+Modules = [Progress]
+Order   = [:function, :type]
 ```
 
 ## `Properties`
 
-```@docs
-Properties
+```@autodocs
+Modules = [Properties]
+Order   = [:function, :type]
 ```
 
 ## `PVsystems`
 
-```@docs
-PVsystems
+```@autodocs
+Modules = [PVsystems]
+Order   = [:function, :type]
 ```
 
 ## `Reclosers`
 
-```@docs
-Reclosers
+```@autodocs
+Modules = [Reclosers]
+Order   = [:function, :type]
 ```
 
 ## `RegControls`
 
-```@docs
-RegControls
+```@autodocs
+Modules = [RegControls]
+Order   = [:function, :type]
 ```
 
 ## `Relays`
 
-```@docs
-Relays
+```@autodocs
+Modules = [Relays]
+Order   = [:function, :type]
 ```
 
 ## `Sensors`
 
-```@docs
-Sensors
+```@autodocs
+Modules = [Sensors]
+Order   = [:function, :type]
 ```
 
 ## `Settings`
 
-```@docs
-Settings
+```@autodocs
+Modules = [Settings]
+Order   = [:function, :type]
 ```
 
 ## `Solution`
 
-```@docs
-Solution
+```@autodocs
+Modules = [Solution]
+Order   = [:function, :type]
 ```
 
 ## `SwtControls`
 
-```@docs
-SwtControls
+```@autodocs
+Modules = [SwtControls]
+Order   = [:function, :type]
+```
+
+## `Text`
+
+```@autodocs
+Modules = [Text]
+Order   = [:function, :type]
 ```
 
 ## `Topology`
 
-```@docs
-Topology
+```@autodocs
+Modules = [Topology]
+Order   = [:function, :type]
 ```
 
 ## `Transformers`
 
-```@docs
-Transformers
+```@autodocs
+Modules = [Transformers]
+Order   = [:function, :type]
 ```
 
 ## `Vsources`
 
-```@docs
-Vsources
+```@autodocs
+Modules = [Vsources]
+Order   = [:function, :type]
 ```
 
 ## `XYCurves`
 
-```@docs
-XYCurves
+```@autodocs
+Modules = [XYCurves]
+Order   = [:function, :type]
 ```
+
+## `YMatrix`
+
+```@autodocs
+Modules = [YMatrix]
+Order   = [:function, :type]
+```
+
