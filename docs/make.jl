@@ -30,9 +30,6 @@ makedocs(
 
 deploydocs(
     # options
-    deps = nothing,
-    make = nothing,
     target = "build",
-    julia = "0.7",
     repo = "github.com/NREL/OpenDSSDirect.jl.git"
 )
