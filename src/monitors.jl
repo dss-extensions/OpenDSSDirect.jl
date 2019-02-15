@@ -104,12 +104,13 @@ module Monitors
     end
 
     """Set Monitor mode (bitmask integer - see DSS Help)"""
-    function Mode()::Int
+    function Mode()::Lib.MonitorModes
         return Lib.Monitors_Get_Mode()
     end
 
     """Set Monitor mode (bitmask integer - see DSS Help)"""
-    function Mode(Value::Int)
+    function Mode(Value::Union{Int, Lib.MonitorModes})
+        Value = convert(Lib.MonitorModes, Value)
         Lib.Monitors_Set_Mode(Value)
     end
 

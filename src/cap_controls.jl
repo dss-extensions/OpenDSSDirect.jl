@@ -81,12 +81,13 @@ module CapControls
     end
 
     """Type of automatic controller. (Getter)"""
-    function Mode()::Int
+    function Mode()::Lib.CapControlModes
         return Lib.CapControls_Get_Mode()
     end
 
     """Type of automatic controller. (Setter)"""
-    function Mode(Value::Int)
+    function Mode(Value::Union{Int, Lib.CapControlModes})
+        Value = convert(Lib.CapControlModes, Value)
         Lib.CapControls_Set_Mode(Value)
     end
 

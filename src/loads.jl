@@ -106,12 +106,13 @@ module Loads
     end
 
     """The Load Model defines variation of P and Q with voltage. (Getter)"""
-    function Model()::Int
+    function Model()::Lib.LoadModels
         return Lib.Loads_Get_Model()
     end
 
     """The Load Model defines variation of P and Q with voltage. (Setter)"""
-    function Model(Value::Int)
+    function Model(Value::Union{Int, Lib.LoadModels})
+        Value = convert(Lib.LoadModels, Value)
         Lib.Loads_Set_Model(Value)
     end
 
@@ -201,12 +202,13 @@ module Loads
     end
 
     """Response to load multipliers: Fixed (growth only), Exempt (no LD curve), Variable (all). (Getter)"""
-    function Status()::Int
+    function Status()::Lib.LoadStatus
         return Lib.Loads_Get_Status()
     end
 
     """Response to load multipliers: Fixed (growth only), Exempt (no LD curve), Variable (all). (Setter)"""
-    function Status(Value::Int)
+    function Status(Value::Union{Int, Lib.LoadStatus})
+        Value = convert(Lib.LoadStatus, Value)
         Lib.Loads_Set_Status(Value)
     end
 

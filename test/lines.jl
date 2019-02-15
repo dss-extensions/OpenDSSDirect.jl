@@ -12,7 +12,9 @@ init8500()
 @test Lines.Parent() == 0
 @test Lines.Count() == 3703
 @test Lines.Units() == 3
-@test Lines.Units(Lines.Units()) == nothing
+@test Lines.Units() == OpenDSSDirect.Lib.LineUnits_km
+@test Lines.Units(3) == nothing
+@test Lines.Units(OpenDSSDirect.Lib.LineUnits_km) == nothing
 @test Lines.Length() ≋ 0.032175613
 @test Lines.Length(Lines.Length()) == nothing
 @test Lines.R1() ≋ 0.058

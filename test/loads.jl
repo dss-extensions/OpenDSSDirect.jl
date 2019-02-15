@@ -12,11 +12,15 @@ init8500()
 @test Loads.Class() == 1
 @test Loads.Class(Loads.Class()) == nothing
 @test Loads.Model() == 1
-@test Loads.Model(Loads.Model()) == nothing
+@test Loads.Model() == OpenDSSDirect.Lib.LoadModels_ConstPQ
+@test Loads.Model(1) == nothing
+@test Loads.Model(OpenDSSDirect.Lib.LoadModels_ConstPQ) == nothing
 @test Loads.NumCust() == 1
 @test Loads.NumCust(Loads.NumCust()) == nothing
 @test Loads.Status() == 0
-@test Loads.Status(Loads.Status()) == nothing
+@test Loads.Status() == OpenDSSDirect.Lib.LoadStatus_Variable
+@test Loads.Status(0) == nothing
+@test Loads.Status(OpenDSSDirect.Lib.LoadStatus_Variable) == nothing
 @test Loads.IsDelta() == false
 @test Loads.IsDelta(Loads.IsDelta()) == nothing
 @test Loads.kW() ≋ 5.84

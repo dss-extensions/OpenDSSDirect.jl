@@ -86,22 +86,24 @@ module Solution
     end
 
     """Type of device to add in AutoAdd Mode: {dssGen (Default) | dssCap} (Getter)"""
-    function AddType()::Int
+    function AddType()::Lib.AutoAddTypes
         return Lib.Solution_Get_AddType()
     end
 
     """Type of device to add in AutoAdd Mode: {dssGen (Default) | dssCap} (Setter)"""
-    function AddType(Value::Int)
+    function AddType(Value::Union{Int, Lib.AutoAddTypes})
+        Value = convert(Lib.AutoAddTypes, Value)
         Lib.Solution_Set_AddType(Value)
     end
 
     """Base Solution algorithm: {dssNormalSolve | dssNewtonSolve} (Getter)"""
-    function Algorithm()::Int
+    function Algorithm()::Lib.SolutionAlgorithms
         return Lib.Solution_Get_Algorithm()
     end
 
     """Base Solution algorithm: {dssNormalSolve | dssNewtonSolve} (Setter)"""
-    function Algorithm(Value::Int)
+    function Algorithm(Value::Union{Int, Lib.SolutionAlgorithms})
+        Value = convert(Lib.SolutionAlgorithms, Value)
         Lib.Solution_Set_Algorithm(Value)
     end
 
@@ -136,12 +138,13 @@ module Solution
     end
 
     """{dssStatic* | dssEvent | dssTime}  Modes for control devices (Getter)"""
-    function ControlMode()::Int
+    function ControlMode()::Lib.ControlModes
         return Lib.Solution_Get_ControlMode()
     end
 
     """{dssStatic* | dssEvent | dssTime}  Modes for control devices (Setter)"""
-    function ControlMode(Value::Int)
+    function ControlMode(Value::Union{Int, Lib.ControlModes})
+        Value = convert(Lib.ControlModes, Value)
         Lib.Solution_Set_ControlMode(Value)
     end
 
@@ -256,12 +259,13 @@ module Solution
     end
 
     """Load Model: {dssPowerFlow (default) | dssAdmittance}"""
-    function LoadModel()::Int
+    function LoadModel()::Lib.SolutionLoadModels
         return Lib.Solution_Get_LoadModel()
     end
 
     """Load Model: {dssPowerFlow (default) | dssAdmittance}"""
-    function LoadModel(Value::Int)
+    function LoadModel(Value::Union{Int, Lib.SolutionLoadModels})
+        Value = convert(Lib.SolutionLoadModels, Value)
         Lib.Solution_Set_LoadModel(Value)
     end
 
@@ -311,13 +315,14 @@ module Solution
         Lib.Solution_Set_MinIterations(Value)
     end
 
-    """Set present solution mode (by a text code - see DSS Help)"""
-    function Mode()::Int
+    """Get present solution mode (by a text code - see DSS Help)"""
+    function Mode()::Lib.SolveModes
         return Lib.Solution_Get_Mode()
     end
 
     """Set present solution mode (by a text code - see DSS Help)"""
-    function Mode(Value::Int)
+    function Mode(Value::Union{Int, Lib.SolveModes})
+        Value = convert(Lib.SolveModes, Value)
         Lib.Solution_Set_Mode(Value)
     end
 
@@ -346,13 +351,14 @@ module Solution
         return Lib.Solution_Get_Process_Time()
     end
 
-    """Randomization mode for random variables "Gaussian" or "Uniform" """
-    function Random()::Int
+    """Randomization mode for random variables "Gaussian" or "Uniform" (Getter)"""
+    function Random()::Lib.RandomModes
         return Lib.Solution_Get_Random()
     end
 
-    """Gets the time required to perform the latest solution (Read only)"""
-    function ProcessTime(Value::Int)
+    """Randomization mode for random variables "Gaussian" or "Uniform" (Setter)"""
+    function Random(Value::Union{Int, Lib.RandomModes})
+        Value = convert(Lib.RandomModes, Value)
         Lib.Solution_Set_Random(Value)
     end
 

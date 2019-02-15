@@ -9,7 +9,9 @@ init8500()
 @test Settings.ZoneLock() == 0
 @test Settings.ZoneLock(Settings.ZoneLock()) == nothing
 @test Settings.CktModel() == 0
-@test Settings.CktModel(Settings.CktModel()) == nothing
+@test Settings.CktModel() == OpenDSSDirect.Lib.CktModels_Multiphase
+@test Settings.CktModel(0) == nothing
+@test Settings.CktModel(OpenDSSDirect.Lib.CktModels_Multiphase) == nothing
 @test Settings.Trapezoidal() == 0
 @test Settings.Trapezoidal(Settings.Trapezoidal()) == nothing
 @test Settings.AllocationFactors(1.0) == nothing
