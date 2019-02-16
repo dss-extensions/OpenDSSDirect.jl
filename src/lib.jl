@@ -40,11 +40,12 @@ module Lib
         SolutionAlgorithms_NormalSolve = 0,
         SolutionAlgorithms_NewtonSolve = 1,
     )
-    @cenum(ControlModes,
+    @cenum(ControlModes{Int32},
         ControlModes_Static = 0,
         ControlModes_Event = 1,
         ControlModes_Time = 2,
-        ControlModes_ControlOff = 4294967295,
+        ControlModes_Multirate = 3,
+        ControlModes_ControlOff = -1,
     )
     @cenum(CktModels,
         CktModels_Multiphase = 0,
