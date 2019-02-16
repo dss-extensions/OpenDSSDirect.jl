@@ -237,12 +237,13 @@ module Lines
     end
 
     """Units for Line (Getter)"""
-    function Units()::Int
+    function Units()::Lib.LineUnits
         return Lib.Lines_Get_Units()
     end
 
     """Units for Line (Setter)"""
-    function Units(Value::Int)
+    function Units(Value::Union{Int, Lib.LineUnits})
+        Value = convert(Lib.LineUnits, Value)
         Lib.Lines_Set_Units(Value)
     end
 

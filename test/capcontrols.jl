@@ -7,7 +7,9 @@ init8500()
 @test CapControls.First() == 1
 @test CapControls.Next() == 2
 @test CapControls.Mode() == 2
-@test CapControls.Mode(CapControls.Mode()) == nothing
+@test CapControls.Mode() == OpenDSSDirect.Lib.CapControlModes_KVAR
+@test CapControls.Mode(2) == nothing
+@test CapControls.Mode(OpenDSSDirect.Lib.CapControlModes_KVAR) == nothing
 @test CapControls.MonitoredTerm() == 1
 @test CapControls.MonitoredTerm(CapControls.MonitoredTerm()) == nothing
 @test CapControls.UseVoltOverride()

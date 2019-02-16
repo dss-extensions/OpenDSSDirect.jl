@@ -36,8 +36,7 @@ module CtrlQueue
     end
 
     """Code for the active action. Long integer code to tell the control device what to do"""
-    function ActionCode()::Int
-        # TODO: return enum?
+    function ActionCode()::Lib.ActionCodes
         return Lib.CtrlQueue_Get_ActionCode()
     end
 

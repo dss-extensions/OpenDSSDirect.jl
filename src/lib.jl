@@ -32,22 +32,32 @@ module Lib
         SolveModes_Harmonic = 15,
         SolveModes_Dynamic = 14,
     )
-    @cenum(Options,
-        Options_PowerFlow = 1,
-        Options_Admittance = 2,
-        Options_NormalSolve = 0,
-        Options_NewtonSolve = 1,
-        Options_Static = 0,
-        Options_Event = 1,
-        Options_Time = 2,
-        Options_Multiphase = 0,
-        Options_PositiveSeq = 1,
-        Options_Gaussian = 1,
-        Options_Uniform = 2,
-        Options_LogNormal = 3,
-        Options_AddGen = 1,
-        Options_AddCap = 2,
-        Options_ControlOFF = 4294967295,
+    @cenum(SolutionLoadModels,
+        SolutionLoadModels_PowerFlow = 1,
+        SolutionLoadModels_Admittance = 2,
+    )
+    @cenum(SolutionAlgorithms,
+        SolutionAlgorithms_NormalSolve = 0,
+        SolutionAlgorithms_NewtonSolve = 1,
+    )
+    @cenum(ControlModes,
+        ControlModes_Static = 0,
+        ControlModes_Event = 1,
+        ControlModes_Time = 2,
+        ControlModes_ControlOff = 4294967295,
+    )
+    @cenum(CktModels,
+        CktModels_Multiphase = 0,
+        CktModels_PositiveSeq = 1,
+    )
+    @cenum(RandomModes,
+        RandomModes_Gaussian = 1,
+        RandomModes_Uniform = 2,
+        RandomModes_LogNormal = 3
+    )
+    @cenum(AutoAddTypes,
+        AutoAddTypes_AddGen = 1,
+        AutoAddTypes_AddCap = 2,
     )
     @cenum(CapControlModes,
         CapControlModes_Voltage = 1,

@@ -31,12 +31,13 @@ module Settings
     end
 
     """{dssMultiphase * | dssPositiveSeq} IIndicate if the circuit model is positive sequence. (Getter)"""
-    function CktModel()::Int
+    function CktModel()::Lib.CktModels
         return Lib.Settings_Get_CktModel()
     end
 
     """{dssMultiphase * | dssPositiveSeq} IIndicate if the circuit model is positive sequence. (Setter)"""
-    function CktModel(Value::Int)
+    function CktModel(Value::Union{Int, Lib.CktModels})
+        Value = convert(Lib.CktModels, Value)
         Lib.Settings_Set_CktModel(Value)
     end
 

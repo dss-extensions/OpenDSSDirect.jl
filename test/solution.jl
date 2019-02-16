@@ -6,7 +6,9 @@ init8500()
 
 @test Solution.Solve() == nothing
 @test Solution.Mode() == 0
-@test Solution.Mode(Solution.Mode()) == nothing
+@test Solution.Mode() == OpenDSSDirect.Lib.SolveModes_SnapShot
+@test Solution.Mode(0) == nothing
+@test Solution.Mode(OpenDSSDirect.Lib.SolveModes_SnapShot) == nothing
 @test Solution.Hour() == 0
 @test Solution.Hour(Solution.Hour()) == nothing
 @test Solution.Year() == 0
@@ -17,15 +19,23 @@ init8500()
 @test Solution.Number() == 1
 @test Solution.Number(Solution.Number()) == nothing
 @test Solution.Random() == 1
-# @test Solution.Random(Solution.Random()) == nothing
+@test Solution.Random() == OpenDSSDirect.Lib.RandomModes_Gaussian
+@test Solution.Random(1) == nothing
+@test Solution.Random(OpenDSSDirect.Lib.RandomModes_Gaussian) == nothing
 @test Solution.LoadModel() == 1
 @test Solution.LoadModel(Solution.LoadModel()) == nothing
 @test Solution.AddType() == 1
-@test Solution.AddType(Solution.AddType()) == nothing
+@test Solution.AddType() == OpenDSSDirect.Lib.AutoAddTypes_AddGen
+@test Solution.AddType(1) == nothing
+@test Solution.AddType(OpenDSSDirect.Lib.AutoAddTypes_AddGen) == nothing
 @test Solution.Algorithm() == 0
-@test Solution.Algorithm(Solution.Algorithm()) == nothing
+@test Solution.Algorithm() == OpenDSSDirect.Lib.SolutionAlgorithms_NormalSolve
+@test Solution.Algorithm(0) == nothing
+@test Solution.Algorithm(OpenDSSDirect.Lib.SolutionAlgorithms_NormalSolve) == nothing
 @test Solution.ControlMode() == 0
-@test Solution.ControlMode(Solution.ControlMode()) == nothing
+@test Solution.ControlMode() == OpenDSSDirect.Lib.ControlModes_Static
+@test Solution.ControlMode(0) == nothing
+@test Solution.ControlMode(OpenDSSDirect.Lib.ControlModes_Static) == nothing
 @test Solution.ControlIterations() == 5
 @test Solution.ControlIterations(Solution.ControlIterations()) == nothing
 @test Solution.MaxControlIterations() == 10
