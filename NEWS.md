@@ -1,7 +1,7 @@
 ### OpenDSSDirect v0.5.0 Release Notes
 
 - Rewrite using [dss_capi](https://github.com/PMeira/dss_capi)
-- Fixes some issues and cleans up API (See https://github.com/NREL/OpenDSSDirect.jl/pull/26 for more information)
+- Fixes some issues and cleans up API (See https://github.com/dss-extensions/OpenDSSDirect.jl/pull/26 for more information)
 
 ### OpenDSSDirect v0.4.0 Release Notes
 

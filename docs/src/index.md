@@ -25,11 +25,11 @@ To install the latest development version, use the following from within Julia:
 
 This package includes OpenDSS as a library. You do not have to install OpenDSS
 separately. In particular, it includes the OpenDSSDirect dynamically linked
-library using [dss_capi](https://github.com/PMeira/dss_capi) that implements the direct-access API.
+library using [dss_capi](https://github.com/dss-extensions/dss_capi) that implements the direct-access API.
 
 Note that this should work on 32- and 64-bit Windows systems and 64-bit Linux
 and Mac systems. The Windows, Mac and Linux libraries are taken from the
-[dss_capi releases](https://github.com/PMeira/dss_capi/releases) page.
+[dss_capi releases](https://github.com/dss-extensions/dss_capi/releases) page.
 
 ## Features
 
@@ -43,7 +43,7 @@ Julia has several key features for advanced operations with OpenDSS:
 * **Parallel operations** -- Julia supports several ways to process data in
   parallel. This includes parallel operations on multiple CPU cores and
   parallel operations on processes in a cluster. See
-  [examples/8760_pmap.jl](https://github.com/NREL/OpenDSSDirect.jl/blob/master/examples/8760_pmap.jl)
+  [examples/8760_pmap.jl](https://github.com/dss-extensions/OpenDSSDirect.jl/blob/master/examples/8760_pmap.jl)
   for an example of an annual simulation split among local CPU cores.
 
 * **Optimization** -- Julia has strong support for optimization.
@@ -55,7 +55,7 @@ Julia has several key features for advanced operations with OpenDSS:
   [OpenDSS Solution Interface.pdf](http://svn.code.sf.net/p/electricdss/code/trunk/Distrib/Doc/OpenDSS%20Solution%20Interface.pdf).
   Custom control or power control elements can be implemented between each
   model iteration. See
-  [examples/low-level-solver.jl](https://github.com/NREL/OpenDSSDirect.jl/blob/master/examples/low-level-solver.jl)
+  [examples/low-level-solver.jl](https://github.com/dss-extensions/OpenDSSDirect.jl/blob/master/examples/low-level-solver.jl)
   for an example with a custom solver, including a case with an alternate sparse
   matrix solver.
 
