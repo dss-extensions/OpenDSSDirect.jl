@@ -42,7 +42,6 @@ module Meters
 
     """Sample all meters"""
     function SampleAll()
-        error("Not implemented. Please contact the developers.")
         Lib.Meters_SampleAll()
     end
 
@@ -63,13 +62,11 @@ module Meters
 
     """Wide string list of all branches in zone of the active energymeter object."""
     function AllBranchesInZone()::Vector{String}
-        error("Not implemented. Please contact the developers.")
         return Utils.get_string_array(Lib.Meters_Get_AllBranchesInZone)
     end
 
     """Array of names of all zone end elements."""
     function AllEndElements()::Vector{String}
-        error("Not implemented. Please contact the developers.")
         return Utils.get_string_array(Lib.Meters_Get_AllEndElements)
     end
 
@@ -117,7 +114,6 @@ module Meters
 
     """Number of zone end elements in the active meter zone."""
     function CountEndElements()::Int
-        error("Not implemented. Please contact the developers.")
         return Lib.Meters_Get_CountEndElements()
     end
 

@@ -23,7 +23,7 @@ OpenDSSDirect.Text.Command("""
 @test Monitors.Count() == 1
 @test Monitors.Process() == nothing
 @test Monitors.ProcessAll() == nothing
-# @test Monitors.FileVersion() == 0     # win32 FAILURE
+@test Monitors.FileVersion() == 1
 @test Monitors.NumChannels() == 12
 @test Monitors.Terminal() == 1
 @test Monitors.Terminal(Monitors.Terminal()) == nothing

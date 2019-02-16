@@ -131,8 +131,10 @@ function __init__()
             optionhelp[lowercase(OpenDSSDirect.Executive.Option(i))] = OpenDSSDirect.Executive.OptionHelp(i)
         end
 
-        if isdefined(Base, :active_repl)
-            OpenDSSDirect.Repl.run_dss_repl()
+        if !("OPENDSSDIRECT_REPL" in keys(ENV) && ENV["OPENDSSDIRECT_REPL"] == "false")
+            if isdefined(Base, :active_repl)
+                OpenDSSDirect.Repl.run_dss_repl()
+            end
         end
     end
 
