@@ -69,7 +69,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.dss",
     "category": "function",
-    "text": "Command()::String\n\n\nInput command string for the DSS. (Getter)\n\n\n\n\n\nCommand(Value::String)::String\n\n\nInput command string for the DSS. (Setter)\n\n\n\n\n\n"
+    "text": "Command() -> String\n\n\nInput command string for the DSS. (Getter)\n\n\n\n\n\nCommand(Value::String) -> String\n\n\nInput command string for the DSS. (Setter)\n\n\n\n\n\n"
 },
 
 {
@@ -85,7 +85,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.ActiveClass.ActiveClassName",
     "category": "method",
-    "text": "ActiveClassName()::String\n\n\nReturns name of active class.\n\n\n\n\n\n"
+    "text": "ActiveClassName() -> String\n\n\nReturns name of active class.\n\n\n\n\n\n"
 },
 
 {
@@ -93,7 +93,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.ActiveClass.AllNames",
     "category": "method",
-    "text": "AllNames()::Array{String,1}\n\n\nArray of strings consisting of all element names in the active class.\n\n\n\n\n\n"
+    "text": "AllNames() -> Array{String,1}\n\n\nArray of strings consisting of all element names in the active class.\n\n\n\n\n\n"
 },
 
 {
@@ -101,7 +101,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.ActiveClass.Count",
     "category": "method",
-    "text": "Count()::Int64\n\n\nNumber of elements in Active Class. Same as NumElements Property.\n\n\n\n\n\n"
+    "text": "Count() -> Int64\n\n\nNumber of elements in Active Class. Same as NumElements Property.\n\n\n\n\n\n"
 },
 
 {
@@ -109,7 +109,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.ActiveClass.First",
     "category": "method",
-    "text": "First()::Int64\n\n\nSets first element in the active class to be the active DSS object. If object is a CktElement, ActiveCktELment also points to this element. Returns 0 if none.\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\nSets first element in the active class to be the active DSS object. If object is a CktElement, ActiveCktELment also points to this element. Returns 0 if none.\n\n\n\n\n\n"
 },
 
 {
@@ -125,7 +125,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.ActiveClass.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nName of the Active Element of the Active Class (Getter)\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nName of the Active Element of the Active Class (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -133,7 +133,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.ActiveClass.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\nSets next element in active class to be the active DSS object. If object is a CktElement, ActiveCktElement also points to this element.  Returns 0 if no more.\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\nSets next element in active class to be the active DSS object. If object is a CktElement, ActiveCktElement also points to this element.  Returns 0 if no more.\n\n\n\n\n\n"
 },
 
 {
@@ -141,7 +141,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.ActiveClass.NumElements",
     "category": "method",
-    "text": "NumElements()::Int64\n\n\nNumber of elements in this class. Same as Count property.\n\n\n\n\n\n"
+    "text": "NumElements() -> Int64\n\n\nNumber of elements in this class. Same as Count property.\n\n\n\n\n\n"
 },
 
 {
@@ -165,7 +165,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Basic.AllowForms",
     "category": "method",
-    "text": "AllowForms()::Bool\n\n\nGets/sets whether text output is allowed (Getter)\n\n\n\n\n\n"
+    "text": "AllowForms() -> Bool\n\n\nGets/sets whether text output is allowed (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -173,7 +173,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Basic.Classes",
     "category": "method",
-    "text": "Classes()::Array{String,1}\n\n\nList of DSS intrinsic classes (names of the classes)\n\n\n\n\n\n"
+    "text": "Classes() -> Array{String,1}\n\n\nList of DSS intrinsic classes (names of the classes)\n\n\n\n\n\n"
 },
 
 {
@@ -197,7 +197,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Basic.DataPath",
     "category": "method",
-    "text": "DataPath()::String\n\n\nDSS Data File Path.  Default path for reports, etc. from DSS (Getter)\n\n\n\n\n\n"
+    "text": "DataPath() -> String\n\n\nDSS Data File Path.  Default path for reports, etc. from DSS (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -205,7 +205,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Basic.DefaultEditor",
     "category": "method",
-    "text": "DefaultEditor()::String\n\n\nReturns the path name for the default text editor.\n\n\n\n\n\n"
+    "text": "DefaultEditor() -> String\n\n\nReturns the path name for the default text editor.\n\n\n\n\n\n"
 },
 
 {
@@ -213,7 +213,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Basic.NewCircuit",
     "category": "method",
-    "text": "NewCircuit(name::String)::String\n\n\nCreate a new circuit\n\n\n\n\n\n"
+    "text": "NewCircuit(name::String) -> String\n\n\nCreate a new circuit\n\n\n\n\n\n"
 },
 
 {
@@ -221,7 +221,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Basic.NumCircuits",
     "category": "method",
-    "text": "NumCircuits()::Int64\n\n\nNumber of Circuits currently defined\n\n\n\n\n\n"
+    "text": "NumCircuits() -> Int64\n\n\nNumber of Circuits currently defined\n\n\n\n\n\n"
 },
 
 {
@@ -229,7 +229,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Basic.NumClasses",
     "category": "method",
-    "text": "NumClasses()::Int64\n\n\nNumber of DSS intrinsic classes\n\n\n\n\n\n"
+    "text": "NumClasses() -> Int64\n\n\nNumber of DSS intrinsic classes\n\n\n\n\n\n"
 },
 
 {
@@ -237,7 +237,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Basic.NumUserClasses",
     "category": "method",
-    "text": "NumUserClasses()::Int64\n\n\nNumber of user-defined classes\n\n\n\n\n\n"
+    "text": "NumUserClasses() -> Int64\n\n\nNumber of user-defined classes\n\n\n\n\n\n"
 },
 
 {
@@ -253,7 +253,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Basic.SetActiveClass",
     "category": "method",
-    "text": "SetActiveClass(ClassName::String)::Int64\n\n\nSet the Active Class\n\n\n\n\n\n"
+    "text": "SetActiveClass(ClassName::String) -> Int64\n\n\nSet the Active Class\n\n\n\n\n\n"
 },
 
 {
@@ -261,7 +261,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Basic.Start",
     "category": "method",
-    "text": "Start(code::Int64)::Bool\n\n\nSet the start code\n\n\n\n\n\n"
+    "text": "Start(code::Int64) -> Bool\n\n\nSet the start code\n\n\n\n\n\n"
 },
 
 {
@@ -269,7 +269,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Basic.UserClasses",
     "category": "method",
-    "text": "UserClasses()::Array{String,1}\n\n\nList of user-defined classes\n\n\n\n\n\n"
+    "text": "UserClasses() -> Array{String,1}\n\n\nList of user-defined classes\n\n\n\n\n\n"
 },
 
 {
@@ -277,7 +277,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Basic.Version",
     "category": "method",
-    "text": "Version()::String\n\n\nGet version string for the DSS.\n\n\n\n\n\n"
+    "text": "Version() -> String\n\n\nGet version string for the DSS.\n\n\n\n\n\n"
 },
 
 {
@@ -293,7 +293,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.Coorddefined",
     "category": "method",
-    "text": "Coorddefined()::Bool\n\n\nIndicates whether a coordinate has been defined for this bus\n\n\n\n\n\n"
+    "text": "Coorddefined() -> Bool\n\n\nIndicates whether a coordinate has been defined for this bus\n\n\n\n\n\n"
 },
 
 {
@@ -301,7 +301,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.CplxSeqVoltages",
     "category": "method",
-    "text": "CplxSeqVoltages()::Array{Complex{Float64},1}\n\n\nComplex Double array of Sequence Voltages (0, 1, 2) at this Bus.\n\n\n\n\n\n"
+    "text": "CplxSeqVoltages() -> Array{Complex{Float64},1}\n\n\nComplex Double array of Sequence Voltages (0, 1, 2) at this Bus.\n\n\n\n\n\n"
 },
 
 {
@@ -309,7 +309,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.Cust_Duration",
     "category": "method",
-    "text": "Cust_Duration()::Float64\n\n\nAccumulated customer outage durations\n\n\n\n\n\n"
+    "text": "Cust_Duration() -> Float64\n\n\nAccumulated customer outage durations\n\n\n\n\n\n"
 },
 
 {
@@ -317,7 +317,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.Cust_Interrupts",
     "category": "method",
-    "text": "Cust_Interrupts()::Float64\n\n\nAnnual number of customer-interruptions from this bus\n\n\n\n\n\n"
+    "text": "Cust_Interrupts() -> Float64\n\n\nAnnual number of customer-interruptions from this bus\n\n\n\n\n\n"
 },
 
 {
@@ -325,7 +325,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.Distance",
     "category": "method",
-    "text": "Distance()::Float64\n\n\nDistance from energymeter (if non-zero)\n\n\n\n\n\n"
+    "text": "Distance() -> Float64\n\n\nDistance from energymeter (if non-zero)\n\n\n\n\n\n"
 },
 
 {
@@ -333,7 +333,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.GetUniqueNodeNumber",
     "category": "method",
-    "text": "GetUniqueNodeNumber(StartNumber::Int64)::Int64\n\n\nGet unique node number\n\n\n\n\n\n"
+    "text": "GetUniqueNodeNumber(StartNumber::Int64) -> Int64\n\n\nGet unique node number\n\n\n\n\n\n"
 },
 
 {
@@ -341,7 +341,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.Int_Duration",
     "category": "method",
-    "text": "Int_Duration()::Float64\n\n\nAverage interruption duration, hr.\n\n\n\n\n\n"
+    "text": "Int_Duration() -> Float64\n\n\nAverage interruption duration, hr.\n\n\n\n\n\n"
 },
 
 {
@@ -349,7 +349,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.Isc",
     "category": "method",
-    "text": "Isc()::Array{Complex{Float64},1}\n\n\nShort circuit currents at bus; Complex Array.\n\n\n\n\n\n"
+    "text": "Isc() -> Array{Complex{Float64},1}\n\n\nShort circuit currents at bus; Complex Array.\n\n\n\n\n\n"
 },
 
 {
@@ -357,7 +357,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.Lambda",
     "category": "method",
-    "text": "Lambda()::Float64\n\n\nAccumulated failure rate downstream from this bus; faults per year\n\n\n\n\n\n"
+    "text": "Lambda() -> Float64\n\n\nAccumulated failure rate downstream from this bus; faults per year\n\n\n\n\n\n"
 },
 
 {
@@ -365,7 +365,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.N_Customers",
     "category": "method",
-    "text": "N_Customers()::Int64\n\n\nTotal numbers of customers served downline from this bus\n\n\n\n\n\n"
+    "text": "N_Customers() -> Int64\n\n\nTotal numbers of customers served downline from this bus\n\n\n\n\n\n"
 },
 
 {
@@ -373,7 +373,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.N_interrupts",
     "category": "method",
-    "text": "N_interrupts()::Float64\n\n\nNumber of interruptions this bus per year\n\n\n\n\n\n"
+    "text": "N_interrupts() -> Float64\n\n\nNumber of interruptions this bus per year\n\n\n\n\n\n"
 },
 
 {
@@ -381,7 +381,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nName of Bus\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nName of Bus\n\n\n\n\n\n"
 },
 
 {
@@ -389,7 +389,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.Nodes",
     "category": "method",
-    "text": "Nodes()::Array{Int64,1}\n\n\nInteger Array of Node Numbers defined at the bus in same order as the voltages.\n\n\n\n\n\n"
+    "text": "Nodes() -> Array{Int64,1}\n\n\nInteger Array of Node Numbers defined at the bus in same order as the voltages.\n\n\n\n\n\n"
 },
 
 {
@@ -397,7 +397,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.NumNodes",
     "category": "method",
-    "text": "NumNodes()::Int64\n\n\nNumber of Nodes this bus.\n\n\n\n\n\n"
+    "text": "NumNodes() -> Int64\n\n\nNumber of Nodes this bus.\n\n\n\n\n\n"
 },
 
 {
@@ -405,7 +405,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.PuVoltage",
     "category": "method",
-    "text": "PuVoltage()::Array{Complex{Float64},1}\n\n\nComplex Array of pu voltages at the bus.\n\n\n\n\n\n"
+    "text": "PuVoltage() -> Array{Complex{Float64},1}\n\n\nComplex Array of pu voltages at the bus.\n\n\n\n\n\n"
 },
 
 {
@@ -413,7 +413,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.SectionID",
     "category": "method",
-    "text": "SectionID()::Int64\n\n\nInteger ID of the feeder section in which this bus is located.\n\n\n\n\n\n"
+    "text": "SectionID() -> Int64\n\n\nInteger ID of the feeder section in which this bus is located.\n\n\n\n\n\n"
 },
 
 {
@@ -421,7 +421,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.SeqVoltages",
     "category": "method",
-    "text": "SeqVoltages()::Array{Float64,1}\n\n\nDouble Array of sequence voltages at this bus.\n\n\n\n\n\n"
+    "text": "SeqVoltages() -> Array{Float64,1}\n\n\nDouble Array of sequence voltages at this bus.\n\n\n\n\n\n"
 },
 
 {
@@ -429,7 +429,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.TotalMiles",
     "category": "method",
-    "text": "TotalMiles()::Float64\n\n\nTotal length of line downline from this bus, in miles. For recloser siting algorithm.\n\n\n\n\n\n"
+    "text": "TotalMiles() -> Float64\n\n\nTotal length of line downline from this bus, in miles. For recloser siting algorithm.\n\n\n\n\n\n"
 },
 
 {
@@ -437,7 +437,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.VLL",
     "category": "method",
-    "text": "VLL()::Array{Complex{Float64},1}\n\n\nFor 2- and 3-phase buses, returns array of complex numbers representing L-L voltages in volts. Returns -1.0 for 1-phase bus. If more than 3 phases, returns only first 3.\n\n\n\n\n\n"
+    "text": "VLL() -> Array{Complex{Float64},1}\n\n\nFor 2- and 3-phase buses, returns array of complex numbers representing L-L voltages in volts. Returns -1.0 for 1-phase bus. If more than 3 phases, returns only first 3.\n\n\n\n\n\n"
 },
 
 {
@@ -445,7 +445,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.VMagAngle",
     "category": "method",
-    "text": "VMagAngle()::Array{Float64,1}\n\n\nVariant Array of doubles containing voltages in Magnitude (VLN), angle (deg) \n\n\n\n\n\n"
+    "text": "VMagAngle() -> Array{Float64,1}\n\n\nVariant Array of doubles containing voltages in Magnitude (VLN), angle (deg) \n\n\n\n\n\n"
 },
 
 {
@@ -453,7 +453,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.Voc",
     "category": "method",
-    "text": "Voc()::Array{Complex{Float64},1}\n\n\nOpen circuit voltage; Complex array.\n\n\n\n\n\n"
+    "text": "Voc() -> Array{Complex{Float64},1}\n\n\nOpen circuit voltage; Complex array.\n\n\n\n\n\n"
 },
 
 {
@@ -461,7 +461,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.Voltages",
     "category": "method",
-    "text": "Voltages()::Array{Complex{Float64},1}\n\n\nComplex array of voltages at this bus.\n\n\n\n\n\n"
+    "text": "Voltages() -> Array{Complex{Float64},1}\n\n\nComplex array of voltages at this bus.\n\n\n\n\n\n"
 },
 
 {
@@ -477,7 +477,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.X",
     "category": "method",
-    "text": "X()::Float64\n\n\nX Coordinate for bus (double) (Getter)\n\n\n\n\n\n"
+    "text": "X() -> Float64\n\n\nX Coordinate for bus (double) (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -493,7 +493,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.Y",
     "category": "method",
-    "text": "Y()::Float64\n\n\nY coordinate for bus (double) (Getter)\n\n\n\n\n\n"
+    "text": "Y() -> Float64\n\n\nY coordinate for bus (double) (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -501,7 +501,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.YscMatrix",
     "category": "method",
-    "text": "YscMatrix()::Array{Complex{Float64},1}\n\n\nComplex array of Ysc matrix at bus. Column by column.\n\n\n\n\n\n"
+    "text": "YscMatrix() -> Array{Complex{Float64},1}\n\n\nComplex array of Ysc matrix at bus. Column by column.\n\n\n\n\n\n"
 },
 
 {
@@ -509,7 +509,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.Zsc0",
     "category": "method",
-    "text": "Zsc0()::Complex{Float64}\n\n\nComplex Zero-Sequence short circuit impedance at bus.\n\n\n\n\n\n"
+    "text": "Zsc0() -> Complex{Float64}\n\n\nComplex Zero-Sequence short circuit impedance at bus.\n\n\n\n\n\n"
 },
 
 {
@@ -517,7 +517,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.Zsc1",
     "category": "method",
-    "text": "Zsc1()::Complex{Float64}\n\n\nComplex Positive-Sequence short circuit impedance at bus..\n\n\n\n\n\n"
+    "text": "Zsc1() -> Complex{Float64}\n\n\nComplex Positive-Sequence short circuit impedance at bus..\n\n\n\n\n\n"
 },
 
 {
@@ -525,7 +525,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.ZscMatrix",
     "category": "method",
-    "text": "ZscMatrix()::Array{Complex{Float64},1}\n\n\nComplex array of Zsc matrix at bus. Column by column.\n\n\n\n\n\n"
+    "text": "ZscMatrix() -> Array{Complex{Float64},1}\n\n\nComplex array of Zsc matrix at bus. Column by column.\n\n\n\n\n\n"
 },
 
 {
@@ -533,7 +533,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.ZscRefresh",
     "category": "method",
-    "text": "ZscRefresh()::Bool\n\n\nCheck if DoZscRefresh is set\n\n\n\n\n\n"
+    "text": "ZscRefresh() -> Bool\n\n\nCheck if DoZscRefresh is set\n\n\n\n\n\n"
 },
 
 {
@@ -541,7 +541,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.kVBase",
     "category": "method",
-    "text": "kVBase()::Float64\n\n\nBase voltage at bus in kV\n\n\n\n\n\n"
+    "text": "kVBase() -> Float64\n\n\nBase voltage at bus in kV\n\n\n\n\n\n"
 },
 
 {
@@ -549,7 +549,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.puVLL",
     "category": "method",
-    "text": "puVLL()::Array{Complex{Float64},1}\n\n\nReturns Complex array of pu L-L voltages for 2- and 3-phase buses. Returns -1.0 for 1-phase bus. If more than 3 phases, returns only 3 phases.\n\n\n\n\n\n"
+    "text": "puVLL() -> Array{Complex{Float64},1}\n\n\nReturns Complex array of pu L-L voltages for 2- and 3-phase buses. Returns -1.0 for 1-phase bus. If more than 3 phases, returns only 3 phases.\n\n\n\n\n\n"
 },
 
 {
@@ -557,7 +557,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Bus.puVmagAngle",
     "category": "method",
-    "text": "puVmagAngle()::Array{Float64,1}\n\n\nArray of doubles containing voltage magnitude, angle pairs in per unit\n\n\n\n\n\n"
+    "text": "puVmagAngle() -> Array{Float64,1}\n\n\nArray of doubles containing voltage magnitude, angle pairs in per unit\n\n\n\n\n\n"
 },
 
 {
@@ -573,7 +573,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Capacitors.AddStep",
     "category": "method",
-    "text": "AddStep()::Bool\n\n\nCheck if Capacitor AddStep is set\n\n\n\n\n\n"
+    "text": "AddStep() -> Bool\n\n\nCheck if Capacitor AddStep is set\n\n\n\n\n\n"
 },
 
 {
@@ -581,7 +581,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Capacitors.AllNames",
     "category": "method",
-    "text": "AllNames()::Array{String,1}\n\n\nArray of strings with all Capacitor names in the circuit.\n\n\n\n\n\n"
+    "text": "AllNames() -> Array{String,1}\n\n\nArray of strings with all Capacitor names in the circuit.\n\n\n\n\n\n"
 },
 
 {
@@ -589,7 +589,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Capacitors.AvailableSteps",
     "category": "method",
-    "text": "AvailableSteps()::Int64\n\n\nNumber of Steps available in cap bank to be switched ON.\n\n\n\n\n\n"
+    "text": "AvailableSteps() -> Int64\n\n\nNumber of Steps available in cap bank to be switched ON.\n\n\n\n\n\n"
 },
 
 {
@@ -605,7 +605,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Capacitors.Count",
     "category": "method",
-    "text": "Count()::Int64\n\n\nNumber of Capacitor objects in active circuit.\n\n\n\n\n\n"
+    "text": "Count() -> Int64\n\n\nNumber of Capacitor objects in active circuit.\n\n\n\n\n\n"
 },
 
 {
@@ -613,7 +613,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Capacitors.First",
     "category": "method",
-    "text": "First()::Int64\n\n\nSets the first Capacitor active. Returns 0 if no more.\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\nSets the first Capacitor active. Returns 0 if no more.\n\n\n\n\n\n"
 },
 
 {
@@ -629,7 +629,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Capacitors.IsDelta",
     "category": "method",
-    "text": "IsDelta()::Bool\n\n\nDelta connection or wye? (Getter)\n\n\n\n\n\n"
+    "text": "IsDelta() -> Bool\n\n\nDelta connection or wye? (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -645,7 +645,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Capacitors.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nSets the active Capacitor by Name. (Getter)\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nSets the active Capacitor by Name. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -653,7 +653,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Capacitors.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\nSets the next Capacitor active. Returns 0 if no more.\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\nSets the next Capacitor active. Returns 0 if no more.\n\n\n\n\n\n"
 },
 
 {
@@ -669,7 +669,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Capacitors.NumSteps",
     "category": "method",
-    "text": "NumSteps()::Int64\n\n\nNumber of steps (default 1) for distributing and switching the total bank kVAR. (Getter)\n\n\n\n\n\n"
+    "text": "NumSteps() -> Int64\n\n\nNumber of steps (default 1) for distributing and switching the total bank kVAR. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -693,7 +693,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Capacitors.States",
     "category": "method",
-    "text": "States()::Array{Int64,1}\n\n\nArray of  integer [0..numsteps-1] indicating state of each step. If value is -1 an error has occurred. (Getter)\n\n\n\n\n\n"
+    "text": "States() -> Array{Int64,1}\n\n\nArray of  integer [0..numsteps-1] indicating state of each step. If value is -1 an error has occurred. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -701,7 +701,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Capacitors.SubtractStep",
     "category": "method",
-    "text": "SubtractStep()::Bool\n\n\nCheck if Capacitor SubtractStep is set\n\n\n\n\n\n"
+    "text": "SubtractStep() -> Bool\n\n\nCheck if Capacitor SubtractStep is set\n\n\n\n\n\n"
 },
 
 {
@@ -717,7 +717,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Capacitors.kV",
     "category": "method",
-    "text": "kV()::Float64\n\n\nBank kV rating. Use LL for 2 or 3 phases, or actual can rating for 1 phase. (Getter)\n\n\n\n\n\n"
+    "text": "kV() -> Float64\n\n\nBank kV rating. Use LL for 2 or 3 phases, or actual can rating for 1 phase. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -733,7 +733,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Capacitors.kvar",
     "category": "method",
-    "text": "kvar()::Float64\n\n\nTotal bank KVAR, distributed equally among phases and steps. (Getter)\n\n\n\n\n\n"
+    "text": "kvar() -> Float64\n\n\nTotal bank KVAR, distributed equally among phases and steps. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -749,7 +749,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CapControls.AllNames",
     "category": "method",
-    "text": "AllNames()::Array{String,1}\n\n\nArray of strings with all CapControl names.\n\n\n\n\n\n"
+    "text": "AllNames() -> Array{String,1}\n\n\nArray of strings with all CapControl names.\n\n\n\n\n\n"
 },
 
 {
@@ -765,7 +765,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CapControls.CTRatio",
     "category": "method",
-    "text": "CTRatio()::Float64\n\n\nTransducer ratio from pirmary current to control current. (Getter)\n\n\n\n\n\n"
+    "text": "CTRatio() -> Float64\n\n\nTransducer ratio from pirmary current to control current. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -781,7 +781,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CapControls.Capacitor",
     "category": "method",
-    "text": "Capacitor()::String\n\n\nName of the Capacitor that is controlled. (Getter)\n\n\n\n\n\n"
+    "text": "Capacitor() -> String\n\n\nName of the Capacitor that is controlled. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -789,7 +789,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CapControls.Count",
     "category": "method",
-    "text": "Count()::Int64\n\n\nNumber of CapControls in Active Circuit\n\n\n\n\n\n"
+    "text": "Count() -> Int64\n\n\nNumber of CapControls in Active Circuit\n\n\n\n\n\n"
 },
 
 {
@@ -805,7 +805,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CapControls.DeadTime",
     "category": "method",
-    "text": "DeadTime()::Float64\n\n\nDead Time for Capacitor Control (Getter)\n\n\n\n\n\n"
+    "text": "DeadTime() -> Float64\n\n\nDead Time for Capacitor Control (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -821,7 +821,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CapControls.Delay",
     "category": "method",
-    "text": "Delay()::Float64\n\n\nTime delay [s] to switch on after arming.  Control may reset before actually switching. (Getter)\n\n\n\n\n\n"
+    "text": "Delay() -> Float64\n\n\nTime delay [s] to switch on after arming.  Control may reset before actually switching. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -837,7 +837,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CapControls.DelayOff",
     "category": "method",
-    "text": "DelayOff()::Float64\n\n\nTime delay [s] before switching off a step. Control may reset before actually switching. (Getter)\n\n\n\n\n\n"
+    "text": "DelayOff() -> Float64\n\n\nTime delay [s] before switching off a step. Control may reset before actually switching. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -845,15 +845,15 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CapControls.First",
     "category": "method",
-    "text": "First()::Int64\n\n\nSets the first CapControl as active. Return 0 if none.\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\nSets the first CapControl as active. Return 0 if none.\n\n\n\n\n\n"
 },
 
 {
-    "location": "api/#OpenDSSDirect.CapControls.Mode-Tuple{Int64}",
+    "location": "api/#OpenDSSDirect.CapControls.Mode-Tuple{Union{Int64, CapControlModes}}",
     "page": "Main API",
     "title": "OpenDSSDirect.CapControls.Mode",
     "category": "method",
-    "text": "Mode(Value::Int64)\n\n\nType of automatic controller. (Setter)\n\n\n\n\n\n"
+    "text": "Mode(Value::Union{Int64, CapControlModes})\n\n\nType of automatic controller. (Setter)\n\n\n\n\n\n"
 },
 
 {
@@ -861,7 +861,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CapControls.Mode",
     "category": "method",
-    "text": "Mode()::Int64\n\n\nType of automatic controller. (Getter)\n\n\n\n\n\n"
+    "text": "Mode() -> OpenDSSDirect.Lib.CapControlModes\n\n\nType of automatic controller. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -877,7 +877,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CapControls.MonitoredObj",
     "category": "method",
-    "text": "MonitoredObj()::String\n\n\nFull name of the element that PT and CT are connected to. (Getter)\n\n\n\n\n\n"
+    "text": "MonitoredObj() -> String\n\n\nFull name of the element that PT and CT are connected to. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -893,7 +893,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CapControls.MonitoredTerm",
     "category": "method",
-    "text": "MonitoredTerm()::Int64\n\n\nTerminal number on the element that PT and CT are connected to. (Getter)\n\n\n\n\n\n"
+    "text": "MonitoredTerm() -> Int64\n\n\nTerminal number on the element that PT and CT are connected to. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -909,7 +909,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CapControls.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nSets a CapControl active by name. (Getter)\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nSets a CapControl active by name. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -917,7 +917,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CapControls.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\nGets the next CapControl in the circut. Returns 0 if none.\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\nGets the next CapControl in the circut. Returns 0 if none.\n\n\n\n\n\n"
 },
 
 {
@@ -933,7 +933,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CapControls.OFFSetting",
     "category": "method",
-    "text": "OFFSetting()::Int64\n\n\nThreshold to switch off a step. See Mode for units. (Getter)\n\n\n\n\n\n"
+    "text": "OFFSetting() -> Int64\n\n\nThreshold to switch off a step. See Mode for units. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -949,7 +949,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CapControls.ONSetting",
     "category": "method",
-    "text": "ONSetting()::Int64\n\n\nThreshold to arm or switch on a step.  See Mode for units. (Getter)\n\n\n\n\n\n"
+    "text": "ONSetting() -> Int64\n\n\nThreshold to arm or switch on a step.  See Mode for units. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -965,7 +965,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CapControls.PTRatio",
     "category": "method",
-    "text": "PTRatio()::Float64\n\n\nTransducer ratio from primary feeder to control voltage. (Getter)\n\n\n\n\n\n"
+    "text": "PTRatio() -> Float64\n\n\nTransducer ratio from primary feeder to control voltage. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -989,7 +989,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CapControls.UseVoltOverride",
     "category": "method",
-    "text": "UseVoltOverride()::Bool\n\n\nEnables Vmin and Vmax to override the control Mode (Getter)\n\n\n\n\n\n"
+    "text": "UseVoltOverride() -> Bool\n\n\nEnables Vmin and Vmax to override the control Mode (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -1005,7 +1005,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CapControls.Vmax",
     "category": "method",
-    "text": "Vmax()::Float64\n\n\nWith VoltOverride, swtich off whenever PT voltage exceeds this level. (Getter)\n\n\n\n\n\n"
+    "text": "Vmax() -> Float64\n\n\nWith VoltOverride, swtich off whenever PT voltage exceeds this level. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -1021,7 +1021,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CapControls.Vmin",
     "category": "method",
-    "text": "Vmin()::Float64\n\n\nWith VoltOverride, switch ON whenever PT voltage drops below this level. (Getter)\n\n\n\n\n\n"
+    "text": "Vmin() -> Float64\n\n\nWith VoltOverride, switch ON whenever PT voltage drops below this level. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -1037,7 +1037,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.AllBusDistances",
     "category": "method",
-    "text": "AllBusDistances()::Array{Float64,1}\n\n\nReturns distance from each bus to parent EnergyMeter. Corresponds to sequence in AllBusNames.\n\n\n\n\n\n"
+    "text": "AllBusDistances() -> Array{Float64,1}\n\n\nReturns distance from each bus to parent EnergyMeter. Corresponds to sequence in AllBusNames.\n\n\n\n\n\n"
 },
 
 {
@@ -1045,7 +1045,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.AllBusMagPu",
     "category": "method",
-    "text": "AllBusMagPu()::Array{Float64,1}\n\n\nDouble Array of all bus voltages (each node) magnitudes in Per unit\n\n\n\n\n\n"
+    "text": "AllBusMagPu() -> Array{Float64,1}\n\n\nDouble Array of all bus voltages (each node) magnitudes in Per unit\n\n\n\n\n\n"
 },
 
 {
@@ -1053,7 +1053,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.AllBusNames",
     "category": "method",
-    "text": "AllBusNames()::Array{String,1}\n\n\nArray of strings containing names of all buses in circuit (see AllNodeNames).\n\n\n\n\n\n"
+    "text": "AllBusNames() -> Array{String,1}\n\n\nArray of strings containing names of all buses in circuit (see AllNodeNames).\n\n\n\n\n\n"
 },
 
 {
@@ -1061,7 +1061,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.AllBusVMag",
     "category": "method",
-    "text": "AllBusVMag()::Array{Float64,1}\n\n\nArray of magnitudes (doubles) of voltages at all buses\n\n\n\n\n\n"
+    "text": "AllBusVMag() -> Array{Float64,1}\n\n\nArray of magnitudes (doubles) of voltages at all buses\n\n\n\n\n\n"
 },
 
 {
@@ -1069,7 +1069,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.AllBusVolts",
     "category": "method",
-    "text": "AllBusVolts()::Array{Complex{Float64},1}\n\n\nComplex array of all bus, node voltages from most recent solution\n\n\n\n\n\n"
+    "text": "AllBusVolts() -> Array{Complex{Float64},1}\n\n\nComplex array of all bus, node voltages from most recent solution\n\n\n\n\n\n"
 },
 
 {
@@ -1077,7 +1077,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.AllElementLosses",
     "category": "method",
-    "text": "AllElementLosses()::Array{Float64,1}\n\n\nArray of total losses (complex) in each circuit element\n\n\n\n\n\n"
+    "text": "AllElementLosses() -> Array{Float64,1}\n\n\nArray of total losses (complex) in each circuit element\n\n\n\n\n\n"
 },
 
 {
@@ -1085,7 +1085,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.AllElementNames",
     "category": "method",
-    "text": "AllElementNames()::Array{String,1}\n\n\nArray of strings containing Full Name of all elements.\n\n\n\n\n\n"
+    "text": "AllElementNames() -> Array{String,1}\n\n\nArray of strings containing Full Name of all elements.\n\n\n\n\n\n"
 },
 
 {
@@ -1093,7 +1093,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.AllNodeDistances",
     "category": "method",
-    "text": "AllNodeDistances()::Array{Float64,1}\n\n\nReturns an array of distances from parent EnergyMeter for each Node. Corresponds to AllBusVMag sequence.\n\n\n\n\n\n"
+    "text": "AllNodeDistances() -> Array{Float64,1}\n\n\nReturns an array of distances from parent EnergyMeter for each Node. Corresponds to AllBusVMag sequence.\n\n\n\n\n\n"
 },
 
 {
@@ -1109,7 +1109,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.AllNodeNames",
     "category": "method",
-    "text": "AllNodeNames()::Array{String,1}\n\n\nArray of strings containing full name of each node in system in same order as returned by AllBusVolts, etc.\n\n\n\n\n\n"
+    "text": "AllNodeNames() -> Array{String,1}\n\n\nArray of strings containing full name of each node in system in same order as returned by AllBusVolts, etc.\n\n\n\n\n\n"
 },
 
 {
@@ -1141,7 +1141,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.Capacity",
     "category": "method",
-    "text": "Capacity(Start::Any, Increment::Any)::Float64\n\n\nCompute capacity\n\n\n\n\n\n"
+    "text": "Capacity(Start::Any, Increment::Any) -> Float64\n\n\nCompute capacity\n\n\n\n\n\n"
 },
 
 {
@@ -1173,7 +1173,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.FirstElement",
     "category": "method",
-    "text": "FirstElement()::Int64\n\n\nSet first element in active class to be active\n\n\n\n\n\n"
+    "text": "FirstElement() -> Int64\n\n\nSet first element in active class to be active\n\n\n\n\n\n"
 },
 
 {
@@ -1181,7 +1181,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.FirstPCElement",
     "category": "method",
-    "text": "FirstPCElement()::Int64\n\n\nSet first PCElement to be active\n\n\n\n\n\n"
+    "text": "FirstPCElement() -> Int64\n\n\nSet first PCElement to be active\n\n\n\n\n\n"
 },
 
 {
@@ -1189,7 +1189,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.FirstPDElement",
     "category": "method",
-    "text": "FirstPDElement()::Int64\n\n\nSet first PDElement to be active\n\n\n\n\n\n"
+    "text": "FirstPDElement() -> Int64\n\n\nSet first PDElement to be active\n\n\n\n\n\n"
 },
 
 {
@@ -1197,7 +1197,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.LineLosses",
     "category": "method",
-    "text": "LineLosses()::Complex{Float64}\n\n\nComplex total line losses in the circuit\n\n\n\n\n\n"
+    "text": "LineLosses() -> Complex{Float64}\n\n\nComplex total line losses in the circuit\n\n\n\n\n\n"
 },
 
 {
@@ -1205,7 +1205,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.Losses",
     "category": "method",
-    "text": "Losses()::Complex{Float64}\n\n\nTotal losses in active circuit, complex number (two-element array of double).\n\n\n\n\n\n"
+    "text": "Losses() -> Complex{Float64}\n\n\nTotal losses in active circuit, complex number (two-element array of double).\n\n\n\n\n\n"
 },
 
 {
@@ -1213,7 +1213,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nName of the active circuit.\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nName of the active circuit.\n\n\n\n\n\n"
 },
 
 {
@@ -1221,7 +1221,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.NextElement",
     "category": "method",
-    "text": "NextElement()::Int64\n\n\nSet next element in active class to be active\n\n\n\n\n\n"
+    "text": "NextElement() -> Int64\n\n\nSet next element in active class to be active\n\n\n\n\n\n"
 },
 
 {
@@ -1229,7 +1229,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.NextPCElement",
     "category": "method",
-    "text": "NextPCElement()::Int64\n\n\nSet next PCElement to be active\n\n\n\n\n\n"
+    "text": "NextPCElement() -> Int64\n\n\nSet next PCElement to be active\n\n\n\n\n\n"
 },
 
 {
@@ -1237,7 +1237,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.NextPDElement",
     "category": "method",
-    "text": "NextPDElement()::Int64\n\n\nSet next PDElement to be active\n\n\n\n\n\n"
+    "text": "NextPDElement() -> Int64\n\n\nSet next PDElement to be active\n\n\n\n\n\n"
 },
 
 {
@@ -1245,7 +1245,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.NumBuses",
     "category": "method",
-    "text": "NumBuses()::Int64\n\n\nTotal number of Buses in the circuit.\n\n\n\n\n\n"
+    "text": "NumBuses() -> Int64\n\n\nTotal number of Buses in the circuit.\n\n\n\n\n\n"
 },
 
 {
@@ -1253,7 +1253,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.NumCktElements",
     "category": "method",
-    "text": "NumCktElements()::Int64\n\n\nNumber of CktElements in the circuit.\n\n\n\n\n\n"
+    "text": "NumCktElements() -> Int64\n\n\nNumber of CktElements in the circuit.\n\n\n\n\n\n"
 },
 
 {
@@ -1261,7 +1261,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.NumNodes",
     "category": "method",
-    "text": "NumNodes()::Int64\n\n\nTotal number of nodes in the circuit.\n\n\n\n\n\n"
+    "text": "NumNodes() -> Int64\n\n\nTotal number of nodes in the circuit.\n\n\n\n\n\n"
 },
 
 {
@@ -1269,7 +1269,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.ParentPDElement",
     "category": "method",
-    "text": "ParentPDElement()::Int64\n\n\nSets Parent PD element, if any, to be the active circuit element and returns index>0; Returns 0 if it fails or not applicable.\n\n\n\n\n\n"
+    "text": "ParentPDElement() -> Int64\n\n\nSets Parent PD element, if any, to be the active circuit element and returns index>0; Returns 0 if it fails or not applicable.\n\n\n\n\n\n"
 },
 
 {
@@ -1293,7 +1293,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.SetActiveBus",
     "category": "method",
-    "text": "SetActiveBus(BusName::String)::Int64\n\n\nSet active bus name\n\n\n\n\n\n"
+    "text": "SetActiveBus(BusName::String) -> Int64\n\n\nSet active bus name\n\n\n\n\n\n"
 },
 
 {
@@ -1301,7 +1301,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.SetActiveBusi",
     "category": "method",
-    "text": "SetActiveBusi(BusIndex::Int64)::Int64\n\n\nSet active bus index\n\n\n\n\n\n"
+    "text": "SetActiveBusi(BusIndex::Int64) -> Int64\n\n\nSet active bus index\n\n\n\n\n\n"
 },
 
 {
@@ -1309,7 +1309,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.SetActiveClass",
     "category": "method",
-    "text": "SetActiveClass(ClassName::String)::Int64\n\n\nSet active class name\n\n\n\n\n\n"
+    "text": "SetActiveClass(ClassName::String) -> Int64\n\n\nSet active class name\n\n\n\n\n\n"
 },
 
 {
@@ -1317,7 +1317,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.SetActiveElement",
     "category": "method",
-    "text": "SetActiveElement(FullName::String)::Int64\n\n\nSet active element full name\n\n\n\n\n\n"
+    "text": "SetActiveElement(FullName::String) -> Int64\n\n\nSet active element full name\n\n\n\n\n\n"
 },
 
 {
@@ -1325,7 +1325,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.SubstationLosses",
     "category": "method",
-    "text": "SubstationLosses()::Complex{Float64}\n\n\nComplex losses in all transformers designated to substations.\n\n\n\n\n\n"
+    "text": "SubstationLosses() -> Complex{Float64}\n\n\nComplex losses in all transformers designated to substations.\n\n\n\n\n\n"
 },
 
 {
@@ -1333,7 +1333,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.SystemY",
     "category": "method",
-    "text": "SystemY()::Array{Complex{Float64},2}\n\n\nSystem Y matrix (after a solution has been performed)\n\n\n\n\n\n"
+    "text": "SystemY() -> Array{Complex{Float64},2}\n\n\nSystem Y matrix (after a solution has been performed)\n\n\n\n\n\n"
 },
 
 {
@@ -1341,7 +1341,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.TotalPower",
     "category": "method",
-    "text": "TotalPower()::Complex{Float64}\n\n\nTotal power, watts delivered to the circuit\n\n\n\n\n\n"
+    "text": "TotalPower() -> Complex{Float64}\n\n\nTotal power, watts delivered to the circuit\n\n\n\n\n\n"
 },
 
 {
@@ -1357,7 +1357,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.YCurrents",
     "category": "method",
-    "text": "YCurrents()::Array{Complex{Float64},1}\n\n\nArray of doubles containing complex injection currents for the present solution. Is is the \"I\" vector of I=YV\n\n\n\n\n\n"
+    "text": "YCurrents() -> Array{Complex{Float64},1}\n\n\nArray of doubles containing complex injection currents for the present solution. Is is the \"I\" vector of I=YV\n\n\n\n\n\n"
 },
 
 {
@@ -1365,7 +1365,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.YNodeOrder",
     "category": "method",
-    "text": "YNodeOrder()::Array{String,1}\n\n\nArray of strings containing the names of the nodes in the same order as the Y matrix\n\n\n\n\n\n"
+    "text": "YNodeOrder() -> Array{String,1}\n\n\nArray of strings containing the names of the nodes in the same order as the Y matrix\n\n\n\n\n\n"
 },
 
 {
@@ -1373,7 +1373,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Circuit.YNodeVArray",
     "category": "method",
-    "text": "YNodeVArray()::Array{Complex{Float64},1}\n\n\nComplex array of actual node voltages in same order as SystemY matrix.\n\n\n\n\n\n"
+    "text": "YNodeVArray() -> Array{Complex{Float64},1}\n\n\nComplex array of actual node voltages in same order as SystemY matrix.\n\n\n\n\n\n"
 },
 
 {
@@ -1389,7 +1389,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.AllPropertyNames",
     "category": "method",
-    "text": "AllPropertyNames()::Array{String,1}\n\n\nArray containing all property names of the active device.\n\n\n\n\n\n"
+    "text": "AllPropertyNames() -> Array{String,1}\n\n\nArray containing all property names of the active device.\n\n\n\n\n\n"
 },
 
 {
@@ -1397,7 +1397,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.AllVariableNames",
     "category": "method",
-    "text": "AllVariableNames()::Array{String,1}\n\n\nArray of strings listing all the published variable names, if a PCElement. Otherwise, null string.\n\n\n\n\n\n"
+    "text": "AllVariableNames() -> Array{String,1}\n\n\nArray of strings listing all the published variable names, if a PCElement. Otherwise, null string.\n\n\n\n\n\n"
 },
 
 {
@@ -1405,7 +1405,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.AllVariableValues",
     "category": "method",
-    "text": "AllVariableValues()::Array{Float64,1}\n\n\nArray of doubles. Values of state variables of active element if PC element.\n\n\n\n\n\n"
+    "text": "AllVariableValues() -> Array{Float64,1}\n\n\nArray of doubles. Values of state variables of active element if PC element.\n\n\n\n\n\n"
 },
 
 {
@@ -1421,7 +1421,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.BusNames",
     "category": "method",
-    "text": "BusNames()::Array{String,1}\n\n\nArray of strings. Get Bus definitions to which each terminal is connected. 0-based array.\n\n\n\n\n\n"
+    "text": "BusNames() -> Array{String,1}\n\n\nArray of strings. Get Bus definitions to which each terminal is connected. 0-based array.\n\n\n\n\n\n"
 },
 
 {
@@ -1437,7 +1437,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.Controller",
     "category": "method",
-    "text": "Controller(idx::Int64)::String\n\n\nFull name of the i-th controller attached to this element. Ex: str = Controller(2).  See NumControls to determine valid index range\n\n\n\n\n\n"
+    "text": "Controller(idx::Int64) -> String\n\n\nFull name of the i-th controller attached to this element. Ex: str = Controller(2).  See NumControls to determine valid index range\n\n\n\n\n\n"
 },
 
 {
@@ -1445,7 +1445,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.CplxSeqCurrents",
     "category": "method",
-    "text": "CplxSeqCurrents()::Array{Complex{Float64},1}\n\n\nComplex double array of Sequence Currents for all conductors of all terminals of active circuit element.\n\n\n\n\n\n"
+    "text": "CplxSeqCurrents() -> Array{Complex{Float64},1}\n\n\nComplex double array of Sequence Currents for all conductors of all terminals of active circuit element.\n\n\n\n\n\n"
 },
 
 {
@@ -1453,7 +1453,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.CplxSeqVoltages",
     "category": "method",
-    "text": "CplxSeqVoltages()::Array{Complex{Float64},1}\n\n\nComplex double array of Sequence Voltage for all terminals of active circuit element.\n\n\n\n\n\n"
+    "text": "CplxSeqVoltages() -> Array{Complex{Float64},1}\n\n\nComplex double array of Sequence Voltage for all terminals of active circuit element.\n\n\n\n\n\n"
 },
 
 {
@@ -1461,7 +1461,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.Currents",
     "category": "method",
-    "text": "Currents()::Array{Complex{Float64},1}\n\n\nComplex array of currents into each conductor of each terminal\n\n\n\n\n\n"
+    "text": "Currents() -> Array{Complex{Float64},1}\n\n\nComplex array of currents into each conductor of each terminal\n\n\n\n\n\n"
 },
 
 {
@@ -1469,7 +1469,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.CurrentsMagAng",
     "category": "method",
-    "text": "CurrentsMagAng()::Array{Float64,2}\n\n\nCurrents in magnitude, angle format as a array of doubles.\n\n\n\n\n\n"
+    "text": "CurrentsMagAng() -> Array{Float64,2}\n\n\nCurrents in magnitude, angle format as a array of doubles.\n\n\n\n\n\n"
 },
 
 {
@@ -1485,7 +1485,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.DisplayName",
     "category": "method",
-    "text": "DisplayName()::String\n\n\nDisplay name of the object (not necessarily unique) (Getter)\n\n\n\n\n\n"
+    "text": "DisplayName() -> String\n\n\nDisplay name of the object (not necessarily unique) (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -1501,7 +1501,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.EmergAmps",
     "category": "method",
-    "text": "EmergAmps()::Float64\n\n\nEmergency Ampere Rating for PD elements (Getter)\n\n\n\n\n\n"
+    "text": "EmergAmps() -> Float64\n\n\nEmergency Ampere Rating for PD elements (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -1517,7 +1517,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.Enabled",
     "category": "method",
-    "text": "Enabled()::Bool\n\n\nBoolean indicating that element is currently in the circuit. (Getter)\n\n\n\n\n\n"
+    "text": "Enabled() -> Bool\n\n\nBoolean indicating that element is currently in the circuit. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -1525,7 +1525,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.EnergyMeter",
     "category": "method",
-    "text": "EnergyMeter()::String\n\n\nName of the Energy Meter this element is assigned to.\n\n\n\n\n\n"
+    "text": "EnergyMeter() -> String\n\n\nName of the Energy Meter this element is assigned to.\n\n\n\n\n\n"
 },
 
 {
@@ -1533,7 +1533,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.GUID",
     "category": "method",
-    "text": "GUID()::String\n\n\nglobally unique identifier for this object\n\n\n\n\n\n"
+    "text": "GUID() -> String\n\n\nglobally unique identifier for this object\n\n\n\n\n\n"
 },
 
 {
@@ -1541,7 +1541,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.Handle",
     "category": "method",
-    "text": "Handle()::Int64\n\n\nPointer to this object\n\n\n\n\n\n"
+    "text": "Handle() -> Int64\n\n\nPointer to this object\n\n\n\n\n\n"
 },
 
 {
@@ -1549,7 +1549,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.HasOCPDevice",
     "category": "method",
-    "text": "HasOCPDevice()::Bool\n\n\nTrue if a recloser, relay, or fuse controlling this ckt element. OCP = Overcurrent Protection \n\n\n\n\n\n"
+    "text": "HasOCPDevice() -> Bool\n\n\nTrue if a recloser, relay, or fuse controlling this ckt element. OCP = Overcurrent Protection \n\n\n\n\n\n"
 },
 
 {
@@ -1557,7 +1557,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.HasSwitchControl",
     "category": "method",
-    "text": "HasSwitchControl()::Bool\n\n\nThis element has a SwtControl attached.\n\n\n\n\n\n"
+    "text": "HasSwitchControl() -> Bool\n\n\nThis element has a SwtControl attached.\n\n\n\n\n\n"
 },
 
 {
@@ -1565,7 +1565,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.HasVoltControl",
     "category": "method",
-    "text": "HasVoltControl()::Bool\n\n\nThis element has a CapControl or RegControl attached.\n\n\n\n\n\n"
+    "text": "HasVoltControl() -> Bool\n\n\nThis element has a CapControl or RegControl attached.\n\n\n\n\n\n"
 },
 
 {
@@ -1573,7 +1573,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.IsOpen",
     "category": "method",
-    "text": "IsOpen(Term::Int64, Phs::Int64)::Bool\n\n\nCheck if open phase of terminal for active circuit element\n\n\n\n\n\n"
+    "text": "IsOpen(Term::Int64, Phs::Int64) -> Bool\n\n\nCheck if open phase of terminal for active circuit element\n\n\n\n\n\n"
 },
 
 {
@@ -1581,7 +1581,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.Losses",
     "category": "method",
-    "text": "Losses()::Array{Complex{Float64},1}\n\n\nTotal losses in the element: two-element complex array\n\n\n\n\n\n"
+    "text": "Losses() -> Array{Complex{Float64},1}\n\n\nTotal losses in the element: two-element complex array\n\n\n\n\n\n"
 },
 
 {
@@ -1589,7 +1589,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nFull Name of Active Circuit Element\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nFull Name of Active Circuit Element\n\n\n\n\n\n"
 },
 
 {
@@ -1597,7 +1597,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.NodeOrder",
     "category": "method",
-    "text": "NodeOrder()::Array{Int64,1}\n\n\nArray of integer containing the node numbers (representing phases, for example) for each conductor of each terminal. \n\n\n\n\n\n"
+    "text": "NodeOrder() -> Array{Int64,1}\n\n\nArray of integer containing the node numbers (representing phases, for example) for each conductor of each terminal. \n\n\n\n\n\n"
 },
 
 {
@@ -1613,7 +1613,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.NormalAmps",
     "category": "method",
-    "text": "NormalAmps()::Float64\n\n\nNormal ampere rating for PD Elements (Getter)\n\n\n\n\n\n"
+    "text": "NormalAmps() -> Float64\n\n\nNormal ampere rating for PD Elements (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -1621,7 +1621,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.NumConductors",
     "category": "method",
-    "text": "NumConductors()::Int64\n\n\nNumber of Conductors per Terminal\n\n\n\n\n\n"
+    "text": "NumConductors() -> Int64\n\n\nNumber of Conductors per Terminal\n\n\n\n\n\n"
 },
 
 {
@@ -1629,7 +1629,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.NumControls",
     "category": "method",
-    "text": "NumControls()::Int64\n\n\nNumber of controls connected to this device. Use to determine valid range for index into Controller array.\n\n\n\n\n\n"
+    "text": "NumControls() -> Int64\n\n\nNumber of controls connected to this device. Use to determine valid range for index into Controller array.\n\n\n\n\n\n"
 },
 
 {
@@ -1637,7 +1637,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.NumPhases",
     "category": "method",
-    "text": "NumPhases()::Int64\n\n\nNumber of Phases\n\n\n\n\n\n"
+    "text": "NumPhases() -> Int64\n\n\nNumber of Phases\n\n\n\n\n\n"
 },
 
 {
@@ -1645,7 +1645,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.NumProperties",
     "category": "method",
-    "text": "NumProperties()::Int64\n\n\nNumber of Properties this Circuit Element.\n\n\n\n\n\n"
+    "text": "NumProperties() -> Int64\n\n\nNumber of Properties this Circuit Element.\n\n\n\n\n\n"
 },
 
 {
@@ -1653,7 +1653,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.NumTerminals",
     "category": "method",
-    "text": "NumTerminals()::Int64\n\n\nNumber of Terminals this Circuit Element\n\n\n\n\n\n"
+    "text": "NumTerminals() -> Int64\n\n\nNumber of Terminals this Circuit Element\n\n\n\n\n\n"
 },
 
 {
@@ -1661,7 +1661,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.OCPDevIndex",
     "category": "method",
-    "text": "OCPDevIndex()::Int64\n\n\nIndex into Controller list of OCP Device controlling this CktElement\n\n\n\n\n\n"
+    "text": "OCPDevIndex() -> Int64\n\n\nIndex into Controller list of OCP Device controlling this CktElement\n\n\n\n\n\n"
 },
 
 {
@@ -1669,7 +1669,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.OCPDevType",
     "category": "method",
-    "text": "OCPDevType()::Int64\n\n\n0=None; 1=Fuse; 2=Recloser; 3=Relay;  Type of OCP controller device\n\n\n\n\n\n"
+    "text": "OCPDevType() -> Int64\n\n\n0=None; 1=Fuse; 2=Recloser; 3=Relay;  Type of OCP controller device\n\n\n\n\n\n"
 },
 
 {
@@ -1685,7 +1685,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.PhaseLosses",
     "category": "method",
-    "text": "PhaseLosses()::Array{Complex{Float64},1}\n\n\nComplex array of losses by phase\n\n\n\n\n\n"
+    "text": "PhaseLosses() -> Array{Complex{Float64},1}\n\n\nComplex array of losses by phase\n\n\n\n\n\n"
 },
 
 {
@@ -1693,7 +1693,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.Powers",
     "category": "method",
-    "text": "Powers()::Array{Complex{Float64},1}\n\n\nComplex array of powers into each conductor of each terminal\n\n\n\n\n\n"
+    "text": "Powers() -> Array{Complex{Float64},1}\n\n\nComplex array of powers into each conductor of each terminal\n\n\n\n\n\n"
 },
 
 {
@@ -1701,7 +1701,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.Residuals",
     "category": "method",
-    "text": "Residuals()::Array{Float64,2}\n\n\nResidual currents for each terminal: (mag, angle)\n\n\n\n\n\n"
+    "text": "Residuals() -> Array{Float64,2}\n\n\nResidual currents for each terminal: (mag, angle)\n\n\n\n\n\n"
 },
 
 {
@@ -1709,7 +1709,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.SeqCurrents",
     "category": "method",
-    "text": "SeqCurrents()::Array{Float64,1}\n\n\nDouble array of symmetrical component currents into each 3-phase terminal\n\n\n\n\n\n"
+    "text": "SeqCurrents() -> Array{Float64,1}\n\n\nDouble array of symmetrical component currents into each 3-phase terminal\n\n\n\n\n\n"
 },
 
 {
@@ -1717,7 +1717,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.SeqPowers",
     "category": "method",
-    "text": "SeqPowers()::Array{Complex{Float64},1}\n\n\nDouble array of sequence powers into each 3-phase teminal\n\n\n\n\n\n"
+    "text": "SeqPowers() -> Array{Complex{Float64},1}\n\n\nDouble array of sequence powers into each 3-phase teminal\n\n\n\n\n\n"
 },
 
 {
@@ -1725,7 +1725,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.SeqVoltages",
     "category": "method",
-    "text": "SeqVoltages()::Array{Float64,1}\n\n\nDouble array of symmetrical component voltages at each 3-phase terminal\n\n\n\n\n\n"
+    "text": "SeqVoltages() -> Array{Float64,1}\n\n\nDouble array of symmetrical component voltages at each 3-phase terminal\n\n\n\n\n\n"
 },
 
 {
@@ -1733,7 +1733,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.Variable",
     "category": "method",
-    "text": "Variable(MyVarName::String, Code::Int64)::Float64\n\n\nFor PCElement, get the value of a variable by name. If Code>0 Then no variable by this name or not a PCElement.\n\n\n\n\n\n"
+    "text": "Variable(MyVarName::String, Code::Int64) -> Float64\n\n\nFor PCElement, get the value of a variable by name. If Code>0 Then no variable by this name or not a PCElement.\n\n\n\n\n\n"
 },
 
 {
@@ -1741,7 +1741,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.Variablei",
     "category": "method",
-    "text": "Variablei(Idx::Int64, Code::Int64)::Float64\n\n\nFor PCElement, get the value of a variable by integer index.\n\n\n\n\n\n"
+    "text": "Variablei(Idx::Int64, Code::Int64) -> Float64\n\n\nFor PCElement, get the value of a variable by integer index.\n\n\n\n\n\n"
 },
 
 {
@@ -1749,7 +1749,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.Voltages",
     "category": "method",
-    "text": "Voltages()::Array{Complex{Float64},1}\n\n\nComplex array of voltages at terminals\n\n\n\n\n\n"
+    "text": "Voltages() -> Array{Complex{Float64},1}\n\n\nComplex array of voltages at terminals\n\n\n\n\n\n"
 },
 
 {
@@ -1757,7 +1757,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.VoltagesMagAng",
     "category": "method",
-    "text": "VoltagesMagAng()::Array{Float64,2}\n\n\nVoltages at each conductor in magnitude, angle form as array of doubles.\n\n\n\n\n\n"
+    "text": "VoltagesMagAng() -> Array{Float64,2}\n\n\nVoltages at each conductor in magnitude, angle form as array of doubles.\n\n\n\n\n\n"
 },
 
 {
@@ -1765,7 +1765,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CktElement.YPrim",
     "category": "method",
-    "text": "YPrim()::Array{Complex{Float64},2}\n\n\nYPrim matrix, column order, complex numbers (paired)\n\n\n\n\n\n"
+    "text": "YPrim() -> Array{Complex{Float64},2}\n\n\nYPrim matrix, column order, complex numbers (paired)\n\n\n\n\n\n"
 },
 
 {
@@ -1789,7 +1789,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CtrlQueue.ActionCode",
     "category": "method",
-    "text": "ActionCode()::Int64\n\n\nCode for the active action. Long integer code to tell the control device what to do\n\n\n\n\n\n"
+    "text": "ActionCode() -> OpenDSSDirect.Lib.ActionCodes\n\n\nCode for the active action. Long integer code to tell the control device what to do\n\n\n\n\n\n"
 },
 
 {
@@ -1821,7 +1821,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CtrlQueue.DeviceHandle",
     "category": "method",
-    "text": "DeviceHandle()::Int64\n\n\nHandle (User defined) to device that must act on the pending action.\n\n\n\n\n\n"
+    "text": "DeviceHandle() -> Int64\n\n\nHandle (User defined) to device that must act on the pending action.\n\n\n\n\n\n"
 },
 
 {
@@ -1837,7 +1837,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CtrlQueue.NumActions",
     "category": "method",
-    "text": "NumActions()::Int64\n\n\nNumber of Actions on the current actionlist (that have been popped off the control queue by CheckControlActions)\n\n\n\n\n\n"
+    "text": "NumActions() -> Int64\n\n\nNumber of Actions on the current actionlist (that have been popped off the control queue by CheckControlActions)\n\n\n\n\n\n"
 },
 
 {
@@ -1845,7 +1845,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CtrlQueue.PopAction",
     "category": "method",
-    "text": "PopAction()::Int64\n\n\nPops next action off the action list and makes it the active action. Returns zero if none.\n\n\n\n\n\n"
+    "text": "PopAction() -> Int64\n\n\nPops next action off the action list and makes it the active action. Returns zero if none.\n\n\n\n\n\n"
 },
 
 {
@@ -1853,7 +1853,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CtrlQueue.Queue",
     "category": "method",
-    "text": "Queue()::Array{String,1}\n\n\nArray of strings containing the entire queue in CSV format\n\n\n\n\n\n"
+    "text": "Queue() -> Array{String,1}\n\n\nArray of strings containing the entire queue in CSV format\n\n\n\n\n\n"
 },
 
 {
@@ -1861,7 +1861,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.CtrlQueue.QueueSize",
     "category": "method",
-    "text": "QueueSize()::Int64\n\n\nNumber of items on the OpenDSS control Queue\n\n\n\n\n\n"
+    "text": "QueueSize() -> Int64\n\n\nNumber of items on the OpenDSS control Queue\n\n\n\n\n\n"
 },
 
 {
@@ -1885,7 +1885,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Element.AllPropertyNames",
     "category": "method",
-    "text": "AllPropertyNames()::Array{String,1}\n\n\nArray of strings containing the names of all properties for the active DSS object.\n\n\n\n\n\n"
+    "text": "AllPropertyNames() -> Array{String,1}\n\n\nArray of strings containing the names of all properties for the active DSS object.\n\n\n\n\n\n"
 },
 
 {
@@ -1893,7 +1893,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Element.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nFull Name of Active DSS Object (general element or circuit element).\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nFull Name of Active DSS Object (general element or circuit element).\n\n\n\n\n\n"
 },
 
 {
@@ -1901,7 +1901,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Element.NumProperties",
     "category": "method",
-    "text": "NumProperties()::Int64\n\n\nNumber of Properties for the active DSS object.\n\n\n\n\n\n"
+    "text": "NumProperties() -> Int64\n\n\nNumber of Properties for the active DSS object.\n\n\n\n\n\n"
 },
 
 {
@@ -1917,7 +1917,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Error.Description",
     "category": "method",
-    "text": "Description()::String\n\n\nDescription of error for last operation\n\n\n\n\n\n"
+    "text": "Description() -> String\n\n\nDescription of error for last operation\n\n\n\n\n\n"
 },
 
 {
@@ -1925,7 +1925,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Error.Number",
     "category": "method",
-    "text": "Number()::Int64\n\n\nError Number\n\n\n\n\n\n"
+    "text": "Number() -> Int64\n\n\nError Number\n\n\n\n\n\n"
 },
 
 {
@@ -1941,7 +1941,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Executive.Command",
     "category": "method",
-    "text": "Command(i::Int64)::String\n\n\nGet i-th command\n\n\n\n\n\n"
+    "text": "Command(i::Int64) -> String\n\n\nGet i-th command\n\n\n\n\n\n"
 },
 
 {
@@ -1949,7 +1949,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Executive.CommandHelp",
     "category": "method",
-    "text": "CommandHelp(i::Int64)::String\n\n\nGet help string for i-th command\n\n\n\n\n\n"
+    "text": "CommandHelp(i::Int64) -> String\n\n\nGet help string for i-th command\n\n\n\n\n\n"
 },
 
 {
@@ -1957,7 +1957,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Executive.NumCommands",
     "category": "method",
-    "text": "NumCommands()::Int64\n\n\nNumber of DSS Executive Commands\n\n\n\n\n\n"
+    "text": "NumCommands() -> Int64\n\n\nNumber of DSS Executive Commands\n\n\n\n\n\n"
 },
 
 {
@@ -1965,7 +1965,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Executive.NumOptions",
     "category": "method",
-    "text": "NumOptions()::Int64\n\n\nNumber of DSS Executive Options\n\n\n\n\n\n"
+    "text": "NumOptions() -> Int64\n\n\nNumber of DSS Executive Options\n\n\n\n\n\n"
 },
 
 {
@@ -1973,7 +1973,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Executive.Option",
     "category": "method",
-    "text": "Option(i::Int64)::String\n\n\nGet i-th option\n\n\n\n\n\n"
+    "text": "Option(i::Int64) -> String\n\n\nGet i-th option\n\n\n\n\n\n"
 },
 
 {
@@ -1981,7 +1981,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Executive.OptionHelp",
     "category": "method",
-    "text": "OptionHelp(i::Int64)::String\n\n\nGet help string for i-th option\n\n\n\n\n\n"
+    "text": "OptionHelp(i::Int64) -> String\n\n\nGet help string for i-th option\n\n\n\n\n\n"
 },
 
 {
@@ -1989,7 +1989,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Executive.OptionValue",
     "category": "method",
-    "text": "OptionValue(i::Int64)::String\n\n\nGet present value of i-th option\n\n\n\n\n\n"
+    "text": "OptionValue(i::Int64) -> String\n\n\nGet present value of i-th option\n\n\n\n\n\n"
 },
 
 {
@@ -2005,7 +2005,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Fuses.AllNames",
     "category": "method",
-    "text": "AllNames()::Array{String,1}\n\n\nArray of strings containing names of all Fuses in the circuit\n\n\n\n\n\n"
+    "text": "AllNames() -> Array{String,1}\n\n\nArray of strings containing names of all Fuses in the circuit\n\n\n\n\n\n"
 },
 
 {
@@ -2021,7 +2021,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Fuses.Count",
     "category": "method",
-    "text": "Count()::Int64\n\n\nNumber of Fuse elements in the circuit\n\n\n\n\n\n"
+    "text": "Count() -> Int64\n\n\nNumber of Fuse elements in the circuit\n\n\n\n\n\n"
 },
 
 {
@@ -2037,7 +2037,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Fuses.Delay",
     "category": "method",
-    "text": "Delay()::Float64\n\n\nA fixed delay time in seconds added to the fuse blowing time determined by the TCC curve. Default is 0. (Getter)\n\n\n\n\n\n"
+    "text": "Delay() -> Float64\n\n\nA fixed delay time in seconds added to the fuse blowing time determined by the TCC curve. Default is 0. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2045,7 +2045,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Fuses.First",
     "category": "method",
-    "text": "First()::Int64\n\n\nSet the first Fuse to be the active fuse. Returns 0 if none.\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\nSet the first Fuse to be the active fuse. Returns 0 if none.\n\n\n\n\n\n"
 },
 
 {
@@ -2061,7 +2061,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Fuses.Idx",
     "category": "method",
-    "text": "Idx()::Int64\n\n\nActive fuse by index into the list of fuses. 1 indexed based. 1..count (Getter)\n\n\n\n\n\n"
+    "text": "Idx() -> Int64\n\n\nActive fuse by index into the list of fuses. 1 indexed based. 1..count (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2069,7 +2069,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Fuses.IsBlown",
     "category": "method",
-    "text": "IsBlown()::Bool\n\n\nCheck if the fuse is blown for any phase\n\n\n\n\n\n"
+    "text": "IsBlown() -> Bool\n\n\nCheck if the fuse is blown for any phase\n\n\n\n\n\n"
 },
 
 {
@@ -2085,7 +2085,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Fuses.MonitoredObj",
     "category": "method",
-    "text": "MonitoredObj()::String\n\n\nFull name of the circuit element to which the fuse is connected.\n\n\n\n\n\n"
+    "text": "MonitoredObj() -> String\n\n\nFull name of the circuit element to which the fuse is connected.\n\n\n\n\n\n"
 },
 
 {
@@ -2101,7 +2101,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Fuses.MonitoredTerm",
     "category": "method",
-    "text": "MonitoredTerm()::Int64\n\n\nTerminal number to which the fuse is connected. (Getter)\n\n\n\n\n\n"
+    "text": "MonitoredTerm() -> Int64\n\n\nTerminal number to which the fuse is connected. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2117,7 +2117,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Fuses.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nName of the active Fuse element (Getter)\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nName of the active Fuse element (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2125,7 +2125,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Fuses.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\nAdvance the active Fuse element pointer to the next fuse. Returns 0 if no more fuses.\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\nAdvance the active Fuse element pointer to the next fuse. Returns 0 if no more fuses.\n\n\n\n\n\n"
 },
 
 {
@@ -2133,7 +2133,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Fuses.NumPhases",
     "category": "method",
-    "text": "NumPhases()::Int64\n\n\nNumber of phases, this fuse. \n\n\n\n\n\n"
+    "text": "NumPhases() -> Int64\n\n\nNumber of phases, this fuse. \n\n\n\n\n\n"
 },
 
 {
@@ -2157,7 +2157,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Fuses.RatedCurrent",
     "category": "method",
-    "text": "RatedCurrent()::Float64\n\n\nMultiplier or actual amps for the TCCcurve object. Defaults to 1.0.  Multipliy current values of TCC curve by this to get actual amps. Has to correspond to the Current axis of TCCcurve object. (Getter)\n\n\n\n\n\n"
+    "text": "RatedCurrent() -> Float64\n\n\nMultiplier or actual amps for the TCCcurve object. Defaults to 1.0.  Multipliy current values of TCC curve by this to get actual amps. Has to correspond to the Current axis of TCCcurve object. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2173,7 +2173,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Fuses.SwitchedObj",
     "category": "method",
-    "text": "SwitchedObj()::String\n\n\nFull name of the circuit element switch that the fuse controls. Defaults to the MonitoredObj. (Getter)\n\n\n\n\n\n"
+    "text": "SwitchedObj() -> String\n\n\nFull name of the circuit element switch that the fuse controls. Defaults to the MonitoredObj. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2189,7 +2189,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Fuses.SwitchedTerm",
     "category": "method",
-    "text": "SwitchedTerm()::Int64\n\n\nNumber of the terminal of the controlled element containing the switch controlled by the fuse. (Getter)\n\n\n\n\n\n"
+    "text": "SwitchedTerm() -> Int64\n\n\nNumber of the terminal of the controlled element containing the switch controlled by the fuse. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2205,7 +2205,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Fuses.TCCCurve",
     "category": "method",
-    "text": "TCCCurve()::String\n\n\nName of the TCCcurve object that determines fuse blowing. (Getter)\n\n\n\n\n\n"
+    "text": "TCCCurve() -> String\n\n\nName of the TCCcurve object that determines fuse blowing. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2221,7 +2221,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Generators.AllNames",
     "category": "method",
-    "text": "AllNames()::Array{String,1}\n\n\nArray of names of all Generator objects.\n\n\n\n\n\n"
+    "text": "AllNames() -> Array{String,1}\n\n\nArray of names of all Generator objects.\n\n\n\n\n\n"
 },
 
 {
@@ -2229,7 +2229,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Generators.Count",
     "category": "method",
-    "text": "Count()::Int64\n\n\nNumber of Generator Objects in Active Circuit\n\n\n\n\n\n"
+    "text": "Count() -> Int64\n\n\nNumber of Generator Objects in Active Circuit\n\n\n\n\n\n"
 },
 
 {
@@ -2237,7 +2237,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Generators.First",
     "category": "method",
-    "text": "First()::Int64\n\n\nSets first Generator to be active.  Returns 0 if none.\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\nSets first Generator to be active.  Returns 0 if none.\n\n\n\n\n\n"
 },
 
 {
@@ -2253,7 +2253,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Generators.ForcedON",
     "category": "method",
-    "text": "ForcedON()::Bool\n\n\nIndicates whether the generator is forced ON regardles of other dispatch criteria.\n\n\n\n\n\n"
+    "text": "ForcedON() -> Bool\n\n\nIndicates whether the generator is forced ON regardles of other dispatch criteria.\n\n\n\n\n\n"
 },
 
 {
@@ -2269,7 +2269,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Generators.Idx",
     "category": "method",
-    "text": "Idx()::Int64\n\n\nActive Generator by index into generators list.  1..Count (Getter)\n\n\n\n\n\n"
+    "text": "Idx() -> Int64\n\n\nActive Generator by index into generators list.  1..Count (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2285,7 +2285,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Generators.Model",
     "category": "method",
-    "text": "Model()::Int64\n\n\nGenerator Model\n\n\n\n\n\n"
+    "text": "Model() -> Int64\n\n\nGenerator Model\n\n\n\n\n\n"
 },
 
 {
@@ -2301,7 +2301,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Generators.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nSets a generator active by name.\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nSets a generator active by name.\n\n\n\n\n\n"
 },
 
 {
@@ -2309,7 +2309,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Generators.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\nSets next Generator to be active.  Returns 0 if no more.\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\nSets next Generator to be active.  Returns 0 if no more.\n\n\n\n\n\n"
 },
 
 {
@@ -2325,7 +2325,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Generators.PF",
     "category": "method",
-    "text": "PF()::Float64\n\n\nPower factor (pos. = producing vars). Updates kvar based on present kW value.\n\n\n\n\n\n"
+    "text": "PF() -> Float64\n\n\nPower factor (pos. = producing vars). Updates kvar based on present kW value.\n\n\n\n\n\n"
 },
 
 {
@@ -2341,7 +2341,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Generators.Phases",
     "category": "method",
-    "text": "Phases()::Int64\n\n\nNumber of phases\n\n\n\n\n\n"
+    "text": "Phases() -> Int64\n\n\nNumber of phases\n\n\n\n\n\n"
 },
 
 {
@@ -2349,7 +2349,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Generators.RegisterNames",
     "category": "method",
-    "text": "RegisterNames()::Array{String,1}\n\n\nArray of Names of all generator energy meter registers\n\n\n\n\n\n"
+    "text": "RegisterNames() -> Array{String,1}\n\n\nArray of Names of all generator energy meter registers\n\n\n\n\n\n"
 },
 
 {
@@ -2357,7 +2357,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Generators.RegisterValues",
     "category": "method",
-    "text": "RegisterValues()::Array{Float64,1}\n\n\nArray of valus in generator energy meter registers.\n\n\n\n\n\n"
+    "text": "RegisterValues() -> Array{Float64,1}\n\n\nArray of valus in generator energy meter registers.\n\n\n\n\n\n"
 },
 
 {
@@ -2373,7 +2373,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Generators.Vmaxpu",
     "category": "method",
-    "text": "Vmaxpu()::Float64\n\n\nVmaxpu for generator model\n\n\n\n\n\n"
+    "text": "Vmaxpu() -> Float64\n\n\nVmaxpu for generator model\n\n\n\n\n\n"
 },
 
 {
@@ -2389,7 +2389,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Generators.Vminpu",
     "category": "method",
-    "text": "Vminpu()::Float64\n\n\nVminpu for Generator model\n\n\n\n\n\n"
+    "text": "Vminpu() -> Float64\n\n\nVminpu for Generator model\n\n\n\n\n\n"
 },
 
 {
@@ -2405,7 +2405,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Generators.kV",
     "category": "method",
-    "text": "kV()::Float64\n\n\nVoltage base for the active generator, kV (Getter)\n\n\n\n\n\n"
+    "text": "kV() -> Float64\n\n\nVoltage base for the active generator, kV (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2421,7 +2421,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Generators.kVARated",
     "category": "method",
-    "text": "kVARated()::Float64\n\n\nkVA rating of the generator (Getter)\n\n\n\n\n\n"
+    "text": "kVARated() -> Float64\n\n\nkVA rating of the generator (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2437,7 +2437,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Generators.kW",
     "category": "method",
-    "text": "kW()::Float64\n\n\nkW output for the active generator. kvar is updated for current power factor. (Getter)\n\n\n\n\n\n"
+    "text": "kW() -> Float64\n\n\nkW output for the active generator. kvar is updated for current power factor. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2453,7 +2453,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Generators.kvar",
     "category": "method",
-    "text": "kvar()::Float64\n\n\nkvar output for the active generator. Updates power factor based on present kW value. (Getter)\n\n\n\n\n\n"
+    "text": "kvar() -> Float64\n\n\nkvar output for the active generator. Updates power factor based on present kW value. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2469,7 +2469,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Isource.AllNames",
     "category": "method",
-    "text": "AllNames()::Array{String,1}\n\n\nArray of strings containing names of all ISOURCE elements.\n\n\n\n\n\n"
+    "text": "AllNames() -> Array{String,1}\n\n\nArray of strings containing names of all ISOURCE elements.\n\n\n\n\n\n"
 },
 
 {
@@ -2485,7 +2485,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Isource.Amps",
     "category": "method",
-    "text": "Amps()::Float64\n\n\nMagnitude of the ISOURCE in amps\n\n\n\n\n\n"
+    "text": "Amps() -> Float64\n\n\nMagnitude of the ISOURCE in amps\n\n\n\n\n\n"
 },
 
 {
@@ -2501,7 +2501,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Isource.AngleDeg",
     "category": "method",
-    "text": "AngleDeg()::Float64\n\n\nPhase angle for ISOURCE, degrees (Getter)\n\n\n\n\n\n"
+    "text": "AngleDeg() -> Float64\n\n\nPhase angle for ISOURCE, degrees (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2509,7 +2509,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Isource.Count",
     "category": "method",
-    "text": "Count()::Int64\n\n\nCount: Number of ISOURCE elements.\n\n\n\n\n\n"
+    "text": "Count() -> Int64\n\n\nCount: Number of ISOURCE elements.\n\n\n\n\n\n"
 },
 
 {
@@ -2517,7 +2517,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Isource.First",
     "category": "method",
-    "text": "First()::Int64\n\n\nSet the First ISOURCE to be active; returns Zero if none.\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\nSet the First ISOURCE to be active; returns Zero if none.\n\n\n\n\n\n"
 },
 
 {
@@ -2533,7 +2533,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Isource.Frequency",
     "category": "method",
-    "text": "Frequency()::Float64\n\n\nThe present frequency of the ISOURCE, Hz (Getter)\n\n\n\n\n\n"
+    "text": "Frequency() -> Float64\n\n\nThe present frequency of the ISOURCE, Hz (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2549,7 +2549,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Isource.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nName of Active ISOURCE (Getter)\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nName of Active ISOURCE (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2557,7 +2557,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Isource.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\nSets the next ISOURCE element to be the active one. Returns Zero if no more.\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\nSets the next ISOURCE element to be the active one. Returns Zero if no more.\n\n\n\n\n\n"
 },
 
 {
@@ -2573,7 +2573,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.AllNames",
     "category": "method",
-    "text": "AllNames()::Array{String,1}\n\n\nArray of strings with names of all devices\n\n\n\n\n\n"
+    "text": "AllNames() -> Array{String,1}\n\n\nArray of strings with names of all devices\n\n\n\n\n\n"
 },
 
 {
@@ -2589,7 +2589,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.C0",
     "category": "method",
-    "text": "C0()::Float64\n\n\nZero-sequence capacitance, nF per unit length (Getter)\n\n\n\n\n\n"
+    "text": "C0() -> Float64\n\n\nZero-sequence capacitance, nF per unit length (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2605,7 +2605,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.C1",
     "category": "method",
-    "text": "C1()::Float64\n\n\nPositive-sequence capacitance, nF per unit length (Getter)\n\n\n\n\n\n"
+    "text": "C1() -> Float64\n\n\nPositive-sequence capacitance, nF per unit length (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2621,7 +2621,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.Cmatrix",
     "category": "method",
-    "text": "Cmatrix()::Array{Float64,1}\n\n\nCapacitance matrix, nF per unit length (Getter)\n\n\n\n\n\n"
+    "text": "Cmatrix() -> Array{Float64,1}\n\n\nCapacitance matrix, nF per unit length (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2629,7 +2629,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.Count",
     "category": "method",
-    "text": "Count()::Int64\n\n\nNumber of LineCodes\n\n\n\n\n\n"
+    "text": "Count() -> Int64\n\n\nNumber of LineCodes\n\n\n\n\n\n"
 },
 
 {
@@ -2645,7 +2645,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.EmergAmps",
     "category": "method",
-    "text": "EmergAmps()::Float64\n\n\nEmergency ampere rating (Getter)\n\n\n\n\n\n"
+    "text": "EmergAmps() -> Float64\n\n\nEmergency ampere rating (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2653,7 +2653,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.IsZ1Z0",
     "category": "method",
-    "text": "IsZ1Z0()::Bool\n\n\nFlag denoting whether impedance data were entered in symmetrical components\n\n\n\n\n\n"
+    "text": "IsZ1Z0() -> Bool\n\n\nFlag denoting whether impedance data were entered in symmetrical components\n\n\n\n\n\n"
 },
 
 {
@@ -2669,7 +2669,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nName of active LineCode (Getter)\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nName of active LineCode (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2685,7 +2685,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.NormAmps",
     "category": "method",
-    "text": "NormAmps()::Float64\n\n\nNormal Ampere rating (Getter)\n\n\n\n\n\n"
+    "text": "NormAmps() -> Float64\n\n\nNormal Ampere rating (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2701,7 +2701,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.Phases",
     "category": "method",
-    "text": "Phases()::Int64\n\n\nNumber of Phases (Getter)\n\n\n\n\n\n"
+    "text": "Phases() -> Int64\n\n\nNumber of Phases (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2717,7 +2717,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.R0",
     "category": "method",
-    "text": "R0()::Float64\n\n\nZero-Sequence Resistance, ohms per unit length (Getter)\n\n\n\n\n\n"
+    "text": "R0() -> Float64\n\n\nZero-Sequence Resistance, ohms per unit length (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2733,7 +2733,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.R1",
     "category": "method",
-    "text": "R1()::Float64\n\n\nPositive-sequence resistance ohms per unit length (Getter)\n\n\n\n\n\n"
+    "text": "R1() -> Float64\n\n\nPositive-sequence resistance ohms per unit length (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2749,7 +2749,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.Rmatrix",
     "category": "method",
-    "text": "Rmatrix()::Array{Float64,1}\n\n\nResistance matrix, ohms per unit length (Getter)\n\n\n\n\n\n"
+    "text": "Rmatrix() -> Array{Float64,1}\n\n\nResistance matrix, ohms per unit length (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2765,7 +2765,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.Units",
     "category": "method",
-    "text": "Units()::Int64\n\n\nUnits of Line Code (Getter)\n\n\n\n\n\n"
+    "text": "Units() -> Int64\n\n\nUnits of Line Code (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2781,7 +2781,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.X0",
     "category": "method",
-    "text": "X0()::Float64\n\n\nZero Sequence Reactance, ohms per unit length (Getter)\n\n\n\n\n\n"
+    "text": "X0() -> Float64\n\n\nZero Sequence Reactance, ohms per unit length (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2797,7 +2797,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.X1",
     "category": "method",
-    "text": "X1()::Float64\n\n\nPositive-sequence reactance, ohms per unit length (Getter)\n\n\n\n\n\n"
+    "text": "X1() -> Float64\n\n\nPositive-sequence reactance, ohms per unit length (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2813,7 +2813,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.Xmatrix",
     "category": "method",
-    "text": "Xmatrix()::Array{Float64,1}\n\n\nReactance matrix, ohms per unit length (Getter)\n\n\n\n\n\n"
+    "text": "Xmatrix() -> Array{Float64,1}\n\n\nReactance matrix, ohms per unit length (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2829,7 +2829,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.AllNames",
     "category": "method",
-    "text": "AllNames()::Array{String,1}\n\n\nNames of all Line Objects\n\n\n\n\n\n"
+    "text": "AllNames() -> Array{String,1}\n\n\nNames of all Line Objects\n\n\n\n\n\n"
 },
 
 {
@@ -2845,7 +2845,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.Bus1",
     "category": "method",
-    "text": "Bus1()::String\n\n\nName of bus for terminal 1. (Getter)\n\n\n\n\n\n"
+    "text": "Bus1() -> String\n\n\nName of bus for terminal 1. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2861,7 +2861,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.Bus2",
     "category": "method",
-    "text": "Bus2()::String\n\n\nName of bus for terminal 2. (Getter)\n\n\n\n\n\n"
+    "text": "Bus2() -> String\n\n\nName of bus for terminal 2. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2877,7 +2877,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.C0",
     "category": "method",
-    "text": "C0()::Float64\n\n\nZero Sequence capacitance, nanofarads per unit length. (Getter)\n\n\n\n\n\n"
+    "text": "C0() -> Float64\n\n\nZero Sequence capacitance, nanofarads per unit length. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2893,7 +2893,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.C1",
     "category": "method",
-    "text": "C1()::Float64\n\n\nPositive Sequence capacitance, nanofarads per unit length. (Getter)\n\n\n\n\n\n"
+    "text": "C1() -> Float64\n\n\nPositive Sequence capacitance, nanofarads per unit length. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2909,7 +2909,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.CMatrix",
     "category": "method",
-    "text": "CMatrix()::Array{Float64,1}\n\n\nCapacitance matrix, nF per unit length (Getter)\n\n\n\n\n\n"
+    "text": "CMatrix() -> Array{Float64,1}\n\n\nCapacitance matrix, nF per unit length (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2917,7 +2917,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.Count",
     "category": "method",
-    "text": "Count()::Int64\n\n\nNumber of Line objects in Active Circuit.\n\n\n\n\n\n"
+    "text": "Count() -> Int64\n\n\nNumber of Line objects in Active Circuit.\n\n\n\n\n\n"
 },
 
 {
@@ -2933,7 +2933,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.EmergAmps",
     "category": "method",
-    "text": "EmergAmps()::Float64\n\n\nEmergency (maximum) ampere rating of Line. (Getter)\n\n\n\n\n\n"
+    "text": "EmergAmps() -> Float64\n\n\nEmergency (maximum) ampere rating of Line. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2941,7 +2941,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.First",
     "category": "method",
-    "text": "First()::Int64\n\n\nInvoking this property sets the first element active.  Returns 0 if no lines.  Otherwise, index of the line element.\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\nInvoking this property sets the first element active.  Returns 0 if no lines.  Otherwise, index of the line element.\n\n\n\n\n\n"
 },
 
 {
@@ -2957,7 +2957,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.Geometry",
     "category": "method",
-    "text": "Geometry()::String\n\n\nLine geometry code (Getter)\n\n\n\n\n\n"
+    "text": "Geometry() -> String\n\n\nLine geometry code (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2973,7 +2973,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.Length",
     "category": "method",
-    "text": "Length()::Float64\n\n\nLength of line section in units compatible with the LineCode definition. (Getter)\n\n\n\n\n\n"
+    "text": "Length() -> Float64\n\n\nLength of line section in units compatible with the LineCode definition. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2989,7 +2989,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.LineCode",
     "category": "method",
-    "text": "LineCode()::String\n\n\nName of LineCode object that defines the impedances. (Getter)\n\n\n\n\n\n"
+    "text": "LineCode() -> String\n\n\nName of LineCode object that defines the impedances. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3005,7 +3005,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nSpecify the name of the Line element to set it active. (Getter)\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nSpecify the name of the Line element to set it active. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3013,7 +3013,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.New",
     "category": "method",
-    "text": "New(Name::String)::Int64\n\n\nCreate new Line object\n\n\n\n\n\n"
+    "text": "New(Name::String) -> Int64\n\n\nCreate new Line object\n\n\n\n\n\n"
 },
 
 {
@@ -3021,7 +3021,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\nInvoking this property advances to the next Line element active.  Returns 0 if no more lines.  Otherwise, index of the line element.\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\nInvoking this property advances to the next Line element active.  Returns 0 if no more lines.  Otherwise, index of the line element.\n\n\n\n\n\n"
 },
 
 {
@@ -3037,7 +3037,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.NormAmps",
     "category": "method",
-    "text": "NormAmps()::Float64\n\n\nNormal ampere rating of Line. (Getter)\n\n\n\n\n\n"
+    "text": "NormAmps() -> Float64\n\n\nNormal ampere rating of Line. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3045,7 +3045,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.NumCust",
     "category": "method",
-    "text": "NumCust()::Int64\n\n\nNumber of customers on this line section.\n\n\n\n\n\n"
+    "text": "NumCust() -> Int64\n\n\nNumber of customers on this line section.\n\n\n\n\n\n"
 },
 
 {
@@ -3053,7 +3053,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.Parent",
     "category": "method",
-    "text": "Parent()::Int64\n\n\nSets Parent of the active Line to be the active line. Returns 0 if no parent or action fails.\n\n\n\n\n\n"
+    "text": "Parent() -> Int64\n\n\nSets Parent of the active Line to be the active line. Returns 0 if no parent or action fails.\n\n\n\n\n\n"
 },
 
 {
@@ -3069,7 +3069,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.Phases",
     "category": "method",
-    "text": "Phases()::Int64\n\n\nNumber of Phases, this Line element. (Getter)\n\n\n\n\n\n"
+    "text": "Phases() -> Int64\n\n\nNumber of Phases, this Line element. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3085,7 +3085,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.R0",
     "category": "method",
-    "text": "R0()::Float64\n\n\nZero Sequence resistance, ohms per unit length. (Getter)\n\n\n\n\n\n"
+    "text": "R0() -> Float64\n\n\nZero Sequence resistance, ohms per unit length. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3101,7 +3101,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.R1",
     "category": "method",
-    "text": "R1()::Float64\n\n\nPositive Sequence resistance, ohms per unit length. (Getter)\n\n\n\n\n\n"
+    "text": "R1() -> Float64\n\n\nPositive Sequence resistance, ohms per unit length. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3117,7 +3117,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.RMatrix",
     "category": "method",
-    "text": "RMatrix()::Array{Float64,1}\n\n\nResistance matrix (full), ohms per unit length. Array of doubles. (Getter)\n\n\n\n\n\n"
+    "text": "RMatrix() -> Array{Float64,1}\n\n\nResistance matrix (full), ohms per unit length. Array of doubles. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3133,7 +3133,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.Rg",
     "category": "method",
-    "text": "Rg()::Float64\n\n\nEarth return resistance value used to compute line impedances at power frequency (Getter)\n\n\n\n\n\n"
+    "text": "Rg() -> Float64\n\n\nEarth return resistance value used to compute line impedances at power frequency (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3149,7 +3149,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.Rho",
     "category": "method",
-    "text": "Rho()::Float64\n\n\nEarth Resistivity, ohm-m (Getter)\n\n\n\n\n\n"
+    "text": "Rho() -> Float64\n\n\nEarth Resistivity, ohm-m (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3165,7 +3165,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.Spacing",
     "category": "method",
-    "text": "Spacing()::String\n\n\nLine spacing code (Getter)\n\n\n\n\n\n"
+    "text": "Spacing() -> String\n\n\nLine spacing code (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3173,15 +3173,15 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.TotalCust",
     "category": "method",
-    "text": "TotalCust()::Int64\n\n\nTotal Number of customers served from this line section.\n\n\n\n\n\n"
+    "text": "TotalCust() -> Int64\n\n\nTotal Number of customers served from this line section.\n\n\n\n\n\n"
 },
 
 {
-    "location": "api/#OpenDSSDirect.Lines.Units-Tuple{Int64}",
+    "location": "api/#OpenDSSDirect.Lines.Units-Tuple{Union{Int64, LineUnits}}",
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.Units",
     "category": "method",
-    "text": "Units(Value::Int64)\n\n\nUnits for Line (Setter)\n\n\n\n\n\n"
+    "text": "Units(Value::Union{Int64, LineUnits})\n\n\nUnits for Line (Setter)\n\n\n\n\n\n"
 },
 
 {
@@ -3189,7 +3189,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.Units",
     "category": "method",
-    "text": "Units()::Int64\n\n\nUnits for Line (Getter)\n\n\n\n\n\n"
+    "text": "Units() -> OpenDSSDirect.Lib.LineUnits\n\n\nUnits for Line (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3205,7 +3205,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.X0",
     "category": "method",
-    "text": "X0()::Float64\n\n\nZero Sequence reactance ohms per unit length. (Getter)\n\n\n\n\n\n"
+    "text": "X0() -> Float64\n\n\nZero Sequence reactance ohms per unit length. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3221,7 +3221,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.X1",
     "category": "method",
-    "text": "X1()::Float64\n\n\nPositive Sequence reactance, ohms per unit length. (Getter)\n\n\n\n\n\n"
+    "text": "X1() -> Float64\n\n\nPositive Sequence reactance, ohms per unit length. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3237,7 +3237,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.XMatrix",
     "category": "method",
-    "text": "XMatrix()::Array{Float64,1}\n\n\nSusceptance matrix, ohms per unit length. Array of doubles. (Getter)\n\n\n\n\n\n"
+    "text": "XMatrix() -> Array{Float64,1}\n\n\nSusceptance matrix, ohms per unit length. Array of doubles. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3253,7 +3253,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.Xg",
     "category": "method",
-    "text": "Xg()::Float64\n\n\nEarth return reactance value used to compute line impedances at power frequency (Getter)\n\n\n\n\n\n"
+    "text": "Xg() -> Float64\n\n\nEarth return reactance value used to compute line impedances at power frequency (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3269,7 +3269,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.Yprim",
     "category": "method",
-    "text": "Yprim()::Array{Complex{Float64},2}\n\n\nYprimitive: Does Nothing at present on Put; Dangerous (Getter)\n\n\n\n\n\n"
+    "text": "Yprim() -> Array{Complex{Float64},2}\n\n\nYprimitive: Does Nothing at present on Put; Dangerous (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3285,7 +3285,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.AllNames",
     "category": "method",
-    "text": "AllNames()::Array{String,1}\n\n\nArray of strings containing all Load names\n\n\n\n\n\n"
+    "text": "AllNames() -> Array{String,1}\n\n\nArray of strings containing all Load names\n\n\n\n\n\n"
 },
 
 {
@@ -3301,7 +3301,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.AllocationFactor",
     "category": "method",
-    "text": "AllocationFactor()::Float64\n\n\nFactor for allocating loads by connected xfkva (Getter)\n\n\n\n\n\n"
+    "text": "AllocationFactor() -> Float64\n\n\nFactor for allocating loads by connected xfkva (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3317,7 +3317,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.CFactor",
     "category": "method",
-    "text": "CFactor()::Float64\n\n\nFactor relates average to peak kw.  Used for allocation with kwh and kwhdays/ (Getter)\n\n\n\n\n\n"
+    "text": "CFactor() -> Float64\n\n\nFactor relates average to peak kw.  Used for allocation with kwh and kwhdays/ (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3333,7 +3333,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.CVRCurve",
     "category": "method",
-    "text": "CVRCurve()::String\n\n\nName of a loadshape with both Mult and Qmult, for CVR factors as a function of time. (Getter)\n\n\n\n\n\n"
+    "text": "CVRCurve() -> String\n\n\nName of a loadshape with both Mult and Qmult, for CVR factors as a function of time. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3349,7 +3349,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.CVRvars",
     "category": "method",
-    "text": "CVRvars()::Float64\n\n\nPercent reduction in Q for percent reduction in V. Must be used with dssLoadModelCVR. (Getter)\n\n\n\n\n\n"
+    "text": "CVRvars() -> Float64\n\n\nPercent reduction in Q for percent reduction in V. Must be used with dssLoadModelCVR. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3365,7 +3365,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.CVRwatts",
     "category": "method",
-    "text": "CVRwatts()::Float64\n\n\nPercent reduction in P for percent reduction in V. Must be used with dssLoadModelCVR. (Getter)\n\n\n\n\n\n"
+    "text": "CVRwatts() -> Float64\n\n\nPercent reduction in P for percent reduction in V. Must be used with dssLoadModelCVR. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3381,7 +3381,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.Class",
     "category": "method",
-    "text": "Class()::Int64\n\n\nLoad Class (Getter)\n\n\n\n\n\n"
+    "text": "Class() -> Int64\n\n\nLoad Class (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3389,7 +3389,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.Count",
     "category": "method",
-    "text": "Count()::Int64\n\n\nNumber of Load objects in active circuit.\n\n\n\n\n\n"
+    "text": "Count() -> Int64\n\n\nNumber of Load objects in active circuit.\n\n\n\n\n\n"
 },
 
 {
@@ -3405,7 +3405,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.Daily",
     "category": "method",
-    "text": "Daily()::String\n\n\nName of the loadshape for a daily load profile. (Getter)\n\n\n\n\n\n"
+    "text": "Daily() -> String\n\n\nName of the loadshape for a daily load profile. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3421,7 +3421,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.Duty",
     "category": "method",
-    "text": "Duty()::String\n\n\nName of the loadshape for a duty cycle simulation. (Getter)\n\n\n\n\n\n"
+    "text": "Duty() -> String\n\n\nName of the loadshape for a duty cycle simulation. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3429,7 +3429,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.First",
     "category": "method",
-    "text": "First()::Int64\n\n\nSet first Load element to be active; returns 0 if none.\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\nSet first Load element to be active; returns 0 if none.\n\n\n\n\n\n"
 },
 
 {
@@ -3445,7 +3445,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.Growth",
     "category": "method",
-    "text": "Growth()::String\n\n\nName of the growthshape curve for yearly load growth factors. (Getter)\n\n\n\n\n\n"
+    "text": "Growth() -> String\n\n\nName of the growthshape curve for yearly load growth factors. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3461,7 +3461,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.Idx",
     "category": "method",
-    "text": "Idx()::Int64\n\n\nLoad Index (Getter)\n\n\n\n\n\n"
+    "text": "Idx() -> Int64\n\n\nLoad Index (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3477,15 +3477,15 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.IsDelta",
     "category": "method",
-    "text": "IsDelta()::Bool\n\n\nDelta loads are connected line-to-line. (Getter)\n\n\n\n\n\n"
+    "text": "IsDelta() -> Bool\n\n\nDelta loads are connected line-to-line. (Getter)\n\n\n\n\n\n"
 },
 
 {
-    "location": "api/#OpenDSSDirect.Loads.Model-Tuple{Int64}",
+    "location": "api/#OpenDSSDirect.Loads.Model-Tuple{Union{Int64, LoadModels}}",
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.Model",
     "category": "method",
-    "text": "Model(Value::Int64)\n\n\nThe Load Model defines variation of P and Q with voltage. (Setter)\n\n\n\n\n\n"
+    "text": "Model(Value::Union{Int64, LoadModels})\n\n\nThe Load Model defines variation of P and Q with voltage. (Setter)\n\n\n\n\n\n"
 },
 
 {
@@ -3493,7 +3493,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.Model",
     "category": "method",
-    "text": "Model()::Int64\n\n\nThe Load Model defines variation of P and Q with voltage. (Getter)\n\n\n\n\n\n"
+    "text": "Model() -> OpenDSSDirect.Lib.LoadModels\n\n\nThe Load Model defines variation of P and Q with voltage. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3509,7 +3509,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nSet active load by name. (Getter)\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nSet active load by name. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3517,7 +3517,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\nSets next Load element to be active; returns 0 of none else index of active load.\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\nSets next Load element to be active; returns 0 of none else index of active load.\n\n\n\n\n\n"
 },
 
 {
@@ -3533,7 +3533,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.NumCust",
     "category": "method",
-    "text": "NumCust()::Int64\n\n\nNumber of customers in this load, defaults to one. (Getter)\n\n\n\n\n\n"
+    "text": "NumCust() -> Int64\n\n\nNumber of customers in this load, defaults to one. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3549,7 +3549,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.PF",
     "category": "method",
-    "text": "PF()::Float64\n\n\nPower Factor for Active Load. Specify leading PF as negative. Updates kvar based on present value of kW value (Getter)\n\n\n\n\n\n"
+    "text": "PF() -> Float64\n\n\nPower Factor for Active Load. Specify leading PF as negative. Updates kvar based on present value of kW value (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3565,7 +3565,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.PctMean",
     "category": "method",
-    "text": "PctMean()::Float64\n\n\nAverage percent of nominal load in Monte Carlo studies; only if no loadshape defined for this load. (Getter)\n\n\n\n\n\n"
+    "text": "PctMean() -> Float64\n\n\nAverage percent of nominal load in Monte Carlo studies; only if no loadshape defined for this load. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3581,7 +3581,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.PctStdDev",
     "category": "method",
-    "text": "PctStdDev()::Float64\n\n\nPercent standard deviation for Monte Carlo load studies; if there is no loadshape assigned to this load. (Getter)\n\n\n\n\n\n"
+    "text": "PctStdDev() -> Float64\n\n\nPercent standard deviation for Monte Carlo load studies; if there is no loadshape assigned to this load. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3597,7 +3597,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.RelWeighting",
     "category": "method",
-    "text": "RelWeighting()::Float64\n\n\nRelative Weighting factor for the active LOAD (Getter)\n\n\n\n\n\n"
+    "text": "RelWeighting() -> Float64\n\n\nRelative Weighting factor for the active LOAD (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3613,7 +3613,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.Rneut",
     "category": "method",
-    "text": "Rneut()::Float64\n\n\nNeutral resistance for wye-connected loads. (Getter)\n\n\n\n\n\n"
+    "text": "Rneut() -> Float64\n\n\nNeutral resistance for wye-connected loads. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3629,15 +3629,15 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.Spectrum",
     "category": "method",
-    "text": "Spectrum()::String\n\n\nLoad Spectrum (Getter)\n\n\n\n\n\n"
+    "text": "Spectrum() -> String\n\n\nLoad Spectrum (Getter)\n\n\n\n\n\n"
 },
 
 {
-    "location": "api/#OpenDSSDirect.Loads.Status-Tuple{Int64}",
+    "location": "api/#OpenDSSDirect.Loads.Status-Tuple{Union{Int64, LoadStatus}}",
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.Status",
     "category": "method",
-    "text": "Status(Value::Int64)\n\n\nResponse to load multipliers: Fixed (growth only), Exempt (no LD curve), Variable (all). (Setter)\n\n\n\n\n\n"
+    "text": "Status(Value::Union{Int64, LoadStatus})\n\n\nResponse to load multipliers: Fixed (growth only), Exempt (no LD curve), Variable (all). (Setter)\n\n\n\n\n\n"
 },
 
 {
@@ -3645,7 +3645,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.Status",
     "category": "method",
-    "text": "Status()::Int64\n\n\nResponse to load multipliers: Fixed (growth only), Exempt (no LD curve), Variable (all). (Getter)\n\n\n\n\n\n"
+    "text": "Status() -> OpenDSSDirect.Lib.LoadStatus\n\n\nResponse to load multipliers: Fixed (growth only), Exempt (no LD curve), Variable (all). (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3661,7 +3661,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.Vmaxpu",
     "category": "method",
-    "text": "Vmaxpu()::Float64\n\n\nMaximum per-unit voltage to use the load model. Above this, constant Z applies. (Getter)\n\n\n\n\n\n"
+    "text": "Vmaxpu() -> Float64\n\n\nMaximum per-unit voltage to use the load model. Above this, constant Z applies. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3677,7 +3677,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.VminEmerg",
     "category": "method",
-    "text": "VminEmerg()::Float64\n\n\nMinimum voltage for unserved energy (UE) evaluation. (Getter)\n\n\n\n\n\n"
+    "text": "VminEmerg() -> Float64\n\n\nMinimum voltage for unserved energy (UE) evaluation. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3693,7 +3693,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.VminNorm",
     "category": "method",
-    "text": "VminNorm()::Float64\n\n\nMinimum voltage for energy exceeding normal (EEN) evaluations. (Getter)\n\n\n\n\n\n"
+    "text": "VminNorm() -> Float64\n\n\nMinimum voltage for energy exceeding normal (EEN) evaluations. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3709,7 +3709,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.Vminpu",
     "category": "method",
-    "text": "Vminpu()::Float64\n\n\nMinimum voltage to apply the load model. Below this, constant Z is used. (Getter)\n\n\n\n\n\n"
+    "text": "Vminpu() -> Float64\n\n\nMinimum voltage to apply the load model. Below this, constant Z is used. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3725,7 +3725,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.XfkVA",
     "category": "method",
-    "text": "XfkVA()::Float64\n\n\nRated service transformer kVA for load allocation, using AllocationFactor. Affects kW, kvar, and pf. (Getter)\n\n\n\n\n\n"
+    "text": "XfkVA() -> Float64\n\n\nRated service transformer kVA for load allocation, using AllocationFactor. Affects kW, kvar, and pf. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3741,7 +3741,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.Xneut",
     "category": "method",
-    "text": "Xneut()::Float64\n\n\nNeutral reactance for wye-connected loads. (Getter)\n\n\n\n\n\n"
+    "text": "Xneut() -> Float64\n\n\nNeutral reactance for wye-connected loads. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3757,7 +3757,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.Yearly",
     "category": "method",
-    "text": "Yearly()::String\n\n\nName of yearly duration loadshape (Getter)\n\n\n\n\n\n"
+    "text": "Yearly() -> String\n\n\nName of yearly duration loadshape (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3773,7 +3773,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.ZipV",
     "category": "method",
-    "text": "ZipV()::Array{Float64,1}\n\n\nArray of 7 doubles with values for ZIPV property of the LOAD object (Getter)\n\n\n\n\n\n"
+    "text": "ZipV() -> Array{Float64,1}\n\n\nArray of 7 doubles with values for ZIPV property of the LOAD object (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3789,7 +3789,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.kV",
     "category": "method",
-    "text": "kV()::Float64\n\n\nSet kV rating for active Load. For 2 or more phases set Line-Line kV. Else actual kV across terminals. (Getter)\n\n\n\n\n\n"
+    "text": "kV() -> Float64\n\n\nSet kV rating for active Load. For 2 or more phases set Line-Line kV. Else actual kV across terminals. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3805,7 +3805,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.kVABase",
     "category": "method",
-    "text": "kVABase()::Float64\n\n\nBase load kva. Also defined kw and kvar or pf input, or load allocation by kwh or xfkva. (Getter)\n\n\n\n\n\n"
+    "text": "kVABase() -> Float64\n\n\nBase load kva. Also defined kw and kvar or pf input, or load allocation by kwh or xfkva. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3821,7 +3821,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.kW",
     "category": "method",
-    "text": "kW()::Float64\n\n\nSet kW for active Load. Updates kvar based on present PF. (Getter)\n\n\n\n\n\n"
+    "text": "kW() -> Float64\n\n\nSet kW for active Load. Updates kvar based on present PF. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3837,7 +3837,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.kWh",
     "category": "method",
-    "text": "kWh()::Float64\n\n\nkwh billed for this period. Can be used with Cfactor for load allocation. (Getter)\n\n\n\n\n\n"
+    "text": "kWh() -> Float64\n\n\nkwh billed for this period. Can be used with Cfactor for load allocation. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3853,7 +3853,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.kWhDays",
     "category": "method",
-    "text": "kWhDays()::Float64\n\n\nLength of kwh billing period for average demand calculation. Default 30. (Getter)\n\n\n\n\n\n"
+    "text": "kWhDays() -> Float64\n\n\nLength of kwh billing period for average demand calculation. Default 30. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3869,7 +3869,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.kvar",
     "category": "method",
-    "text": "kvar()::Float64\n\n\nSet kvar for active Load. Updates PF based on present kW. (Getter)\n\n\n\n\n\n"
+    "text": "kvar() -> Float64\n\n\nSet kvar for active Load. Updates PF based on present kW. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3885,7 +3885,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Loads.puSeriesRL",
     "category": "method",
-    "text": "puSeriesRL()::Float64\n\n\nPercent of Load that is modeled as series R-L for harmonics studies (Getter)\n\n\n\n\n\n"
+    "text": "puSeriesRL() -> Float64\n\n\nPercent of Load that is modeled as series R-L for harmonics studies (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3901,7 +3901,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LoadShape.AllNames",
     "category": "method",
-    "text": "AllNames()::Array{String,1}\n\n\nArray of strings containing names of all Loadshape objects currently defined.\n\n\n\n\n\n"
+    "text": "AllNames() -> Array{String,1}\n\n\nArray of strings containing names of all Loadshape objects currently defined.\n\n\n\n\n\n"
 },
 
 {
@@ -3909,7 +3909,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LoadShape.Count",
     "category": "method",
-    "text": "Count()::Int64\n\n\nNumber of Loadshape objects currently defined in Loadshape collection\n\n\n\n\n\n"
+    "text": "Count() -> Int64\n\n\nNumber of Loadshape objects currently defined in Loadshape collection\n\n\n\n\n\n"
 },
 
 {
@@ -3917,7 +3917,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LoadShape.First",
     "category": "method",
-    "text": "First()::Int64\n\n\nSet the first loadshape active and return integer index of the loadshape. Returns 0 if none.\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\nSet the first loadshape active and return integer index of the loadshape. Returns 0 if none.\n\n\n\n\n\n"
 },
 
 {
@@ -3933,7 +3933,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LoadShape.HrInterval",
     "category": "method",
-    "text": "HrInterval()::Float64\n\n\nFixed interval time value, hours.\n\n\n\n\n\n"
+    "text": "HrInterval() -> Float64\n\n\nFixed interval time value, hours.\n\n\n\n\n\n"
 },
 
 {
@@ -3949,7 +3949,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LoadShape.MinInterval",
     "category": "method",
-    "text": "MinInterval()::Float64\n\n\nFixed Interval time value, in minutes\n\n\n\n\n\n"
+    "text": "MinInterval() -> Float64\n\n\nFixed Interval time value, in minutes\n\n\n\n\n\n"
 },
 
 {
@@ -3965,7 +3965,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LoadShape.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nName of the active Loadshape (Getter)\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nName of the active Loadshape (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3973,7 +3973,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LoadShape.New",
     "category": "method",
-    "text": "New(Name::Any)::Int64\n\n\nCreate new Load Shape\n\n\n\n\n\n"
+    "text": "New(Name::Any) -> Int64\n\n\nCreate new Load Shape\n\n\n\n\n\n"
 },
 
 {
@@ -3981,7 +3981,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LoadShape.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\nAdvance active Loadshape to the next on in the collection. Returns 0 if no more loadshapes.\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\nAdvance active Loadshape to the next on in the collection. Returns 0 if no more loadshapes.\n\n\n\n\n\n"
 },
 
 {
@@ -4005,7 +4005,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LoadShape.Npts",
     "category": "method",
-    "text": "Npts()::Int64\n\n\nNumber of points in active Loadshape. (Getter)\n\n\n\n\n\n"
+    "text": "Npts() -> Int64\n\n\nNumber of points in active Loadshape. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -4021,7 +4021,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LoadShape.PBase",
     "category": "method",
-    "text": "PBase()::Float64\n\n\nBase for normalizing P curve (Getter)\n\n\n\n\n\n"
+    "text": "PBase() -> Float64\n\n\nBase for normalizing P curve (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -4037,7 +4037,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LoadShape.PMult",
     "category": "method",
-    "text": "PMult()::Array{Float64,1}\n\n\nArray of Doubles for the P multiplier in the Loadshape. (Getter)\n\n\n\n\n\n"
+    "text": "PMult() -> Array{Float64,1}\n\n\nArray of Doubles for the P multiplier in the Loadshape. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -4053,7 +4053,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LoadShape.QBase",
     "category": "method",
-    "text": "QBase()::Float64\n\n\nBase for normalizing Q curve. If left at zero, the peak value is used. (Getter)\n\n\n\n\n\n"
+    "text": "QBase() -> Float64\n\n\nBase for normalizing Q curve. If left at zero, the peak value is used. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -4069,7 +4069,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LoadShape.QMult",
     "category": "method",
-    "text": "QMult()::Array{Float64,1}\n\n\nArray of doubles containing the Q multipliers. (Getter)\n\n\n\n\n\n"
+    "text": "QMult() -> Array{Float64,1}\n\n\nArray of doubles containing the Q multipliers. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -4085,7 +4085,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LoadShape.SInterval",
     "category": "method",
-    "text": "SInterval()::Float64\n\n\nInterval of active loadshape in seconds (Getter)\n\n\n\n\n\n"
+    "text": "SInterval() -> Float64\n\n\nInterval of active loadshape in seconds (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -4101,7 +4101,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LoadShape.TimeArray",
     "category": "method",
-    "text": "TimeArray()::Array{Float64,1}\n\n\nTime array in hours correscponding to P and Q multipliers when the Interval=0. (Getter)\n\n\n\n\n\n"
+    "text": "TimeArray() -> Array{Float64,1}\n\n\nTime array in hours correscponding to P and Q multipliers when the Interval=0. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -4117,7 +4117,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LoadShape.UseActual",
     "category": "method",
-    "text": "UseActual()::Bool\n\n\nT/F flag to let Loads know to use the actual value in the curve rather than use the value as a multiplier. (Getter)\n\n\n\n\n\n"
+    "text": "UseActual() -> Bool\n\n\nT/F flag to let Loads know to use the actual value in the curve rather than use the value as a multiplier. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -4133,7 +4133,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.AllBranchesInZone",
     "category": "method",
-    "text": "AllBranchesInZone()\n\n\nWide string list of all branches in zone of the active energymeter object.\n\n\n\n\n\n"
+    "text": "AllBranchesInZone() -> Array{String,1}\n\n\nWide string list of all branches in zone of the active energymeter object.\n\n\n\n\n\n"
 },
 
 {
@@ -4141,7 +4141,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.AllEndElements",
     "category": "method",
-    "text": "AllEndElements()\n\n\nArray of names of all zone end elements.\n\n\n\n\n\n"
+    "text": "AllEndElements() -> Array{String,1}\n\n\nArray of names of all zone end elements.\n\n\n\n\n\n"
 },
 
 {
@@ -4149,7 +4149,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.AllNames",
     "category": "method",
-    "text": "AllNames()::Array{String,1}\n\n\nArray of all energy Meter names\n\n\n\n\n\n"
+    "text": "AllNames() -> Array{String,1}\n\n\nArray of all energy Meter names\n\n\n\n\n\n"
 },
 
 {
@@ -4165,7 +4165,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.AllocFactors",
     "category": "method",
-    "text": "AllocFactors()::Array{Float64,1}\n\n\nArray of doubles: set the phase allocation factors for the active meter.\n\n\n\n\n\n"
+    "text": "AllocFactors() -> Array{Float64,1}\n\n\nArray of doubles: set the phase allocation factors for the active meter.\n\n\n\n\n\n"
 },
 
 {
@@ -4173,7 +4173,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.AvgRepairTime",
     "category": "method",
-    "text": "AvgRepairTime()::Float64\n\n\nAverage Repair time in this section of the meter zone\n\n\n\n\n\n"
+    "text": "AvgRepairTime() -> Float64\n\n\nAverage Repair time in this section of the meter zone\n\n\n\n\n\n"
 },
 
 {
@@ -4189,7 +4189,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.CalcCurrent",
     "category": "method",
-    "text": "CalcCurrent()::Array{Float64,1}\n\n\nSet the magnitude of the real part of the Calculated Current (normally determined by solution) for the Meter to force some behavior on Load Allocation\n\n\n\n\n\n"
+    "text": "CalcCurrent() -> Array{Float64,1}\n\n\nSet the magnitude of the real part of the Calculated Current (normally determined by solution) for the Meter to force some behavior on Load Allocation\n\n\n\n\n\n"
 },
 
 {
@@ -4205,7 +4205,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.Count",
     "category": "method",
-    "text": "Count()::Int64\n\n\nNumber of Energy Meters in the Active Circuit\n\n\n\n\n\n"
+    "text": "Count() -> Int64\n\n\nNumber of Energy Meters in the Active Circuit\n\n\n\n\n\n"
 },
 
 {
@@ -4213,7 +4213,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.CountBranches",
     "category": "method",
-    "text": "CountBranches()::Int64\n\n\nNumber of branches in Active energymeter zone. (Same as sequencelist size)\n\n\n\n\n\n"
+    "text": "CountBranches() -> Int64\n\n\nNumber of branches in Active energymeter zone. (Same as sequencelist size)\n\n\n\n\n\n"
 },
 
 {
@@ -4221,7 +4221,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.CountEndElements",
     "category": "method",
-    "text": "CountEndElements()\n\n\nNumber of zone end elements in the active meter zone.\n\n\n\n\n\n"
+    "text": "CountEndElements() -> Int64\n\n\nNumber of zone end elements in the active meter zone.\n\n\n\n\n\n"
 },
 
 {
@@ -4229,7 +4229,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.CustInterrupts",
     "category": "method",
-    "text": "CustInterrupts()::Float64\n\n\nTotal customer interruptions for this Meter zone based on reliability calcs.\n\n\n\n\n\n"
+    "text": "CustInterrupts() -> Float64\n\n\nTotal customer interruptions for this Meter zone based on reliability calcs.\n\n\n\n\n\n"
 },
 
 {
@@ -4237,7 +4237,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.DIFilesAreOpen",
     "category": "method",
-    "text": "DIFilesAreOpen()::Bool\n\n\nGlobal Flag in the DSS to indicate if Demand Interval (DI) files have been properly opened.\n\n\n\n\n\n"
+    "text": "DIFilesAreOpen() -> Bool\n\n\nGlobal Flag in the DSS to indicate if Demand Interval (DI) files have been properly opened.\n\n\n\n\n\n"
 },
 
 {
@@ -4253,7 +4253,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.FaultRateXRepairHrs",
     "category": "method",
-    "text": "FaultRateXRepairHrs()::Float64\n\n\nSum of Fault Rate time Repair Hrs in this section of the meter zone\n\n\n\n\n\n"
+    "text": "FaultRateXRepairHrs() -> Float64\n\n\nSum of Fault Rate time Repair Hrs in this section of the meter zone\n\n\n\n\n\n"
 },
 
 {
@@ -4261,7 +4261,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.First",
     "category": "method",
-    "text": "First()::Int64\n\n\nSet the first energy Meter active. Returns 0 if none.\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\nSet the first energy Meter active. Returns 0 if none.\n\n\n\n\n\n"
 },
 
 {
@@ -4277,7 +4277,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.MeteredElement",
     "category": "method",
-    "text": "MeteredElement()::String\n\n\nSet Name of metered element\n\n\n\n\n\n"
+    "text": "MeteredElement() -> String\n\n\nSet Name of metered element\n\n\n\n\n\n"
 },
 
 {
@@ -4293,7 +4293,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.MeteredTerminal",
     "category": "method",
-    "text": "MeteredTerminal()::Int64\n\n\nset Number of Metered Terminal\n\n\n\n\n\n"
+    "text": "MeteredTerminal() -> Int64\n\n\nset Number of Metered Terminal\n\n\n\n\n\n"
 },
 
 {
@@ -4309,7 +4309,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.Name",
     "category": "method",
-    "text": "Name()::String\n\n\n(read) Get/Set the active meter  name. (write) Set a meter to be active by name.\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\n(read) Get/Set the active meter  name. (write) Set a meter to be active by name.\n\n\n\n\n\n"
 },
 
 {
@@ -4317,7 +4317,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\nSets the next energy Meter active.  Returns 0 if no more.\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\nSets the next energy Meter active.  Returns 0 if no more.\n\n\n\n\n\n"
 },
 
 {
@@ -4325,7 +4325,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.NumSectionBranches",
     "category": "method",
-    "text": "NumSectionBranches()::Int64\n\n\nNumber of branches (lines) in this section\n\n\n\n\n\n"
+    "text": "NumSectionBranches() -> Int64\n\n\nNumber of branches (lines) in this section\n\n\n\n\n\n"
 },
 
 {
@@ -4333,7 +4333,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.NumSectionCustomers",
     "category": "method",
-    "text": "NumSectionCustomers()::Int64\n\n\nNumber of Customers in the active section.\n\n\n\n\n\n"
+    "text": "NumSectionCustomers() -> Int64\n\n\nNumber of Customers in the active section.\n\n\n\n\n\n"
 },
 
 {
@@ -4341,7 +4341,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.NumSections",
     "category": "method",
-    "text": "NumSections()::Int64\n\n\nNumber of feeder sections in this meter\'s zone\n\n\n\n\n\n"
+    "text": "NumSections() -> Int64\n\n\nNumber of feeder sections in this meter\'s zone\n\n\n\n\n\n"
 },
 
 {
@@ -4349,7 +4349,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.OCPDeviceType",
     "category": "method",
-    "text": "OCPDeviceType()::Int64\n\n\nType of OCP device. 1=Fuse; 2=Recloser; 3=Relay\n\n\n\n\n\n"
+    "text": "OCPDeviceType() -> Int64\n\n\nType of OCP device. 1=Fuse; 2=Recloser; 3=Relay\n\n\n\n\n\n"
 },
 
 {
@@ -4373,7 +4373,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.PeakCurrent",
     "category": "method",
-    "text": "PeakCurrent()::Array{Float64,1}\n\n\nArray of doubles to set values of Peak Current property\n\n\n\n\n\n"
+    "text": "PeakCurrent() -> Array{Float64,1}\n\n\nArray of doubles to set values of Peak Current property\n\n\n\n\n\n"
 },
 
 {
@@ -4381,7 +4381,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.RegisterNames",
     "category": "method",
-    "text": "RegisterNames()::Array{String,1}\n\n\nArray of strings containing the names of the registers.\n\n\n\n\n\n"
+    "text": "RegisterNames() -> Array{String,1}\n\n\nArray of strings containing the names of the registers.\n\n\n\n\n\n"
 },
 
 {
@@ -4389,7 +4389,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.RegisterValues",
     "category": "method",
-    "text": "RegisterValues()::Array{Float64,1}\n\n\nArray of all the values contained in the Meter registers for the active Meter.\n\n\n\n\n\n"
+    "text": "RegisterValues() -> Array{Float64,1}\n\n\nArray of all the values contained in the Meter registers for the active Meter.\n\n\n\n\n\n"
 },
 
 {
@@ -4413,7 +4413,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.SAIDI",
     "category": "method",
-    "text": "SAIDI()::Float64\n\n\nSAIDI for this meter\'s zone. Execute DoReliabilityCalc first.\n\n\n\n\n\n"
+    "text": "SAIDI() -> Float64\n\n\nSAIDI for this meter\'s zone. Execute DoReliabilityCalc first.\n\n\n\n\n\n"
 },
 
 {
@@ -4421,7 +4421,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.SAIFI",
     "category": "method",
-    "text": "SAIFI()::Float64\n\n\nReturns SAIFI for this meter\'s Zone. Execute Reliability Calc method first.\n\n\n\n\n\n"
+    "text": "SAIFI() -> Float64\n\n\nReturns SAIFI for this meter\'s Zone. Execute Reliability Calc method first.\n\n\n\n\n\n"
 },
 
 {
@@ -4429,7 +4429,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.SAIFIkW",
     "category": "method",
-    "text": "SAIFIkW()::Float64\n\n\nSAIFI based on kW rather than number of customers. Get after reliability calcs.\n\n\n\n\n\n"
+    "text": "SAIFIkW() -> Float64\n\n\nSAIFI based on kW rather than number of customers. Get after reliability calcs.\n\n\n\n\n\n"
 },
 
 {
@@ -4469,7 +4469,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.SectSeqidx",
     "category": "method",
-    "text": "SectSeqidx()::Int64\n\n\nSequenceIndex of the branch at the head of this section\n\n\n\n\n\n"
+    "text": "SectSeqidx() -> Int64\n\n\nSequenceIndex of the branch at the head of this section\n\n\n\n\n\n"
 },
 
 {
@@ -4477,7 +4477,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.SectTotalCust",
     "category": "method",
-    "text": "SectTotalCust()::Int64\n\n\nTotal Customers downline from this section\n\n\n\n\n\n"
+    "text": "SectTotalCust() -> Int64\n\n\nTotal Customers downline from this section\n\n\n\n\n\n"
 },
 
 {
@@ -4485,7 +4485,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.SeqListSize",
     "category": "method",
-    "text": "SeqListSize()::Int64\n\n\nSize of Sequence List\n\n\n\n\n\n"
+    "text": "SeqListSize() -> Int64\n\n\nSize of Sequence List\n\n\n\n\n\n"
 },
 
 {
@@ -4501,7 +4501,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.SequenceList",
     "category": "method",
-    "text": "SequenceList()::Int64\n\n\nGet/set Index into Meter\'s SequenceList that contains branch pointers in lexical order. Earlier index guaranteed to be upline from later index. Sets PDelement active.\n\n\n\n\n\n"
+    "text": "SequenceList() -> Int64\n\n\nGet/set Index into Meter\'s SequenceList that contains branch pointers in lexical order. Earlier index guaranteed to be upline from later index. Sets PDelement active.\n\n\n\n\n\n"
 },
 
 {
@@ -4517,7 +4517,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.SumBranchFltRates",
     "category": "method",
-    "text": "SumBranchFltRates()::Float64\n\n\nSum of the branch fault rates in this section of the meter\'s zone\n\n\n\n\n\n"
+    "text": "SumBranchFltRates() -> Float64\n\n\nSum of the branch fault rates in this section of the meter\'s zone\n\n\n\n\n\n"
 },
 
 {
@@ -4525,7 +4525,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.TotalCustomers",
     "category": "method",
-    "text": "TotalCustomers()::Int64\n\n\nTotal Number of customers in this zone (downline from the EnergyMeter)\n\n\n\n\n\n"
+    "text": "TotalCustomers() -> Int64\n\n\nTotal Number of customers in this zone (downline from the EnergyMeter)\n\n\n\n\n\n"
 },
 
 {
@@ -4533,7 +4533,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Meters.Totals",
     "category": "method",
-    "text": "Totals()::Array{Float64,1}\n\n\nTotals of all registers of all meters\n\n\n\n\n\n"
+    "text": "Totals() -> Array{Float64,1}\n\n\nTotals of all registers of all meters\n\n\n\n\n\n"
 },
 
 {
@@ -4549,7 +4549,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Monitors.AllNames",
     "category": "method",
-    "text": "AllNames()::Array{String,1}\n\n\n(read-only) Array of all Monitor Names\n\n\n\n\n\n"
+    "text": "AllNames() -> Array{String,1}\n\n\n(read-only) Array of all Monitor Names\n\n\n\n\n\n"
 },
 
 {
@@ -4557,7 +4557,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Monitors.ByteStream",
     "category": "method",
-    "text": "ByteStream()::Array{Int8,1}\n\n\n(read-only) Byte Array containing monitor stream values. Make sure a \"save\" is done first (standard solution modes do this automatically)\n\n\n\n\n\n"
+    "text": "ByteStream() -> Array{Int8,1}\n\n\n(read-only) Byte Array containing monitor stream values. Make sure a \"save\" is done first (standard solution modes do this automatically)\n\n\n\n\n\n"
 },
 
 {
@@ -4573,7 +4573,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Monitors.Count",
     "category": "method",
-    "text": "Count()::Int64\n\n\n(read-only) Number of Monitors\n\n\n\n\n\n"
+    "text": "Count() -> Int64\n\n\n(read-only) Number of Monitors\n\n\n\n\n\n"
 },
 
 {
@@ -4581,7 +4581,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Monitors.DblFreq",
     "category": "method",
-    "text": "DblFreq()::Array{Float64,1}\n\n\n(read-only) Array of doubles containing frequency values for harmonics mode solutions; Empty for time mode solutions (use dblHour)\n\n\n\n\n\n"
+    "text": "DblFreq() -> Array{Float64,1}\n\n\n(read-only) Array of doubles containing frequency values for harmonics mode solutions; Empty for time mode solutions (use dblHour)\n\n\n\n\n\n"
 },
 
 {
@@ -4589,7 +4589,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Monitors.DblHour",
     "category": "method",
-    "text": "DblHour()::Array{Float64,1}\n\n\n(read-only) Array of doubles containgin time value in hours for time-sampled monitor values; Empty if frequency-sampled values for harmonics solution  (see dblFreq)\n\n\n\n\n\n"
+    "text": "DblHour() -> Array{Float64,1}\n\n\n(read-only) Array of doubles containgin time value in hours for time-sampled monitor values; Empty if frequency-sampled values for harmonics solution  (see dblFreq)\n\n\n\n\n\n"
 },
 
 {
@@ -4605,7 +4605,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Monitors.Element",
     "category": "method",
-    "text": "Element()::String\n\n\nFull object name of element being monitored.\n\n\n\n\n\n"
+    "text": "Element() -> String\n\n\nFull object name of element being monitored.\n\n\n\n\n\n"
 },
 
 {
@@ -4613,7 +4613,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Monitors.FileName",
     "category": "method",
-    "text": "FileName()::String\n\n\n(read-only) Name of CSV file associated with active Monitor.\n\n\n\n\n\n"
+    "text": "FileName() -> String\n\n\n(read-only) Name of CSV file associated with active Monitor.\n\n\n\n\n\n"
 },
 
 {
@@ -4621,7 +4621,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Monitors.FileVersion",
     "category": "method",
-    "text": "FileVersion()::Int64\n\n\n(read-only) Monitor File Version (integer)\n\n\n\n\n\n"
+    "text": "FileVersion() -> Int64\n\n\n(read-only) Monitor File Version (integer)\n\n\n\n\n\n"
 },
 
 {
@@ -4629,7 +4629,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Monitors.First",
     "category": "method",
-    "text": "First()::Int64\n\n\n(read-only) Sets the first Monitor active.  Returns 0 if no monitors.\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\n(read-only) Sets the first Monitor active.  Returns 0 if no monitors.\n\n\n\n\n\n"
 },
 
 {
@@ -4637,15 +4637,15 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Monitors.Header",
     "category": "method",
-    "text": "Header()::Array{String,1}\n\n\n(read-only) Header string;  Array of strings containing Channel names\n\n\n\n\n\n"
+    "text": "Header() -> Array{String,1}\n\n\n(read-only) Header string;  Array of strings containing Channel names\n\n\n\n\n\n"
 },
 
 {
-    "location": "api/#OpenDSSDirect.Monitors.Mode-Tuple{Int64}",
+    "location": "api/#OpenDSSDirect.Monitors.Mode-Tuple{Union{Int64, MonitorModes}}",
     "page": "Main API",
     "title": "OpenDSSDirect.Monitors.Mode",
     "category": "method",
-    "text": "Mode(Value::Int64)\n\n\nSet Monitor mode (bitmask integer - see DSS Help)\n\n\n\n\n\n"
+    "text": "Mode(Value::Union{Int64, MonitorModes})\n\n\nSet Monitor mode (bitmask integer - see DSS Help)\n\n\n\n\n\n"
 },
 
 {
@@ -4653,7 +4653,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Monitors.Mode",
     "category": "method",
-    "text": "Mode()::Int64\n\n\nSet Monitor mode (bitmask integer - see DSS Help)\n\n\n\n\n\n"
+    "text": "Mode() -> OpenDSSDirect.Lib.MonitorModes\n\n\nSet Monitor mode (bitmask integer - see DSS Help)\n\n\n\n\n\n"
 },
 
 {
@@ -4669,7 +4669,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Monitors.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nSets the active Monitor object by name\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nSets the active Monitor object by name\n\n\n\n\n\n"
 },
 
 {
@@ -4677,7 +4677,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Monitors.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\n(read-only) Sets next monitor active.  Returns 0 if no more.\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\n(read-only) Sets next monitor active.  Returns 0 if no more.\n\n\n\n\n\n"
 },
 
 {
@@ -4685,7 +4685,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Monitors.NumChannels",
     "category": "method",
-    "text": "NumChannels()::Int64\n\n\n(read-only) Number of Channels in the active Monitor\n\n\n\n\n\n"
+    "text": "NumChannels() -> Int64\n\n\n(read-only) Number of Channels in the active Monitor\n\n\n\n\n\n"
 },
 
 {
@@ -4693,7 +4693,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Monitors.RecordSize",
     "category": "method",
-    "text": "RecordSize()::Int64\n\n\n(read-only) Size of each record in ByteStream (Integer). Same as NumChannels.\n\n\n\n\n\n"
+    "text": "RecordSize() -> Int64\n\n\n(read-only) Size of each record in ByteStream (Integer). Same as NumChannels.\n\n\n\n\n\n"
 },
 
 {
@@ -4701,7 +4701,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Monitors.SampleCount",
     "category": "method",
-    "text": "SampleCount()::Int64\n\n\n(read-only) Number of Samples in Monitor at Present\n\n\n\n\n\n"
+    "text": "SampleCount() -> Int64\n\n\n(read-only) Number of Samples in Monitor at Present\n\n\n\n\n\n"
 },
 
 {
@@ -4717,7 +4717,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Monitors.Terminal",
     "category": "method",
-    "text": "Terminal()::Int64\n\n\nTerminal number of element being monitored.\n\n\n\n\n\n"
+    "text": "Terminal() -> Int64\n\n\nTerminal number of element being monitored.\n\n\n\n\n\n"
 },
 
 {
@@ -4741,7 +4741,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Parser.AutoIncrement",
     "category": "method",
-    "text": "AutoIncrement()::Bool\n\n\nDefault is FALSE. If TRUE parser automatically advances to next token after DblValue, IntValue, or StrValue. Simpler when you don\'t need to check for parameter names.\n\n\n\n\n\n"
+    "text": "AutoIncrement() -> Bool\n\n\nDefault is FALSE. If TRUE parser automatically advances to next token after DblValue, IntValue, or StrValue. Simpler when you don\'t need to check for parameter names.\n\n\n\n\n\n"
 },
 
 {
@@ -4757,7 +4757,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Parser.BeginQuote",
     "category": "method",
-    "text": "BeginQuote()::String\n\n\nString containing the the characters for Quoting in OpenDSS scripts. Matching pairs defined in EndQuote. Default is \"\'([{.\n\n\n\n\n\n"
+    "text": "BeginQuote() -> String\n\n\nString containing the the characters for Quoting in OpenDSS scripts. Matching pairs defined in EndQuote. Default is \"\'([{.\n\n\n\n\n\n"
 },
 
 {
@@ -4773,7 +4773,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Parser.CmdString",
     "category": "method",
-    "text": "CmdString()::String\n\n\nString to be parsed. Loading this string resets the Parser to the beginning of the line. Then parse off the tokens in sequence.\n\n\n\n\n\n"
+    "text": "CmdString() -> String\n\n\nString to be parsed. Loading this string resets the Parser to the beginning of the line. Then parse off the tokens in sequence.\n\n\n\n\n\n"
 },
 
 {
@@ -4781,7 +4781,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Parser.DblValue",
     "category": "method",
-    "text": "DblValue()::Float64\n\n\nReturn next parameter as a double.\n\n\n\n\n\n"
+    "text": "DblValue() -> Float64\n\n\nReturn next parameter as a double.\n\n\n\n\n\n"
 },
 
 {
@@ -4797,7 +4797,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Parser.Delimiters",
     "category": "method",
-    "text": "Delimiters()::String\n\n\nString defining hard delimiters used to separate token on the command string. Default is , and =. The = separates token name from token value. These override whitesspace to separate tokens.\n\n\n\n\n\n"
+    "text": "Delimiters() -> String\n\n\nString defining hard delimiters used to separate token on the command string. Default is , and =. The = separates token name from token value. These override whitesspace to separate tokens.\n\n\n\n\n\n"
 },
 
 {
@@ -4813,7 +4813,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Parser.EndQuote",
     "category": "method",
-    "text": "EndQuote()::String\n\n\nString containing characters, in order, that match the beginning quote characters in BeginQuote. Default is \"\')]} (Getter)\n\n\n\n\n\n"
+    "text": "EndQuote() -> String\n\n\nString containing characters, in order, that match the beginning quote characters in BeginQuote. Default is \"\')]} (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -4821,7 +4821,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Parser.IntValue",
     "category": "method",
-    "text": "IntValue()::Int64\n\n\nReturn next parameter as a long integer.\n\n\n\n\n\n"
+    "text": "IntValue() -> Int64\n\n\nReturn next parameter as a long integer.\n\n\n\n\n\n"
 },
 
 {
@@ -4837,7 +4837,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Parser.NextParam",
     "category": "method",
-    "text": "NextParam()::String\n\n\nGet next token and return tag name (before = sign) if any. See AutoIncrement.\n\n\n\n\n\n"
+    "text": "NextParam() -> String\n\n\nGet next token and return tag name (before = sign) if any. See AutoIncrement.\n\n\n\n\n\n"
 },
 
 {
@@ -4845,7 +4845,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Parser.StrValue",
     "category": "method",
-    "text": "StrValue()::String\n\n\nReturn next parameter as a string\n\n\n\n\n\n"
+    "text": "StrValue() -> String\n\n\nReturn next parameter as a string\n\n\n\n\n\n"
 },
 
 {
@@ -4877,7 +4877,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Parser.WhiteSpace",
     "category": "method",
-    "text": "WhiteSpace()::String\n\n\nCharacters used for White space in the command string.  Default is blank and Tab. (Getter)\n\n\n\n\n\n"
+    "text": "WhiteSpace() -> String\n\n\nCharacters used for White space in the command string.  Default is blank and Tab. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -4893,7 +4893,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PDElements.AccumulatedL",
     "category": "method",
-    "text": "AccumulatedL()::Float64\n\n\naccummulated failure rate for this branch on downline\n\n\n\n\n\n"
+    "text": "AccumulatedL() -> Float64\n\n\naccummulated failure rate for this branch on downline\n\n\n\n\n\n"
 },
 
 {
@@ -4901,7 +4901,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PDElements.Count",
     "category": "method",
-    "text": "Count()::Int64\n\n\nNumber of PD elements (including disabled elements)\n\n\n\n\n\n"
+    "text": "Count() -> Int64\n\n\nNumber of PD elements (including disabled elements)\n\n\n\n\n\n"
 },
 
 {
@@ -4917,7 +4917,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PDElements.FaultRate",
     "category": "method",
-    "text": "FaultRate()::Float64\n\n\nNumber of failures per year. For LINE elements: Number of failures per unit length per year. (Getter)\n\n\n\n\n\n"
+    "text": "FaultRate() -> Float64\n\n\nNumber of failures per year. For LINE elements: Number of failures per unit length per year. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -4925,7 +4925,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PDElements.First",
     "category": "method",
-    "text": "First()::Int64\n\n\nSet the first enabled PD element to be the active element.  Returns 0 if none found.\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\nSet the first enabled PD element to be the active element.  Returns 0 if none found.\n\n\n\n\n\n"
 },
 
 {
@@ -4933,7 +4933,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PDElements.FromTerminal",
     "category": "method",
-    "text": "FromTerminal()::Int64\n\n\nNumber of the terminal of active PD element that is on the \"from\" side. This is set after the meter zone is determined.\n\n\n\n\n\n"
+    "text": "FromTerminal() -> Int64\n\n\nNumber of the terminal of active PD element that is on the \"from\" side. This is set after the meter zone is determined.\n\n\n\n\n\n"
 },
 
 {
@@ -4941,7 +4941,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PDElements.IsShunt",
     "category": "method",
-    "text": "IsShunt()::Bool\n\n\nVariant boolean indicating of PD element should be treated as a shunt element rather than a series element. Applies to Capacitor and Reactor elements in particular.\n\n\n\n\n\n"
+    "text": "IsShunt() -> Bool\n\n\nVariant boolean indicating of PD element should be treated as a shunt element rather than a series element. Applies to Capacitor and Reactor elements in particular.\n\n\n\n\n\n"
 },
 
 {
@@ -4949,7 +4949,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PDElements.Lambda",
     "category": "method",
-    "text": "Lambda()::Float64\n\n\nFailure rate for this branch. Faults per year including length of line.\n\n\n\n\n\n"
+    "text": "Lambda() -> Float64\n\n\nFailure rate for this branch. Faults per year including length of line.\n\n\n\n\n\n"
 },
 
 {
@@ -4965,7 +4965,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PDElements.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nName of active PD Element. Returns null string if active element is not PDElement type. (Getter)\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nName of active PD Element. Returns null string if active element is not PDElement type. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -4973,7 +4973,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PDElements.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\nAdvance to the next PD element in the circuit. Enabled elements only. Returns 0 when no more elements.\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\nAdvance to the next PD element in the circuit. Enabled elements only. Returns 0 when no more elements.\n\n\n\n\n\n"
 },
 
 {
@@ -4981,7 +4981,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PDElements.NumCustomers",
     "category": "method",
-    "text": "NumCustomers()::Int64\n\n\nNumber of customers, this branch\n\n\n\n\n\n"
+    "text": "NumCustomers() -> Int64\n\n\nNumber of customers, this branch\n\n\n\n\n\n"
 },
 
 {
@@ -4989,7 +4989,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PDElements.ParentPDElement",
     "category": "method",
-    "text": "ParentPDElement()::Int64\n\n\nSets the parent PD element to be the active circuit element.  Returns 0 if no more elements upline.\n\n\n\n\n\n"
+    "text": "ParentPDElement() -> Int64\n\n\nSets the parent PD element to be the active circuit element.  Returns 0 if no more elements upline.\n\n\n\n\n\n"
 },
 
 {
@@ -5005,7 +5005,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PDElements.PctPermanent",
     "category": "method",
-    "text": "PctPermanent()::Float64\n\n\nGet/Set percent of faults that are permanent (require repair). Otherwise, fault is assumed to be transient/temporary. (Getter)\n\n\n\n\n\n"
+    "text": "PctPermanent() -> Float64\n\n\nGet/Set percent of faults that are permanent (require repair). Otherwise, fault is assumed to be transient/temporary. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5021,7 +5021,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PDElements.RepairTime",
     "category": "method",
-    "text": "RepairTime()::Float64\n\n\nAverage repair time for this element in hours (Getter)\n\n\n\n\n\n"
+    "text": "RepairTime() -> Float64\n\n\nAverage repair time for this element in hours (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5029,7 +5029,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PDElements.SectionID",
     "category": "method",
-    "text": "SectionID()::Int64\n\n\nInteger ID of the feeder section that this PDElement branch is part of\n\n\n\n\n\n"
+    "text": "SectionID() -> Int64\n\n\nInteger ID of the feeder section that this PDElement branch is part of\n\n\n\n\n\n"
 },
 
 {
@@ -5037,7 +5037,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PDElements.TotalCustomers",
     "category": "method",
-    "text": "TotalCustomers()::Int64\n\n\nTotal number of customers from this branch to the end of the zone\n\n\n\n\n\n"
+    "text": "TotalCustomers() -> Int64\n\n\nTotal number of customers from this branch to the end of the zone\n\n\n\n\n\n"
 },
 
 {
@@ -5045,7 +5045,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PDElements.TotalMiles",
     "category": "method",
-    "text": "TotalMiles()::Float64\n\n\nTotal miles of line from this element to the end of the zone. For recloser siting algorithm.\n\n\n\n\n\n"
+    "text": "TotalMiles() -> Float64\n\n\nTotal miles of line from this element to the end of the zone. For recloser siting algorithm.\n\n\n\n\n\n"
 },
 
 {
@@ -5101,7 +5101,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Properties.Description",
     "category": "method",
-    "text": "Description()::String\n\n\nDescription of the property.\n\n\n\n\n\n"
+    "text": "Description() -> String\n\n\nDescription of the property.\n\n\n\n\n\n"
 },
 
 {
@@ -5109,7 +5109,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Properties.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nName of Property\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nName of Property\n\n\n\n\n\n"
 },
 
 {
@@ -5125,7 +5125,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Properties.Value",
     "category": "method",
-    "text": "Value(argIndex_or_Name::Union{Int64, String})::String\n\n\nValue of Property of Index or Name (getter)\n\n\n\n\n\n"
+    "text": "Value(argIndex_or_Name::Union{Int64, String}) -> String\n\n\nValue of Property of Index or Name (getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5133,7 +5133,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Properties.Value",
     "category": "method",
-    "text": "Value()::String\n\n\nValue of Property (Getter)\n\n\n\n\n\n"
+    "text": "Value() -> String\n\n\nValue of Property (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5157,7 +5157,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PVsystems.AllNames",
     "category": "method",
-    "text": "AllNames()::Array{String,1}\n\n\nVariant array of strings with all PVSystem names\n\n\n\n\n\n"
+    "text": "AllNames() -> Array{String,1}\n\n\nVariant array of strings with all PVSystem names\n\n\n\n\n\n"
 },
 
 {
@@ -5165,7 +5165,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PVsystems.Count",
     "category": "method",
-    "text": "Count()::Int64\n\n\nNumber of PVSystems\n\n\n\n\n\n"
+    "text": "Count() -> Int64\n\n\nNumber of PVSystems\n\n\n\n\n\n"
 },
 
 {
@@ -5173,7 +5173,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PVsystems.First",
     "category": "method",
-    "text": "First()::Int64\n\n\nSet first PVSystem active; returns 0 if none.\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\nSet first PVSystem active; returns 0 if none.\n\n\n\n\n\n"
 },
 
 {
@@ -5189,7 +5189,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PVsystems.Idx",
     "category": "method",
-    "text": "Idx()::Int64\n\n\nActive PVSystem by index;  1..Count (Getter)\n\n\n\n\n\n"
+    "text": "Idx() -> Int64\n\n\nActive PVSystem by index;  1..Count (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5205,7 +5205,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PVsystems.Irradiance",
     "category": "method",
-    "text": "Irradiance()::Float64\n\n\nPresent value of the Irradiance property in W/sq-m (Getter)\n\n\n\n\n\n"
+    "text": "Irradiance() -> Float64\n\n\nPresent value of the Irradiance property in W/sq-m (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5221,7 +5221,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PVsystems.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nName of the active PVSystem (Getter)\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nName of the active PVSystem (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5229,7 +5229,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PVsystems.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\nSets next PVSystem active; returns 0 if no more.\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\nSets next PVSystem active; returns 0 if no more.\n\n\n\n\n\n"
 },
 
 {
@@ -5237,7 +5237,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PVsystems.RegisterNames",
     "category": "method",
-    "text": "RegisterNames()::Array{String,1}\n\n\nVariant Array of PVSYSTEM energy meter register names\n\n\n\n\n\n"
+    "text": "RegisterNames() -> Array{String,1}\n\n\nVariant Array of PVSYSTEM energy meter register names\n\n\n\n\n\n"
 },
 
 {
@@ -5245,7 +5245,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PVsystems.RegisterValues",
     "category": "method",
-    "text": "RegisterValues()::Array{Float64,1}\n\n\nArray of doubles containing values in PVSystem registers.\n\n\n\n\n\n"
+    "text": "RegisterValues() -> Array{Float64,1}\n\n\nArray of doubles containing values in PVSystem registers.\n\n\n\n\n\n"
 },
 
 {
@@ -5261,7 +5261,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PVsystems.kVARated",
     "category": "method",
-    "text": "kVARated()::Float64\n\n\nRated kVA of the PVSystem (Getter)\n\n\n\n\n\n"
+    "text": "kVARated() -> Float64\n\n\nRated kVA of the PVSystem (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5269,7 +5269,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PVsystems.kW",
     "category": "method",
-    "text": "kW()::Float64\n\n\nget kW output\n\n\n\n\n\n"
+    "text": "kW() -> Float64\n\n\nget kW output\n\n\n\n\n\n"
 },
 
 {
@@ -5285,7 +5285,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PVsystems.kvar",
     "category": "method",
-    "text": "kvar()::Float64\n\n\nkvar value (Getter)\n\n\n\n\n\n"
+    "text": "kvar() -> Float64\n\n\nkvar value (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5301,7 +5301,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.PVsystems.pf",
     "category": "method",
-    "text": "pf()::Float64\n\n\nPower factor (Getter)\n\n\n\n\n\n"
+    "text": "pf() -> Float64\n\n\nPower factor (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5317,7 +5317,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Reclosers.AllNames",
     "category": "method",
-    "text": "AllNames()::Array{String,1}\n\n\nArray of strings with names of all Reclosers in Active Circuit\n\n\n\n\n\n"
+    "text": "AllNames() -> Array{String,1}\n\n\nArray of strings with names of all Reclosers in Active Circuit\n\n\n\n\n\n"
 },
 
 {
@@ -5333,7 +5333,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Reclosers.Count",
     "category": "method",
-    "text": "Count()::Int64\n\n\nNumber of Reclosers in active circuit.\n\n\n\n\n\n"
+    "text": "Count() -> Int64\n\n\nNumber of Reclosers in active circuit.\n\n\n\n\n\n"
 },
 
 {
@@ -5341,7 +5341,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Reclosers.First",
     "category": "method",
-    "text": "First()::Int64\n\n\nSet First Recloser to be Active Ckt Element. Returns 0 if none.\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\nSet First Recloser to be Active Ckt Element. Returns 0 if none.\n\n\n\n\n\n"
 },
 
 {
@@ -5357,7 +5357,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Reclosers.GroundInst",
     "category": "method",
-    "text": "GroundInst()::Float64\n\n\nGround (3I0) instantaneous trip setting - instantaneous curve multipler or actual amps. (Getter)\n\n\n\n\n\n"
+    "text": "GroundInst() -> Float64\n\n\nGround (3I0) instantaneous trip setting - instantaneous curve multipler or actual amps. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5373,7 +5373,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Reclosers.GroundTrip",
     "category": "method",
-    "text": "GroundTrip()::Float64\n\n\nGround (3I0) trip multiplier or actual amps (Getter)\n\n\n\n\n\n"
+    "text": "GroundTrip() -> Float64\n\n\nGround (3I0) trip multiplier or actual amps (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5389,7 +5389,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Reclosers.Idx",
     "category": "method",
-    "text": "Idx()::Int64\n\n\nGet/Set the active Recloser by index into the recloser list.  1..Count (Getter)\n\n\n\n\n\n"
+    "text": "Idx() -> Int64\n\n\nGet/Set the active Recloser by index into the recloser list.  1..Count (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5405,7 +5405,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Reclosers.MonitoredObj",
     "category": "method",
-    "text": "MonitoredObj()::String\n\n\nFull name of object the Recloser is monitoring. (Getter)\n\n\n\n\n\n"
+    "text": "MonitoredObj() -> String\n\n\nFull name of object the Recloser is monitoring. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5421,7 +5421,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Reclosers.MonitoredTerm",
     "category": "method",
-    "text": "MonitoredTerm()::Int64\n\n\nTerminal number of Monitored object for the Recloser (Getter)\n\n\n\n\n\n"
+    "text": "MonitoredTerm() -> Int64\n\n\nTerminal number of Monitored object for the Recloser (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5437,7 +5437,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Reclosers.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nGet Name of active Recloser or set the active Recloser by name. (Getter)\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nGet Name of active Recloser or set the active Recloser by name. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5445,7 +5445,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Reclosers.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\nIterate to the next recloser in the circuit. Returns zero if no more.\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\nIterate to the next recloser in the circuit. Returns zero if no more.\n\n\n\n\n\n"
 },
 
 {
@@ -5461,7 +5461,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Reclosers.NumFast",
     "category": "method",
-    "text": "NumFast()::Int64\n\n\nNumber of fast shots (Getter)\n\n\n\n\n\n"
+    "text": "NumFast() -> Int64\n\n\nNumber of fast shots (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5485,7 +5485,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Reclosers.PhaseInst",
     "category": "method",
-    "text": "PhaseInst()::Float64\n\n\nPhase instantaneous curve multipler or actual amps (Getter)\n\n\n\n\n\n"
+    "text": "PhaseInst() -> Float64\n\n\nPhase instantaneous curve multipler or actual amps (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5501,7 +5501,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Reclosers.PhaseTrip",
     "category": "method",
-    "text": "PhaseTrip()::Float64\n\n\nPhase trip curve multiplier or actual amps (Getter)\n\n\n\n\n\n"
+    "text": "PhaseTrip() -> Float64\n\n\nPhase trip curve multiplier or actual amps (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5509,7 +5509,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Reclosers.RecloseIntervals",
     "category": "method",
-    "text": "RecloseIntervals()::Array{Float64,1}\n\n\nVariant Array of Doubles: reclose intervals, s, between shots.\n\n\n\n\n\n"
+    "text": "RecloseIntervals() -> Array{Float64,1}\n\n\nVariant Array of Doubles: reclose intervals, s, between shots.\n\n\n\n\n\n"
 },
 
 {
@@ -5525,7 +5525,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Reclosers.Shots",
     "category": "method",
-    "text": "Shots()::Int64\n\n\nNumber of shots to lockout (fast + delayed) (Getter)\n\n\n\n\n\n"
+    "text": "Shots() -> Int64\n\n\nNumber of shots to lockout (fast + delayed) (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5541,7 +5541,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Reclosers.SwitchedObj",
     "category": "method",
-    "text": "SwitchedObj()::String\n\n\nFull name of the circuit element that is being switched by the Recloser. (Getter)\n\n\n\n\n\n"
+    "text": "SwitchedObj() -> String\n\n\nFull name of the circuit element that is being switched by the Recloser. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5557,7 +5557,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Reclosers.SwitchedTerm",
     "category": "method",
-    "text": "SwitchedTerm()::Int64\n\n\nTerminal number of the controlled device being switched by the Recloser (Getter)\n\n\n\n\n\n"
+    "text": "SwitchedTerm() -> Int64\n\n\nTerminal number of the controlled device being switched by the Recloser (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5573,7 +5573,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.AllNames",
     "category": "method",
-    "text": "AllNames()::Array{String,1}\n\n\nArray of strings containing all RegControl names\n\n\n\n\n\n"
+    "text": "AllNames() -> Array{String,1}\n\n\nArray of strings containing all RegControl names\n\n\n\n\n\n"
 },
 
 {
@@ -5589,7 +5589,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.CTPrimary",
     "category": "method",
-    "text": "CTPrimary()::Float64\n\n\nCT primary ampere rating (secondary is 0.2 amperes) (Getter)\n\n\n\n\n\n"
+    "text": "CTPrimary() -> Float64\n\n\nCT primary ampere rating (secondary is 0.2 amperes) (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5597,7 +5597,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.Count",
     "category": "method",
-    "text": "Count()::Int64\n\n\nNumber of RegControl objects in Active Circuit\n\n\n\n\n\n"
+    "text": "Count() -> Int64\n\n\nNumber of RegControl objects in Active Circuit\n\n\n\n\n\n"
 },
 
 {
@@ -5613,7 +5613,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.Delay",
     "category": "method",
-    "text": "Delay()::Float64\n\n\nTime delay [s] after arming before the first tap change. Control may reset before actually changing taps. (Getter)\n\n\n\n\n\n"
+    "text": "Delay() -> Float64\n\n\nTime delay [s] after arming before the first tap change. Control may reset before actually changing taps. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5621,7 +5621,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.First",
     "category": "method",
-    "text": "First()::Int64\n\n\nSets the first RegControl active. Returns 0 if none.\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\nSets the first RegControl active. Returns 0 if none.\n\n\n\n\n\n"
 },
 
 {
@@ -5637,7 +5637,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.ForwardBand",
     "category": "method",
-    "text": "ForwardBand()::Float64\n\n\nRegulation bandwidth in forward direciton, centered on Vreg (Getter)\n\n\n\n\n\n"
+    "text": "ForwardBand() -> Float64\n\n\nRegulation bandwidth in forward direciton, centered on Vreg (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5653,7 +5653,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.ForwardR",
     "category": "method",
-    "text": "ForwardR()::Float64\n\n\nLDC R setting in Volts (Getter)\n\n\n\n\n\n"
+    "text": "ForwardR() -> Float64\n\n\nLDC R setting in Volts (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5669,7 +5669,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.ForwardVreg",
     "category": "method",
-    "text": "ForwardVreg()::Float64\n\n\nTarget voltage in the forward direction, on PT secondary base. (Getter)\n\n\n\n\n\n"
+    "text": "ForwardVreg() -> Float64\n\n\nTarget voltage in the forward direction, on PT secondary base. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5685,7 +5685,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.ForwardX",
     "category": "method",
-    "text": "ForwardX()::Float64\n\n\nLDC X setting in Volts (Getter)\n\n\n\n\n\n"
+    "text": "ForwardX() -> Float64\n\n\nLDC X setting in Volts (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5701,7 +5701,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.IsInverseTime",
     "category": "method",
-    "text": "IsInverseTime()::Bool\n\n\nTime delay is inversely adjsuted, proportinal to the amount of voltage outside the regulating band. (Getter)\n\n\n\n\n\n"
+    "text": "IsInverseTime() -> Bool\n\n\nTime delay is inversely adjsuted, proportinal to the amount of voltage outside the regulating band. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5717,7 +5717,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.IsReversible",
     "category": "method",
-    "text": "IsReversible()::Bool\n\n\nRegulator can use different settings in the reverse direction.  Usually not applicable to substation transformers. (Getter)\n\n\n\n\n\n"
+    "text": "IsReversible() -> Bool\n\n\nRegulator can use different settings in the reverse direction.  Usually not applicable to substation transformers. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5733,7 +5733,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.MaxTapChange",
     "category": "method",
-    "text": "MaxTapChange()::Float64\n\n\nMaximum tap change per iteration in STATIC solution mode. 1 is more realistic, 16 is the default for a faster solution. (Getter)\n\n\n\n\n\n"
+    "text": "MaxTapChange() -> Float64\n\n\nMaximum tap change per iteration in STATIC solution mode. 1 is more realistic, 16 is the default for a faster solution. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5749,7 +5749,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.MonitoredBus",
     "category": "method",
-    "text": "MonitoredBus()::String\n\n\nName of a remote regulated bus, in lieu of LDC settings (Getter)\n\n\n\n\n\n"
+    "text": "MonitoredBus() -> String\n\n\nName of a remote regulated bus, in lieu of LDC settings (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5765,7 +5765,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nActive RegControl name (Getter)\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nActive RegControl name (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5773,7 +5773,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\nSets the next RegControl active. Returns 0 if none.\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\nSets the next RegControl active. Returns 0 if none.\n\n\n\n\n\n"
 },
 
 {
@@ -5789,7 +5789,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.PTRatio",
     "category": "method",
-    "text": "PTRatio()::Float64\n\n\nPT ratio for voltage control settings (Getter)\n\n\n\n\n\n"
+    "text": "PTRatio() -> Float64\n\n\nPT ratio for voltage control settings (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5805,7 +5805,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.ReverseBand",
     "category": "method",
-    "text": "ReverseBand()::Float64\n\n\nBandwidth in reverse direction, centered on reverse Vreg. (Getter)\n\n\n\n\n\n"
+    "text": "ReverseBand() -> Float64\n\n\nBandwidth in reverse direction, centered on reverse Vreg. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5821,7 +5821,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.ReverseR",
     "category": "method",
-    "text": "ReverseR()::Float64\n\n\nReverse LDC R setting in Volts. (Getter)\n\n\n\n\n\n"
+    "text": "ReverseR() -> Float64\n\n\nReverse LDC R setting in Volts. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5837,7 +5837,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.ReverseVreg",
     "category": "method",
-    "text": "ReverseVreg()::Float64\n\n\nTarget voltage in the revese direction, on PT secondary base. (Getter)\n\n\n\n\n\n"
+    "text": "ReverseVreg() -> Float64\n\n\nTarget voltage in the revese direction, on PT secondary base. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5853,7 +5853,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.ReverseX",
     "category": "method",
-    "text": "ReverseX()::Float64\n\n\nReverse LDC X setting in volts. (Getter)\n\n\n\n\n\n"
+    "text": "ReverseX() -> Float64\n\n\nReverse LDC X setting in volts. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5869,7 +5869,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.TapDelay",
     "category": "method",
-    "text": "TapDelay()::Float64\n\n\nTime delay [s] for subsequent tap changes in a set. Control may reset before actually changing taps. (Getter)\n\n\n\n\n\n"
+    "text": "TapDelay() -> Float64\n\n\nTime delay [s] for subsequent tap changes in a set. Control may reset before actually changing taps. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5885,7 +5885,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.TapNumber",
     "category": "method",
-    "text": "TapNumber()::Int64\n\n\nInteger number of the tap that the controlled transformer winding is currentliy on. (Getter)\n\n\n\n\n\n"
+    "text": "TapNumber() -> Int64\n\n\nInteger number of the tap that the controlled transformer winding is currentliy on. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5901,7 +5901,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.TapWinding",
     "category": "method",
-    "text": "TapWinding()::Int64\n\n\nTapped winding number (Getter)\n\n\n\n\n\n"
+    "text": "TapWinding() -> Int64\n\n\nTapped winding number (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5917,7 +5917,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.Transformer",
     "category": "method",
-    "text": "Transformer()::String\n\n\nName of the transformer this regulator controls (Getter)\n\n\n\n\n\n"
+    "text": "Transformer() -> String\n\n\nName of the transformer this regulator controls (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5933,7 +5933,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.VoltageLimit",
     "category": "method",
-    "text": "VoltageLimit()::Float64\n\n\nFirst house voltage limit on PT secondary base.  Setting to 0 disables this function. (Getter)\n\n\n\n\n\n"
+    "text": "VoltageLimit() -> Float64\n\n\nFirst house voltage limit on PT secondary base.  Setting to 0 disables this function. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5949,7 +5949,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.RegControls.Winding",
     "category": "method",
-    "text": "Winding()::Float64\n\n\nWinding number for PT and CT connections (Getter)\n\n\n\n\n\n"
+    "text": "Winding() -> Float64\n\n\nWinding number for PT and CT connections (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -5965,7 +5965,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Relays.AllNames",
     "category": "method",
-    "text": "AllNames()::Array{String,1}\n\n\nArray of strings containing names of all Relay elements\n\n\n\n\n\n"
+    "text": "AllNames() -> Array{String,1}\n\n\nArray of strings containing names of all Relay elements\n\n\n\n\n\n"
 },
 
 {
@@ -5973,7 +5973,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Relays.Count",
     "category": "method",
-    "text": "Count()::Int64\n\n\nNumber of Relays in circuit\n\n\n\n\n\n"
+    "text": "Count() -> Int64\n\n\nNumber of Relays in circuit\n\n\n\n\n\n"
 },
 
 {
@@ -5981,7 +5981,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Relays.First",
     "category": "method",
-    "text": "First()::Int64\n\n\nSet First Relay active. If none, returns 0.\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\nSet First Relay active. If none, returns 0.\n\n\n\n\n\n"
 },
 
 {
@@ -5997,7 +5997,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Relays.Idx",
     "category": "method",
-    "text": "Idx()::Int64\n\n\nActive Relay by index into the Relay list. 1..Count (Getter)\n\n\n\n\n\n"
+    "text": "Idx() -> Int64\n\n\nActive Relay by index into the Relay list. 1..Count (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6013,7 +6013,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Relays.MonitoredObj",
     "category": "method",
-    "text": "MonitoredObj()::String\n\n\nFull name of object this Relay is monitoring. (Getter)\n\n\n\n\n\n"
+    "text": "MonitoredObj() -> String\n\n\nFull name of object this Relay is monitoring. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6029,7 +6029,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Relays.MonitoredTerm",
     "category": "method",
-    "text": "MonitoredTerm()::Int64\n\n\nNumber of terminal of monitored element that this Relay is monitoring. (Getter)\n\n\n\n\n\n"
+    "text": "MonitoredTerm() -> Int64\n\n\nNumber of terminal of monitored element that this Relay is monitoring. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6045,7 +6045,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Relays.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nName of active relay. (Getter)\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nName of active relay. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6053,7 +6053,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Relays.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\nAdvance to next Relay object. Returns 0 when no more relays.\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\nAdvance to next Relay object. Returns 0 when no more relays.\n\n\n\n\n\n"
 },
 
 {
@@ -6069,7 +6069,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Relays.SwitchedObj",
     "category": "method",
-    "text": "SwitchedObj()::String\n\n\nFull name of element that will be switched when relay trips. (Getter)\n\n\n\n\n\n"
+    "text": "SwitchedObj() -> String\n\n\nFull name of element that will be switched when relay trips. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6085,7 +6085,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Relays.SwitchedTerm",
     "category": "method",
-    "text": "SwitchedTerm()::Int64\n\n\nTerminal number of the switched object that will be opened when the relay trips. (Getter)\n\n\n\n\n\n"
+    "text": "SwitchedTerm() -> Int64\n\n\nTerminal number of the switched object that will be opened when the relay trips. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6101,7 +6101,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Sensors.AllNames",
     "category": "method",
-    "text": "AllNames()::Array{String,1}\n\n\nArray of Sensor names.\n\n\n\n\n\n"
+    "text": "AllNames() -> Array{String,1}\n\n\nArray of Sensor names.\n\n\n\n\n\n"
 },
 
 {
@@ -6109,7 +6109,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Sensors.Count",
     "category": "method",
-    "text": "Count()::Int64\n\n\nNumber of Sensors in Active Circuit.\n\n\n\n\n\n"
+    "text": "Count() -> Int64\n\n\nNumber of Sensors in Active Circuit.\n\n\n\n\n\n"
 },
 
 {
@@ -6125,7 +6125,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Sensors.Currents",
     "category": "method",
-    "text": "Currents()::Array{Float64,1}\n\n\nArray of doubles for the line current measurements; don\'t use with kW and kVAR. (Getter)\n\n\n\n\n\n"
+    "text": "Currents() -> Array{Float64,1}\n\n\nArray of doubles for the line current measurements; don\'t use with kW and kVAR. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6133,7 +6133,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Sensors.First",
     "category": "method",
-    "text": "First()::Int64\n\n\nSets the first sensor active. Returns 0 if none.\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\nSets the first sensor active. Returns 0 if none.\n\n\n\n\n\n"
 },
 
 {
@@ -6149,7 +6149,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Sensors.IsDelta",
     "category": "method",
-    "text": "IsDelta()::Bool\n\n\nTrue if measured voltages are line-line. Currents are always line currents. (Getter)\n\n\n\n\n\n"
+    "text": "IsDelta() -> Bool\n\n\nTrue if measured voltages are line-line. Currents are always line currents. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6165,7 +6165,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Sensors.MeteredElement",
     "category": "method",
-    "text": "MeteredElement()::String\n\n\nFull Name of the measured element (Getter)\n\n\n\n\n\n"
+    "text": "MeteredElement() -> String\n\n\nFull Name of the measured element (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6181,7 +6181,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Sensors.MeteredTerminal",
     "category": "method",
-    "text": "MeteredTerminal()::Int64\n\n\nNumber of the measured terminal in the measured element. (Getter)\n\n\n\n\n\n"
+    "text": "MeteredTerminal() -> Int64\n\n\nNumber of the measured terminal in the measured element. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6197,7 +6197,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Sensors.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nName of the active sensor. (Getter)\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nName of the active sensor. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6205,7 +6205,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Sensors.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\nSets the next Sensor active. Returns 0 if no more.\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\nSets the next Sensor active. Returns 0 if no more.\n\n\n\n\n\n"
 },
 
 {
@@ -6221,7 +6221,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Sensors.PctError",
     "category": "method",
-    "text": "PctError()::Int64\n\n\nAssumed percent error in the Sensor measurement. Default is 1. (Getter)\n\n\n\n\n\n"
+    "text": "PctError() -> Int64\n\n\nAssumed percent error in the Sensor measurement. Default is 1. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6237,7 +6237,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Sensors.ReverseDelta",
     "category": "method",
-    "text": "ReverseDelta()::Bool\n\n\nTrue if voltage measurements are 1-3, 3-2, 2-1. (Getter)\n\n\n\n\n\n"
+    "text": "ReverseDelta() -> Bool\n\n\nTrue if voltage measurements are 1-3, 3-2, 2-1. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6253,7 +6253,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Sensors.Weight",
     "category": "method",
-    "text": "Weight()::Float64\n\n\nWeighting factor for this Sensor measurement with respect to other Sensors. Default is 1. (Getter)\n\n\n\n\n\n"
+    "text": "Weight() -> Float64\n\n\nWeighting factor for this Sensor measurement with respect to other Sensors. Default is 1. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6269,7 +6269,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Sensors.kVBase",
     "category": "method",
-    "text": "kVBase()::Float64\n\n\nVoltage base for the sensor measurements. LL for 2 and 3-phase sensors, LN for 1-phase sensors. (Getter)\n\n\n\n\n\n"
+    "text": "kVBase() -> Float64\n\n\nVoltage base for the sensor measurements. LL for 2 and 3-phase sensors, LN for 1-phase sensors. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6285,7 +6285,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Sensors.kVS",
     "category": "method",
-    "text": "kVS()::Array{Float64,1}\n\n\nArray of doubles for the LL or LN (depending on Delta connection) voltage measurements. (Getter)\n\n\n\n\n\n"
+    "text": "kVS() -> Array{Float64,1}\n\n\nArray of doubles for the LL or LN (depending on Delta connection) voltage measurements. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6301,7 +6301,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Sensors.kW",
     "category": "method",
-    "text": "kW()::Array{Float64,1}\n\n\nArray of doubles for P measurements. Overwrites Currents with a new estimate using kVAR. (Getter)\n\n\n\n\n\n"
+    "text": "kW() -> Array{Float64,1}\n\n\nArray of doubles for P measurements. Overwrites Currents with a new estimate using kVAR. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6317,7 +6317,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Sensors.kvar",
     "category": "method",
-    "text": "kvar()::Array{Float64,1}\n\n\nArray of doubles for Q measurements. Overwrites Currents with a new estimate using kW. (Getter)\n\n\n\n\n\n"
+    "text": "kvar() -> Array{Float64,1}\n\n\nArray of doubles for Q measurements. Overwrites Currents with a new estimate using kW. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6349,7 +6349,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Settings.AllowDuplicates",
     "category": "method",
-    "text": "AllowDuplicates()::Bool\n\n\n{True | False*} Designates whether to allow duplicate names of objects (Getter)\n\n\n\n\n\n"
+    "text": "AllowDuplicates() -> Bool\n\n\n{True | False*} Designates whether to allow duplicate names of objects (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6365,15 +6365,15 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Settings.AutoBusList",
     "category": "method",
-    "text": "AutoBusList()::String\n\n\nList of Buses or (File=xxxx) syntax for the AutoAdd solution mode. (Getter)\n\n\n\n\n\n"
+    "text": "AutoBusList() -> String\n\n\nList of Buses or (File=xxxx) syntax for the AutoAdd solution mode. (Getter)\n\n\n\n\n\n"
 },
 
 {
-    "location": "api/#OpenDSSDirect.Settings.CktModel-Tuple{Int64}",
+    "location": "api/#OpenDSSDirect.Settings.CktModel-Tuple{Union{Int64, CktModels}}",
     "page": "Main API",
     "title": "OpenDSSDirect.Settings.CktModel",
     "category": "method",
-    "text": "CktModel(Value::Int64)\n\n\n{dssMultiphase * | dssPositiveSeq} IIndicate if the circuit model is positive sequence. (Setter)\n\n\n\n\n\n"
+    "text": "CktModel(Value::Union{Int64, CktModels})\n\n\n{dssMultiphase * | dssPositiveSeq} IIndicate if the circuit model is positive sequence. (Setter)\n\n\n\n\n\n"
 },
 
 {
@@ -6381,7 +6381,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Settings.CktModel",
     "category": "method",
-    "text": "CktModel()::Int64\n\n\n{dssMultiphase * | dssPositiveSeq} IIndicate if the circuit model is positive sequence. (Getter)\n\n\n\n\n\n"
+    "text": "CktModel() -> OpenDSSDirect.Lib.CktModels\n\n\n{dssMultiphase * | dssPositiveSeq} IIndicate if the circuit model is positive sequence. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6397,7 +6397,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Settings.ControlTrace",
     "category": "method",
-    "text": "ControlTrace()::Bool\n\n\n{True | False*} Denotes whether to trace the control actions to a file. (Getter)\n\n\n\n\n\n"
+    "text": "ControlTrace() -> Bool\n\n\n{True | False*} Denotes whether to trace the control actions to a file. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6413,7 +6413,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Settings.EmergVmaxpu",
     "category": "method",
-    "text": "EmergVmaxpu()::Float64\n\n\nPer Unit maximum voltage for Emergency conditions. (Getter)\n\n\n\n\n\n"
+    "text": "EmergVmaxpu() -> Float64\n\n\nPer Unit maximum voltage for Emergency conditions. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6429,7 +6429,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Settings.EmergVminpu",
     "category": "method",
-    "text": "EmergVminpu()::Float64\n\n\nPer Unit minimum voltage for Emergency conditions. (Getter)\n\n\n\n\n\n"
+    "text": "EmergVminpu() -> Float64\n\n\nPer Unit minimum voltage for Emergency conditions. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6445,7 +6445,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Settings.LossRegs",
     "category": "method",
-    "text": "LossRegs()::Array{Int64,1}\n\n\nInteger array defining which energy meter registers to use for computing losses (Getter)\n\n\n\n\n\n"
+    "text": "LossRegs() -> Array{Int64,1}\n\n\nInteger array defining which energy meter registers to use for computing losses (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6461,7 +6461,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Settings.LossWeight",
     "category": "method",
-    "text": "LossWeight()::Float64\n\n\nWeighting factor applied to Loss register values. (Getter)\n\n\n\n\n\n"
+    "text": "LossWeight() -> Float64\n\n\nWeighting factor applied to Loss register values. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6477,7 +6477,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Settings.NormVmaxpu",
     "category": "method",
-    "text": "NormVmaxpu()::Float64\n\n\nPer Unit maximum voltage for Normal conditions. (Getter)\n\n\n\n\n\n"
+    "text": "NormVmaxpu() -> Float64\n\n\nPer Unit maximum voltage for Normal conditions. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6493,7 +6493,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Settings.NormVminpu",
     "category": "method",
-    "text": "NormVminpu()::Float64\n\n\nPer Unit minimum voltage for Normal conditions. (Getter)\n\n\n\n\n\n"
+    "text": "NormVminpu() -> Float64\n\n\nPer Unit minimum voltage for Normal conditions. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6509,7 +6509,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Settings.PriceCurve",
     "category": "method",
-    "text": "PriceCurve()::String\n\n\nName of LoadShape object that serves as the source of price signal data for yearly simulations, etc. (Getter)\n\n\n\n\n\n"
+    "text": "PriceCurve() -> String\n\n\nName of LoadShape object that serves as the source of price signal data for yearly simulations, etc. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6525,7 +6525,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Settings.PriceSignal",
     "category": "method",
-    "text": "PriceSignal()::Float64\n\n\nPrice Signal for the Circuit (Getter)\n\n\n\n\n\n"
+    "text": "PriceSignal() -> Float64\n\n\nPrice Signal for the Circuit (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6541,7 +6541,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Settings.Trapezoidal",
     "category": "method",
-    "text": "Trapezoidal()::Bool\n\n\n{True | False *} Gets value of trapezoidal integration flag in energy meters. (Getter)\n\n\n\n\n\n"
+    "text": "Trapezoidal() -> Bool\n\n\n{True | False *} Gets value of trapezoidal integration flag in energy meters. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6557,7 +6557,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Settings.UERegs",
     "category": "method",
-    "text": "UERegs()::Array{Int64,1}\n\n\nArray of Integers defining energy meter registers to use for computing UE (Getter)\n\n\n\n\n\n"
+    "text": "UERegs() -> Array{Int64,1}\n\n\nArray of Integers defining energy meter registers to use for computing UE (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6573,7 +6573,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Settings.UEWeight",
     "category": "method",
-    "text": "UEWeight()::Float64\n\n\nWeighting factor applied to UE register values. (Getter)\n\n\n\n\n\n"
+    "text": "UEWeight() -> Float64\n\n\nWeighting factor applied to UE register values. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6589,7 +6589,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Settings.VoltageBases",
     "category": "method",
-    "text": "VoltageBases()::Array{Float64,1}\n\n\nArray of doubles defining the legal voltage bases in kV L-L (Getter)\n\n\n\n\n\n"
+    "text": "VoltageBases() -> Array{Float64,1}\n\n\nArray of doubles defining the legal voltage bases in kV L-L (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6605,7 +6605,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Settings.ZoneLock",
     "category": "method",
-    "text": "ZoneLock()::Bool\n\n\n{True | False*}  Locks Zones on energy meters to prevent rebuilding if a circuit change occurs. (Getter)\n\n\n\n\n\n"
+    "text": "ZoneLock() -> Bool\n\n\n{True | False*}  Locks Zones on energy meters to prevent rebuilding if a circuit change occurs. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6617,11 +6617,11 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "api/#OpenDSSDirect.Solution.AddType-Tuple{Int64}",
+    "location": "api/#OpenDSSDirect.Solution.AddType-Tuple{Union{Int64, AutoAddTypes}}",
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.AddType",
     "category": "method",
-    "text": "AddType(Value::Int64)\n\n\nType of device to add in AutoAdd Mode: {dssGen (Default) | dssCap} (Setter)\n\n\n\n\n\n"
+    "text": "AddType(Value::Union{Int64, AutoAddTypes})\n\n\nType of device to add in AutoAdd Mode: {dssGen (Default) | dssCap} (Setter)\n\n\n\n\n\n"
 },
 
 {
@@ -6629,15 +6629,15 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.AddType",
     "category": "method",
-    "text": "AddType()::Int64\n\n\nType of device to add in AutoAdd Mode: {dssGen (Default) | dssCap} (Getter)\n\n\n\n\n\n"
+    "text": "AddType() -> OpenDSSDirect.Lib.AutoAddTypes\n\n\nType of device to add in AutoAdd Mode: {dssGen (Default) | dssCap} (Getter)\n\n\n\n\n\n"
 },
 
 {
-    "location": "api/#OpenDSSDirect.Solution.Algorithm-Tuple{Int64}",
+    "location": "api/#OpenDSSDirect.Solution.Algorithm-Tuple{Union{Int64, SolutionAlgorithms}}",
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.Algorithm",
     "category": "method",
-    "text": "Algorithm(Value::Int64)\n\n\nBase Solution algorithm: {dssNormalSolve | dssNewtonSolve} (Setter)\n\n\n\n\n\n"
+    "text": "Algorithm(Value::Union{Int64, SolutionAlgorithms})\n\n\nBase Solution algorithm: {dssNormalSolve | dssNewtonSolve} (Setter)\n\n\n\n\n\n"
 },
 
 {
@@ -6645,7 +6645,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.Algorithm",
     "category": "method",
-    "text": "Algorithm()::Int64\n\n\nBase Solution algorithm: {dssNormalSolve | dssNewtonSolve} (Getter)\n\n\n\n\n\n"
+    "text": "Algorithm() -> OpenDSSDirect.Lib.SolutionAlgorithms\n\n\nBase Solution algorithm: {dssNormalSolve | dssNewtonSolve} (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6669,7 +6669,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.Capkvar",
     "category": "method",
-    "text": "Capkvar()::Float64\n\n\nCapacitor kvar for adding capacitors in AutoAdd mode (Getter)\n\n\n\n\n\n"
+    "text": "Capkvar() -> Float64\n\n\nCapacitor kvar for adding capacitors in AutoAdd mode (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6709,7 +6709,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.ControlActionsDone",
     "category": "method",
-    "text": "ControlActionsDone()::Bool\n\n\nFlag indicating the control actions are done. (Getter)\n\n\n\n\n\n"
+    "text": "ControlActionsDone() -> Bool\n\n\nFlag indicating the control actions are done. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6725,15 +6725,15 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.ControlIterations",
     "category": "method",
-    "text": "ControlIterations()::Int64\n\n\nValue of the control iteration counter (Getter)\n\n\n\n\n\n"
+    "text": "ControlIterations() -> Int64\n\n\nValue of the control iteration counter (Getter)\n\n\n\n\n\n"
 },
 
 {
-    "location": "api/#OpenDSSDirect.Solution.ControlMode-Tuple{Int64}",
+    "location": "api/#OpenDSSDirect.Solution.ControlMode-Tuple{Union{Int64, ControlModes}}",
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.ControlMode",
     "category": "method",
-    "text": "ControlMode(Value::Int64)\n\n\n{dssStatic* | dssEvent | dssTime}  Modes for control devices (Setter)\n\n\n\n\n\n"
+    "text": "ControlMode(Value::Union{Int64, ControlModes})\n\n\n{dssStatic* | dssEvent | dssTime}  Modes for control devices (Setter)\n\n\n\n\n\n"
 },
 
 {
@@ -6741,7 +6741,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.ControlMode",
     "category": "method",
-    "text": "ControlMode()::Int64\n\n\n{dssStatic* | dssEvent | dssTime}  Modes for control devices (Getter)\n\n\n\n\n\n"
+    "text": "ControlMode() -> OpenDSSDirect.Lib.ControlModes\n\n\n{dssStatic* | dssEvent | dssTime}  Modes for control devices (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6757,7 +6757,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.Converged",
     "category": "method",
-    "text": "Converged()::Bool\n\n\nFlag to indicate whether the circuit solution converged (Getter)\n\n\n\n\n\n"
+    "text": "Converged() -> Bool\n\n\nFlag to indicate whether the circuit solution converged (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6773,7 +6773,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.Convergence",
     "category": "method",
-    "text": "Convergence()::Float64\n\n\nSolution convergence tolerance.\n\n\n\n\n\n"
+    "text": "Convergence() -> Float64\n\n\nSolution convergence tolerance.\n\n\n\n\n\n"
 },
 
 {
@@ -6789,7 +6789,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.DblHour",
     "category": "method",
-    "text": "DblHour()::Float64\n\n\nHour as a double, including fractional part (Getter)\n\n\n\n\n\n"
+    "text": "DblHour() -> Float64\n\n\nHour as a double, including fractional part (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6805,7 +6805,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.DefaultDaily",
     "category": "method",
-    "text": "DefaultDaily()::String\n\n\nDefault daily load shape (defaults to \"Default\") (Getter)\n\n\n\n\n\n"
+    "text": "DefaultDaily() -> String\n\n\nDefault daily load shape (defaults to \"Default\") (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6821,7 +6821,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.DefaultYearly",
     "category": "method",
-    "text": "DefaultYearly()::String\n\n\nDefault Yearly load shape (defaults to \"Default\") (Getter)\n\n\n\n\n\n"
+    "text": "DefaultYearly() -> String\n\n\nDefault Yearly load shape (defaults to \"Default\") (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6837,7 +6837,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.EventLog",
     "category": "method",
-    "text": "EventLog()::Array{String,1}\n\n\nArray of strings containing the Event Log\n\n\n\n\n\n"
+    "text": "EventLog() -> Array{String,1}\n\n\nArray of strings containing the Event Log\n\n\n\n\n\n"
 },
 
 {
@@ -6861,7 +6861,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.Frequency",
     "category": "method",
-    "text": "Frequency()::Float64\n\n\nSet the Frequency for next solution (Getter)\n\n\n\n\n\n"
+    "text": "Frequency() -> Float64\n\n\nSet the Frequency for next solution (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6877,7 +6877,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.GenMult",
     "category": "method",
-    "text": "GenMult()::Float64\n\n\nDefault Multiplier applied to generators (like LoadMult) (Getter)\n\n\n\n\n\n"
+    "text": "GenMult() -> Float64\n\n\nDefault Multiplier applied to generators (like LoadMult) (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6893,7 +6893,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.GenPF",
     "category": "method",
-    "text": "GenPF()::Float64\n\n\nPF for generators in AutoAdd mode (Getter)\n\n\n\n\n\n"
+    "text": "GenPF() -> Float64\n\n\nPF for generators in AutoAdd mode (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6909,7 +6909,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.GenkW",
     "category": "method",
-    "text": "GenkW()::Float64\n\n\nGenerator kW for AutoAdd mode (Getter)\n\n\n\n\n\n"
+    "text": "GenkW() -> Float64\n\n\nGenerator kW for AutoAdd mode (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6925,7 +6925,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.Hour",
     "category": "method",
-    "text": "Hour()::Float64\n\n\nSet Hour for time series solutions. (Getter)\n\n\n\n\n\n"
+    "text": "Hour() -> Float64\n\n\nSet Hour for time series solutions. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6949,7 +6949,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.IntervalHrs",
     "category": "method",
-    "text": "IntervalHrs()::Float64\n\n\nSolution.IntervalHrs variable used for devices that integrate for custom solution algorithms (Getter)\n\n\n\n\n\n"
+    "text": "IntervalHrs() -> Float64\n\n\nSolution.IntervalHrs variable used for devices that integrate for custom solution algorithms (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -6957,7 +6957,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.Iterations",
     "category": "method",
-    "text": "Iterations()::Int64\n\n\nNumber of iterations taken for last solution. (Same as TotalIterations)\n\n\n\n\n\n"
+    "text": "Iterations() -> Int64\n\n\nNumber of iterations taken for last solution. (Same as TotalIterations)\n\n\n\n\n\n"
 },
 
 {
@@ -6973,15 +6973,15 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.LDCurve",
     "category": "method",
-    "text": "LDCurve()::String\n\n\nLoad-Duration Curve name for LD modes\n\n\n\n\n\n"
+    "text": "LDCurve() -> String\n\n\nLoad-Duration Curve name for LD modes\n\n\n\n\n\n"
 },
 
 {
-    "location": "api/#OpenDSSDirect.Solution.LoadModel-Tuple{Int64}",
+    "location": "api/#OpenDSSDirect.Solution.LoadModel-Tuple{Union{Int64, SolutionLoadModels}}",
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.LoadModel",
     "category": "method",
-    "text": "LoadModel(Value::Int64)\n\n\nLoad Model: {dssPowerFlow (default) | dssAdmittance}\n\n\n\n\n\n"
+    "text": "LoadModel(Value::Union{Int64, SolutionLoadModels})\n\n\nLoad Model: {dssPowerFlow (default) | dssAdmittance}\n\n\n\n\n\n"
 },
 
 {
@@ -6989,7 +6989,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.LoadModel",
     "category": "method",
-    "text": "LoadModel()::Int64\n\n\nLoad Model: {dssPowerFlow (default) | dssAdmittance}\n\n\n\n\n\n"
+    "text": "LoadModel() -> OpenDSSDirect.Lib.SolutionLoadModels\n\n\nLoad Model: {dssPowerFlow (default) | dssAdmittance}\n\n\n\n\n\n"
 },
 
 {
@@ -7005,7 +7005,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.LoadMult",
     "category": "method",
-    "text": "LoadMult()::Float64\n\n\nDefault load multiplier applied to all non-fixed loads\n\n\n\n\n\n"
+    "text": "LoadMult() -> Float64\n\n\nDefault load multiplier applied to all non-fixed loads\n\n\n\n\n\n"
 },
 
 {
@@ -7021,7 +7021,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.MaxControlIterations",
     "category": "method",
-    "text": "MaxControlIterations()::Int64\n\n\nMaximum allowable control iterations\n\n\n\n\n\n"
+    "text": "MaxControlIterations() -> Int64\n\n\nMaximum allowable control iterations\n\n\n\n\n\n"
 },
 
 {
@@ -7037,7 +7037,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.MaxIterations",
     "category": "method",
-    "text": "MaxIterations()::Int64\n\n\nMax allowable iterations.\n\n\n\n\n\n"
+    "text": "MaxIterations() -> Int64\n\n\nMax allowable iterations.\n\n\n\n\n\n"
 },
 
 {
@@ -7053,15 +7053,15 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.MinIterations",
     "category": "method",
-    "text": "MinIterations()::Int64\n\n\n(read) Minimum number of iterations required for a power flow solution. (write) Mininum number of iterations required for a power flow solution.\n\n\n\n\n\n"
+    "text": "MinIterations() -> Int64\n\n\n(read) Minimum number of iterations required for a power flow solution. (write) Mininum number of iterations required for a power flow solution.\n\n\n\n\n\n"
 },
 
 {
-    "location": "api/#OpenDSSDirect.Solution.Mode-Tuple{Int64}",
+    "location": "api/#OpenDSSDirect.Solution.Mode-Tuple{Union{Int64, SolveModes}}",
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.Mode",
     "category": "method",
-    "text": "Mode(Value::Int64)\n\n\nSet present solution mode (by a text code - see DSS Help)\n\n\n\n\n\n"
+    "text": "Mode(Value::Union{Int64, SolveModes})\n\n\nSet present solution mode (by a text code - see DSS Help)\n\n\n\n\n\n"
 },
 
 {
@@ -7069,7 +7069,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.Mode",
     "category": "method",
-    "text": "Mode()::Int64\n\n\nSet present solution mode (by a text code - see DSS Help)\n\n\n\n\n\n"
+    "text": "Mode() -> OpenDSSDirect.Lib.SolveModes\n\n\nGet present solution mode (by a text code - see DSS Help)\n\n\n\n\n\n"
 },
 
 {
@@ -7077,7 +7077,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.ModeID",
     "category": "method",
-    "text": "ModeID()::String\n\n\nID (text) of the present solution mode\n\n\n\n\n\n"
+    "text": "ModeID() -> String\n\n\nID (text) of the present solution mode\n\n\n\n\n\n"
 },
 
 {
@@ -7085,7 +7085,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.MostIterationsDone",
     "category": "method",
-    "text": "MostIterationsDone()::Int64\n\n\nMax number of iterations required to converge at any control iteration of the most recent solution.\n\n\n\n\n\n"
+    "text": "MostIterationsDone() -> Int64\n\n\nMax number of iterations required to converge at any control iteration of the most recent solution.\n\n\n\n\n\n"
 },
 
 {
@@ -7101,7 +7101,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.Number",
     "category": "method",
-    "text": "Number()::Int64\n\n\nNumber of solutions to perform for Monte Carlo and time series simulations\n\n\n\n\n\n"
+    "text": "Number() -> Int64\n\n\nNumber of solutions to perform for Monte Carlo and time series simulations\n\n\n\n\n\n"
 },
 
 {
@@ -7117,15 +7117,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.PctGrowth",
     "category": "method",
-    "text": "PctGrowth()::Float64\n\n\nPercent default  annual load growth rate (Getter)\n\n\n\n\n\n"
-},
-
-{
-    "location": "api/#OpenDSSDirect.Solution.ProcessTime-Tuple{Int64}",
-    "page": "Main API",
-    "title": "OpenDSSDirect.Solution.ProcessTime",
-    "category": "method",
-    "text": "ProcessTime(Value::Int64)\n\n\nGets the time required to perform the latest solution (Read only)\n\n\n\n\n\n"
+    "text": "PctGrowth() -> Float64\n\n\nPercent default  annual load growth rate (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7133,7 +7125,15 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.ProcessTime",
     "category": "method",
-    "text": "ProcessTime()::Float64\n\n\nGets the time required to perform the latest solution (Read only)\n\n\n\n\n\n"
+    "text": "ProcessTime() -> Float64\n\n\nGets the time required to perform the latest solution (Read only)\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#OpenDSSDirect.Solution.Random-Tuple{Union{Int64, RandomModes}}",
+    "page": "Main API",
+    "title": "OpenDSSDirect.Solution.Random",
+    "category": "method",
+    "text": "Random(Value::Union{Int64, RandomModes})\n\n\nRandomization mode for random variables \"Gaussian\" or \"Uniform\" (Setter)\n\n\n\n\n\n"
 },
 
 {
@@ -7141,7 +7141,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.Random",
     "category": "method",
-    "text": "Random()::Int64\n\n\nRandomization mode for random variables \"Gaussian\" or \"Uniform\" \n\n\n\n\n\n"
+    "text": "Random() -> OpenDSSDirect.Lib.RandomModes\n\n\nRandomization mode for random variables \"Gaussian\" or \"Uniform\" (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7173,7 +7173,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.Seconds",
     "category": "method",
-    "text": "Seconds()::Float64\n\n\nSeconds from top of the hour.\n\n\n\n\n\n"
+    "text": "Seconds() -> Float64\n\n\nSeconds from top of the hour.\n\n\n\n\n\n"
 },
 
 {
@@ -7237,7 +7237,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.StepSize",
     "category": "method",
-    "text": "StepSize()::Float64\n\n\nTime step size in sec\n\n\n\n\n\n"
+    "text": "StepSize() -> Float64\n\n\nTime step size in sec\n\n\n\n\n\n"
 },
 
 {
@@ -7261,7 +7261,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.SystemYChanged",
     "category": "method",
-    "text": "SystemYChanged()::Bool\n\n\nFlag that indicates if elements of the System Y have been changed by recent activity.\n\n\n\n\n\n"
+    "text": "SystemYChanged() -> Bool\n\n\nFlag that indicates if elements of the System Y have been changed by recent activity.\n\n\n\n\n\n"
 },
 
 {
@@ -7269,7 +7269,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.TimeTimeStep",
     "category": "method",
-    "text": "TimeTimeStep()::Float64\n\n\nGet the solution process time + sample time for time step\n\n\n\n\n\n"
+    "text": "TimeTimeStep() -> Float64\n\n\nGet the solution process time + sample time for time step\n\n\n\n\n\n"
 },
 
 {
@@ -7277,7 +7277,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.TotalIterations",
     "category": "method",
-    "text": "TotalIterations()::Int64\n\n\nTotal iterations including control iterations for most recent solution.\n\n\n\n\n\n"
+    "text": "TotalIterations() -> Int64\n\n\nTotal iterations including control iterations for most recent solution.\n\n\n\n\n\n"
 },
 
 {
@@ -7293,7 +7293,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.TotalTime",
     "category": "method",
-    "text": "TotalTime()::Float64\n\n\n(read) Gets the accumulated time of the simulation (write) Sets the Accumulated time of the simulation\n\n\n\n\n\n"
+    "text": "TotalTime() -> Float64\n\n\n(read) Gets the accumulated time of the simulation (write) Sets the Accumulated time of the simulation\n\n\n\n\n\n"
 },
 
 {
@@ -7309,7 +7309,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Solution.Year",
     "category": "method",
-    "text": "Year()::Int64\n\n\nSet year for planning studies (Getter)\n\n\n\n\n\n"
+    "text": "Year() -> Int64\n\n\nSet year for planning studies (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7333,7 +7333,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.SwtControls.Action",
     "category": "method",
-    "text": "Action()::Int64\n\n\nOpen or Close the switch. No effect if switch is locked.  However, Reset removes any lock and then closes the switch (shelf state). (Getter)\n\n\n\n\n\n"
+    "text": "Action() -> Int64\n\n\nOpen or Close the switch. No effect if switch is locked.  However, Reset removes any lock and then closes the switch (shelf state). (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7341,7 +7341,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.SwtControls.AllNames",
     "category": "method",
-    "text": "AllNames()::Array{String,1}\n\n\nArray of strings with all SwtControl names in the active circuit.\n\n\n\n\n\n"
+    "text": "AllNames() -> Array{String,1}\n\n\nArray of strings with all SwtControl names in the active circuit.\n\n\n\n\n\n"
 },
 
 {
@@ -7357,7 +7357,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.SwtControls.Delay",
     "category": "method",
-    "text": "Delay()::Float64\n\n\nTime delay [s] betwen arming and opening or closing the switch.  Control may reset before actually operating the switch. (Getter)\n\n\n\n\n\n"
+    "text": "Delay() -> Float64\n\n\nTime delay [s] betwen arming and opening or closing the switch.  Control may reset before actually operating the switch. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7365,7 +7365,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.SwtControls.First",
     "category": "method",
-    "text": "First()::Int64\n\n\nSets the first SwtControl active. Returns 0 if no more.\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\nSets the first SwtControl active. Returns 0 if no more.\n\n\n\n\n\n"
 },
 
 {
@@ -7381,7 +7381,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.SwtControls.IsLocked",
     "category": "method",
-    "text": "IsLocked()::Bool\n\n\nThe lock prevents both manual and automatic switch operation. (Getter)\n\n\n\n\n\n"
+    "text": "IsLocked() -> Bool\n\n\nThe lock prevents both manual and automatic switch operation. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7397,7 +7397,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.SwtControls.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nSets a SwtControl active by Name. (Getter)\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nSets a SwtControl active by Name. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7405,7 +7405,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.SwtControls.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\nSets the next SwtControl active. Returns 0 if no more.\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\nSets the next SwtControl active. Returns 0 if no more.\n\n\n\n\n\n"
 },
 
 {
@@ -7421,7 +7421,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.SwtControls.NormalState",
     "category": "method",
-    "text": "NormalState()::Int64\n\n\nNormal state of switch (Getter)\n\n\n\n\n\n"
+    "text": "NormalState() -> Int64\n\n\nNormal state of switch (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7445,7 +7445,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.SwtControls.State",
     "category": "method",
-    "text": "State()::Int64\n\n\nState of switch (Getter)\n\n\n\n\n\n"
+    "text": "State() -> Int64\n\n\nState of switch (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7461,7 +7461,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.SwtControls.SwitchedObj",
     "category": "method",
-    "text": "SwitchedObj()::String\n\n\nFull name of the switched element. (Getter)\n\n\n\n\n\n"
+    "text": "SwitchedObj() -> String\n\n\nFull name of the switched element. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7477,7 +7477,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.SwtControls.SwitchedTerm",
     "category": "method",
-    "text": "SwitchedTerm()::Int64\n\n\nTerminal number where the switch is located on the SwitchedObj (Getter)\n\n\n\n\n\n"
+    "text": "SwitchedTerm() -> Int64\n\n\nTerminal number where the switch is located on the SwitchedObj (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7493,7 +7493,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Text.Command",
     "category": "method",
-    "text": "Command(Value::String)::String\n\n\nInput command string for the DSS. (Setter)\n\n\n\n\n\n"
+    "text": "Command(Value::String) -> String\n\n\nInput command string for the DSS. (Setter)\n\n\n\n\n\n"
 },
 
 {
@@ -7501,7 +7501,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Text.Command",
     "category": "method",
-    "text": "Command()::String\n\n\nInput command string for the DSS. (Getter)\n\n\n\n\n\n"
+    "text": "Command() -> String\n\n\nInput command string for the DSS. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7509,7 +7509,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Text.Result",
     "category": "method",
-    "text": "Result()::String\n\n\nResult string for the last command.\n\n\n\n\n\n"
+    "text": "Result() -> String\n\n\nResult string for the last command.\n\n\n\n\n\n"
 },
 
 {
@@ -7525,7 +7525,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Topology.ActiveBranch",
     "category": "method",
-    "text": "ActiveBranch()::Int64\n\n\nReturns index of the active branch\n\n\n\n\n\n"
+    "text": "ActiveBranch() -> Int64\n\n\nReturns index of the active branch\n\n\n\n\n\n"
 },
 
 {
@@ -7533,7 +7533,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Topology.ActiveLevel",
     "category": "method",
-    "text": "ActiveLevel()::Int64\n\n\nTopological depth of the active branch\n\n\n\n\n\n"
+    "text": "ActiveLevel() -> Int64\n\n\nTopological depth of the active branch\n\n\n\n\n\n"
 },
 
 {
@@ -7541,7 +7541,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Topology.AllIsolatedBranches",
     "category": "method",
-    "text": "AllIsolatedBranches()::Array{String,1}\n\n\nArray of all isolated branch names. (Getter)\n\n\n\n\n\n"
+    "text": "AllIsolatedBranches() -> Array{String,1}\n\n\nArray of all isolated branch names. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7549,7 +7549,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Topology.AllIsolatedLoads",
     "category": "method",
-    "text": "AllIsolatedLoads()::Array{String,1}\n\n\nArray of all isolated load names. (Setter)\n\n\n\n\n\n"
+    "text": "AllIsolatedLoads() -> Array{String,1}\n\n\nArray of all isolated load names. (Setter)\n\n\n\n\n\n"
 },
 
 {
@@ -7557,7 +7557,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Topology.AllLoopedPairs",
     "category": "method",
-    "text": "AllLoopedPairs()::Array{String,1}\n\n\nArray of all looped element names, by pairs.\n\n\n\n\n\n"
+    "text": "AllLoopedPairs() -> Array{String,1}\n\n\nArray of all looped element names, by pairs.\n\n\n\n\n\n"
 },
 
 {
@@ -7565,7 +7565,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Topology.BackwardBranch",
     "category": "method",
-    "text": "BackwardBranch()::Int64\n\n\nMove back toward the source, return index of new active branch, or 0 if no more.\n\n\n\n\n\n"
+    "text": "BackwardBranch() -> Int64\n\n\nMove back toward the source, return index of new active branch, or 0 if no more.\n\n\n\n\n\n"
 },
 
 {
@@ -7581,7 +7581,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Topology.BranchName",
     "category": "method",
-    "text": "BranchName()::String\n\n\nName of the active branch.\n\n\n\n\n\n"
+    "text": "BranchName() -> String\n\n\nName of the active branch.\n\n\n\n\n\n"
 },
 
 {
@@ -7597,7 +7597,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Topology.BusName",
     "category": "method",
-    "text": "BusName()::String\n\n\nSet the active branch to one containing this bus, return index or 0 if not found (Getter)\n\n\n\n\n\n"
+    "text": "BusName() -> String\n\n\nSet the active branch to one containing this bus, return index or 0 if not found (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7605,7 +7605,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Topology.First",
     "category": "method",
-    "text": "First()::Int64\n\n\nSets the first branch active, returns 0 if none.\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\nSets the first branch active, returns 0 if none.\n\n\n\n\n\n"
 },
 
 {
@@ -7613,7 +7613,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Topology.FirstLoad",
     "category": "method",
-    "text": "FirstLoad()::Int64\n\n\nFirst load at the active branch, return index or 0 if none.\n\n\n\n\n\n"
+    "text": "FirstLoad() -> Int64\n\n\nFirst load at the active branch, return index or 0 if none.\n\n\n\n\n\n"
 },
 
 {
@@ -7621,7 +7621,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Topology.ForwardBranch",
     "category": "method",
-    "text": "ForwardBranch()::Int64\n\n\nMove forward in the tree, return index of new active branch or 0 if no more\n\n\n\n\n\n"
+    "text": "ForwardBranch() -> Int64\n\n\nMove forward in the tree, return index of new active branch or 0 if no more\n\n\n\n\n\n"
 },
 
 {
@@ -7629,7 +7629,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Topology.LoopedBranch",
     "category": "method",
-    "text": "LoopedBranch()::Int64\n\n\nMove to looped branch, return index or 0 if none.\n\n\n\n\n\n"
+    "text": "LoopedBranch() -> Int64\n\n\nMove to looped branch, return index or 0 if none.\n\n\n\n\n\n"
 },
 
 {
@@ -7637,7 +7637,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Topology.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\nSets the next branch active, returns 0 if no more.\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\nSets the next branch active, returns 0 if no more.\n\n\n\n\n\n"
 },
 
 {
@@ -7645,7 +7645,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Topology.NextLoad",
     "category": "method",
-    "text": "NextLoad()::Int64\n\n\nNext load at the active branch, return index or 0 if no more.\n\n\n\n\n\n"
+    "text": "NextLoad() -> Int64\n\n\nNext load at the active branch, return index or 0 if no more.\n\n\n\n\n\n"
 },
 
 {
@@ -7653,7 +7653,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Topology.NumIsolatedBranches",
     "category": "method",
-    "text": "NumIsolatedBranches()::Int64\n\n\nNumber of isolated branches (PD elements and capacitors).\n\n\n\n\n\n"
+    "text": "NumIsolatedBranches() -> Int64\n\n\nNumber of isolated branches (PD elements and capacitors).\n\n\n\n\n\n"
 },
 
 {
@@ -7661,7 +7661,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Topology.NumIsolatedLoads",
     "category": "method",
-    "text": "NumIsolatedLoads()::Int64\n\n\nNumber of isolated loads\n\n\n\n\n\n"
+    "text": "NumIsolatedLoads() -> Int64\n\n\nNumber of isolated loads\n\n\n\n\n\n"
 },
 
 {
@@ -7669,7 +7669,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Topology.NumLoops",
     "category": "method",
-    "text": "NumLoops()::Int64\n\n\nNumber of loops\n\n\n\n\n\n"
+    "text": "NumLoops() -> Int64\n\n\nNumber of loops\n\n\n\n\n\n"
 },
 
 {
@@ -7677,7 +7677,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Topology.ParallelBranch",
     "category": "method",
-    "text": "ParallelBranch()::Int64\n\n\nMove to directly parallel branch, return index or 0 if none.\n\n\n\n\n\n"
+    "text": "ParallelBranch() -> Int64\n\n\nMove to directly parallel branch, return index or 0 if none.\n\n\n\n\n\n"
 },
 
 {
@@ -7693,7 +7693,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Transformers.AllNames",
     "category": "method",
-    "text": "AllNames()::Array{String,1}\n\n\nArray of strings with all Transformer names in the active circuit.\n\n\n\n\n\n"
+    "text": "AllNames() -> Array{String,1}\n\n\nArray of strings with all Transformer names in the active circuit.\n\n\n\n\n\n"
 },
 
 {
@@ -7701,7 +7701,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Transformers.First",
     "category": "method",
-    "text": "First()::Int64\n\n\nSets the first Transformer active. Returns 0 if no more.\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\nSets the first Transformer active. Returns 0 if no more.\n\n\n\n\n\n"
 },
 
 {
@@ -7717,7 +7717,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Transformers.IsDelta",
     "category": "method",
-    "text": "IsDelta()::Bool\n\n\nActive Winding delta or wye connection? (Getter)\n\n\n\n\n\n"
+    "text": "IsDelta() -> Bool\n\n\nActive Winding delta or wye connection? (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7733,7 +7733,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Transformers.MaxTap",
     "category": "method",
-    "text": "MaxTap()::Float64\n\n\nActive Winding maximum tap in per-unit. (Getter)\n\n\n\n\n\n"
+    "text": "MaxTap() -> Float64\n\n\nActive Winding maximum tap in per-unit. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7749,7 +7749,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Transformers.MinTap",
     "category": "method",
-    "text": "MinTap()::Float64\n\n\nActive Winding minimum tap in per-unit. (Getter)\n\n\n\n\n\n"
+    "text": "MinTap() -> Float64\n\n\nActive Winding minimum tap in per-unit. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7765,7 +7765,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Transformers.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nSets a Transformer active by Name. (Getter)\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nSets a Transformer active by Name. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7773,7 +7773,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Transformers.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\nSets the next Transformer active. Returns 0 if no more.\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\nSets the next Transformer active. Returns 0 if no more.\n\n\n\n\n\n"
 },
 
 {
@@ -7789,7 +7789,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Transformers.NumTaps",
     "category": "method",
-    "text": "NumTaps()::Int64\n\n\nActive Winding number of tap steps betwein MinTap and MaxTap. (Getter)\n\n\n\n\n\n"
+    "text": "NumTaps() -> Int64\n\n\nActive Winding number of tap steps betwein MinTap and MaxTap. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7805,7 +7805,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Transformers.NumWindings",
     "category": "method",
-    "text": "NumWindings()::Int64\n\n\nNumber of windings on this transformer. Allocates memory; set or change this property first. (Getter)\n\n\n\n\n\n"
+    "text": "NumWindings() -> Int64\n\n\nNumber of windings on this transformer. Allocates memory; set or change this property first. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7821,7 +7821,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Transformers.R",
     "category": "method",
-    "text": "R()::Float64\n\n\nActive Winding resistance in % (Getter)\n\n\n\n\n\n"
+    "text": "R() -> Float64\n\n\nActive Winding resistance in % (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7837,7 +7837,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Transformers.Rneut",
     "category": "method",
-    "text": "Rneut()::Float64\n\n\nActive Winding neutral resistance [ohms] for wye connections. Set less than zero for ungrounded wye. (Getter)\n\n\n\n\n\n"
+    "text": "Rneut() -> Float64\n\n\nActive Winding neutral resistance [ohms] for wye connections. Set less than zero for ungrounded wye. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7853,7 +7853,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Transformers.Tap",
     "category": "method",
-    "text": "Tap()::Float64\n\n\nActive Winding tap in per-unit. (Getter)\n\n\n\n\n\n"
+    "text": "Tap() -> Float64\n\n\nActive Winding tap in per-unit. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7869,7 +7869,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Transformers.Wdg",
     "category": "method",
-    "text": "Wdg()::Float64\n\n\nActive Winding Number from 1..NumWindings. Update this before reading or setting a sequence of winding properties (R, Tap, kV, kVA, etc.) (Getter)\n\n\n\n\n\n"
+    "text": "Wdg() -> Float64\n\n\nActive Winding Number from 1..NumWindings. Update this before reading or setting a sequence of winding properties (R, Tap, kV, kVA, etc.) (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7885,7 +7885,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Transformers.XfmrCode",
     "category": "method",
-    "text": "XfmrCode()::String\n\n\nName of an XfrmCode that supplies electircal parameters for this Transformer. (Getter)\n\n\n\n\n\n"
+    "text": "XfmrCode() -> String\n\n\nName of an XfrmCode that supplies electircal parameters for this Transformer. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7901,7 +7901,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Transformers.Xhl",
     "category": "method",
-    "text": "Xhl()::Float64\n\n\nPercent reactance between windings 1 and 2, on winding 1 kVA base. Use for 2-winding or 3-winding transformers. (Getter)\n\n\n\n\n\n"
+    "text": "Xhl() -> Float64\n\n\nPercent reactance between windings 1 and 2, on winding 1 kVA base. Use for 2-winding or 3-winding transformers. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7917,7 +7917,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Transformers.Xht",
     "category": "method",
-    "text": "Xht()::Float64\n\n\nPercent reactance between windigns 1 and 3, on winding 1 kVA base.  Use for 3-winding transformers only. (Getter)\n\n\n\n\n\n"
+    "text": "Xht() -> Float64\n\n\nPercent reactance between windigns 1 and 3, on winding 1 kVA base.  Use for 3-winding transformers only. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7933,7 +7933,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Transformers.Xlt",
     "category": "method",
-    "text": "Xlt()::Float64\n\n\nPercent reactance between windings 2 and 3, on winding 1 kVA base. Use for 3-winding transformers only. (Getter)\n\n\n\n\n\n"
+    "text": "Xlt() -> Float64\n\n\nPercent reactance between windings 2 and 3, on winding 1 kVA base. Use for 3-winding transformers only. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7949,7 +7949,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Transformers.Xneut",
     "category": "method",
-    "text": "Xneut()::Float64\n\n\nActive Winding neutral reactance [ohms] for wye connections. (Getter)\n\n\n\n\n\n"
+    "text": "Xneut() -> Float64\n\n\nActive Winding neutral reactance [ohms] for wye connections. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7965,7 +7965,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Transformers.kV",
     "category": "method",
-    "text": "kV()::Float64\n\n\nActive Winding kV rating.  Phase-phase for 2 or 3 phases, actual winding kV for 1 phase transformer. (Getter)\n\n\n\n\n\n"
+    "text": "kV() -> Float64\n\n\nActive Winding kV rating.  Phase-phase for 2 or 3 phases, actual winding kV for 1 phase transformer. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7981,7 +7981,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Transformers.kVA",
     "category": "method",
-    "text": "kVA()::Float64\n\n\nActive Winding kVA rating. On winding 1, this also determines normal and emergency current ratings for all windings. (Getter)\n\n\n\n\n\n"
+    "text": "kVA() -> Float64\n\n\nActive Winding kVA rating. On winding 1, this also determines normal and emergency current ratings for all windings. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -7997,7 +7997,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Vsources.AllNames",
     "category": "method",
-    "text": "AllNames()::Array{String,1}\n\n\nNames of all Vsource objects in the circuit\n\n\n\n\n\n"
+    "text": "AllNames() -> Array{String,1}\n\n\nNames of all Vsource objects in the circuit\n\n\n\n\n\n"
 },
 
 {
@@ -8013,7 +8013,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Vsources.AngleDeg",
     "category": "method",
-    "text": "AngleDeg()::Float64\n\n\nPhase angle of first phase in degrees (Getter)\n\n\n\n\n\n"
+    "text": "AngleDeg() -> Float64\n\n\nPhase angle of first phase in degrees (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -8029,7 +8029,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Vsources.BasekV",
     "category": "method",
-    "text": "BasekV()::Float64\n\n\nSource voltage in kV (Getter)\n\n\n\n\n\n"
+    "text": "BasekV() -> Float64\n\n\nSource voltage in kV (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -8037,7 +8037,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Vsources.Count",
     "category": "method",
-    "text": "Count()::Int64\n\n\nNumber of Vsource Object\n\n\n\n\n\n"
+    "text": "Count() -> Int64\n\n\nNumber of Vsource Object\n\n\n\n\n\n"
 },
 
 {
@@ -8045,7 +8045,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Vsources.First",
     "category": "method",
-    "text": "First()::Int64\n\n\nSets the first VSOURCE to be active; Returns 0 if none\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\nSets the first VSOURCE to be active; Returns 0 if none\n\n\n\n\n\n"
 },
 
 {
@@ -8061,7 +8061,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Vsources.Frequency",
     "category": "method",
-    "text": "Frequency()::Float64\n\n\nSource frequency in Hz (Getter)\n\n\n\n\n\n"
+    "text": "Frequency() -> Float64\n\n\nSource frequency in Hz (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -8077,7 +8077,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Vsources.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nActive VSOURCE name (Getter)\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nActive VSOURCE name (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -8085,7 +8085,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Vsources.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\nSets the next VSOURCE object to be active; returns zero if no more\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\nSets the next VSOURCE object to be active; returns zero if no more\n\n\n\n\n\n"
 },
 
 {
@@ -8101,7 +8101,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Vsources.PU",
     "category": "method",
-    "text": "PU()::Float64\n\n\nSource pu voltage. (Getter)\n\n\n\n\n\n"
+    "text": "PU() -> Float64\n\n\nSource pu voltage. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -8117,7 +8117,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Vsources.Phases",
     "category": "method",
-    "text": "Phases()::Int64\n\n\nNumber of phases (Getter)\n\n\n\n\n\n"
+    "text": "Phases() -> Int64\n\n\nNumber of phases (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -8133,7 +8133,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.XYCurves.Count",
     "category": "method",
-    "text": "Count()::Int64\n\n\nNumber of XYCurve Objects\n\n\n\n\n\n"
+    "text": "Count() -> Int64\n\n\nNumber of XYCurve Objects\n\n\n\n\n\n"
 },
 
 {
@@ -8141,7 +8141,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.XYCurves.First",
     "category": "method",
-    "text": "First()::Int64\n\n\nSets first XYcurve object active; returns 0 if none.\n\n\n\n\n\n"
+    "text": "First() -> Int64\n\n\nSets first XYcurve object active; returns 0 if none.\n\n\n\n\n\n"
 },
 
 {
@@ -8157,7 +8157,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.XYCurves.Name",
     "category": "method",
-    "text": "Name()::String\n\n\nName of active XYCurve Object (Getter)\n\n\n\n\n\n"
+    "text": "Name() -> String\n\n\nName of active XYCurve Object (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -8165,7 +8165,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.XYCurves.Next",
     "category": "method",
-    "text": "Next()::Int64\n\n\nAdvances to next XYCurve object; returns 0 if no more objects of this class\n\n\n\n\n\n"
+    "text": "Next() -> Int64\n\n\nAdvances to next XYCurve object; returns 0 if no more objects of this class\n\n\n\n\n\n"
 },
 
 {
@@ -8181,7 +8181,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.XYCurves.Npts",
     "category": "method",
-    "text": "Npts()::Int64\n\n\nNumber of points in X-Y curve (Getter)\n\n\n\n\n\n"
+    "text": "Npts() -> Int64\n\n\nNumber of points in X-Y curve (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -8197,7 +8197,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.XYCurves.X",
     "category": "method",
-    "text": "X()::Float64\n\n\nX value for given Y. (Getter)\n\n\n\n\n\n"
+    "text": "X() -> Float64\n\n\nX value for given Y. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -8213,7 +8213,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.XYCurves.XArray",
     "category": "method",
-    "text": "XArray()::Array{Float64,1}\n\n\nX values as a Array of doubles. Set Npts to max number expected if setting (Getter)\n\n\n\n\n\n"
+    "text": "XArray() -> Array{Float64,1}\n\n\nX values as a Array of doubles. Set Npts to max number expected if setting (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -8229,7 +8229,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.XYCurves.XScale",
     "category": "method",
-    "text": "XScale()::Float64\n\n\nFactor to scale X values from original curve (Getter)\n\n\n\n\n\n"
+    "text": "XScale() -> Float64\n\n\nFactor to scale X values from original curve (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -8245,7 +8245,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.XYCurves.XShift",
     "category": "method",
-    "text": "XShift()::Float64\n\n\nAmount to shift X value from original curve (Getter)\n\n\n\n\n\n"
+    "text": "XShift() -> Float64\n\n\nAmount to shift X value from original curve (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -8261,7 +8261,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.XYCurves.Y",
     "category": "method",
-    "text": "Y()::Float64\n\n\nY value for given X. (Getter)\n\n\n\n\n\n"
+    "text": "Y() -> Float64\n\n\nY value for given X. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -8277,7 +8277,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.XYCurves.YArray",
     "category": "method",
-    "text": "YArray()::Array{Float64,1}\n\n\nY values in curve; Set Npts to max number expected if setting (Getter)\n\n\n\n\n\n"
+    "text": "YArray() -> Array{Float64,1}\n\n\nY values in curve; Set Npts to max number expected if setting (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -8293,7 +8293,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.XYCurves.YScale",
     "category": "method",
-    "text": "YScale()::Float64\n\n\nFactor to scale Y values from original curve. Represents a curve shift. (Getter)\n\n\n\n\n\n"
+    "text": "YScale() -> Float64\n\n\nFactor to scale Y values from original curve. Represents a curve shift. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -8309,7 +8309,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.XYCurves.YShift",
     "category": "method",
-    "text": "YShift()::Float64\n\n\nAmount to shift Y value from original curve (Getter)\n\n\n\n\n\n"
+    "text": "YShift() -> Float64\n\n\nAmount to shift Y value from original curve (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -8357,7 +8357,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.YMatrix.IVector",
     "category": "method",
-    "text": "IVector()::Ptr{Complex{Float64}}\n\n\nGet access to the internal Current pointer\n\n\n\n\n\n"
+    "text": "IVector() -> Ptr{Complex{Float64}}\n\n\nGet access to the internal Current pointer\n\n\n\n\n\n"
 },
 
 {
@@ -8365,7 +8365,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.YMatrix.SolveSystem",
     "category": "method",
-    "text": "SolveSystem(NodeV::Array{Complex{Float64},1})::Int64\n\n\nSolve System for V\n\n\n\n\n\n"
+    "text": "SolveSystem(NodeV::Array{Complex{Float64},1}) -> Int64\n\n\nSolve System for V\n\n\n\n\n\n"
 },
 
 {
@@ -8381,7 +8381,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.YMatrix.SystemYChanged",
     "category": "method",
-    "text": "SystemYChanged()::Bool\n\n\nSystemY has changed (Getter)\n\n\n\n\n\n"
+    "text": "SystemYChanged() -> Bool\n\n\nSystemY has changed (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -8397,7 +8397,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.YMatrix.UseAuxCurrents",
     "category": "method",
-    "text": "UseAuxCurrents()::Bool\n\n\nUse auxiliary currents (Getter)\n\n\n\n\n\n"
+    "text": "UseAuxCurrents() -> Bool\n\n\nUse auxiliary currents (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -8405,7 +8405,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.YMatrix.VVector",
     "category": "method",
-    "text": "VVector()::Ptr{Complex{Float64}}\n\n\nGet access to the internal Voltage pointer\n\n\n\n\n\n"
+    "text": "VVector() -> Ptr{Complex{Float64}}\n\n\nGet access to the internal Voltage pointer\n\n\n\n\n\n"
 },
 
 {
@@ -8421,7 +8421,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.YMatrix.getI",
     "category": "method",
-    "text": "getI()::Array{Complex{Float64},1}\n\n\nGet the data from the internal Current pointer\n\n\n\n\n\n"
+    "text": "getI() -> Array{Complex{Float64},1}\n\n\nGet the data from the internal Current pointer\n\n\n\n\n\n"
 },
 
 {
@@ -8429,7 +8429,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.YMatrix.getV",
     "category": "method",
-    "text": "getV()::Array{Complex{Float64},1}\n\n\nGet the data from the internal Voltage pointer\n\n\n\n\n\n"
+    "text": "getV() -> Array{Complex{Float64},1}\n\n\nGet the data from the internal Voltage pointer\n\n\n\n\n\n"
 },
 
 {
@@ -8437,7 +8437,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.YMatrix.getYsparse",
     "category": "function",
-    "text": "getYsparse()::SparseArrays.SparseMatrixCSC{Complex{Float64},Int64}\ngetYsparse(factor::Bool)::SparseArrays.SparseMatrixCSC{Complex{Float64},Int64}\n\n\nReturn SparseMatrixCSC of ComplexF64\n\n\n\n\n\n"
+    "text": "getYsparse() -> SparseArrays.SparseMatrixCSC{Complex{Float64},Int64}\ngetYsparse(factor::Bool) -> SparseArrays.SparseMatrixCSC{Complex{Float64},Int64}\n\n\nReturn SparseMatrixCSC of ComplexF64\n\n\n\n\n\n"
 },
 
 {
@@ -8485,7 +8485,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Low-level API",
     "title": "OpenDSSDirect.YMatrix.getI",
     "category": "function",
-    "text": "getI()::Array{Complex{Float64},1}\n\n\nGet the data from the internal Current pointer\n\n\n\n\n\n"
+    "text": "getI() -> Array{Complex{Float64},1}\n\n\nGet the data from the internal Current pointer\n\n\n\n\n\n"
 },
 
 {
@@ -8493,7 +8493,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Low-level API",
     "title": "OpenDSSDirect.YMatrix.getV",
     "category": "function",
-    "text": "getV()::Array{Complex{Float64},1}\n\n\nGet the data from the internal Voltage pointer\n\n\n\n\n\n"
+    "text": "getV() -> Array{Complex{Float64},1}\n\n\nGet the data from the internal Voltage pointer\n\n\n\n\n\n"
 },
 
 {
@@ -8501,7 +8501,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Low-level API",
     "title": "OpenDSSDirect.YMatrix.getYsparse",
     "category": "function",
-    "text": "getYsparse()::SparseArrays.SparseMatrixCSC{Complex{Float64},Int64}\ngetYsparse(factor::Bool)::SparseArrays.SparseMatrixCSC{Complex{Float64},Int64}\n\n\nReturn SparseMatrixCSC of ComplexF64\n\n\n\n\n\n"
+    "text": "getYsparse() -> SparseArrays.SparseMatrixCSC{Complex{Float64},Int64}\ngetYsparse(factor::Bool) -> SparseArrays.SparseMatrixCSC{Complex{Float64},Int64}\n\n\nReturn SparseMatrixCSC of ComplexF64\n\n\n\n\n\n"
 },
 
 {
@@ -8533,7 +8533,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Low-level API",
     "title": "OpenDSSDirect.YMatrix.SystemYChanged",
     "category": "function",
-    "text": "SystemYChanged()::Bool\n\n\nSystemY has changed (Getter)\n\n\n\n\n\nSystemYChanged(Value::Bool)\n\n\nSystemY has changed (Setter)\n\n\n\n\n\n"
+    "text": "SystemYChanged() -> Bool\n\n\nSystemY has changed (Getter)\n\n\n\n\n\nSystemYChanged(Value::Bool)\n\n\nSystemY has changed (Setter)\n\n\n\n\n\n"
 },
 
 {
@@ -8549,7 +8549,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Low-level API",
     "title": "OpenDSSDirect.YMatrix.UseAuxCurrents",
     "category": "function",
-    "text": "UseAuxCurrents()::Bool\n\n\nUse auxiliary currents (Getter)\n\n\n\n\n\nUseAuxCurrents(Value::Bool)\n\n\nUse auxiliary currents (Setter)\n\n\n\n\n\n"
+    "text": "UseAuxCurrents() -> Bool\n\n\nUse auxiliary currents (Getter)\n\n\n\n\n\nUseAuxCurrents(Value::Bool)\n\n\nUse auxiliary currents (Setter)\n\n\n\n\n\n"
 },
 
 {
@@ -8565,7 +8565,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Low-level API",
     "title": "OpenDSSDirect.YMatrix.SolveSystem",
     "category": "function",
-    "text": "SolveSystem(NodeV::Array{Complex{Float64},1})::Int64\n\n\nSolve System for V\n\n\n\n\n\n"
+    "text": "SolveSystem(NodeV::Array{Complex{Float64},1}) -> Int64\n\n\nSolve System for V\n\n\n\n\n\n"
 },
 
 {
@@ -8605,7 +8605,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Release notes",
     "title": "OpenDSSDirect v0.5.0 Release Notes",
     "category": "section",
-    "text": "Rewrite using dss_capi\nFixes some issues and cleans up API (See https://github.com/NREL/OpenDSSDirect.jl/pull/26 for more information)"
+    "text": "Rewrite using dss_capi\nFixes some issues and cleans up API (See https://github.com/dss-extensions/OpenDSSDirect.jl/pull/26 for more information)"
 },
 
 {
