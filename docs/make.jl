@@ -31,5 +31,5 @@ makedocs(
 deploydocs(
     # options
     target = "build",
-    repo = "github.com/NREL/OpenDSSDirect.jl.git"
+    repo = "github.com/dss-extensions/OpenDSSDirect.jl.git"
 )

@@ -10,7 +10,7 @@ const OPENDSS_VERSION = "0.10.1"
 
 function download(::Type{MacOS})
 
-    url = "https://github.com/PMeira/dss_capi/releases/download/$(OPENDSS_VERSION)/dss_capi_$(OPENDSS_VERSION)_darwin_x64.tar.gz"
+    url = "https://github.com/dss-extensions/dss_capi/releases/download/$(OPENDSS_VERSION)/dss_capi_$(OPENDSS_VERSION)_darwin_x64.tar.gz"
     @show url
     filename = joinpath(@__DIR__, "dss_capi.tar.gz") |> normpath
     Base.download(url, filename)
@@ -28,7 +28,7 @@ end
 
 function download(::Type{Linux})
 
-    url = "https://github.com/PMeira/dss_capi/releases/download/$(OPENDSS_VERSION)/dss_capi_$(OPENDSS_VERSION)_linux_x64.tar.gz"
+    url = "https://github.com/dss-extensions/dss_capi/releases/download/$(OPENDSS_VERSION)/dss_capi_$(OPENDSS_VERSION)_linux_x64.tar.gz"
     @show url
     filename = joinpath(@__DIR__, "dss_capi.tar.gz") |> normpath
     Base.download(url, filename)
@@ -52,7 +52,7 @@ function download(::Type{Windows})
         BIT = "x86"
     end
 
-    url = "https://github.com/PMeira/dss_capi/releases/download/$(OPENDSS_VERSION)/dss_capi_$(OPENDSS_VERSION)_win_$(BIT).zip"
+    url = "https://github.com/dss-extensions/dss_capi/releases/download/$(OPENDSS_VERSION)/dss_capi_$(OPENDSS_VERSION)_win_$(BIT).zip"
     @show url
     filename = joinpath(@__DIR__, "dss_capi.zip") |> normpath
     Base.download(url, filename)
