@@ -36,5 +36,14 @@ OpenDSSDirect.Text.Command("""
 @test LoadShape.TimeArray() ≋ [0.0]
 @test LoadShape.TimeArray(LoadShape.TimeArray()) == nothing
 
+arr = String[]
+for i in OpenDSSDirect.EachMember(LoadShape); push!(arr, LoadShape.Name()); end
+for (i, n) in enumerate(OpenDSSDirect.EachMember(LoadShape, LoadShape.Name))
+    @test n == arr[i]
+end
+@test arr == LoadShape.AllNames()
+@test length(arr) == length(OpenDSSDirect.EachMember(LoadShape))
+
+
 end # testset
 

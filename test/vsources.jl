@@ -21,5 +21,13 @@ init8500()
 @test Vsources.Name(Vsources.Name()) == nothing
 @test Vsources.AllNames() == ["source"]
 
+arr = String[]
+for i in OpenDSSDirect.EachMember(Vsources); push!(arr, Vsources.Name()); end
+for (i, n) in enumerate(OpenDSSDirect.EachMember(Vsources, Vsources.Name))
+    @test n == arr[i]
+end
+@test arr == Vsources.AllNames()
+@test length(arr) == length(OpenDSSDirect.EachMember(Vsources))
+
 end # testset
 

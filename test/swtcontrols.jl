@@ -2,7 +2,7 @@
 init8500()
 
 
-@testset "SwtControls" begin 
+@testset "SwtControls" begin
 
 @show SwtControls.First()
 @show SwtControls.Next()
@@ -20,6 +20,14 @@ init8500()
 @show SwtControls.SwitchedObj()
 @show SwtControls.SwitchedObj(SwtControls.SwitchedObj())
 @show SwtControls.AllNames()
+
+arr = String[]
+for i in OpenDSSDirect.EachMember(SwtControls); push!(arr, SwtControls.Name()); end
+for (i, n) in enumerate(OpenDSSDirect.EachMember(SwtControls, SwtControls.Name))
+    @test n == arr[i]
+end
+@test arr == SwtControls.AllNames()
+@test length(arr) == length(OpenDSSDirect.EachMember(SwtControls))
 
 end # testset
 

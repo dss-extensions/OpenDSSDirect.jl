@@ -62,5 +62,15 @@ init8500()
                       -14.151460302936526 + 7.897357517772179im 14.151460302936526 - 7.897357479424346im]
 @test Lines.Yprim(Lines.Yprim()) == nothing
 
+arr = String[]
+for i in OpenDSSDirect.EachMember(Lines); push!(arr, Lines.Name()); end
+for (i, n) in enumerate(OpenDSSDirect.EachMember(Lines, Lines.Name))
+    @test n == arr[i]
+end
+@test arr[1:250] == Lines.AllNames()[1:250]
+# TODO: 5 lines are disabled, and iterator protocol does not return disabled lines
+@test length(arr) + 5 == length(Lines.AllNames())
+@test length(arr) + 5 == length(OpenDSSDirect.EachMember(Lines))
+
 end # testset
 

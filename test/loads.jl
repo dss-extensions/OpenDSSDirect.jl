@@ -86,5 +86,14 @@ init8500()
 @test Loads.ZipV(Float64[1.0, 1.0, 2.0, 2.0, 3.0, 3.0, 4.0]) == nothing
 @test Loads.ZipV() ≋ Float64[1.0, 1.0, 2.0, 2.0, 3.0, 3.0, 4.0] # TODO: Does not work for less than 7 elements?
 
+arr = String[]
+for i in OpenDSSDirect.EachMember(Loads); push!(arr, Loads.Name()); end
+for (i, n) in enumerate(OpenDSSDirect.EachMember(Loads, Loads.Name))
+    @test n == arr[i]
+end
+@test arr == Loads.AllNames()
+@test length(arr) == length(OpenDSSDirect.EachMember(Loads))
+
+
 end # testset
 

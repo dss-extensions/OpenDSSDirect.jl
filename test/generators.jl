@@ -39,5 +39,13 @@ OpenDSSDirect.Text.Command("""
 @test Generators.RegisterNames() == ["kWh","kvarh","Max kW","Max kVA","Hours","\$"]
 @test Generators.RegisterValues() == [0.0,0.0,0.0,0.0,0.0,0.0]
 
+arr = String[]
+for i in OpenDSSDirect.EachMember(Generators); push!(arr, Generators.Name()); end
+for (i, n) in enumerate(OpenDSSDirect.EachMember(Generators, Generators.Name))
+    @test n == arr[i]
+end
+@test arr == Generators.AllNames()
+@test length(arr) == length(OpenDSSDirect.EachMember(Generators))
+
 end # testset
 

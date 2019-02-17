@@ -53,5 +53,14 @@ init8500()
 @test RegControls.Transformer(RegControls.Transformer()) == nothing
 @test RegControls.AllNames()[end] == "vreg4_c"
 
+arr = String[]
+for i in OpenDSSDirect.EachMember(RegControls); push!(arr, RegControls.Name()); end
+for (i, n) in enumerate(OpenDSSDirect.EachMember(RegControls, RegControls.Name))
+    @test n == arr[i]
+end
+@test arr == RegControls.AllNames()
+@test length(arr) == length(OpenDSSDirect.EachMember(RegControls))
+
+
 end # testset
 

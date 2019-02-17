@@ -24,5 +24,13 @@ init8500()
 @test PDElements.Name() == "Line.ln5502549-1"
 @test PDElements.Name(PDElements.Name()) == nothing
 
+arr = String[]
+for i in OpenDSSDirect.EachMember(PDElements); push!(arr, PDElements.Name()); end
+for (i, n) in enumerate(OpenDSSDirect.EachMember(PDElements, PDElements.Name))
+    @test n == arr[i]
+end
+@test_broken arr == PDElements.AllNames() # TODO: PDElements is missing AllNames
+@test length(arr) + 5 == length(OpenDSSDirect.EachMember(PDElements))
+
 end # testset
 

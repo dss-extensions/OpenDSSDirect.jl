@@ -43,5 +43,12 @@ init8500()
 @test Transformers.Name(Transformers.Name()) == nothing
 @test Transformers.AllNames()[end] == "vreg4_c"
 
+arr = String[]
+for i in OpenDSSDirect.EachMember(Transformers); push!(arr, Transformers.Name()); end
+for (i, n) in enumerate(OpenDSSDirect.EachMember(Transformers, Transformers.Name))
+    @test n == arr[i]
+end
+@test arr == Transformers.AllNames()
+@test length(arr) == length(OpenDSSDirect.EachMember(Transformers))
 end # testset
 

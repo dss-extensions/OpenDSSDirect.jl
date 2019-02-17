@@ -28,5 +28,13 @@ OpenDSSDirect.Text.Command("Redirect $fuses")
 @test Fuses.TCCCurve(Fuses.TCCCurve()) == nothing
 @test Fuses.AllNames()[end] == "ln6991377-9"
 
+arr = String[]
+for i in OpenDSSDirect.EachMember(Fuses); push!(arr, Fuses.Name()); end
+for (i, n) in enumerate(OpenDSSDirect.EachMember(Fuses, Fuses.Name))
+    @test n == arr[i]
+end
+@test arr == Fuses.AllNames()
+@test length(arr) == length(OpenDSSDirect.EachMember(Fuses))
+
 end # testset
 
