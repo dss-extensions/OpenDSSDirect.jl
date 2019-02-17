@@ -2689,11 +2689,11 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "api/#OpenDSSDirect.LineCodes.Phases-Tuple{String}",
+    "location": "api/#OpenDSSDirect.LineCodes.Phases-Tuple{Int64}",
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.Phases",
     "category": "method",
-    "text": "Phases(Value::String)\n\n\nNumber of Phases (Setter)\n\n\n\n\n\n"
+    "text": "Phases(Value::Int64)\n\n\nNumber of Phases (Setter)\n\n\n\n\n\n"
 },
 
 {
@@ -2753,11 +2753,11 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "api/#OpenDSSDirect.LineCodes.Units-Tuple{Int64}",
+    "location": "api/#OpenDSSDirect.LineCodes.Units-Tuple{Union{Int64, LineUnits}}",
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.Units",
     "category": "method",
-    "text": "Units(Value::Int64)\n\n\nUnits of Line Code (Setter)\n\n\n\n\n\n"
+    "text": "Units(Value::Union{Int64, LineUnits})\n\n\nUnits of Line Code (Setter)\n\n\n\n\n\n"
 },
 
 {
@@ -2765,7 +2765,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.Units",
     "category": "method",
-    "text": "Units() -> Int64\n\n\nUnits of Line Code (Getter)\n\n\n\n\n\n"
+    "text": "Units() -> OpenDSSDirect.Lib.LineUnits\n\n\nUnits of Line Code (Getter)\n\n\n\n\n\n"
 },
 
 {
