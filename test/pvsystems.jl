@@ -30,5 +30,13 @@ solve  ! solves at the specified irradiance and temperature
 @test PVsystems.kVARated() ≋ 500.0
 @test PVsystems.kVARated(PVsystems.kVARated()) == nothing
 
+arr = String[]
+for i in OpenDSSDirect.EachMember(PVsystems); push!(arr, PVsystems.Name()); end
+for (i, n) in enumerate(OpenDSSDirect.EachMember(PVsystems, PVsystems.Name))
+    @test n == arr[i]
+end
+@test arr == PVsystems.AllNames()
+@test length(arr) == length(OpenDSSDirect.EachMember(PVsystems))
+
 end # testset
 

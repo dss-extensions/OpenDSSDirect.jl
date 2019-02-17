@@ -14,4 +14,12 @@ x = ActiveClass.AllNames()
 @test length(x) == ActiveClass.Count()
 @test x[1] == "feeder_rega"
 
+arr = String[]
+for i in OpenDSSDirect.EachMember(ActiveClass); push!(arr, ActiveClass.Name()); end
+for (i, n) in enumerate(OpenDSSDirect.EachMember(ActiveClass, ActiveClass.Name))
+    @test n == arr[i]
+end
+@test arr == ActiveClass.AllNames()
+@test length(arr) == length(OpenDSSDirect.EachMember(ActiveClass))
+
 end # testset

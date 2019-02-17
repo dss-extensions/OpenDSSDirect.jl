@@ -47,5 +47,14 @@ new Recloser.B like=A monitoredobj=Line.LN5860423-1 monitoredterm=1 switchedobj=
 @test Reclosers.AllNames() == ["a", "b"]
 @test Reclosers.RecloseIntervals() ≋ [2.0,2.0,5.0]
 
+arr = String[]
+for i in OpenDSSDirect.EachMember(Reclosers); push!(arr, Reclosers.Name()); end
+for (i, n) in enumerate(OpenDSSDirect.EachMember(Reclosers, Reclosers.Name))
+    @test n == arr[i]
+end
+@test arr == Reclosers.AllNames()
+@test length(arr) == length(OpenDSSDirect.EachMember(Reclosers))
+
+
 end # testset
 

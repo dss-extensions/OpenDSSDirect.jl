@@ -26,4 +26,12 @@ init8500()
 @test Capacitors.States() == [1]
 @test Capacitors.States(Capacitors.States()) == nothing
 
+arr = String[]
+for i in OpenDSSDirect.EachMember(Capacitors); push!(arr, Capacitors.Name()); end
+for (i, n) in enumerate(OpenDSSDirect.EachMember(Capacitors, Capacitors.Name))
+    @test n == arr[i]
+end
+@test arr == Capacitors.AllNames()
+@test length(arr) == length(OpenDSSDirect.EachMember(Capacitors))
+
 end # testset

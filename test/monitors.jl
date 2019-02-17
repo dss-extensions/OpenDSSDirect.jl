@@ -41,5 +41,15 @@ OpenDSSDirect.Text.Command("""
 # @test Monitors.DblFreqS() ≋ [0.0]
 @test Monitors.DblFreq() ≋ [0.0]
 
+arr = String[]
+for i in OpenDSSDirect.EachMember(Monitors); push!(arr, Monitors.Name()); end
+for (i, n) in enumerate(OpenDSSDirect.EachMember(Monitors, Monitors.Name))
+    @test n == arr[i]
+end
+@test arr == Monitors.AllNames()
+@test length(arr) == length(OpenDSSDirect.EachMember(Monitors))
+
+
+
 end # testset
 

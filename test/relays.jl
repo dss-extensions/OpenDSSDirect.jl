@@ -24,5 +24,13 @@ New Relay.SubBreaker Line.ln5815900-1 1  PhaseCurve=D GroundCurve=A PhaseTrip=60
 @test Relays.SwitchedObj(Relays.SwitchedObj()) == nothing
 @test Relays.AllNames() == ["subbreaker"]
 
+arr = String[]
+for i in OpenDSSDirect.EachMember(Relays); push!(arr, Relays.Name()); end
+for (i, n) in enumerate(OpenDSSDirect.EachMember(Relays, Relays.Name))
+    @test n == arr[i]
+end
+@test arr == Relays.AllNames()
+@test length(arr) == length(OpenDSSDirect.EachMember(Relays))
+
 end # testset
 

@@ -108,6 +108,7 @@ include("xycurves.jl")
 include("ymatrix.jl")
 
 include("repl.jl")
+include("iterators.jl")
 
 const dss = OpenDSSDirect.Text.Command
 const Examples = Utils.Examples

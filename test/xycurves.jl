@@ -33,5 +33,13 @@ New XYCurve.MyEff npts=4  xarray=[.1  .2  .4  1.0]  yarray=[.86  .9  .93  .97]
 @test XYCurves.YArray()[1] ≋ 0.86
 @test XYCurves.YArray(XYCurves.YArray()) == nothing
 
+arr = String[]
+for i in OpenDSSDirect.EachMember(XYCurves); push!(arr, XYCurves.Name()); end
+for (i, n) in enumerate(OpenDSSDirect.EachMember(XYCurves, XYCurves.Name))
+    @test n == arr[i]
+end
+@test_throws UndefVarError arr == XYCurves.AllNames() # TODO: add AllNames to XYCurves
+@test length(arr) == length(OpenDSSDirect.EachMember(XYCurves))
+
 end # testset
 

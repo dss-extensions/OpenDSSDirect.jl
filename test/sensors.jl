@@ -35,5 +35,13 @@ init8500()
 @show Sensors.kVS()
 @show Sensors.kVS(Sensors.kVS())
 
+arr = String[]
+for i in OpenDSSDirect.EachMember(Sensors); push!(arr, Sensors.Name()); end
+for (i, n) in enumerate(OpenDSSDirect.EachMember(Sensors, Sensors.Name))
+    @test n == arr[i]
+end
+@test arr == Sensors.AllNames()
+@test length(arr) == length(OpenDSSDirect.EachMember(Sensors))
+
 end # testset
 

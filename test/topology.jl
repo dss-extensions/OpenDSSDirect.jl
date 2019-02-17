@@ -22,7 +22,17 @@ init8500()
 @test Topology.BusName() == "sourcebus"
 @test Topology.BusName(Topology.BusName()) == nothing
 @test Topology.AllLoopedPairs()[end] == "Transformer.feeder_regc"
-# @test Topology.AllIsolatedBranches()[end] == "Transformer.feeder_regc"
-@test Topology.AllIsolatedLoads() == ["NONE"]
+@test Topology.AllIsolatedBranches()[end] == "" # TODO: Why is this an empty string?
+@test Topology.AllIsolatedBranches()[1] == "Line.wd701_48332_sw"
+@test Topology.AllIsolatedLoads() == ["NONE"] # TODO: should this return empty array instead of ["NONE"]
+
+arr = String[]
+for i in OpenDSSDirect.EachMember(Topology); push!(arr, Topology.BusName()); end
+for (i, n) in enumerate(OpenDSSDirect.EachMember(Topology, Topology.BusName))
+    @test n == arr[i]
+end
+@test_broken arr == Circuit.AllBusNames() # TODO: what is topology iterating?
+@test length(arr) == length(Circuit.AllBusNames()) + 14
+@test_throws UndefVarError length(arr) == length(OpenDSSDirect.EachMember(Topology)) # TODO: Topology does not have Count attribute
 
 end # testset

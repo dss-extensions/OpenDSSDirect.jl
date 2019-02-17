@@ -39,4 +39,12 @@ init8500()
 @test CapControls.MonitoredObj(CapControls.MonitoredObj()) == nothing
 @test CapControls.AllNames()[end] == "capbank0c_ctrl"
 
+arr = String[]
+for i in OpenDSSDirect.EachMember(CapControls); push!(arr, CapControls.Name()); end
+for (i, n) in enumerate(OpenDSSDirect.EachMember(CapControls, CapControls.Name))
+    @test n == arr[i]
+end
+@test arr == CapControls.AllNames()
+@test length(arr) == length(OpenDSSDirect.EachMember(CapControls))
+
 end # testset
