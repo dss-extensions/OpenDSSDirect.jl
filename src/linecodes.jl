@@ -100,7 +100,7 @@ module LineCodes
     end
 
     """Number of Phases (Setter)"""
-    function Phases(Value::String)
+    function Phases(Value::Int)
         Lib.LineCodes_Set_Phases(Value)
     end
 
@@ -136,12 +136,13 @@ module LineCodes
     end
 
     """Units of Line Code (Getter)"""
-    function Units()::Int
+    function Units()::Lib.LineUnits
         return Lib.LineCodes_Get_Units()
     end
 
     """Units of Line Code (Setter)"""
-    function Units(Value::Int)
+    function Units(Value::Union{Int, Lib.LineUnits})
+        Value = convert(Lib.LineUnits, Value)
         Lib.LineCodes_Set_Units(Value)
     end
 
