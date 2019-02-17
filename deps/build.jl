@@ -60,7 +60,7 @@ function download(::Type{Windows})
     directory = normpath(@__DIR__)
     mkpath(directory)
 
-    home = (VERSION < v"0.7-") ? JULIA_HOME : Sys.BINDIR
+    home = (Base.VERSION < v"0.7-") ? JULIA_HOME : Sys.BINDIR
     success(`$home/7z x $filename -y -o$directory`)
     filename = joinpath(directory, basename(filename)[1:end-4])
     success(`$home/7z x $filename -y -ttar -o$directory`)

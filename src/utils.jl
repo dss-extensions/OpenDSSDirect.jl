@@ -1,5 +1,8 @@
 module Utils
 
+import ..TypedDocStringExtensions
+const TDSE = TypedDocStringExtensions
+
 using ..OpenDSSDirect
 
 export get_string
@@ -138,6 +141,49 @@ function table(m::Module)
         end
     end
     return nt
+end
+
+abstract type AbstractOS end
+abstract type Unix <: AbstractOS end
+abstract type BSD <: Unix end
+
+abstract type Windows <: AbstractOS end
+abstract type MacOS <: BSD end
+abstract type Linux <: BSD end
+
+if Sys.iswindows()
+    const os = Windows
+elseif Sys.isapple()
+    const os = MacOS
+else
+    const os = Linux
+end
+
+abstract type Examples end
+
+"""
+$(TDSE.FULLSIGNATURES)
+Download examples into a "electricdss-tst-master" folder in given argument path.
+Defaults to the "examples" folder in the OpenDSSDirect package.
+
+Returns the downloaded folder name.
+"""
+function Base.download(::Type{Examples}, folder::AbstractString=joinpath(@__DIR__, "../examples") |> abspath)
+    url = "https://github.com/dss-extensions/electricdss-tst/archive/master.tar.gz"
+    tempfilename = Base.download(url)
+    directory = folder |> normpath |> abspath
+    mkpath(directory)
+    unzip(os, tempfilename, directory)
+    filename = joinpath(directory, "electricdss-tst-master")
+end
+
+function unzip(::Type{<:BSD}, filename, directory)
+    @assert success(`tar -xvf $filename -C $directory`) "Unable to extract $filename to $directory"
+end
+
+function unzip(::Type{Windows}, filename, directory)
+    home = (Base.VERSION < v"0.7-") ? JULIA_HOME : Sys.BINDIR
+    @assert success(`$home/7z x $filename -y -o$directory`) "Unable to extract $filename to $directory"
 end
 
 end

@@ -6,3 +6,4 @@ docs/site/
 *.csv
 deps/*
 !deps/build.jl
+examples/electricdss-tst-master/*

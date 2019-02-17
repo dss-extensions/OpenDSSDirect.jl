@@ -110,6 +110,7 @@ include("ymatrix.jl")
 include("repl.jl")
 
 const dss = OpenDSSDirect.Text.Command
+const Examples = Utils.Examples
 
 function __init__()
 
