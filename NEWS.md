@@ -1,3 +1,10 @@
+### OpenDSSDirect v0.5.1 Release Notes
+
+- Add Enum support for all functions
+- Minor fixes in Error module
+- Add OPENDSSDIRECT_REPL environment variable to disable REPL mode
+- Add download examples function
+
 ### OpenDSSDirect v0.5.0 Release Notes
 
 - Rewrite using [dss_capi](https://github.com/PMeira/dss_capi)
