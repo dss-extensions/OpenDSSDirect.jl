@@ -8601,6 +8601,14 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "NEWS/#OpenDSSDirect-v0.5.1-Release-Notes-1",
+    "page": "Release notes",
+    "title": "OpenDSSDirect v0.5.1 Release Notes",
+    "category": "section",
+    "text": "Add Enum support for all functions\nMinor fixes in Error module\nAdd OPENDSSDIRECT_REPL environment variable to disable REPL mode\nAdd download examples function"
+},
+
+{
     "location": "NEWS/#OpenDSSDirect-v0.5.0-Release-Notes-1",
     "page": "Release notes",
     "title": "OpenDSSDirect v0.5.0 Release Notes",
