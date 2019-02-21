@@ -36,8 +36,20 @@ module LineCodes
     end
 
     """Capacitance matrix, nF per unit length (Getter)"""
-    function Cmatrix()::Vector{Float64}
-        return Utils.get_float64_array(Lib.LineCodes_Get_Cmatrix)
+    function Cmatrix()::Matrix{Float64}
+        n = Phases()
+        if n == 0
+            cmatrix = reshape([], (n, n))
+        else
+            cmatrix = reshape(Utils.get_float64_array(Lib.LineCodes_Get_Cmatrix), (n, n))
+        end
+        return cmatrix
+    end
+
+    """Capacitance matrix, nF per unit length (Setter)"""
+    function Cmatrix(Value::Matrix{Float64})
+        n = Phases()
+        Cmatrix(reshape(Value, (n * n, 1))[:])
     end
 
     """Capacitance matrix, nF per unit length (Setter)"""
@@ -125,8 +137,20 @@ module LineCodes
     end
 
     """Resistance matrix, ohms per unit length (Getter)"""
-    function Rmatrix()::Vector{Float64}
-        return Utils.get_float64_array(Lib.LineCodes_Get_Rmatrix)
+    function Rmatrix()::Matrix{Float64}
+        n = Phases()
+        if n == 0
+            rmatrix = reshape([], (n, n))
+        else
+            rmatrix = reshape(Utils.get_float64_array(Lib.LineCodes_Get_Rmatrix), (n, n))
+        end
+        return rmatrix
+    end
+
+    """Resistance matrix, ohms per unit length (Setter)"""
+    function Rmatrix(Value::Matrix{Float64})
+        n = Phases()
+        Rmatrix(reshape(Value, (n * n, 1))[:])
     end
 
     """Resistance matrix, ohms per unit length (Setter)"""
@@ -167,8 +191,20 @@ module LineCodes
     end
 
     """Reactance matrix, ohms per unit length (Getter)"""
-    function Xmatrix()::Vector{Float64}
-        return Utils.get_float64_array(Lib.LineCodes_Get_Xmatrix)
+    function Xmatrix()::Matrix{Float64}
+        n = Phases()
+        if n == 0
+            xmatrix = reshape([], (n, n))
+        else
+            xmatrix = reshape(Utils.get_float64_array(Lib.LineCodes_Get_Xmatrix), (n, n))
+        end
+        return xmatrix
+    end
+
+    """Reactance matrix, ohms per unit length (Setter)"""
+    function Xmatrix(Value::Matrix{Float64})
+        n = Phases()
+        Xmatrix(reshape(Value, (n * n, 1))[:])
     end
 
     """Reactance matrix, ohms per unit length (Setter)"""
