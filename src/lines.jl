@@ -332,5 +332,19 @@ module Lines
         Lib.Lines_Set_Yprim(ValuePtr, ValueCount)
     end
 
+    """Impedance matrix, ohms per unit length. Matrix of doubles. (Getter)"""
+    function ZMatrix()::Matrix{ComplexF64}
+        zmatrix = RMatrix() + im * XMatrix()
+        return zmatrix
+    end
+
+    """Impedance matrix, ohms per unit length. Matrix of doubles. (Setter)"""
+    function ZMatrix(Value::Matrix{ComplexF64})
+        r = real(Value)
+        i = imag(Value)
+        RMatrix(r)
+        XMatrix(i)
+    end
+
 end
 

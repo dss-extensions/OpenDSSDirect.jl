@@ -213,5 +213,19 @@ module LineCodes
         Lib.LineCodes_Set_Xmatrix(ValuePtr, ValueCount)
     end
 
+    """Reactance matrix, ohms per unit length (Getter)"""
+    function Zmatrix()::Matrix{ComplexF64}
+        zmatrix = Rmatrix() + im * Xmatrix()
+        return zmatrix
+    end
+
+    """Reactance matrix, ohms per unit length (Setter)"""
+    function Zmatrix(Value::Matrix{ComplexF64})
+        r = real(Value)
+        i = imag(Value)
+        Rmatrix(r)
+        Xmatrix(i)
+    end
+
 end
 

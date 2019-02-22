@@ -66,6 +66,9 @@ init8500()
                       -14.151460302936526 + 7.897357517772179im 14.151460302936526 - 7.897357479424346im]
 @test Lines.Yprim(Lines.Yprim()) == nothing
 
+@test Lines.ZMatrix() ≋ reshape([1.67466 + 0.93456im], (1, 1))
+@test Lines.ZMatrix(Lines.ZMatrix()) == nothing
+
 arr = String[]
 for i in OpenDSSDirect.EachMember(Lines); push!(arr, Lines.Name()); end
 for (i, n) in enumerate(OpenDSSDirect.EachMember(Lines, Lines.Name))
