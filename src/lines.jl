@@ -64,7 +64,7 @@ module Lines
     function CMatrix()::Matrix{Float64}
         n = Phases()
         if n == 0
-            cmatrix = reshape([], (n, n))
+            cmatrix = reshape(Float64[], (0, 0))
         else
             cmatrix = reshape(Utils.get_float64_array(Lib.Lines_Get_Cmatrix), (n, n))
         end
@@ -74,7 +74,7 @@ module Lines
     """Capacitance matrix, nF per unit length (Setter)"""
     function CMatrix(Value::Matrix{Float64})
         n = Phases()
-        CMatrix(reshape(Value, (n * n, 1))[:])
+        CMatrix(Value[:])
     end
 
     """Capacitance matrix, nF per unit length (Setter)"""
@@ -222,7 +222,7 @@ module Lines
     function RMatrix()::Matrix{Float64}
         n = Phases()
         if n == 0
-            rmatrix = reshape([], (n, n))
+            rmatrix = reshape(Float64[], (0, 0))
         else
             rmatrix = reshape(Utils.get_float64_array(Lib.Lines_Get_Rmatrix), (n, n))
         end
@@ -232,7 +232,7 @@ module Lines
     """Resistance matrix (full), ohms per unit length. Matrix of doubles. (Setter)"""
     function RMatrix(Value::Matrix{Float64})
         n = Phases()
-        RMatrix(reshape(Value, (n * n, 1))[:])
+        RMatrix(Value[:])
     end
 
     """Resistance matrix (full), ohms per unit length. Vector of doubles. (Setter)"""
@@ -301,7 +301,7 @@ module Lines
     function XMatrix()::Matrix{Float64}
         n = Phases()
         if n == 0
-            xmatrix = reshape([], (n, n))
+            xmatrix = reshape(Float64[], (0, 0))
         else
             xmatrix = reshape(Utils.get_float64_array(Lib.Lines_Get_Xmatrix), (n, n))
         end
@@ -311,7 +311,7 @@ module Lines
     """Susceptance matrix, ohms per unit length. Matrix of doubles. (Setter)"""
     function XMatrix(Value::Matrix{Float64})
         n = Phases()
-        XMatrix(reshape(Value, (n * n, 1))[:])
+        XMatrix(Value[:])
     end
 
     """Susceptance matrix, ohms per unit length. Vector of doubles. (Setter)"""

@@ -39,7 +39,7 @@ module LineCodes
     function Cmatrix()::Matrix{Float64}
         n = Phases()
         if n == 0
-            cmatrix = reshape([], (n, n))
+            cmatrix = reshape(Float64[], (0, 0))
         else
             cmatrix = reshape(Utils.get_float64_array(Lib.LineCodes_Get_Cmatrix), (n, n))
         end
@@ -49,7 +49,7 @@ module LineCodes
     """Capacitance matrix, nF per unit length (Setter)"""
     function Cmatrix(Value::Matrix{Float64})
         n = Phases()
-        Cmatrix(reshape(Value, (n * n, 1))[:])
+        Cmatrix(Value[:])
     end
 
     """Capacitance matrix, nF per unit length (Setter)"""
@@ -140,7 +140,7 @@ module LineCodes
     function Rmatrix()::Matrix{Float64}
         n = Phases()
         if n == 0
-            rmatrix = reshape([], (n, n))
+            rmatrix = reshape(Float64[], (0, 0))
         else
             rmatrix = reshape(Utils.get_float64_array(Lib.LineCodes_Get_Rmatrix), (n, n))
         end
@@ -150,7 +150,7 @@ module LineCodes
     """Resistance matrix, ohms per unit length (Setter)"""
     function Rmatrix(Value::Matrix{Float64})
         n = Phases()
-        Rmatrix(reshape(Value, (n * n, 1))[:])
+        Rmatrix(Value[:])
     end
 
     """Resistance matrix, ohms per unit length (Setter)"""
@@ -194,7 +194,7 @@ module LineCodes
     function Xmatrix()::Matrix{Float64}
         n = Phases()
         if n == 0
-            xmatrix = reshape([], (n, n))
+            xmatrix = reshape(Float64[], (0, 0))
         else
             xmatrix = reshape(Utils.get_float64_array(Lib.LineCodes_Get_Xmatrix), (n, n))
         end
@@ -204,7 +204,7 @@ module LineCodes
     """Reactance matrix, ohms per unit length (Setter)"""
     function Xmatrix(Value::Matrix{Float64})
         n = Phases()
-        Xmatrix(reshape(Value, (n * n, 1))[:])
+        Xmatrix(Value[:])
     end
 
     """Reactance matrix, ohms per unit length (Setter)"""
