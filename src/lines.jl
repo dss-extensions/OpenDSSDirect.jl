@@ -61,14 +61,24 @@ module Lines
     end
 
     """Capacitance matrix, nF per unit length (Getter)"""
-    function CMatrix()::Vector{Float64}
-        # TODO: should this method return Matrix{ComplexF64} with just imaginary components?
-        return Utils.get_float64_array(Lib.Lines_Get_Cmatrix)
+    function CMatrix()::Matrix{Float64}
+        n = Phases()
+        if n == 0
+            cmatrix = reshape(Float64[], (0, 0))
+        else
+            cmatrix = reshape(Utils.get_float64_array(Lib.Lines_Get_Cmatrix), (n, n))
+        end
+        return cmatrix
+    end
+
+    """Capacitance matrix, nF per unit length (Setter)"""
+    function CMatrix(Value::Matrix{Float64})
+        n = Phases()
+        CMatrix(Value[:])
     end
 
     """Capacitance matrix, nF per unit length (Setter)"""
     function CMatrix(Value::Vector{Float64})
-        # TODO: should this method accept Matrix{ComplexF64} with just imaginary components?
         Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.Lines_Set_Cmatrix(ValuePtr, ValueCount)
     end
@@ -208,15 +218,25 @@ module Lines
         Lib.Lines_Set_Rho(Value)
     end
 
-    """Resistance matrix (full), ohms per unit length. Array of doubles. (Getter)"""
-    function RMatrix()::Vector{Float64}
-        # TODO: should this method return Matrix{ComplexF64} with just real components?
-        return Utils.get_float64_array(Lib.Lines_Get_Rmatrix)
+    """Resistance matrix (full), ohms per unit length. Matrix of doubles. (Getter)"""
+    function RMatrix()::Matrix{Float64}
+        n = Phases()
+        if n == 0
+            rmatrix = reshape(Float64[], (0, 0))
+        else
+            rmatrix = reshape(Utils.get_float64_array(Lib.Lines_Get_Rmatrix), (n, n))
+        end
+        return rmatrix
     end
 
-    """Resistance matrix (full), ohms per unit length. Array of doubles. (Setter)"""
+    """Resistance matrix (full), ohms per unit length. Matrix of doubles. (Setter)"""
+    function RMatrix(Value::Matrix{Float64})
+        n = Phases()
+        RMatrix(Value[:])
+    end
+
+    """Resistance matrix (full), ohms per unit length. Vector of doubles. (Setter)"""
     function RMatrix(Value::Vector{Float64})
-        # TODO: should this method accept Matrix{ComplexF64} with just real components?
         Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.Lines_Set_Rmatrix(ValuePtr, ValueCount)
     end
@@ -277,15 +297,25 @@ module Lines
         Lib.Lines_Set_Xg(Value)
     end
 
-    """Susceptance matrix, ohms per unit length. Array of doubles. (Getter)"""
-    function XMatrix()::Vector{Float64}
-        # TODO: should this method return Matrix{ComplexF64} with just imaginary components?
-        return Utils.get_float64_array(Lib.Lines_Get_Xmatrix)
+    """Susceptance matrix, ohms per unit length. Matrix of doubles. (Getter)"""
+    function XMatrix()::Matrix{Float64}
+        n = Phases()
+        if n == 0
+            xmatrix = reshape(Float64[], (0, 0))
+        else
+            xmatrix = reshape(Utils.get_float64_array(Lib.Lines_Get_Xmatrix), (n, n))
+        end
+        return xmatrix
     end
 
-    """Susceptance matrix, ohms per unit length. Array of doubles. (Setter)"""
+    """Susceptance matrix, ohms per unit length. Matrix of doubles. (Setter)"""
+    function XMatrix(Value::Matrix{Float64})
+        n = Phases()
+        XMatrix(Value[:])
+    end
+
+    """Susceptance matrix, ohms per unit length. Vector of doubles. (Setter)"""
     function XMatrix(Value::Vector{Float64})
-        # TODO: should this method return Matrix{ComplexF64} with just imaginary components?
         Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.Lines_Set_Xmatrix(ValuePtr, ValueCount)
     end
@@ -300,6 +330,20 @@ module Lines
     function Yprim(Value::Matrix{ComplexF64})
         Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
         Lib.Lines_Set_Yprim(ValuePtr, ValueCount)
+    end
+
+    """Impedance matrix, ohms per unit length. Matrix of doubles. (Getter)"""
+    function ZMatrix()::Matrix{ComplexF64}
+        zmatrix = RMatrix() + im * XMatrix()
+        return zmatrix
+    end
+
+    """Impedance matrix, ohms per unit length. Matrix of doubles. (Setter)"""
+    function ZMatrix(Value::Matrix{ComplexF64})
+        r = real(Value)
+        i = imag(Value)
+        RMatrix(r)
+        XMatrix(i)
     end
 
 end

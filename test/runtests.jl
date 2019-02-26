@@ -1,9 +1,9 @@
 using Test
 
+include("init.jl")
+
 include("lowlevel.jl")
 include("basics.jl")
-
-include("init.jl")
 
 include("activeclass.jl")
 include("bus.jl")

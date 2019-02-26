@@ -4,6 +4,10 @@ init8500()
 
 @testset "Lines" begin
 
+@test Lines.RMatrix() == reshape([], (0, 0))
+@test Lines.CMatrix() == reshape([], (0, 0))
+@test Lines.XMatrix() == reshape([], (0, 0))
+
 @test Lines.First() == 1
 @test Lines.Next() == 2
 @test Lines.Phases() == 1
@@ -52,15 +56,18 @@ init8500()
 @test Lines.Spacing() == ""
 @test Lines.Spacing(Lines.Spacing()) == nothing
 @test Lines.AllNames()[end] == "tpx2224500658a0"
-@test Lines.RMatrix() ≋ [1.67466]
+@test Lines.RMatrix() ≋ reshape([1.67466], (1, 1))
 @test Lines.RMatrix(Lines.RMatrix()) == nothing
-@test Lines.XMatrix() ≋ [0.93456]
+@test Lines.XMatrix() ≋ reshape([0.93456], (1, 1))
 @test Lines.XMatrix(Lines.XMatrix()) == nothing
-@test Lines.CMatrix() ≋ [6.322849999999999]
+@test Lines.CMatrix() ≋ reshape([6.322849999999999], (1, 1))
 @test Lines.CMatrix(Lines.CMatrix()) == nothing
 @test Lines.Yprim() ≋ [14.151460302936526 - 7.897357479424346im -14.151460302936526 + 7.897357517772179im
                       -14.151460302936526 + 7.897357517772179im 14.151460302936526 - 7.897357479424346im]
 @test Lines.Yprim(Lines.Yprim()) == nothing
+
+@test Lines.ZMatrix() ≋ reshape([1.67466 + 0.93456im], (1, 1))
+@test Lines.ZMatrix(Lines.ZMatrix()) == nothing
 
 arr = String[]
 for i in OpenDSSDirect.EachMember(Lines); push!(arr, Lines.Name()); end

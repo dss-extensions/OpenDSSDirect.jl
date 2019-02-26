@@ -34,12 +34,15 @@ init8500()
 @test LineCodes.Name() == "1ph-xx4_acsr4_acsr"
 @test LineCodes.Name(LineCodes.Name()) == nothing
 @test LineCodes.AllNames()[end] == "4/0triplex"
-@test LineCodes.Rmatrix() ≋ [0.40995115, 0.11809509, 0.11809509, 0.40995115] # TODO: change Rmatrix to RMatrix to be consistent with Lines
+@test LineCodes.Rmatrix() ≋ [0.40995115 0.11809509; 0.11809509 0.40995115] # TODO: change Rmatrix to RMatrix to be consistent with Lines
 @test LineCodes.Rmatrix(LineCodes.Rmatrix()) == nothing # TODO: change Rmatrix to RMatrix to be consistent with Lines
-@test LineCodes.Xmatrix() ≋ [0.16681819, 0.1275925, 0.1275925, 0.16681819] # TODO: change Xmatrix to XMatrix to be consistent with Lines
+@test LineCodes.Xmatrix() ≋ [0.16681819 0.1275925; 0.1275925 0.16681819] # TODO: change Xmatrix to XMatrix to be consistent with Lines
 @test LineCodes.Xmatrix(LineCodes.Xmatrix()) == nothing # TODO: change Xmatrix to XMatrix to be consistent with Lines
-@test LineCodes.Cmatrix() ≋ [3, -2.4, -2.4, 3.0] # TODO: change Cmatrix to CMatrix to be consistent with Lines
+@test LineCodes.Cmatrix() ≋ [3 -2.4; -2.4 3.0] # TODO: change Cmatrix to CMatrix to be consistent with Lines
 @test LineCodes.Cmatrix(LineCodes.Cmatrix()) == nothing # TODO: change Cmatrix to CMatrix to be consistent with Lines
+@test isapprox(LineCodes.Zmatrix(), [0.409951+0.166818im  0.118095+0.127592im;
+                              0.118095+0.127592im  0.409951+0.166818im], rtol=0.00001)
+@test LineCodes.Zmatrix(LineCodes.Zmatrix()) == nothing
 
 arr = String[]
 for i in OpenDSSDirect.EachMember(LineCodes); push!(arr, LineCodes.Name()); end
