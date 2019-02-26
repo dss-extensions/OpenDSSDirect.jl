@@ -2617,11 +2617,19 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "api/#OpenDSSDirect.LineCodes.Cmatrix-Tuple{Array{Float64,2}}",
+    "page": "Main API",
+    "title": "OpenDSSDirect.LineCodes.Cmatrix",
+    "category": "method",
+    "text": "Cmatrix(Value::Array{Float64,2})\n\n\nCapacitance matrix, nF per unit length (Setter)\n\n\n\n\n\n"
+},
+
+{
     "location": "api/#OpenDSSDirect.LineCodes.Cmatrix-Tuple{}",
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.Cmatrix",
     "category": "method",
-    "text": "Cmatrix() -> Array{Float64,1}\n\n\nCapacitance matrix, nF per unit length (Getter)\n\n\n\n\n\n"
+    "text": "Cmatrix() -> Array{Float64,2}\n\n\nCapacitance matrix, nF per unit length (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2745,11 +2753,19 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "api/#OpenDSSDirect.LineCodes.Rmatrix-Tuple{Array{Float64,2}}",
+    "page": "Main API",
+    "title": "OpenDSSDirect.LineCodes.Rmatrix",
+    "category": "method",
+    "text": "Rmatrix(Value::Array{Float64,2})\n\n\nResistance matrix, ohms per unit length (Setter)\n\n\n\n\n\n"
+},
+
+{
     "location": "api/#OpenDSSDirect.LineCodes.Rmatrix-Tuple{}",
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.Rmatrix",
     "category": "method",
-    "text": "Rmatrix() -> Array{Float64,1}\n\n\nResistance matrix, ohms per unit length (Getter)\n\n\n\n\n\n"
+    "text": "Rmatrix() -> Array{Float64,2}\n\n\nResistance matrix, ohms per unit length (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2809,11 +2825,35 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "api/#OpenDSSDirect.LineCodes.Xmatrix-Tuple{Array{Float64,2}}",
+    "page": "Main API",
+    "title": "OpenDSSDirect.LineCodes.Xmatrix",
+    "category": "method",
+    "text": "Xmatrix(Value::Array{Float64,2})\n\n\nReactance matrix, ohms per unit length (Setter)\n\n\n\n\n\n"
+},
+
+{
     "location": "api/#OpenDSSDirect.LineCodes.Xmatrix-Tuple{}",
     "page": "Main API",
     "title": "OpenDSSDirect.LineCodes.Xmatrix",
     "category": "method",
-    "text": "Xmatrix() -> Array{Float64,1}\n\n\nReactance matrix, ohms per unit length (Getter)\n\n\n\n\n\n"
+    "text": "Xmatrix() -> Array{Float64,2}\n\n\nReactance matrix, ohms per unit length (Getter)\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#OpenDSSDirect.LineCodes.Zmatrix-Tuple{Array{Complex{Float64},2}}",
+    "page": "Main API",
+    "title": "OpenDSSDirect.LineCodes.Zmatrix",
+    "category": "method",
+    "text": "Zmatrix(Value::Array{Complex{Float64},2})\n\n\nReactance matrix, ohms per unit length (Setter)\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#OpenDSSDirect.LineCodes.Zmatrix-Tuple{}",
+    "page": "Main API",
+    "title": "OpenDSSDirect.LineCodes.Zmatrix",
+    "category": "method",
+    "text": "Zmatrix() -> Array{Complex{Float64},2}\n\n\nReactance matrix, ohms per unit length (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -2905,11 +2945,19 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "api/#OpenDSSDirect.Lines.CMatrix-Tuple{Array{Float64,2}}",
+    "page": "Main API",
+    "title": "OpenDSSDirect.Lines.CMatrix",
+    "category": "method",
+    "text": "CMatrix(Value::Array{Float64,2})\n\n\nCapacitance matrix, nF per unit length (Setter)\n\n\n\n\n\n"
+},
+
+{
     "location": "api/#OpenDSSDirect.Lines.CMatrix-Tuple{}",
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.CMatrix",
     "category": "method",
-    "text": "CMatrix() -> Array{Float64,1}\n\n\nCapacitance matrix, nF per unit length (Getter)\n\n\n\n\n\n"
+    "text": "CMatrix() -> Array{Float64,2}\n\n\nCapacitance matrix, nF per unit length (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3109,7 +3157,15 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.RMatrix",
     "category": "method",
-    "text": "RMatrix(Value::Array{Float64,1})\n\n\nResistance matrix (full), ohms per unit length. Array of doubles. (Setter)\n\n\n\n\n\n"
+    "text": "RMatrix(Value::Array{Float64,1})\n\n\nResistance matrix (full), ohms per unit length. Vector of doubles. (Setter)\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#OpenDSSDirect.Lines.RMatrix-Tuple{Array{Float64,2}}",
+    "page": "Main API",
+    "title": "OpenDSSDirect.Lines.RMatrix",
+    "category": "method",
+    "text": "RMatrix(Value::Array{Float64,2})\n\n\nResistance matrix (full), ohms per unit length. Matrix of doubles. (Setter)\n\n\n\n\n\n"
 },
 
 {
@@ -3117,7 +3173,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.RMatrix",
     "category": "method",
-    "text": "RMatrix() -> Array{Float64,1}\n\n\nResistance matrix (full), ohms per unit length. Array of doubles. (Getter)\n\n\n\n\n\n"
+    "text": "RMatrix() -> Array{Float64,2}\n\n\nResistance matrix (full), ohms per unit length. Matrix of doubles. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3229,7 +3285,15 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.XMatrix",
     "category": "method",
-    "text": "XMatrix(Value::Array{Float64,1})\n\n\nSusceptance matrix, ohms per unit length. Array of doubles. (Setter)\n\n\n\n\n\n"
+    "text": "XMatrix(Value::Array{Float64,1})\n\n\nSusceptance matrix, ohms per unit length. Vector of doubles. (Setter)\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#OpenDSSDirect.Lines.XMatrix-Tuple{Array{Float64,2}}",
+    "page": "Main API",
+    "title": "OpenDSSDirect.Lines.XMatrix",
+    "category": "method",
+    "text": "XMatrix(Value::Array{Float64,2})\n\n\nSusceptance matrix, ohms per unit length. Matrix of doubles. (Setter)\n\n\n\n\n\n"
 },
 
 {
@@ -3237,7 +3301,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Main API",
     "title": "OpenDSSDirect.Lines.XMatrix",
     "category": "method",
-    "text": "XMatrix() -> Array{Float64,1}\n\n\nSusceptance matrix, ohms per unit length. Array of doubles. (Getter)\n\n\n\n\n\n"
+    "text": "XMatrix() -> Array{Float64,2}\n\n\nSusceptance matrix, ohms per unit length. Matrix of doubles. (Getter)\n\n\n\n\n\n"
 },
 
 {
@@ -3270,6 +3334,22 @@ var documenterSearchIndex = {"docs": [
     "title": "OpenDSSDirect.Lines.Yprim",
     "category": "method",
     "text": "Yprim() -> Array{Complex{Float64},2}\n\n\nYprimitive: Does Nothing at present on Put; Dangerous (Getter)\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#OpenDSSDirect.Lines.ZMatrix-Tuple{Array{Complex{Float64},2}}",
+    "page": "Main API",
+    "title": "OpenDSSDirect.Lines.ZMatrix",
+    "category": "method",
+    "text": "ZMatrix(Value::Array{Complex{Float64},2})\n\n\nImpedance matrix, ohms per unit length. Matrix of doubles. (Setter)\n\n\n\n\n\n"
+},
+
+{
+    "location": "api/#OpenDSSDirect.Lines.ZMatrix-Tuple{}",
+    "page": "Main API",
+    "title": "OpenDSSDirect.Lines.ZMatrix",
+    "category": "method",
+    "text": "ZMatrix() -> Array{Complex{Float64},2}\n\n\nImpedance matrix, ohms per unit length. Matrix of doubles. (Getter)\n\n\n\n\n\n"
 },
 
 {
