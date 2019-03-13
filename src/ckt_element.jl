@@ -257,7 +257,7 @@ module CktElement
     function YPrim()::Array{ComplexF64, 2}
         r = Utils.get_complex64_array(Lib.CktElement_Get_Yprim)
         # TODO: should we transpose here?
-        return reshape(r, (Int(length(r)/2), Int(length(r)/2)))
+        return reshape(r, (Int(sqrt(length(r))), Int(sqrt(length(r)))))
     end
 
 end
