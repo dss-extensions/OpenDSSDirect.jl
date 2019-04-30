@@ -323,7 +323,7 @@ module Lines
     """Yprimitive: Does Nothing at present on Put; Dangerous (Getter)"""
     function Yprim()::Matrix{ComplexF64}
         r = Utils.get_complex64_array(Lib.Lines_Get_Yprim)
-        return reshape(r, (Int(length(r)/2), Int(length(r)/2)))
+        return reshape(r, (Int(sqrt(length(r))), Int(sqrt(length(r)))))
     end
 
     """Yprimitive: Does Nothing at present on Put; Dangerous (Setter)"""
