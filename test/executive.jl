@@ -4,8 +4,8 @@ init8500()
 
 @testset "Executive" begin
 
-@test Executive.NumCommands() == 107
-@test Executive.NumOptions() == 111
+@test Executive.NumCommands() == 111
+@test Executive.NumOptions() == 115
 @test Executive.Command(2) == "Edit"
 @test Executive.Option(2) == "element"
 @test Executive.CommandHelp(2)[1:7] == "Edit an"
