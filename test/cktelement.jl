@@ -12,7 +12,7 @@ Lines.Next()
 @test CktElement.Open(0, 0) == nothing
 @test CktElement.Close(0, 0) == nothing
 @test CktElement.IsOpen(0, 0) == false
-@test CktElement.NumProperties() == 35
+@test CktElement.NumProperties() == 37
 @test CktElement.HasSwitchControl() == false
 @test CktElement.HasVoltControl() == false
 @test CktElement.NumControls() == 0
