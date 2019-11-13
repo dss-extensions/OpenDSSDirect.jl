@@ -6,8 +6,7 @@ abstract type Windows <: AbstractOS end
 abstract type MacOS <: BSD end
 abstract type Linux <: BSD end
 
-const OPENDSS_VERSION = "0.10.3"
-const KLUSOLVE_VERSION = "1.1.0a2"
+const OPENDSS_VERSION = "0.10.4"
 
 function download(::Type{MacOS})
 
@@ -67,20 +66,7 @@ function download(::Type{Windows})
 
     mkpath(joinpath(@__DIR__, "windows"))
     cp(joinpath(@__DIR__, "dss_capi/lib/win_$(BIT)/dss_capi_v7.dll") |> normpath, joinpath(@__DIR__, "windows", "dss_capi_v7.dll") |> normpath, force=true)
-    
-    if BIT == "x86"
-        # Use MSVC KLUSolve DLLs to avoid conflicts with 32-bit Julia
-        klusolve_url = "https://github.com/dss-extensions/klusolve/releases/download/$(KLUSOLVE_VERSION)/klusolve_$(KLUSOLVE_VERSION)_win_$(BIT)-msvc2017.zip"
-        klusolve_filename = joinpath(@__DIR__, "klusolve.zip") |> normpath
-        Base.download(klusolve_url, klusolve_filename)
-        
-        success(`$home/7z x $klusolve_filename -y -o$directory`)
-        klusolve_filename = joinpath(directory, basename(klusolve_filename)[1:end-4])
-        cp(joinpath(@__DIR__, "klusolve/lib/win_$(BIT)/libklusolve.dll") |> normpath, joinpath(@__DIR__, "windows", "libklusolve.dll") |> normpath, force=true)
-        rm(joinpath(@__DIR__, "klusolve"), force=true, recursive=true)
-    else
-        cp(joinpath(@__DIR__, "dss_capi/lib/win_$(BIT)/libklusolve.dll") |> normpath, joinpath(@__DIR__, "windows", "libklusolve.dll") |> normpath, force=true)
-    end
+    cp(joinpath(@__DIR__, "dss_capi/lib/win_$(BIT)/libklusolve.dll") |> normpath, joinpath(@__DIR__, "windows", "libklusolve.dll") |> normpath, force=true)
     rm(joinpath(@__DIR__, "dss_capi"), force=true, recursive=true)
     println("Success")
 end
