@@ -191,7 +191,7 @@ end
 
 function unzip(::Type{Windows}, filename, directory)
     home = (Base.VERSION < v"0.7-") ? JULIA_HOME : Sys.BINDIR
-    if Base.VERSION < "1.3.0"
+    if Base.VERSION < v"1.3.0"
         bin7z = "$home/7z"
     else
         bin7z = "$(joinpath(home, "..", "libexec", "7z"))"
