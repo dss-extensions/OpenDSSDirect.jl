@@ -92,18 +92,8 @@ module Basic
 
     """Create a new circuit"""
     function NewCircuit(name::String)::String
-        Lib.DSS_NewCircuit(Cstring(pointer(name)))
-        error_num = Lib.Error_Get_Number()
-        if (error_num != 0)
-            description = Utils.get_string(Lib.Error_Get_Description())
-            throw(
-                OpenDSSDirectException(
-                    "[ERROR $error_num] $description"
-               )
-            )
-        end
-
-        return "New Circuit"
+        Utils.@checked Lib.DSS_NewCircuit(Cstring(pointer(name)))
+        return "New Circuit: $name"
     end
 
 end

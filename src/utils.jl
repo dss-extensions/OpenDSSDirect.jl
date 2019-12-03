@@ -120,6 +120,24 @@ function prepare_int32_array(value::Vector{Int64})
     prepare_int32_array(Vector{Int32}(value))
 end
 
+macro checked(expr)
+    @assert expr.head == :call "Can only use @checked on function calls"
+    @assert ( expr.args[1].head == :(.) ) && ( expr.args[1].args[1] == :Lib) "Can only use @checked on Lib.\$function"
+
+    return esc(quote
+        ans = $(expr)
+        error_num = Lib.Error_Get_Number()
+        if (error_num != 0)
+            description = Utils.get_string(Lib.Error_Get_Description())
+            throw(
+                OpenDSSDirectException(
+                    "[ERROR $error_num] $description"
+                )
+            )
+        end
+        ans
+    end)
+end
 
 struct OpenDSSDirectException <: Exception end
 
