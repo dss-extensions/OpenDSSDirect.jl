@@ -1,3 +1,11 @@
+### OpenDSSDirect v0.6.0 Release Notes
+
+- Support Julia 1.3.x with 7z fix
+- Update DSS C API to latest version
+- Change Vector{Float64} to Matrix{Float64}
+- Fix CktElement.YPrim function
+- Fix Lines.YPrim function
+
 ### OpenDSSDirect v0.5.1 Release Notes
 
 - Add Enum support for all functions
