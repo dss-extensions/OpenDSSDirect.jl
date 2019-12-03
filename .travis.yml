@@ -4,14 +4,35 @@ language: julia
 os:
   - linux
   - osx
+  - windows
 julia:
   - 0.7
   - 1.0
   - 1.1
   - 1.2
-#  - 1.3
+  - 1.3
   - nightly
 matrix:
+  exclude:
+    - os: windows
+      julia: nightly
+      language: julia
+
+  include:
+    - os: windows
+      language: sh
+      filter_secrets: false
+      before_install:
+        - choco install julia
+
+    - stage: "Documentation"
+      julia: 1
+      os: linux
+      script:
+        - julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.build("OpenDSSDirect"); Pkg.instantiate()'
+        - DOCUMENTER_DEBUG=true julia --project=docs/ docs/make.jl
+      after_success: skip
+
   allow_failures:
     - julia: nightly
 notifications:
@@ -21,12 +42,3 @@ after_success:
   - julia -e 'cd(Pkg.dir("OpenDSSDirect")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
   # push coverage results to Codecov
   - julia -e 'cd(Pkg.dir("OpenDSSDirect")); Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())'
-jobs:
-  include:
-    - stage: "Documentation"
-      julia: 1.0
-      os: linux
-      script:
-        - julia --project -e 'using Pkg; Pkg.build(); Pkg.add("Documenter"); Pkg.instantiate()'
-        - julia --project -e 'ENV["DOCUMENTER_DEBUG"] = "true"; include("docs/make.jl")'
-      after_success: skip

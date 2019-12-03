@@ -61,7 +61,13 @@ function download(::Type{Windows})
     mkpath(directory)
 
     home = (Base.VERSION < v"0.7-") ? JULIA_HOME : Sys.BINDIR
-    success(`$home/7z x $filename -y -o$directory`)
+    if Base.VERSION < v"1.3.0"
+        bin7z = "$home/7z"
+    else
+        bin7z = "$(joinpath(home, "..", "libexec", "7z"))"
+    end
+
+    success(`$bin7z x $filename -y -o$directory`)
     filename = joinpath(directory, basename(filename)[1:end-4])
 
     mkpath(joinpath(@__DIR__, "windows"))
