@@ -4,9 +4,9 @@ init8500()
 
 @testset "Lines" begin
 
-@test Lines.RMatrix() == reshape([], (0, 0))
-@test Lines.CMatrix() == reshape([], (0, 0))
-@test Lines.XMatrix() == reshape([], (0, 0))
+@test_throws OpenDSSDirect.Utils.OpenDSSDirectException Lines.RMatrix() == reshape([], (0, 0))
+@test_throws OpenDSSDirect.Utils.OpenDSSDirectException Lines.CMatrix() == reshape([], (0, 0))
+@test_throws OpenDSSDirect.Utils.OpenDSSDirectException Lines.XMatrix() == reshape([], (0, 0))
 
 @test Lines.First() == 1
 @test Lines.Next() == 2
