@@ -60,11 +60,11 @@ function download(::Type{Windows})
     directory = normpath(@__DIR__)
     mkpath(directory)
 
-    const home = (Base.VERSION < v"0.7-") ? JULIA_HOME : Sys.BINDIR
+    home = (Base.VERSION < v"0.7-") ? JULIA_HOME : Sys.BINDIR
     if Base.VERSION < "1.3.0"
-        const bin7z = "$home/7z"
+        bin7z = "$home/7z"
     else
-        const bin7z = "$(joinpath(home, "..", "libexec", "7z"))"
+        bin7z = "$(joinpath(home, "..", "libexec", "7z"))"
     end
 
     success(`$bin7z x $filename -y -o$directory`)
