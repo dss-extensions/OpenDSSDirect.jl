@@ -130,7 +130,7 @@ macro checked(expr)
         if (error_num != 0)
             description = Utils.get_string(Lib.Error_Get_Description())
             throw(
-                OpenDSSDirectException(
+                Utils.OpenDSSDirectException(
                     "[ERROR $error_num] $description"
                 )
             )
@@ -139,7 +139,9 @@ macro checked(expr)
     end)
 end
 
-struct OpenDSSDirectException <: Exception end
+struct OpenDSSDirectException <: Exception
+    msg::String
+end
 
 """
 Return a column-format `NamedTuple` of all attributes of the given Module.

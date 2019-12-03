@@ -12,7 +12,7 @@ module CktElement
 
     """Close phase of terminal for active circuit element"""
     function Close(Term::Int, Phs::Int)
-        Lib.CktElement_Close(Term, Phs)
+        Utils.@checked Lib.CktElement_Close(Term, Phs)
     end
 
     """Full name of the i-th controller attached to this element. Ex: str = Controller(2).  See NumControls to determine valid index range"""
@@ -22,22 +22,22 @@ module CktElement
 
     """For PCElement, get the value of a variable by name. If Code>0 Then no variable by this name or not a PCElement."""
     function Variable(MyVarName::String, Code::Int)::Float64
-        return Lib.CktElement_Get_Variable(MyVarName, Ref{Int32}(Code))
+        return Utils.@checked Lib.CktElement_Get_Variable(MyVarName, Ref{Int32}(Code))
     end
 
     """For PCElement, get the value of a variable by integer index."""
     function Variablei(Idx::Int, Code::Int)::Float64
-        return Lib.CktElement_Get_Variablei(Int32(Idx), Ref{Int32}(Code))
+        return Utils.@checked Lib.CktElement_Get_Variablei(Int32(Idx), Ref{Int32}(Code))
     end
 
     """Check if open phase of terminal for active circuit element"""
     function IsOpen(Term::Int, Phs::Int)::Bool
-        return Lib.CktElement_IsOpen(Term, Phs) != 0
+        return Utils.@checked(Lib.CktElement_IsOpen(Term, Phs)) != 0
     end
 
     """Open phase of terminal for active circuit element"""
     function Open(Term::Int, Phs::Int)
-        Lib.CktElement_Open(Term, Phs)
+        Utils.@checked Lib.CktElement_Open(Term, Phs)
     end
 
     """Array containing all property names of the active device."""
@@ -67,7 +67,7 @@ module CktElement
     """
     function BusNames(Value::Vector{String})
         Value, ValuePtr, ValueCount = Utils.prepare_string_array(Value)
-        Lib.CktElement_Set_BusNames(ValuePtr, ValueCount)
+        Utils.@checked Lib.CktElement_Set_BusNames(ValuePtr, ValueCount)
     end
 
     """Complex double array of Sequence Currents for all conductors of all terminals of active circuit element."""
@@ -98,27 +98,27 @@ module CktElement
 
     """Display name of the object (not necessarily unique) (Setter)"""
     function DisplayName(Value::String)
-        Lib.CktElement_Set_DisplayName(Cstring(pointer(Value)))
+        Utils.@checked Lib.CktElement_Set_DisplayName(Cstring(pointer(Value)))
     end
 
     """Emergency Ampere Rating for PD elements (Getter)"""
     function EmergAmps()::Float64
-        return Lib.CktElement_Get_EmergAmps()
+        return Utils.@checked Lib.CktElement_Get_EmergAmps()
     end
 
     """Emergency Ampere Rating for PD elements (Setter)"""
     function EmergAmps(Value::Float64)
-        Lib.CktElement_Set_EmergAmps(Value)
+        Utils.@checked Lib.CktElement_Set_EmergAmps(Value)
     end
 
     """Boolean indicating that element is currently in the circuit. (Getter)"""
     function Enabled()::Bool
-        return Lib.CktElement_Get_Enabled() != 0
+        return Utils.@checked(Lib.CktElement_Get_Enabled()) != 0
     end
 
     """Boolean indicating that element is currently in the circuit. (Setter)"""
     function Enabled(Value::Bool)
-        Lib.CktElement_Set_Enabled(Value ? 1 : 0)
+        Utils.@checked Lib.CktElement_Set_Enabled(Value ? 1 : 0)
     end
 
     """Name of the Energy Meter this element is assigned to."""
@@ -133,22 +133,22 @@ module CktElement
 
     """Pointer to this object"""
     function Handle()::Int
-        return Lib.CktElement_Get_Handle()
+        return Utils.@checked Lib.CktElement_Get_Handle()
     end
 
     """True if a recloser, relay, or fuse controlling this ckt element. OCP = Overcurrent Protection """
     function HasOCPDevice()::Bool
-        return Lib.CktElement_Get_HasOCPDevice() != 0
+        return Utils.@checked(Lib.CktElement_Get_HasOCPDevice()) != 0
     end
 
     """This element has a SwtControl attached."""
     function HasSwitchControl()::Bool
-        return Lib.CktElement_Get_HasSwitchControl() != 0
+        return Utils.@checked(Lib.CktElement_Get_HasSwitchControl()) != 0
     end
 
     """This element has a CapControl or RegControl attached."""
     function HasVoltControl()::Bool
-        return Lib.CktElement_Get_HasVoltControl() != 0
+        return Utils.@checked(Lib.CktElement_Get_HasVoltControl()) != 0
     end
 
     """Total losses in the element: two-element complex array"""
@@ -168,47 +168,47 @@ module CktElement
 
     """Normal ampere rating for PD Elements (Getter)"""
     function NormalAmps()::Float64
-        return Lib.CktElement_Get_NormalAmps()
+        return Utils.@checked Lib.CktElement_Get_NormalAmps()
     end
 
     """Normal ampere rating for PD Elements (Setter)"""
     function NormalAmps(Value::Float64)
-        Lib.CktElement_Set_NormalAmps(Value)
+        Utils.@checked Lib.CktElement_Set_NormalAmps(Value)
     end
 
     """Number of Conductors per Terminal"""
     function NumConductors()::Int
-        return Lib.CktElement_Get_NumConductors()
+        return Utils.@checked Lib.CktElement_Get_NumConductors()
     end
 
     """Number of controls connected to this device. Use to determine valid range for index into Controller array."""
     function NumControls()::Int
-        return Lib.CktElement_Get_NumControls()
+        return Utils.@checked Lib.CktElement_Get_NumControls()
     end
 
     """Number of Phases"""
     function NumPhases()::Int
-        return Lib.CktElement_Get_NumPhases()
+        return Utils.@checked Lib.CktElement_Get_NumPhases()
     end
 
     """Number of Properties this Circuit Element."""
     function NumProperties()::Int
-        return Lib.CktElement_Get_NumProperties()
+        return Utils.@checked Lib.CktElement_Get_NumProperties()
     end
 
     """Number of Terminals this Circuit Element"""
     function NumTerminals()::Int
-        return Lib.CktElement_Get_NumTerminals()
+        return Utils.@checked Lib.CktElement_Get_NumTerminals()
     end
 
     """Index into Controller list of OCP Device controlling this CktElement"""
     function OCPDevIndex()::Int
-        return Lib.CktElement_Get_OCPDevIndex()
+        return Utils.@checked Lib.CktElement_Get_OCPDevIndex()
     end
 
     """0=None; 1=Fuse; 2=Recloser; 3=Relay;  Type of OCP controller device"""
     function OCPDevType()::Int
-        return Lib.CktElement_Get_OCPDevType()
+        return Utils.@checked Lib.CktElement_Get_OCPDevType()
     end
 
     """Complex array of losses by phase"""

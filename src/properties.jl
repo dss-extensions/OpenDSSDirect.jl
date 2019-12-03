@@ -25,7 +25,7 @@ module Properties
         if argIndex <= 0
             error("argIndex must be positive, not $argIndex.")
         end
-        Lib.DSSProperty_Set_Index(argIndex - 1)
+        Utils.@checked Lib.DSSProperty_Set_Index(argIndex - 1)
     end
 
     function _setCurrentProperty(Name::String)
@@ -33,26 +33,26 @@ module Properties
         if argIndex isa Int
             _setCurrentProperty(argIndex)
         else
-            Lib.DSSProperty_Set_Name(Name)
+            Utils.@checked Lib.DSSProperty_Set_Name(Name)
         end
 
     end
 
     """Value of Property (Getter)"""
     function Value()::String
-        return Utils.get_string(Lib.DSSProperty_Get_Val())
+        return Utils.get_string(Utils.@checked Lib.DSSProperty_Get_Val())
     end
 
     """Value of Property of Index or Name (getter)"""
     function Value(argIndex_or_Name::Union{String, Int})::String
         _setCurrentProperty(argIndex_or_Name)
-        return Utils.get_string(Lib.DSSProperty_Get_Val())
+        return Utils.get_string(Utils.@checked Lib.DSSProperty_Get_Val())
     end
 
     """Value of Property of Index or Name (setter)"""
     function Value(argIndex_or_Name::Union{String, Int}, Value::String)
         _setCurrentProperty(argIndex_or_Name)
-        Lib.DSSProperty_Set_Val(Value)
+        Utils.@checked Lib.DSSProperty_Set_Val(Value)
     end
 
 end

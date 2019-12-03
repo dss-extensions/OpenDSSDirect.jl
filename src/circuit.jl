@@ -12,37 +12,37 @@ module Circuit
 
     """Compute capacity"""
     function Capacity(Start, Increment)::Float64
-        return Lib.Circuit_Capacity(Start, Increment)
+        return Utils.@checked Lib.Circuit_Capacity(Start, Increment)
     end
 
     """Disable circuit"""
     function Disable(Name::String)
-        Lib.Circuit_Disable(Cstring(pointer(Name)))
+        Utils.@checked Lib.Circuit_Disable(Cstring(pointer(Name)))
     end
 
     """Enable circuit"""
     function Enable(Name::String)
-        Lib.Circuit_Enable(Cstring(pointer(Name)))
+        Utils.@checked Lib.Circuit_Enable(Cstring(pointer(Name)))
     end
 
     """Do end of time step update and cleanup"""
     function EndOfTimeStepUpdate()
-        Lib.Circuit_EndOfTimeStepUpdate()
+        Utils.@checked Lib.Circuit_EndOfTimeStepUpdate()
     end
 
     """Set first element in active class to be active"""
     function FirstElement()::Int
-        return Lib.Circuit_FirstElement()
+        return Utils.@checked Lib.Circuit_FirstElement()
     end
 
     """Set first PCElement to be active"""
     function FirstPCElement()::Int
-        return Lib.Circuit_FirstPCElement()
+        return Utils.@checked Lib.Circuit_FirstPCElement()
     end
 
     """Set first PDElement to be active"""
     function FirstPDElement()::Int
-        return Lib.Circuit_FirstPDElement()
+        return Utils.@checked Lib.Circuit_FirstPDElement()
     end
 
     """Returns an array of doubles representing the distances to parent EnergyMeter. Sequence of array corresponds to other node ByPhase properties."""
@@ -71,52 +71,52 @@ module Circuit
 
     """Set next element in active class to be active"""
     function NextElement()::Int
-        return Lib.Circuit_NextElement()
+        return Utils.@checked Lib.Circuit_NextElement()
     end
 
     """Set next PCElement to be active"""
     function NextPCElement()::Int
-        return Lib.Circuit_NextPCElement()
+        return Utils.@checked Lib.Circuit_NextPCElement()
     end
 
     """Set next PDElement to be active"""
     function NextPDElement()::Int
-        return Lib.Circuit_NextPDElement()
+        return Utils.@checked Lib.Circuit_NextPDElement()
     end
 
     """Sample all meters and monitors"""
     function Sample()
-        Lib.Circuit_Sample()
+        Utils.@checked Lib.Circuit_Sample()
     end
 
     """Save all all meters and monitors registers and buffers"""
     function SaveSample()
-        Lib.Circuit_SaveSample()
+        Utils.@checked Lib.Circuit_SaveSample()
     end
 
     """Set active bus name"""
     function SetActiveBus(BusName::String)::Int
-        return Lib.Circuit_SetActiveBus(Cstring(pointer(BusName)))
+        return Utils.@checked Lib.Circuit_SetActiveBus(Cstring(pointer(BusName)))
     end
 
     """Set active bus index"""
     function SetActiveBusi(BusIndex::Int)::Int
-        return Lib.Circuit_SetActiveBusi(BusIndex)
+        return Utils.@checked Lib.Circuit_SetActiveBusi(BusIndex)
     end
 
     """Set active class name"""
     function SetActiveClass(ClassName::String)::Int
-        return Lib.Circuit_SetActiveClass(Cstring(pointer(ClassName)))
+        return Utils.@checked Lib.Circuit_SetActiveClass(Cstring(pointer(ClassName)))
     end
 
     """Set active element full name"""
     function SetActiveElement(FullName::String)::Int
-        return Lib.Circuit_SetActiveElement(Cstring(pointer(FullName)))
+        return Utils.@checked Lib.Circuit_SetActiveElement(Cstring(pointer(FullName)))
     end
 
     """Update storage"""
     function UpdateStorage()
-        Lib.Circuit_UpdateStorage()
+        Utils.@checked Lib.Circuit_UpdateStorage()
     end
 
     """Returns distance from each bus to parent EnergyMeter. Corresponds to sequence in AllBusNames."""
@@ -176,27 +176,27 @@ module Circuit
 
     """Name of the active circuit."""
     function Name()::String
-        return Utils.get_string(Lib.Circuit_Get_Name())
+        return Utils.get_string(Utils.@checked Lib.Circuit_Get_Name())
     end
 
     """Total number of Buses in the circuit."""
     function NumBuses()::Int
-        return Lib.Circuit_Get_NumBuses()
+        return Utils.@checked Lib.Circuit_Get_NumBuses()
     end
 
     """Number of CktElements in the circuit."""
     function NumCktElements()::Int
-        return Lib.Circuit_Get_NumCktElements()
+        return Utils.@checked Lib.Circuit_Get_NumCktElements()
     end
 
     """Total number of nodes in the circuit."""
     function NumNodes()::Int
-        return Lib.Circuit_Get_NumNodes()
+        return Utils.@checked Lib.Circuit_Get_NumNodes()
     end
 
     """Sets Parent PD element, if any, to be the active circuit element and returns index>0; Returns 0 if it fails or not applicable."""
     function ParentPDElement()::Int
-        return Lib.Circuit_Get_ParentPDElement()
+        return Utils.@checked Lib.Circuit_Get_ParentPDElement()
     end
 
     """Complex losses in all transformers designated to substations."""
