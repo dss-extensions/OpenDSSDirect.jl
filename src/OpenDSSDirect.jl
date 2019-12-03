@@ -48,14 +48,14 @@ import Libdl
 
 const path = @__DIR__
 if Sys.iswindows()
-    const LIBRARY = joinpath(path, "../deps/windows/dss_capi_v7.dll") |> abspath
-    const KLUSOLVE_LIBRARY = joinpath(path, "../deps/windows/libklusolve.dll") |> abspath
+    const LIBRARY = abspath(joinpath(path, "../deps/windows/dss_capi_v7.dll"))
+    const KLUSOLVE_LIBRARY = abspath(joinpath(path, "../deps/windows/libklusolve.dll"))
 elseif Sys.islinux()
-    const LIBRARY = joinpath(path, "../deps/linux/libdss_capi_v7.so") |> abspath
-    const KLUSOLVE_LIBRARY = joinpath(path, "../deps/linux/libklusolve.so") |> abspath
+    const LIBRARY = abspath(joinpath(path, "../deps/linux/libdss_capi_v7.so"))
+    const KLUSOLVE_LIBRARY = abspath(joinpath(path, "../deps/linux/libklusolve.so"))
 elseif Sys.isapple()
-    const LIBRARY = joinpath(path, "../deps/apple/libdss_capi_v7.dylib") |> abspath
-    const KLUSOLVE_LIBRARY = joinpath(path, "../deps/apple/libklusolve.dylib") |> abspath
+    const LIBRARY = abspath(joinpath(path, "../deps/apple/libdss_capi_v7.dylib"))
+    const KLUSOLVE_LIBRARY = abspath(joinpath(path, "../deps/apple/libklusolve.dylib"))
 else
     error("Unknown operating system. Cannot use OpenDSSDirect")
 end

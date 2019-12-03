@@ -9,8 +9,8 @@ ymatrix = YMatrix.getYsparse()
 
 # ymatrix = YMatrix.getYsparse()
 
-@test YMatrix.getV() |> length == 8542
-@test YMatrix.getI() |> length == 8542
+@test length(YMatrix.getV()) == 8542
+@test length(YMatrix.getI()) == 8542
 
 @test YMatrix.SystemYChanged() == false
 @test YMatrix.SystemYChanged(YMatrix.SystemYChanged()) == nothing

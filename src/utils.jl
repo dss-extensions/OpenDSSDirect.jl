@@ -224,8 +224,8 @@ Defaults to the "examples" folder in the OpenDSSDirect package.
 
 Returns the downloaded folder name.
 """
-function Base.download(::Type{Examples}, folder::AbstractString=joinpath(@__DIR__, "../examples") |> abspath; force::Bool=false)
-    directory = folder |> normpath |> abspath
+function Base.download(::Type{Examples}, folder::AbstractString=joinpath(@__DIR__, "../examples"); force::Bool=false)
+    directory = abspath(normpath(folder))
     electricdss_tst_master_folder = joinpath(directory, "electricdss-tst-master")
     if force || !isdir(electricdss_tst_master_folder)
         url = "https://github.com/dss-extensions/electricdss-tst/archive/master.tar.gz"

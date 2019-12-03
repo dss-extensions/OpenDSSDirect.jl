@@ -28,9 +28,9 @@ module YMatrix
             res = sparse(ComplexF64[], ComplexF64[], ComplexF64[])
         else
             # return as (data, indices, indptr) that can fed into scipy.sparse.csc_matrix
-            data = Array(reinterpret(ComplexF64, unsafe_wrap(Array, cValsPtr[], Int(nNz[]) * 2) |> copy))
-            indices = unsafe_wrap(Array, RowIdxPtr[], Int(nNz[])) |> copy
-            indptr = unsafe_wrap(Array, ColPtr[], (Int(nBus[]) + 1)) |> copy
+            data = Array(reinterpret(ComplexF64, copy(unsafe_wrap(Array, cValsPtr[], Int(nNz[]) * 2))))
+            indices = copy(unsafe_wrap(Array, RowIdxPtr[], Int(nNz[])))
+            indptr = copy(unsafe_wrap(Array, ColPtr[], (Int(nBus[]) + 1)))
             res = SparseMatrixCSC(nBus[], nBus[], indptr .+ 1, indices .+ 1, data)
         end
 

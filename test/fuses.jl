@@ -1,6 +1,6 @@
 
 dir = init8500()
-fuses = joinpath(dir, "Fuses.dss") |> normpath
+fuses = normpath(joinpath(dir, "Fuses.dss"))
 OpenDSSDirect.Text.Command("Redirect $fuses")
 
 @testset "Fuses" begin

@@ -28,7 +28,7 @@ module Text
                 @warn "Result of running OpenDSS Command \"$v\" is: $(r[end])"
             end
         end
-        res = join(r, "\n") |> strip
+        res = strip(join(r, "\n"))
         return res
     end
 

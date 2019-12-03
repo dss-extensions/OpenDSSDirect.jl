@@ -12,7 +12,7 @@ function download(::Type{MacOS})
 
     url = "https://github.com/dss-extensions/dss_capi/releases/download/$(OPENDSS_VERSION)/dss_capi_$(OPENDSS_VERSION)_darwin_x64.tar.gz"
     @show url
-    filename = joinpath(@__DIR__, "dss_capi.tar.gz") |> normpath
+    filename = normpath(joinpath(@__DIR__, "dss_capi.tar.gz"))
     Base.download(url, filename)
 
     directory = normpath(@__DIR__)
@@ -20,8 +20,8 @@ function download(::Type{MacOS})
     rm(joinpath(@__DIR__, "dss_capi.tar.gz"), force=true)
 
     mkpath(joinpath(@__DIR__, "apple"))
-    cp(joinpath(@__DIR__, "dss_capi/lib/darwin_x64/libdss_capi_v7.dylib") |> normpath, joinpath(@__DIR__, "apple", "libdss_capi_v7.dylib") |> normpath, force=true)
-    cp(joinpath(@__DIR__, "dss_capi/lib/darwin_x64/libklusolve.dylib") |> normpath, joinpath(@__DIR__, "apple", "libklusolve.dylib") |> normpath, force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/darwin_x64/libdss_capi_v7.dylib")), normpath(joinpath(@__DIR__, "apple", "libdss_capi_v7.dylib")), force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/darwin_x64/libklusolve.dylib")), normpath(joinpath(@__DIR__, "apple", "libklusolve.dylib")), force=true)
     rm(joinpath(@__DIR__, "dss_capi"), force=true, recursive=true)
     println("Success")
 end
@@ -30,7 +30,7 @@ function download(::Type{Linux})
 
     url = "https://github.com/dss-extensions/dss_capi/releases/download/$(OPENDSS_VERSION)/dss_capi_$(OPENDSS_VERSION)_linux_x64.tar.gz"
     @show url
-    filename = joinpath(@__DIR__, "dss_capi.tar.gz") |> normpath
+    filename = normpath(joinpath(@__DIR__, "dss_capi.tar.gz"))
     Base.download(url, filename)
 
     directory = normpath(@__DIR__)
@@ -38,8 +38,8 @@ function download(::Type{Linux})
     rm(joinpath(@__DIR__, "dss_capi.tar.gz"), force=true)
 
     mkpath(joinpath(@__DIR__, "linux"))
-    cp(joinpath(@__DIR__, "dss_capi/lib/linux_x64/libdss_capi_v7.so") |> normpath, joinpath(@__DIR__, "linux", "libdss_capi_v7.so") |> normpath, force=true)
-    cp(joinpath(@__DIR__, "dss_capi/lib/linux_x64/libklusolve.so") |> normpath, joinpath(@__DIR__, "linux", "libklusolve.so") |> normpath, force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/linux_x64/libdss_capi_v7.so")), normpath(joinpath(@__DIR__, "linux", "libdss_capi_v7.so")), force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/linux_x64/libklusolve.so")), normpath(joinpath(@__DIR__, "linux", "libklusolve.so")), force=true)
     rm(joinpath(@__DIR__, "dss_capi"), force=true, recursive=true)
     println("Success")
 end
@@ -54,7 +54,7 @@ function download(::Type{Windows})
 
     url = "https://github.com/dss-extensions/dss_capi/releases/download/$(OPENDSS_VERSION)/dss_capi_$(OPENDSS_VERSION)_win_$(BIT).zip"
     @show url
-    filename = joinpath(@__DIR__, "dss_capi.zip") |> normpath
+    filename = normpath(joinpath(@__DIR__, "dss_capi.zip"))
     Base.download(url, filename)
 
     directory = normpath(@__DIR__)
@@ -71,8 +71,8 @@ function download(::Type{Windows})
     filename = joinpath(directory, basename(filename)[1:end-4])
 
     mkpath(joinpath(@__DIR__, "windows"))
-    cp(joinpath(@__DIR__, "dss_capi/lib/win_$(BIT)/dss_capi_v7.dll") |> normpath, joinpath(@__DIR__, "windows", "dss_capi_v7.dll") |> normpath, force=true)
-    cp(joinpath(@__DIR__, "dss_capi/lib/win_$(BIT)/libklusolve.dll") |> normpath, joinpath(@__DIR__, "windows", "libklusolve.dll") |> normpath, force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/win_$(BIT)/dss_capi_v7.dll")), normpath(joinpath(@__DIR__, "windows", "dss_capi_v7.dll")), force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/win_$(BIT)/libklusolve.dll")), normpath(joinpath(@__DIR__, "windows", "libklusolve.dll")), force=true)
     rm(joinpath(@__DIR__, "dss_capi"), force=true, recursive=true)
     println("Success")
 end
