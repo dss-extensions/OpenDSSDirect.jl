@@ -25,6 +25,15 @@ function get_string_array(func::Function)::Vector{String}
     ptr = Ref{Ptr{Cstring}}([])
     cnt = Vector{Cint}([0, 0])
     func(ptr, cnt)
+    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+    if (error_num != 0)
+        description = Utils.get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        throw(
+            Utils.OpenDSSDirectException(
+                "[ERROR $error_num] $description"
+            )
+        )
+    end
     data = Vector{String}([])
     for i in 1:cnt[1]
         p = unsafe_load(ptr[], i)
@@ -40,6 +49,15 @@ function get_int32_array(func::Function)::Vector{Int}
     ptr = Ref{Ptr{Cint}}([])
     cnt = Vector{Cint}([0, 0])
     func(ptr, cnt)
+    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+    if (error_num != 0)
+        description = Utils.get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        throw(
+            Utils.OpenDSSDirectException(
+                "[ERROR $error_num] $description"
+            )
+        )
+    end
     data = Vector{Int}([])
     for i in 1:cnt[1]
         push!(data, Int(unsafe_load(ptr[], i)))
@@ -52,6 +70,15 @@ function get_int8_array(func::Function)::Vector{Int8}
     ptr = Ref{Ptr{Int8}}([])
     cnt = Vector{Cint}([0, 0])
     func(ptr, cnt)
+    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+    if (error_num != 0)
+        description = Utils.get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        throw(
+            Utils.OpenDSSDirectException(
+                "[ERROR $error_num] $description"
+            )
+        )
+    end
     data = Vector{Int8}([])
     for i in 1:cnt[1]
         push!(data, unsafe_load(ptr[], i))
@@ -65,6 +92,15 @@ function get_float64_array(func::Function)::Vector{Float64}
     ptr = Ref{Ptr{Cdouble}}([])
     cnt = Vector{Cint}([0, 0])
     func(ptr, cnt)
+    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+    if (error_num != 0)
+        description = Utils.get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        throw(
+            Utils.OpenDSSDirectException(
+                "[ERROR $error_num] $description"
+            )
+        )
+    end
     data = Vector{Float64}([])
     for i in 1:cnt[1]
         push!(data, unsafe_load(ptr[], i))

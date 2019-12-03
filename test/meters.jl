@@ -29,7 +29,7 @@ OpenDSSDirect.Text.Command("""
 # This is invalid, should end in error
 @test_throws OpenDSSDirect.Utils.OpenDSSDirectException Meters.NumSectionCustomers() == 0
 
-@test Meters.AllBranchesInZone() == []
+@test_throws OpenDSSDirect.Utils.OpenDSSDirectException Meters.AllBranchesInZone() == []
 
 OpenDSSDirect.Text.Command("MakeBusList")
 
