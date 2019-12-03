@@ -190,8 +190,13 @@ function unzip(::Type{<:BSD}, filename, directory)
 end
 
 function unzip(::Type{Windows}, filename, directory)
-    home = (Base.VERSION < v"0.7-") ? JULIA_HOME : Sys.BINDIR
-    @assert success(`$home/7z x $filename -y -o$directory`) "Unable to extract $filename to $directory"
+    const home = (Base.VERSION < v"0.7-") ? JULIA_HOME : Sys.BINDIR
+    if Base.VERSION < "1.3.0"
+        const bin7z = "$home/7z"
+    else
+        const bin7z = "$(joinpath(home, "..", "libexec", "7z"))"
+    end
+    @assert success(`$bin7z x $filename -y -o$directory`) "Unable to extract $filename to $directory"
 end
 
 end
