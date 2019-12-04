@@ -25,6 +25,15 @@ function get_string_array(func::Function)::Vector{String}
     ptr = Ref{Ptr{Cstring}}([])
     cnt = Vector{Cint}([0, 0])
     func(ptr, cnt)
+    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+    if (error_num != 0)
+        description = Utils.get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        throw(
+            Utils.OpenDSSDirectException(
+                "[ERROR $error_num] $description"
+            )
+        )
+    end
     data = Vector{String}([])
     for i in 1:cnt[1]
         p = unsafe_load(ptr[], i)
@@ -40,6 +49,15 @@ function get_int32_array(func::Function)::Vector{Int}
     ptr = Ref{Ptr{Cint}}([])
     cnt = Vector{Cint}([0, 0])
     func(ptr, cnt)
+    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+    if (error_num != 0)
+        description = Utils.get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        throw(
+            Utils.OpenDSSDirectException(
+                "[ERROR $error_num] $description"
+            )
+        )
+    end
     data = Vector{Int}([])
     for i in 1:cnt[1]
         push!(data, Int(unsafe_load(ptr[], i)))
@@ -52,6 +70,15 @@ function get_int8_array(func::Function)::Vector{Int8}
     ptr = Ref{Ptr{Int8}}([])
     cnt = Vector{Cint}([0, 0])
     func(ptr, cnt)
+    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+    if (error_num != 0)
+        description = Utils.get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        throw(
+            Utils.OpenDSSDirectException(
+                "[ERROR $error_num] $description"
+            )
+        )
+    end
     data = Vector{Int8}([])
     for i in 1:cnt[1]
         push!(data, unsafe_load(ptr[], i))
@@ -65,6 +92,15 @@ function get_float64_array(func::Function)::Vector{Float64}
     ptr = Ref{Ptr{Cdouble}}([])
     cnt = Vector{Cint}([0, 0])
     func(ptr, cnt)
+    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+    if (error_num != 0)
+        description = Utils.get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        throw(
+            Utils.OpenDSSDirectException(
+                "[ERROR $error_num] $description"
+            )
+        )
+    end
     data = Vector{Float64}([])
     for i in 1:cnt[1]
         push!(data, unsafe_load(ptr[], i))
@@ -120,8 +156,28 @@ function prepare_int32_array(value::Vector{Int64})
     prepare_int32_array(Vector{Int32}(value))
 end
 
+macro checked(expr)
+    @assert expr.head == :call "Can only use @checked on function calls"
+    @assert ( expr.args[1].head == :(.) ) && ( expr.args[1].args[1] == :Lib) "Can only use @checked on Lib.\$function"
 
-struct OpenDSSDirectException <: Exception end
+    return esc(quote
+        ans = $(expr)
+        error_num = Lib.Error_Get_Number()
+        if (error_num != 0)
+            description = Utils.get_string(Lib.Error_Get_Description())
+            throw(
+                Utils.OpenDSSDirectException(
+                    "[ERROR $error_num] $description"
+                )
+            )
+        end
+        ans
+    end)
+end
+
+struct OpenDSSDirectException <: Exception
+    msg::String
+end
 
 """
 Return a column-format `NamedTuple` of all attributes of the given Module.
@@ -168,8 +224,8 @@ Defaults to the "examples" folder in the OpenDSSDirect package.
 
 Returns the downloaded folder name.
 """
-function Base.download(::Type{Examples}, folder::AbstractString=joinpath(@__DIR__, "../examples") |> abspath; force::Bool=false)
-    directory = folder |> normpath |> abspath
+function Base.download(::Type{Examples}, folder::AbstractString=joinpath(@__DIR__, "../examples"); force::Bool=false)
+    directory = abspath(normpath(folder))
     electricdss_tst_master_folder = joinpath(directory, "electricdss-tst-master")
     if force || !isdir(electricdss_tst_master_folder)
         url = "https://github.com/dss-extensions/electricdss-tst/archive/master.tar.gz"

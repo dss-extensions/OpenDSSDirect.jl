@@ -22,7 +22,7 @@ module Element
 
     """Number of Properties for the active DSS object."""
     function NumProperties()::Int
-        return Lib.DSSElement_Get_NumProperties()
+        return Utils.@checked Lib.DSSElement_Get_NumProperties()
     end
 
 end

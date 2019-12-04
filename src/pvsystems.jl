@@ -17,47 +17,47 @@ module PVsystems
 
     """Number of PVSystems"""
     function Count()::Int
-        return Lib.PVSystems_Get_Count()
+        return Utils.@checked Lib.PVSystems_Get_Count()
     end
 
     """Set first PVSystem active; returns 0 if none."""
     function First()::Int
-        return Lib.PVSystems_Get_First()
+        return Utils.@checked Lib.PVSystems_Get_First()
     end
 
     """Present value of the Irradiance property in W/sq-m (Getter)"""
     function Irradiance()::Float64
-        return Lib.PVSystems_Get_Irradiance()
+        return Utils.@checked Lib.PVSystems_Get_Irradiance()
     end
 
     """Present value of the Irradiance property in W/sq-m (Setter)"""
     function Irradiance(Value::Float64)
-        Lib.PVSystems_Set_Irradiance(Value)
+        Utils.@checked Lib.PVSystems_Set_Irradiance(Value)
     end
 
     """Name of the active PVSystem (Getter)"""
     function Name()::String
-        return Utils.get_string(Lib.PVSystems_Get_Name())
+        return Utils.get_string(Utils.@checked Lib.PVSystems_Get_Name())
     end
 
     """Name of the active PVSystem (Setter)"""
     function Name(Value::String)
-        Lib.PVSystems_Set_Name(Cstring(pointer(Value)))
+        Utils.@checked Lib.PVSystems_Set_Name(Cstring(pointer(Value)))
     end
 
     """Sets next PVSystem active; returns 0 if no more."""
     function Next()::Int
-        return Lib.PVSystems_Get_Next()
+        return Utils.@checked Lib.PVSystems_Get_Next()
     end
 
     """Power factor (Getter)"""
     function pf()::Float64
-        return Lib.PVSystems_Get_PF()
+        return Utils.@checked Lib.PVSystems_Get_PF()
     end
 
     """Power factor (Setter)"""
     function pf(Value::Float64)
-        Lib.PVSystems_Set_PF(Value)
+        Utils.@checked Lib.PVSystems_Set_PF(Value)
     end
 
     """Variant Array of PVSYSTEM energy meter register names"""
@@ -72,37 +72,37 @@ module PVsystems
 
     """Active PVSystem by index;  1..Count (Getter)"""
     function Idx()::Int
-        return Lib.PVSystems_Get_idx()
+        return Utils.@checked Lib.PVSystems_Get_idx()
     end
 
     """Active PVSystem by index;  1..Count (Setter)"""
     function Idx(Value::Int)
-        Lib.PVSystems_Set_idx(Value)
+        Utils.@checked Lib.PVSystems_Set_idx(Value)
     end
 
     """Rated kVA of the PVSystem (Getter)"""
     function kVARated()::Float64
-        return Lib.PVSystems_Get_kVArated()
+        return Utils.@checked Lib.PVSystems_Get_kVArated()
     end
 
     """Rated kVA of the PVSystem (Setter)"""
     function kVARated(Value::Float64)
-        Lib.PVSystems_Set_kVArated(Value)
+        Utils.@checked Lib.PVSystems_Set_kVArated(Value)
     end
 
     """get kW output"""
     function kW()::Float64
-        return Lib.PVSystems_Get_kW()
+        return Utils.@checked Lib.PVSystems_Get_kW()
     end
 
     """kvar value (Getter)"""
     function kvar()::Float64
-        return Lib.PVSystems_Get_kvar()
+        return Utils.@checked Lib.PVSystems_Get_kvar()
     end
 
     """kvar value (Setter)"""
     function kvar(Value::Float64)
-        Lib.PVSystems_Set_kvar(Value)
+        Utils.@checked Lib.PVSystems_Set_kvar(Value)
     end
 
 end

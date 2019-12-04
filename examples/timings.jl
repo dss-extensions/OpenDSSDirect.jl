@@ -1,6 +1,6 @@
 using OpenDSSDirect
 
-filename = joinpath(@__DIR__, "../examples/8500-Node/Master.dss") |> abspath
+filename = abspath(joinpath(@__DIR__, "../examples/8500-Node/Master.dss"))
 
 OpenDSSDirect.Text.Command("clear")
 OpenDSSDirect.Text.Command("redirect $filename")

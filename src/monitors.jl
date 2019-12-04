@@ -17,39 +17,39 @@ module Monitors
     end
 
     function Process()
-        Lib.Monitors_Process()
+        Utils.@checked Lib.Monitors_Process()
     end
 
     function ProcessAll()
-        Lib.Monitors_ProcessAll()
+        Utils.@checked Lib.Monitors_ProcessAll()
     end
 
     function Reset()
-        Lib.Monitors_Reset()
+        Utils.@checked Lib.Monitors_Reset()
     end
 
     function ResetAll()
-        Lib.Monitors_ResetAll()
+        Utils.@checked Lib.Monitors_ResetAll()
     end
 
     function Sample()
-        Lib.Monitors_Sample()
+        Utils.@checked Lib.Monitors_Sample()
     end
 
     function SampleAll()
-        Lib.Monitors_SampleAll()
+        Utils.@checked Lib.Monitors_SampleAll()
     end
 
     function Save()
-        Lib.Monitors_Save()
+        Utils.@checked Lib.Monitors_Save()
     end
 
     function SaveAll()
-        Lib.Monitors_SaveAll()
+        Utils.@checked Lib.Monitors_SaveAll()
     end
 
     function Show()
-        Lib.Monitors_Show()
+        Utils.@checked Lib.Monitors_Show()
     end
 
     """(read-only) Array of all Monitor Names"""
@@ -69,7 +69,7 @@ module Monitors
 
     """(read-only) Number of Monitors"""
     function Count()::Int
-        return Lib.Monitors_Get_Count()
+        return Utils.@checked Lib.Monitors_Get_Count()
     end
 
     """Full object name of element being monitored."""
@@ -80,22 +80,22 @@ module Monitors
 
     """Full object name of element being monitored."""
     function Element(Value::String)
-        Lib.Monitors_Set_Element(Cstring(pointer(Value)))
+        Utils.@checked Lib.Monitors_Set_Element(Cstring(pointer(Value)))
     end
 
     """(read-only) Name of CSV file associated with active Monitor."""
     function FileName()::String
-        return Utils.get_string(Lib.Monitors_Get_FileName())
+        return Utils.get_string(Utils.@checked Lib.Monitors_Get_FileName())
     end
 
     """(read-only) Monitor File Version (integer)"""
     function FileVersion()::Int
-        return Lib.Monitors_Get_FileVersion()
+        return Utils.@checked Lib.Monitors_Get_FileVersion()
     end
 
     """(read-only) Sets the first Monitor active.  Returns 0 if no monitors."""
     function First()::Int
-        return Lib.Monitors_Get_First()
+        return Utils.@checked Lib.Monitors_Get_First()
     end
 
     """(read-only) Header string;  Array of strings containing Channel names"""
@@ -105,53 +105,53 @@ module Monitors
 
     """Set Monitor mode (bitmask integer - see DSS Help)"""
     function Mode()::Lib.MonitorModes
-        return Lib.Monitors_Get_Mode()
+        return Utils.@checked Lib.Monitors_Get_Mode()
     end
 
     """Set Monitor mode (bitmask integer - see DSS Help)"""
     function Mode(Value::Union{Int, Lib.MonitorModes})
         Value = convert(Lib.MonitorModes, Value)
-        Lib.Monitors_Set_Mode(Value)
+        Utils.@checked Lib.Monitors_Set_Mode(Value)
     end
 
     """Sets the active Monitor object by name"""
     function Name()::String
-        return Utils.get_string(Lib.Monitors_Get_Name())
+        return Utils.get_string(Utils.@checked Lib.Monitors_Get_Name())
     end
 
     """Sets the active Monitor object by name"""
     function Name(Value::String)
-        Lib.Monitors_Set_Name(Cstring(pointer(Value)))
+        Utils.@checked Lib.Monitors_Set_Name(Cstring(pointer(Value)))
     end
 
     """(read-only) Sets next monitor active.  Returns 0 if no more."""
     function Next()::Int
-        return Lib.Monitors_Get_Next()
+        return Utils.@checked Lib.Monitors_Get_Next()
     end
 
     """(read-only) Number of Channels in the active Monitor"""
     function NumChannels()::Int
-        return Lib.Monitors_Get_NumChannels()
+        return Utils.@checked Lib.Monitors_Get_NumChannels()
     end
 
     """(read-only) Size of each record in ByteStream (Integer). Same as NumChannels."""
     function RecordSize()::Int
-        return Lib.Monitors_Get_RecordSize()
+        return Utils.@checked Lib.Monitors_Get_RecordSize()
     end
 
     """(read-only) Number of Samples in Monitor at Present"""
     function SampleCount()::Int
-        return Lib.Monitors_Get_SampleCount()
+        return Utils.@checked Lib.Monitors_Get_SampleCount()
     end
 
     """Terminal number of element being monitored."""
     function Terminal()::Int
-        return Lib.Monitors_Get_Terminal()
+        return Utils.@checked Lib.Monitors_Get_Terminal()
     end
 
     """Terminal number of element being monitored."""
     function Terminal(Value::Int)
-        Lib.Monitors_Set_Terminal(Value)
+        Utils.@checked Lib.Monitors_Set_Terminal(Value)
     end
 
     """(read-only) Array of doubles containing frequency values for harmonics mode solutions; Empty for time mode solutions (use dblHour)"""

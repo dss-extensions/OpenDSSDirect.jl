@@ -27,11 +27,9 @@ OpenDSSDirect.Text.Command("""
 @test Meters.DIFilesAreOpen() == 0
 
 # This is invalid, should end in error
-@test Meters.NumSectionCustomers() == 0
-@test Error.Number() != 0
+@test_throws OpenDSSDirect.Utils.OpenDSSDirectException Meters.NumSectionCustomers() == 0
 
-@test Meters.AllBranchesInZone() == []
-@test Error.Number() != 0
+@test_throws OpenDSSDirect.Utils.OpenDSSDirectException Meters.AllBranchesInZone() == []
 
 OpenDSSDirect.Text.Command("MakeBusList")
 
@@ -83,7 +81,6 @@ OpenDSSDirect.Text.Command("MakeBusList")
 @test Meters.CalcCurrent(Meters.CalcCurrent()) == nothing
 @test 1 + Meters.AllocFactors()[1] ≋ 1 + 0.0
 @test Meters.AllocFactors(Meters.AllocFactors()) == nothing
-
 
 arr = String[]
 for i in OpenDSSDirect.EachMember(Meters); push!(arr, Meters.Name()); end

@@ -12,17 +12,17 @@ module Bus
 
     """Get unique node number"""
     function GetUniqueNodeNumber(StartNumber::Int)::Int
-        return Lib.Bus_GetUniqueNodeNumber(StartNumber)
+        return Utils.@checked Lib.Bus_GetUniqueNodeNumber(StartNumber)
     end
 
     """Check if DoZscRefresh is set"""
     function ZscRefresh()::Bool
-        return Lib.Bus_ZscRefresh() != 0
+        return Utils.@checked(Lib.Bus_ZscRefresh()) != 0
     end
 
     """Indicates whether a coordinate has been defined for this bus"""
     function Coorddefined()::Bool
-        return Lib.Bus_Get_Coorddefined() != 0
+        return Utils.@checked(Lib.Bus_Get_Coorddefined()) != 0
     end
 
     """Complex Double array of Sequence Voltages (0, 1, 2) at this Bus."""
@@ -32,22 +32,22 @@ module Bus
 
     """Accumulated customer outage durations"""
     function Cust_Duration()::Float64
-        return Lib.Bus_Get_Cust_Duration()
+        return Utils.@checked Lib.Bus_Get_Cust_Duration()
     end
 
     """Annual number of customer-interruptions from this bus"""
     function Cust_Interrupts()::Float64
-        return Lib.Bus_Get_Cust_Interrupts()
+        return Utils.@checked Lib.Bus_Get_Cust_Interrupts()
     end
 
     """Distance from energymeter (if non-zero)"""
     function Distance()::Float64
-        return Lib.Bus_Get_Distance()
+        return Utils.@checked Lib.Bus_Get_Distance()
     end
 
     """Average interruption duration, hr."""
     function Int_Duration()::Float64
-        return Lib.Bus_Get_Int_Duration()
+        return Utils.@checked Lib.Bus_Get_Int_Duration()
     end
 
     """Short circuit currents at bus; Complex Array."""
@@ -57,22 +57,22 @@ module Bus
 
     """Accumulated failure rate downstream from this bus; faults per year"""
     function Lambda()::Float64
-        return Lib.Bus_Get_Lambda()
+        return Utils.@checked Lib.Bus_Get_Lambda()
     end
 
     """Total numbers of customers served downline from this bus"""
     function N_Customers()::Int
-        return Lib.Bus_Get_N_Customers()
+        return Utils.@checked Lib.Bus_Get_N_Customers()
     end
 
     """Number of interruptions this bus per year"""
     function N_interrupts()::Float64
-        return Lib.Bus_Get_N_interrupts()
+        return Utils.@checked Lib.Bus_Get_N_interrupts()
     end
 
     """Name of Bus"""
     function Name()::String
-        return Utils.get_string(Lib.Bus_Get_Name())
+        return Utils.get_string(Utils.@checked Lib.Bus_Get_Name())
     end
 
     """Integer Array of Node Numbers defined at the bus in same order as the voltages."""
@@ -82,12 +82,12 @@ module Bus
 
     """Number of Nodes this bus."""
     function NumNodes()::Int
-        return Lib.Bus_Get_NumNodes()
+        return Utils.@checked Lib.Bus_Get_NumNodes()
     end
 
     """Integer ID of the feeder section in which this bus is located."""
     function SectionID()::Int
-        return Lib.Bus_Get_SectionID()
+        return Utils.@checked Lib.Bus_Get_SectionID()
     end
 
     """Double Array of sequence voltages at this bus."""
@@ -97,7 +97,7 @@ module Bus
 
     """Total length of line downline from this bus, in miles. For recloser siting algorithm."""
     function TotalMiles()::Float64
-        return Lib.Bus_Get_TotalMiles()
+        return Utils.@checked Lib.Bus_Get_TotalMiles()
     end
 
     """For 2- and 3-phase buses, returns array of complex numbers representing L-L voltages in volts. Returns -1.0 for 1-phase bus. If more than 3 phases, returns only first 3."""
@@ -142,7 +142,7 @@ module Bus
 
     """Base voltage at bus in kV"""
     function kVBase()::Float64
-        return Lib.Bus_Get_kVBase()
+        return Utils.@checked Lib.Bus_Get_kVBase()
     end
 
     """Returns Complex array of pu L-L voltages for 2- and 3-phase buses. Returns -1.0 for 1-phase bus. If more than 3 phases, returns only 3 phases."""
@@ -162,22 +162,22 @@ module Bus
 
     """X Coordinate for bus (double) (Getter)"""
     function X()::Float64
-        return Lib.Bus_Get_x()
+        return Utils.@checked Lib.Bus_Get_x()
     end
 
     """X Coordinate for bus (double) (Setter)"""
     function X(Value::Float64)
-        Lib.Bus_Set_x(Value)
+        Utils.@checked Lib.Bus_Set_x(Value)
     end
 
     """Y coordinate for bus (double) (Getter)"""
     function Y()::Float64
-        return Lib.Bus_Get_y()
+        return Utils.@checked Lib.Bus_Get_y()
     end
 
     """Y coordinate for bus (double)"""
     function Y(Value::Float64)
-        Lib.Bus_Set_y(Value)
+        Utils.@checked Lib.Bus_Set_y(Value)
     end
 
 end

@@ -7,7 +7,7 @@ const DSS = OpenDSSDirect
 
 @testset "basicsX" begin
 
-    filename = string("$(dirname(@__FILE__))/../examples/8500-Node/Master.dss" |> normpath)
+    filename = string(normpath("$(dirname(@__FILE__))/../examples/8500-Node/Master.dss"))
     OpenDSSDirect.Text.Command("""
         clear
         redirect $filename
