@@ -7,3 +7,4 @@ docs/site/
 deps/*
 !deps/build.jl
 examples/electricdss-tst-master/*
+Manifest.toml
