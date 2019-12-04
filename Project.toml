@@ -1,7 +1,7 @@
 name = "OpenDSSDirect"
 uuid = "a8b11937-1041-50f2-9818-136bb7a8fb06"
 authors = ["Tom Short <tshort.rlists@gmail.com>"]
-version = "0.6.0"
+version = "0.6.1"
 
 [deps]
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"

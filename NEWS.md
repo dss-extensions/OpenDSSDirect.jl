@@ -1,3 +1,8 @@
+### OpenDSSDirect v0.6.1 Release Notes
+
+- Translate OpenDSS Errors to Julia Exceptions
+- Change docstringextensions upper bound
+
 ### OpenDSSDirect v0.6.0 Release Notes
 
 - Support Julia 1.3.x with 7z fix
