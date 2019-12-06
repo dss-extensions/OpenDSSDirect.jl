@@ -1,119 +1,118 @@
 module SwtControls
 
-    import ..Lib
-    import ..Utils
-    import ..TypedDocStringExtensions
+using DocStringExtensions
 
-    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
-        """
-        $(TypedDocStringExtensions.FULLSIGNATURES)
-        $(TypedDocStringExtensions.DOCSTRING)
-        """
+using ..Lib
+using ..Utils
 
-    """Reset SWT controls"""
-    function Reset()
-        Utils.@checked Lib.SwtControls_Reset()
-    end
+@template (FUNCTIONS, METHODS) = """
+                                 $(TYPEDSIGNATURES)
+                                 $(DOCSTRING)
+                                 """
 
-    """Open or Close the switch. No effect if switch is locked.  However, Reset removes any lock and then closes the switch (shelf state). (Getter)"""
-    function Action()::Int
-        return Utils.@checked Lib.SwtControls_Get_Action()
-    end
+"""Reset SWT controls"""
+function Reset()
+    @checked Lib.SwtControls_Reset()
+end
 
-    """Open or Close the switch. No effect if switch is locked.  However, Reset removes any lock and then closes the switch (shelf state). (Setter)"""
-    function Action(Value::Int)
-        Utils.@checked Lib.SwtControls_Set_Action(Value)
-    end
+"""Open or Close the switch. No effect if switch is locked.  However, Reset removes any lock and then closes the switch (shelf state). (Getter)"""
+function Action()::Int
+    return @checked Lib.SwtControls_Get_Action()
+end
 
-    """Array of strings with all SwtControl names in the active circuit."""
-    function AllNames()::Vector{String}
-        return Utils.get_string_array(Lib.SwtControls_Get_AllNames)
-    end
+"""Open or Close the switch. No effect if switch is locked.  However, Reset removes any lock and then closes the switch (shelf state). (Setter)"""
+function Action(Value::Int)
+    @checked Lib.SwtControls_Set_Action(Value)
+end
 
-    function Count()::Int
-        return Utils.@checked Lib.SwtControls_Get_Count()
-    end
+"""Array of strings with all SwtControl names in the active circuit."""
+function AllNames()::Vector{String}
+    return get_string_array(Lib.SwtControls_Get_AllNames)
+end
 
-    """Time delay [s] betwen arming and opening or closing the switch.  Control may reset before actually operating the switch. (Getter)"""
-    function Delay()::Float64
-        return Utils.@checked Lib.SwtControls_Get_Delay()
-    end
+function Count()::Int
+    return @checked Lib.SwtControls_Get_Count()
+end
 
-    """Time delay [s] betwen arming and opening or closing the switch.  Control may reset before actually operating the switch. (Setter)"""
-    function Delay(Value::Float64)
-        Utils.@checked Lib.SwtControls_Set_Delay(Value)
-    end
+"""Time delay [s] betwen arming and opening or closing the switch.  Control may reset before actually operating the switch. (Getter)"""
+function Delay()::Float64
+    return @checked Lib.SwtControls_Get_Delay()
+end
 
-    """Sets the first SwtControl active. Returns 0 if no more."""
-    function First()::Int
-        return Utils.@checked Lib.SwtControls_Get_First()
-    end
+"""Time delay [s] betwen arming and opening or closing the switch.  Control may reset before actually operating the switch. (Setter)"""
+function Delay(Value::Float64)
+    @checked Lib.SwtControls_Set_Delay(Value)
+end
 
-    """The lock prevents both manual and automatic switch operation. (Getter)"""
-    function IsLocked()::Bool
-        return Utils.@checked(Lib.SwtControls_Get_IsLocked()) != 0
-    end
+"""Sets the first SwtControl active. Returns 0 if no more."""
+function First()::Int
+    return @checked Lib.SwtControls_Get_First()
+end
 
-    """The lock prevents both manual and automatic switch operation. (Setter)"""
-    function IsLocked(Value::Bool)
-        Utils.@checked Lib.SwtControls_Set_IsLocked(Value ? 1 : 0)
-    end
+"""The lock prevents both manual and automatic switch operation. (Getter)"""
+function IsLocked()::Bool
+    return @checked(Lib.SwtControls_Get_IsLocked()) != 0
+end
 
-    """Sets a SwtControl active by Name. (Getter)"""
-    function Name()::String
-        return Utils.get_string(Utils.@checked Lib.SwtControls_Get_Name())
-    end
+"""The lock prevents both manual and automatic switch operation. (Setter)"""
+function IsLocked(Value::Bool)
+    @checked Lib.SwtControls_Set_IsLocked(Value ? 1 : 0)
+end
 
-    """Sets a SwtControl active by Name. (Setter)"""
-    function Name(Value::String)
-        Utils.@checked Lib.SwtControls_Set_Name(Value)
-    end
+"""Sets a SwtControl active by Name. (Getter)"""
+function Name()::String
+    return get_string(@checked Lib.SwtControls_Get_Name())
+end
 
-    """Sets the next SwtControl active. Returns 0 if no more."""
-    function Next()::Int
-        return Utils.@checked Lib.SwtControls_Get_Next()
-    end
+"""Sets a SwtControl active by Name. (Setter)"""
+function Name(Value::String)
+    @checked Lib.SwtControls_Set_Name(Value)
+end
 
-    """Normal state of switch (Getter)"""
-    function NormalState()::Int
-        return Utils.@checked Lib.SwtControls_Get_NormalState()
-    end
+"""Sets the next SwtControl active. Returns 0 if no more."""
+function Next()::Int
+    return @checked Lib.SwtControls_Get_Next()
+end
 
-    """Normal state of switch (Setter)"""
-    function NormalState(Value::Int)
-        Utils.@checked Lib.SwtControls_Set_NormalState(Value)
-    end
+"""Normal state of switch (Getter)"""
+function NormalState()::Int
+    return @checked Lib.SwtControls_Get_NormalState()
+end
 
-    """State of switch (Getter)"""
-    function State()::Int
-        return Utils.@checked Lib.SwtControls_Get_State()
-    end
+"""Normal state of switch (Setter)"""
+function NormalState(Value::Int)
+    @checked Lib.SwtControls_Set_NormalState(Value)
+end
 
-    """State of switch (Setter)"""
-    function State(Value::Int)
-        Utils.@checked Lib.SwtControls_Set_State(Value)
-    end
+"""State of switch (Getter)"""
+function State()::Int
+    return @checked Lib.SwtControls_Get_State()
+end
 
-    """Full name of the switched element. (Getter)"""
-    function SwitchedObj()::String
-        return Utils.get_string(Utils.@checked Lib.SwtControls_Get_SwitchedObj())
-    end
+"""State of switch (Setter)"""
+function State(Value::Int)
+    @checked Lib.SwtControls_Set_State(Value)
+end
 
-    """Full name of the switched element. (Setter)"""
-    function SwitchedObj(Value::String)
-        Utils.@checked Lib.SwtControls_Set_SwitchedObj(Value)
-    end
+"""Full name of the switched element. (Getter)"""
+function SwitchedObj()::String
+    return get_string(@checked Lib.SwtControls_Get_SwitchedObj())
+end
 
-    """Terminal number where the switch is located on the SwitchedObj (Getter)"""
-    function SwitchedTerm()::Int
-        return Utils.@checked Lib.SwtControls_Get_SwitchedTerm()
-    end
+"""Full name of the switched element. (Setter)"""
+function SwitchedObj(Value::String)
+    @checked Lib.SwtControls_Set_SwitchedObj(Value)
+end
 
-    """Terminal number where the switch is located on the SwitchedObj (Setter)"""
-    function SwitchedTerm(Value::Int)
-        Utils.@checked Lib.SwtControls_Set_SwitchedTerm(Value)
+"""Terminal number where the switch is located on the SwitchedObj (Getter)"""
+function SwitchedTerm()::Int
+    return @checked Lib.SwtControls_Get_SwitchedTerm()
+end
 
-    end
+"""Terminal number where the switch is located on the SwitchedObj (Setter)"""
+function SwitchedTerm(Value::Int)
+    @checked Lib.SwtControls_Set_SwitchedTerm(Value)
 
 end
 
+end

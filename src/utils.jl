@@ -1,8 +1,5 @@
 module Utils
 
-import ..TypedDocStringExtensions
-const TDSE = TypedDocStringExtensions
-
 using ..OpenDSSDirect
 
 export get_string
@@ -16,6 +13,8 @@ export prepare_float64_array
 export prepare_int32_array
 export prepare_string_array
 export OpenDSSDirectException
+export Examples
+export @checked
 
 function get_string(cstring::Cstring)::String
     return unsafe_string(cstring)
@@ -27,9 +26,9 @@ function get_string_array(func::Function)::Vector{String}
     func(ptr, cnt)
     error_num = OpenDSSDirect.Lib.Error_Get_Number()
     if (error_num != 0)
-        description = Utils.get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        description = get_string(OpenDSSDirect.Lib.Error_Get_Description())
         throw(
-            Utils.OpenDSSDirectException(
+            OpenDSSDirectException(
                 "[ERROR $error_num] $description"
             )
         )
@@ -51,9 +50,9 @@ function get_int32_array(func::Function)::Vector{Int}
     func(ptr, cnt)
     error_num = OpenDSSDirect.Lib.Error_Get_Number()
     if (error_num != 0)
-        description = Utils.get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        description = get_string(OpenDSSDirect.Lib.Error_Get_Description())
         throw(
-            Utils.OpenDSSDirectException(
+            OpenDSSDirectException(
                 "[ERROR $error_num] $description"
             )
         )
@@ -72,9 +71,9 @@ function get_int8_array(func::Function)::Vector{Int8}
     func(ptr, cnt)
     error_num = OpenDSSDirect.Lib.Error_Get_Number()
     if (error_num != 0)
-        description = Utils.get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        description = get_string(OpenDSSDirect.Lib.Error_Get_Description())
         throw(
-            Utils.OpenDSSDirectException(
+            OpenDSSDirectException(
                 "[ERROR $error_num] $description"
             )
         )
@@ -94,9 +93,9 @@ function get_float64_array(func::Function)::Vector{Float64}
     func(ptr, cnt)
     error_num = OpenDSSDirect.Lib.Error_Get_Number()
     if (error_num != 0)
-        description = Utils.get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        description = get_string(OpenDSSDirect.Lib.Error_Get_Description())
         throw(
-            Utils.OpenDSSDirectException(
+            OpenDSSDirectException(
                 "[ERROR $error_num] $description"
             )
         )
@@ -164,9 +163,9 @@ macro checked(expr)
         ans = $(expr)
         error_num = Lib.Error_Get_Number()
         if (error_num != 0)
-            description = Utils.get_string(Lib.Error_Get_Description())
+            description = get_string(Lib.Error_Get_Description())
             throw(
-                Utils.OpenDSSDirectException(
+                OpenDSSDirectException(
                     "[ERROR $error_num] $description"
                 )
             )
@@ -184,7 +183,7 @@ Return a column-format `NamedTuple` of all attributes of the given Module.
 
 Example:
 
-    nt = OpenDSSDirect.Utils.table(Loads)
+    nt = OpenDSSDirect.table(Loads)
     nt.kW
     df = DataFrame(nt)
 """
@@ -218,7 +217,6 @@ end
 abstract type Examples end
 
 """
-$(TDSE.FULLSIGNATURES)
 Download examples into a "electricdss-tst-master" folder in given argument path.
 Defaults to the "examples" folder in the OpenDSSDirect package.
 

@@ -32,7 +32,7 @@ init8500()
 @test Settings.AutoBusList() == ""
 @test Settings.AutoBusList(Settings.AutoBusList()) == nothing
 @test Settings.PriceCurve() == ""
-@test_throws OpenDSSDirect.Utils.OpenDSSDirectException Settings.PriceCurve(Settings.PriceCurve()) == nothing
+@test_throws OpenDSSDirect.OpenDSSDirectException Settings.PriceCurve(Settings.PriceCurve()) == nothing
 @test Settings.UERegs() == [10]
 @test Settings.UERegs(Settings.UERegs()) == nothing
 @test Settings.LossRegs() == [13]
@@ -41,4 +41,3 @@ init8500()
 @test Settings.VoltageBases(Settings.VoltageBases()) == nothing
 
 end # testset
-

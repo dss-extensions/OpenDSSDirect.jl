@@ -1,49 +1,48 @@
 module Executive
 
-    import ..Lib
-    import ..Utils
-    import ..TypedDocStringExtensions
+using DocStringExtensions
 
-    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
-        """
-        $(TypedDocStringExtensions.FULLSIGNATURES)
-        $(TypedDocStringExtensions.DOCSTRING)
-        """
+using ..Lib
+using ..Utils
 
-    """Get i-th command"""
-    function Command(i::Int)::String
-        return Utils.get_string(Utils.@checked Lib.DSS_Executive_Get_Command(i))
-    end
+@template (FUNCTIONS, METHODS) = """
+                                 $(TYPEDSIGNATURES)
+                                 $(DOCSTRING)
+                                 """
 
-    """Get help string for i-th command"""
-    function CommandHelp(i::Int)::String
-        return Utils.get_string(Utils.@checked Lib.DSS_Executive_Get_CommandHelp(i))
-    end
-
-    """Get i-th option"""
-    function Option(i::Int)::String
-        return Utils.get_string(Utils.@checked Lib.DSS_Executive_Get_Option(i))
-    end
-
-    """Get help string for i-th option"""
-    function OptionHelp(i::Int)::String
-        return Utils.get_string(Utils.@checked Lib.DSS_Executive_Get_OptionHelp(i))
-    end
-
-    """Get present value of i-th option"""
-    function OptionValue(i::Int)::String
-        return Utils.get_string(Utils.@checked Lib.DSS_Executive_Get_OptionValue(i))
-    end
-
-    """Number of DSS Executive Commands"""
-    function NumCommands()::Int
-        return Utils.@checked Lib.DSS_Executive_Get_NumCommands()
-    end
-
-    """Number of DSS Executive Options"""
-    function NumOptions()::Int
-        return Utils.@checked Lib.DSS_Executive_Get_NumOptions()
-    end
-
+"""Get i-th command"""
+function Command(i::Int)::String
+    return get_string(@checked Lib.DSS_Executive_Get_Command(i))
 end
 
+"""Get help string for i-th command"""
+function CommandHelp(i::Int)::String
+    return get_string(@checked Lib.DSS_Executive_Get_CommandHelp(i))
+end
+
+"""Get i-th option"""
+function Option(i::Int)::String
+    return get_string(@checked Lib.DSS_Executive_Get_Option(i))
+end
+
+"""Get help string for i-th option"""
+function OptionHelp(i::Int)::String
+    return get_string(@checked Lib.DSS_Executive_Get_OptionHelp(i))
+end
+
+"""Get present value of i-th option"""
+function OptionValue(i::Int)::String
+    return get_string(@checked Lib.DSS_Executive_Get_OptionValue(i))
+end
+
+"""Number of DSS Executive Commands"""
+function NumCommands()::Int
+    return @checked Lib.DSS_Executive_Get_NumCommands()
+end
+
+"""Number of DSS Executive Options"""
+function NumOptions()::Int
+    return @checked Lib.DSS_Executive_Get_NumOptions()
+end
+
+end

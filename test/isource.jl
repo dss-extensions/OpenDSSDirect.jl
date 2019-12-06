@@ -14,7 +14,7 @@ init8500()
 @test Isource.Frequency() == 0.0
 @test Isource.Frequency(Isource.Frequency()) == nothing
 @test Isource.Name() == "vreg4_c"
-@test_throws OpenDSSDirect.Utils.OpenDSSDirectException Isource.Name(Isource.Name()) == nothing
+@test_throws OpenDSSDirect.OpenDSSDirectException Isource.Name(Isource.Name()) == nothing
 @test Isource.AllNames()[end] == "NONE" # TODO: should this return empty array instead?
 
 arr = String[]

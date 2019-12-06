@@ -10,7 +10,6 @@ export CapControls
 export Capacitors
 export Circuit
 export CktElement
-export CtrlElement
 export Element
 export Error
 export Executive
@@ -60,10 +59,6 @@ else
     error("Unknown operating system. Cannot use OpenDSSDirect")
 end
 
-include("docstringextensions.jl")
-
-include("CEnum.jl")
-
 include("lib.jl")
 
 include("utils.jl")
@@ -111,7 +106,8 @@ include("repl.jl")
 include("iterators.jl")
 
 const dss = OpenDSSDirect.Text.Command
-const Examples = Utils.Examples
+
+using .Utils
 
 function __init__()
 
