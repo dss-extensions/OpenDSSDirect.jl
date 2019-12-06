@@ -3,7 +3,7 @@ module Lib
 import ..OpenDSSDirect: LIBRARY
 using CEnum
 
-const DSS_CAPI_V7_VERSION = "0.10.0"
+const DSS_CAPI_V7_VERSION = v"0.10.4"
 
 @cenum(
     MonitorModes,
