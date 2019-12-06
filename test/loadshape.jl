@@ -32,9 +32,9 @@ OpenDSSDirect.Text.Command("""
 @test LoadShape.PMult()[end] ≋ 0.539266
 @test LoadShape.PMult(LoadShape.PMult()) == nothing
 @test LoadShape.QMult() ≋ [0.0]
-@test_throws OpenDSSDirect.Utils.OpenDSSDirectException LoadShape.QMult(LoadShape.QMult()) == nothing
+@test_throws OpenDSSDirect.OpenDSSDirectException LoadShape.QMult(LoadShape.QMult()) == nothing
 @test LoadShape.TimeArray() ≋ [0.0]
-@test_throws OpenDSSDirect.Utils.OpenDSSDirectException LoadShape.TimeArray(LoadShape.TimeArray()) == nothing
+@test_throws OpenDSSDirect.OpenDSSDirectException LoadShape.TimeArray(LoadShape.TimeArray()) == nothing
 
 arr = String[]
 for i in OpenDSSDirect.EachMember(LoadShape); push!(arr, LoadShape.Name()); end
@@ -46,4 +46,3 @@ end
 
 
 end # testset
-

@@ -27,9 +27,9 @@ OpenDSSDirect.Text.Command("""
 @test Meters.DIFilesAreOpen() == 0
 
 # This is invalid, should end in error
-@test_throws OpenDSSDirect.Utils.OpenDSSDirectException Meters.NumSectionCustomers() == 0
+@test_throws OpenDSSDirect.OpenDSSDirectException Meters.NumSectionCustomers() == 0
 
-@test_throws OpenDSSDirect.Utils.OpenDSSDirectException Meters.AllBranchesInZone() == []
+@test_throws OpenDSSDirect.OpenDSSDirectException Meters.AllBranchesInZone() == []
 
 OpenDSSDirect.Text.Command("MakeBusList")
 
@@ -92,4 +92,3 @@ end
 
 
 end # testset
-

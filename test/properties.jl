@@ -25,8 +25,7 @@ Properties._setCurrentProperty("transformer")
 
 @test Properties.Value("transformer") == "VREG4_C"
 
-@test_throws OpenDSSDirect.Utils.OpenDSSDirectException Properties.Value("transformer", "VREG4_C_new") == nothing
+@test_throws OpenDSSDirect.OpenDSSDirectException Properties.Value("transformer", "VREG4_C_new") == nothing
 @test Properties.Value("transformer") == "VREG4_C_new"
 
 end # testset
-

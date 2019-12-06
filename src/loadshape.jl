@@ -1,159 +1,158 @@
 
 module LoadShape
 
-    import ..Lib
-    import ..Utils
-    import ..TypedDocStringExtensions
+using DocStringExtensions
 
-    TypedDocStringExtensions.@template (FUNCTIONS, METHODS) =
-        """
-        $(TypedDocStringExtensions.FULLSIGNATURES)
-        $(TypedDocStringExtensions.DOCSTRING)
-        """
+using ..Lib
+using ..Utils
 
-    """Create new Load Shape"""
-    function New(Name)::Int
-        return Utils.@checked Lib.LoadShapes_New(Cstring(pointer(Name)))
-    end
+@template (FUNCTIONS, METHODS) = """
+                                 $(TYPEDSIGNATURES)
+                                 $(DOCSTRING)
+                                 """
 
-    """Normalize Load Shape"""
-    function Normalize()
-        Utils.@checked Lib.LoadShapes_Normalize()
-    end
+"""Create new Load Shape"""
+function New(Name)::Int
+    return @checked Lib.LoadShapes_New(Cstring(pointer(Name)))
+end
 
-    """Array of strings containing names of all Loadshape objects currently defined."""
-    function AllNames()::Vector{String}
-        return Utils.get_string_array(Lib.LoadShapes_Get_AllNames)
-    end
+"""Normalize Load Shape"""
+function Normalize()
+    @checked Lib.LoadShapes_Normalize()
+end
 
-    """Number of Loadshape objects currently defined in Loadshape collection"""
-    function Count()::Int
-        return Utils.@checked Lib.LoadShapes_Get_Count()
-    end
+"""Array of strings containing names of all Loadshape objects currently defined."""
+function AllNames()::Vector{String}
+    return get_string_array(Lib.LoadShapes_Get_AllNames)
+end
 
-    """Set the first loadshape active and return integer index of the loadshape. Returns 0 if none."""
-    function First()::Int
-        return Utils.@checked Lib.LoadShapes_Get_First()
-    end
+"""Number of Loadshape objects currently defined in Loadshape collection"""
+function Count()::Int
+    return @checked Lib.LoadShapes_Get_Count()
+end
 
-    """Fixed interval time value, hours."""
-    function HrInterval()::Float64
-        return Utils.@checked Lib.LoadShapes_Get_HrInterval()
-    end
+"""Set the first loadshape active and return integer index of the loadshape. Returns 0 if none."""
+function First()::Int
+    return @checked Lib.LoadShapes_Get_First()
+end
 
-    """Fixed interval time value, hours."""
-    function HrInterval(Value::Float64)
-        Utils.@checked Lib.LoadShapes_Set_HrInterval(Value)
-    end
+"""Fixed interval time value, hours."""
+function HrInterval()::Float64
+    return @checked Lib.LoadShapes_Get_HrInterval()
+end
 
-    """Fixed Interval time value, in minutes"""
-    function MinInterval()::Float64
-        return Utils.@checked Lib.LoadShapes_Get_MinInterval()
-    end
+"""Fixed interval time value, hours."""
+function HrInterval(Value::Float64)
+    @checked Lib.LoadShapes_Set_HrInterval(Value)
+end
 
-    """Fixed Interval time value, in minutes"""
-    function MinInterval(Value::Float64)
-        Utils.@checked Lib.LoadShapes_Set_MinInterval(Value)
-    end
+"""Fixed Interval time value, in minutes"""
+function MinInterval()::Float64
+    return @checked Lib.LoadShapes_Get_MinInterval()
+end
 
-    """Name of the active Loadshape (Getter)"""
-    function Name()::String
-        return Utils.get_string(Lib.LoadShapes_Get_Name())
-    end
+"""Fixed Interval time value, in minutes"""
+function MinInterval(Value::Float64)
+    @checked Lib.LoadShapes_Set_MinInterval(Value)
+end
 
-    """Name of the active Loadshape (Setter)"""
-    function Name(Value::String)
-        Utils.@checked Lib.LoadShapes_Set_Name(Cstring(pointer(Value)))
-    end
+"""Name of the active Loadshape (Getter)"""
+function Name()::String
+    return get_string(Lib.LoadShapes_Get_Name())
+end
 
-    """Advance active Loadshape to the next on in the collection. Returns 0 if no more loadshapes."""
-    function Next()::Int
-        return Utils.@checked Lib.LoadShapes_Get_Next()
-    end
+"""Name of the active Loadshape (Setter)"""
+function Name(Value::String)
+    @checked Lib.LoadShapes_Set_Name(Cstring(pointer(Value)))
+end
 
-    """Number of points in active Loadshape. (Getter)"""
-    function Npts()::Int
-        return Utils.@checked Lib.LoadShapes_Get_Npts()
-    end
+"""Advance active Loadshape to the next on in the collection. Returns 0 if no more loadshapes."""
+function Next()::Int
+    return @checked Lib.LoadShapes_Get_Next()
+end
 
-    """Number of points in active Loadshape. (Setter)"""
-    function Npts(Value::Int)
-        Utils.@checked Lib.LoadShapes_Set_Npts(Value)
-    end
+"""Number of points in active Loadshape. (Getter)"""
+function Npts()::Int
+    return @checked Lib.LoadShapes_Get_Npts()
+end
 
-    """Base for normalizing P curve (Getter)"""
-    function PBase()::Float64
-        return Utils.@checked Lib.LoadShapes_Get_PBase()
-    end
+"""Number of points in active Loadshape. (Setter)"""
+function Npts(Value::Int)
+    @checked Lib.LoadShapes_Set_Npts(Value)
+end
 
-    """Base for normalizing P curve (Setter)"""
-    function PBase(Value::Float64)
-        Utils.@checked Lib.LoadShapes_Set_PBase(Value)
-    end
+"""Base for normalizing P curve (Getter)"""
+function PBase()::Float64
+    return @checked Lib.LoadShapes_Get_PBase()
+end
 
-    """Array of Doubles for the P multiplier in the Loadshape. (Getter)"""
-    function PMult()::Vector{Float64}
-        return Utils.get_float64_array(Lib.LoadShapes_Get_Pmult)
-    end
+"""Base for normalizing P curve (Setter)"""
+function PBase(Value::Float64)
+    @checked Lib.LoadShapes_Set_PBase(Value)
+end
 
-    """Array of Doubles for the P multiplier in the Loadshape. (Setter)"""
-    function PMult(Value::Vector{Float64})
-        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
-        Utils.@checked Lib.LoadShapes_Set_Pmult(ValuePtr, ValueCount)
-    end
+"""Array of Doubles for the P multiplier in the Loadshape. (Getter)"""
+function PMult()::Vector{Float64}
+    return get_float64_array(Lib.LoadShapes_Get_Pmult)
+end
 
-    """Base for normalizing Q curve. If left at zero, the peak value is used. (Getter)"""
-    function QBase()::Float64
-        return Utils.@checked Lib.LoadShapes_Get_Qbase()
-    end
+"""Array of Doubles for the P multiplier in the Loadshape. (Setter)"""
+function PMult(Value::Vector{Float64})
+    Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+    @checked Lib.LoadShapes_Set_Pmult(ValuePtr, ValueCount)
+end
 
-    """Base for normalizing Q curve. If left at zero, the peak value is used. (Setter)"""
-    function QBase(Value::Float64)
-        Utils.@checked Lib.LoadShapes_Set_Qbase(Value)
-    end
+"""Base for normalizing Q curve. If left at zero, the peak value is used. (Getter)"""
+function QBase()::Float64
+    return @checked Lib.LoadShapes_Get_Qbase()
+end
 
-    """Array of doubles containing the Q multipliers. (Getter)"""
-    function QMult()::Vector{Float64}
-        return Utils.get_float64_array(Lib.LoadShapes_Get_Qmult)
-    end
+"""Base for normalizing Q curve. If left at zero, the peak value is used. (Setter)"""
+function QBase(Value::Float64)
+    @checked Lib.LoadShapes_Set_Qbase(Value)
+end
 
-    """Array of doubles containing the Q multipliers. (Setter)"""
-    function QMult(Value::Vector{Float64})
-        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
-        Utils.@checked Lib.LoadShapes_Set_Qmult(ValuePtr, ValueCount)
-    end
+"""Array of doubles containing the Q multipliers. (Getter)"""
+function QMult()::Vector{Float64}
+    return get_float64_array(Lib.LoadShapes_Get_Qmult)
+end
 
-    """Time array in hours correscponding to P and Q multipliers when the Interval=0. (Getter)"""
-    function TimeArray()::Vector{Float64}
-        return Utils.get_float64_array(Lib.LoadShapes_Get_TimeArray)
-    end
+"""Array of doubles containing the Q multipliers. (Setter)"""
+function QMult(Value::Vector{Float64})
+    Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+    @checked Lib.LoadShapes_Set_Qmult(ValuePtr, ValueCount)
+end
 
-    """Time array in hours correscponding to P and Q multipliers when the Interval=0. (Setter)"""
-    function TimeArray(Value::Vector{Float64})
-        Value, ValuePtr, ValueCount = Utils.prepare_float64_array(Value)
-        Utils.@checked Lib.LoadShapes_Set_TimeArray(ValuePtr, ValueCount)
-    end
+"""Time array in hours correscponding to P and Q multipliers when the Interval=0. (Getter)"""
+function TimeArray()::Vector{Float64}
+    return get_float64_array(Lib.LoadShapes_Get_TimeArray)
+end
 
-    """T/F flag to let Loads know to use the actual value in the curve rather than use the value as a multiplier. (Getter)"""
-    function UseActual()::Bool
-        return Utils.@checked(Lib.LoadShapes_Get_UseActual()) != 0
-    end
+"""Time array in hours correscponding to P and Q multipliers when the Interval=0. (Setter)"""
+function TimeArray(Value::Vector{Float64})
+    Value, ValuePtr, ValueCount = prepare_float64_array(Value)
+    @checked Lib.LoadShapes_Set_TimeArray(ValuePtr, ValueCount)
+end
 
-    """T/F flag to let Loads know to use the actual value in the curve rather than use the value as a multiplier. (Setter)"""
-    function UseActual(Value::Bool)
-        Utils.@checked Lib.LoadShapes_Set_UseActual(Value ? 1 : 0)
-    end
+"""T/F flag to let Loads know to use the actual value in the curve rather than use the value as a multiplier. (Getter)"""
+function UseActual()::Bool
+    return @checked(Lib.LoadShapes_Get_UseActual()) != 0
+end
 
-    """Interval of active loadshape in seconds (Getter)"""
-    function SInterval()::Float64
-        return Utils.@checked Lib.LoadShapes_Get_sInterval()
-    end
+"""T/F flag to let Loads know to use the actual value in the curve rather than use the value as a multiplier. (Setter)"""
+function UseActual(Value::Bool)
+    @checked Lib.LoadShapes_Set_UseActual(Value ? 1 : 0)
+end
 
-    """Interval of active loadshape in seconds (Setter)"""
-    function SInterval(Value::Float64)
-        Utils.@checked Lib.LoadShapes_Set_Sinterval(Value)
-    end
+"""Interval of active loadshape in seconds (Getter)"""
+function SInterval()::Float64
+    return @checked Lib.LoadShapes_Get_sInterval()
+end
+
+"""Interval of active loadshape in seconds (Setter)"""
+function SInterval(Value::Float64)
+    @checked Lib.LoadShapes_Set_Sinterval(Value)
+end
 
 
 end
-
