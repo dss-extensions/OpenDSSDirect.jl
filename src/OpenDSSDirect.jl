@@ -45,21 +45,30 @@ export dss
 
 import Libdl
 
-const path = @__DIR__
 if Sys.iswindows()
-    const LIBRARY = abspath(joinpath(path, "../deps/windows/dss_capi_v7.dll"))
-    const KLUSOLVE_LIBRARY = abspath(joinpath(path, "../deps/windows/libklusolve.dll"))
+    const LIBRARY = abspath(joinpath(@__DIR__, "../deps/windows/dss_capi_v7.dll"))
+    const KLUSOLVE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/windows/libklusolve.dll"))
 elseif Sys.islinux()
-    const LIBRARY = abspath(joinpath(path, "../deps/linux/libdss_capi_v7.so"))
-    const KLUSOLVE_LIBRARY = abspath(joinpath(path, "../deps/linux/libklusolve.so"))
+    const LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libdss_capi_v7.so"))
+    const KLUSOLVE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libklusolve.so"))
 elseif Sys.isapple()
-    const LIBRARY = abspath(joinpath(path, "../deps/apple/libdss_capi_v7.dylib"))
-    const KLUSOLVE_LIBRARY = abspath(joinpath(path, "../deps/apple/libklusolve.dylib"))
+    const LIBRARY = abspath(joinpath(@__DIR__, "../deps/apple/libdss_capi_v7.dylib"))
+    const KLUSOLVE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/apple/libklusolve.dylib"))
 else
     error("Unknown operating system. Cannot use OpenDSSDirect")
 end
 
-include("lib.jl")
+module Lib
+
+    using CEnum
+
+    import ..OpenDSSDirect: LIBRARY
+
+    include("lib.jl")
+    include("common.jl")
+    include("extensions.jl")
+
+end
 
 include("utils.jl")
 
