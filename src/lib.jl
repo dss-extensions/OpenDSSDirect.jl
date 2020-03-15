@@ -98,6 +98,10 @@ function ActiveClass_Get_Count()
     ccall((:ActiveClass_Get_Count, LIBRARY), Int32, ())
 end
 
+function ActiveClass_Get_ActiveClassParent()
+    ccall((:ActiveClass_Get_ActiveClassParent, LIBRARY), Cstring, ())
+end
+
 function Bus_Get_Name()
     ccall((:Bus_Get_Name, LIBRARY), Cstring, ())
 end
@@ -3296,6 +3300,18 @@ end
 
 function PVSystems_Set_Tyearly(Value)
     ccall((:PVSystems_Set_Tyearly, LIBRARY), Cvoid, (Cstring,), Value)
+end
+
+function PVSystems_Get_Pmpp()
+    ccall((:PVSystems_Get_Pmpp, LIBRARY), Cdouble, ())
+end
+
+function PVSystems_Set_Pmpp(Value)
+    ccall((:PVSystems_Set_Pmpp, LIBRARY), Cvoid, (Cdouble,), Value)
+end
+
+function PVSystems_Get_IrradianceNow()
+    ccall((:PVSystems_Get_IrradianceNow, LIBRARY), Cdouble, ())
 end
 
 function Reclosers_Get_AllNames(ResultPtr, ResultCount)

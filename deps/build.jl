@@ -6,7 +6,7 @@ abstract type Windows <: AbstractOS end
 abstract type MacOS <: BSD end
 abstract type Linux <: BSD end
 
-const OPENDSS_VERSION = "0.10.4"
+const OPENDSS_VERSION = "0.10.5"
 
 function download(::Type{MacOS})
 
