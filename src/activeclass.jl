@@ -16,6 +16,12 @@ function ActiveClassName()::String
 end
 
 
+"""Returns the name of the parent class of the active class."""
+function ActiveClassParent()::String
+    return get_string(@checked Lib.ActiveClass_Get_ActiveClassParent())
+end
+
+
 """Array of strings consisting of all element names in the active class."""
 function AllNames()::Vector{String}
     return get_string_array(Lib.ActiveClass_Get_AllNames)

@@ -22,6 +22,7 @@ solve  ! solves at the specified irradiance and temperature
 @test PVsystems.Idx(PVsystems.Idx()) == nothing
 @test PVsystems.Irradiance() ≋ 0.8
 @test PVsystems.Irradiance(PVsystems.Irradiance()) == nothing
+@test PVsystems.IrradianceNow() ≋ 1.0
 @test PVsystems.kW() ≋ 382.66666666666674
 @test PVsystems.kvar() ≋ 0.0
 @test PVsystems.kvar(PVsystems.kvar()) == nothing
@@ -29,6 +30,8 @@ solve  ! solves at the specified irradiance and temperature
 @test PVsystems.pf(PVsystems.pf()) == nothing
 @test PVsystems.kVARated() ≋ 500.0
 @test PVsystems.kVARated(PVsystems.kVARated()) == nothing
+@test PVsystems.Pmpp() == 500
+@test PVsystems.Pmpp(PVsystems.Pmpp()) == nothing
 
 arr = String[]
 for i in OpenDSSDirect.EachMember(PVsystems); push!(arr, PVsystems.Name()); end

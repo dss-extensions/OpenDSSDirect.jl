@@ -35,6 +35,11 @@ function Irradiance(Value::Float64)
     @checked Lib.PVSystems_Set_Irradiance(Value)
 end
 
+"""Returns the current irradiance value for the active PVSystem. Use it to know what's the current irradiance value for the PV during a simulation."""
+function IrradianceNow()::Float64
+    return @checked Lib.PVSystems_Get_IrradianceNow()
+end
+
 """Name of the active PVSystem (Getter)"""
 function Name()::String
     return get_string(@checked Lib.PVSystems_Get_Name())
@@ -103,6 +108,16 @@ end
 """kvar value (Setter)"""
 function kvar(Value::Float64)
     @checked Lib.PVSystems_Set_kvar(Value)
+end
+
+"""Pmpp value (Getter)"""
+function Pmpp()::Float64
+    return @checked Lib.PVSystems_Get_Pmpp()
+end
+
+"""Pmpp value (Setter)"""
+function Pmpp(Value::Float64)
+    @checked Lib.PVSystems_Set_Pmpp(Value)
 end
 
 end
