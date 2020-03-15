@@ -65,7 +65,7 @@ function pf(Value::Float64)
     @checked Lib.PVSystems_Set_PF(Value)
 end
 
-"""Variant Array of PVSYSTEM energy meter register names"""
+"""Array of PVSYSTEM energy meter register names"""
 function RegisterNames()::Vector{String}
     return get_string_array(Lib.PVSystems_Get_RegisterNames)
 end
@@ -95,7 +95,7 @@ function kVARated(Value::Float64)
     @checked Lib.PVSystems_Set_kVArated(Value)
 end
 
-"""get kW output"""
+"""Get kW output"""
 function kW()::Float64
     return @checked Lib.PVSystems_Get_kW()
 end
@@ -118,6 +118,66 @@ end
 """Pmpp value (Setter)"""
 function Pmpp(Value::Float64)
     @checked Lib.PVSystems_Set_Pmpp(Value)
+end
+
+"""Name of the loadshape for a daily load profile. (Getter)"""
+function Daily()::String
+    return get_string(Lib.PVSystems_Get_daily())
+end
+
+"""Name of the loadshape for a daily load profile. (Setter)"""
+function Daily(Value::String)
+    @checked Lib.PVSystems_Set_daily(Cstring(pointer(Value)))
+end
+
+"""Name of the loadshape for a duty cycle simulation. (Getter)"""
+function Duty()::String
+    return get_string(@checked Lib.PVSystems_Get_duty())
+end
+
+"""Name of the loadshape for a duty cycle simulation. (Setter)"""
+function Duty(Value::String)
+    @checked Lib.PVSystems_Set_duty(Cstring(pointer(Value)))
+end
+
+"""Name of yearly duration loadshape (Getter)"""
+function Yearly()::String
+    return get_string(@checked Lib.PVSystems_Get_Yearly())
+end
+
+"""Name of yearly duration loadshape (Setter)"""
+function Yearly(Value::String)
+    @checked Lib.PVSystems_Set_Yearly(Cstring(pointer(Value)))
+end
+
+"""Name of the temperature shape to use for daily simulations. (Getter)"""
+function TDaily()::String
+    return get_string(Lib.PVSystems_Get_Tdaily())
+end
+
+"""Name of the temperature shape to use for daily simulations. (Setter)"""
+function TDaily(Value::String)
+    @checked Lib.PVSystems_Set_Tdaily(Cstring(pointer(Value)))
+end
+
+"""Name of the temperature shape to use for duty cycle dispatch simulations such as for solar ramp rate studies. (Getter)"""
+function TDuty()::String
+    return get_string(@checked Lib.PVSystems_Get_Tduty())
+end
+
+"""Name of the emperature shape to use for duty cycle dispatch simulations such as for solar ramp rate studies. (Setter)"""
+function TDuty(Value::String)
+    @checked Lib.PVSystems_Set_Tduty(Cstring(pointer(Value)))
+end
+
+"""Name of the temperature shape to use for yearly simulations. (Getter)"""
+function TYearly()::String
+    return get_string(@checked Lib.PVSystems_Get_Tyearly())
+end
+
+"""Name of the temperature shape to use for yearly simulations. (Setter)"""
+function TYearly(Value::String)
+    @checked Lib.PVSystems_Set_Tyearly(Cstring(pointer(Value)))
 end
 
 end
