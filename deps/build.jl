@@ -6,11 +6,11 @@ abstract type Windows <: AbstractOS end
 abstract type MacOS <: BSD end
 abstract type Linux <: BSD end
 
-const OPENDSS_VERSION = "0.10.5"
+const DSS_CAPI_TAG = "0.10.6"
 
 function download(::Type{MacOS})
 
-    url = "https://github.com/dss-extensions/dss_capi/releases/download/$(OPENDSS_VERSION)/dss_capi_$(OPENDSS_VERSION)_darwin_x64.tar.gz"
+    url = "https://github.com/dss-extensions/dss_capi/releases/download/$(DSS_CAPI_TAG)/dss_capi_$(DSS_CAPI_TAG)_darwin_x64.tar.gz"
     @show url
     filename = normpath(joinpath(@__DIR__, "dss_capi.tar.gz"))
     Base.download(url, filename)
@@ -28,7 +28,7 @@ end
 
 function download(::Type{Linux})
 
-    url = "https://github.com/dss-extensions/dss_capi/releases/download/$(OPENDSS_VERSION)/dss_capi_$(OPENDSS_VERSION)_linux_x64.tar.gz"
+    url = "https://github.com/dss-extensions/dss_capi/releases/download/$(DSS_CAPI_TAG)/dss_capi_$(DSS_CAPI_TAG)_linux_x64.tar.gz"
     @show url
     filename = normpath(joinpath(@__DIR__, "dss_capi.tar.gz"))
     Base.download(url, filename)
@@ -52,7 +52,7 @@ function download(::Type{Windows})
         BIT = "x86"
     end
 
-    url = "https://github.com/dss-extensions/dss_capi/releases/download/$(OPENDSS_VERSION)/dss_capi_$(OPENDSS_VERSION)_win_$(BIT).zip"
+    url = "https://github.com/dss-extensions/dss_capi/releases/download/$(DSS_CAPI_TAG)/dss_capi_$(DSS_CAPI_TAG)_win_$(BIT).zip"
     @show url
     filename = normpath(joinpath(@__DIR__, "dss_capi.zip"))
     Base.download(url, filename)

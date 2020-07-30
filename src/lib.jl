@@ -298,6 +298,30 @@ function Bus_Get_SectionID()
     ccall((:Bus_Get_SectionID, LIBRARY), Int32, ())
 end
 
+function Bus_Get_LineList(ResultPtr, ResultCount)
+    ccall((:Bus_Get_LineList, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+end
+
+function Bus_Get_LineList_GR()
+    ccall((:Bus_Get_LineList_GR, LIBRARY), Cvoid, ())
+end
+
+function Bus_Get_LoadList(ResultPtr, ResultCount)
+    ccall((:Bus_Get_LoadList, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+end
+
+function Bus_Get_LoadList_GR()
+    ccall((:Bus_Get_LoadList_GR, LIBRARY), Cvoid, ())
+end
+
+function Bus_Get_ZSC012Matrix(ResultPtr, ResultCount)
+    ccall((:Bus_Get_ZSC012Matrix, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+end
+
+function Bus_Get_ZSC012Matrix_GR()
+    ccall((:Bus_Get_ZSC012Matrix_GR, LIBRARY), Cvoid, ())
+end
+
 function Capacitors_Get_AllNames(ResultPtr, ResultCount)
     ccall((:Capacitors_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
 end
@@ -1248,6 +1272,14 @@ end
 
 function DSS_Set_AllowEditor(Value)
     ccall((:DSS_Set_AllowEditor, LIBRARY), Cvoid, (UInt16,), Value)
+end
+
+function DSS_Get_LegacyModels()
+    ccall((:DSS_Get_LegacyModels, LIBRARY), UInt16, ())
+end
+
+function DSS_Set_LegacyModels(Value)
+    ccall((:DSS_Set_LegacyModels, LIBRARY), Cvoid, (UInt16,), Value)
 end
 
 function DSSElement_Get_AllPropertyNames(ResultPtr, ResultCount)
@@ -3164,6 +3196,110 @@ end
 
 function PDElements_Set_RepairTime(Value)
     ccall((:PDElements_Set_RepairTime, LIBRARY), Cvoid, (Cdouble,), Value)
+end
+
+function PDElements_Get_AllNames(ResultPtr, ResultCount)
+    ccall((:PDElements_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+end
+
+function PDElements_Get_AllNames_GR()
+    ccall((:PDElements_Get_AllNames_GR, LIBRARY), Cvoid, ())
+end
+
+function PDElements_Get_AllMaxCurrents(ResultPtr, ResultCount, AllNodes)
+    ccall((:PDElements_Get_AllMaxCurrents, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, UInt16), ResultPtr, ResultCount, AllNodes)
+end
+
+function PDElements_Get_AllMaxCurrents_GR(AllNodes)
+    ccall((:PDElements_Get_AllMaxCurrents_GR, LIBRARY), Cvoid, (UInt16,), AllNodes)
+end
+
+function PDElements_Get_AllPctNorm(ResultPtr, ResultCount, AllNodes)
+    ccall((:PDElements_Get_AllPctNorm, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, UInt16), ResultPtr, ResultCount, AllNodes)
+end
+
+function PDElements_Get_AllPctNorm_GR(AllNodes)
+    ccall((:PDElements_Get_AllPctNorm_GR, LIBRARY), Cvoid, (UInt16,), AllNodes)
+end
+
+function PDElements_Get_AllPctEmerg(ResultPtr, ResultCount, AllNodes)
+    ccall((:PDElements_Get_AllPctEmerg, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, UInt16), ResultPtr, ResultCount, AllNodes)
+end
+
+function PDElements_Get_AllPctEmerg_GR()
+    ccall((:PDElements_Get_AllPctEmerg_GR, LIBRARY), Cvoid, ())
+end
+
+function PDElements_Get_AllCurrents(ResultPtr, ResultCount)
+    ccall((:PDElements_Get_AllCurrents, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+end
+
+function PDElements_Get_AllCurrents_GR()
+    ccall((:PDElements_Get_AllCurrents_GR, LIBRARY), Cvoid, ())
+end
+
+function PDElements_Get_AllCurrentsMagAng(ResultPtr, ResultCount)
+    ccall((:PDElements_Get_AllCurrentsMagAng, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+end
+
+function PDElements_Get_AllCurrentsMagAng_GR()
+    ccall((:PDElements_Get_AllCurrentsMagAng_GR, LIBRARY), Cvoid, ())
+end
+
+function PDElements_Get_AllCplxSeqCurrents(ResultPtr, ResultCount)
+    ccall((:PDElements_Get_AllCplxSeqCurrents, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+end
+
+function PDElements_Get_AllCplxSeqCurrents_GR()
+    ccall((:PDElements_Get_AllCplxSeqCurrents_GR, LIBRARY), Cvoid, ())
+end
+
+function PDElements_Get_AllSeqCurrents(ResultPtr, ResultCount)
+    ccall((:PDElements_Get_AllSeqCurrents, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+end
+
+function PDElements_Get_AllSeqCurrents_GR()
+    ccall((:PDElements_Get_AllSeqCurrents_GR, LIBRARY), Cvoid, ())
+end
+
+function PDElements_Get_AllPowers(ResultPtr, ResultCount)
+    ccall((:PDElements_Get_AllPowers, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+end
+
+function PDElements_Get_AllPowers_GR()
+    ccall((:PDElements_Get_AllPowers_GR, LIBRARY), Cvoid, ())
+end
+
+function PDElements_Get_AllSeqPowers(ResultPtr, ResultCount)
+    ccall((:PDElements_Get_AllSeqPowers, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+end
+
+function PDElements_Get_AllSeqPowers_GR()
+    ccall((:PDElements_Get_AllSeqPowers_GR, LIBRARY), Cvoid, ())
+end
+
+function PDElements_Get_AllNumPhases(ResultPtr, ResultCount)
+    ccall((:PDElements_Get_AllNumPhases, LIBRARY), Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}), ResultPtr, ResultCount)
+end
+
+function PDElements_Get_AllNumPhases_GR()
+    ccall((:PDElements_Get_AllNumPhases_GR, LIBRARY), Cvoid, ())
+end
+
+function PDElements_Get_AllNumConductors(ResultPtr, ResultCount)
+    ccall((:PDElements_Get_AllNumConductors, LIBRARY), Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}), ResultPtr, ResultCount)
+end
+
+function PDElements_Get_AllNumConductors_GR()
+    ccall((:PDElements_Get_AllNumConductors_GR, LIBRARY), Cvoid, ())
+end
+
+function PDElements_Get_AllNumTerminals(ResultPtr, ResultCount)
+    ccall((:PDElements_Get_AllNumTerminals, LIBRARY), Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}), ResultPtr, ResultCount)
+end
+
+function PDElements_Get_AllNumTerminals_GR()
+    ccall((:PDElements_Get_AllNumTerminals_GR, LIBRARY), Cvoid, ())
 end
 
 function PVSystems_Get_AllNames(ResultPtr, ResultCount)
@@ -5998,6 +6134,14 @@ function WireData_Set_EmergAmps(Value)
     ccall((:WireData_Set_EmergAmps, LIBRARY), Cvoid, (Cdouble,), Value)
 end
 
+function WireData_Get_CapRadius()
+    ccall((:WireData_Get_CapRadius, LIBRARY), Cdouble, ())
+end
+
+function WireData_Set_CapRadius(Value)
+    ccall((:WireData_Set_CapRadius, LIBRARY), Cvoid, (Cdouble,), Value)
+end
+
 function Bus_Get_Next()
     ccall((:Bus_Get_Next, LIBRARY), Int32, ())
 end
@@ -6008,6 +6152,14 @@ end
 
 function Error_Set_EarlyAbort(Value)
     ccall((:Error_Set_EarlyAbort, LIBRARY), Cvoid, (UInt16,), Value)
+end
+
+function Error_Get_ExtendedErrors()
+    ccall((:Error_Get_ExtendedErrors, LIBRARY), UInt16, ())
+end
+
+function Error_Set_ExtendedErrors(Value)
+    ccall((:Error_Set_ExtendedErrors, LIBRARY), Cvoid, (UInt16,), Value)
 end
 
 function CNData_Get_idx()

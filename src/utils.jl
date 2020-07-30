@@ -17,7 +17,11 @@ export Examples
 export @checked
 
 function get_string(cstring::Cstring)::String
-    return unsafe_string(cstring)
+    if cstring != C_NULL
+        return unsafe_string(cstring)
+    else
+        return ""
+    end
 end
 
 function get_string_array(func::Function)::Vector{String}

@@ -5,10 +5,12 @@ init8500()
 @testset "Properties" begin
 
 
-@test Properties.Description() == ""
-@test Properties.Name() == ""
+# Set an invalid property through the low-level interface to test if exceptions work
+OpenDSSDirect.Lib.DSSProperty_Set_Index(-1)
+@test_throws OpenDSSDirect.OpenDSSDirectException Properties.Description() == ""
+@test_throws OpenDSSDirect.OpenDSSDirectException Properties.Name() == ""
 
-OpenDSSDirect.Lib.DSSProperty_Set_Index(0)  # TODO: use higher level function?
+Properties._setCurrentProperty(1)
 @test Properties.Value() == "VREG4_C"
 @test replace(Properties.Description(), "\r\n" => "\n") == "Name of Transformer or AutoTrans element to which the RegControl is connected. Do not specify the full object name; \"Transformer\" or \"AutoTrans\" is assumed for the object class.  Example:\n\nTransformer=Xfmr1"
 @test Properties.Name() == "transformer"

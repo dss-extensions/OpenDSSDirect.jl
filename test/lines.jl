@@ -64,7 +64,7 @@ init8500()
 @test Lines.CMatrix(Lines.CMatrix()) == nothing
 @test Lines.Yprim() ≋ [14.151460302936526 - 7.897357479424346im -14.151460302936526 + 7.897357517772179im
                       -14.151460302936526 + 7.897357517772179im 14.151460302936526 - 7.897357479424346im]
-@test Lines.Yprim(Lines.Yprim()) == nothing
+@test_throws OpenDSSDirect.OpenDSSDirectException Lines.Yprim(Lines.Yprim())
 
 @test Lines.ZMatrix() ≋ reshape([1.67466 + 0.93456im], (1, 1))
 @test Lines.ZMatrix(Lines.ZMatrix()) == nothing
