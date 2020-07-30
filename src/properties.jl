@@ -12,12 +12,12 @@ using ..Utils
 
 """Description of the property."""
 function Description()::String
-    return get_string(Lib.DSSProperty_Get_Description())
+    return get_string(@checked Lib.DSSProperty_Get_Description())
 end
 
 """Name of Property"""
 function Name()::String
-    return get_string(Lib.DSSProperty_Get_Name())
+    return get_string(@checked Lib.DSSProperty_Get_Name())
 end
 
 """Sets the current DSS property based on a 1-based integer (or integer as a string) as an property index, or a string as a property name."""
