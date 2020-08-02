@@ -12,19 +12,16 @@ using ..Utils
 
 """Use this property to parse a Matrix token in OpenDSS format.  Returns square matrix of order specified. Order same as default Fortran order: column by column."""
 function Matrix(ExpectedOrder)::Vector{Float64}
-    error("Not implemented yet. Please contact the developer.")
     return get_float64_array(Lib.Parser_Get_Matrix, ExpectedOrder)
 end
 
 """Use this property to parse a matrix token specified in lower triangle form. Symmetry is forced."""
 function SymMatrix(ExpectedOrder)::Vector{Float64}
-    error("Not implemented yet. Please contact the developer.")
     return get_float64_array(Lib.Parser_Get_SymMatrix, ExpectedOrder)
 end
 
 """Returns token as array of doubles. For parsing quoted array syntax."""
 function Vector(ExpectedSize)::Vector{Float64}
-    error("Not implemented yet. Please contact the developer.")
     return get_float64_array(Lib.Parser_Get_Vector, ExpectedSize)
 end
 

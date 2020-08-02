@@ -48,6 +48,31 @@ function get_string_array(func::Function)::Vector{String}
     return data
 end
 
+function get_string_array(func::Function, param::Union{Bool,Int})::Vector{String}
+    ptr = Ref{Ptr{Cstring}}([])
+    cnt = Vector{Cint}([0, 0])
+    func(ptr, cnt, param)
+    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+    if (error_num != 0)
+        description = get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        throw(
+            OpenDSSDirectException(
+                "[ERROR $error_num] $description"
+            )
+        )
+    end
+    data = Vector{String}([])
+    for i in 1:cnt[1]
+        p = unsafe_load(ptr[], i)
+        if p != C_NULL
+            push!(data, unsafe_string(p))
+        end
+    end
+    OpenDSSDirect.Lib.DSS_Dispose_PPAnsiChar(ptr, cnt[2])
+    return data
+end
+
+
 function get_int32_array(func::Function)::Vector{Int}
     ptr = Ref{Ptr{Cint}}([])
     cnt = Vector{Cint}([0, 0])
@@ -110,6 +135,37 @@ function get_float64_array(func::Function)::Vector{Float64}
     end
     OpenDSSDirect.Lib.DSS_Dispose_PDouble(ptr)
     return data
+end
+
+function get_float64_array(func::Function, param::Union{Bool,Int})::Vector{Float64}
+    ptr = Ref{Ptr{Cdouble}}([])
+    cnt = Vector{Cint}([0, 0])
+    func(ptr, cnt, param)
+    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+    if (error_num != 0)
+        description = get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        throw(
+            OpenDSSDirectException(
+                "[ERROR $error_num] $description"
+            )
+        )
+    end
+    data = Vector{Float64}([])
+    for i in 1:cnt[1]
+        push!(data, unsafe_load(ptr[], i))
+    end
+    OpenDSSDirect.Lib.DSS_Dispose_PDouble(ptr)
+    return data
+end
+
+function get_complex64_array(func::Function, param::Union{Bool,Int})::Vector{ComplexF64}
+    r = get_float64_array(func, param)
+    if length(r) == 1
+        return ComplexF64[]
+    else
+        r = Array(reinterpret(ComplexF64, r))
+    end
+    return r
 end
 
 function get_complex64_array(func::Function)::Vector{ComplexF64}

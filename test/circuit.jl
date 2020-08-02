@@ -43,10 +43,10 @@ if typeof(1) == Int64
 end
 @test Circuit.AllBusDistances()[end] ≋ 0.0
 @test Circuit.AllNodeDistances()[end] ≋ 0.0
-# @test Circuit.AllNodeVmagByPhase()[end] # ERROR
-# @test Circuit.AllNodeVmagPUByPhase()[end]    # ERROR
-# @test Circuit.AllNodeDistancesByPhase()[end]    # ERROR
-# @test Circuit.AllNodeNamesByPhase()[end]    # ERROR
+@test Circuit.AllNodeVmagByPhase(1)[end] ≋ 119.84458695805009
+@test Circuit.AllNodeVmagPUByPhase(1)[end] ≋ 0.9979659308819673
+@test Circuit.AllNodeDistancesByPhase(1)[end] == 0.0
+@test Circuit.AllNodeNamesByPhase(1)[end] == "sx3784018a.1"
 @test Circuit.YNodeVArray()[end] ≋ -85.01962676301814 + 84.47523352214344im
 @test Circuit.YNodeOrder()[end] == "SX3784018A.2"
 @test Circuit.YCurrents()[end] ≋ 0.032757937074590515 - 0.054281873453359im
