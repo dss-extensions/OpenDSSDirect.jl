@@ -180,4 +180,14 @@ function Y(Value::Float64)
     @checked Lib.Bus_Set_y(Value)
 end
 
+"""Array of strings: Full Names of LINE elements connected to the active bus."""
+function LineList()::Vector{String}
+    return get_string_array(Lib.Bus_Get_LineList)
+end
+
+"""Array of strings: Full Names of LOAD elements connected to the active bus."""
+function LoadList()::Vector{String}
+    return get_string_array(Lib.Bus_Get_LoadList)
+end
+
 end

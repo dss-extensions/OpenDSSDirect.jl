@@ -189,4 +189,28 @@ function AllocationFactors(Value::Float64)
     @checked Lib.Settings_Set_AllocationFactors(Value)
 end
 
+"""
+Get/Set the state of terminal checking in all load elements. (Getter)
+
+This controls whether the terminals are checked when updating the currents in Load component. Defaults to true.
+If the loads are guaranteed to have their terminals closed throughout the simulation, this can be set to false to save some time.
+
+(API Extension)
+"""
+function LoadsTerminalCheck()::Bool
+    return @checked(Lib.Settings_Get_LoadsTerminalCheck()) != 0
+end
+
+"""
+Get/Set the state of terminal checking in all load elements. (Setter)
+
+This controls whether the terminals are checked when updating the currents in Load component. Defaults to true.
+If the loads are guaranteed to have their terminals closed throughout the simulation, this can be set to false to save some time.
+
+(API Extension)
+"""
+function LoadsTerminalCheck(Value::Bool)
+    @checked Lib.Settings_Set_LoadsTerminalCheck(Value ? 1 : 0)
+end
+
 end
