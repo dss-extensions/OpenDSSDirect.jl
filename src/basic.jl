@@ -96,4 +96,38 @@ function NewCircuit(name::String)::String
     return "New Circuit: $name"
 end
 
+"""
+Gets/sets the state of the Legacy Models mechanism (Getter)
+
+If enabled, the legacy/deprecated models for PVSystem, InvControl, Storage and StorageControl are used.
+WARNING: Changing the active value runs a "Clear" command, discarding the current circuit. 
+
+Defaults to false (disabled state).
+
+This can also be set through the environment variable DSS_CAPI_LEGACY_MODELS. Setting it to 1 enables
+the legacy components, using the old models from the start.
+
+(API Extension)
+"""
+function LegacyModelsLegacyModels()::Bool
+    return @checked(Lib.DSS_Get_LegacyModels()) != 0
+end
+
+"""
+Gets/sets the state of the Legacy Models mechanism (Setter)
+
+If enabled, the legacy/deprecated models for PVSystem, InvControl, Storage and StorageControl are used.
+WARNING: Changing the active value runs a "Clear" command, discarding the current circuit. 
+
+Defaults to false (disabled state).
+
+This can also be set through the environment variable DSS_CAPI_LEGACY_MODELS. Setting it to 1 enables
+the legacy components, using the old models from the start.
+
+(API Extension)
+"""
+function LegacyModels(Value::Bool)
+    @checked Lib.DSS_Set_LegacyModels(Value ? 1 : 0)
+end
+
 end

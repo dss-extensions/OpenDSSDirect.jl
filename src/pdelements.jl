@@ -111,4 +111,132 @@ function PctPermanent(Value::Float64)
     @checked Lib.PDElements_Set_pctPermanent(Value)
 end
 
+"""Array of strings consisting of all PD element names. (API Extension)"""
+function AllNames()::Vector{String}
+    return get_string_array(Lib.PDElements_Get_AllNames)
+end
+
+"""
+Array of doubles with the maximum current across the conductors, for each PD 
+element.
+
+By default, only the *first terminal* is used for the maximum current, matching
+the behavior of the "export capacity" command. Pass `AllNodes=True` to 
+force the analysis to all terminals.
+
+See also: 
+https://sourceforge.net/p/electricdss/discussion/beginners/thread/da5b93ca/
+
+(API Extension)
+"""
+function AllMaxCurrents(AllNodes::Bool=false)::Vector{Float64}
+    return get_float64_array(Lib.PDElements_Get_AllMaxCurrents, AllNodes)
+end
+
+"""
+Array of doubles with the maximum current across the conductors as a percentage 
+of the Normal Ampere Rating, for each PD element.
+
+By default, only the *first terminal* is used for the maximum current, matching
+the behavior of the "export capacity" command. Pass `AllNodes=True` to 
+force the analysis to all terminals.
+
+See also: 
+https://sourceforge.net/p/electricdss/discussion/beginners/thread/da5b93ca/
+
+(API Extension)
+"""
+function AllPctNorm(AllNodes::Bool=false)::Vector{Float64}
+    return get_float64_array(Lib.PDElements_Get_AllPctNorm, AllNodes)
+end
+
+"""
+Array of doubles with the maximum current across the conductors as a percentage
+of the Emergency Ampere Rating, for each PD element.
+
+By default, only the *first terminal* is used for the maximum current, matching
+the behavior of the "export capacity" command. Pass `AllNodes=True` to 
+force the analysis to all terminals.
+
+See also: 
+https://sourceforge.net/p/electricdss/discussion/beginners/thread/da5b93ca/
+
+(API Extension)
+"""
+function AllPctEmerg(AllNodes::Bool=false)::Vector{Float64}
+    return get_float64_array(Lib.PDElements_Get_AllPctEmerg, AllNodes)
+end
+
+"""
+Complex array of currents for all conductors, all terminals, for each PD element.
+(API Extension)
+"""
+function AllCurrentsAllCurrents()::Vector{ComplexF64}
+    return get_complex64_array(Lib.PDElements_Get_AllCurrents)
+end
+
+"""
+Array of currents (complex magnitude, angle) for all conductors, all terminals, for each PD element. 
+(API Extension)
+"""
+function AllCurrentsMagAng()::Vector{Float64}
+    return get_complex64_array(Lib.PDElements_Get_AllCurrentsMagAng)
+end
+
+"""
+Complex double array of Sequence Currents for all conductors of all terminals, for each PD elements.
+(API Extension)
+"""
+function AllCplxSeqCurrents()::Vector{ComplexF64}
+    return get_complex64_array(Lib.PDElements_Get_AllCplxSeqCurrents)
+end
+
+"""
+Double array of Sequence Currents for all conductors of all terminals, for each PD elements.
+(API Extension)
+"""
+function AllSeqCurrents()::Vector{ComplexF64}
+    return get_float64_array(Lib.PDElements_Get_AllSeqCurrents)
+end
+
+"""
+Complex array of powers into each conductor of each terminal, for each PD element.
+(API Extension)
+"""
+function AllPowers()::Vector{ComplexF64}
+    return get_float64_array(Lib.PDElements_Get_AllPowers)
+end
+
+"""
+Complex array of sequence powers into each 3-phase teminal, for each PD element
+(API Extension)
+"""
+function AllSeqPowers()::Vector{ComplexF64}
+    return get_float64_array(Lib.PDElements_Get_AllSeqPowers)
+end
+
+"""
+Integer array listing the number of phases of all PD elements
+(API Extension)
+"""
+function AllNumPhases()::Vector{Int32}
+    return get_int32_array(Lib.PDElements_Get_AllNumPhases)
+end
+
+"""
+Integer array listing the number of conductors of all PD elements
+(API Extension)
+"""
+function AllNumConductors()::Vector{Int32}
+    return get_int32_array(Lib.PDElements_Get_AllNumConductors)
+end
+
+"""
+Integer array listing the number of terminals of all PD elements
+(API Extension)
+"""
+function AllNumTerminals()::Vector{Int32}
+    return get_int32_array(Lib.PDElements_Get_AllNumTerminals)
+end
+
 end
