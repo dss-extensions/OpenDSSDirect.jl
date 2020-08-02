@@ -10,7 +10,7 @@ init8500()
 @test PDElements.IsShunt() == 0
 @test PDElements.NumCustomers() == 0
 @test PDElements.TotalCustomers() == 0
-# @test PDElements.ParentPDElement()      # ERROR
+@test PDElements.ParentPDElement() == 0
 @test PDElements.FromTerminal() == 1
 @test PDElements.SectionID() == 0
 @test PDElements.FaultRate() ≋ 0.1
@@ -24,13 +24,21 @@ init8500()
 @test PDElements.Name() == "Line.ln5502549-1"
 @test PDElements.Name(PDElements.Name()) == nothing
 
-arr = String[]
-for i in OpenDSSDirect.EachMember(PDElements); push!(arr, PDElements.Name()); end
-for (i, n) in enumerate(OpenDSSDirect.EachMember(PDElements, PDElements.Name))
-    @test n == arr[i]
+arr_names = String[]
+arr_phases = Int32[]
+for i in OpenDSSDirect.EachMember(PDElements)
+    push!(arr_names, PDElements.Name())
+    push!(arr_phases, CktElement.NumPhases())
 end
-@test_broken arr == PDElements.AllNames() # TODO: PDElements is missing AllNames
-@test length(arr) + 5 == length(OpenDSSDirect.EachMember(PDElements))
+for (i, n) in enumerate(OpenDSSDirect.EachMember(PDElements, PDElements.Name))
+    @test n == arr_names[i]
+end
+
+# There are disabled elements (which are not iterated), so do a partial check instead
+@test arr_names[1:200] == PDElements.AllNames()[1:200]
+@test arr_phases[1:200] == PDElements.AllNumPhases()[1:200]
+
+@test length(arr_names) + 5 == length(OpenDSSDirect.EachMember(PDElements))
 
 end # testset
 
