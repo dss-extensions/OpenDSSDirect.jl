@@ -1,7 +1,7 @@
 
 module OpenDSSDirect
 
-__precompile__(true)
+__precompile__(false)
 
 export ActiveClass
 export Basic
@@ -45,14 +45,21 @@ export dss
 
 import Libdl
 
+if get(ENV, "DSS_EXTENSIONS_DEBUG", "0") == "1"
+    LIBRARY_SUFFIX = "d"
+    @warn "Environment variable DSS_EXTENSIONS_DEBUG=1 is set: loading the debug version of DSS C-API library"
+else
+    LIBRARY_SUFFIX = ""
+end
+
 if Sys.iswindows()
-    const LIBRARY = abspath(joinpath(@__DIR__, "../deps/windows/dss_capi_v7.dll"))
+    const LIBRARY = abspath(joinpath(@__DIR__, "../deps/windows/dss_capi_v7$(LIBRARY_SUFFIX).dll"))
     const KLUSOLVE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/windows/libklusolve.dll"))
 elseif Sys.islinux()
-    const LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libdss_capi_v7.so"))
+    const LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libdss_capi_v7$(LIBRARY_SUFFIX).so"))
     const KLUSOLVE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libklusolve.so"))
 elseif Sys.isapple()
-    const LIBRARY = abspath(joinpath(@__DIR__, "../deps/apple/libdss_capi_v7.dylib"))
+    const LIBRARY = abspath(joinpath(@__DIR__, "../deps/apple/libdss_capi_v7$(LIBRARY_SUFFIX).dylib"))
     const KLUSOLVE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/apple/libklusolve.dylib"))
 else
     error("Unknown operating system. Cannot use OpenDSSDirect")
