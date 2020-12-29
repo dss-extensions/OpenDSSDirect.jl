@@ -90,5 +90,8 @@ end
 @test arr == Meters.AllNames()
 @test length(arr) == length(OpenDSSDirect.EachMember(Meters))
 
+@test Meters.ZonePCE() == []
+
+
 
 end # testset

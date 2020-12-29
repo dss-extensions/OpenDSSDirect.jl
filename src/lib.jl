@@ -102,6 +102,14 @@ function ActiveClass_Get_ActiveClassParent()
     ccall((:ActiveClass_Get_ActiveClassParent, LIBRARY), Cstring, ())
 end
 
+function Bus_Get_AllPCEatBus(ResultPtr, ResultCount)
+    ccall((:Bus_Get_AllPCEatBus, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+end
+
+function Bus_Get_AllPDEatBus(ResultPtr, ResultCount)
+    ccall((:Bus_Get_AllPDEatBus, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+end
+
 function Bus_Get_Name()
     ccall((:Bus_Get_Name, LIBRARY), Cstring, ())
 end
@@ -1092,6 +1100,14 @@ end
 
 function CktElement_Get_IsIsolated()
     ccall((:CktElement_Get_IsIsolated, LIBRARY), UInt16, ())
+end
+
+function CktElement_Get_TotalPowers(ResultPtr, ResultCount)
+    ccall((:CktElement_Get_TotalPowers, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+end
+
+function CktElement_Get_TotalPowers_GR()
+    ccall((:CktElement_Get_TotalPowers_GR, LIBRARY), Cvoid, ())
 end
 
 function CmathLib_Get_cmplx(ResultPtr, ResultCount, RealPart, ImagPart)
@@ -2876,6 +2892,10 @@ end
 
 function Meters_Get_SectTotalCust()
     ccall((:Meters_Get_SectTotalCust, LIBRARY), Int32, ())
+end
+
+function Meters_Get_ZonePCE(ResultPtr, ResultCount)
+    ccall((:Meters_Get_ZonePCE, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
 end
 
 function Monitors_Get_AllNames(ResultPtr, ResultCount)

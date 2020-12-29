@@ -242,6 +242,11 @@ function SeqVoltages()::Vector{Float64}
     return get_float64_array(Lib.CktElement_Get_SeqVoltages)
 end
 
+"""Returns the total powers (complex) at ALL terminals of the active circuit element."""
+function TotalPowers()::Vector{ComplexF64}
+    return get_complex64_array(Lib.CktElement_Get_TotalPowers)
+end
+
 """Complex array of voltages at terminals"""
 function Voltages()::Vector{ComplexF64}
     return get_complex64_array(Lib.CktElement_Get_Voltages)

@@ -1,7 +1,7 @@
 # Automatically generated using Clang.jl
 
 
-const DSS_CAPI_V7_VERSION = "0.10.6"
+const DSS_CAPI_V7_VERSION = "0.10.7"
 
 @cenum MonitorModes::UInt32 begin
     MonitorModes_VI = 0

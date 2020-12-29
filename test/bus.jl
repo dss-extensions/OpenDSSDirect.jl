@@ -40,5 +40,10 @@ Circuit.SetActiveBus("M1047751")
 @test Bus.puVLL() ≋ [-99999.0 + 0.0im]
 @test Bus.VMagAngle() ≋ [12.148177279538402, 41.934023780152195]''
 @test Bus.puVmagAngle() ≋ [0.0016873504625111767, 41.934023780152195]''
+@test Bus.AllPDEatBus() == ["Line.ln5865236-1", "Line.ln5623397-1"]
+
+Circuit.SetActiveBus("SX2973158C")
+
+@test Bus.AllPCEatBus() == ["Load.138259c0"]
 
 end # testset
