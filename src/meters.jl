@@ -276,4 +276,9 @@ function Totals()::Vector{Float64}
     return get_float64_array(Lib.Meters_Get_Totals)
 end
 
+"""Returns the list of all PCE within the area covered by the energy meter"""
+function ZonePCE()::Vector{String}
+    return get_string_array(Lib.Meters_Get_ZonePCE)
+end
+
 end

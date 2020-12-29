@@ -190,4 +190,14 @@ function LoadList()::Vector{String}
     return get_string_array(Lib.Bus_Get_LoadList)
 end
 
+"""Array with the names of all PCE connected to the active bus"""
+function AllPCEatBus()::Vector{String}
+    return get_string_array(Lib.Bus_Get_AllPCEatBus)
+end
+
+"""Array with the names of all PDE connected to the active bus"""
+function AllPDEatBus()::Vector{String}
+    return get_string_array(Lib.Bus_Get_AllPDEatBus)
+end
+
 end

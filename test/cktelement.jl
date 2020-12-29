@@ -12,7 +12,7 @@ Lines.Next()
 @test CktElement.Open(0, 0) == nothing
 @test CktElement.Close(0, 0) == nothing
 @test CktElement.IsOpen(0, 0) == false
-@test CktElement.NumProperties() == 37
+@test CktElement.NumProperties() == 38
 @test CktElement.HasSwitchControl() == false
 @test CktElement.HasVoltControl() == false
 @test CktElement.NumControls() == 0
@@ -57,5 +57,6 @@ Lines.Next()
                                      177.9319402443363 -2.0853832620851183]
 @test CktElement.VoltagesMagAng() ≋ [7691.655711894497 7691.542956049531
                                     -167.10323234086837 -167.10344473228216]
+@test CktElement.TotalPowers() ≋ [14.0052+3.74347im, -14.005-3.7479im]
 
 end # testset
