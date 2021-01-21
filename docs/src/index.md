@@ -68,20 +68,21 @@ in OpenDSS. Here is an example summing the kW and kvar from loads using the
 
 ```julia
 using OpenDSSDirect
-filename = Pkg.dir("OpenDSSDirect", "examples", "8500-Node", "Master.dss")
+filename = joinpath(dirname(dirname(pathof(OpenDSSDirect))), "examples", "8500-Node", "Master.dss")
 dss("""
     clear
     compile $filename
     solve
 """)
 
-loadnumber = Loads.First()
-kWsum = 0.0
-kvarsum = 0.0
+global loadnumber = Loads.First()
+global kWsum = 0.0
+global kvarsum = 0.0
+
 while loadnumber > 0
-    kWsum += Loads.kW()
-    kvarsum += Loads.kvar()
-    loadnumber = Loads.Next()
+    global kWsum += Loads.kW()
+    global kvarsum += Loads.kvar()
+    global loadnumber = Loads.Next()
 end
 ```
 
