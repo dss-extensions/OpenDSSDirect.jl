@@ -75,15 +75,22 @@ dss("""
     solve
 """)
 
-global loadnumber = Loads.First()
-global kWsum = 0.0
-global kvarsum = 0.0
+function main()
 
-while loadnumber > 0
-    global kWsum += Loads.kW()
-    global kvarsum += Loads.kvar()
-    global loadnumber = Loads.Next()
+    loadnumber = Loads.First()
+    kWsum = 0.0
+    kvarsum = 0.0
+    
+    while loadnumber > 0
+        kWsum += Loads.kW()
+        kvarsum += Loads.kvar()
+        loadnumber = Loads.Next()
+    end
+
+    kWsum, kvarsum
 end
+
+main()
 ```
 
 
