@@ -68,7 +68,7 @@ in OpenDSS. Here is an example summing the kW and kvar from loads using the
 
 ```julia
 using OpenDSSDirect
-filename = joinpath(dirname(dirname(pathof(OpenDSSDirect))),"examples\\8500-Node\\Master.dss")
+filename = joinpath(dirname(dirname(pathof(OpenDSSDirect))), "examples", "8500-Node", "Master.dss")
 dss("""
     clear
     compile $filename
