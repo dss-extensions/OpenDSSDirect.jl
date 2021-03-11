@@ -6,7 +6,7 @@ abstract type Windows <: AbstractOS end
 abstract type MacOS <: BSD end
 abstract type Linux <: BSD end
 
-const DSS_CAPI_TAG = "0.10.7"
+const DSS_CAPI_TAG = "0.10.7-1"
 
 function download(::Type{MacOS})
 
