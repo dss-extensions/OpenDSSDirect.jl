@@ -4,7 +4,7 @@ include("init.jl")
 
 println(OpenDSSDirect.Basic.Version())
 
-@test ODD.Lib.DSS_CAPI_V7_VERSION == "0.10.7"
+@test ODD.Lib.DSS_CAPI_V7_VERSION == "0.10.7-1"
 
 include("lowlevel.jl")
 include("basics.jl")
