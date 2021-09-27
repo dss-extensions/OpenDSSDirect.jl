@@ -1,7 +1,6 @@
 # OpenDSSDirect.jl
 
-[![Travis Build Status](https://travis-ci.com/dss-extensions/OpenDSSDirect.jl.svg?branch=master)](https://travis-ci.com/dss-extensions/OpenDSSDirect.jl)
-[![Appveyor Build Status](https://ci.appveyor.com/api/projects/status/github/dss-extensions/OpenDSSDirect.jl?branch=master&svg=true)](https://ci.appveyor.com/project/PMeira/opendssdirect-jl)
+[![GitHub Actions: Tests](https://github.com/dss-extensions/OpenDSSDirect.jl/workflows/CI/badge.svg)](https://github.com/dss-extensions/OpenDSSDirect.jl/actions/workflows/ci.yml)
 
 OpenDSSDirect.jl is a cross-platform Julia package implements a "direct" library interface to [OpenDSS](http://smartgrid.epri.com/SimulationTool.aspx) using [DSS C-API](https://github.com/dss-extensions/dss_capi/).
 
