@@ -16,12 +16,13 @@ function Reset()
 end
 
 """Open or Close the switch. No effect if switch is locked.  However, Reset removes any lock and then closes the switch (shelf state). (Getter)"""
-function Action()::Int
+function Action()::Lib.ActionCodes
     return @checked Lib.SwtControls_Get_Action()
 end
 
 """Open or Close the switch. No effect if switch is locked.  However, Reset removes any lock and then closes the switch (shelf state). (Setter)"""
-function Action(Value::Int)
+function Action(Value::Union{Int,Lib.ActionCodes})
+    Value = convert(Lib.ActionCodes, Value)
     @checked Lib.SwtControls_Set_Action(Value)
 end
 
@@ -75,22 +76,24 @@ function Next()::Int
 end
 
 """Normal state of switch (Getter)"""
-function NormalState()::Int
+function NormalState()::Lib.ActionCodes
     return @checked Lib.SwtControls_Get_NormalState()
 end
 
 """Normal state of switch (Setter)"""
-function NormalState(Value::Int)
+function NormalState(Value::Union{Int,Lib.ActionCodes})
+    Value = convert(Lib.ActionCodes, Value)
     @checked Lib.SwtControls_Set_NormalState(Value)
 end
 
 """State of switch (Getter)"""
-function State()::Int
+function State()::Lib.ActionCodes
     return @checked Lib.SwtControls_Get_State()
 end
 
 """State of switch (Setter)"""
-function State(Value::Int)
+function State(Value::Union{Int,Lib.ActionCodes})
+    Value = convert(Lib.ActionCodes, Value)
     @checked Lib.SwtControls_Set_State(Value)
 end
 
@@ -114,10 +117,11 @@ function SwitchedTerm(Value::Int)
     @checked Lib.SwtControls_Set_SwitchedTerm(Value)
 end
 
-"""SwtControl Index (Getter)"""
-function Idx()::Int
-    return @checked Lib.SwtControls_Get_idx()
-end
+# TODO: broken in DSS C-API 0.10.7
+# """SwtControl Index (Getter)"""
+# function Idx()::Int
+#     return @checked Lib.SwtControls_Get_idx()
+# end
 
 """SwtControl Index (Setter)"""
 function Idx(Value::Int)
