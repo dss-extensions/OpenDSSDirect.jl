@@ -103,13 +103,18 @@ function Header()::Vector{String}
 end
 
 """Set Monitor mode (bitmask integer - see DSS Help)"""
-function Mode()::Lib.MonitorModes
-    return @checked Lib.Monitors_Get_Mode()
+function Mode()::Union{UInt32,Lib.MonitorModes}
+    result = @checked Lib.Monitors_Get_Mode()
+    try
+        return convert(Lib.MonitorModes, result)
+    catch
+        return result
+    end
 end
 
 """Set Monitor mode (bitmask integer - see DSS Help)"""
-function Mode(Value::Union{Int,Lib.MonitorModes})
-    Value = convert(Lib.MonitorModes, Value)
+function Mode(Value::Union{Int,UInt32,Lib.MonitorModes})
+    # Value = convert(Lib.MonitorModes, Value)
     @checked Lib.Monitors_Set_Mode(Value)
 end
 
