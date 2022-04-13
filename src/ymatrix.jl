@@ -100,10 +100,15 @@ function getV()::Vector{ComplexF64}
     return unsafe_wrap(Array, VvectorPtr, @checked(Lib.Circuit_Get_NumNodes()) + 1)
 end
 
-"""Solve System for V"""
+"""Solve System for a given V vector"""
 function SolveSystem(NodeV::Vector{ComplexF64})::Int
-    NodeV = Ref{Ptr{Cdouble}}(pointer(NodeV))
+    NodeV = pointer(NodeV)
     return @checked Lib.YMatrix_SolveSystem(NodeV)
+end
+
+"""Solve System for the internal V vector"""
+function SolveSystem()::Int
+    return @checked Lib.YMatrix_SolveSystem(C_NULL)
 end
 
 """SystemY has changed (Getter)"""

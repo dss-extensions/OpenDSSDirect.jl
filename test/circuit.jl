@@ -25,7 +25,7 @@ init8500()
 @test Circuit.Enable(Circuit.AllElementNames()[10]) == nothing
 @test Circuit.SetActiveElement(Circuit.AllElementNames()[10]) == 9
 @test Circuit.SetActiveBus(Circuit.AllBusNames()[10]) == 9
-@test Circuit.SetActiveClass(ActiveClass.ActiveClassName()) == 16
+@test Circuit.SetActiveClass(ActiveClass.ActiveClassName()) == 15
 @test Circuit.Losses() ≋ 1.218242333223247e6 + 2.798391857088721e6im
 @test Circuit.LineLosses() ≋ 1042.0872998508387 + 1674.1606828559168im
 @test Circuit.SubstationLosses() ≋ 65.18947074155649 + 752.3006305284744im

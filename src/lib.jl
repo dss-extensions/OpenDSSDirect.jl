@@ -2610,14 +2610,6 @@ function LoadShapes_Set_SInterval(Value)
     ccall((:LoadShapes_Set_SInterval, LIBRARY), Cvoid, (Cdouble,), Value)
 end
 
-function LoadShapes_Get_sInterval()
-    ccall((:LoadShapes_Get_sInterval, LIBRARY), Cdouble, ())
-end
-
-function LoadShapes_Set_Sinterval(Value)
-    ccall((:LoadShapes_Set_Sinterval, LIBRARY), Cvoid, (Cdouble,), Value)
-end
-
 function LoadShapes_Set_HrInterval(Value)
     ccall((:LoadShapes_Set_HrInterval, LIBRARY), Cvoid, (Cdouble,), Value)
 end
@@ -5171,7 +5163,7 @@ function YMatrix_getVpointer(VvectorPtr)
 end
 
 function YMatrix_SolveSystem(NodeVPtr)
-    ccall((:YMatrix_SolveSystem, LIBRARY), Int32, (Ptr{Ptr{Cdouble}},), NodeVPtr)
+    ccall((:YMatrix_SolveSystem, LIBRARY), Int32, (Ptr{Cdouble},), NodeVPtr)
 end
 
 function YMatrix_Set_SystemYChanged(arg)
@@ -6348,4 +6340,8 @@ end
 
 function XYCurves_Set_idx(Value)
     ccall((:XYCurves_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+end
+
+function DSS_SetPropertiesMO(Value)
+    ccall((:DSS_SetPropertiesMO, LIBRARY), Cvoid, (Cstring,), Value)
 end

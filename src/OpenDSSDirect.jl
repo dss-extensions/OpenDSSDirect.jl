@@ -53,14 +53,14 @@ else
 end
 
 if Sys.iswindows()
-    const LIBRARY = abspath(joinpath(@__DIR__, "../deps/windows/dss_capi_v7$(LIBRARY_SUFFIX).dll"))
-    const KLUSOLVE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/windows/libklusolve.dll"))
+    const LIBRARY = abspath(joinpath(@__DIR__, "../deps/windows/dss_capi$(LIBRARY_SUFFIX).dll"))
+    const KLUSOLVE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/windows/libklusolvex.dll"))
 elseif Sys.islinux()
-    const LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libdss_capi_v7$(LIBRARY_SUFFIX).so"))
-    const KLUSOLVE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libklusolve.so"))
+    const LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libdss_capi$(LIBRARY_SUFFIX).so"))
+    const KLUSOLVE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libklusolvex.so"))
 elseif Sys.isapple()
-    const LIBRARY = abspath(joinpath(@__DIR__, "../deps/apple/libdss_capi_v7$(LIBRARY_SUFFIX).dylib"))
-    const KLUSOLVE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/apple/libklusolve.dylib"))
+    const LIBRARY = abspath(joinpath(@__DIR__, "../deps/apple/libdss_capi$(LIBRARY_SUFFIX).dylib"))
+    const KLUSOLVE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/apple/libklusolvex.dylib"))
 else
     error("Unknown operating system. Cannot use OpenDSSDirect")
 end
@@ -134,6 +134,9 @@ function __init__()
     if Libdl.dlopen(LIBRARY) == C_NULL
         error("$LIBRARY cannot be opened. Please check 'deps/build.log' for more information.")
     end
+
+    # Load the default descriptions/help strings
+    Lib.DSS_SetPropertiesMO(abspath(joinpath(@__DIR__, "../deps/messages/properties-en-US.mo")))
 
     if !Sys.islinux()
         global commandhelp = Dict{String, String}()

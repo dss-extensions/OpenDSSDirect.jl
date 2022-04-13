@@ -117,11 +117,10 @@ function SwitchedTerm(Value::Int)
     @checked Lib.SwtControls_Set_SwitchedTerm(Value)
 end
 
-# TODO: broken in DSS C-API 0.10.7
-# """SwtControl Index (Getter)"""
-# function Idx()::Int
-#     return @checked Lib.SwtControls_Get_idx()
-# end
+"""SwtControl Index (Getter)"""
+function Idx()::Int
+    return @checked Lib.SwtControls_Get_idx()
+end
 
 """SwtControl Index (Setter)"""
 function Idx(Value::Int)

@@ -30,9 +30,9 @@ init8500()
 @test LineCodes.R0(LineCodes.R0()) == nothing
 @test LineCodes.X0() ≋ 0.4047
 @test LineCodes.X0(LineCodes.X0()) == nothing
-@test LineCodes.C1() ≋ 3.4e-9
+@test LineCodes.C1() ≋ 3.4
 @test LineCodes.C1(LineCodes.C1()) == nothing
-@test LineCodes.C0() ≋ 1.6e-9
+@test LineCodes.C0() ≋ 1.6
 @test LineCodes.C0(LineCodes.C0()) == nothing
 @test LineCodes.NormAmps() ≋ 400.0
 @test LineCodes.NormAmps(LineCodes.NormAmps()) == nothing
