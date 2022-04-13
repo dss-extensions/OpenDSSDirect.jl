@@ -158,9 +158,19 @@ function DblFreq()::Vector{Float64}
     return get_float64_array(Lib.Monitors_Get_dblFreq)
 end
 
-"""(read-only) Array of doubles containgin time value in hours for time-sampled monitor values; Empty if frequency-sampled values for harmonics solution  (see dblFreq)"""
+"""(read-only) Array of doubles containing time value in hours for time-sampled monitor values; Empty if frequency-sampled values for harmonics solution  (see dblFreq)"""
 function DblHour()::Vector{Float64}
     return get_float64_array(Lib.Monitors_Get_dblHour)
+end
+
+"""Monitor Index (Getter)"""
+function Idx()::Int
+    return @checked Lib.Monitors_Get_idx()
+end
+
+"""Monitor Index (Setter)"""
+function Idx(Value::Int)
+    @checked Lib.Monitors_Set_idx(Value)
 end
 
 end

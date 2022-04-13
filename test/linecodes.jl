@@ -7,6 +7,13 @@ init8500()
 
 @test LineCodes.First() == 1
 @test LineCodes.Next() == 2
+@test LineCodes.Idx() == 2
+@test_throws OpenDSSDirect.OpenDSSDirectException LineCodes.Idx(0)
+@test LineCodes.Idx() == 2
+@test LineCodes.Idx(7) == nothing
+@test LineCodes.Idx() == 7
+@test LineCodes.Idx(2) == nothing
+@test LineCodes.Idx() == 2
 @test LineCodes.Phases() == 1
 @test LineCodes.Phases(LineCodes.Phases()) == nothing
 @test LineCodes.Count() == 71

@@ -11,6 +11,13 @@ OpenDSSDirect.Text.Command("""
 @test LoadShape.Count() == 4
 @test LoadShape.First() == 1
 @test LoadShape.Next() == 2
+@test LoadShape.Idx() == 2
+@test_throws OpenDSSDirect.OpenDSSDirectException LoadShape.Idx(0)
+@test LoadShape.Idx() == 2
+@test LoadShape.Idx(1) == nothing
+@test LoadShape.Idx() == 1
+@test LoadShape.Idx(2) == nothing
+@test LoadShape.Idx() == 2
 @test LoadShape.Npts() == 8760
 @test LoadShape.Npts(LoadShape.Npts()) == nothing
 @test LoadShape.Normalize() == nothing

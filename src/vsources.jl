@@ -91,4 +91,14 @@ function PU(Value::Float64)
     @checked Lib.Vsources_Set_pu(Value)
 end
 
+"""VSOURCE Index (Getter)"""
+function Idx()::Int
+    return @checked Lib.Vsources_Get_idx()
+end
+
+"""VSOURCE Index (Setter)"""
+function Idx(Value::Int)
+    @checked Lib.Vsources_Set_idx(Value)
+end
+
 end

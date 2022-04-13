@@ -14,6 +14,13 @@ init8500()
 @test Transformers.IsDelta(Transformers.IsDelta()) == nothing
 @test Transformers.First() == 1
 @test Transformers.Next() == 2
+@test Transformers.Idx() == 2
+@test_throws OpenDSSDirect.OpenDSSDirectException Transformers.Idx(0)
+@test Transformers.Idx() == 2
+@test Transformers.Idx(7) == nothing
+@test Transformers.Idx() == 7
+@test Transformers.Idx(2) == nothing
+@test Transformers.Idx() == 2
 @test Transformers.Count() == 1190
 @test Transformers.R() ≋ 5.0e-6
 @test Transformers.R(Transformers.R()) == nothing

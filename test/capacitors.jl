@@ -7,6 +7,13 @@ init8500()
 @test Capacitors.First() == 1
 @test Capacitors.Next() == 2
 @test Capacitors.Count() == 10
+@test Capacitors.Idx() == 2
+@test_throws OpenDSSDirect.OpenDSSDirectException Capacitors.Idx(0)
+@test Capacitors.Idx() == 2
+@test Capacitors.Idx(10) == nothing
+@test Capacitors.Idx() == 10
+@test Capacitors.Idx(2) == nothing
+@test Capacitors.Idx() == 2
 @test Capacitors.NumSteps() == 1
 @test Capacitors.NumSteps(Capacitors.NumSteps()) == nothing
 @test Capacitors.IsDelta() == false

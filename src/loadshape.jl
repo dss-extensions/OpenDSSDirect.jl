@@ -154,5 +154,14 @@ function SInterval(Value::Float64)
     @checked Lib.LoadShapes_Set_Sinterval(Value)
 end
 
+"""LoadShape Index (Getter)"""
+function Idx()::Int
+    return @checked Lib.LoadShapes_Get_idx()
+end
+
+"""LoadShape Index (Setter)"""
+function Idx(Value::Int)
+    @checked Lib.LoadShapes_Set_idx(Value)
+end
 
 end

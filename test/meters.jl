@@ -17,6 +17,11 @@ OpenDSSDirect.Text.Command("""
 
 @test Meters.First() == 1
 @test Meters.Next() == 0
+@test Meters.Idx() == 1
+@test_throws OpenDSSDirect.OpenDSSDirectException Meters.Idx(0)
+@test Meters.Idx() == 1
+@test Meters.Idx(1) == nothing
+@test Meters.Idx() == 1
 @test Meters.Save() == nothing
 @test Meters.Reset() == nothing
 @test Meters.ResetAll() == nothing

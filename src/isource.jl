@@ -70,4 +70,14 @@ function Next()::Int
     return @checked Lib.ISources_Get_Next()
 end
 
+"""ISOURCE Index (Getter)"""
+function Idx()::Int
+    return @checked Lib.ISources_Get_idx()
+end
+
+"""ISOURCE Index (Setter)"""
+function Idx(Value::Int)
+    @checked Lib.ISources_Set_idx(Value)
+end
+
 end

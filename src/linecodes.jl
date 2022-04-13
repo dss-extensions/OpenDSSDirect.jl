@@ -227,4 +227,14 @@ function Zmatrix(Value::Matrix{ComplexF64})
     Xmatrix(i)
 end
 
+"""LineCode Index (Getter)"""
+function Idx()::Int
+    return @checked Lib.LineCodes_Get_idx()
+end
+
+"""LineCode Index (Setter)"""
+function Idx(Value::Int)
+    @checked Lib.LineCodes_Set_idx(Value)
+end
+
 end
