@@ -186,4 +186,14 @@ function Vmin(Value::Float64)
     @checked Lib.CapControls_Set_Vmin(Value)
 end
 
+"""CapControl Index (Getter)"""
+function Idx()::Int
+    return @checked Lib.CapControls_Get_idx()
+end
+
+"""CapControl Index (Setter)"""
+function Idx(Value::Int)
+    @checked Lib.CapControls_Set_idx(Value)
+end
+
 end

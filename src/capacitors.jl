@@ -116,4 +116,14 @@ function kvar(Value::Float64)
     @checked Lib.Capacitors_Set_kvar(Value)
 end
 
+"""Capacitor Index (Getter)"""
+function Idx()::Int
+    return @checked Lib.Capacitors_Get_idx()
+end
+
+"""Capacitor Index (Setter)"""
+function Idx(Value::Int)
+    @checked Lib.Capacitors_Set_idx(Value)
+end
+
 end

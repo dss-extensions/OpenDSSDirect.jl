@@ -6,6 +6,13 @@ init8500()
 
 @test RegControls.First() == 1
 @test RegControls.Next() == 2
+@test RegControls.Idx() == 2
+@test_throws OpenDSSDirect.OpenDSSDirectException RegControls.Idx(0)
+@test RegControls.Idx() == 2
+@test RegControls.Idx(7) == nothing
+@test RegControls.Idx() == 7
+@test RegControls.Idx(2) == nothing
+@test RegControls.Idx() == 2
 @test RegControls.TapWinding() == 2
 @test RegControls.TapWinding(RegControls.TapWinding()) == nothing
 @test RegControls.Winding() == 2

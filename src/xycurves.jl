@@ -128,4 +128,14 @@ function Y(Value::Float64)
     @checked Lib.XYCurves_Set_y(Value)
 end
 
+"""XYCurve Index (Getter)"""
+function Idx()::Int
+    return @checked Lib.XYCurves_Get_idx()
+end
+
+"""XYCurve Index (Setter)"""
+function Idx(Value::Int)
+    @checked Lib.XYCurves_Set_idx(Value)
+end
+
 end

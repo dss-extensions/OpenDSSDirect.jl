@@ -10,6 +10,11 @@ OpenDSSDirect.Text.Command("""
 
 @test Monitors.First() == 1
 @test Monitors.Next() == 0
+@test Monitors.Idx() == 1
+@test_throws OpenDSSDirect.OpenDSSDirectException Monitors.Idx(0)
+@test Monitors.Idx() == 1
+@test Monitors.Idx(1) == nothing
+@test Monitors.Idx() == 1
 @test Monitors.Reset() == nothing
 @test Monitors.ResetAll() == nothing
 @test Monitors.Sample() == nothing

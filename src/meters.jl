@@ -281,4 +281,14 @@ function ZonePCE()::Vector{String}
     return get_string_array(Lib.Meters_Get_ZonePCE)
 end
 
+"""Meter Index (Getter)"""
+function Idx()::Int
+    return @checked Lib.Meters_Get_idx()
+end
+
+"""Meter Index (Setter)"""
+function Idx(Value::Int)
+    @checked Lib.Meters_Set_idx(Value)
+end
+
 end

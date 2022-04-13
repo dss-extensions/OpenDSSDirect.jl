@@ -112,7 +112,16 @@ end
 """Terminal number where the switch is located on the SwitchedObj (Setter)"""
 function SwitchedTerm(Value::Int)
     @checked Lib.SwtControls_Set_SwitchedTerm(Value)
+end
 
+"""SwtControl Index (Getter)"""
+function Idx()::Int
+    return @checked Lib.SwtControls_Get_idx()
+end
+
+"""SwtControl Index (Setter)"""
+function Idx(Value::Int)
+    @checked Lib.SwtControls_Set_idx(Value)
 end
 
 end

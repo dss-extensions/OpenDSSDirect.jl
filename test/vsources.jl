@@ -7,6 +7,12 @@ init8500()
 @test Vsources.Count() == 1
 @test Vsources.First() == 1
 @test Vsources.Next() == 0
+@test Vsources.Idx() == 1
+@test_throws OpenDSSDirect.OpenDSSDirectException Vsources.Idx(0)
+@test_throws OpenDSSDirect.OpenDSSDirectException Vsources.Idx(100)
+@test Vsources.Idx() == 1
+@test Vsources.Idx(1) == nothing
+@test Vsources.Idx() == 1
 @test Vsources.Phases() == 3
 @test Vsources.Phases(Vsources.Phases()) == nothing
 @test Vsources.BasekV() ≋ 115.0

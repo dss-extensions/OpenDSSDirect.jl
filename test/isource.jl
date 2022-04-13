@@ -16,6 +16,9 @@ New Isource.TestISource phases=1 Bus1=SX2691950C.1 frequency=60 Angle=30 Amps=1.
 """)
 
 @test Isource.First() == 1
+@test_throws OpenDSSDirect.OpenDSSDirectException Isource.Idx(0)
+@test_throws OpenDSSDirect.OpenDSSDirectException Isource.Idx(7)
+@test Isource.Idx() == 1
 @test Isource.Amps() == 1.1
 @test Isource.Amps(Isource.Amps()) == nothing
 @test Isource.AngleDeg() == 30.0

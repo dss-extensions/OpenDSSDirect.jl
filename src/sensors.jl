@@ -162,4 +162,14 @@ function kW(Value::Vector{Float64})
     @checked Lib.Sensors_Set_kWS(ValuePtr, ValueCount)
 end
 
+"""Sensor Index (Getter)"""
+function Idx()::Int
+    return @checked Lib.Sensors_Get_idx()
+end
+
+"""Sensor Index (Setter)"""
+function Idx(Value::Int)
+    @checked Lib.Sensors_Set_idx(Value)
+end
+
 end

@@ -6,6 +6,13 @@ init8500()
 
 @test CapControls.First() == 1
 @test CapControls.Next() == 2
+@test CapControls.Idx() == 2
+@test_throws OpenDSSDirect.OpenDSSDirectException CapControls.Idx(0)
+@test CapControls.Idx() == 2
+@test CapControls.Idx(7) == nothing
+@test CapControls.Idx() == 7
+@test CapControls.Idx(2) == nothing
+@test CapControls.Idx() == 2
 @test CapControls.Mode() == 2
 @test CapControls.Mode() == OpenDSSDirect.Lib.CapControlModes_KVAR
 @test CapControls.Mode(2) == nothing

@@ -201,4 +201,14 @@ function kVA(Value::Float64)
     @checked Lib.Transformers_Set_kVA(Value)
 end
 
+"""Transformer Index (Getter)"""
+function Idx()::Int
+    return @checked Lib.Transformers_Get_idx()
+end
+
+"""Transformer Index (Setter)"""
+function Idx(Value::Int)
+    @checked Lib.Transformers_Set_idx(Value)
+end
+
 end

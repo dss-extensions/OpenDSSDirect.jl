@@ -346,4 +346,14 @@ function ZMatrix(Value::Matrix{ComplexF64})
     XMatrix(i)
 end
 
+"""Line Index (Getter)"""
+function Idx()::Int
+    return @checked Lib.Lines_Get_idx()
+end
+
+"""Line Index (Setter)"""
+function Idx(Value::Int)
+    @checked Lib.Lines_Set_idx(Value)
+end
+
 end

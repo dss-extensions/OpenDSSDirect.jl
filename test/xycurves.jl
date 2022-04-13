@@ -12,6 +12,13 @@ New XYCurve.MyEff npts=4  xarray=[.1  .2  .4  1.0]  yarray=[.86  .9  .93  .97]
 @test XYCurves.Count() == 2
 @test XYCurves.First() == 1
 @test XYCurves.Next() == 2
+@test XYCurves.Idx() == 2
+@test_throws OpenDSSDirect.OpenDSSDirectException XYCurves.Idx(0)
+@test_throws OpenDSSDirect.OpenDSSDirectException XYCurves.Idx(100)
+@test XYCurves.Idx(1) == nothing
+@test XYCurves.Idx() == 1
+@test XYCurves.Idx(2) == nothing
+@test XYCurves.Idx() == 2
 @test XYCurves.Npts() == 4
 @test XYCurves.Npts(XYCurves.Npts()) == nothing
 @test XYCurves.X() ≋ 0.1

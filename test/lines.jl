@@ -10,6 +10,13 @@ init8500()
 
 @test Lines.First() == 1
 @test Lines.Next() == 2
+@test Lines.Idx() == 2
+@test_throws OpenDSSDirect.OpenDSSDirectException Lines.Idx(0)
+@test Lines.Idx() == 2
+@test Lines.Idx(7) == nothing
+@test Lines.Idx() == 7
+@test Lines.Idx(2) == nothing
+@test Lines.Idx() == 2
 @test Lines.Phases() == 1
 @test Lines.Phases(Lines.Phases()) == nothing
 @test Lines.NumCust() == 0

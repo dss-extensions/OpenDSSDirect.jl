@@ -254,4 +254,14 @@ function Winding(Value::Float64)
     @checked Lib.RegControls_Set_Winding(Value)
 end
 
+"""RegControl Index (Getter)"""
+function Idx()::Int
+    return @checked Lib.RegControls_Get_idx()
+end
+
+"""RegControl Index (Setter)"""
+function Idx(Value::Int)
+    @checked Lib.RegControls_Set_idx(Value)
+end
+
 end
