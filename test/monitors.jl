@@ -23,7 +23,10 @@ OpenDSSDirect.Text.Command("""
 @test Monitors.Mode() == 0
 @test Monitors.Mode() == OpenDSSDirect.Lib.MonitorModes_VI
 @test Monitors.Mode(0) == nothing
+@test Monitors.Mode(OpenDSSDirect.Lib.MonitorModes_VI | OpenDSSDirect.Lib.MonitorModes_PosOnly) == nothing
+@test Monitors.Mode() == OpenDSSDirect.Lib.MonitorModes_VI | OpenDSSDirect.Lib.MonitorModes_PosOnly
 @test Monitors.Mode(OpenDSSDirect.Lib.MonitorModes_VI) == nothing
+@test Monitors.Mode() == OpenDSSDirect.Lib.MonitorModes_VI
 @test Monitors.SampleCount() == 0
 @test Monitors.SampleAll() == nothing
 @test Monitors.SaveAll() == nothing
