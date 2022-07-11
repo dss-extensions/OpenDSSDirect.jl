@@ -15,7 +15,7 @@ function setloads()
     end
     return Loads.Count()
 end
-@time count = setloads()
+@time count_loads = setloads()
 
 OpenDSSDirect.Text.Command("solve")
 
@@ -36,7 +36,7 @@ function setloads2()
     end
     return Loads.Count()
 end
-@time count = setloads2()
+@time count_loads = setloads2()
 
 dss("solve")
 
