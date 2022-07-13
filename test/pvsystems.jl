@@ -30,9 +30,9 @@ solve  ! solves at the specified irradiance and temperature
 @test PVsystems.pf(PVsystems.pf()) == nothing
 @test PVsystems.kVARated() ≋ 500.0
 @test PVsystems.kVARated(PVsystems.kVARated()) == nothing
-@test PVsystems.Daily() == "MyIrrad"
+@test PVsystems.Daily() == "myirrad" # for consistency, always lowercase since DSS C-API 0.12
 @test PVsystems.Daily(PVsystems.Daily()) == nothing
-@test PVsystems.TDaily() == "MyTemp"
+@test PVsystems.TDaily() == "mytemp"
 @test PVsystems.TDaily(PVsystems.TDaily()) == nothing
 @test PVsystems.Pmpp() == 500
 @test PVsystems.Pmpp(PVsystems.Pmpp()) == nothing

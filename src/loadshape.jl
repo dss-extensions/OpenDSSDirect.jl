@@ -146,12 +146,12 @@ end
 
 """Interval of active loadshape in seconds (Getter)"""
 function SInterval()::Float64
-    return @checked Lib.LoadShapes_Get_sInterval()
+    return @checked Lib.LoadShapes_Get_SInterval()
 end
 
 """Interval of active loadshape in seconds (Setter)"""
 function SInterval(Value::Float64)
-    @checked Lib.LoadShapes_Set_Sinterval(Value)
+    @checked Lib.LoadShapes_Set_SInterval(Value)
 end
 
 """LoadShape Index (Getter)"""

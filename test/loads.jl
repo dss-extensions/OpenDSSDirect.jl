@@ -70,7 +70,7 @@ init8500()
 @test Loads.Name() == "138237b0"
 @test Loads.Name(Loads.Name()) == nothing
 @test Loads.CVRCurve() == ""
-@test Loads.CVRCurve(Loads.CVRCurve()) == nothing
+@test_throws OpenDSSDirect.OpenDSSDirectException Loads.CVRCurve(Loads.CVRCurve())
 @test Loads.Daily() == ""
 @test Loads.Daily(Loads.Daily()) == nothing
 @test Loads.Duty() == ""
@@ -82,9 +82,9 @@ init8500()
 @test Loads.Growth() == ""
 @test Loads.Growth(Loads.Growth()) == nothing
 @test Loads.AllNames()[end] == "2224500658a0"
-@test Loads.ZipV() == Float64[]
+# @test Loads.ZipV() == Float64[] -- It only makes sense to test ZipV if the Model() matches
 @test Loads.ZipV(Float64[1.0, 1.0, 2.0, 2.0, 3.0, 3.0, 4.0]) == nothing
-@test Loads.ZipV() ≋ Float64[1.0, 1.0, 2.0, 2.0, 3.0, 3.0, 4.0] # TODO: Does not work for less than 7 elements?
+@test Loads.ZipV() ≋ Float64[1.0, 1.0, 2.0, 2.0, 3.0, 3.0, 4.0] # This always requires 7 elements
 
 arr = String[]
 for i in OpenDSSDirect.EachMember(Loads); push!(arr, Loads.Name()); end

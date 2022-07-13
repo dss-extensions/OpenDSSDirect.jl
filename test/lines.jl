@@ -59,9 +59,9 @@ init8500()
 @test Lines.LineCode() == "1ph-x4_acsrx4_acsr"
 @test Lines.LineCode(Lines.LineCode()) == nothing
 @test Lines.Geometry() == ""
-@test Lines.Geometry(Lines.Geometry()) == nothing
+@test_throws OpenDSSDirect.OpenDSSDirectException Lines.Geometry(Lines.Geometry())
 @test Lines.Spacing() == ""
-@test Lines.Spacing(Lines.Spacing()) == nothing
+@test_throws OpenDSSDirect.OpenDSSDirectException Lines.Spacing(Lines.Spacing())
 @test Lines.AllNames()[end] == "tpx2224500658a0"
 @test Lines.RMatrix() ≋ reshape([1.67466], (1, 1))
 @test Lines.RMatrix(Lines.RMatrix()) == nothing

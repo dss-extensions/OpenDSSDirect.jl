@@ -82,10 +82,6 @@ OpenDSSDirect.Text.Command("MakeBusList")
 @test Meters.Totals()[1] ≋ 23830.586235396186
 @test Meters.PeakCurrent()[1] ≋ 400.0
 @test Meters.PeakCurrent(Meters.PeakCurrent()) == nothing
-@test 1 + Meters.CalcCurrent()[1] ≋ 1 + 0.0
-@test Meters.CalcCurrent(Meters.CalcCurrent()) == nothing
-@test 1 + Meters.AllocFactors()[1] ≋ 1 + 0.0
-@test Meters.AllocFactors(Meters.AllocFactors()) == nothing
 
 arr = String[]
 for i in OpenDSSDirect.EachMember(Meters); push!(arr, Meters.Name()); end
@@ -97,6 +93,27 @@ end
 
 @test Meters.ZonePCE() == []
 
+# We need to populate AllocFactors
+OpenDSSDirect.Text.Command("Set ControlMode=Off")
+OpenDSSDirect.Text.Command("AllocateLoads")
 
+@test Meters.CalcCurrent()[1] ≋ 550.6519471768315
+@test Meters.CalcCurrent(Meters.CalcCurrent()) == nothing
+@test Meters.AllocFactors()[1] ≋ 0.7264116690239316
+@test Meters.AllocFactors(Meters.AllocFactors()) == nothing
+
+# ZonePCE is updated too now, let's check the first 10 elements
+@test Meters.ZonePCE()[1:10] == [
+    "Load.226195333c0",
+    "Load.223658a0",
+    "Capacitor.capbank2a",
+    "Capacitor.capbank2b",
+    "Capacitor.capbank2c",
+    "Load.223660c0",
+    "Load.223661c0",
+    "Load.223662c0",
+    "Load.223663c0",
+    "Load.346639c0"
+]
 
 end # testset

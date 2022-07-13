@@ -25,12 +25,12 @@ function First()::Int
     return @checked Lib.PVSystems_Get_First()
 end
 
-"""Present value of the Irradiance property in W/sq-m (Getter)"""
+"""Present value of the Irradiance property in kW/m² (Getter)"""
 function Irradiance()::Float64
     return @checked Lib.PVSystems_Get_Irradiance()
 end
 
-"""Present value of the Irradiance property in W/sq-m (Setter)"""
+"""Present value of the Irradiance property in kW/m² (Setter)"""
 function Irradiance(Value::Float64)
     @checked Lib.PVSystems_Set_Irradiance(Value)
 end

@@ -8,12 +8,11 @@ New SwtControl.ctrl_LN3693186_sw SwitchedObj=line.LN3693186_sw SwitchedTerm=1 Ac
 @testset "SwtControls" begin
 
 @test SwtControls.First() == 1
-#TODO: @test SwtControls.Idx() == 1
+@test SwtControls.Idx() == 1
 @test SwtControls.Next() == 0
 @test_throws OpenDSSDirect.OpenDSSDirectException SwtControls.Idx(0)
 @test_throws OpenDSSDirect.OpenDSSDirectException SwtControls.Idx(7)
-#TODO: @test SwtControls.Idx() == 1
-@test_broken OpenDSSDirect.Lib.SwtControls_Get_idx() == 1
+@test SwtControls.Idx() == 1
 @test SwtControls.Action() == OpenDSSDirect.Lib.ActionCodes_Open
 @test SwtControls.Action(OpenDSSDirect.Lib.ActionCodes_none) == nothing
 @test SwtControls.Action() == OpenDSSDirect.Lib.ActionCodes_Open

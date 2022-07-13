@@ -22,7 +22,7 @@ init8500()
 @test Transformers.Idx(2) == nothing
 @test Transformers.Idx() == 2
 @test Transformers.Count() == 1190
-@test Transformers.R() ≋ 5.0e-6
+@test Transformers.R() ≋ 0.0005
 @test Transformers.R(Transformers.R()) == nothing
 @test Transformers.Tap() ≋ 1.0125
 @test Transformers.Tap(Transformers.Tap()) == nothing
@@ -38,14 +38,14 @@ init8500()
 @test Transformers.Xneut(Transformers.Xneut()) == nothing
 @test Transformers.Rneut() ≋ -1.0
 @test Transformers.Rneut(Transformers.Rneut()) == nothing
-@test Transformers.Xhl() ≋ 0.001
+@test Transformers.Xhl() ≋ 0.1
 @test Transformers.Xhl(Transformers.Xhl()) == nothing
-@test Transformers.Xht() ≋ 0.35
+@test Transformers.Xht() ≋ 35
 @test Transformers.Xht(Transformers.Xht()) == nothing
-@test Transformers.Xlt() ≋ 0.3
+@test Transformers.Xlt() ≋ 30
 @test Transformers.Xlt(Transformers.Xlt()) == nothing
 @test Transformers.XfmrCode() == ""
-@test Transformers.XfmrCode(Transformers.XfmrCode()) == nothing
+@test_throws OpenDSSDirect.OpenDSSDirectException Transformers.XfmrCode(Transformers.XfmrCode())
 @test Transformers.Name() == "feeder_rega"
 @test Transformers.Name(Transformers.Name()) == nothing
 @test Transformers.AllNames()[end] == "vreg4_c"

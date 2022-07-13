@@ -50,13 +50,21 @@ Lines.Next()
                            -14.151460302936526 + 7.897357517772179im 14.151460302936526 - 7.897357479424346im]
 @test CktElement.CplxSeqVoltages() ≋ [-1.0 + 0.0im,-1.0 + 0.0im,-1.0 + 0.0im,-1.0 + 0.0im,-1.0 + 0.0im,-1.0 + 0.0im]
 @test CktElement.CplxSeqCurrents() ≋ [-1.0 + 0.0im,-1.0 + 0.0im,-1.0 + 0.0im,-1.0 + 0.0im,-1.0 + 0.0im,-1.0 + 0.0im]
-@test CktElement.AllVariableNames() == []
-@test CktElement.AllVariableValues() == [0.0]
+
 @test CktElement.NodeOrder() == [2, 2]
 @test CktElement.CurrentsMagAng() ≋ [1.8847523948057756 1.8849048106162245
                                      177.9319402443363 -2.0853832620851183]
 @test CktElement.VoltagesMagAng() ≋ [7691.655711894497 7691.542956049531
                                     -167.10323234086837 -167.10344473228216]
 @test CktElement.TotalPowers() ≋ [14.0052+3.74347im, -14.005-3.7479im]
+
+# These two will change to empty when COMErrorResults become false by default
+@test CktElement.AllVariableNames() == [""]
+@test CktElement.AllVariableValues() == [0.0]
+
+# Let's add one dummy element with variables to test it
+OpenDSSDirect.Text.Command("New Generator.TestGen")
+@test CktElement.AllVariableNames() == ["Frequency", "Theta (Deg)", "Vd", "PShaft", "dSpeed (Deg/sec)", "dTheta (Deg)"]
+@test CktElement.AllVariableValues() ≋ [60.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 end # testset
