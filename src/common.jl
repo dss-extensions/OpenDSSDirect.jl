@@ -1,7 +1,7 @@
 # Automatically generated using Clang.jl
 
 
-const DSS_CAPI_VERSION = "0.12.0"
+const DSS_CAPI_VERSION = "0.12.1"
 
 @cenum MonitorModes::UInt32 begin
     MonitorModes_VI = 0
@@ -85,6 +85,11 @@ end
     ActionCodes_TapDown = 7
 end
 
+@cenum GeneratorStatus::UInt32 begin
+    GeneratorStatus_Variable = 0
+    GeneratorStatus_Fixed = 1
+end
+
 @cenum LoadStatus::UInt32 begin
     LoadStatus_Variable = 0
     LoadStatus_Fixed = 1
@@ -118,4 +123,47 @@ end
 @cenum YMatrixModes::UInt32 begin
     YMatrixModes_SeriesOnly = 1
     YMatrixModes_WholeMatrix = 2
+end
+
+@cenum StorageStates::Int32 begin
+    StorageStates_Charging = -1
+    StorageStates_Idling = 0
+    StorageStates_Discharging = 1
+end
+
+@cenum DSSMessageType::Int32 begin
+    DSSMessageType_Error = -1
+    DSSMessageType_General = 0
+    DSSMessageType_Info = 1
+    DSSMessageType_Help = 2
+    DSSMessageType_Progress = 3
+    DSSMessageType_ProgressCaption = 4
+    DSSMessageType_ProgressFormCaption = 5
+    DSSMessageType_ProgressPercent = 6
+    DSSMessageType_FireOffEditor = 7
+end
+
+@cenum DSSJSONFlags::UInt32 begin
+    DSSJSONFlags_Full = 1
+    DSSJSONFlags_SkipRedundant = 2
+    DSSJSONFlags_EnumAsInt = 4
+    DSSJSONFlags_FullNames = 8
+    DSSJSONFlags_Pretty = 16
+    DSSJSONFlags_ExcludeDisabled = 32
+    DSSJSONFlags_State = 64
+    DSSJSONFlags_Debug = 128
+end
+
+@cenum BatchOperation::UInt32 begin
+    BatchOperation_Set = 0
+    BatchOperation_Multiply = 1
+    BatchOperation_Increment = 2
+end
+
+@cenum SolverOptions::UInt32 begin
+    SolverOptions_ReuseNothing = 0
+    SolverOptions_ReuseCompressedMatrix = 1
+    SolverOptions_ReuseSymbolicFactorization = 2
+    SolverOptions_ReuseNumericFactorization = 3
+    SolverOptions_AlwaysResetYPrimInvalid = 268435456
 end
