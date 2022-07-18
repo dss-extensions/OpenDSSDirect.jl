@@ -20,14 +20,58 @@ function Controller(idx::Int)::String
     return get_string(Lib.CktElement_Get_Controller(idx))
 end
 
-"""For PCElement, get the value of a variable by name. If Code>0 Then no variable by this name or not a PCElement."""
-function Variable(MyVarName::String, Code::Int)::Float64
-    return @checked Lib.CktElement_Get_Variable(MyVarName, Ref{Int32}(Code))
+"""For PCElement, get the value of a variable by name. (Getter)"""
+function Variable(MyVarName::String, Unused::Int)::Float64
+    Code = Ref{Int32}(-1)
+    result = @checked Lib.CktElement_Get_Variable(MyVarName, Code)
+    if Code[] != 0
+        throw(
+            OpenDSSDirectException(
+                "[ERROR] '$MyVarName' is not a valid variable name or the current object is not a PCElement."
+            )
+        )
+    end
+    return result
 end
 
-"""For PCElement, get the value of a variable by integer index."""
-function Variablei(Idx::Int, Code::Int)::Float64
-    return @checked Lib.CktElement_Get_Variablei(Int32(Idx), Ref{Int32}(Code))
+"""For PCElement, set the value of a variable by name. (Setter)"""
+function Variable(MyVarName::String, Unused::Int, Value::Float64)
+    Code = Ref{Int32}(-1)
+    @checked Lib.CktElement_Set_Variable(MyVarName, Code, Value)
+    if Code[] != 0
+        throw(
+            OpenDSSDirectException(
+                "[ERROR] '$MyVarName' is not a valid variable name or the current object is not a PCElement."
+            )
+        )
+    end
+end
+
+"""For PCElement, get the value of a variable by integer index. (Getter)"""
+function Variablei(Idx::Int, Unused::Int)::Float64
+    Code = Ref{Int32}(-1)
+    result = @checked Lib.CktElement_Get_Variablei(Idx, Code)
+    if Code[] != 0
+        throw(
+            OpenDSSDirectException(
+                "[ERROR] $Idx is not a valid variable index or the current object is not a PCElement."
+            )
+        )
+    end
+    return result
+end
+
+"""For PCElement, set the value of a variable by integer index. (Setter)"""
+function Variablei(Idx::Int, Unused::Int, Value::Float64)
+    Code = Ref{Int32}(-1)
+    @checked Lib.CktElement_Set_Variablei(Idx, Code, Value)
+    if Code[] != 0
+        throw(
+            OpenDSSDirectException(
+                "[ERROR] $Idx is not a valid variable index or the current object is not a PCElement."
+            )
+        )
+    end
 end
 
 """Check if open phase of terminal for active circuit element"""
@@ -263,6 +307,19 @@ function YPrim()::Array{ComplexF64,2}
     r = get_complex64_array(Lib.CktElement_Get_Yprim)
         # TODO: should we transpose here?
     return reshape(r, (Int(sqrt(length(r))), Int(sqrt(length(r)))))
+end
+
+"""Returns true if the current active element is isolated.
+Note that this only fetches the current value. See also the Topology interface."""
+function IsIsolated()::Bool
+    return (@checked Lib.CktElement_Get_IsIsolated()) != 0
+end
+
+"""Array of integers, a copy of the internal NodeRef of the CktElement.
+
+(API Extension)"""
+function NodeRef()::Vector{Int}
+    return get_int32_array(Lib.CktElement_Get_NodeRef)
 end
 
 end

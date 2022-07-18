@@ -45,7 +45,7 @@ for i in OpenDSSDirect.EachMember(XYCurves); push!(arr, XYCurves.Name()); end
 for (i, n) in enumerate(OpenDSSDirect.EachMember(XYCurves, XYCurves.Name))
     @test n == arr[i]
 end
-@test_throws UndefVarError arr == XYCurves.AllNames() # TODO: add AllNames to XYCurves
+arr == XYCurves.AllNames()
 @test length(arr) == length(OpenDSSDirect.EachMember(XYCurves))
 
 end # testset

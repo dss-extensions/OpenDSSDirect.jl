@@ -200,4 +200,15 @@ function AllPDEatBus()::Vector{String}
     return get_string_array(Lib.Bus_Get_AllPDEatBus)
 end
 
+"""Activates the next bus"""
+function Next()::Int
+    return @checked Lib.Bus_Get_Next()
+end
+
+"""3x3 complex matrix containing the complete 012 Zsc matrix"""
+function ZSC012Matrix()::Matrix{ComplexF64}
+    r = get_complex64_array(Lib.Bus_Get_ZSC012Matrix)
+    return reshape(r, (3, 3))
+end
+
 end

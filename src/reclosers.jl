@@ -165,4 +165,29 @@ function Idx(Value::Int)
     @checked Lib.Reclosers_Set_idx(Value)
 end
 
+"""Present state of recloser. If set to open, open recloser's controlled element and lock out the recloser. If set to close, close recloser's controlled element and resets recloser to first operation. (Getter)"""
+function State()::Lib.ActionCodes
+    return @checked Lib.Reclosers_Get_State()
+end
+
+"""Present state of recloser. If set to open, open recloser's controlled element and lock out the recloser. If set to close, close recloser's controlled element and resets recloser to first operation. (Setter)"""
+function State(Value::Union{Int,Lib.ActionCodes})
+    return @checked Lib.Reclosers_Set_State(Value)
+end
+
+"""Normal state (Getter)"""
+function NormalState()::Lib.ActionCodes
+    return @checked Lib.Reclosers_Get_NormalState()
+end
+
+"""Normal state (Setter)"""
+function NormalState(Value::Union{Int,Lib.ActionCodes})
+    return @checked Lib.Reclosers_Set_NormalState(Value)
+end
+
+"""Reset recloser to normal state. If open, lock out the recloser. If closed, resets recloser to first operation."""
+function Reset()
+    @checked Lib.Reclosers_Reset()
+end
+
 end

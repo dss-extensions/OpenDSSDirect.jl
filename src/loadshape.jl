@@ -164,4 +164,79 @@ function Idx(Value::Int)
     @checked Lib.LoadShapes_Set_idx(Value)
 end
 
+# """kvar value at the time of max kW power.
+# This is set automatically set upon reading in a loadshape, but for external-memory loadshapes, the user must provide the value.
+# This property can also be used to override the value automatically computed or to retrieve the value computed.
+
+# (Getter)
+# (API Extension)"""
+# function MaxQ()::Float64
+#     return @checked Lib.LoadShapes_Get_MaxQ()
+# end
+
+# """kW value at the time of max power. This is set automatically set upon reading in a loadshape, but for external-memory loadshapes, the user must provide the value.
+# This property can also be used to override the value automatically computed or to retrieve the value computed.
+
+# (Setter)
+# (API Extension)"""
+# function MaxQ(Value::Float64)
+#     return @checked Lib.LoadShapes_Set_MaxQ(Value)
+# end
+
+# """kW value at the time of max power. This is set automatically set upon reading in a loadshape, but for external-memory loadshapes, the user must provide the value.
+# This property can also be used to override the value automatically computed or to retrieve the value computed.
+
+# (Getter)
+# (API Extension)"""
+# function MaxP()::Float64
+#     return @checked Lib.LoadShapes_Get_MaxP()
+# end
+
+# """kW value at the time of max power. This is set automatically set upon reading in a loadshape, but for external-memory loadshapes, the user must provide the value.
+# This property can also be used to override the value automatically computed or to retrieve the value computed.
+
+# (Setter)
+# (API Extension)
+# """
+# function MaxP(Value::Float64)
+#     return @checked Lib.LoadShapes_Set_MaxP(Value)
+# end
+
+# """Sets all numeric arrays for the active LoadShape.
+
+# If ExternalMemory is 0/False, the data is copied, allocating memory.
+# If ExternalMemory is 1/True, the data is NOT copied. The caller is required to keep the
+# pointers alive while the LoadShape is used, as well as deallocating them later.
+
+# If IsFloat32 is 0/False, the pointers are interpreted as pointers to float64/double precision numbers.
+# Otherwise, the pointers are interpreted as pointers to float32/single precision numbers.
+
+# Stride: number of elements to skip to reach the next indexed element.
+# Stride is only used when ExternalMemory is 1/True (ignored otherwise).
+# For non-contiguous series and transposed data. Depending on how much that is used, a row-major matrix is
+# preferred over a column-major one.
+
+# Remember to set MaxP and MaxQ accordingly.
+
+# (API Extension)"""
+# function Points(Npts::Int, HoursPtr, PMultPtr, QMultPtr, ExternalMemory::Bool, IsFloat32::Bool, Stride::Int)
+#     return @checked Lib.LoadShapes_Set_Points(Nptr, HoursPtr, PMultPtr, QMultPtr, ExternalMemory, IsFloat32, Stride)
+# end
+
+"""Converts the current LoadShape data to float32/single precision.
+If there is no data or the data is already represented using float32, nothing is done.
+
+(API Extension)"""
+function UseFloat32()
+    @checked Lib.LoadShapes_UseFloat32()
+end
+
+"""Converts the current LoadShape data to float64/double precision.
+If there is no data or the data is already represented using float64, nothing is done.
+
+(API Extension)"""
+function UseFloat64()
+    @checked Lib.LoadShapes_UseFloat64()
+end
+
 end

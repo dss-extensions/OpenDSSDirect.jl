@@ -160,4 +160,152 @@ function kvar(Value::Float64)
     @checked Lib.Generators_Set_kvar(Value)
 end
 
+"""
+Name of the loadshape for the daily generation profile. (Getter)
+
+(API Extension)
+"""
+function daily()::String
+    return get_string(@checked Lib.Generators_Get_daily())
+end
+
+"""
+Name of the loadshape for the daily generation profile. (Setter)
+
+(API Extension)
+"""
+function daily(Value::String)
+    @checked Lib.Generators_Set_daily(Cstring(pointer(Value)))
+end
+
+"""
+Name of the loadshape for a duty cycle simulation. (Getter)
+
+(API Extension)
+"""
+function duty()::String
+    return get_string(@checked Lib.Generators_Get_duty())
+end
+
+"""
+Name of the loadshape for a duty cycle simulation. (Setter)
+
+(API Extension)
+"""
+function duty(Value::String)
+    @checked Lib.Generators_Set_duty(Cstring(pointer(Value)))
+end
+
+"""
+Name of yearly loadshape (Getter)
+
+(API Extension)
+"""
+function Yearly()::String
+    return get_string(@checked Lib.Generators_Get_Yearly())
+end
+
+"""
+Name of yearly loadshape (Setter)
+
+(API Extension)
+"""
+function Yearly(Value::String)
+    @checked Lib.Generators_Set_Yearly(Cstring(pointer(Value)))
+end
+
+"""
+Response to dispatch multipliers Fixed=1 (dispatch multipliers do not apply), Variable=0 (follows curves). (Getter)
+
+Related enumeration: GeneratorStatus
+
+(API Extension)
+"""
+function Status()::Lib.GeneratorStatus
+    return @checked Lib.Generators_Get_Status()
+end
+
+"""
+Response to dispatch multipliers Fixed=1 (dispatch multipliers do not apply), Variable=0 (follows curves). (Setter)
+
+Related enumeration: GeneratorStatus
+
+(API Extension)
+"""
+function Status(Value::Union{Lib.GeneratorStatus, Int})
+    @checked Lib.Generators_Set_Status(Value)
+end
+
+"""
+Generator connection. True/1 if delta connection, False/0 if wye. (Getter)
+
+(API Extension)
+"""
+function IsDelta()::Bool
+    return @checked(Lib.Generators_Get_IsDelta()) != 0
+end
+
+"""
+Generator connection. True/1 if delta connection, False/0 if wye. (Setter)
+
+(API Extension)
+"""
+function IsDelta(Value::Bool)
+    @checked Lib.Generators_Set_IsDelta(Value)
+end
+
+"""
+kVA rating of electrical machine. Applied to machine or inverter definition for Dynamics mode solutions. (Getter)
+
+(API Extension)
+"""
+function kva()::Float64
+    return @checked Lib.Generators_Get_kva()
+end
+
+"""
+kVA rating of electrical machine. Applied to machine or inverter definition for Dynamics mode solutions. (Setter)
+
+(API Extension)
+"""
+function kva(Value::Float64)
+    @checked Lib.Generators_Set_kva(Value)
+end
+
+"""
+An arbitrary integer number representing the class of Generator so that Generator values may be segregated by class. (Getter)
+
+(API Extension)
+"""
+function Class()::Int
+    return @checked Lib.Generators_Get_Class_()
+end
+
+"""
+An arbitrary integer number representing the class of Generator so that Generator values may be segregated by class. (Setter)
+
+(API Extension)
+"""
+function Class(Value::Int)
+    @checked Lib.Generators_Set_Class_(Value)
+end
+
+"""
+Bus to which the Generator is connected. May include specific node specification. (Getter)
+
+(API Extension)
+"""
+function Bus1()::String
+    return get_string(@checked Lib.Generators_Get_Bus1())
+end
+
+"""
+Bus to which the Generator is connected. May include specific node specification. (Setter)
+
+(API Extension)
+"""
+function Bus1(Value::String)
+    @checked Lib.Generators_Set_Bus1(Cstring(pointer(Value)))
+end
+
 end

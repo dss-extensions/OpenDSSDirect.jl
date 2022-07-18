@@ -11,6 +11,14 @@ Base.convert(::Type{ActionCodes}, x::Integer) = ActionCodes(x)
 Base.convert(::Type{LoadStatus}, x::Integer) = LoadStatus(x)
 Base.convert(::Type{LoadModels}, x::Integer) = LoadModels(x)
 Base.convert(::Type{LineUnits}, x::Integer) = LineUnits(x)
+Base.convert(::Type{GeneratorStatus}, x::GeneratorStatus) = GeneratorStatus(x)
+Base.convert(::Type{BatchOperation}, x::BatchOperation) = BatchOperation(x)
+Base.convert(::Type{StorageStates}, x::StorageStates) = StorageStates(x)
+Base.convert(::Type{DSSMessageType}, x::DSSMessageType) = DSSMessageType(x)
+
+# TODO: see https://github.com/dss-extensions/OpenDSSDirect.jl/issues/76
+# Base.convert(::Type{SolverOptions}, x::SolverOptions) = SolverOptions(x)
+# Base.convert(::Type{DSSJSONFlags}, x::DSSJSONFlags) = DSSJSONFlags(x)
 
 @doc """
 $( join(map(x -> "- `" * String(x[1]) * "`: " * string(x[2]), CEnum.name_value_pairs(Lib.MonitorModes)), "\n") )
@@ -64,3 +72,19 @@ Lib.LoadModels
 $( join(map(x -> "- `" * String(x[1]) * "`: " * string(x[2]), CEnum.name_value_pairs(Lib.LineUnits)), "\n") )
 """
 Lib.LineUnits
+@doc """
+$( join(map(x -> "- `" * String(x[1]) * "`: " * string(x[2]), CEnum.name_value_pairs(Lib.GeneratorStatus)), "\n") )
+"""
+Lib.GeneratorStatus
+@doc """
+$( join(map(x -> "- `" * String(x[1]) * "`: " * string(x[2]), CEnum.name_value_pairs(Lib.BatchOperation)), "\n") )
+"""
+Lib.BatchOperation
+@doc """
+$( join(map(x -> "- `" * String(x[1]) * "`: " * string(x[2]), CEnum.name_value_pairs(Lib.StorageStates)), "\n") )
+"""
+Lib.StorageStates
+@doc """
+$( join(map(x -> "- `" * String(x[1]) * "`: " * string(x[2]), CEnum.name_value_pairs(Lib.DSSMessageType)), "\n") )
+"""
+Lib.DSSMessageType

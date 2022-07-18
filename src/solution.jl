@@ -463,4 +463,34 @@ function StepSizeMin(Value::Float64)
     @checked Lib.Solution_Set_StepsizeMin(Value)
 end
 
+"""Solves the circuits for all the Actors created"""
+function SolveAll()
+    @checked Lib.Solution_SolveAll()
+end
+
+"""Element names for the rows of the incidence matrix, if calculated"""
+function IncMatrixRows()::Vector{String}
+    return get_string_array(Lib.Solution_Get_IncMatrixRows)
+end
+
+"""Element names for the columns of the incidence matrix, if calculated"""
+function IncMatrixCols()::Vector{String}
+    return get_string_array(Lib.Solution_Get_IncMatrixCols)
+end
+
+"""Returns the data from the incidence matrix, if calculated"""
+function IncMatrix()::Vector{Int32}
+    return get_int32_array(Lib.Solution_Get_IncMatrix)
+end
+
+"""BusLevels"""
+function BusLevels()::Vector{Int32}
+    return get_int32_array(Lib.Solution_Get_BusLevels)
+end
+
+"""Returns the data from the Laplacian, if calculated"""
+function Laplacian()::Vector{Int32}
+    return get_int32_array(Lib.Solution_Get_Laplacian)
+end
+
 end

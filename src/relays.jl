@@ -90,4 +90,43 @@ function Idx(Value::Int)
     @checked Lib.Relays_Set_idx(Value)
 end
 
+"""Get/Set present state of relay. (Getter)
+If set to open (ActionCodes.Open = 1), open relay's controlled element and lock out the relay. 
+If set to close (ActionCodes.Close = 2), close relay's controlled element and resets relay to first operation."""
+function State()::Lib.ActionCodes
+    return @checked Lib.Relays_Get_State()
+end
+
+"""Get/Set present state of relay. (Setter)
+If set to open (ActionCodes.Open = 1), open relay's controlled element and lock out the relay. 
+If set to close (ActionCodes.Close = 2), close relay's controlled element and resets relay to first operation."""
+function State(Value::Union{Int,Lib.ActionCodes})
+    return @checked Lib.Relays_Set_State(Value)
+end
+
+"""Get/set normal state of relay. (Getter)"""
+function NormalState()::Lib.ActionCodes
+    return @checked Lib.Relays_Get_NormalState()
+end
+
+"""Get/set normal state of relay. (Setter)"""
+function NormalState(Value::Union{Int,Lib.ActionCodes})
+    return @checked Lib.Relays_Set_NormalState(Value)
+end
+
+"""Open relay's controlled element and lock out the relay."""
+function Open()
+    @checked Lib.Relays_Open()
+end
+
+"""Reset relay to normal state. If open, lock out the relay. If closed, resets relay to first operation."""
+function Reset()
+    @checked Lib.Relays_Reset()
+end
+
+"""Close the switched object controlled by the relay. Resets relay to first operation."""
+function Close()
+    @checked Lib.Relays_Close()
+end
+
 end

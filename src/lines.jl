@@ -356,4 +356,19 @@ function Idx(Value::Int)
     @checked Lib.Lines_Set_idx(Value)
 end
 
+"""Sets/gets the Line element switch status. Setting it has side-effects to the line parameters. (Getter)"""
+function IsSwitch()::Bool
+    return (@checked Lib.Lines_Get_IsSwitch()) != 0
+end
+
+"""Sets/gets the Line element switch status. Setting it has side-effects to the line parameters. (Setter)"""
+function IsSwitch(Value::Bool)
+    return @checked Lib.Lines_Set_IsSwitch(Value)
+end
+
+"""Delivers the rating for the current season (in Amps)  if the "SeasonalRatings" option is active"""
+function SeasonRating()::Float64
+    return @checked Lib.Lines_Get_SeasonRating()
+end
+
 end

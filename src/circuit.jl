@@ -220,4 +220,23 @@ module Circuit
         return get_complex64_array(Lib.Circuit_Get_YNodeVarray)
     end
 
+    """Activates a circuit element by the given index"""
+    function SetCktElement(Idx::Int)
+        @checked Lib.Circuit_SetCktElementIndex(Idx)
+    end
+
+    """Activates a circuit element by the given name"""
+    function SetCktElement(Name::String)
+        @checked Lib.Circuit_SetCktElementName(Name)
+    end
+
+    """Array of total losses (complex) in a selection of elements.
+    Use the element indices (starting at 1) as parameter.
+    
+    (API Extension)"""
+    function ElementLosses(Idx::Vector{Int32})::Vector{ComplexF64}
+        value, value_ptr, value_cnt = prepare_int32_array(Idx)
+        return get_complex64_array(Lib.Circuit_Get_ElementLosses, value_ptr, value_cnt)
+    end    
+
 end

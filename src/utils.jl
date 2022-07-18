@@ -9,7 +9,10 @@ export get_int32_array
 export get_float64_array
 export get_complex64_array
 export get_complex64
+export set_float64_array
+export set_int32_array
 export prepare_float64_array
+export prepare_complex64_array
 export prepare_int32_array
 export prepare_string_array
 export OpenDSSDirectException
@@ -115,7 +118,6 @@ function get_int8_array(func::Function)::Vector{Int8}
     return data
 end
 
-
 function get_float64_array(func::Function)::Vector{Float64}
     ptr = Ref{Ptr{Cdouble}}([])
     cnt = Vector{Cint}([0, 0])
@@ -158,6 +160,37 @@ function get_float64_array(func::Function, param::Union{Bool,Int})::Vector{Float
     return data
 end
 
+function get_float64_array(func::Function, param1::Ptr{Int32}, param2::Int32)::Vector{Float64}
+    ptr = Ref{Ptr{Cdouble}}([])
+    cnt = Vector{Cint}([0, 0])
+    func(ptr, cnt, param1, param2)
+    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+    if (error_num != 0)
+        description = get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        throw(
+            OpenDSSDirectException(
+                "[ERROR $error_num] $description"
+            )
+        )
+    end
+    data = Vector{Float64}([])
+    for i in 1:cnt[1]
+        push!(data, unsafe_load(ptr[], i))
+    end
+    OpenDSSDirect.Lib.DSS_Dispose_PDouble(ptr)
+    return data
+end
+
+function get_complex64_array(func::Function, param1::Ptr{Int32}, param2::Int32)::Vector{ComplexF64}
+    r = get_float64_array(func, param1, param2)
+    if length(r) == 1
+        return ComplexF64[]
+    else
+        r = Array(reinterpret(ComplexF64, r))
+    end
+    return r
+end
+
 function get_complex64_array(func::Function, param::Union{Bool,Int})::Vector{ComplexF64}
     r = get_float64_array(func, param)
     if length(r) == 1
@@ -185,6 +218,38 @@ end
 function prepare_float64_array(value::Vector{Float64})
     ptr = pointer(value)
     cnt = size(value)[1]
+    return value, ptr, cnt
+end
+
+function set_int32_array(func::Function, value::Vector{Int32})
+    func(pointer(value), size(value)[1])
+    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+    if (error_num != 0)
+        description = get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        throw(
+            OpenDSSDirectException(
+                "[ERROR $error_num] $description"
+            )
+        )
+    end
+end
+
+function set_float64_array(func::Function, value::Vector{Float64})
+    func(pointer(value), size(value)[1])
+    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+    if (error_num != 0)
+        description = get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        throw(
+            OpenDSSDirectException(
+                "[ERROR $error_num] $description"
+            )
+        )
+    end
+end
+
+function prepare_complex64_array(value::Vector{ComplexF64})
+    ptr = pointer(value)
+    cnt = size(value)[1] * 2
     return value, ptr, cnt
 end
 

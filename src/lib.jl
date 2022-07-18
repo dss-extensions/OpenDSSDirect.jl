@@ -1568,8 +1568,8 @@ function Fuses_Set_idx(Value)
     ccall((:Fuses_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
 end
 
-function Fuses_Reset(Value)
-    ccall((:Fuses_Reset, LIBRARY), Cvoid, (Int32,), Value)
+function Fuses_Reset()
+    ccall((:Fuses_Reset, LIBRARY), Cvoid, ())
 end
 
 function Fuses_Get_State(ResultPtr, ResultCount)

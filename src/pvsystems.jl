@@ -180,4 +180,27 @@ function TYearly(Value::String)
     @checked Lib.PVSystems_Set_Tyearly(Cstring(pointer(Value)))
 end
 
+"""Dispatch shape to use for yearly simulations. Must be previously defined
+as a Loadshape object. If this is not specified, the Daily dispatch shape,
+if any, is repeated during Yearly solution modes. In the default dispatch
+mode, the PVSystem element uses this loadshape to trigger State changes.
+(Getter)"""
+function yearly()::String
+    return get_string(@checked Lib.PVSystems_Get_yearly())
+end
+
+"""Dispatch shape to use for yearly simulations. Must be previously defined
+as a Loadshape object. If this is not specified, the Daily dispatch shape,
+if any, is repeated during Yearly solution modes. In the default dispatch
+mode, the PVSystem element uses this loadshape to trigger State changes.
+(Setter)"""
+function yearly(Value::String)
+    return @checked Lib.PVSystems_Set_yearly(Cstring(pointer(Value)))
+end
+
+"""Name of the sensor monitoring this PVSystem element."""
+function Sensor()::String
+    return get_string(@checked Lib.PVSystems_Get_Sensor())
+end
+
 end

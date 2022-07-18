@@ -70,4 +70,9 @@ function Action(Param1::Int)
     @checked Lib.CtrlQueue_Set_Action(Param1)
 end
 
+"""Push a control action onto the DSS control queue by time, action code, and device handle (user defined). Returns Control Queue handle."""
+function Push(Hour::Int32, Seconds::Float64, ActionCode::Union{Int32,Lib.ActionCodes}, DeviceHandle::Int32)::Int
+    return @checked Lib.CtrlQueue_Push(Hour, Seconds, ActionCode, DeviceHandle);
+end
+
 end

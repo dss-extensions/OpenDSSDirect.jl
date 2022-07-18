@@ -62,4 +62,16 @@ function NumElements()::Int
     return @checked Lib.ActiveClass_Get_NumElements()
 end
 
+"""Returns the data (as a list) of all elements from the active class as a JSON-encoded string.
+
+The `options` parameter contains bit-flags to toggle specific features.
+See `Obj_ToJSON` (C-API) for more.
+
+Additionally, the `ExcludeDisabled` flag can be used to exclude disabled elements from the output.
+
+(API Extension)"""
+function ToJSON(Flags::Int)::String #TODO: Use enum
+    return getstring(@checked Lib.ActiveClass_ToJSON(Flags))
+end
+
 end # ActiveClass
