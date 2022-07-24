@@ -173,6 +173,13 @@ Modules = [CktElement]
 Order   = [:function, :type]
 ```
 
+## `CNData`
+
+```@autodocs
+Modules = [CNData]
+Order   = [:function, :type]
+```
+
 ## `CtrlQueue`
 
 ```@autodocs
@@ -215,6 +222,13 @@ Modules = [Generators]
 Order   = [:function, :type]
 ```
 
+## `GICSources`
+
+```@autodocs
+Modules = [GICSources]
+Order   = [:function, :type]
+```
+
 ## `Isource`
 
 ```@autodocs
@@ -229,10 +243,24 @@ Modules = [LineCodes]
 Order   = [:function, :type]
 ```
 
+## `LineGeometries`
+
+```@autodocs
+Modules = [LineGeometries]
+Order   = [:function, :type]
+```
+
 ## `Lines`
 
 ```@autodocs
 Modules = [Lines]
+Order   = [:function, :type]
+```
+
+## `LineSpacings`
+
+```@autodocs
+Modules = [LineSpacings]
 Order   = [:function, :type]
 ```
 
@@ -261,6 +289,13 @@ Order   = [:function, :type]
 
 ```@autodocs
 Modules = [Monitors]
+Order   = [:function, :type]
+```
+
+## `Parallel`
+
+```@autodocs
+Modules = [Parallel]
 Order   = [:function, :type]
 ```
 
@@ -299,10 +334,24 @@ Modules = [PVsystems]
 Order   = [:function, :type]
 ```
 
+## `Reactors`
+
+```@autodocs
+Modules = [Reactors]
+Order   = [:function, :type]
+```
+
 ## `Reclosers`
 
 ```@autodocs
 Modules = [Reclosers]
+Order   = [:function, :type]
+```
+
+## `ReduceCkt`
+
+```@autodocs
+Modules = [ReduceCkt]
 Order   = [:function, :type]
 ```
 
@@ -341,6 +390,13 @@ Modules = [Solution]
 Order   = [:function, :type]
 ```
 
+## `Storages`
+
+```@autodocs
+Modules = [Storages]
+Order   = [:function, :type]
+```
+
 ## `SwtControls`
 
 ```@autodocs
@@ -362,6 +418,13 @@ Modules = [Topology]
 Order   = [:function, :type]
 ```
 
+## `TSData`
+
+```@autodocs
+Modules = [TSData]
+Order   = [:function, :type]
+```
+
 ## `Transformers`
 
 ```@autodocs
@@ -373,6 +436,13 @@ Order   = [:function, :type]
 
 ```@autodocs
 Modules = [Vsources]
+Order   = [:function, :type]
+```
+
+## `WireData`
+
+```@autodocs
+Modules = [WireData]
 Order   = [:function, :type]
 ```
 
@@ -390,3 +460,9 @@ Modules = [YMatrix]
 Order   = [:function, :type]
 ```
 
+## `ZIP`
+
+```@autodocs
+Modules = [ZIP]
+Order   = [:function, :type]
+```
