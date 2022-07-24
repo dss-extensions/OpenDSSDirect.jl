@@ -213,4 +213,30 @@ function LoadsTerminalCheck(Value::Bool)
     @checked Lib.Settings_Set_LoadsTerminalCheck(Value ? 1 : 0)
 end
 
+"""Controls whether `First`/`Next` iteration includes or skips disabled circuit elements.
+The default behavior from OpenDSS is to skip those. The user can still activate the element by name or index.
+
+The default value for IterateDisabled is 0, keeping the original behavior.
+Set it to 1 (or `True`) to include disabled elements.
+Other numeric values are reserved for other potential behaviors.
+
+(Getter)
+(API Extension)"""
+function IterateDisabled()::Bool
+    return (@checked Lib.Settings_Get_IterateDisabled()) != 0
+end
+
+"""Controls whether `First`/`Next` iteration includes or skips disabled circuit elements.
+The default behavior from OpenDSS is to skip those. The user can still activate the element by name or index.
+
+The default value for IterateDisabled is 0, keeping the original behavior.
+Set it to 1 (or `True`) to include disabled elements.
+Other numeric values are reserved for other potential behaviors.
+
+(Setter)
+(API Extension) """
+function IterateDisabled(Value::Bool)
+    return @checked Lib.Settings_Set_IterateDisabled(Value)
+end
+
 end

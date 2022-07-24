@@ -172,4 +172,9 @@ function Idx(Value::Int)
     @checked Lib.Sensors_Set_idx(Value)
 end
 
+"""Array of doubles for the allocation factors for each phase."""
+function AllocationFactor()::Vector{Float64}
+    return get_float64_array(Lib.Sensors_Get_AllocationFactor)
+end
+
 end

@@ -116,7 +116,7 @@ function Name()::String
     return get_string(@checked Lib.CapControls_Get_Name())
 end
 
-"""Sets a CapControl active by name. (Getter)"""
+"""Sets a CapControl active by name. (Setter)"""
 function Name(Value::String)
     @checked Lib.CapControls_Set_Name(Cstring(pointer(Value)))
 end

@@ -24,8 +24,8 @@ Lines.Next()
 @test CktElement.NormalAmps(CktElement.NormalAmps()) == nothing
 @test CktElement.EmergAmps() ≋ 600.0
 @test CktElement.EmergAmps(CktElement.EmergAmps()) == nothing
-@test_broken CktElement.Variablei("0", 0) ≋ 0.0
-@test CktElement.Variablei(0, 0) ≋ 0.0
+@test_throws OpenDSSDirect.OpenDSSDirectException CktElement.Variable("0", 0)
+@test_throws OpenDSSDirect.OpenDSSDirectException CktElement.Variablei(0, 0)
 @test CktElement.Name() == "Line.ln5502549-1"
 @test CktElement.DisplayName() == "Line_ln5502549-1"
 @test CktElement.DisplayName(CktElement.DisplayName()) == nothing

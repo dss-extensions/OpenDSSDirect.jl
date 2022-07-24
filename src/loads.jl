@@ -399,6 +399,21 @@ function XfkVA(Value::Float64)
     @checked Lib.Loads_Set_xfkVA(Value)
 end
 
+"""Number of phases (Getter)"""
+function Phases()::Int
+    return @checked Lib.Loads_Get_Phases()
+end
+
+"""Number of phases (Setter)"""
+function Phases(Value::Int)
+    return @checked Lib.Loads_Set_Phases(Value)
+end
+
+"""Sensor"""
+function Sensor()::String
+    return get_string(@checked Lib.Loads_Get_Sensor())
+end
+
 _columns = [
     :AllocationFactor,
     :CVRCurve,
@@ -436,6 +451,8 @@ _columns = [
     :kWhDays,
     :puSeriesRL,
     :XfkVA,
+    :Phases,
+    :Sensor
 ]
 
 end

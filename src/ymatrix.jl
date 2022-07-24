@@ -131,4 +131,61 @@ function UseAuxCurrents(Value::Bool)
     @checked Lib.YMatrix_Set_UseAuxCurrents(Value ? 1 : 0)
 end
 
+"""Iteration (Getter) (API Extension)"""
+function Iteration()::Int
+    return @checked Lib.YMatrix_Get_Iteration()
+end
+
+"""Iteration (Setter) (API Extension)"""
+function Iteration(Value::Int)
+    return @checked Lib.YMatrix_Set_Iteration(Value)
+end
+
+"""LoadsNeedUpdating (Getter) (API Extension)"""
+function LoadsNeedUpdating()::Bool
+    return (@checked Lib.YMatrix_Get_LoadsNeedUpdating()) != 0
+end
+
+"""LoadsNeedUpdating (Setter) (API Extension)"""
+function LoadsNeedUpdating(Value::Bool)
+    return @checked Lib.YMatrix_Set_LoadsNeedUpdating(Value)
+end
+
+"""SolutionInitialized (Getter) (API Extension)"""
+function SolutionInitialized()::Bool
+    return (@checked Lib.YMatrix_Get_SolutionInitialized()) != 0
+end
+
+"""SolutionInitialized (Setter) (API Extension)"""
+function SolutionInitialized(Value::Bool)
+    return @checked Lib.YMatrix_Set_SolutionInitialized(Value)
+end
+
+"""SolverOptions (Getter) (API Extension)"""
+function SolverOptions()::Int
+    return @checked Lib.YMatrix_Get_SolverOptions()
+end
+
+"""SolverOptions (Setter) (API Extension)"""
+function SolverOptions(Value::Int)
+    return @checked Lib.YMatrix_Set_SolverOptions(Value)
+end
+
+# """Handle (API Extension)"""
+# function Handle()::UInt64
+#     return @checked Lib.YMatrix_Get_Handle()
+# end
+
+"""Update and return the convergence flag. Used for external solver loops.
+
+(API Extension)"""
+function CheckConvergence()::Bool
+    return @checked Lib.YMatrix_CheckConvergence()
+end
+
+"""SetGeneratordQdV (API Extension)"""
+function SetGeneratordQdV()
+    @checked Lib.YMatrix_SetGeneratordQdV()
+end
+
 end

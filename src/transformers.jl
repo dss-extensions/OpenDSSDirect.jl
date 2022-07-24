@@ -211,4 +211,49 @@ function Idx(Value::Int)
     @checked Lib.Transformers_Set_idx(Value)
 end
 
+"""Transformer Core Type: 0=shell;1 = 1-phase; 3= 3-leg; 5= 5-leg (Getter)"""
+function CoreType()::Int
+    return @checked Lib.Transformers_Get_CoreType()
+end
+
+"""Transformer Core Type: 0=shell;1 = 1-phase; 3= 3-leg; 5= 5-leg (Setter)"""
+function CoreType(Value::Int)
+    return @checked Lib.Transformers_Set_CoreType(Value)
+end
+
+"""dc Resistance of active winding in ohms for GIC analysis (Getter)"""
+function RdcOhms()::Float64
+    return @checked Lib.Transformers_Get_RdcOhms()
+end
+
+"""dc Resistance of active winding in ohms for GIC analysis (Setter)"""
+function RdcOhms(Value::Float64)
+    return @checked Lib.Transformers_Set_RdcOhms(Value)
+end
+
+"""All winding currents in CSV string form like the WdgCurrents property"""
+function strWdgCurrents()::String
+    return get_string(@checked Lib.Transformers_Get_strWdgCurrents())
+end
+
+"""Complex array with the losses by type (total losses, load losses, no-load losses), in VA"""
+function LossesByType()::Array{ComplexF64}
+    return get_complex64_array(Lib.Transformers_Get_LossesByType)
+end
+
+"""All Winding currents (ph1, wdg1, wdg2,... ph2, wdg1, wdg2 ...)"""
+function WdgCurrents()::Array{Float64}
+    return get_float64_array(Lib.Transformers_Get_WdgCurrents)
+end
+
+"""Complex array of voltages for active winding"""
+function WdgVoltages()::Array{ComplexF64}
+    return get_complex64_array(Lib.Transformers_Get_WdgVoltages)
+end
+
+"""Complex array with the losses by type (total losses, load losses, no-load losses), in VA, concatenated for ALL transformers"""
+function AllLossesByType()::Array{ComplexF64}
+    return get_complex64_array(Lib.Transformers_Get_AllLossesByType)
+end
+
 end

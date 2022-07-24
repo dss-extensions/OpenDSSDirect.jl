@@ -11,6 +11,11 @@ using ..Utils
                                  $(DOCSTRING)
                                  """
 
+"""List of strings with all XYCurve names"""
+function AllNames()::Vector{String}
+    return get_string_array(Lib.XYCurves_Get_AllNames)
+end
+
 """Number of XYCurve Objects"""
 function Count()::Int
     return @checked Lib.XYCurves_Get_Count()

@@ -25,4 +25,15 @@ function NumProperties()::Int
     return @checked Lib.DSSElement_Get_NumProperties()
 end
 
+"""Returns the properties of the active DSS object as a JSON-encoded string.
+
+The `options` parameter contains bit-flags to toggle specific features.
+See `Obj_ToJSON` (C-API) for more.
+
+(API Extension)
+"""
+function ToJSON(Flags::Int)::String #TODO: use enum
+    return getstring(@checked Lib.DSSElement_ToJSON(Flags))
+end
+
 end

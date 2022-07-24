@@ -153,4 +153,35 @@ function Idx(Value::Int)
     @checked Lib.Fuses_Set_idx(Value)
 end
 
+"""Array of strings ('open' or 'closed') indicating the normal state of each phase of the fuse. 
+(Getter)"""
+function NormalState()::Array{String}
+    return get_string_array(Lib.Fuses_Get_NormalState)
+end
+
+"""Array of strings ('open' or 'closed') indicating the normal state of each phase of the fuse.
+(Setter)"""
+function NormalState(Value::Array{String})
+    Value, ValuePtr, ValueCount = prepare_string_array(Value)
+    @checked Lib.Fuses_Set_NormalState(ValuePtr, ValueCount)
+end
+
+"""Array of strings ('open' or 'closed') indicating the state of each phase of the fuse.
+(Getter)"""
+function State()::Array{String}
+    return get_string_array(Lib.Fuses_Get_State)
+end
+
+"""Array of strings ('open' or 'closed') indicating the state of each phase of the fuse.
+(Setter)"""
+function State(Value::Array{String})
+    Value, ValuePtr, ValueCount = prepare_string_array(Value)
+    @checked Lib.Fuses_Set_State(ValuePtr, ValueCount)
+end
+
+"""Reset fuse to normal state."""
+function Reset()
+    @checked Lib.Fuses_Reset()
+end
+
 end

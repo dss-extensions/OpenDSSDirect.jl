@@ -54,4 +54,18 @@ function ExtendedErrors(Value::Bool)
     @checked Lib.Error_Set_ExtendedErrors(Value ? 1 : 0)
 end
 
+"""EarlyAbort controls whether all errors halts the DSS script processing (Compile/Redirect), defaults to True. (Getter)
+
+(API Extension)"""
+function EarlyAbort()::Bool
+    return (@checked Lib.Error_Get_EarlyAbort()) != 0
+end
+
+"""EarlyAbort controls whether all errors halts the DSS script processing (Compile/Redirect), defaults to True. (Setter)
+
+(API Extension) """
+function EarlyAbort(Value::Bool)
+    return @checked Lib.Error_Set_EarlyAbort(Value)
+end
+
 end

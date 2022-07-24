@@ -37,6 +37,23 @@ function Result()::String
     return get_string(@checked Lib.Text_Get_Result())
 end
 
+"""Runs a list of commands all at once in the engine.
+Ignores potential intermediate output in the global result.
+
+(API Extension)"""
+function Command(Value::Vector{String})
+    Value, ValuePtr, ValueCount = prepare_string_array(Value)
+    @checked Lib.Text_CommandArray(ValuePtr, ValueCount)
+end
+
+"""Runs a large string (block) containing many lines of commands.
+Ignores potential intermediate output in the global result.
+
+(API Extension)"""
+function CommandBlock(Value::String)::String
+    @checked Lib.Text_CommandBlock(Value)
+end
+
 const dss = Command
 
 end
