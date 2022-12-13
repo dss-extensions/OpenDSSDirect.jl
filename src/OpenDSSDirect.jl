@@ -77,6 +77,10 @@ module Lib
 
 end
 
+struct DSSContext
+    ctx::Ptr{Cvoid}
+end
+
 include("utils.jl")
 
 include("activeclass.jl")
