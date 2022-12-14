@@ -5,9 +5,6 @@
 # ctx_* functions. We should regenerate after DSS C-API 0.13.0 is
 # released.
 
-export C_NULL_CTX;
-const C_NULL_CTX = C_NULL;
-
 # typedef int32_t ( * dss_callback_plot_t ) ( void * ctx , char * jsonParams )
 const dss_callback_plot_t = Ptr{Cvoid}
 
@@ -7138,5 +7135,20 @@ function DSS_SetPropertiesMO(Value)
     ccall((:DSS_SetPropertiesMO, LIBRARY), Cvoid, (Cstring,), Value)
 end
 
-const DSS_CAPI_VERSION = "0.12.1"
+function ctx_New()
+    ccall((:ctx_New, LIBRARY), Ptr{Cvoid}, ())
+end
 
+function ctx_Get_Prime()
+    ccall((:ctx_Get_Prime, LIBRARY), Ptr{Cvoid}, ())
+end
+
+function ctx_Set_Prime(ctx::Ptr{Cvoid})
+    ccall((:ctx_Set_Prime, LIBRARY), Ptr{Cvoid}, (Ptr{Cvoid},), ctx)
+end
+
+function ctx_Dispose(ctx::Ptr{Cvoid})
+    ccall((:ctx_Dispose, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
+end
+
+const DSS_CAPI_VERSION = "0.12.1"

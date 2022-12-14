@@ -40,6 +40,7 @@ export Transformers
 export Vsources
 export XYCurves
 export YMatrix
+export DSSContext
 
 export dss
 

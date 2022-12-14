@@ -11,79 +11,94 @@ using ..Utils
                                  """
 
 """Clear All"""
-function ClearAll()
-    @checked Lib.DSS_ClearAll(C_NULL_CTX)
+function ClearAll(dss::DSSContext)
+    @checked Lib.DSS_ClearAll(dss.ctx)
 end
+ClearAll() = ClearAll(DSS_DEFAULT_CTX)
 
 """Reset"""
-function Reset()
-    @checked Lib.DSS_Reset(C_NULL_CTX)
+function Reset(dss::DSSContext)
+    @checked Lib.DSS_Reset(dss.ctx)
 end
+Reset() = Reset(DSS_DEFAULT_CTX)
 
 """Set the Active Class"""
-function SetActiveClass(ClassName::String)::Int
-    return @checked Lib.DSS_SetActiveClass(C_NULL_CTX, ClassName)
+function SetActiveClass(dss::DSSContext, ClassName::String)::Int
+    return @checked Lib.DSS_SetActiveClass(dss.ctx, ClassName)
 end
+SetActiveClass(ClassName::String) = SetActiveClass(DSS_DEFAULT_CTX, ClassName)
 
 """Set the start code"""
-function Start(code::Int)
-    return @checked(Lib.DSS_Start(C_NULL_CTX, code)) != 0
+function Start(dss::DSSContext, code::Int)
+    return @checked(Lib.DSS_Start(dss.ctx, code)) != 0
 end
+Start(code::Int) = Start(DSS_DEFAULT_CTX, code)
 
 """List of DSS intrinsic classes (names of the classes)"""
-function Classes()::Vector{String}
-    return get_string_array(Lib.DSS_Get_Classes, C_NULL_CTX)
+function Classes(dss::DSSContext)::Vector{String}
+    return get_string_array(Lib.DSS_Get_Classes, dss.ctx)
 end
+Classes() = Classes(DSS_DEFAULT_CTX)
 
 """DSS Data File Path.  Default path for reports, etc. from DSS (Getter)"""
-function DataPath()::String
-    return get_string(Lib.DSS_Get_DataPath(C_NULL_CTX))
+function DataPath(dss::DSSContext)::String
+    return get_string(Lib.DSS_Get_DataPath(dss.ctx))
 end
+DataPath() = DataPath(DSS_DEFAULT_CTX)
 
 """DSS Data File Path.  Default path for reports, etc. from DSS (Setter)"""
-function DataPath(Value::String)
-    @checked Lib.DSS_Set_DataPath(C_NULL_CTX, Cstring(pointer(Value)))
+function DataPath(dss::DSSContext, Value::String)
+    @checked Lib.DSS_Set_DataPath(dss.ctx, Cstring(pointer(Value)))
 end
+DataPath(Value::String) = DataPath(DSS_DEFAULT_CTX, Value)
 
 """Returns the path name for the default text editor."""
-function DefaultEditor()::String
-    return get_string(@checked Lib.DSS_Get_DefaultEditor(C_NULL_CTX))
+function DefaultEditor(dss::DSSContext)::String
+    return get_string(@checked Lib.DSS_Get_DefaultEditor(dss.ctx))
 end
+DefaultEditor() = DefaultEditor(DSS_DEFAULT_CTX)
 
 """Number of Circuits currently defined"""
-function NumCircuits()::Int
-    return @checked Lib.DSS_Get_NumCircuits(C_NULL_CTX)
+function NumCircuits(dss::DSSContext)::Int
+    return @checked Lib.DSS_Get_NumCircuits(dss.ctx)
 end
+NumCircuits() = NumCircuits(DSS_DEFAULT_CTX)
 
 """Number of DSS intrinsic classes"""
-function NumClasses()::Int
-    return @checked Lib.DSS_Get_NumClasses(C_NULL_CTX)
+function NumClasses(dss::DSSContext)::Int
+    return @checked Lib.DSS_Get_NumClasses(dss.ctx)
 end
+NumClasses() = NumClasses(DSS_DEFAULT_CTX)
 
 """Number of user-defined classes"""
-function NumUserClasses()::Int
-    return @checked Lib.DSS_Get_NumUserClasses(C_NULL_CTX)
+function NumUserClasses(dss::DSSContext)::Int
+    return @checked Lib.DSS_Get_NumUserClasses(dss.ctx)
 end
+NumUserClasses() = NumUserClasses(DSS_DEFAULT_CTX)
 
 """List of user-defined classes"""
-function UserClasses()::Vector{String}
-    return get_string_array(Lib.DSS_Get_UserClasses, C_NULL_CTX)
+function UserClasses(dss::DSSContext)::Vector{String}
+    return get_string_array(Lib.DSS_Get_UserClasses, dss.ctx)
 end
+UserClasses() = UserClasses(DSS_DEFAULT_CTX)
 
 """Get version string for the DSS."""
-function Version()::String
-    return get_string(@checked Lib.DSS_Get_Version(C_NULL_CTX))
+function Version(dss::DSSContext)::String
+    return get_string(@checked Lib.DSS_Get_Version(dss.ctx))
 end
+Version() = Version(DSS_DEFAULT_CTX)
 
 """Gets/sets whether text output is allowed (Getter)"""
-function AllowForms()::Bool
-    return @checked(Lib.DSS_Get_AllowForms(C_NULL_CTX)) != 0
+function AllowForms(dss::DSSContext)::Bool
+    return @checked(Lib.DSS_Get_AllowForms(dss.ctx)) != 0
 end
+AllowForms() = AllowForms(DSS_DEFAULT_CTX)
 
 """Gets/sets whether text output is allowed (Setter)"""
-function AllowForms(Value::Bool)
-    @checked Lib.DSS_Set_AllowForms(C_NULL_CTX, Value ? 1 : 0)
+function AllowForms(dss::DSSContext, Value::Bool)
+    @checked Lib.DSS_Set_AllowForms(dss.ctx, Value ? 1 : 0)
 end
+AllowForms(Value::Bool) = AllowForms(DSS_DEFAULT_CTX, Value)
 
 function ShowPanel()
     @warn "ShowPanel is not implemented."
@@ -91,10 +106,11 @@ function ShowPanel()
 end
 
 """Create a new circuit"""
-function NewCircuit(name::String)::String
-    @checked Lib.DSS_NewCircuit(C_NULL_CTX, Cstring(pointer(name)))
+function NewCircuit(dss::DSSContext, name::String)::String
+    @checked Lib.DSS_NewCircuit(dss.ctx, Cstring(pointer(name)))
     return "New Circuit: $name"
 end
+NewCircuit(name::String) = NewCircuit(DSS_DEFAULT_CTX, name)
 
 """
 Gets/sets the state of the Legacy Models mechanism (Getter)
@@ -109,9 +125,10 @@ the legacy components, using the old models from the start.
 
 (API Extension)
 """
-function LegacyModelsLegacyModels()::Bool
-    return @checked(Lib.DSS_Get_LegacyModels(C_NULL_CTX)) != 0
+function LegacyModelsLegacyModels(dss::DSSContext)::Bool
+    return @checked(Lib.DSS_Get_LegacyModels(dss.ctx)) != 0
 end
+LegacyModelsLegacyModels() = LegacyModelsLegacyModels(DSS_DEFAULT_CTX)
 
 """
 Gets/sets the state of the Legacy Models mechanism (Setter)
@@ -126,9 +143,10 @@ the legacy components, using the old models from the start.
 
 (API Extension)
 """
-function LegacyModels(Value::Bool)
-    @checked Lib.DSS_Set_LegacyModels(C_NULL_CTX, Value ? 1 : 0)
+function LegacyModels(dss::DSSContext, Value::Bool)
+    @checked Lib.DSS_Set_LegacyModels(dss.ctx, Value ? 1 : 0)
 end
+LegacyModels(Value::Bool) = LegacyModels(DSS_DEFAULT_CTX, Value)
 
 """If enabled, in case of errors or empty arrays, the API returns arrays with values compatible with the 
 official OpenDSS COM interface. 
@@ -146,9 +164,10 @@ the legacy/COM behavior. The value can be toggled through the API at any time.
 (Getter)
 (API Extension)
 """
-function COMErrorResults()::Bool
-    return (@checked Lib.DSS_Get_COMErrorResults(C_NULL_CTX)) != 0
+function COMErrorResults(dss::DSSContext)::Bool
+    return (@checked Lib.DSS_Get_COMErrorResults(dss.ctx)) != 0
 end
+COMErrorResults() = COMErrorResults(DSS_DEFAULT_CTX)
 
 """If enabled, in case of errors or empty arrays, the API returns arrays with values compatible with the 
 official OpenDSS COM interface. 
@@ -166,9 +185,10 @@ the legacy/COM behavior. The value can be toggled through the API at any time.
 (Setter)
 (API Extension)
 """
-function COMErrorResults(Value::Bool)
-    return @checked Lib.DSS_Set_COMErrorResults(C_NULL_CTX, Value)
+function COMErrorResults(dss::DSSContext, Value::Bool)
+    return @checked Lib.DSS_Set_COMErrorResults(dss.ctx, Value)
 end
+COMErrorResults(Value::Bool) = COMErrorResults(DSS_DEFAULT_CTX, Value)
 
 """If disabled, the engine will not change the active working directory during execution. E.g. a "compile"
 command will not "chdir" to the file path.
@@ -183,9 +203,10 @@ disallow changing the active working directory.
 
 (Getter)
 (API Extension)"""
-function AllowChangeDir()::Bool
-    return (@checked Lib.DSS_Get_AllowChangeDir(C_NULL_CTX)) != 0
+function AllowChangeDir(dss::DSSContext)::Bool
+    return (@checked Lib.DSS_Get_AllowChangeDir(dss.ctx)) != 0
 end
+AllowChangeDir() = AllowChangeDir(DSS_DEFAULT_CTX)
 
 """If disabled, the engine will not change the active working directory during execution. E.g. a "compile"
 command will not "chdir" to the file path.
@@ -200,9 +221,10 @@ disallow changing the active working directory.
 
 (Setter)
 (API Extension)"""
-function AllowChangeDir(Value::Bool)
-    return @checked Lib.DSS_Set_AllowChangeDir(C_NULL_CTX, Value)
+function AllowChangeDir(dss::DSSContext, Value::Bool)
+    return @checked Lib.DSS_Set_AllowChangeDir(dss.ctx, Value)
 end
+AllowChangeDir(Value::Bool) = AllowChangeDir(DSS_DEFAULT_CTX, Value)
 
 """Gets/sets whether running the external editor for "Show" is allowed
 
@@ -212,9 +234,10 @@ such as the creation of files, are not affected.
 
 (Getter)
 (API Extension)"""
-function AllowEditor()::Bool
-    return (@checked Lib.DSS_Get_AllowEditor(C_NULL_CTX)) != 0
+function AllowEditor(dss::DSSContext)::Bool
+    return (@checked Lib.DSS_Get_AllowEditor(dss.ctx)) != 0
 end
+AllowEditor() = AllowEditor(DSS_DEFAULT_CTX)
 
 """Gets/sets whether running the external editor for "Show" is allowed
 
@@ -224,9 +247,10 @@ such as the creation of files, are not affected.
 
 (Setter)
 (API Extension)"""
-function AllowEditor(Value::Bool)
-    return @checked Lib.DSS_Set_AllowEditor(C_NULL_CTX, Value)
+function AllowEditor(dss::DSSContext, Value::Bool)
+    return @checked Lib.DSS_Set_AllowEditor(dss.ctx, Value)
 end
+AllowEditor(Value::Bool) = AllowEditor(DSS_DEFAULT_CTX, Value)
 
 """If enabled, the DOScmd command is allowed. Otherwise, an error is reported if the user tries to use it.
     
@@ -237,9 +261,10 @@ the legacy components, using the old models from the start.
 
 (Getter)
 (API Extension)"""
-function AllowDOScmd()::Bool
-    return (@checked Lib.DSS_Get_AllowDOScmd(C_NULL_CTX)) != 0
+function AllowDOScmd(dss::DSSContext)::Bool
+    return (@checked Lib.DSS_Get_AllowDOScmd(dss.ctx)) != 0
 end
+AllowDOScmd() = AllowDOScmd(DSS_DEFAULT_CTX)
 
 """If enabled, the DOScmd command is allowed. Otherwise, an error is reported if the user tries to use it.
     
@@ -250,8 +275,26 @@ the legacy components, using the old models from the start.
 
 (Setter)
 (API Extension)"""
-function AllowDOScmd(Value::Bool)
-    return @checked Lib.DSS_Set_AllowDOScmd(C_NULL_CTX, Value)
+function AllowDOScmd(dss::DSSContext, Value::Bool)
+    return @checked Lib.DSS_Set_AllowDOScmd(dss.ctx, Value)
+end
+AllowDOScmd(Value::Bool) = AllowDOScmd(DSS_DEFAULT_CTX, Value)
+
+"""
+Create a new DSS engine context.
+(API Extension)
+"""
+function NewContext()::DSSContext
+    return DSSContext(Lib.ctx_New())
+end
+
+"""
+Disposes a DSS engine context. 
+Cannot be called with the prime instance.
+(API Extension)
+"""
+function DisposeContext(dss::DSSContext)
+    return DSSContext(Lib.ctx_Dispose(dss.ctx))
 end
 
 end

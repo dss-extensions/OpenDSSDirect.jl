@@ -11,38 +11,45 @@ using ..Utils
                                  """
 
 """Get i-th command"""
-function Command(i::Int)::String
-    return get_string(@checked Lib.DSS_Executive_Get_Command(C_NULL_CTX, i))
+function Command(dss::DSSContext, i::Int)::String
+    return get_string(@checked Lib.DSS_Executive_Get_Command(dss.ctx, i))
 end
+Command(i::Int) = Command(DSS_DEFAULT_CTX, i)
 
 """Get help string for i-th command"""
-function CommandHelp(i::Int)::String
-    return get_string(@checked Lib.DSS_Executive_Get_CommandHelp(C_NULL_CTX, i))
+function CommandHelp(dss::DSSContext, i::Int)::String
+    return get_string(@checked Lib.DSS_Executive_Get_CommandHelp(dss.ctx, i))
 end
+CommandHelp(i::Int) = CommandHelp(DSS_DEFAULT_CTX, i)
 
 """Get i-th option"""
-function Option(i::Int)::String
-    return get_string(@checked Lib.DSS_Executive_Get_Option(C_NULL_CTX, i))
+function Option(dss::DSSContext, i::Int)::String
+    return get_string(@checked Lib.DSS_Executive_Get_Option(dss.ctx, i))
 end
+Option(i::Int) = Option(DSS_DEFAULT_CTX, i)
 
 """Get help string for i-th option"""
-function OptionHelp(i::Int)::String
-    return get_string(@checked Lib.DSS_Executive_Get_OptionHelp(C_NULL_CTX, i))
+function OptionHelp(dss::DSSContext, i::Int)::String
+    return get_string(@checked Lib.DSS_Executive_Get_OptionHelp(dss.ctx, i))
 end
+OptionHelp(i::Int) = OptionHelp(DSS_DEFAULT_CTX, i)
 
 """Get present value of i-th option"""
-function OptionValue(i::Int)::String
-    return get_string(@checked Lib.DSS_Executive_Get_OptionValue(C_NULL_CTX, i))
+function OptionValue(dss::DSSContext, i::Int)::String
+    return get_string(@checked Lib.DSS_Executive_Get_OptionValue(dss.ctx, i))
 end
+OptionValue(i::Int) = OptionValue(DSS_DEFAULT_CTX, i)
 
 """Number of DSS Executive Commands"""
-function NumCommands()::Int
-    return @checked Lib.DSS_Executive_Get_NumCommands(C_NULL_CTX)
+function NumCommands(dss::DSSContext)::Int
+    return @checked Lib.DSS_Executive_Get_NumCommands(dss.ctx)
 end
+NumCommands() = NumCommands(DSS_DEFAULT_CTX)
 
 """Number of DSS Executive Options"""
-function NumOptions()::Int
-    return @checked Lib.DSS_Executive_Get_NumOptions(C_NULL_CTX)
+function NumOptions(dss::DSSContext)::Int
+    return @checked Lib.DSS_Executive_Get_NumOptions(dss.ctx)
 end
+NumOptions() = NumOptions(DSS_DEFAULT_CTX)
 
 end

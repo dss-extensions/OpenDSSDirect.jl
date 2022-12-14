@@ -11,19 +11,22 @@ using ..Utils
                                  """
 
 """Array of strings containing the names of all properties for the active DSS object."""
-function AllPropertyNames()::Vector{String}
-    return get_string_array(Lib.DSSElement_Get_AllPropertyNames, C_NULL_CTX)
+function AllPropertyNames(dss::DSSContext)::Vector{String}
+    return get_string_array(Lib.DSSElement_Get_AllPropertyNames, dss.ctx)
 end
+AllPropertyNames() = AllPropertyNames(DSS_DEFAULT_CTX)
 
 """Full Name of Active DSS Object (general element or circuit element)."""
-function Name()::String
-    return get_string(Lib.DSSElement_Get_Name(C_NULL_CTX))
+function Name(dss::DSSContext)::String
+    return get_string(Lib.DSSElement_Get_Name(dss.ctx))
 end
+Name() = Name(DSS_DEFAULT_CTX)
 
 """Number of Properties for the active DSS object."""
-function NumProperties()::Int
-    return @checked Lib.DSSElement_Get_NumProperties(C_NULL_CTX)
+function NumProperties(dss::DSSContext)::Int
+    return @checked Lib.DSSElement_Get_NumProperties(dss.ctx)
 end
+NumProperties() = NumProperties(DSS_DEFAULT_CTX)
 
 """Returns the properties of the active DSS object as a JSON-encoded string.
 
@@ -32,8 +35,9 @@ See `Obj_ToJSON` (C-API) for more.
 
 (API Extension)
 """
-function ToJSON(Flags::Int)::String #TODO: use enum
-    return getstring(@checked Lib.DSSElement_ToJSON(C_NULL_CTX, Flags))
+function ToJSON(dss::DSSContext, Flags::Int)::String #TODO: use enum
+    return getstring(@checked Lib.DSSElement_ToJSON(dss.ctx, Flags))
 end
+ToJSON(Flags::Int) = ToJSON(DSS_DEFAULT_CTX, Flags)
 
 end

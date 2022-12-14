@@ -12,7 +12,7 @@ using ..Utils
                                  """
 
 """Return SparseMatrixCSC of ComplexF64"""
-function getYsparse(factor::Bool = true)::SparseMatrixCSC{Complex{Float64},Int}
+function getYsparse(dss::DSSContext, factor::Bool = true)::SparseMatrixCSC{Complex{Float64},Int}
     nBus = Ref(UInt32(0))
     nNz = Ref(UInt32(0))
 
@@ -21,7 +21,7 @@ function getYsparse(factor::Bool = true)::SparseMatrixCSC{Complex{Float64},Int}
     cValsPtr = Ref{Ptr{Cdouble}}(0)
 
     @checked Lib.YMatrix_GetCompressedYMatrix(
-        C_NULL_CTX,
+        dss.ctx,
         factor ? 1 : 0,
         nBus,
         nNz,
@@ -49,144 +49,170 @@ function getYsparse(factor::Bool = true)::SparseMatrixCSC{Complex{Float64},Int}
 
     return res
 end
+getYsparse(factor::Bool = true) = getYsparse(DSS_DEFAULT_CTX, factor)
 
 """Zero Current Injections"""
-function ZeroInjCurr()
-    @checked Lib.YMatrix_ZeroInjCurr(C_NULL_CTX)
+function ZeroInjCurr(dss::DSSContext)
+    @checked Lib.YMatrix_ZeroInjCurr(dss.ctx)
 end
+ZeroInjCurr() = ZeroInjCurr(DSS_DEFAULT_CTX)
 
 """Get Source Current Injections"""
-function GetSourceInjCurrents()
-    @checked Lib.YMatrix_GetSourceInjCurrents(C_NULL_CTX)
+function GetSourceInjCurrents(dss::DSSContext)
+    @checked Lib.YMatrix_GetSourceInjCurrents(dss.ctx)
 end
+GetSourceInjCurrents() = GetSourceInjCurrents(DSS_DEFAULT_CTX)
 
 """Get PC Current Injections"""
-function GetPCInjCurr()
-    @checked Lib.YMatrix_GetPCInjCurr(C_NULL_CTX)
+function GetPCInjCurr(dss::DSSContext)
+    @checked Lib.YMatrix_GetPCInjCurr(dss.ctx)
 end
+GetPCInjCurr() = GetPCInjCurr(DSS_DEFAULT_CTX)
 
 """Build Y MatrixD"""
-function BuildYMatrixD(BuildOps::Int, AllocateVI::Bool)
-    @checked Lib.YMatrix_BuildYMatrixD(C_NULL_CTX, BuildOps, AllocateVI ? 1 : 0)
+function BuildYMatrixD(dss::DSSContext, BuildOps::Int, AllocateVI::Bool)
+    @checked Lib.YMatrix_BuildYMatrixD(dss.ctx, BuildOps, AllocateVI ? 1 : 0)
 end
+BuildYMatrixD(BuildOps::Int, AllocateVI::Bool) = BuildYMatrixD(DSS_DEFAULT_CTX, BuildOps, AllocateVI)
 
 """Add in auxiliary currents"""
-function AddInAuxCurrents(SType::Int)
-    @checked Lib.YMatrix_AddInAuxCurrents(C_NULL_CTX, SType)
+function AddInAuxCurrents(dss::DSSContext, SType::Int)
+    @checked Lib.YMatrix_AddInAuxCurrents(dss.ctx, SType)
 end
+AddInAuxCurrents(SType::Int) = AddInAuxCurrents(DSS_DEFAULT_CTX, SType)
 
 """Get access to the internal Current pointer"""
-function IVector()
+function IVector(dss::DSSContext)
     IvectorPtr = Ref{Ptr{Float64}}()
-    @checked Lib.YMatrix_getIpointer(C_NULL_CTX, IvectorPtr)
+    @checked Lib.YMatrix_getIpointer(dss.ctx, IvectorPtr)
     return convert(Ptr{ComplexF64}, IvectorPtr[])
 end
+IVector() = IVector(DSS_DEFAULT_CTX)
 
 """Get access to the internal Voltage pointer"""
-function VVector()
+function VVector(dss::DSSContext)
     VvectorPtr = Ref{Ptr{Float64}}()
-    @checked Lib.YMatrix_getVpointer(C_NULL_CTX, VvectorPtr)
+    @checked Lib.YMatrix_getVpointer(dss.ctx, VvectorPtr)
     return convert(Ptr{ComplexF64}, VvectorPtr[])
 end
+VVector() = VVector(DSS_DEFAULT_CTX)
 
 """Get the data from the internal Current pointer"""
-function getI()::Vector{ComplexF64}
+function getI(dss::DSSContext)::Vector{ComplexF64}
     IvectorPtr = IVector()
-    return unsafe_wrap(Array, IvectorPtr, @checked(Lib.Circuit_Get_NumNodes(C_NULL_CTX)) + 1)
+    return unsafe_wrap(Array, IvectorPtr, @checked(Lib.Circuit_Get_NumNodes(dss.ctx)) + 1)
 end
+getI() = getI(DSS_DEFAULT_CTX)
 
 """Get the data from the internal Voltage pointer"""
-function getV()::Vector{ComplexF64}
+function getV(dss::DSSContext)::Vector{ComplexF64}
     VvectorPtr = VVector()
-    return unsafe_wrap(Array, VvectorPtr, @checked(Lib.Circuit_Get_NumNodes(C_NULL_CTX)) + 1)
+    return unsafe_wrap(Array, VvectorPtr, @checked(Lib.Circuit_Get_NumNodes(dss.ctx)) + 1)
 end
+getV() = getV(DSS_DEFAULT_CTX)
 
 """Solve System for a given V vector"""
-function SolveSystem(NodeV::Vector{ComplexF64})::Int
+function SolveSystem(dss::DSSContext, NodeV::Vector{ComplexF64})::Int
     NodeV = pointer(NodeV)
-    return @checked Lib.YMatrix_SolveSystem(C_NULL_CTX, NodeV)
+    return @checked Lib.YMatrix_SolveSystem(dss.ctx, NodeV)
 end
+SolveSystem(NodeV::Vector{ComplexF64}) = SolveSystem(DSS_DEFAULT_CTX, NodeV)
 
 """Solve System for the internal V vector"""
-function SolveSystem()::Int
-    return @checked Lib.YMatrix_SolveSystem(C_NULL_CTX, C_NULL)
+function SolveSystem(dss::DSSContext)::Int
+    return @checked Lib.YMatrix_SolveSystem(dss.ctx, C_NULL)
 end
+SolveSystem() = SolveSystem(DSS_DEFAULT_CTX)
 
 """SystemY has changed (Getter)"""
-function SystemYChanged()::Bool
-    return @checked(Lib.YMatrix_Get_SystemYChanged(C_NULL_CTX)) != 0
+function SystemYChanged(dss::DSSContext)::Bool
+    return @checked(Lib.YMatrix_Get_SystemYChanged(dss.ctx)) != 0
 end
+SystemYChanged() = SystemYChanged(DSS_DEFAULT_CTX)
 
 """SystemY has changed (Setter)"""
-function SystemYChanged(Value::Bool)
-    @checked Lib.YMatrix_Set_SystemYChanged(C_NULL_CTX, Value ? 1 : 0)
+function SystemYChanged(dss::DSSContext, Value::Bool)
+    @checked Lib.YMatrix_Set_SystemYChanged(dss.ctx, Value ? 1 : 0)
 end
+SystemYChanged(Value::Bool) = SystemYChanged(DSS_DEFAULT_CTX, Value)
 
 """Use auxiliary currents (Getter)"""
-function UseAuxCurrents()::Bool
-    return @checked(Lib.YMatrix_Get_UseAuxCurrents(C_NULL_CTX)) != 0
+function UseAuxCurrents(dss::DSSContext)::Bool
+    return @checked(Lib.YMatrix_Get_UseAuxCurrents(dss.ctx)) != 0
 end
+UseAuxCurrents() = UseAuxCurrents(DSS_DEFAULT_CTX)
 
 """Use auxiliary currents (Setter)"""
-function UseAuxCurrents(Value::Bool)
-    @checked Lib.YMatrix_Set_UseAuxCurrents(C_NULL_CTX, Value ? 1 : 0)
+function UseAuxCurrents(dss::DSSContext, Value::Bool)
+    @checked Lib.YMatrix_Set_UseAuxCurrents(dss.ctx, Value ? 1 : 0)
 end
+UseAuxCurrents(Value::Bool) = UseAuxCurrents(DSS_DEFAULT_CTX, Value)
 
 """Iteration (Getter) (API Extension)"""
-function Iteration()::Int
-    return @checked Lib.YMatrix_Get_Iteration(C_NULL_CTX)
+function Iteration(dss::DSSContext)::Int
+    return @checked Lib.YMatrix_Get_Iteration(dss.ctx)
 end
+Iteration() = Iteration(DSS_DEFAULT_CTX)
 
 """Iteration (Setter) (API Extension)"""
-function Iteration(Value::Int)
-    return @checked Lib.YMatrix_Set_Iteration(C_NULL_CTX, Value)
+function Iteration(dss::DSSContext, Value::Int)
+    return @checked Lib.YMatrix_Set_Iteration(dss.ctx, Value)
 end
+Iteration(Value::Int) = Iteration(DSS_DEFAULT_CTX, Value)
 
 """LoadsNeedUpdating (Getter) (API Extension)"""
-function LoadsNeedUpdating()::Bool
-    return (@checked Lib.YMatrix_Get_LoadsNeedUpdating(C_NULL_CTX)) != 0
+function LoadsNeedUpdating(dss::DSSContext)::Bool
+    return (@checked Lib.YMatrix_Get_LoadsNeedUpdating(dss.ctx)) != 0
 end
+LoadsNeedUpdating() = LoadsNeedUpdating(DSS_DEFAULT_CTX)
 
 """LoadsNeedUpdating (Setter) (API Extension)"""
-function LoadsNeedUpdating(Value::Bool)
-    return @checked Lib.YMatrix_Set_LoadsNeedUpdating(C_NULL_CTX, Value)
+function LoadsNeedUpdating(dss::DSSContext, Value::Bool)
+    return @checked Lib.YMatrix_Set_LoadsNeedUpdating(dss.ctx, Value)
 end
+LoadsNeedUpdating(Value::Bool) = LoadsNeedUpdating(DSS_DEFAULT_CTX, Value)
 
 """SolutionInitialized (Getter) (API Extension)"""
-function SolutionInitialized()::Bool
-    return (@checked Lib.YMatrix_Get_SolutionInitialized(C_NULL_CTX)) != 0
+function SolutionInitialized(dss::DSSContext)::Bool
+    return (@checked Lib.YMatrix_Get_SolutionInitialized(dss.ctx)) != 0
 end
+SolutionInitialized() = SolutionInitialized(DSS_DEFAULT_CTX)
 
 """SolutionInitialized (Setter) (API Extension)"""
-function SolutionInitialized(Value::Bool)
-    return @checked Lib.YMatrix_Set_SolutionInitialized(C_NULL_CTX, Value)
+function SolutionInitialized(dss::DSSContext, Value::Bool)
+    return @checked Lib.YMatrix_Set_SolutionInitialized(dss.ctx, Value)
 end
+SolutionInitialized(Value::Bool) = SolutionInitialized(DSS_DEFAULT_CTX, Value)
 
 """SolverOptions (Getter) (API Extension)"""
-function SolverOptions()::Int
-    return @checked Lib.YMatrix_Get_SolverOptions(C_NULL_CTX)
+function SolverOptions(dss::DSSContext)::Int
+    return @checked Lib.YMatrix_Get_SolverOptions(dss.ctx)
 end
+SolverOptions() = SolverOptions(DSS_DEFAULT_CTX)
 
 """SolverOptions (Setter) (API Extension)"""
-function SolverOptions(Value::Int)
-    return @checked Lib.YMatrix_Set_SolverOptions(C_NULL_CTX, Value)
+function SolverOptions(dss::DSSContext, Value::Int)
+    return @checked Lib.YMatrix_Set_SolverOptions(dss.ctx, Value)
 end
+SolverOptions(Value::Int) = SolverOptions(DSS_DEFAULT_CTX, Value)
 
 # """Handle (API Extension)"""
 # function Handle()::UInt64
-#     return @checked Lib.YMatrix_Get_Handle(C_NULL_CTX)
+#     return @checked Lib.YMatrix_Get_Handle()
 # end
 
 """Update and return the convergence flag. Used for external solver loops.
 
 (API Extension)"""
-function CheckConvergence()::Bool
-    return @checked Lib.YMatrix_CheckConvergence(C_NULL_CTX)
+function CheckConvergence(dss::DSSContext)::Bool
+    return @checked Lib.YMatrix_CheckConvergence(dss.ctx)
 end
+CheckConvergence() = CheckConvergence(DSS_DEFAULT_CTX)
 
 """SetGeneratordQdV (API Extension)"""
-function SetGeneratordQdV()
-    @checked Lib.YMatrix_SetGeneratordQdV(C_NULL_CTX)
+function SetGeneratordQdV(dss::DSSContext)
+    @checked Lib.YMatrix_SetGeneratordQdV(dss.ctx)
 end
+SetGeneratordQdV() = SetGeneratordQdV(DSS_DEFAULT_CTX)
 
 end

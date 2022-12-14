@@ -12,157 +12,187 @@ using ..Utils
                                  """
 
 """Create new Load Shape"""
-function New(Name)::Int
-    return @checked Lib.LoadShapes_New(C_NULL_CTX, Cstring(pointer(Name)))
+function New(dss::DSSContext, Name)::Int
+    return @checked Lib.LoadShapes_New(dss.ctx, Cstring(pointer(Name)))
 end
+New(Name) = New(DSS_DEFAULT_CTX, Name)
 
 """Normalize Load Shape"""
-function Normalize()
-    @checked Lib.LoadShapes_Normalize(C_NULL_CTX)
+function Normalize(dss::DSSContext)
+    @checked Lib.LoadShapes_Normalize(dss.ctx)
 end
+Normalize() = Normalize(DSS_DEFAULT_CTX)
 
 """Array of strings containing names of all Loadshape objects currently defined."""
-function AllNames()::Vector{String}
-    return get_string_array(Lib.LoadShapes_Get_AllNames, C_NULL_CTX)
+function AllNames(dss::DSSContext)::Vector{String}
+    return get_string_array(Lib.LoadShapes_Get_AllNames, dss.ctx)
 end
+AllNames() = AllNames(DSS_DEFAULT_CTX)
 
 """Number of Loadshape objects currently defined in Loadshape collection"""
-function Count()::Int
-    return @checked Lib.LoadShapes_Get_Count(C_NULL_CTX)
+function Count(dss::DSSContext)::Int
+    return @checked Lib.LoadShapes_Get_Count(dss.ctx)
 end
+Count() = Count(DSS_DEFAULT_CTX)
 
 """Set the first loadshape active and return integer index of the loadshape. Returns 0 if none."""
-function First()::Int
-    return @checked Lib.LoadShapes_Get_First(C_NULL_CTX)
+function First(dss::DSSContext)::Int
+    return @checked Lib.LoadShapes_Get_First(dss.ctx)
 end
+First() = First(DSS_DEFAULT_CTX)
 
 """Fixed interval time value, hours."""
-function HrInterval()::Float64
-    return @checked Lib.LoadShapes_Get_HrInterval(C_NULL_CTX)
+function HrInterval(dss::DSSContext)::Float64
+    return @checked Lib.LoadShapes_Get_HrInterval(dss.ctx)
 end
+HrInterval() = HrInterval(DSS_DEFAULT_CTX)
 
 """Fixed interval time value, hours."""
-function HrInterval(Value::Float64)
-    @checked Lib.LoadShapes_Set_HrInterval(C_NULL_CTX, Value)
+function HrInterval(dss::DSSContext, Value::Float64)
+    @checked Lib.LoadShapes_Set_HrInterval(dss.ctx, Value)
 end
+HrInterval(Value::Float64) = HrInterval(DSS_DEFAULT_CTX, Value)
 
 """Fixed Interval time value, in minutes"""
-function MinInterval()::Float64
-    return @checked Lib.LoadShapes_Get_MinInterval(C_NULL_CTX)
+function MinInterval(dss::DSSContext)::Float64
+    return @checked Lib.LoadShapes_Get_MinInterval(dss.ctx)
 end
+MinInterval() = MinInterval(DSS_DEFAULT_CTX)
 
 """Fixed Interval time value, in minutes"""
-function MinInterval(Value::Float64)
-    @checked Lib.LoadShapes_Set_MinInterval(C_NULL_CTX, Value)
+function MinInterval(dss::DSSContext, Value::Float64)
+    @checked Lib.LoadShapes_Set_MinInterval(dss.ctx, Value)
 end
+MinInterval(Value::Float64) = MinInterval(DSS_DEFAULT_CTX, Value)
 
 """Name of the active Loadshape (Getter)"""
-function Name()::String
-    return get_string(Lib.LoadShapes_Get_Name(C_NULL_CTX))
+function Name(dss::DSSContext)::String
+    return get_string(Lib.LoadShapes_Get_Name(dss.ctx))
 end
+Name() = Name(DSS_DEFAULT_CTX)
 
 """Name of the active Loadshape (Setter)"""
-function Name(Value::String)
-    @checked Lib.LoadShapes_Set_Name(C_NULL_CTX, Cstring(pointer(Value)))
+function Name(dss::DSSContext, Value::String)
+    @checked Lib.LoadShapes_Set_Name(dss.ctx, Cstring(pointer(Value)))
 end
+Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 
 """Advance active Loadshape to the next on in the collection. Returns 0 if no more loadshapes."""
-function Next()::Int
-    return @checked Lib.LoadShapes_Get_Next(C_NULL_CTX)
+function Next(dss::DSSContext)::Int
+    return @checked Lib.LoadShapes_Get_Next(dss.ctx)
 end
+Next() = Next(DSS_DEFAULT_CTX)
 
 """Number of points in active Loadshape. (Getter)"""
-function Npts()::Int
-    return @checked Lib.LoadShapes_Get_Npts(C_NULL_CTX)
+function Npts(dss::DSSContext)::Int
+    return @checked Lib.LoadShapes_Get_Npts(dss.ctx)
 end
+Npts() = Npts(DSS_DEFAULT_CTX)
 
 """Number of points in active Loadshape. (Setter)"""
-function Npts(Value::Int)
-    @checked Lib.LoadShapes_Set_Npts(C_NULL_CTX, Value)
+function Npts(dss::DSSContext, Value::Int)
+    @checked Lib.LoadShapes_Set_Npts(dss.ctx, Value)
 end
+Npts(Value::Int) = Npts(DSS_DEFAULT_CTX, Value)
 
 """Base for normalizing P curve (Getter)"""
-function PBase()::Float64
-    return @checked Lib.LoadShapes_Get_PBase(C_NULL_CTX)
+function PBase(dss::DSSContext)::Float64
+    return @checked Lib.LoadShapes_Get_PBase(dss.ctx)
 end
+PBase() = PBase(DSS_DEFAULT_CTX)
 
 """Base for normalizing P curve (Setter)"""
-function PBase(Value::Float64)
-    @checked Lib.LoadShapes_Set_PBase(C_NULL_CTX, Value)
+function PBase(dss::DSSContext, Value::Float64)
+    @checked Lib.LoadShapes_Set_PBase(dss.ctx, Value)
 end
+PBase(Value::Float64) = PBase(DSS_DEFAULT_CTX, Value)
 
 """Array of Doubles for the P multiplier in the Loadshape. (Getter)"""
-function PMult()::Vector{Float64}
-    return get_float64_array(Lib.LoadShapes_Get_Pmult, C_NULL_CTX)
+function PMult(dss::DSSContext)::Vector{Float64}
+    return get_float64_array(Lib.LoadShapes_Get_Pmult, dss.ctx)
 end
+PMult() = PMult(DSS_DEFAULT_CTX)
 
 """Array of Doubles for the P multiplier in the Loadshape. (Setter)"""
-function PMult(Value::Vector{Float64})
+function PMult(dss::DSSContext, Value::Vector{Float64})
     Value, ValuePtr, ValueCount = prepare_float64_array(Value)
-    @checked Lib.LoadShapes_Set_Pmult(C_NULL_CTX, ValuePtr, ValueCount)
+    @checked Lib.LoadShapes_Set_Pmult(dss.ctx, ValuePtr, ValueCount)
 end
+PMult(Value::Vector{Float64}) = PMult(DSS_DEFAULT_CTX, Value)
 
 """Base for normalizing Q curve. If left at zero, the peak value is used. (Getter)"""
-function QBase()::Float64
-    return @checked Lib.LoadShapes_Get_Qbase(C_NULL_CTX)
+function QBase(dss::DSSContext)::Float64
+    return @checked Lib.LoadShapes_Get_Qbase(dss.ctx)
 end
+QBase() = QBase(DSS_DEFAULT_CTX)
 
 """Base for normalizing Q curve. If left at zero, the peak value is used. (Setter)"""
-function QBase(Value::Float64)
-    @checked Lib.LoadShapes_Set_Qbase(C_NULL_CTX, Value)
+function QBase(dss::DSSContext, Value::Float64)
+    @checked Lib.LoadShapes_Set_Qbase(dss.ctx, Value)
 end
+QBase(Value::Float64) = QBase(DSS_DEFAULT_CTX, Value)
 
 """Array of doubles containing the Q multipliers. (Getter)"""
-function QMult()::Vector{Float64}
-    return get_float64_array(Lib.LoadShapes_Get_Qmult, C_NULL_CTX)
+function QMult(dss::DSSContext)::Vector{Float64}
+    return get_float64_array(Lib.LoadShapes_Get_Qmult, dss.ctx)
 end
+QMult() = QMult(DSS_DEFAULT_CTX)
 
 """Array of doubles containing the Q multipliers. (Setter)"""
-function QMult(Value::Vector{Float64})
+function QMult(dss::DSSContext, Value::Vector{Float64})
     Value, ValuePtr, ValueCount = prepare_float64_array(Value)
-    @checked Lib.LoadShapes_Set_Qmult(C_NULL_CTX, ValuePtr, ValueCount)
+    @checked Lib.LoadShapes_Set_Qmult(dss.ctx, ValuePtr, ValueCount)
 end
+QMult(Value::Vector{Float64}) = QMult(DSS_DEFAULT_CTX, Value)
 
 """Time array in hours correscponding to P and Q multipliers when the Interval=0. (Getter)"""
-function TimeArray()::Vector{Float64}
-    return get_float64_array(Lib.LoadShapes_Get_TimeArray, C_NULL_CTX)
+function TimeArray(dss::DSSContext)::Vector{Float64}
+    return get_float64_array(Lib.LoadShapes_Get_TimeArray, dss.ctx)
 end
+TimeArray() = TimeArray(DSS_DEFAULT_CTX)
 
 """Time array in hours correscponding to P and Q multipliers when the Interval=0. (Setter)"""
-function TimeArray(Value::Vector{Float64})
+function TimeArray(dss::DSSContext, Value::Vector{Float64})
     Value, ValuePtr, ValueCount = prepare_float64_array(Value)
-    @checked Lib.LoadShapes_Set_TimeArray(C_NULL_CTX, ValuePtr, ValueCount)
+    @checked Lib.LoadShapes_Set_TimeArray(dss.ctx, ValuePtr, ValueCount)
 end
+TimeArray(Value::Vector{Float64}) = TimeArray(DSS_DEFAULT_CTX, Value)
 
 """T/F flag to let Loads know to use the actual value in the curve rather than use the value as a multiplier. (Getter)"""
-function UseActual()::Bool
-    return @checked(Lib.LoadShapes_Get_UseActual(C_NULL_CTX)) != 0
+function UseActual(dss::DSSContext)::Bool
+    return @checked(Lib.LoadShapes_Get_UseActual(dss.ctx)) != 0
 end
+UseActual() = UseActual(DSS_DEFAULT_CTX)
 
 """T/F flag to let Loads know to use the actual value in the curve rather than use the value as a multiplier. (Setter)"""
-function UseActual(Value::Bool)
-    @checked Lib.LoadShapes_Set_UseActual(C_NULL_CTX, Value ? 1 : 0)
+function UseActual(dss::DSSContext, Value::Bool)
+    @checked Lib.LoadShapes_Set_UseActual(dss.ctx, Value ? 1 : 0)
 end
+UseActual(Value::Bool) = UseActual(DSS_DEFAULT_CTX, Value)
 
 """Interval of active loadshape in seconds (Getter)"""
-function SInterval()::Float64
-    return @checked Lib.LoadShapes_Get_SInterval(C_NULL_CTX)
+function SInterval(dss::DSSContext)::Float64
+    return @checked Lib.LoadShapes_Get_SInterval(dss.ctx)
 end
+SInterval() = SInterval(DSS_DEFAULT_CTX)
 
 """Interval of active loadshape in seconds (Setter)"""
-function SInterval(Value::Float64)
-    @checked Lib.LoadShapes_Set_SInterval(C_NULL_CTX, Value)
+function SInterval(dss::DSSContext, Value::Float64)
+    @checked Lib.LoadShapes_Set_SInterval(dss.ctx, Value)
 end
+SInterval(Value::Float64) = SInterval(DSS_DEFAULT_CTX, Value)
 
 """LoadShape Index (Getter)"""
-function Idx()::Int
-    return @checked Lib.LoadShapes_Get_idx(C_NULL_CTX)
+function Idx(dss::DSSContext)::Int
+    return @checked Lib.LoadShapes_Get_idx(dss.ctx)
 end
+Idx() = Idx(DSS_DEFAULT_CTX)
 
 """LoadShape Index (Setter)"""
-function Idx(Value::Int)
-    @checked Lib.LoadShapes_Set_idx(C_NULL_CTX, Value)
+function Idx(dss::DSSContext, Value::Int)
+    @checked Lib.LoadShapes_Set_idx(dss.ctx, Value)
 end
+Idx(Value::Int) = Idx(DSS_DEFAULT_CTX, Value)
 
 # """kvar value at the time of max kW power.
 # This is set automatically set upon reading in a loadshape, but for external-memory loadshapes, the user must provide the value.
@@ -171,7 +201,7 @@ end
 # (Getter)
 # (API Extension)"""
 # function MaxQ()::Float64
-#     return @checked Lib.LoadShapes_Get_MaxQ(C_NULL_CTX)
+#     return @checked Lib.LoadShapes_Get_MaxQ()
 # end
 
 # """kW value at the time of max power. This is set automatically set upon reading in a loadshape, but for external-memory loadshapes, the user must provide the value.
@@ -180,7 +210,7 @@ end
 # (Setter)
 # (API Extension)"""
 # function MaxQ(Value::Float64)
-#     return @checked Lib.LoadShapes_Set_MaxQ(C_NULL_CTX, Value)
+#     return @checked Lib.LoadShapes_Set_MaxQ(Value)
 # end
 
 # """kW value at the time of max power. This is set automatically set upon reading in a loadshape, but for external-memory loadshapes, the user must provide the value.
@@ -189,7 +219,7 @@ end
 # (Getter)
 # (API Extension)"""
 # function MaxP()::Float64
-#     return @checked Lib.LoadShapes_Get_MaxP(C_NULL_CTX)
+#     return @checked Lib.LoadShapes_Get_MaxP()
 # end
 
 # """kW value at the time of max power. This is set automatically set upon reading in a loadshape, but for external-memory loadshapes, the user must provide the value.
@@ -199,7 +229,7 @@ end
 # (API Extension)
 # """
 # function MaxP(Value::Float64)
-#     return @checked Lib.LoadShapes_Set_MaxP(C_NULL_CTX, Value)
+#     return @checked Lib.LoadShapes_Set_MaxP(Value)
 # end
 
 # """Sets all numeric arrays for the active LoadShape.
@@ -227,16 +257,18 @@ end
 If there is no data or the data is already represented using float32, nothing is done.
 
 (API Extension)"""
-function UseFloat32()
-    @checked Lib.LoadShapes_UseFloat32(C_NULL_CTX)
+function UseFloat32(dss::DSSContext)
+    @checked Lib.LoadShapes_UseFloat32(dss.ctx)
 end
+UseFloat32() = UseFloat32(DSS_DEFAULT_CTX)
 
 """Converts the current LoadShape data to float64/double precision.
 If there is no data or the data is already represented using float64, nothing is done.
 
 (API Extension)"""
-function UseFloat64()
-    @checked Lib.LoadShapes_UseFloat64(C_NULL_CTX)
+function UseFloat64(dss::DSSContext)
+    @checked Lib.LoadShapes_UseFloat64(dss.ctx)
 end
+UseFloat64() = UseFloat64(DSS_DEFAULT_CTX)
 
 end

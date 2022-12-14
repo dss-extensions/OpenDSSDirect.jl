@@ -17,9 +17,11 @@ export prepare_int32_array
 export prepare_string_array
 export OpenDSSDirectException
 export Examples
+export DSSContext
+export DSS_DEFAULT_CTX
 export @checked
 
-const C_NULL_CTX = C_NULL;
+const DSS_DEFAULT_CTX = DSSContext(C_NULL)
 
 function get_string(cstring::Cstring)::String
     if cstring != C_NULL
@@ -340,9 +342,9 @@ macro checked(expr)
 
     return esc(quote
         ans = $(expr)
-        error_num = Lib.Error_Get_Number(C_NULL_CTX)
+        error_num = Lib.Error_Get_Number(dss.ctx)
         if (error_num != 0)
-            description = get_string(Lib.Error_Get_Description(C_NULL_CTX))
+            description = get_string(Lib.Error_Get_Description(dss.ctx))
             throw(
                 OpenDSSDirectException(
                     "[ERROR $error_num] $description"
