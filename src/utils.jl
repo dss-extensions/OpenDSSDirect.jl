@@ -27,13 +27,13 @@ function get_string(cstring::Cstring)::String
     end
 end
 
-function get_string_array(func::Function)::Vector{String}
+function get_string_array(func::Function, ctx::Ptr{Cvoid})::Vector{String}
     ptr = Ref{Ptr{Cstring}}([])
     cnt = Vector{Cint}([0, 0])
-    func(ptr, cnt)
-    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+    func(ctx, ptr, cnt)
+    error_num = OpenDSSDirect.Lib.Error_Get_Number(ctx)
     if (error_num != 0)
-        description = get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        description = get_string(OpenDSSDirect.Lib.Error_Get_Description(ctx))
         throw(
             OpenDSSDirectException(
                 "[ERROR $error_num] $description"
@@ -51,13 +51,13 @@ function get_string_array(func::Function)::Vector{String}
     return data
 end
 
-function get_string_array(func::Function, param::Union{Bool,Int})::Vector{String}
+function get_string_array(func::Function, ctx::Ptr{Cvoid}, param::Union{Bool,Int,Cstring})::Vector{String}
     ptr = Ref{Ptr{Cstring}}([])
     cnt = Vector{Cint}([0, 0])
-    func(ptr, cnt, param)
-    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+    func(ctx, ptr, cnt, param)
+    error_num = OpenDSSDirect.Lib.Error_Get_Number(ctx)
     if (error_num != 0)
-        description = get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        description = get_string(OpenDSSDirect.Lib.Error_Get_Description(ctx))
         throw(
             OpenDSSDirectException(
                 "[ERROR $error_num] $description"
@@ -75,14 +75,13 @@ function get_string_array(func::Function, param::Union{Bool,Int})::Vector{String
     return data
 end
 
-
-function get_int32_array(func::Function)::Vector{Int}
+function get_int32_array(func::Function, ctx::Ptr{Cvoid})::Vector{Int}
     ptr = Ref{Ptr{Cint}}([])
     cnt = Vector{Cint}([0, 0])
-    func(ptr, cnt)
-    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+    func(ctx, ptr, cnt)
+    error_num = OpenDSSDirect.Lib.Error_Get_Number(ctx)
     if (error_num != 0)
-        description = get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        description = get_string(OpenDSSDirect.Lib.Error_Get_Description(ctx))
         throw(
             OpenDSSDirectException(
                 "[ERROR $error_num] $description"
@@ -97,13 +96,13 @@ function get_int32_array(func::Function)::Vector{Int}
     return data
 end
 
-function get_int8_array(func::Function)::Vector{Int8}
+function get_int8_array(func::Function, ctx::Ptr{Cvoid})::Vector{Int8}
     ptr = Ref{Ptr{Int8}}([])
     cnt = Vector{Cint}([0, 0])
-    func(ptr, cnt)
-    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+    func(ctx, ptr, cnt)
+    error_num = OpenDSSDirect.Lib.Error_Get_Number(ctx)
     if (error_num != 0)
-        description = get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        description = get_string(OpenDSSDirect.Lib.Error_Get_Description(ctx))
         throw(
             OpenDSSDirectException(
                 "[ERROR $error_num] $description"
@@ -118,13 +117,13 @@ function get_int8_array(func::Function)::Vector{Int8}
     return data
 end
 
-function get_float64_array(func::Function)::Vector{Float64}
+function get_float64_array(func::Function, ctx::Ptr{Cvoid})::Vector{Float64}
     ptr = Ref{Ptr{Cdouble}}([])
     cnt = Vector{Cint}([0, 0])
-    func(ptr, cnt)
-    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+    func(ctx, ptr, cnt)
+    error_num = OpenDSSDirect.Lib.Error_Get_Number(ctx)
     if (error_num != 0)
-        description = get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        description = get_string(OpenDSSDirect.Lib.Error_Get_Description(ctx))
         throw(
             OpenDSSDirectException(
                 "[ERROR $error_num] $description"
@@ -139,13 +138,13 @@ function get_float64_array(func::Function)::Vector{Float64}
     return data
 end
 
-function get_float64_array(func::Function, param::Union{Bool,Int})::Vector{Float64}
+function get_float64_array(func::Function, ctx::Ptr{Cvoid}, param::Union{Bool,Int})::Vector{Float64}
     ptr = Ref{Ptr{Cdouble}}([])
     cnt = Vector{Cint}([0, 0])
-    func(ptr, cnt, param)
-    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+    func(ctx, ptr, cnt, param)
+    error_num = OpenDSSDirect.Lib.Error_Get_Number(ctx)
     if (error_num != 0)
-        description = get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        description = get_string(OpenDSSDirect.Lib.Error_Get_Description(ctx))
         throw(
             OpenDSSDirectException(
                 "[ERROR $error_num] $description"
@@ -160,13 +159,13 @@ function get_float64_array(func::Function, param::Union{Bool,Int})::Vector{Float
     return data
 end
 
-function get_float64_array(func::Function, param1::Ptr{Int32}, param2::Int32)::Vector{Float64}
+function get_float64_array(func::Function, ctx::Ptr{Cvoid}, param1::Ptr{Int32}, param2::Int32)::Vector{Float64}
     ptr = Ref{Ptr{Cdouble}}([])
     cnt = Vector{Cint}([0, 0])
-    func(ptr, cnt, param1, param2)
-    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+    func(ctx, ptr, cnt, param1, param2)
+    error_num = OpenDSSDirect.Lib.Error_Get_Number(ctx)
     if (error_num != 0)
-        description = get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        description = get_string(OpenDSSDirect.Lib.Error_Get_Description(ctx))
         throw(
             OpenDSSDirectException(
                 "[ERROR $error_num] $description"
@@ -181,8 +180,8 @@ function get_float64_array(func::Function, param1::Ptr{Int32}, param2::Int32)::V
     return data
 end
 
-function get_complex64_array(func::Function, param1::Ptr{Int32}, param2::Int32)::Vector{ComplexF64}
-    r = get_float64_array(func, param1, param2)
+function get_complex64_array(func::Function, ctx::Ptr{Cvoid}, param1::Ptr{Int32}, param2::Int32)::Vector{ComplexF64}
+    r = get_float64_array(func, ctx, param1, param2)
     if length(r) == 1
         return ComplexF64[]
     else
@@ -191,8 +190,8 @@ function get_complex64_array(func::Function, param1::Ptr{Int32}, param2::Int32):
     return r
 end
 
-function get_complex64_array(func::Function, param::Union{Bool,Int})::Vector{ComplexF64}
-    r = get_float64_array(func, param)
+function get_complex64_array(func::Function, ctx::Ptr{Cvoid}, param::Union{Bool,Int})::Vector{ComplexF64}
+    r = get_float64_array(func, ctx, param)
     if length(r) == 1
         return ComplexF64[]
     else
@@ -201,8 +200,8 @@ function get_complex64_array(func::Function, param::Union{Bool,Int})::Vector{Com
     return r
 end
 
-function get_complex64_array(func::Function)::Vector{ComplexF64}
-    r = get_float64_array(func)
+function get_complex64_array(func::Function, ctx::Ptr{Cvoid})::Vector{ComplexF64}
+    r = get_float64_array(func, ctx)
     if length(r) == 1
         return ComplexF64[]
     else
@@ -211,8 +210,8 @@ function get_complex64_array(func::Function)::Vector{ComplexF64}
     return r
 end
 
-function get_complex64(func::Function)::ComplexF64
-    return get_complex64_array(func)[1]
+function get_complex64(func::Function, ctx)::ComplexF64
+    return get_complex64_array(func, ctx)[1]
 end
 
 function prepare_float64_array(value::Vector{Float64})
@@ -221,11 +220,11 @@ function prepare_float64_array(value::Vector{Float64})
     return value, ptr, cnt
 end
 
-function set_int32_array(func::Function, value::Vector{Int32})
-    func(pointer(value), size(value)[1])
-    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+function set_int32_array(func::Function, ctx::Ptr{Cvoid}, value::Vector{Int32})
+    func(ctx, pointer(value), size(value)[1])
+    error_num = OpenDSSDirect.Lib.Error_Get_Number(ctx)
     if (error_num != 0)
-        description = get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        description = get_string(OpenDSSDirect.Lib.Error_Get_Description(ctx))
         throw(
             OpenDSSDirectException(
                 "[ERROR $error_num] $description"
@@ -234,11 +233,11 @@ function set_int32_array(func::Function, value::Vector{Int32})
     end
 end
 
-function set_float64_array(func::Function, value::Vector{Float64})
-    func(pointer(value), size(value)[1])
-    error_num = OpenDSSDirect.Lib.Error_Get_Number()
+function set_float64_array(func::Function, ctx::Ptr{Cvoid}, value::Vector{Float64})
+    func(ctx, pointer(value), size(value)[1])
+    error_num = OpenDSSDirect.Lib.Error_Get_Number(ctx)
     if (error_num != 0)
-        description = get_string(OpenDSSDirect.Lib.Error_Get_Description())
+        description = get_string(OpenDSSDirect.Lib.Error_Get_Description(ctx))
         throw(
             OpenDSSDirectException(
                 "[ERROR $error_num] $description"
@@ -286,9 +285,9 @@ macro checked(expr)
 
     return esc(quote
         ans = $(expr)
-        error_num = Lib.Error_Get_Number()
+        error_num = Lib.Error_Get_Number(ctx)
         if (error_num != 0)
-            description = get_string(Lib.Error_Get_Description())
+            description = get_string(Lib.Error_Get_Description(ctx))
             throw(
                 OpenDSSDirectException(
                     "[ERROR $error_num] $description"
