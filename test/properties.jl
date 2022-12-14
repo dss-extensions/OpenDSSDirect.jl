@@ -34,7 +34,7 @@ Properties._setCurrentProperty("transformer")
 @test uppercase(Properties.Value("transformer")) == "VREG4_C"
 
 # An invalid property value is not allowed anymore removes the association since DSS C-API 0.12
-@test_throws OpenDSSDirect.OpenDSSDirectException Properties.Value("transformer", "VREG4_C_new") == nothing
+@test_throws OpenDSSDirect.OpenDSSDirectException Properties.Value("transformer", "VREG4_C_new") === nothing
 @test uppercase(Properties.Value("transformer")) == "" 
 
 end # testset

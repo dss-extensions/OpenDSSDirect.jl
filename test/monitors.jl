@@ -13,35 +13,35 @@ OpenDSSDirect.Text.Command("""
 @test Monitors.Idx() == 1
 @test_throws OpenDSSDirect.OpenDSSDirectException Monitors.Idx(0)
 @test Monitors.Idx() == 1
-@test Monitors.Idx(1) == nothing
+@test Monitors.Idx(1) === nothing
 @test Monitors.Idx() == 1
-@test Monitors.Reset() == nothing
-@test Monitors.ResetAll() == nothing
-@test Monitors.Sample() == nothing
-@test Monitors.Save() == nothing
-# @test Monitors.Show() == nothing
+@test Monitors.Reset() === nothing
+@test Monitors.ResetAll() === nothing
+@test Monitors.Sample() === nothing
+@test Monitors.Save() === nothing
+# @test Monitors.Show() === nothing
 @test Monitors.Mode() == 0
 @test Monitors.Mode() == OpenDSSDirect.Lib.MonitorModes_VI
-@test Monitors.Mode(0) == nothing
-@test Monitors.Mode(OpenDSSDirect.Lib.MonitorModes_VI | OpenDSSDirect.Lib.MonitorModes_PosOnly) == nothing
+@test Monitors.Mode(0) === nothing
+@test Monitors.Mode(OpenDSSDirect.Lib.MonitorModes_VI | OpenDSSDirect.Lib.MonitorModes_PosOnly) === nothing
 @test Monitors.Mode() == OpenDSSDirect.Lib.MonitorModes_VI | OpenDSSDirect.Lib.MonitorModes_PosOnly
-@test Monitors.Mode(OpenDSSDirect.Lib.MonitorModes_VI) == nothing
+@test Monitors.Mode(OpenDSSDirect.Lib.MonitorModes_VI) === nothing
 @test Monitors.Mode() == OpenDSSDirect.Lib.MonitorModes_VI
 @test Monitors.SampleCount() == 0
-@test Monitors.SampleAll() == nothing
-@test Monitors.SaveAll() == nothing
+@test Monitors.SampleAll() === nothing
+@test Monitors.SaveAll() === nothing
 @test Monitors.Count() == 1
-@test Monitors.Process() == nothing
-@test Monitors.ProcessAll() == nothing
+@test Monitors.Process() === nothing
+@test Monitors.ProcessAll() === nothing
 @test Monitors.FileVersion() == 1
 @test Monitors.NumChannels() == 12
 @test Monitors.Terminal() == 1
-@test Monitors.Terminal(Monitors.Terminal()) == nothing
+@test Monitors.Terminal(Monitors.Terminal()) === nothing
 @test occursin("IEEE8500_Mon_m1", Monitors.FileName())
 @test Monitors.Name() == "m1"
-@test Monitors.Name(Monitors.Name()) == nothing
+@test Monitors.Name(Monitors.Name()) === nothing
 @test Monitors.Element() == "line.ln5815900-1"
-@test Monitors.Element(Monitors.Element()) == nothing
+@test Monitors.Element(Monitors.Element()) === nothing
 @test Monitors.AllNames() == ["m1"]
 
 # In 2021, the header was removed from the bytestream (following the official OpenDSS implementation)

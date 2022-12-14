@@ -14,15 +14,15 @@ init8500()
 @test PDElements.FromTerminal() == 1
 @test PDElements.SectionID() == 0
 @test PDElements.FaultRate() ≋ 0.1
-@test PDElements.FaultRate(PDElements.FaultRate()) == nothing
+@test PDElements.FaultRate(PDElements.FaultRate()) === nothing
 @test PDElements.PctPermanent() ≋ 20.0
-@test PDElements.PctPermanent(PDElements.PctPermanent()) == nothing
+@test PDElements.PctPermanent(PDElements.PctPermanent()) === nothing
 @test PDElements.Lambda() ≋ 0.0
 @test PDElements.AccumulatedL() ≋ 0.0
 @test PDElements.RepairTime() ≋ 3.0
 @test PDElements.TotalMiles() ≋ 0.0
 @test PDElements.Name() == "Line.ln5502549-1"
-@test PDElements.Name(PDElements.Name()) == nothing
+@test PDElements.Name(PDElements.Name()) === nothing
 
 arr_names = String[]
 arr_phases = Int32[]

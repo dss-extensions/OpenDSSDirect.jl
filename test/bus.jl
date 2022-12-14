@@ -14,9 +14,9 @@ Circuit.SetActiveBus("M1047751")
 @test Bus.SectionID() == 0
 @test Bus.kVBase() ≋ 7.199557856794634
 @test Bus.X() == 1.67080628884553e6
-@test Bus.X(Bus.X()) == nothing
+@test Bus.X(Bus.X()) === nothing
 @test Bus.Y() ≋ 1.22880000004359e7
-@test Bus.Y(Bus.Y()) == nothing
+@test Bus.Y(Bus.Y()) === nothing
 @test Bus.Distance() == 0.0
 @test Bus.Lambda() == 0.0
 @test Bus.N_interrupts() == 0.0
