@@ -56,10 +56,10 @@ end
 Value(argIndex_or_Name::Union{String,Int}) = Value(DSS_DEFAULT_CTX, argIndex_or_Name)
 
 """Value of Property of Index or Name (setter)"""
-function Value(dss::DSSContext, argIndex_or_Name::Union{String,Int}, Value::String)
+function Value(dss::DSSContext, argIndex_or_Name::Union{String,Int}, value::String)
     _setCurrentProperty(argIndex_or_Name)
-    @checked Lib.DSSProperty_Set_Val(dss.ctx, Value)
+    @checked Lib.DSSProperty_Set_Val(dss.ctx, value)
 end
-Value(argIndex_or_Name::Union{String,Int}, Value::String) = Value(DSS_DEFAULT_CTX, argIndex_or_Name, Value)
+Value(argIndex_or_Name::Union{String,Int}, value::String) = Value(DSS_DEFAULT_CTX, argIndex_or_Name, value)
 
 end
