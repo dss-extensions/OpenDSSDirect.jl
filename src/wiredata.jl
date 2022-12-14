@@ -13,152 +13,152 @@ using ..Utils
 
 """Array of names of all WireData objects."""
 function AllNames()::Vector{String}
-    return get_string_array(Lib.WireData_Get_AllNames)
+    return get_string_array(Lib.WireData_Get_AllNames, C_NULL_CTX)
 end
 
 """Sets a WireData active by name."""
 function Name()::String
-    return get_string(@checked Lib.WireData_Get_Name())
+    return get_string(@checked Lib.WireData_Get_Name(C_NULL_CTX))
 end
 
 """Sets a WireData active by name."""
 function Name(Value::String)
-    @checked Lib.WireData_Set_Name(Cstring(pointer(Value)))
+    @checked Lib.WireData_Set_Name(C_NULL_CTX, Cstring(pointer(Value)))
 end
 
 """Number of WireData Objects in Active Circuit"""
 function Count()::Int
-    return @checked Lib.WireData_Get_Count()
+    return @checked Lib.WireData_Get_Count(C_NULL_CTX)
 end
 
 """Sets first WireData to be active.  Returns 0 if none."""
 function First()::Int
-    return @checked Lib.WireData_Get_First()
+    return @checked Lib.WireData_Get_First(C_NULL_CTX)
 end
 
 """Sets next WireData to be active.  Returns 0 if no more."""
 function Next()::Int
-    return @checked Lib.WireData_Get_Next()
+    return @checked Lib.WireData_Get_Next(C_NULL_CTX)
 end
 
 """Active WireData by index.  1..Count (Getter)"""
 function Idx()::Int
-    return @checked Lib.WireData_Get_idx()
+    return @checked Lib.WireData_Get_idx(C_NULL_CTX)
 end
 
 """Active WireData by index.  1..Count (Setter)"""
 function Idx(Value::Int)
-    @checked Lib.WireData_Set_idx(Value)
+    @checked Lib.WireData_Set_idx(C_NULL_CTX, Value)
 end
 
 """Rac (Getter)"""
 function Rac()::Float64
-    return @checked Lib.WireData_Get_Rac()
+    return @checked Lib.WireData_Get_Rac(C_NULL_CTX)
 end
 
 """Rac (Setter)"""
 function Rac(Value::Float64)
-    return @checked Lib.WireData_Set_Rac(Value)
+    return @checked Lib.WireData_Set_Rac(C_NULL_CTX, Value)
 end
 
 """Radius (Getter)"""
 function Radius()::Float64
-    return @checked Lib.WireData_Get_Radius()
+    return @checked Lib.WireData_Get_Radius(C_NULL_CTX)
 end
 
 """Radius (Setter)"""
 function Radius(Value::Float64)
-    return @checked Lib.WireData_Set_Radius(Value)
+    return @checked Lib.WireData_Set_Radius(C_NULL_CTX, Value)
 end
 
 """Diameter (Getter)"""
 function Diameter()::Float64
-    return @checked Lib.WireData_Get_Diameter()
+    return @checked Lib.WireData_Get_Diameter(C_NULL_CTX)
 end
 
 """Diameter (Setter)"""
 function Diameter(Value::Float64)
-    return @checked Lib.WireData_Set_Diameter(Value)
+    return @checked Lib.WireData_Set_Diameter(C_NULL_CTX, Value)
 end
 
 """RadiusUnits (Getter)"""
 function RadiusUnits()::Float64
-    return @checked Lib.WireData_Get_RadiusUnits()
+    return @checked Lib.WireData_Get_RadiusUnits(C_NULL_CTX)
 end
 
 """RadiusUnits (Setter)"""
 function RadiusUnits(Value::Float64)
-    return @checked Lib.WireData_Set_RadiusUnits(Value)
+    return @checked Lib.WireData_Set_RadiusUnits(C_NULL_CTX, Value)
 end
 
 """CapRadius (Getter)"""
 function CapRadius()::Float64
-    return @checked Lib.WireData_Get_CapRadius()
+    return @checked Lib.WireData_Get_CapRadius(C_NULL_CTX)
 end
 
 """CapRadius (Setter)"""
 function CapRadius(Value::Float64)
-    return @checked Lib.WireData_Set_CapRadius(Value)
+    return @checked Lib.WireData_Set_CapRadius(C_NULL_CTX, Value)
 end
 
 """Normal Ampere rating (Getter)"""
 function NormAmps()::Float64
-    return @checked Lib.WireData_Get_NormAmps()
+    return @checked Lib.WireData_Get_NormAmps(C_NULL_CTX)
 end
 
 """Normal Ampere rating (Setter)"""
 function NormAmps(Value::Float64)
-    return @checked Lib.WireData_Set_NormAmps(Value)
+    return @checked Lib.WireData_Set_NormAmps(C_NULL_CTX, Value)
 end
 
 """Emergency ampere rating (Getter)"""
 function EmergAmps()::Float64
-    return @checked Lib.WireData_Get_EmergAmps()
+    return @checked Lib.WireData_Get_EmergAmps(C_NULL_CTX)
 end
 
 """Emergency ampere rating (Setter)"""
 function EmergAmps(Value::Float64)
-    return @checked Lib.WireData_Set_EmergAmps(Value)
+    return @checked Lib.WireData_Set_EmergAmps(C_NULL_CTX, Value)
 end
 
 """Rdc (Getter)"""
 function Rdc()::Float64
-    return @checked Lib.WireData_Get_Rdc()
+    return @checked Lib.WireData_Get_Rdc(C_NULL_CTX)
 end
 
 """Rdc (Setter)"""
 function Rdc(Value::Float64)
-    return @checked Lib.WireData_Set_Rdc(Value)
+    return @checked Lib.WireData_Set_Rdc(C_NULL_CTX, Value)
 end
 
 """GMRac (Getter)"""
 function GMRac()::Float64
-    return @checked Lib.WireData_Get_GMRac()
+    return @checked Lib.WireData_Get_GMRac(C_NULL_CTX)
 end
 
 """GMRac (Setter)"""
 function GMRac(Value::Float64)
-    return @checked Lib.WireData_Set_GMRac(Value)
+    return @checked Lib.WireData_Set_GMRac(C_NULL_CTX, Value)
 end
 
 """ResistanceUnits (Getter)"""
 function ResistanceUnits()::Lib.LineUnits
-    return @checked Lib.WireData_Get_ResistanceUnits()
+    return @checked Lib.WireData_Get_ResistanceUnits(C_NULL_CTX)
 end
 
 """ResistanceUnits (Setter)"""
 function ResistanceUnits(Value::Union{Int, Lib.LineUnits})
-    return @checked Lib.WireData_Set_ResistanceUnits(Value)
+    return @checked Lib.WireData_Set_ResistanceUnits(C_NULL_CTX, Value)
 end
 
 """GMRUnits (Getter)"""
 function GMRUnits()::Lib.LineUnits
-    return @checked Lib.WireData_Get_GMRUnits()
+    return @checked Lib.WireData_Get_GMRUnits(C_NULL_CTX)
 end
 
 """GMRUnits (Setter)"""
 function GMRUnits(Value::Union{Int, Lib.LineUnits})
-    return @checked Lib.WireData_Set_GMRUnits(Value)
+    return @checked Lib.WireData_Set_GMRUnits(C_NULL_CTX, Value)
 end
 
 end

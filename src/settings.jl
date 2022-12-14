@@ -12,181 +12,181 @@ using ..Utils
 
 """{True | False*} Designates whether to allow duplicate names of objects (Getter)"""
 function AllowDuplicates()::Bool
-    return @checked(Lib.Settings_Get_AllowDuplicates()) != 0
+    return @checked(Lib.Settings_Get_AllowDuplicates(C_NULL_CTX)) != 0
 end
 
 """{True | False*} Designates whether to allow duplicate names of objects (Setter)"""
 function AllowDuplicates(Value::Bool)
-    @checked Lib.Settings_Set_AllowDuplicates(Value ? 1 : 0)
+    @checked Lib.Settings_Set_AllowDuplicates(C_NULL_CTX, Value ? 1 : 0)
 end
 
 """List of Buses or (File=xxxx) syntax for the AutoAdd solution mode. (Getter)"""
 function AutoBusList()::String
-    return get_string(@checked Lib.Settings_Get_AutoBusList())
+    return get_string(@checked Lib.Settings_Get_AutoBusList(C_NULL_CTX))
 end
 
 """List of Buses or (File=xxxx) syntax for the AutoAdd solution mode. (Setter)"""
 function AutoBusList(Value::String)
-    @checked Lib.Settings_Set_AutoBusList(Value)
+    @checked Lib.Settings_Set_AutoBusList(C_NULL_CTX, Value)
 end
 
 """{dssMultiphase * | dssPositiveSeq} IIndicate if the circuit model is positive sequence. (Getter)"""
 function CktModel()::Lib.CktModels
-    return @checked Lib.Settings_Get_CktModel()
+    return @checked Lib.Settings_Get_CktModel(C_NULL_CTX)
 end
 
 """{dssMultiphase * | dssPositiveSeq} IIndicate if the circuit model is positive sequence. (Setter)"""
 function CktModel(Value::Union{Int,Lib.CktModels})
     Value = convert(Lib.CktModels, Value)
-    @checked Lib.Settings_Set_CktModel(Value)
+    @checked Lib.Settings_Set_CktModel(C_NULL_CTX, Value)
 end
 
 """{True | False*} Denotes whether to trace the control actions to a file. (Getter)"""
 function ControlTrace()::Bool
-    return @checked(Lib.Settings_Get_ControlTrace()) != 0
+    return @checked(Lib.Settings_Get_ControlTrace(C_NULL_CTX)) != 0
 end
 
 """{True | False*} Denotes whether to trace the control actions to a file. (Setter)"""
 function ControlTrace(Value::Bool)
-    @checked Lib.Settings_Set_ControlTrace(Value ? 1 : 0)
+    @checked Lib.Settings_Set_ControlTrace(C_NULL_CTX, Value ? 1 : 0)
 end
 
 """Per Unit maximum voltage for Emergency conditions. (Getter)"""
 function EmergVmaxpu()::Float64
-    return @checked Lib.Settings_Get_EmergVmaxpu()
+    return @checked Lib.Settings_Get_EmergVmaxpu(C_NULL_CTX)
 end
 
 """Per Unit maximum voltage for Emergency conditions. (Setter)"""
 function EmergVmaxpu(Value::Float64)
-    @checked Lib.Settings_Set_EmergVmaxpu(Value)
+    @checked Lib.Settings_Set_EmergVmaxpu(C_NULL_CTX, Value)
 end
 
 """Per Unit minimum voltage for Emergency conditions. (Getter)"""
 function EmergVminpu()::Float64
-    return @checked Lib.Settings_Get_EmergVminpu()
+    return @checked Lib.Settings_Get_EmergVminpu(C_NULL_CTX)
 end
 
 """Per Unit minimum voltage for Emergency conditions. (Setter)"""
 function EmergVminpu(Value::Float64)
-    @checked Lib.Settings_Set_EmergVminpu(Value)
+    @checked Lib.Settings_Set_EmergVminpu(C_NULL_CTX, Value)
 end
 
 """Integer array defining which energy meter registers to use for computing losses (Getter)"""
 function LossRegs()::Vector{Int}
-    return get_int32_array(Lib.Settings_Get_LossRegs)
+    return get_int32_array(Lib.Settings_Get_LossRegs, C_NULL_CTX)
 end
 
 """Integer array defining which energy meter registers to use for computing losses (Setter)"""
 function LossRegs(Value::Vector{Int})
     Value, ValuePtr, ValueCount = prepare_int32_array(Value)
-    @checked Lib.Settings_Set_LossRegs(ValuePtr, ValueCount)
+    @checked Lib.Settings_Set_LossRegs(C_NULL_CTX, ValuePtr, ValueCount)
 end
 
 """Weighting factor applied to Loss register values. (Getter)"""
 function LossWeight()::Float64
-    return @checked Lib.Settings_Get_LossWeight()
+    return @checked Lib.Settings_Get_LossWeight(C_NULL_CTX)
 end
 
 """Weighting factor applied to Loss register values. (Setter)"""
 function LossWeight(Value::Float64)
-    @checked Lib.Settings_Set_LossWeight(Value)
+    @checked Lib.Settings_Set_LossWeight(C_NULL_CTX, Value)
 end
 
 """Per Unit maximum voltage for Normal conditions. (Getter)"""
 function NormVmaxpu()::Float64
-    return @checked Lib.Settings_Get_NormVmaxpu()
+    return @checked Lib.Settings_Get_NormVmaxpu(C_NULL_CTX)
 end
 
 """Per Unit maximum voltage for Normal conditions. (Setter)"""
 function NormVmaxpu(Value::Float64)
-    @checked Lib.Settings_Set_NormVmaxpu(Value)
+    @checked Lib.Settings_Set_NormVmaxpu(C_NULL_CTX, Value)
 end
 
 """Per Unit minimum voltage for Normal conditions. (Getter)"""
 function NormVminpu()::Float64
-    return @checked Lib.Settings_Get_NormVminpu()
+    return @checked Lib.Settings_Get_NormVminpu(C_NULL_CTX)
 end
 
 """Per Unit minimum voltage for Normal conditions. (Setter)"""
 function NormVminpu(Value::Float64)
-    @checked Lib.Settings_Set_NormVminpu(Value)
+    @checked Lib.Settings_Set_NormVminpu(C_NULL_CTX, Value)
 end
 
 """Name of LoadShape object that serves as the source of price signal data for yearly simulations, etc. (Getter)"""
 function PriceCurve()::String
-    return get_string(@checked Lib.Settings_Get_PriceCurve())
+    return get_string(@checked Lib.Settings_Get_PriceCurve(C_NULL_CTX))
 end
 
 """Name of LoadShape object that serves as the source of price signal data for yearly simulations, etc. (Setter)"""
 function PriceCurve(Value::String)
-    @checked Lib.Settings_Set_PriceCurve(Value)
+    @checked Lib.Settings_Set_PriceCurve(C_NULL_CTX, Value)
 end
 
 """Price Signal for the Circuit (Getter)"""
 function PriceSignal()::Float64
-    return @checked Lib.Settings_Get_PriceSignal()
+    return @checked Lib.Settings_Get_PriceSignal(C_NULL_CTX)
 end
 
 """Price Signal for the Circuit (Setter)"""
 function PriceSignal(Value::Float64)
-    @checked Lib.Settings_Set_PriceSignal(Value)
+    @checked Lib.Settings_Set_PriceSignal(C_NULL_CTX, Value)
 end
 
 """{True | False *} Gets value of trapezoidal integration flag in energy meters. (Getter)"""
 function Trapezoidal()::Bool
-    return @checked(Lib.Settings_Get_Trapezoidal()) != 0
+    return @checked(Lib.Settings_Get_Trapezoidal(C_NULL_CTX)) != 0
 end
 
 """{True | False *} Gets value of trapezoidal integration flag in energy meters. (Setter)"""
 function Trapezoidal(Value::Bool)
-    @checked Lib.Settings_Set_Trapezoidal(Value ? 1 : 0)
+    @checked Lib.Settings_Set_Trapezoidal(C_NULL_CTX, Value ? 1 : 0)
 end
 
 """Array of Integers defining energy meter registers to use for computing UE (Getter)"""
 function UERegs()::Vector{Int}
-    return get_int32_array(Lib.Settings_Get_UEregs)
+    return get_int32_array(Lib.Settings_Get_UEregs, C_NULL_CTX)
 end
 
 """Array of Integers defining energy meter registers to use for computing UE (Setter)"""
 function UERegs(Value::Vector{Int})
     Value, ValuePtr, ValueCount = prepare_int32_array(Value)
-    @checked Lib.Settings_Set_UEregs(ValuePtr, ValueCount)
+    @checked Lib.Settings_Set_UEregs(C_NULL_CTX, ValuePtr, ValueCount)
 end
 
 """Weighting factor applied to UE register values. (Getter)"""
 function UEWeight()::Float64
-    return @checked Lib.Settings_Get_UEweight()
+    return @checked Lib.Settings_Get_UEweight(C_NULL_CTX)
 end
 
 """Weighting factor applied to UE register values. (Setter)"""
 function UEWeight(Value::Float64)
-    @checked Lib.Settings_Set_UEweight(Value)
+    @checked Lib.Settings_Set_UEweight(C_NULL_CTX, Value)
 end
 
 """Array of doubles defining the legal voltage bases in kV L-L (Getter)"""
 function VoltageBases()::Vector{Float64}
-    return get_float64_array(Lib.Settings_Get_VoltageBases)
+    return get_float64_array(Lib.Settings_Get_VoltageBases, C_NULL_CTX)
 end
 
 """Array of doubles defining the legal voltage bases in kV L-L (Setter)"""
 function VoltageBases(Value::Vector{Float64})
     Value, ValuePtr, ValueCount = prepare_float64_array(Value)
-    @checked Lib.Settings_Set_VoltageBases(ValuePtr, ValueCount)
+    @checked Lib.Settings_Set_VoltageBases(C_NULL_CTX, ValuePtr, ValueCount)
 end
 
 """{True | False*}  Locks Zones on energy meters to prevent rebuilding if a circuit change occurs. (Getter)"""
 function ZoneLock()::Bool
-    return @checked(Lib.Settings_Get_ZoneLock()) != 0
+    return @checked(Lib.Settings_Get_ZoneLock(C_NULL_CTX)) != 0
 end
 
 """{True | False*}  Locks Zones on energy meters to prevent rebuilding if a circuit change occurs. (Setter)"""
 function ZoneLock(Value::Bool)
-    @checked Lib.Settings_Set_ZoneLock(Value ? 1 : 0)
+    @checked Lib.Settings_Set_ZoneLock(C_NULL_CTX, Value ? 1 : 0)
 end
 
 """Sets all load allocation factors for all loads defined by XFKVA property to this value (Setter)"""
 function AllocationFactors(Value::Float64)
-    @checked Lib.Settings_Set_AllocationFactors(Value)
+    @checked Lib.Settings_Set_AllocationFactors(C_NULL_CTX, Value)
 end
 
 """
@@ -198,7 +198,7 @@ If the loads are guaranteed to have their terminals closed throughout the simula
 (API Extension)
 """
 function LoadsTerminalCheck()::Bool
-    return @checked(Lib.Settings_Get_LoadsTerminalCheck()) != 0
+    return @checked(Lib.Settings_Get_LoadsTerminalCheck(C_NULL_CTX)) != 0
 end
 
 """
@@ -210,7 +210,7 @@ If the loads are guaranteed to have their terminals closed throughout the simula
 (API Extension)
 """
 function LoadsTerminalCheck(Value::Bool)
-    @checked Lib.Settings_Set_LoadsTerminalCheck(Value ? 1 : 0)
+    @checked Lib.Settings_Set_LoadsTerminalCheck(C_NULL_CTX, Value ? 1 : 0)
 end
 
 """Controls whether `First`/`Next` iteration includes or skips disabled circuit elements.
@@ -223,7 +223,7 @@ Other numeric values are reserved for other potential behaviors.
 (Getter)
 (API Extension)"""
 function IterateDisabled()::Bool
-    return (@checked Lib.Settings_Get_IterateDisabled()) != 0
+    return (@checked Lib.Settings_Get_IterateDisabled(C_NULL_CTX)) != 0
 end
 
 """Controls whether `First`/`Next` iteration includes or skips disabled circuit elements.
@@ -236,7 +236,7 @@ Other numeric values are reserved for other potential behaviors.
 (Setter)
 (API Extension) """
 function IterateDisabled(Value::Bool)
-    return @checked Lib.Settings_Set_IterateDisabled(Value)
+    return @checked Lib.Settings_Set_IterateDisabled(C_NULL_CTX, Value)
 end
 
 end

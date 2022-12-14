@@ -12,12 +12,12 @@ using ..Utils
 
 """Description of error for last operation"""
 function Description()::String
-    return get_string(Lib.Error_Get_Description())
+    return get_string(Lib.Error_Get_Description(C_NULL_CTX))
 end
 
 """Error Number"""
 function Number()::Int
-    return Lib.Error_Get_Number()
+    return Lib.Error_Get_Number(C_NULL_CTX)
 end
 
 """
@@ -34,7 +34,7 @@ the legacy components, using the old models from the start.
 (API Extension)
 """
 function ExtendedErrors()::Bool
-    return @checked(Lib.Error_Get_ExtendedErrors()) != 0
+    return @checked(Lib.Error_Get_ExtendedErrors(C_NULL_CTX)) != 0
 end
 
 """
@@ -51,21 +51,21 @@ the legacy components, using the old models from the start.
 (API Extension)
 """
 function ExtendedErrors(Value::Bool)
-    @checked Lib.Error_Set_ExtendedErrors(Value ? 1 : 0)
+    @checked Lib.Error_Set_ExtendedErrors(C_NULL_CTX, Value ? 1 : 0)
 end
 
 """EarlyAbort controls whether all errors halts the DSS script processing (Compile/Redirect), defaults to True. (Getter)
 
 (API Extension)"""
 function EarlyAbort()::Bool
-    return (@checked Lib.Error_Get_EarlyAbort()) != 0
+    return (@checked Lib.Error_Get_EarlyAbort(C_NULL_CTX)) != 0
 end
 
 """EarlyAbort controls whether all errors halts the DSS script processing (Compile/Redirect), defaults to True. (Setter)
 
 (API Extension) """
 function EarlyAbort(Value::Bool)
-    return @checked Lib.Error_Set_EarlyAbort(Value)
+    return @checked Lib.Error_Set_EarlyAbort(C_NULL_CTX, Value)
 end
 
 end

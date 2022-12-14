@@ -17,14 +17,14 @@ The limitations should be removed in a future revision.
 
 (API Extension)"""
 function Open(Value::String)
-    @checked Lib.ZIP_Open(Cstring(pointer(Value)))
+    @checked Lib.ZIP_Open(C_NULL_CTX, Cstring(pointer(Value)))
 end
 
 """Closes the current open ZIP file
 
 (API Extension)"""
 function Close()
-    @checked Lib.ZIP_Close()
+    @checked Lib.ZIP_Close(C_NULL_CTX)
 end
 
 """Runs a "Redirect" command inside the current (open) ZIP file.
@@ -34,7 +34,7 @@ memory-mapped files.
 
 (API Extension)"""
 function Redirect(FileInZip::String)
-    @checked Lib.ZIP_Redirect(Cstring(pointer(FileInZip)))
+    @checked Lib.ZIP_Redirect(C_NULL_CTX, Cstring(pointer(FileInZip)))
 end
 
 """Extracts the contents of the file "FileName" from the current (open) ZIP file.
@@ -42,7 +42,7 @@ Returns a byte-string.
 
 (API Extension)"""
 function Extract(FileName::String)::Vector{Int8}
-    return get_int8_array(Lib.ZIP_Extract, Cstring(pointer(FileName)))
+    return get_int8_array(Lib.ZIP_Extract, C_NULL_CTX, Cstring(pointer(FileName)))
 end
 
 """List of strings consisting of all names match the regular expression provided in regexp.
@@ -53,18 +53,18 @@ the expression syntax and options.
 
 (API Extension)"""
 function List(regexp::String)::Vector{String}
-    return get_string_array(Lib.ZIP_List, Cstring(pointer(regexp)))
+    return get_string_array(Lib.ZIP_List, C_NULL_CTX, Cstring(pointer(regexp)))
 end
 
 function List()::Vector{String}
-    return get_string_array(Lib.ZIP_List, C_NULL)
+    return get_string_array(Lib.ZIP_List, C_NULL_CTX, C_NULL)
 end
 
 """Check if the given path name is present in the current ZIP file.
 
 (API Extension)"""
 function Contains(Name::String)
-    return @checked(Lib.ZIP_Contains(Cstring(pointer(Name)))) != 0
+    return @checked(Lib.ZIP_Contains(C_NULL_CTX, Cstring(pointer(Name)))) != 0
 end
 
 end

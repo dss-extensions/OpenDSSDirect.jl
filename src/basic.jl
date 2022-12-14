@@ -12,77 +12,77 @@ using ..Utils
 
 """Clear All"""
 function ClearAll()
-    @checked Lib.DSS_ClearAll()
+    @checked Lib.DSS_ClearAll(C_NULL_CTX)
 end
 
 """Reset"""
 function Reset()
-    @checked Lib.DSS_Reset()
+    @checked Lib.DSS_Reset(C_NULL_CTX)
 end
 
 """Set the Active Class"""
 function SetActiveClass(ClassName::String)::Int
-    return @checked Lib.DSS_SetActiveClass(ClassName)
+    return @checked Lib.DSS_SetActiveClass(C_NULL_CTX, ClassName)
 end
 
 """Set the start code"""
 function Start(code::Int)
-    return @checked(Lib.DSS_Start(code)) != 0
+    return @checked(Lib.DSS_Start(C_NULL_CTX, code)) != 0
 end
 
 """List of DSS intrinsic classes (names of the classes)"""
 function Classes()::Vector{String}
-    return get_string_array(Lib.DSS_Get_Classes)
+    return get_string_array(Lib.DSS_Get_Classes, C_NULL_CTX)
 end
 
 """DSS Data File Path.  Default path for reports, etc. from DSS (Getter)"""
 function DataPath()::String
-    return get_string(Lib.DSS_Get_DataPath())
+    return get_string(Lib.DSS_Get_DataPath(C_NULL_CTX))
 end
 
 """DSS Data File Path.  Default path for reports, etc. from DSS (Setter)"""
 function DataPath(Value::String)
-    @checked Lib.DSS_Set_DataPath(Cstring(pointer(Value)))
+    @checked Lib.DSS_Set_DataPath(C_NULL_CTX, Cstring(pointer(Value)))
 end
 
 """Returns the path name for the default text editor."""
 function DefaultEditor()::String
-    return get_string(@checked Lib.DSS_Get_DefaultEditor())
+    return get_string(@checked Lib.DSS_Get_DefaultEditor(C_NULL_CTX))
 end
 
 """Number of Circuits currently defined"""
 function NumCircuits()::Int
-    return @checked Lib.DSS_Get_NumCircuits()
+    return @checked Lib.DSS_Get_NumCircuits(C_NULL_CTX)
 end
 
 """Number of DSS intrinsic classes"""
 function NumClasses()::Int
-    return @checked Lib.DSS_Get_NumClasses()
+    return @checked Lib.DSS_Get_NumClasses(C_NULL_CTX)
 end
 
 """Number of user-defined classes"""
 function NumUserClasses()::Int
-    return @checked Lib.DSS_Get_NumUserClasses()
+    return @checked Lib.DSS_Get_NumUserClasses(C_NULL_CTX)
 end
 
 """List of user-defined classes"""
 function UserClasses()::Vector{String}
-    return get_string_array(Lib.DSS_Get_UserClasses)
+    return get_string_array(Lib.DSS_Get_UserClasses, C_NULL_CTX)
 end
 
 """Get version string for the DSS."""
 function Version()::String
-    return get_string(@checked Lib.DSS_Get_Version())
+    return get_string(@checked Lib.DSS_Get_Version(C_NULL_CTX))
 end
 
 """Gets/sets whether text output is allowed (Getter)"""
 function AllowForms()::Bool
-    return @checked(Lib.DSS_Get_AllowForms()) != 0
+    return @checked(Lib.DSS_Get_AllowForms(C_NULL_CTX)) != 0
 end
 
 """Gets/sets whether text output is allowed (Setter)"""
 function AllowForms(Value::Bool)
-    @checked Lib.DSS_Set_AllowForms(Value ? 1 : 0)
+    @checked Lib.DSS_Set_AllowForms(C_NULL_CTX, Value ? 1 : 0)
 end
 
 function ShowPanel()
@@ -92,7 +92,7 @@ end
 
 """Create a new circuit"""
 function NewCircuit(name::String)::String
-    @checked Lib.DSS_NewCircuit(Cstring(pointer(name)))
+    @checked Lib.DSS_NewCircuit(C_NULL_CTX, Cstring(pointer(name)))
     return "New Circuit: $name"
 end
 
@@ -110,7 +110,7 @@ the legacy components, using the old models from the start.
 (API Extension)
 """
 function LegacyModelsLegacyModels()::Bool
-    return @checked(Lib.DSS_Get_LegacyModels()) != 0
+    return @checked(Lib.DSS_Get_LegacyModels(C_NULL_CTX)) != 0
 end
 
 """
@@ -127,7 +127,7 @@ the legacy components, using the old models from the start.
 (API Extension)
 """
 function LegacyModels(Value::Bool)
-    @checked Lib.DSS_Set_LegacyModels(Value ? 1 : 0)
+    @checked Lib.DSS_Set_LegacyModels(C_NULL_CTX, Value ? 1 : 0)
 end
 
 """If enabled, in case of errors or empty arrays, the API returns arrays with values compatible with the 
@@ -147,7 +147,7 @@ the legacy/COM behavior. The value can be toggled through the API at any time.
 (API Extension)
 """
 function COMErrorResults()::Bool
-    return (@checked Lib.DSS_Get_COMErrorResults()) != 0
+    return (@checked Lib.DSS_Get_COMErrorResults(C_NULL_CTX)) != 0
 end
 
 """If enabled, in case of errors or empty arrays, the API returns arrays with values compatible with the 
@@ -167,7 +167,7 @@ the legacy/COM behavior. The value can be toggled through the API at any time.
 (API Extension)
 """
 function COMErrorResults(Value::Bool)
-    return @checked Lib.DSS_Set_COMErrorResults(Value)
+    return @checked Lib.DSS_Set_COMErrorResults(C_NULL_CTX, Value)
 end
 
 """If disabled, the engine will not change the active working directory during execution. E.g. a "compile"
@@ -184,7 +184,7 @@ disallow changing the active working directory.
 (Getter)
 (API Extension)"""
 function AllowChangeDir()::Bool
-    return (@checked Lib.DSS_Get_AllowChangeDir()) != 0
+    return (@checked Lib.DSS_Get_AllowChangeDir(C_NULL_CTX)) != 0
 end
 
 """If disabled, the engine will not change the active working directory during execution. E.g. a "compile"
@@ -201,7 +201,7 @@ disallow changing the active working directory.
 (Setter)
 (API Extension)"""
 function AllowChangeDir(Value::Bool)
-    return @checked Lib.DSS_Set_AllowChangeDir(Value)
+    return @checked Lib.DSS_Set_AllowChangeDir(C_NULL_CTX, Value)
 end
 
 """Gets/sets whether running the external editor for "Show" is allowed
@@ -213,7 +213,7 @@ such as the creation of files, are not affected.
 (Getter)
 (API Extension)"""
 function AllowEditor()::Bool
-    return (@checked Lib.DSS_Get_AllowEditor()) != 0
+    return (@checked Lib.DSS_Get_AllowEditor(C_NULL_CTX)) != 0
 end
 
 """Gets/sets whether running the external editor for "Show" is allowed
@@ -225,7 +225,7 @@ such as the creation of files, are not affected.
 (Setter)
 (API Extension)"""
 function AllowEditor(Value::Bool)
-    return @checked Lib.DSS_Set_AllowEditor(Value)
+    return @checked Lib.DSS_Set_AllowEditor(C_NULL_CTX, Value)
 end
 
 """If enabled, the DOScmd command is allowed. Otherwise, an error is reported if the user tries to use it.
@@ -238,7 +238,7 @@ the legacy components, using the old models from the start.
 (Getter)
 (API Extension)"""
 function AllowDOScmd()::Bool
-    return (@checked Lib.DSS_Get_AllowDOScmd()) != 0
+    return (@checked Lib.DSS_Get_AllowDOScmd(C_NULL_CTX)) != 0
 end
 
 """If enabled, the DOScmd command is allowed. Otherwise, an error is reported if the user tries to use it.
@@ -251,7 +251,7 @@ the legacy components, using the old models from the start.
 (Setter)
 (API Extension)"""
 function AllowDOScmd(Value::Bool)
-    return @checked Lib.DSS_Set_AllowDOScmd(Value)
+    return @checked Lib.DSS_Set_AllowDOScmd(C_NULL_CTX, Value)
 end
 
 end

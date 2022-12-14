@@ -13,218 +13,218 @@ using ..Utils
 
 """Array of names of all Reactor objects."""
 function AllNames()::Vector{String}
-    return get_string_array(Lib.Reactors_Get_AllNames)
+    return get_string_array(Lib.Reactors_Get_AllNames, C_NULL_CTX)
 end
 
 """Sets a Reactor active by name."""
 function Name()::String
-    return get_string(@checked Lib.Reactors_Get_Name())
+    return get_string(@checked Lib.Reactors_Get_Name(C_NULL_CTX))
 end
 
 """Sets a Reactor active by name."""
 function Name(Value::String)
-    @checked Lib.Reactors_Set_Name(Cstring(pointer(Value)))
+    @checked Lib.Reactors_Set_Name(C_NULL_CTX, Cstring(pointer(Value)))
 end
 
 """Number of Reactor Objects in Active Circuit"""
 function Count()::Int
-    return @checked Lib.Reactors_Get_Count()
+    return @checked Lib.Reactors_Get_Count(C_NULL_CTX)
 end
 
 """Sets first Reactor to be active.  Returns 0 if none."""
 function First()::Int
-    return @checked Lib.Reactors_Get_First()
+    return @checked Lib.Reactors_Get_First(C_NULL_CTX)
 end
 
 """Sets next Reactor to be active.  Returns 0 if no more."""
 function Next()::Int
-    return @checked Lib.Reactors_Get_Next()
+    return @checked Lib.Reactors_Get_Next(C_NULL_CTX)
 end
 
 """Active Reactor by index.  1..Count (Getter)"""
 function Idx()::Int
-    return @checked Lib.Reactors_Get_idx()
+    return @checked Lib.Reactors_Get_idx(C_NULL_CTX)
 end
 
 """Active Reactor by index.  1..Count (Setter)"""
 function Idx(Value::Int)
-    @checked Lib.Reactors_Set_idx(Value)
+    @checked Lib.Reactors_Set_idx(C_NULL_CTX, Value)
 end
 
 """Delta connection or wye? (Getter)"""
 function IsDelta()::Bool
-    return (@checked Lib.Reactors_Get_IsDelta()) != 0
+    return (@checked Lib.Reactors_Get_IsDelta(C_NULL_CTX)) != 0
 end
 
 """Delta connection or wye? (Setter)"""
 function IsDelta(Value::Bool)
-    return @checked Lib.Reactors_Set_IsDelta(Value)
+    return @checked Lib.Reactors_Set_IsDelta(C_NULL_CTX, Value)
 end
 
 """For 2, 3-phase, kV phase-phase. Otherwise specify actual coil rating. (Getter)"""
 function kV()::Float64
-    return @checked Lib.Reactors_Get_kV()
+    return @checked Lib.Reactors_Get_kV(C_NULL_CTX)
 end
 
 """For 2, 3-phase, kV phase-phase. Otherwise specify actual coil rating. (Setter)"""
 function kV(Value::Float64)
-    return @checked Lib.Reactors_Set_kV(Value)
+    return @checked Lib.Reactors_Set_kV(C_NULL_CTX, Value)
 end
 
 """Name of 2nd bus. Defaults to all phases connected to first bus, node 0, (Shunt Wye Connection) except when Bus2 is specifically defined.
 Not necessary to specify for delta (LL) connection (Getter)"""
 function Bus2()::String
-    return get_string(@checked Lib.Reactors_Get_Bus2())
+    return get_string(@checked Lib.Reactors_Get_Bus2(C_NULL_CTX))
 end
 
 """Name of 2nd bus. Defaults to all phases connected to first bus, node 0, (Shunt Wye Connection) except when Bus2 is specifically defined.
 Not necessary to specify for delta (LL) connection (Setter)"""
 function Bus2(Value::String)
-    return @checked Lib.Reactors_Set_Bus2(Cstring(pointer(Value)))
+    return @checked Lib.Reactors_Set_Bus2(C_NULL_CTX, Cstring(pointer(Value)))
 end
 
 """Indicates whether Rmatrix and Xmatrix are to be considered in parallel. (Getter)"""
 function Parallel()::Bool
-    return (@checked Lib.Reactors_Get_Parallel()) != 0
+    return (@checked Lib.Reactors_Get_Parallel(C_NULL_CTX)) != 0
 end
 
 """Indicates whether Rmatrix and Xmatrix are to be considered in parallel. (Setter)"""
 function Parallel(Value::Bool)
-    return @checked Lib.Reactors_Set_Parallel(Value)
+    return @checked Lib.Reactors_Set_Parallel(C_NULL_CTX, Value)
 end
 
 """Name of first bus.
 Bus2 property will default to this bus, node 0, unless previously specified.
 Only Bus1 need be specified for a Yg shunt reactor. (Getter)"""
 function Bus1()::String
-    return get_string(@checked Lib.Reactors_Get_Bus1())
+    return get_string(@checked Lib.Reactors_Get_Bus1(C_NULL_CTX))
 end
 
 """Name of first bus.
 Bus2 property will default to this bus, node 0, unless previously specified.
 Only Bus1 need be specified for a Yg shunt reactor. (Setter)"""
 function Bus1(Value::String)
-    return @checked Lib.Reactors_Set_Bus1(Cstring(pointer(Value)))
+    return @checked Lib.Reactors_Set_Bus1(C_NULL_CTX, Cstring(pointer(Value)))
 end
 
 """Name of XYCurve object, previously defined, describing per-unit variation of phase resistance, R, vs. frequency. Applies to resistance specified by R or Z property. If actual values are not known, R often increases by approximately the square root of frequency. (Getter)"""
 function RCurve()::String
-    return get_string(@checked Lib.Reactors_Get_RCurve())
+    return get_string(@checked Lib.Reactors_Get_RCurve(C_NULL_CTX))
 end
 
 """Name of XYCurve object, previously defined, describing per-unit variation of phase resistance, R, vs. frequency. Applies to resistance specified by R or Z property. If actual values are not known, R often increases by approximately the square root of frequency. (Setter)"""
 function RCurve(Value::String)
-    return @checked Lib.Reactors_Set_RCurve(Cstring(pointer(Value)))
+    return @checked Lib.Reactors_Set_RCurve(C_NULL_CTX, Cstring(pointer(Value)))
 end
 
 """Number of phases. (Getter)"""
 function Phases()::Int
-    return @checked Lib.Reactors_Get_Phases()
+    return @checked Lib.Reactors_Get_Phases(C_NULL_CTX)
 end
 
 """Number of phases. (Setter)"""
 function Phases(Value::Int)
-    return @checked Lib.Reactors_Set_Phases(Value)
+    return @checked Lib.Reactors_Set_Phases(C_NULL_CTX, Value)
 end
 
 """Resistance in parallel with R and X (the entire branch). Assumed infinite if not specified. (Getter)"""
 function Rp()::Float64
-    return @checked Lib.Reactors_Get_Rp()
+    return @checked Lib.Reactors_Get_Rp(C_NULL_CTX)
 end
 
 """Resistance in parallel with R and X (the entire branch). Assumed infinite if not specified. (Setter)"""
 function Rp(Value::Float64)
-    return @checked Lib.Reactors_Set_Rp(Value)
+    return @checked Lib.Reactors_Set_Rp(C_NULL_CTX, Value)
 end
 
 """Name of XYCurve object, previously defined, describing per-unit variation of phase inductance, L=X/w, vs. frequency. Applies to reactance specified by X, LmH, Z, or kvar property. L generally decreases somewhat with frequency above the base frequency, approaching a limit at a few kHz. (Getter)"""
 function LCurve()::Float64
-    return @checked Lib.Reactors_Get_LCurve()
+    return @checked Lib.Reactors_Get_LCurve(C_NULL_CTX)
 end
 
 """Name of XYCurve object, previously defined, describing per-unit variation of phase inductance, L=X/w, vs. frequency. Applies to reactance specified by X, LmH, Z, or kvar property. L generally decreases somewhat with frequency above the base frequency, approaching a limit at a few kHz. (Setter)"""
 function LCurve(Value::Float64)
-    return @checked Lib.Reactors_Set_LCurve(Value)
+    return @checked Lib.Reactors_Set_LCurve(C_NULL_CTX, Value)
 end
 
 """Total kvar, all phases.  Evenly divided among phases. Only determines X. Specify R separately (Getter)"""
 function kvar()::Float64
-    return @checked Lib.Reactors_Get_kvar()
+    return @checked Lib.Reactors_Get_kvar(C_NULL_CTX)
 end
 
 """Total kvar, all phases.  Evenly divided among phases. Only determines X. Specify R separately (Setter)"""
 function kvar(Value::Float64)
-    return @checked Lib.Reactors_Set_kvar(Value)
+    return @checked Lib.Reactors_Set_kvar(C_NULL_CTX, Value)
 end
 
 """Resistance (in series with reactance), each phase, ohms. This property applies to REACTOR specified by either kvar or X. See also help on Z. (Getter)"""
 function R()::Float64
-    return @checked Lib.Reactors_Get_R()
+    return @checked Lib.Reactors_Get_R(C_NULL_CTX)
 end
 
 """Resistance (in series with reactance), each phase, ohms. This property applies to REACTOR specified by either kvar or X. See also help on Z. (Setter)"""
 function R(Value::Float64)
-    return @checked Lib.Reactors_Set_R(Value)
+    return @checked Lib.Reactors_Set_R(C_NULL_CTX, Value)
 end
 
 """Inductance, mH. Alternate way to define the reactance, X, property. (Getter)"""
 function LmH()::Float64
-    return @checked Lib.Reactors_Get_LmH()
+    return @checked Lib.Reactors_Get_LmH(C_NULL_CTX)
 end
 
 """Inductance, mH. Alternate way to define the reactance, X, property. (Setter)"""
 function LmH(Value::Float64)
-    return @checked Lib.Reactors_Set_LmH(Value)
+    return @checked Lib.Reactors_Set_LmH(C_NULL_CTX, Value)
 end
 
 """Reactance, each phase, ohms at base frequency. See also help on Z and LmH properties. (Getter)"""
 function X()::Float64
-    return @checked Lib.Reactors_Get_X()
+    return @checked Lib.Reactors_Get_X(C_NULL_CTX)
 end
 
 """Reactance, each phase, ohms at base frequency. See also help on Z and LmH properties. (Setter)"""
 function X(Value::Float64)
-    return @checked Lib.Reactors_Set_X(Value)
+    return @checked Lib.Reactors_Set_X(C_NULL_CTX, Value)
 end
 
 """How the reactor data was provided: 1=kvar, 2=R+jX, 3=R and X matrices, 4=sym components.
 Depending on this value, only some properties are filled or make sense in the context."""
 function SpecType()::Int
-    return @checked Lib.Reactors_Get_SpecType()
+    return @checked Lib.Reactors_Get_SpecType(C_NULL_CTX)
 end
 
 """Reactance matrix, ohms at base frequency. Order of the matrix is the number of phases. Mutually exclusive to specifying parameters by kvar or X. (Getter)"""
 function Xmatrix()::Array{Float64}
-    return get_float64_array(Lib.Reactors_Get_Xmatrix)
+    return get_float64_array(Lib.Reactors_Get_Xmatrix, C_NULL_CTX)
 end
 
 """Reactance matrix, ohms at base frequency. Order of the matrix is the number of phases. Mutually exclusive to specifying parameters by kvar or X. (Setter)"""
 function Xmatrix(Value::Array{Float64})
-    return set_float64_array(Lib.Reactors_Set_Xmatrix, Value)
+    return set_float64_array(Lib.Reactors_Set_Xmatrix, C_NULL_CTX, Value)
 end
 
 """Resistance matrix, ohms at base frequency. Order of the matrix is the number of phases. Mutually exclusive to specifying parameters by kvar or X. (Getter)"""
 function Rmatrix()::Array{Float64}
-    return get_float64_array(Lib.Reactors_Get_Rmatrix)
+    return get_float64_array(Lib.Reactors_Get_Rmatrix, C_NULL_CTX)
 end
 
 """Resistance matrix, ohms at base frequency. Order of the matrix is the number of phases. Mutually exclusive to specifying parameters by kvar or X. (Setter)"""
 function Rmatrix(Value::Array{Float64})
-    return set_float64_array(Lib.Reactors_Set_Rmatrix, Value)
+    return set_float64_array(Lib.Reactors_Set_Rmatrix, C_NULL_CTX, Value)
 end
 
 """Zero-sequence impedance, ohms.
 Used to define the impedance matrix of the REACTOR if Z1 is also specified.
 Note: Z0 defaults to Z1 if it is not specifically defined. (Getter)"""
 function Z0()::ComplexF64
-    return get_complex64(Lib.Reactors_Get_Z0)
+    return get_complex64(Lib.Reactors_Get_Z0, C_NULL_CTX)
 end
 
 """Zero-sequence impedance, ohms.
 Used to define the impedance matrix of the REACTOR if Z1 is also specified.
 Note: Z0 defaults to Z1 if it is not specifically defined. (Setter)"""
 function Z0(Value::ComplexF64)
-    @checked Lib.Reactors_Set_Z0(pointer(Value), 2)
+    @checked Lib.Reactors_Set_Z0(C_NULL_CTX, pointer(Value), 2)
 end
 
 """Positive-sequence impedance, ohms.
@@ -232,7 +232,7 @@ If defined, Z1, Z2, and Z0 are used to define the impedance matrix of the REACTO
 Z1 MUST BE DEFINED TO USE THIS OPTION FOR DEFINING THE MATRIX.
 Side Effect: Sets Z2 and Z0 to same values unless they were previously defined. (Getter)"""
 function Z1()::ComplexF64
-    return get_complex64(Lib.Reactors_Get_Z1)
+    return get_complex64(Lib.Reactors_Get_Z1, C_NULL_CTX)
 end
 
 """Positive-sequence impedance, ohms.
@@ -240,31 +240,31 @@ If defined, Z1, Z2, and Z0 are used to define the impedance matrix of the REACTO
 Z1 MUST BE DEFINED TO USE THIS OPTION FOR DEFINING THE MATRIX.
 Side Effect: Sets Z2 and Z0 to same values unless they were previously defined. (Setter)"""
 function Z1(Value::ComplexF64)
-    @checked Lib.Reactors_Set_Z1(pointer(Value), 2)
+    @checked Lib.Reactors_Set_Z1(C_NULL_CTX, pointer(Value), 2)
 end
 
 """Negative-sequence impedance, ohms.
 Used to define the impedance matrix of the REACTOR if Z1 is also specified.
 Note: Z2 defaults to Z1 if it is not specifically defined. If Z2 is not equal to Z1, the impedance matrix is asymmetrical. (Getter)"""
 function Z2()::ComplexF64
-    return get_complex64(Lib.Reactors_Get_Z2)
+    return get_complex64(Lib.Reactors_Get_Z2, C_NULL_CTX)
 end
 
 """Negative-sequence impedance, ohms.
 Used to define the impedance matrix of the REACTOR if Z1 is also specified.
 Note: Z2 defaults to Z1 if it is not specifically defined. If Z2 is not equal to Z1, the impedance matrix is asymmetrical. (Setter)"""
 function Z2(Value::ComplexF64)
-    @checked Lib.Reactors_Set_Z2(pointer(Value), 2)
+    @checked Lib.Reactors_Set_Z2(C_NULL_CTX, pointer(Value), 2)
 end
 
 """Alternative way of defining R and X properties (Getter)"""
 function Z()::ComplexF64
-    return get_complex64(Lib.Reactors_Get_Z)
+    return get_complex64(Lib.Reactors_Get_Z, C_NULL_CTX)
 end
 
 """Alternative way of defining R and X properties (Setter)"""
 function Z(Value::ComplexF64)
-    @checked Lib.Reactors_Set_Z(pointer(Value), 2)
+    @checked Lib.Reactors_Set_Z(C_NULL_CTX, pointer(Value), 2)
 end
 
 end

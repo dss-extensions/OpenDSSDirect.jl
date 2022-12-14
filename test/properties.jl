@@ -6,7 +6,7 @@ init8500()
 
 
 # Set an invalid property through the low-level interface to test if exceptions work
-OpenDSSDirect.Lib.DSSProperty_Set_Index(-1)
+OpenDSSDirect.Lib.DSSProperty_Set_Index(C_NULL, -1)
 @test_throws OpenDSSDirect.OpenDSSDirectException Properties.Description() == ""
 @test_throws OpenDSSDirect.OpenDSSDirectException Properties.Name() == ""
 

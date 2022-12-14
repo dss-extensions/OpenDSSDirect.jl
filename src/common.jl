@@ -1,8 +1,5 @@
 # Automatically generated using Clang.jl
 
-
-const DSS_CAPI_VERSION = "0.12.1"
-
 @cenum MonitorModes::UInt32 begin
     MonitorModes_VI = 0
     MonitorModes_Power = 1

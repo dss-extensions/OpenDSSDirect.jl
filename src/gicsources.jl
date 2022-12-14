@@ -13,132 +13,132 @@ using ..Utils
 
 """Array of names of all GICSource objects."""
 function AllNames()::Vector{String}
-    return get_string_array(Lib.GICSources_Get_AllNames)
+    return get_string_array(Lib.GICSources_Get_AllNames, C_NULL_CTX)
 end
 
 """Sets a GICSource active by name."""
 function Name()::String
-    return get_string(@checked Lib.GICSources_Get_Name())
+    return get_string(@checked Lib.GICSources_Get_Name(C_NULL_CTX))
 end
 
 """Sets a GICSource active by name."""
 function Name(Value::String)
-    @checked Lib.GICSources_Set_Name(Cstring(pointer(Value)))
+    @checked Lib.GICSources_Set_Name(C_NULL_CTX, Cstring(pointer(Value)))
 end
 
 """Number of GICSource Objects in Active Circuit"""
 function Count()::Int
-    return @checked Lib.GICSources_Get_Count()
+    return @checked Lib.GICSources_Get_Count(C_NULL_CTX)
 end
 
 """Sets first GICSource to be active.  Returns 0 if none."""
 function First()::Int
-    return @checked Lib.GICSources_Get_First()
+    return @checked Lib.GICSources_Get_First(C_NULL_CTX)
 end
 
 """Sets next GICSource to be active.  Returns 0 if no more."""
 function Next()::Int
-    return @checked Lib.GICSources_Get_Next()
+    return @checked Lib.GICSources_Get_Next(C_NULL_CTX)
 end
 
 """Active GICSource by index.  1..Count (Getter)"""
 function Idx()::Int
-    return @checked Lib.GICSources_Get_idx()
+    return @checked Lib.GICSources_Get_idx(C_NULL_CTX)
 end
 
 """Active GICSource by index.  1..Count (Setter)"""
 function Idx(Value::Int)
-    @checked Lib.GICSources_Set_idx(Value)
+    @checked Lib.GICSources_Set_idx(C_NULL_CTX, Value)
 end
 
 """Latitude of Bus2 (degrees) (Getter)"""
 function Lat2()::Float64
-    return @checked Lib.GICSources_Get_Lat2()
+    return @checked Lib.GICSources_Get_Lat2(C_NULL_CTX)
 end
 
 """Latitude of Bus2 (degrees) (Setter)"""
 function Lat2(Value::Float64)
-    return @checked Lib.GICSources_Set_Lat2(Value)
+    return @checked Lib.GICSources_Set_Lat2(C_NULL_CTX, Value)
 end
 
 """Latitude of Bus1 (degrees) (Getter)"""
 function Lat1()::Float64
-    return @checked Lib.GICSources_Get_Lat1()
+    return @checked Lib.GICSources_Get_Lat1(C_NULL_CTX)
 end
 
 """Latitude of Bus1 (degrees) (Setter)"""
 function Lat1(Value::Float64)
-    return @checked Lib.GICSources_Set_Lat1(Value)
+    return @checked Lib.GICSources_Set_Lat1(C_NULL_CTX, Value)
 end
 
 """Longitude of Bus1 (Getter)"""
 function Lon1()::Float64
-    return @checked Lib.GICSources_Get_Lon1()
+    return @checked Lib.GICSources_Get_Lon1(C_NULL_CTX)
 end
 
 """Longitude of Bus1 (Setter)"""
 function Lon1(Value::Float64)
-    return @checked Lib.GICSources_Set_Lon1(Value)
+    return @checked Lib.GICSources_Set_Lon1(C_NULL_CTX, Value)
 end
 
 """Longitude of Bus2 (Getter)"""
 function Lon2()::Float64
-    return @checked Lib.GICSources_Get_Lon2()
+    return @checked Lib.GICSources_Get_Lon2(C_NULL_CTX)
 end
 
 """Longitude of Bus2 (Setter)"""
 function Lon2(Value::Float64)
-    return @checked Lib.GICSources_Set_Lon2(Value)
+    return @checked Lib.GICSources_Set_Lon2(C_NULL_CTX, Value)
 end
 
 """Phases (Getter)"""
 function Phases()::Int
-    return @checked Lib.GICSources_Get_Phases()
+    return @checked Lib.GICSources_Get_Phases(C_NULL_CTX)
 end
 
 """Phases (Setter)"""
 function Phases(Value::Int)
-    return @checked Lib.GICSources_Set_Phases(Value)
+    return @checked Lib.GICSources_Set_Phases(C_NULL_CTX, Value)
 end
 
 """Northward E Field V/km (Getter)"""
 function EN()::Float64
-    return @checked Lib.GICSources_Get_EN()
+    return @checked Lib.GICSources_Get_EN(C_NULL_CTX)
 end
 
 """Northward E Field V/km (Setter)"""
 function EN(Value::Float64)
-    return @checked Lib.GICSources_Set_EN(Value)
+    return @checked Lib.GICSources_Set_EN(C_NULL_CTX, Value)
 end
 
 """Eastward E Field, V/km (Getter)"""
 function EE()::Float64
-    return @checked Lib.GICSources_Get_EE()
+    return @checked Lib.GICSources_Get_EE(C_NULL_CTX)
 end
 
 """Eastward E Field, V/km (Setter)"""
 function EE(Value::Float64)
-    return @checked Lib.GICSources_Set_EE(Value)
+    return @checked Lib.GICSources_Set_EE(C_NULL_CTX, Value)
 end
 
 """Specify dc voltage directly (Getter)"""
 function Volts()::Float64
-    return @checked Lib.GICSources_Get_Volts()
+    return @checked Lib.GICSources_Get_Volts(C_NULL_CTX)
 end
 
 """Specify dc voltage directly (Setter)"""
 function Volts(Value::Float64)
-    return @checked Lib.GICSources_Set_Volts(Value)
+    return @checked Lib.GICSources_Set_Volts(C_NULL_CTX, Value)
 end
 
 """Second bus name"""
 function Bus2()::String
-    return get_string(@checked Lib.GICSources_Get_Bus2())
+    return get_string(@checked Lib.GICSources_Get_Bus2(C_NULL_CTX))
 end
 
 """First bus name of GICSource (Created name)"""
 function Bus1()::String
-    return get_string(@checked Lib.GICSources_Get_Bus1())
+    return get_string(@checked Lib.GICSources_Get_Bus1(C_NULL_CTX))
 end
 
 end

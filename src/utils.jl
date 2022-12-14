@@ -19,6 +19,8 @@ export OpenDSSDirectException
 export Examples
 export @checked
 
+const C_NULL_CTX = C_NULL;
+
 function get_string(cstring::Cstring)::String
     if cstring != C_NULL
         return unsafe_string(cstring)
@@ -117,6 +119,27 @@ function get_int8_array(func::Function, ctx::Ptr{Cvoid})::Vector{Int8}
     return data
 end
 
+function get_int8_array(func::Function, ctx::Ptr{Cvoid}, param::Cstring)::Vector{Int8}
+    ptr = Ref{Ptr{Int8}}([])
+    cnt = Vector{Cint}([0, 0])
+    func(ctx, ptr, cnt, param)
+    error_num = OpenDSSDirect.Lib.Error_Get_Number(ctx)
+    if (error_num != 0)
+        description = get_string(OpenDSSDirect.Lib.Error_Get_Description(ctx))
+        throw(
+            OpenDSSDirectException(
+                "[ERROR $error_num] $description"
+            )
+        )
+    end
+    data = Vector{Int8}([])
+    for i in 1:cnt[1]
+        push!(data, unsafe_load(ptr[], i))
+    end
+    OpenDSSDirect.Lib.DSS_Dispose_PByte(ptr)
+    return data
+end
+
 function get_float64_array(func::Function, ctx::Ptr{Cvoid})::Vector{Float64}
     ptr = Ref{Ptr{Cdouble}}([])
     cnt = Vector{Cint}([0, 0])
@@ -180,6 +203,28 @@ function get_float64_array(func::Function, ctx::Ptr{Cvoid}, param1::Ptr{Int32}, 
     return data
 end
 
+function get_float64_array(func::Function, ctx::Ptr{Cvoid}, param1::Float64, param2::Float64, param3::Int32)::Vector{Float64}
+    ptr = Ref{Ptr{Cdouble}}([])
+    cnt = Vector{Cint}([0, 0])
+    func(ctx, ptr, cnt, param1, param2, param3)
+    error_num = OpenDSSDirect.Lib.Error_Get_Number(ctx)
+    if (error_num != 0)
+        description = get_string(OpenDSSDirect.Lib.Error_Get_Description(ctx))
+        throw(
+            OpenDSSDirectException(
+                "[ERROR $error_num] $description"
+            )
+        )
+    end
+    data = Vector{Float64}([])
+    for i in 1:cnt[1]
+        push!(data, unsafe_load(ptr[], i))
+    end
+    OpenDSSDirect.Lib.DSS_Dispose_PDouble(ptr)
+    return data
+end
+
+
 function get_complex64_array(func::Function, ctx::Ptr{Cvoid}, param1::Ptr{Int32}, param2::Int32)::Vector{ComplexF64}
     r = get_float64_array(func, ctx, param1, param2)
     if length(r) == 1
@@ -200,6 +245,16 @@ function get_complex64_array(func::Function, ctx::Ptr{Cvoid}, param::Union{Bool,
     return r
 end
 
+function get_complex64_array(func::Function, ctx::Ptr{Cvoid}, param1::Float64, param2::Float64, param3::Int32)::Vector{ComplexF64}
+    r = get_float64_array(func, ctx, param1, param2, param3)
+    if length(r) == 1
+        return ComplexF64[]
+    else
+        r = Array(reinterpret(ComplexF64, r))
+    end
+    return r
+end
+
 function get_complex64_array(func::Function, ctx::Ptr{Cvoid})::Vector{ComplexF64}
     r = get_float64_array(func, ctx)
     if length(r) == 1
@@ -210,7 +265,7 @@ function get_complex64_array(func::Function, ctx::Ptr{Cvoid})::Vector{ComplexF64
     return r
 end
 
-function get_complex64(func::Function, ctx)::ComplexF64
+function get_complex64(func::Function, ctx::Ptr{Cvoid})::ComplexF64
     return get_complex64_array(func, ctx)[1]
 end
 
@@ -285,9 +340,9 @@ macro checked(expr)
 
     return esc(quote
         ans = $(expr)
-        error_num = Lib.Error_Get_Number(ctx)
+        error_num = Lib.Error_Get_Number(C_NULL_CTX)
         if (error_num != 0)
-            description = get_string(Lib.Error_Get_Description(ctx))
+            description = get_string(Lib.Error_Get_Description(C_NULL_CTX))
             throw(
                 OpenDSSDirectException(
                     "[ERROR $error_num] $description"
