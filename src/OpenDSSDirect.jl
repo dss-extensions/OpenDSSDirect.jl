@@ -1,8 +1,6 @@
 
 module OpenDSSDirect
 
-__precompile__(false)
-
 export ActiveClass
 export Basic
 export Bus
