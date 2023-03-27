@@ -6,6 +6,8 @@ jobs:
   test:
     name: Test
     runs-on: ${{ matrix.os }}
+    env:
+      JULIA_NUM_THREADS: '5'
     strategy:
       fail-fast: false
       matrix:
