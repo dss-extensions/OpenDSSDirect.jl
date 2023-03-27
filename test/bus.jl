@@ -46,4 +46,19 @@ Circuit.SetActiveBus("SX2973158C")
 
 @test Bus.AllPCEatBus() == ["Load.138259c0"]
 
+Circuit.SetActiveBus("HVMV_Sub_48332")
+@test Basic.CompatFlags() == 0
+volts1 = Bus.CplxSeqVoltages()
+
+Basic.CompatFlags(OpenDSSDirect.Lib.DSSCompatFlags_BadPrecision)
+@test Basic.CompatFlags() == UInt32(OpenDSSDirect.Lib.DSSCompatFlags_BadPrecision)
+volts2 = Bus.CplxSeqVoltages()
+
+Basic.CompatFlags(UInt32(0))
+@test Basic.CompatFlags() == 0
+volts3 = Bus.CplxSeqVoltages()
+
+@test volts1 == volts3
+@test volts1 != volts2
+
 end # testset

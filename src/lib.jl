@@ -7151,4 +7151,12 @@ function ctx_Dispose(ctx::Ptr{Cvoid})
     ccall((:ctx_Dispose, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
+function DSS_Set_CompatFlags(opts)
+    ccall((:DSS_Set_CompatFlags, LIBRARY), Cvoid, (UInt32,), opts)
+end
+
+function DSS_Get_CompatFlags()
+    ccall((:DSS_Get_CompatFlags, LIBRARY), UInt32, ())
+end
+
 const DSS_CAPI_VERSION = "0.13.0"

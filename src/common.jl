@@ -164,3 +164,9 @@ end
     SolverOptions_ReuseNumericFactorization = 3
     SolverOptions_AlwaysResetYPrimInvalid = 268435456
 end
+
+@cenum DSSCompatFlags::UInt32 begin
+    DSSCompatFlags_NoSolverFloatChecks = 1
+    DSSCompatFlags_BadPrecision = 2
+    DSSCompatFlags_InvControl9611 = 4
+end
