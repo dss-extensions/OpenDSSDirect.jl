@@ -1,8 +1,8 @@
 # Julia wrapper for header: dss_capi.h
 # ORIGINALLY, automatically generated using Clang.jl
 #
-# This temporary version is modified for DSS C-API 0.12.x to use the 
-# ctx_* functions. We should regenerate after DSS C-API 0.13.0 is
+# This temporary version is modified for DSS C-API 0.13.x to use the 
+# ctx_* functions. We should regenerate after DSS C-API 0.14.0 is
 # released.
 
 # typedef int32_t ( * dss_callback_plot_t ) ( void * ctx , char * jsonParams )
@@ -7151,4 +7151,4 @@ function ctx_Dispose(ctx::Ptr{Cvoid})
     ccall((:ctx_Dispose, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-const DSS_CAPI_VERSION = "0.12.1"
+const DSS_CAPI_VERSION = "0.13.0"

@@ -58,9 +58,14 @@ Lines.Next()
                                     -167.10323234086837 -167.10344473228216]
 @test CktElement.TotalPowers() ≋ [14.0052+3.74347im, -14.005-3.7479im]
 
-# These two will change to empty when COMErrorResults become false by default
-@test CktElement.AllVariableNames() == [""]
-@test CktElement.AllVariableValues() == [0.0]
+# For non-PC-elements, we now throw an error
+@test_throws OpenDSSDirect.OpenDSSDirectException CktElement.AllVariableNames()
+@test_throws OpenDSSDirect.OpenDSSDirectException CktElement.AllVariableValues()
+
+# Let's select a load, a PC element with no state variables published
+Loads.First()
+@test CktElement.AllVariableNames() == []
+@test CktElement.AllVariableValues() == []
 
 # Let's add one dummy element with variables to test it
 OpenDSSDirect.Text.Command("New Generator.TestGen")
