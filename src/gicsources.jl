@@ -12,133 +12,159 @@ using ..Utils
 
 
 """Array of names of all GICSource objects."""
-function AllNames()::Vector{String}
-    return get_string_array(Lib.GICSources_Get_AllNames)
+function AllNames(dss::DSSContext)::Vector{String}
+    return get_string_array(Lib.GICSources_Get_AllNames, dss.ctx)
 end
+AllNames() = AllNames(DSS_DEFAULT_CTX)
 
 """Sets a GICSource active by name."""
-function Name()::String
-    return get_string(@checked Lib.GICSources_Get_Name())
+function Name(dss::DSSContext)::String
+    return get_string(@checked Lib.GICSources_Get_Name(dss.ctx))
 end
+Name() = Name(DSS_DEFAULT_CTX)
 
 """Sets a GICSource active by name."""
-function Name(Value::String)
-    @checked Lib.GICSources_Set_Name(Cstring(pointer(Value)))
+function Name(dss::DSSContext, Value::String)
+    @checked Lib.GICSources_Set_Name(dss.ctx, Cstring(pointer(Value)))
 end
+Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 
 """Number of GICSource Objects in Active Circuit"""
-function Count()::Int
-    return @checked Lib.GICSources_Get_Count()
+function Count(dss::DSSContext)::Int
+    return @checked Lib.GICSources_Get_Count(dss.ctx)
 end
+Count() = Count(DSS_DEFAULT_CTX)
 
 """Sets first GICSource to be active.  Returns 0 if none."""
-function First()::Int
-    return @checked Lib.GICSources_Get_First()
+function First(dss::DSSContext)::Int
+    return @checked Lib.GICSources_Get_First(dss.ctx)
 end
+First() = First(DSS_DEFAULT_CTX)
 
 """Sets next GICSource to be active.  Returns 0 if no more."""
-function Next()::Int
-    return @checked Lib.GICSources_Get_Next()
+function Next(dss::DSSContext)::Int
+    return @checked Lib.GICSources_Get_Next(dss.ctx)
 end
+Next() = Next(DSS_DEFAULT_CTX)
 
 """Active GICSource by index.  1..Count (Getter)"""
-function Idx()::Int
-    return @checked Lib.GICSources_Get_idx()
+function Idx(dss::DSSContext)::Int
+    return @checked Lib.GICSources_Get_idx(dss.ctx)
 end
+Idx() = Idx(DSS_DEFAULT_CTX)
 
 """Active GICSource by index.  1..Count (Setter)"""
-function Idx(Value::Int)
-    @checked Lib.GICSources_Set_idx(Value)
+function Idx(dss::DSSContext, Value::Int)
+    @checked Lib.GICSources_Set_idx(dss.ctx, Value)
 end
+Idx(Value::Int) = Idx(DSS_DEFAULT_CTX, Value)
 
 """Latitude of Bus2 (degrees) (Getter)"""
-function Lat2()::Float64
-    return @checked Lib.GICSources_Get_Lat2()
+function Lat2(dss::DSSContext)::Float64
+    return @checked Lib.GICSources_Get_Lat2(dss.ctx)
 end
+Lat2() = Lat2(DSS_DEFAULT_CTX)
 
 """Latitude of Bus2 (degrees) (Setter)"""
-function Lat2(Value::Float64)
-    return @checked Lib.GICSources_Set_Lat2(Value)
+function Lat2(dss::DSSContext, Value::Float64)
+    return @checked Lib.GICSources_Set_Lat2(dss.ctx, Value)
 end
+Lat2(Value::Float64) = Lat2(DSS_DEFAULT_CTX, Value)
 
 """Latitude of Bus1 (degrees) (Getter)"""
-function Lat1()::Float64
-    return @checked Lib.GICSources_Get_Lat1()
+function Lat1(dss::DSSContext)::Float64
+    return @checked Lib.GICSources_Get_Lat1(dss.ctx)
 end
+Lat1() = Lat1(DSS_DEFAULT_CTX)
 
 """Latitude of Bus1 (degrees) (Setter)"""
-function Lat1(Value::Float64)
-    return @checked Lib.GICSources_Set_Lat1(Value)
+function Lat1(dss::DSSContext, Value::Float64)
+    return @checked Lib.GICSources_Set_Lat1(dss.ctx, Value)
 end
+Lat1(Value::Float64) = Lat1(DSS_DEFAULT_CTX, Value)
 
 """Longitude of Bus1 (Getter)"""
-function Lon1()::Float64
-    return @checked Lib.GICSources_Get_Lon1()
+function Lon1(dss::DSSContext)::Float64
+    return @checked Lib.GICSources_Get_Lon1(dss.ctx)
 end
+Lon1() = Lon1(DSS_DEFAULT_CTX)
 
 """Longitude of Bus1 (Setter)"""
-function Lon1(Value::Float64)
-    return @checked Lib.GICSources_Set_Lon1(Value)
+function Lon1(dss::DSSContext, Value::Float64)
+    return @checked Lib.GICSources_Set_Lon1(dss.ctx, Value)
 end
+Lon1(Value::Float64) = Lon1(DSS_DEFAULT_CTX, Value)
 
 """Longitude of Bus2 (Getter)"""
-function Lon2()::Float64
-    return @checked Lib.GICSources_Get_Lon2()
+function Lon2(dss::DSSContext)::Float64
+    return @checked Lib.GICSources_Get_Lon2(dss.ctx)
 end
+Lon2() = Lon2(DSS_DEFAULT_CTX)
 
 """Longitude of Bus2 (Setter)"""
-function Lon2(Value::Float64)
-    return @checked Lib.GICSources_Set_Lon2(Value)
+function Lon2(dss::DSSContext, Value::Float64)
+    return @checked Lib.GICSources_Set_Lon2(dss.ctx, Value)
 end
+Lon2(Value::Float64) = Lon2(DSS_DEFAULT_CTX, Value)
 
 """Phases (Getter)"""
-function Phases()::Int
-    return @checked Lib.GICSources_Get_Phases()
+function Phases(dss::DSSContext)::Int
+    return @checked Lib.GICSources_Get_Phases(dss.ctx)
 end
+Phases() = Phases(DSS_DEFAULT_CTX)
 
 """Phases (Setter)"""
-function Phases(Value::Int)
-    return @checked Lib.GICSources_Set_Phases(Value)
+function Phases(dss::DSSContext, Value::Int)
+    return @checked Lib.GICSources_Set_Phases(dss.ctx, Value)
 end
+Phases(Value::Int) = Phases(DSS_DEFAULT_CTX, Value)
 
 """Northward E Field V/km (Getter)"""
-function EN()::Float64
-    return @checked Lib.GICSources_Get_EN()
+function EN(dss::DSSContext)::Float64
+    return @checked Lib.GICSources_Get_EN(dss.ctx)
 end
+EN() = EN(DSS_DEFAULT_CTX)
 
 """Northward E Field V/km (Setter)"""
-function EN(Value::Float64)
-    return @checked Lib.GICSources_Set_EN(Value)
+function EN(dss::DSSContext, Value::Float64)
+    return @checked Lib.GICSources_Set_EN(dss.ctx, Value)
 end
+EN(Value::Float64) = EN(DSS_DEFAULT_CTX, Value)
 
 """Eastward E Field, V/km (Getter)"""
-function EE()::Float64
-    return @checked Lib.GICSources_Get_EE()
+function EE(dss::DSSContext)::Float64
+    return @checked Lib.GICSources_Get_EE(dss.ctx)
 end
+EE() = EE(DSS_DEFAULT_CTX)
 
 """Eastward E Field, V/km (Setter)"""
-function EE(Value::Float64)
-    return @checked Lib.GICSources_Set_EE(Value)
+function EE(dss::DSSContext, Value::Float64)
+    return @checked Lib.GICSources_Set_EE(dss.ctx, Value)
 end
+EE(Value::Float64) = EE(DSS_DEFAULT_CTX, Value)
 
 """Specify dc voltage directly (Getter)"""
-function Volts()::Float64
-    return @checked Lib.GICSources_Get_Volts()
+function Volts(dss::DSSContext)::Float64
+    return @checked Lib.GICSources_Get_Volts(dss.ctx)
 end
+Volts() = Volts(DSS_DEFAULT_CTX)
 
 """Specify dc voltage directly (Setter)"""
-function Volts(Value::Float64)
-    return @checked Lib.GICSources_Set_Volts(Value)
+function Volts(dss::DSSContext, Value::Float64)
+    return @checked Lib.GICSources_Set_Volts(dss.ctx, Value)
 end
+Volts(Value::Float64) = Volts(DSS_DEFAULT_CTX, Value)
 
 """Second bus name"""
-function Bus2()::String
-    return get_string(@checked Lib.GICSources_Get_Bus2())
+function Bus2(dss::DSSContext)::String
+    return get_string(@checked Lib.GICSources_Get_Bus2(dss.ctx))
 end
+Bus2() = Bus2(DSS_DEFAULT_CTX)
 
 """First bus name of GICSource (Created name)"""
-function Bus1()::String
-    return get_string(@checked Lib.GICSources_Get_Bus1())
+function Bus1(dss::DSSContext)::String
+    return get_string(@checked Lib.GICSources_Get_Bus1(dss.ctx))
 end
+Bus1() = Bus1(DSS_DEFAULT_CTX)
 
 end

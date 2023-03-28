@@ -13,10 +13,10 @@ ymatrix = YMatrix.getYsparse()
 @test length(YMatrix.getI()) == 8542
 
 @test YMatrix.SystemYChanged() == false
-@test YMatrix.SystemYChanged(YMatrix.SystemYChanged()) == nothing
+@test YMatrix.SystemYChanged(YMatrix.SystemYChanged()) === nothing
 
 @test YMatrix.UseAuxCurrents() == false
-@test YMatrix.UseAuxCurrents(YMatrix.UseAuxCurrents()) == nothing
+@test YMatrix.UseAuxCurrents(YMatrix.UseAuxCurrents()) === nothing
 
 end # testset
 

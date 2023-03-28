@@ -9,8 +9,8 @@ Lines.Next()
 @test CktElement.NumTerminals() == 2
 @test CktElement.NumConductors() == 1
 @test CktElement.NumPhases() == 1
-@test CktElement.Open(0, 0) == nothing
-@test CktElement.Close(0, 0) == nothing
+@test CktElement.Open(0, 0) === nothing
+@test CktElement.Close(0, 0) === nothing
 @test CktElement.IsOpen(0, 0) == false
 @test CktElement.NumProperties() == 38
 @test CktElement.HasSwitchControl() == false
@@ -19,22 +19,22 @@ Lines.Next()
 @test CktElement.OCPDevIndex() == 0
 @test CktElement.OCPDevType() == 0
 @test CktElement.Enabled()
-@test CktElement.Enabled(CktElement.Enabled()) == nothing
+@test CktElement.Enabled(CktElement.Enabled()) === nothing
 @test CktElement.NormalAmps() ≋ 400.0
-@test CktElement.NormalAmps(CktElement.NormalAmps()) == nothing
+@test CktElement.NormalAmps(CktElement.NormalAmps()) === nothing
 @test CktElement.EmergAmps() ≋ 600.0
-@test CktElement.EmergAmps(CktElement.EmergAmps()) == nothing
+@test CktElement.EmergAmps(CktElement.EmergAmps()) === nothing
 @test_throws OpenDSSDirect.OpenDSSDirectException CktElement.Variable("0", 0)
 @test_throws OpenDSSDirect.OpenDSSDirectException CktElement.Variablei(0, 0)
 @test CktElement.Name() == "Line.ln5502549-1"
 @test CktElement.DisplayName() == "Line_ln5502549-1"
-@test CktElement.DisplayName(CktElement.DisplayName()) == nothing
+@test CktElement.DisplayName(CktElement.DisplayName()) === nothing
 @test CktElement.GUID()[1] == '{'
 @test CktElement.GUID()[end] == '}'
 @test CktElement.EnergyMeter() == ""
 @test CktElement.Controller(0) == ""
 @test CktElement.BusNames() == ["m1009763.2","l2673322.2"]
-@test CktElement.BusNames(CktElement.BusNames()) == nothing
+@test CktElement.BusNames(CktElement.BusNames()) === nothing
 @test CktElement.Voltages() ≋ [-7497.624369108318 - 1716.7400531450096im,-7497.520821355775 - 1716.6870938210561im]
 @test CktElement.Currents() ≋ [-1.8835247914830688 + 0.06801433374494081im,1.8836564559605904 - 0.06858936508069746im]
 @test CktElement.Powers() ≋ [14.005198445515209 + 3.7434683767653216im,-14.00500702103834 - 3.747898919956358im]
@@ -58,9 +58,14 @@ Lines.Next()
                                     -167.10323234086837 -167.10344473228216]
 @test CktElement.TotalPowers() ≋ [14.0052+3.74347im, -14.005-3.7479im]
 
-# These two will change to empty when COMErrorResults become false by default
-@test CktElement.AllVariableNames() == [""]
-@test CktElement.AllVariableValues() == [0.0]
+# For non-PC-elements, we now throw an error
+@test_throws OpenDSSDirect.OpenDSSDirectException CktElement.AllVariableNames()
+@test_throws OpenDSSDirect.OpenDSSDirectException CktElement.AllVariableValues()
+
+# Let's select a load, a PC element with no state variables published
+Loads.First()
+@test CktElement.AllVariableNames() == []
+@test CktElement.AllVariableValues() == []
 
 # Let's add one dummy element with variables to test it
 OpenDSSDirect.Text.Command("New Generator.TestGen")

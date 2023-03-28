@@ -18,9 +18,9 @@ init8500()
 @test Topology.NextLoad() == 0
 @test Topology.ActiveLevel() == 1
 @test Topology.BranchName() == "Reactor.hvmv_sub_hsb"
-@test Topology.BranchName(Topology.BranchName()) == nothing
+@test Topology.BranchName(Topology.BranchName()) === nothing
 @test Topology.BusName() == "sourcebus"
-@test Topology.BusName(Topology.BusName()) == nothing
+@test Topology.BusName(Topology.BusName()) === nothing
 @test Topology.AllLoopedPairs()[end] == "Transformer.feeder_regc"
 @test Topology.AllIsolatedBranches()[end] == "" # TODO: Why is this an empty string?
 @test Topology.AllIsolatedBranches()[1] == "Line.wd701_48332_sw"

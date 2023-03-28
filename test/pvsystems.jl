@@ -19,23 +19,23 @@ solve  ! solves at the specified irradiance and temperature
 @test PVsystems.First() == 1
 @test PVsystems.Next() == 0
 @test PVsystems.Idx() == 1
-@test PVsystems.Idx(PVsystems.Idx()) == nothing
+@test PVsystems.Idx(PVsystems.Idx()) === nothing
 @test PVsystems.Irradiance() ≋ 0.8
-@test PVsystems.Irradiance(PVsystems.Irradiance()) == nothing
+@test PVsystems.Irradiance(PVsystems.Irradiance()) === nothing
 @test PVsystems.IrradianceNow() ≋ 1.0
 @test PVsystems.kW() ≋ 382.66666666666674
 @test PVsystems.kvar() ≋ 0.0
-@test PVsystems.kvar(PVsystems.kvar()) == nothing
+@test PVsystems.kvar(PVsystems.kvar()) === nothing
 @test PVsystems.pf() ≋ 1.0
-@test PVsystems.pf(PVsystems.pf()) == nothing
+@test PVsystems.pf(PVsystems.pf()) === nothing
 @test PVsystems.kVARated() ≋ 500.0
-@test PVsystems.kVARated(PVsystems.kVARated()) == nothing
+@test PVsystems.kVARated(PVsystems.kVARated()) === nothing
 @test PVsystems.Daily() == "myirrad" # for consistency, always lowercase since DSS C-API 0.12
-@test PVsystems.Daily(PVsystems.Daily()) == nothing
+@test PVsystems.Daily(PVsystems.Daily()) === nothing
 @test PVsystems.TDaily() == "mytemp"
-@test PVsystems.TDaily(PVsystems.TDaily()) == nothing
+@test PVsystems.TDaily(PVsystems.TDaily()) === nothing
 @test PVsystems.Pmpp() == 500
-@test PVsystems.Pmpp(PVsystems.Pmpp()) == nothing
+@test PVsystems.Pmpp(PVsystems.Pmpp()) === nothing
 
 arr = String[]
 for i in OpenDSSDirect.EachMember(PVsystems); push!(arr, PVsystems.Name()); end

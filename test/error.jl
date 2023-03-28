@@ -11,10 +11,10 @@ init8500()
 
 @test_throws OpenDSSDirect.OpenDSSDirectException Isource.Name()
 
-@test Error.ExtendedErrors(false) == nothing
+@test Error.ExtendedErrors(false) === nothing
 
 @test Isource.Name() == ""
 
-@test Error.ExtendedErrors(true) == nothing
+@test Error.ExtendedErrors(true) === nothing
 
 end # testset

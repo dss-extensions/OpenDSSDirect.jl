@@ -11,18 +11,18 @@ init8500()
 @test Circuit.NextPCElement() == 2
 @test Circuit.FirstPDElement() == 1
 @test Circuit.NextPDElement() == 2
-@test Circuit.Sample() == nothing
-@test Circuit.SaveSample() == nothing
+@test Circuit.Sample() === nothing
+@test Circuit.SaveSample() === nothing
 @test Circuit.SetActiveBusi(2) == 0
 @test Circuit.FirstElement() == 1
 @test Circuit.NextElement() == 2
-@test Circuit.UpdateStorage() == nothing
+@test Circuit.UpdateStorage() === nothing
 @test Circuit.ParentPDElement() == 0
-@test Circuit.EndOfTimeStepUpdate() == nothing
+@test Circuit.EndOfTimeStepUpdate() === nothing
 # @test Circuit.Capacity(10.0, 20.0) ≋ 0.0    # ERROR - Form popup related to energy meter
 @test Circuit.Name() == "ieee8500"
-@test Circuit.Disable(Circuit.AllElementNames()[10]) == nothing
-@test Circuit.Enable(Circuit.AllElementNames()[10]) == nothing
+@test Circuit.Disable(Circuit.AllElementNames()[10]) === nothing
+@test Circuit.Enable(Circuit.AllElementNames()[10]) === nothing
 @test Circuit.SetActiveElement(Circuit.AllElementNames()[10]) == 9
 @test Circuit.SetActiveBus(Circuit.AllBusNames()[10]) == 9
 @test Circuit.SetActiveClass(ActiveClass.ActiveClassName()) == 15

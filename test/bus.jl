@@ -14,9 +14,9 @@ Circuit.SetActiveBus("M1047751")
 @test Bus.SectionID() == 0
 @test Bus.kVBase() ≋ 7.199557856794634
 @test Bus.X() == 1.67080628884553e6
-@test Bus.X(Bus.X()) == nothing
+@test Bus.X(Bus.X()) === nothing
 @test Bus.Y() ≋ 1.22880000004359e7
-@test Bus.Y(Bus.Y()) == nothing
+@test Bus.Y(Bus.Y()) === nothing
 @test Bus.Distance() == 0.0
 @test Bus.Lambda() == 0.0
 @test Bus.N_interrupts() == 0.0
@@ -45,5 +45,20 @@ Circuit.SetActiveBus("M1047751")
 Circuit.SetActiveBus("SX2973158C")
 
 @test Bus.AllPCEatBus() == ["Load.138259c0"]
+
+Circuit.SetActiveBus("HVMV_Sub_48332")
+@test Basic.CompatFlags() == 0
+volts1 = Bus.CplxSeqVoltages()
+
+Basic.CompatFlags(OpenDSSDirect.Lib.DSSCompatFlags_BadPrecision)
+@test Basic.CompatFlags() == UInt32(OpenDSSDirect.Lib.DSSCompatFlags_BadPrecision)
+volts2 = Bus.CplxSeqVoltages()
+
+Basic.CompatFlags(UInt32(0))
+@test Basic.CompatFlags() == 0
+volts3 = Bus.CplxSeqVoltages()
+
+@test volts1 == volts3
+@test volts1 != volts2
 
 end # testset

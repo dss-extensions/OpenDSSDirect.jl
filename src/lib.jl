@@ -1,6 +1,9 @@
 # Julia wrapper for header: dss_capi.h
-# Automatically generated using Clang.jl
-
+# ORIGINALLY, automatically generated using Clang.jl
+#
+# This temporary version is modified for DSS C-API 0.13.x to use the 
+# ctx_* functions. We should regenerate after DSS C-API 0.14.0 is
+# released.
 
 # typedef int32_t ( * dss_callback_plot_t ) ( void * ctx , char * jsonParams )
 const dss_callback_plot_t = Ptr{Cvoid}
@@ -8,8 +11,8 @@ const dss_callback_plot_t = Ptr{Cvoid}
 # typedef int32_t ( * dss_callback_message_t ) ( void * ctx , char * messageStr , int32_t messageType )
 const dss_callback_message_t = Ptr{Cvoid}
 
-function DSS_ResetStringBuffer()
-    ccall((:DSS_ResetStringBuffer, LIBRARY), Cvoid, ())
+function DSS_ResetStringBuffer(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_ResetStringBuffer, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
 function DSS_Dispose_PByte(p)
@@ -32,6780 +35,6780 @@ function DSS_Get_PAnsiChar(p, index)
     ccall((:DSS_Get_PAnsiChar, LIBRARY), Cstring, (Ptr{Cvoid}, Int32), p, index)
 end
 
-function DSS_DisposeGRData()
-    ccall((:DSS_DisposeGRData, LIBRARY), Cvoid, ())
+function DSS_DisposeGRData(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_DisposeGRData, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_GetGRPointers(DataPtr_PPAnsiChar, DataPtr_PDouble, DataPtr_PInteger, DataPtr_PByte, CountPtr_PPAnsiChar, CountPtr_PDouble, CountPtr_PInteger, CountPtr_PByte)
-    ccall((:DSS_GetGRPointers, LIBRARY), Cvoid, (Ptr{Ptr{Ptr{Cstring}}}, Ptr{Ptr{Ptr{Cdouble}}}, Ptr{Ptr{Ptr{Int32}}}, Ptr{Ptr{Ptr{Int8}}}, Ptr{Ptr{Int32}}, Ptr{Ptr{Int32}}, Ptr{Ptr{Int32}}, Ptr{Ptr{Int32}}), DataPtr_PPAnsiChar, DataPtr_PDouble, DataPtr_PInteger, DataPtr_PByte, CountPtr_PPAnsiChar, CountPtr_PDouble, CountPtr_PInteger, CountPtr_PByte)
+function DSS_GetGRPointers(ctx::Ptr{Cvoid}, DataPtr_PPAnsiChar, DataPtr_PDouble, DataPtr_PInteger, DataPtr_PByte, CountPtr_PPAnsiChar, CountPtr_PDouble, CountPtr_PInteger, CountPtr_PByte)
+    ccall((:ctx_DSS_GetGRPointers, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Ptr{Cstring}}}, Ptr{Ptr{Ptr{Cdouble}}}, Ptr{Ptr{Ptr{Int32}}}, Ptr{Ptr{Ptr{Int8}}}, Ptr{Ptr{Int32}}, Ptr{Ptr{Int32}}, Ptr{Ptr{Int32}}, Ptr{Ptr{Int32}}), ctx, DataPtr_PPAnsiChar, DataPtr_PDouble, DataPtr_PInteger, DataPtr_PByte, CountPtr_PPAnsiChar, CountPtr_PDouble, CountPtr_PInteger, CountPtr_PByte)
 end
 
-function DSS_GR_DataPtr_PDouble()
-    ccall((:DSS_GR_DataPtr_PDouble, LIBRARY), Ptr{Cdouble}, ())
+function DSS_GR_DataPtr_PDouble(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_GR_DataPtr_PDouble, LIBRARY), Ptr{Cdouble}, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_GR_DataPtr_PInteger()
-    ccall((:DSS_GR_DataPtr_PInteger, LIBRARY), Ptr{Int32}, ())
+function DSS_GR_DataPtr_PInteger(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_GR_DataPtr_PInteger, LIBRARY), Ptr{Int32}, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_GR_DataPtr_PByte()
-    ccall((:DSS_GR_DataPtr_PByte, LIBRARY), Ptr{Int8}, ())
+function DSS_GR_DataPtr_PByte(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_GR_DataPtr_PByte, LIBRARY), Ptr{Int8}, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_GR_CountPtr_PDouble()
-    ccall((:DSS_GR_CountPtr_PDouble, LIBRARY), Ptr{Int32}, ())
+function DSS_GR_CountPtr_PDouble(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_GR_CountPtr_PDouble, LIBRARY), Ptr{Int32}, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_GR_CountPtr_PInteger()
-    ccall((:DSS_GR_CountPtr_PInteger, LIBRARY), Ptr{Int32}, ())
+function DSS_GR_CountPtr_PInteger(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_GR_CountPtr_PInteger, LIBRARY), Ptr{Int32}, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_GR_CountPtr_PByte()
-    ccall((:DSS_GR_CountPtr_PByte, LIBRARY), Ptr{Int32}, ())
+function DSS_GR_CountPtr_PByte(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_GR_CountPtr_PByte, LIBRARY), Ptr{Int32}, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_RegisterPlotCallback(cb)
-    ccall((:DSS_RegisterPlotCallback, LIBRARY), Cvoid, (dss_callback_plot_t,), cb)
+function DSS_RegisterPlotCallback(ctx::Ptr{Cvoid}, cb)
+    ccall((:ctx_DSS_RegisterPlotCallback, LIBRARY), Cvoid, (Ptr{Cvoid}, dss_callback_plot_t,), ctx, cb)
 end
 
-function DSS_RegisterMessageCallback(cb)
-    ccall((:DSS_RegisterMessageCallback, LIBRARY), Cvoid, (dss_callback_message_t,), cb)
+function DSS_RegisterMessageCallback(ctx::Ptr{Cvoid}, cb)
+    ccall((:ctx_DSS_RegisterMessageCallback, LIBRARY), Cvoid, (Ptr{Cvoid}, dss_callback_message_t,), ctx, cb)
 end
 
-function DSS_NewCircuit(Value)
-    ccall((:DSS_NewCircuit, LIBRARY), Cvoid, (Cstring,), Value)
+function DSS_NewCircuit(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_DSS_NewCircuit, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function ActiveClass_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:ActiveClass_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function ActiveClass_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_ActiveClass_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function ActiveClass_Get_AllNames_GR()
-    ccall((:ActiveClass_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function ActiveClass_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_ActiveClass_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function ActiveClass_Get_First()
-    ccall((:ActiveClass_Get_First, LIBRARY), Int32, ())
+function ActiveClass_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_ActiveClass_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function ActiveClass_Get_Next()
-    ccall((:ActiveClass_Get_Next, LIBRARY), Int32, ())
+function ActiveClass_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_ActiveClass_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function ActiveClass_Get_Name()
-    ccall((:ActiveClass_Get_Name, LIBRARY), Cstring, ())
+function ActiveClass_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_ActiveClass_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function ActiveClass_Set_Name(Value)
-    ccall((:ActiveClass_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function ActiveClass_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_ActiveClass_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function ActiveClass_Get_NumElements()
-    ccall((:ActiveClass_Get_NumElements, LIBRARY), Int32, ())
+function ActiveClass_Get_NumElements(ctx::Ptr{Cvoid})
+    ccall((:ctx_ActiveClass_Get_NumElements, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function ActiveClass_Get_ActiveClassName()
-    ccall((:ActiveClass_Get_ActiveClassName, LIBRARY), Cstring, ())
+function ActiveClass_Get_ActiveClassName(ctx::Ptr{Cvoid})
+    ccall((:ctx_ActiveClass_Get_ActiveClassName, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function ActiveClass_Get_Count()
-    ccall((:ActiveClass_Get_Count, LIBRARY), Int32, ())
+function ActiveClass_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_ActiveClass_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function ActiveClass_Get_ActiveClassParent()
-    ccall((:ActiveClass_Get_ActiveClassParent, LIBRARY), Cstring, ())
+function ActiveClass_Get_ActiveClassParent(ctx::Ptr{Cvoid})
+    ccall((:ctx_ActiveClass_Get_ActiveClassParent, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function ActiveClass_ToJSON(options)
-    ccall((:ActiveClass_ToJSON, LIBRARY), Cstring, (Int32,), options)
+function ActiveClass_ToJSON(ctx::Ptr{Cvoid}, options)
+    ccall((:ctx_ActiveClass_ToJSON, LIBRARY), Cstring, (Ptr{Cvoid}, Int32,), ctx, options)
 end
 
-function Bus_Get_AllPCEatBus(ResultPtr, ResultCount)
-    ccall((:Bus_Get_AllPCEatBus, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Bus_Get_AllPCEatBus(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Bus_Get_AllPCEatBus, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Bus_Get_AllPDEatBus(ResultPtr, ResultCount)
-    ccall((:Bus_Get_AllPDEatBus, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Bus_Get_AllPDEatBus(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Bus_Get_AllPDEatBus, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Bus_Get_Name()
-    ccall((:Bus_Get_Name, LIBRARY), Cstring, ())
+function Bus_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_NumNodes()
-    ccall((:Bus_Get_NumNodes, LIBRARY), Int32, ())
+function Bus_Get_NumNodes(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_NumNodes, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_SeqVoltages(ResultPtr, ResultCount)
-    ccall((:Bus_Get_SeqVoltages, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Bus_Get_SeqVoltages(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Bus_Get_SeqVoltages, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Bus_Get_SeqVoltages_GR()
-    ccall((:Bus_Get_SeqVoltages_GR, LIBRARY), Cvoid, ())
+function Bus_Get_SeqVoltages_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_SeqVoltages_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_Voltages(ResultPtr, ResultCount)
-    ccall((:Bus_Get_Voltages, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Bus_Get_Voltages(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Bus_Get_Voltages, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Bus_Get_Voltages_GR()
-    ccall((:Bus_Get_Voltages_GR, LIBRARY), Cvoid, ())
+function Bus_Get_Voltages_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_Voltages_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_Nodes(ResultPtr, ResultCount)
-    ccall((:Bus_Get_Nodes, LIBRARY), Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Bus_Get_Nodes(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Bus_Get_Nodes, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Bus_Get_Nodes_GR()
-    ccall((:Bus_Get_Nodes_GR, LIBRARY), Cvoid, ())
+function Bus_Get_Nodes_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_Nodes_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_Isc(ResultPtr, ResultCount)
-    ccall((:Bus_Get_Isc, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Bus_Get_Isc(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Bus_Get_Isc, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Bus_Get_Isc_GR()
-    ccall((:Bus_Get_Isc_GR, LIBRARY), Cvoid, ())
+function Bus_Get_Isc_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_Isc_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_Voc(ResultPtr, ResultCount)
-    ccall((:Bus_Get_Voc, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Bus_Get_Voc(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Bus_Get_Voc, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Bus_Get_Voc_GR()
-    ccall((:Bus_Get_Voc_GR, LIBRARY), Cvoid, ())
+function Bus_Get_Voc_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_Voc_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_kVBase()
-    ccall((:Bus_Get_kVBase, LIBRARY), Cdouble, ())
+function Bus_Get_kVBase(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_kVBase, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_puVoltages(ResultPtr, ResultCount)
-    ccall((:Bus_Get_puVoltages, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Bus_Get_puVoltages(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Bus_Get_puVoltages, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Bus_Get_puVoltages_GR()
-    ccall((:Bus_Get_puVoltages_GR, LIBRARY), Cvoid, ())
+function Bus_Get_puVoltages_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_puVoltages_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_Zsc0(ResultPtr, ResultCount)
-    ccall((:Bus_Get_Zsc0, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Bus_Get_Zsc0(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Bus_Get_Zsc0, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Bus_Get_Zsc0_GR()
-    ccall((:Bus_Get_Zsc0_GR, LIBRARY), Cvoid, ())
+function Bus_Get_Zsc0_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_Zsc0_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_Zsc1(ResultPtr, ResultCount)
-    ccall((:Bus_Get_Zsc1, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Bus_Get_Zsc1(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Bus_Get_Zsc1, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Bus_Get_Zsc1_GR()
-    ccall((:Bus_Get_Zsc1_GR, LIBRARY), Cvoid, ())
+function Bus_Get_Zsc1_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_Zsc1_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_ZscMatrix(ResultPtr, ResultCount)
-    ccall((:Bus_Get_ZscMatrix, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Bus_Get_ZscMatrix(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Bus_Get_ZscMatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Bus_Get_ZscMatrix_GR()
-    ccall((:Bus_Get_ZscMatrix_GR, LIBRARY), Cvoid, ())
+function Bus_Get_ZscMatrix_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_ZscMatrix_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_ZscRefresh()
-    ccall((:Bus_ZscRefresh, LIBRARY), UInt16, ())
+function Bus_ZscRefresh(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_ZscRefresh, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_YscMatrix(ResultPtr, ResultCount)
-    ccall((:Bus_Get_YscMatrix, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Bus_Get_YscMatrix(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Bus_Get_YscMatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Bus_Get_YscMatrix_GR()
-    ccall((:Bus_Get_YscMatrix_GR, LIBRARY), Cvoid, ())
+function Bus_Get_YscMatrix_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_YscMatrix_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_Coorddefined()
-    ccall((:Bus_Get_Coorddefined, LIBRARY), UInt16, ())
+function Bus_Get_Coorddefined(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_Coorddefined, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_x()
-    ccall((:Bus_Get_x, LIBRARY), Cdouble, ())
+function Bus_Get_x(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_x, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Set_x(Value)
-    ccall((:Bus_Set_x, LIBRARY), Cvoid, (Cdouble,), Value)
+function Bus_Set_x(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Bus_Set_x, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Bus_Get_y()
-    ccall((:Bus_Get_y, LIBRARY), Cdouble, ())
+function Bus_Get_y(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_y, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Set_y(Value)
-    ccall((:Bus_Set_y, LIBRARY), Cvoid, (Cdouble,), Value)
+function Bus_Set_y(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Bus_Set_y, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Bus_Get_Distance()
-    ccall((:Bus_Get_Distance, LIBRARY), Cdouble, ())
+function Bus_Get_Distance(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_Distance, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_GetUniqueNodeNumber(StartNumber)
-    ccall((:Bus_GetUniqueNodeNumber, LIBRARY), Int32, (Int32,), StartNumber)
+function Bus_GetUniqueNodeNumber(ctx::Ptr{Cvoid}, StartNumber)
+    ccall((:ctx_Bus_GetUniqueNodeNumber, LIBRARY), Int32, (Ptr{Cvoid}, Int32,), ctx, StartNumber)
 end
 
-function Bus_Get_CplxSeqVoltages(ResultPtr, ResultCount)
-    ccall((:Bus_Get_CplxSeqVoltages, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Bus_Get_CplxSeqVoltages(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Bus_Get_CplxSeqVoltages, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Bus_Get_CplxSeqVoltages_GR()
-    ccall((:Bus_Get_CplxSeqVoltages_GR, LIBRARY), Cvoid, ())
+function Bus_Get_CplxSeqVoltages_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_CplxSeqVoltages_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_Int_Duration()
-    ccall((:Bus_Get_Int_Duration, LIBRARY), Cdouble, ())
+function Bus_Get_Int_Duration(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_Int_Duration, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_Lambda()
-    ccall((:Bus_Get_Lambda, LIBRARY), Cdouble, ())
+function Bus_Get_Lambda(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_Lambda, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_Cust_Duration()
-    ccall((:Bus_Get_Cust_Duration, LIBRARY), Cdouble, ())
+function Bus_Get_Cust_Duration(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_Cust_Duration, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_Cust_Interrupts()
-    ccall((:Bus_Get_Cust_Interrupts, LIBRARY), Cdouble, ())
+function Bus_Get_Cust_Interrupts(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_Cust_Interrupts, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_N_Customers()
-    ccall((:Bus_Get_N_Customers, LIBRARY), Int32, ())
+function Bus_Get_N_Customers(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_N_Customers, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_N_interrupts()
-    ccall((:Bus_Get_N_interrupts, LIBRARY), Cdouble, ())
+function Bus_Get_N_interrupts(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_N_interrupts, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_puVLL(ResultPtr, ResultCount)
-    ccall((:Bus_Get_puVLL, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Bus_Get_puVLL(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Bus_Get_puVLL, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Bus_Get_puVLL_GR()
-    ccall((:Bus_Get_puVLL_GR, LIBRARY), Cvoid, ())
+function Bus_Get_puVLL_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_puVLL_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_VLL(ResultPtr, ResultCount)
-    ccall((:Bus_Get_VLL, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Bus_Get_VLL(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Bus_Get_VLL, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Bus_Get_VLL_GR()
-    ccall((:Bus_Get_VLL_GR, LIBRARY), Cvoid, ())
+function Bus_Get_VLL_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_VLL_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_puVmagAngle(ResultPtr, ResultCount)
-    ccall((:Bus_Get_puVmagAngle, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Bus_Get_puVmagAngle(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Bus_Get_puVmagAngle, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Bus_Get_puVmagAngle_GR()
-    ccall((:Bus_Get_puVmagAngle_GR, LIBRARY), Cvoid, ())
+function Bus_Get_puVmagAngle_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_puVmagAngle_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_VMagAngle(ResultPtr, ResultCount)
-    ccall((:Bus_Get_VMagAngle, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Bus_Get_VMagAngle(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Bus_Get_VMagAngle, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Bus_Get_VMagAngle_GR()
-    ccall((:Bus_Get_VMagAngle_GR, LIBRARY), Cvoid, ())
+function Bus_Get_VMagAngle_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_VMagAngle_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_TotalMiles()
-    ccall((:Bus_Get_TotalMiles, LIBRARY), Cdouble, ())
+function Bus_Get_TotalMiles(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_TotalMiles, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_SectionID()
-    ccall((:Bus_Get_SectionID, LIBRARY), Int32, ())
+function Bus_Get_SectionID(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_SectionID, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_LineList(ResultPtr, ResultCount)
-    ccall((:Bus_Get_LineList, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Bus_Get_LineList(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Bus_Get_LineList, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Bus_Get_LineList_GR()
-    ccall((:Bus_Get_LineList_GR, LIBRARY), Cvoid, ())
+function Bus_Get_LineList_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_LineList_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_LoadList(ResultPtr, ResultCount)
-    ccall((:Bus_Get_LoadList, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Bus_Get_LoadList(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Bus_Get_LoadList, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Bus_Get_LoadList_GR()
-    ccall((:Bus_Get_LoadList_GR, LIBRARY), Cvoid, ())
+function Bus_Get_LoadList_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_LoadList_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Bus_Get_ZSC012Matrix(ResultPtr, ResultCount)
-    ccall((:Bus_Get_ZSC012Matrix, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Bus_Get_ZSC012Matrix(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Bus_Get_ZSC012Matrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Bus_Get_ZSC012Matrix_GR()
-    ccall((:Bus_Get_ZSC012Matrix_GR, LIBRARY), Cvoid, ())
+function Bus_Get_ZSC012Matrix_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_ZSC012Matrix_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Capacitors_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:Capacitors_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Capacitors_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Capacitors_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Capacitors_Get_AllNames_GR()
-    ccall((:Capacitors_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function Capacitors_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Capacitors_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Capacitors_Get_First()
-    ccall((:Capacitors_Get_First, LIBRARY), Int32, ())
+function Capacitors_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_Capacitors_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Capacitors_Get_IsDelta()
-    ccall((:Capacitors_Get_IsDelta, LIBRARY), UInt16, ())
+function Capacitors_Get_IsDelta(ctx::Ptr{Cvoid})
+    ccall((:ctx_Capacitors_Get_IsDelta, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Capacitors_Get_kV()
-    ccall((:Capacitors_Get_kV, LIBRARY), Cdouble, ())
+function Capacitors_Get_kV(ctx::Ptr{Cvoid})
+    ccall((:ctx_Capacitors_Get_kV, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Capacitors_Get_kvar()
-    ccall((:Capacitors_Get_kvar, LIBRARY), Cdouble, ())
+function Capacitors_Get_kvar(ctx::Ptr{Cvoid})
+    ccall((:ctx_Capacitors_Get_kvar, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Capacitors_Get_Name()
-    ccall((:Capacitors_Get_Name, LIBRARY), Cstring, ())
+function Capacitors_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_Capacitors_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Capacitors_Get_Next()
-    ccall((:Capacitors_Get_Next, LIBRARY), Int32, ())
+function Capacitors_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_Capacitors_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Capacitors_Get_NumSteps()
-    ccall((:Capacitors_Get_NumSteps, LIBRARY), Int32, ())
+function Capacitors_Get_NumSteps(ctx::Ptr{Cvoid})
+    ccall((:ctx_Capacitors_Get_NumSteps, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Capacitors_Set_IsDelta(Value)
-    ccall((:Capacitors_Set_IsDelta, LIBRARY), Cvoid, (UInt16,), Value)
+function Capacitors_Set_IsDelta(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Capacitors_Set_IsDelta, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function Capacitors_Set_kV(Value)
-    ccall((:Capacitors_Set_kV, LIBRARY), Cvoid, (Cdouble,), Value)
+function Capacitors_Set_kV(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Capacitors_Set_kV, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Capacitors_Set_kvar(Value)
-    ccall((:Capacitors_Set_kvar, LIBRARY), Cvoid, (Cdouble,), Value)
+function Capacitors_Set_kvar(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Capacitors_Set_kvar, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Capacitors_Set_Name(Value)
-    ccall((:Capacitors_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function Capacitors_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Capacitors_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Capacitors_Set_NumSteps(Value)
-    ccall((:Capacitors_Set_NumSteps, LIBRARY), Cvoid, (Int32,), Value)
+function Capacitors_Set_NumSteps(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Capacitors_Set_NumSteps, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Capacitors_Get_Count()
-    ccall((:Capacitors_Get_Count, LIBRARY), Int32, ())
+function Capacitors_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_Capacitors_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Capacitors_AddStep()
-    ccall((:Capacitors_AddStep, LIBRARY), UInt16, ())
+function Capacitors_AddStep(ctx::Ptr{Cvoid})
+    ccall((:ctx_Capacitors_AddStep, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Capacitors_SubtractStep()
-    ccall((:Capacitors_SubtractStep, LIBRARY), UInt16, ())
+function Capacitors_SubtractStep(ctx::Ptr{Cvoid})
+    ccall((:ctx_Capacitors_SubtractStep, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Capacitors_Get_AvailableSteps()
-    ccall((:Capacitors_Get_AvailableSteps, LIBRARY), Int32, ())
+function Capacitors_Get_AvailableSteps(ctx::Ptr{Cvoid})
+    ccall((:ctx_Capacitors_Get_AvailableSteps, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Capacitors_Get_States(ResultPtr, ResultCount)
-    ccall((:Capacitors_Get_States, LIBRARY), Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Capacitors_Get_States(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Capacitors_Get_States, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Capacitors_Get_States_GR()
-    ccall((:Capacitors_Get_States_GR, LIBRARY), Cvoid, ())
+function Capacitors_Get_States_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Capacitors_Get_States_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Capacitors_Set_States(ValuePtr, ValueCount)
-    ccall((:Capacitors_Set_States, LIBRARY), Cvoid, (Ptr{Int32}, Int32), ValuePtr, ValueCount)
+function Capacitors_Set_States(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Capacitors_Set_States, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Int32}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Capacitors_Open()
-    ccall((:Capacitors_Open, LIBRARY), Cvoid, ())
+function Capacitors_Open(ctx::Ptr{Cvoid})
+    ccall((:ctx_Capacitors_Open, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Capacitors_Close()
-    ccall((:Capacitors_Close, LIBRARY), Cvoid, ())
+function Capacitors_Close(ctx::Ptr{Cvoid})
+    ccall((:ctx_Capacitors_Close, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CapControls_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:CapControls_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CapControls_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CapControls_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CapControls_Get_AllNames_GR()
-    ccall((:CapControls_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function CapControls_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CapControls_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CapControls_Get_Capacitor()
-    ccall((:CapControls_Get_Capacitor, LIBRARY), Cstring, ())
+function CapControls_Get_Capacitor(ctx::Ptr{Cvoid})
+    ccall((:ctx_CapControls_Get_Capacitor, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function CapControls_Get_CTratio()
-    ccall((:CapControls_Get_CTratio, LIBRARY), Cdouble, ())
+function CapControls_Get_CTratio(ctx::Ptr{Cvoid})
+    ccall((:ctx_CapControls_Get_CTratio, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CapControls_Get_DeadTime()
-    ccall((:CapControls_Get_DeadTime, LIBRARY), Cdouble, ())
+function CapControls_Get_DeadTime(ctx::Ptr{Cvoid})
+    ccall((:ctx_CapControls_Get_DeadTime, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CapControls_Get_Delay()
-    ccall((:CapControls_Get_Delay, LIBRARY), Cdouble, ())
+function CapControls_Get_Delay(ctx::Ptr{Cvoid})
+    ccall((:ctx_CapControls_Get_Delay, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CapControls_Get_DelayOff()
-    ccall((:CapControls_Get_DelayOff, LIBRARY), Cdouble, ())
+function CapControls_Get_DelayOff(ctx::Ptr{Cvoid})
+    ccall((:ctx_CapControls_Get_DelayOff, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CapControls_Get_First()
-    ccall((:CapControls_Get_First, LIBRARY), Int32, ())
+function CapControls_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_CapControls_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CapControls_Get_Mode()
-    ccall((:CapControls_Get_Mode, LIBRARY), Int32, ())
+function CapControls_Get_Mode(ctx::Ptr{Cvoid})
+    ccall((:ctx_CapControls_Get_Mode, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CapControls_Get_MonitoredObj()
-    ccall((:CapControls_Get_MonitoredObj, LIBRARY), Cstring, ())
+function CapControls_Get_MonitoredObj(ctx::Ptr{Cvoid})
+    ccall((:ctx_CapControls_Get_MonitoredObj, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function CapControls_Get_MonitoredTerm()
-    ccall((:CapControls_Get_MonitoredTerm, LIBRARY), Int32, ())
+function CapControls_Get_MonitoredTerm(ctx::Ptr{Cvoid})
+    ccall((:ctx_CapControls_Get_MonitoredTerm, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CapControls_Get_Name()
-    ccall((:CapControls_Get_Name, LIBRARY), Cstring, ())
+function CapControls_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_CapControls_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function CapControls_Get_Next()
-    ccall((:CapControls_Get_Next, LIBRARY), Int32, ())
+function CapControls_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_CapControls_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CapControls_Get_OFFSetting()
-    ccall((:CapControls_Get_OFFSetting, LIBRARY), Cdouble, ())
+function CapControls_Get_OFFSetting(ctx::Ptr{Cvoid})
+    ccall((:ctx_CapControls_Get_OFFSetting, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CapControls_Get_ONSetting()
-    ccall((:CapControls_Get_ONSetting, LIBRARY), Cdouble, ())
+function CapControls_Get_ONSetting(ctx::Ptr{Cvoid})
+    ccall((:ctx_CapControls_Get_ONSetting, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CapControls_Get_PTratio()
-    ccall((:CapControls_Get_PTratio, LIBRARY), Cdouble, ())
+function CapControls_Get_PTratio(ctx::Ptr{Cvoid})
+    ccall((:ctx_CapControls_Get_PTratio, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CapControls_Get_UseVoltOverride()
-    ccall((:CapControls_Get_UseVoltOverride, LIBRARY), UInt16, ())
+function CapControls_Get_UseVoltOverride(ctx::Ptr{Cvoid})
+    ccall((:ctx_CapControls_Get_UseVoltOverride, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function CapControls_Get_Vmax()
-    ccall((:CapControls_Get_Vmax, LIBRARY), Cdouble, ())
+function CapControls_Get_Vmax(ctx::Ptr{Cvoid})
+    ccall((:ctx_CapControls_Get_Vmax, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CapControls_Get_Vmin()
-    ccall((:CapControls_Get_Vmin, LIBRARY), Cdouble, ())
+function CapControls_Get_Vmin(ctx::Ptr{Cvoid})
+    ccall((:ctx_CapControls_Get_Vmin, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CapControls_Set_Capacitor(Value)
-    ccall((:CapControls_Set_Capacitor, LIBRARY), Cvoid, (Cstring,), Value)
+function CapControls_Set_Capacitor(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CapControls_Set_Capacitor, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function CapControls_Set_CTratio(Value)
-    ccall((:CapControls_Set_CTratio, LIBRARY), Cvoid, (Cdouble,), Value)
+function CapControls_Set_CTratio(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CapControls_Set_CTratio, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CapControls_Set_DeadTime(Value)
-    ccall((:CapControls_Set_DeadTime, LIBRARY), Cvoid, (Cdouble,), Value)
+function CapControls_Set_DeadTime(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CapControls_Set_DeadTime, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CapControls_Set_Delay(Value)
-    ccall((:CapControls_Set_Delay, LIBRARY), Cvoid, (Cdouble,), Value)
+function CapControls_Set_Delay(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CapControls_Set_Delay, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CapControls_Set_DelayOff(Value)
-    ccall((:CapControls_Set_DelayOff, LIBRARY), Cvoid, (Cdouble,), Value)
+function CapControls_Set_DelayOff(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CapControls_Set_DelayOff, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CapControls_Set_Mode(Value)
-    ccall((:CapControls_Set_Mode, LIBRARY), Cvoid, (Int32,), Value)
+function CapControls_Set_Mode(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CapControls_Set_Mode, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function CapControls_Set_MonitoredObj(Value)
-    ccall((:CapControls_Set_MonitoredObj, LIBRARY), Cvoid, (Cstring,), Value)
+function CapControls_Set_MonitoredObj(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CapControls_Set_MonitoredObj, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function CapControls_Set_MonitoredTerm(Value)
-    ccall((:CapControls_Set_MonitoredTerm, LIBRARY), Cvoid, (Int32,), Value)
+function CapControls_Set_MonitoredTerm(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CapControls_Set_MonitoredTerm, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function CapControls_Set_Name(Value)
-    ccall((:CapControls_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function CapControls_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CapControls_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function CapControls_Set_OFFSetting(Value)
-    ccall((:CapControls_Set_OFFSetting, LIBRARY), Cvoid, (Cdouble,), Value)
+function CapControls_Set_OFFSetting(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CapControls_Set_OFFSetting, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CapControls_Set_ONSetting(Value)
-    ccall((:CapControls_Set_ONSetting, LIBRARY), Cvoid, (Cdouble,), Value)
+function CapControls_Set_ONSetting(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CapControls_Set_ONSetting, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CapControls_Set_PTratio(Value)
-    ccall((:CapControls_Set_PTratio, LIBRARY), Cvoid, (Cdouble,), Value)
+function CapControls_Set_PTratio(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CapControls_Set_PTratio, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CapControls_Set_UseVoltOverride(Value)
-    ccall((:CapControls_Set_UseVoltOverride, LIBRARY), Cvoid, (UInt16,), Value)
+function CapControls_Set_UseVoltOverride(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CapControls_Set_UseVoltOverride, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function CapControls_Set_Vmax(Value)
-    ccall((:CapControls_Set_Vmax, LIBRARY), Cvoid, (Cdouble,), Value)
+function CapControls_Set_Vmax(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CapControls_Set_Vmax, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CapControls_Set_Vmin(Value)
-    ccall((:CapControls_Set_Vmin, LIBRARY), Cvoid, (Cdouble,), Value)
+function CapControls_Set_Vmin(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CapControls_Set_Vmin, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CapControls_Get_Count()
-    ccall((:CapControls_Get_Count, LIBRARY), Int32, ())
+function CapControls_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_CapControls_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CapControls_Reset()
-    ccall((:CapControls_Reset, LIBRARY), Cvoid, ())
+function CapControls_Reset(ctx::Ptr{Cvoid})
+    ccall((:ctx_CapControls_Reset, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Get_Name()
-    ccall((:Circuit_Get_Name, LIBRARY), Cstring, ())
+function Circuit_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Get_NumBuses()
-    ccall((:Circuit_Get_NumBuses, LIBRARY), Int32, ())
+function Circuit_Get_NumBuses(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_NumBuses, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Get_NumCktElements()
-    ccall((:Circuit_Get_NumCktElements, LIBRARY), Int32, ())
+function Circuit_Get_NumCktElements(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_NumCktElements, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Get_NumNodes()
-    ccall((:Circuit_Get_NumNodes, LIBRARY), Int32, ())
+function Circuit_Get_NumNodes(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_NumNodes, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Get_LineLosses(ResultPtr, ResultCount)
-    ccall((:Circuit_Get_LineLosses, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Circuit_Get_LineLosses(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Circuit_Get_LineLosses, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Circuit_Get_LineLosses_GR()
-    ccall((:Circuit_Get_LineLosses_GR, LIBRARY), Cvoid, ())
+function Circuit_Get_LineLosses_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_LineLosses_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Get_Losses(ResultPtr, ResultCount)
-    ccall((:Circuit_Get_Losses, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Circuit_Get_Losses(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Circuit_Get_Losses, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Circuit_Get_Losses_GR()
-    ccall((:Circuit_Get_Losses_GR, LIBRARY), Cvoid, ())
+function Circuit_Get_Losses_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_Losses_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Get_AllBusVmag(ResultPtr, ResultCount)
-    ccall((:Circuit_Get_AllBusVmag, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Circuit_Get_AllBusVmag(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Circuit_Get_AllBusVmag, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Circuit_Get_AllBusVmag_GR()
-    ccall((:Circuit_Get_AllBusVmag_GR, LIBRARY), Cvoid, ())
+function Circuit_Get_AllBusVmag_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_AllBusVmag_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Get_AllBusVolts(ResultPtr, ResultCount)
-    ccall((:Circuit_Get_AllBusVolts, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Circuit_Get_AllBusVolts(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Circuit_Get_AllBusVolts, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Circuit_Get_AllBusVolts_GR()
-    ccall((:Circuit_Get_AllBusVolts_GR, LIBRARY), Cvoid, ())
+function Circuit_Get_AllBusVolts_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_AllBusVolts_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Get_AllElementNames(ResultPtr, ResultCount)
-    ccall((:Circuit_Get_AllElementNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Circuit_Get_AllElementNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Circuit_Get_AllElementNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Circuit_Get_AllElementNames_GR()
-    ccall((:Circuit_Get_AllElementNames_GR, LIBRARY), Cvoid, ())
+function Circuit_Get_AllElementNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_AllElementNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Get_SubstationLosses(ResultPtr, ResultCount)
-    ccall((:Circuit_Get_SubstationLosses, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Circuit_Get_SubstationLosses(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Circuit_Get_SubstationLosses, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Circuit_Get_SubstationLosses_GR()
-    ccall((:Circuit_Get_SubstationLosses_GR, LIBRARY), Cvoid, ())
+function Circuit_Get_SubstationLosses_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_SubstationLosses_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Get_TotalPower(ResultPtr, ResultCount)
-    ccall((:Circuit_Get_TotalPower, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Circuit_Get_TotalPower(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Circuit_Get_TotalPower, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Circuit_Get_TotalPower_GR()
-    ccall((:Circuit_Get_TotalPower_GR, LIBRARY), Cvoid, ())
+function Circuit_Get_TotalPower_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_TotalPower_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Disable(Name)
-    ccall((:Circuit_Disable, LIBRARY), Cvoid, (Cstring,), Name)
+function Circuit_Disable(ctx::Ptr{Cvoid}, Name)
+    ccall((:ctx_Circuit_Disable, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Name)
 end
 
-function Circuit_Enable(Name)
-    ccall((:Circuit_Enable, LIBRARY), Cvoid, (Cstring,), Name)
+function Circuit_Enable(ctx::Ptr{Cvoid}, Name)
+    ccall((:ctx_Circuit_Enable, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Name)
 end
 
-function Circuit_FirstPCElement()
-    ccall((:Circuit_FirstPCElement, LIBRARY), Int32, ())
+function Circuit_FirstPCElement(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_FirstPCElement, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_FirstPDElement()
-    ccall((:Circuit_FirstPDElement, LIBRARY), Int32, ())
+function Circuit_FirstPDElement(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_FirstPDElement, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_NextPCElement()
-    ccall((:Circuit_NextPCElement, LIBRARY), Int32, ())
+function Circuit_NextPCElement(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_NextPCElement, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_NextPDElement()
-    ccall((:Circuit_NextPDElement, LIBRARY), Int32, ())
+function Circuit_NextPDElement(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_NextPDElement, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Get_AllBusNames(ResultPtr, ResultCount)
-    ccall((:Circuit_Get_AllBusNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Circuit_Get_AllBusNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Circuit_Get_AllBusNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Circuit_Get_AllBusNames_GR()
-    ccall((:Circuit_Get_AllBusNames_GR, LIBRARY), Cvoid, ())
+function Circuit_Get_AllBusNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_AllBusNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Get_AllElementLosses(ResultPtr, ResultCount)
-    ccall((:Circuit_Get_AllElementLosses, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Circuit_Get_AllElementLosses(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Circuit_Get_AllElementLosses, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Circuit_Get_AllElementLosses_GR()
-    ccall((:Circuit_Get_AllElementLosses_GR, LIBRARY), Cvoid, ())
+function Circuit_Get_AllElementLosses_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_AllElementLosses_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Sample()
-    ccall((:Circuit_Sample, LIBRARY), Cvoid, ())
+function Circuit_Sample(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Sample, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_SaveSample()
-    ccall((:Circuit_SaveSample, LIBRARY), Cvoid, ())
+function Circuit_SaveSample(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_SaveSample, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_SetActiveElement(FullName)
-    ccall((:Circuit_SetActiveElement, LIBRARY), Int32, (Cstring,), FullName)
+function Circuit_SetActiveElement(ctx::Ptr{Cvoid}, FullName)
+    ccall((:ctx_Circuit_SetActiveElement, LIBRARY), Int32, (Ptr{Cvoid}, Cstring,), ctx, FullName)
 end
 
-function Circuit_Capacity(Start, Increment)
-    ccall((:Circuit_Capacity, LIBRARY), Cdouble, (Cdouble, Cdouble), Start, Increment)
+function Circuit_Capacity(ctx::Ptr{Cvoid}, Start, Increment)
+    ccall((:ctx_Circuit_Capacity, LIBRARY), Cdouble, (Ptr{Cvoid}, Cdouble, Cdouble), ctx, Start, Increment)
 end
 
-function Circuit_Get_AllBusVmagPu(ResultPtr, ResultCount)
-    ccall((:Circuit_Get_AllBusVmagPu, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Circuit_Get_AllBusVmagPu(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Circuit_Get_AllBusVmagPu, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Circuit_Get_AllBusVmagPu_GR()
-    ccall((:Circuit_Get_AllBusVmagPu_GR, LIBRARY), Cvoid, ())
+function Circuit_Get_AllBusVmagPu_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_AllBusVmagPu_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_SetActiveBus(BusName)
-    ccall((:Circuit_SetActiveBus, LIBRARY), Int32, (Cstring,), BusName)
+function Circuit_SetActiveBus(ctx::Ptr{Cvoid}, BusName)
+    ccall((:ctx_Circuit_SetActiveBus, LIBRARY), Int32, (Ptr{Cvoid}, Cstring,), ctx, BusName)
 end
 
-function Circuit_SetActiveBusi(BusIndex)
-    ccall((:Circuit_SetActiveBusi, LIBRARY), Int32, (Int32,), BusIndex)
+function Circuit_SetActiveBusi(ctx::Ptr{Cvoid}, BusIndex)
+    ccall((:ctx_Circuit_SetActiveBusi, LIBRARY), Int32, (Ptr{Cvoid}, Int32,), ctx, BusIndex)
 end
 
-function Circuit_Get_AllNodeNames(ResultPtr, ResultCount)
-    ccall((:Circuit_Get_AllNodeNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Circuit_Get_AllNodeNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Circuit_Get_AllNodeNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Circuit_Get_AllNodeNames_GR()
-    ccall((:Circuit_Get_AllNodeNames_GR, LIBRARY), Cvoid, ())
+function Circuit_Get_AllNodeNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_AllNodeNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Get_SystemY(ResultPtr, ResultCount)
-    ccall((:Circuit_Get_SystemY, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Circuit_Get_SystemY(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Circuit_Get_SystemY, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Circuit_Get_SystemY_GR()
-    ccall((:Circuit_Get_SystemY_GR, LIBRARY), Cvoid, ())
+function Circuit_Get_SystemY_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_SystemY_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Get_AllBusDistances(ResultPtr, ResultCount)
-    ccall((:Circuit_Get_AllBusDistances, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Circuit_Get_AllBusDistances(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Circuit_Get_AllBusDistances, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Circuit_Get_AllBusDistances_GR()
-    ccall((:Circuit_Get_AllBusDistances_GR, LIBRARY), Cvoid, ())
+function Circuit_Get_AllBusDistances_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_AllBusDistances_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Get_AllNodeDistances(ResultPtr, ResultCount)
-    ccall((:Circuit_Get_AllNodeDistances, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Circuit_Get_AllNodeDistances(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Circuit_Get_AllNodeDistances, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Circuit_Get_AllNodeDistances_GR()
-    ccall((:Circuit_Get_AllNodeDistances_GR, LIBRARY), Cvoid, ())
+function Circuit_Get_AllNodeDistances_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_AllNodeDistances_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Get_AllNodeDistancesByPhase(ResultPtr, ResultCount, Phase)
-    ccall((:Circuit_Get_AllNodeDistancesByPhase, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, Int32), ResultPtr, ResultCount, Phase)
+function Circuit_Get_AllNodeDistancesByPhase(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, Phase)
+    ccall((:ctx_Circuit_Get_AllNodeDistancesByPhase, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, Int32), ctx, ResultPtr, ResultCount, Phase)
 end
 
-function Circuit_Get_AllNodeDistancesByPhase_GR(Phase)
-    ccall((:Circuit_Get_AllNodeDistancesByPhase_GR, LIBRARY), Cvoid, (Int32,), Phase)
+function Circuit_Get_AllNodeDistancesByPhase_GR(ctx::Ptr{Cvoid}, Phase)
+    ccall((:ctx_Circuit_Get_AllNodeDistancesByPhase_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Phase)
 end
 
-function Circuit_Get_AllNodeVmagByPhase(ResultPtr, ResultCount, Phase)
-    ccall((:Circuit_Get_AllNodeVmagByPhase, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, Int32), ResultPtr, ResultCount, Phase)
+function Circuit_Get_AllNodeVmagByPhase(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, Phase)
+    ccall((:ctx_Circuit_Get_AllNodeVmagByPhase, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, Int32), ctx, ResultPtr, ResultCount, Phase)
 end
 
-function Circuit_Get_AllNodeVmagByPhase_GR(Phase)
-    ccall((:Circuit_Get_AllNodeVmagByPhase_GR, LIBRARY), Cvoid, (Int32,), Phase)
+function Circuit_Get_AllNodeVmagByPhase_GR(ctx::Ptr{Cvoid}, Phase)
+    ccall((:ctx_Circuit_Get_AllNodeVmagByPhase_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Phase)
 end
 
-function Circuit_Get_AllNodeVmagPUByPhase(ResultPtr, ResultCount, Phase)
-    ccall((:Circuit_Get_AllNodeVmagPUByPhase, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, Int32), ResultPtr, ResultCount, Phase)
+function Circuit_Get_AllNodeVmagPUByPhase(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, Phase)
+    ccall((:ctx_Circuit_Get_AllNodeVmagPUByPhase, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, Int32), ctx, ResultPtr, ResultCount, Phase)
 end
 
-function Circuit_Get_AllNodeVmagPUByPhase_GR(Phase)
-    ccall((:Circuit_Get_AllNodeVmagPUByPhase_GR, LIBRARY), Cvoid, (Int32,), Phase)
+function Circuit_Get_AllNodeVmagPUByPhase_GR(ctx::Ptr{Cvoid}, Phase)
+    ccall((:ctx_Circuit_Get_AllNodeVmagPUByPhase_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Phase)
 end
 
-function Circuit_Get_AllNodeNamesByPhase(ResultPtr, ResultCount, Phase)
-    ccall((:Circuit_Get_AllNodeNamesByPhase, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}, Int32), ResultPtr, ResultCount, Phase)
+function Circuit_Get_AllNodeNamesByPhase(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, Phase)
+    ccall((:ctx_Circuit_Get_AllNodeNamesByPhase, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}, Int32), ctx, ResultPtr, ResultCount, Phase)
 end
 
-function Circuit_Get_AllNodeNamesByPhase_GR(Phase)
-    ccall((:Circuit_Get_AllNodeNamesByPhase_GR, LIBRARY), Cvoid, (Int32,), Phase)
+function Circuit_Get_AllNodeNamesByPhase_GR(ctx::Ptr{Cvoid}, Phase)
+    ccall((:ctx_Circuit_Get_AllNodeNamesByPhase_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Phase)
 end
 
-function Circuit_SetActiveClass(ClassName)
-    ccall((:Circuit_SetActiveClass, LIBRARY), Int32, (Cstring,), ClassName)
+function Circuit_SetActiveClass(ctx::Ptr{Cvoid}, ClassName)
+    ccall((:ctx_Circuit_SetActiveClass, LIBRARY), Int32, (Ptr{Cvoid}, Cstring,), ctx, ClassName)
 end
 
-function Circuit_FirstElement()
-    ccall((:Circuit_FirstElement, LIBRARY), Int32, ())
+function Circuit_FirstElement(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_FirstElement, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_NextElement()
-    ccall((:Circuit_NextElement, LIBRARY), Int32, ())
+function Circuit_NextElement(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_NextElement, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_UpdateStorage()
-    ccall((:Circuit_UpdateStorage, LIBRARY), Cvoid, ())
+function Circuit_UpdateStorage(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_UpdateStorage, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Get_ParentPDElement()
-    ccall((:Circuit_Get_ParentPDElement, LIBRARY), Int32, ())
+function Circuit_Get_ParentPDElement(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_ParentPDElement, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_EndOfTimeStepUpdate()
-    ccall((:Circuit_EndOfTimeStepUpdate, LIBRARY), Cvoid, ())
+function Circuit_EndOfTimeStepUpdate(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_EndOfTimeStepUpdate, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Get_YNodeOrder(ResultPtr, ResultCount)
-    ccall((:Circuit_Get_YNodeOrder, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Circuit_Get_YNodeOrder(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Circuit_Get_YNodeOrder, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Circuit_Get_YNodeOrder_GR()
-    ccall((:Circuit_Get_YNodeOrder_GR, LIBRARY), Cvoid, ())
+function Circuit_Get_YNodeOrder_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_YNodeOrder_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Get_YCurrents(ResultPtr, ResultCount)
-    ccall((:Circuit_Get_YCurrents, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Circuit_Get_YCurrents(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Circuit_Get_YCurrents, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Circuit_Get_YCurrents_GR()
-    ccall((:Circuit_Get_YCurrents_GR, LIBRARY), Cvoid, ())
+function Circuit_Get_YCurrents_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_YCurrents_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_Get_YNodeVarray(ResultPtr, ResultCount)
-    ccall((:Circuit_Get_YNodeVarray, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Circuit_Get_YNodeVarray(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Circuit_Get_YNodeVarray, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Circuit_Get_YNodeVarray_GR()
-    ccall((:Circuit_Get_YNodeVarray_GR, LIBRARY), Cvoid, ())
+function Circuit_Get_YNodeVarray_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Get_YNodeVarray_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Circuit_SetCktElementName(Value)
-    ccall((:Circuit_SetCktElementName, LIBRARY), Cvoid, (Cstring,), Value)
+function Circuit_SetCktElementName(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Circuit_SetCktElementName, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Circuit_SetCktElementIndex(Value)
-    ccall((:Circuit_SetCktElementIndex, LIBRARY), Cvoid, (Int32,), Value)
+function Circuit_SetCktElementIndex(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Circuit_SetCktElementIndex, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function CktElement_Get_BusNames(ResultPtr, ResultCount)
-    ccall((:CktElement_Get_BusNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CktElement_Get_BusNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_BusNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CktElement_Get_BusNames_GR()
-    ccall((:CktElement_Get_BusNames_GR, LIBRARY), Cvoid, ())
+function CktElement_Get_BusNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_BusNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_Name()
-    ccall((:CktElement_Get_Name, LIBRARY), Cstring, ())
+function CktElement_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_NumConductors()
-    ccall((:CktElement_Get_NumConductors, LIBRARY), Int32, ())
+function CktElement_Get_NumConductors(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_NumConductors, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_NumPhases()
-    ccall((:CktElement_Get_NumPhases, LIBRARY), Int32, ())
+function CktElement_Get_NumPhases(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_NumPhases, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_NumTerminals()
-    ccall((:CktElement_Get_NumTerminals, LIBRARY), Int32, ())
+function CktElement_Get_NumTerminals(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_NumTerminals, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Set_BusNames(ValuePtr, ValueCount)
-    ccall((:CktElement_Set_BusNames, LIBRARY), Cvoid, (Ptr{Cstring}, Int32), ValuePtr, ValueCount)
+function CktElement_Set_BusNames(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_CktElement_Set_BusNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cstring}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function CktElement_Get_Currents(ResultPtr, ResultCount)
-    ccall((:CktElement_Get_Currents, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CktElement_Get_Currents(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_Currents, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CktElement_Get_Currents_GR()
-    ccall((:CktElement_Get_Currents_GR, LIBRARY), Cvoid, ())
+function CktElement_Get_Currents_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_Currents_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_Voltages(ResultPtr, ResultCount)
-    ccall((:CktElement_Get_Voltages, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CktElement_Get_Voltages(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_Voltages, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CktElement_Get_Voltages_GR()
-    ccall((:CktElement_Get_Voltages_GR, LIBRARY), Cvoid, ())
+function CktElement_Get_Voltages_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_Voltages_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_EmergAmps()
-    ccall((:CktElement_Get_EmergAmps, LIBRARY), Cdouble, ())
+function CktElement_Get_EmergAmps(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_EmergAmps, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_Enabled()
-    ccall((:CktElement_Get_Enabled, LIBRARY), UInt16, ())
+function CktElement_Get_Enabled(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_Enabled, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_Losses(ResultPtr, ResultCount)
-    ccall((:CktElement_Get_Losses, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CktElement_Get_Losses(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_Losses, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CktElement_Get_Losses_GR()
-    ccall((:CktElement_Get_Losses_GR, LIBRARY), Cvoid, ())
+function CktElement_Get_Losses_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_Losses_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_NormalAmps()
-    ccall((:CktElement_Get_NormalAmps, LIBRARY), Cdouble, ())
+function CktElement_Get_NormalAmps(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_NormalAmps, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_PhaseLosses(ResultPtr, ResultCount)
-    ccall((:CktElement_Get_PhaseLosses, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CktElement_Get_PhaseLosses(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_PhaseLosses, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CktElement_Get_PhaseLosses_GR()
-    ccall((:CktElement_Get_PhaseLosses_GR, LIBRARY), Cvoid, ())
+function CktElement_Get_PhaseLosses_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_PhaseLosses_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_Powers(ResultPtr, ResultCount)
-    ccall((:CktElement_Get_Powers, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CktElement_Get_Powers(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_Powers, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CktElement_Get_Powers_GR()
-    ccall((:CktElement_Get_Powers_GR, LIBRARY), Cvoid, ())
+function CktElement_Get_Powers_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_Powers_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_SeqCurrents(ResultPtr, ResultCount)
-    ccall((:CktElement_Get_SeqCurrents, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CktElement_Get_SeqCurrents(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_SeqCurrents, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CktElement_Get_SeqCurrents_GR()
-    ccall((:CktElement_Get_SeqCurrents_GR, LIBRARY), Cvoid, ())
+function CktElement_Get_SeqCurrents_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_SeqCurrents_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_SeqPowers(ResultPtr, ResultCount)
-    ccall((:CktElement_Get_SeqPowers, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CktElement_Get_SeqPowers(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_SeqPowers, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CktElement_Get_SeqPowers_GR()
-    ccall((:CktElement_Get_SeqPowers_GR, LIBRARY), Cvoid, ())
+function CktElement_Get_SeqPowers_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_SeqPowers_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_SeqVoltages(ResultPtr, ResultCount)
-    ccall((:CktElement_Get_SeqVoltages, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CktElement_Get_SeqVoltages(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_SeqVoltages, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CktElement_Get_SeqVoltages_GR()
-    ccall((:CktElement_Get_SeqVoltages_GR, LIBRARY), Cvoid, ())
+function CktElement_Get_SeqVoltages_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_SeqVoltages_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Close(Term, Phs)
-    ccall((:CktElement_Close, LIBRARY), Cvoid, (Int32, Int32), Term, Phs)
+function CktElement_Close(ctx::Ptr{Cvoid}, Term, Phs)
+    ccall((:ctx_CktElement_Close, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32, Int32), ctx, Term, Phs)
 end
 
-function CktElement_Open(Term, Phs)
-    ccall((:CktElement_Open, LIBRARY), Cvoid, (Int32, Int32), Term, Phs)
+function CktElement_Open(ctx::Ptr{Cvoid}, Term, Phs)
+    ccall((:ctx_CktElement_Open, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32, Int32), ctx, Term, Phs)
 end
 
-function CktElement_Set_EmergAmps(Value)
-    ccall((:CktElement_Set_EmergAmps, LIBRARY), Cvoid, (Cdouble,), Value)
+function CktElement_Set_EmergAmps(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CktElement_Set_EmergAmps, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CktElement_Set_Enabled(Value)
-    ccall((:CktElement_Set_Enabled, LIBRARY), Cvoid, (UInt16,), Value)
+function CktElement_Set_Enabled(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CktElement_Set_Enabled, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function CktElement_Set_NormalAmps(Value)
-    ccall((:CktElement_Set_NormalAmps, LIBRARY), Cvoid, (Cdouble,), Value)
+function CktElement_Set_NormalAmps(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CktElement_Set_NormalAmps, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CktElement_IsOpen(Term, Phs)
-    ccall((:CktElement_IsOpen, LIBRARY), UInt16, (Int32, Int32), Term, Phs)
+function CktElement_IsOpen(ctx::Ptr{Cvoid}, Term, Phs)
+    ccall((:ctx_CktElement_IsOpen, LIBRARY), UInt16, (Ptr{Cvoid}, Int32, Int32), ctx, Term, Phs)
 end
 
-function CktElement_Get_AllPropertyNames(ResultPtr, ResultCount)
-    ccall((:CktElement_Get_AllPropertyNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CktElement_Get_AllPropertyNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_AllPropertyNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CktElement_Get_AllPropertyNames_GR()
-    ccall((:CktElement_Get_AllPropertyNames_GR, LIBRARY), Cvoid, ())
+function CktElement_Get_AllPropertyNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_AllPropertyNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_NumProperties()
-    ccall((:CktElement_Get_NumProperties, LIBRARY), Int32, ())
+function CktElement_Get_NumProperties(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_NumProperties, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_Residuals(ResultPtr, ResultCount)
-    ccall((:CktElement_Get_Residuals, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CktElement_Get_Residuals(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_Residuals, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CktElement_Get_Residuals_GR()
-    ccall((:CktElement_Get_Residuals_GR, LIBRARY), Cvoid, ())
+function CktElement_Get_Residuals_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_Residuals_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_Yprim(ResultPtr, ResultCount)
-    ccall((:CktElement_Get_Yprim, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CktElement_Get_Yprim(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_Yprim, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CktElement_Get_Yprim_GR()
-    ccall((:CktElement_Get_Yprim_GR, LIBRARY), Cvoid, ())
+function CktElement_Get_Yprim_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_Yprim_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_DisplayName()
-    ccall((:CktElement_Get_DisplayName, LIBRARY), Cstring, ())
+function CktElement_Get_DisplayName(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_DisplayName, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_GUID()
-    ccall((:CktElement_Get_GUID, LIBRARY), Cstring, ())
+function CktElement_Get_GUID(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_GUID, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_Handle()
-    ccall((:CktElement_Get_Handle, LIBRARY), Int32, ())
+function CktElement_Get_Handle(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_Handle, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Set_DisplayName(Value)
-    ccall((:CktElement_Set_DisplayName, LIBRARY), Cvoid, (Cstring,), Value)
+function CktElement_Set_DisplayName(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CktElement_Set_DisplayName, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function CktElement_Get_Controller(idx)
-    ccall((:CktElement_Get_Controller, LIBRARY), Cstring, (Int32,), idx)
+function CktElement_Get_Controller(ctx::Ptr{Cvoid}, idx)
+    ccall((:ctx_CktElement_Get_Controller, LIBRARY), Cstring, (Ptr{Cvoid}, Int32,), ctx, idx)
 end
 
-function CktElement_Get_EnergyMeter()
-    ccall((:CktElement_Get_EnergyMeter, LIBRARY), Cstring, ())
+function CktElement_Get_EnergyMeter(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_EnergyMeter, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_HasVoltControl()
-    ccall((:CktElement_Get_HasVoltControl, LIBRARY), UInt16, ())
+function CktElement_Get_HasVoltControl(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_HasVoltControl, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_HasSwitchControl()
-    ccall((:CktElement_Get_HasSwitchControl, LIBRARY), UInt16, ())
+function CktElement_Get_HasSwitchControl(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_HasSwitchControl, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_CplxSeqVoltages(ResultPtr, ResultCount)
-    ccall((:CktElement_Get_CplxSeqVoltages, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CktElement_Get_CplxSeqVoltages(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_CplxSeqVoltages, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CktElement_Get_CplxSeqVoltages_GR()
-    ccall((:CktElement_Get_CplxSeqVoltages_GR, LIBRARY), Cvoid, ())
+function CktElement_Get_CplxSeqVoltages_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_CplxSeqVoltages_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_CplxSeqCurrents(ResultPtr, ResultCount)
-    ccall((:CktElement_Get_CplxSeqCurrents, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CktElement_Get_CplxSeqCurrents(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_CplxSeqCurrents, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CktElement_Get_CplxSeqCurrents_GR()
-    ccall((:CktElement_Get_CplxSeqCurrents_GR, LIBRARY), Cvoid, ())
+function CktElement_Get_CplxSeqCurrents_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_CplxSeqCurrents_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_AllVariableNames(ResultPtr, ResultCount)
-    ccall((:CktElement_Get_AllVariableNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CktElement_Get_AllVariableNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_AllVariableNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CktElement_Get_AllVariableNames_GR()
-    ccall((:CktElement_Get_AllVariableNames_GR, LIBRARY), Cvoid, ())
+function CktElement_Get_AllVariableNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_AllVariableNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_AllVariableValues(ResultPtr, ResultCount)
-    ccall((:CktElement_Get_AllVariableValues, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CktElement_Get_AllVariableValues(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_AllVariableValues, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CktElement_Get_AllVariableValues_GR()
-    ccall((:CktElement_Get_AllVariableValues_GR, LIBRARY), Cvoid, ())
+function CktElement_Get_AllVariableValues_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_AllVariableValues_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_Variable(MyVarName, Code)
-    ccall((:CktElement_Get_Variable, LIBRARY), Cdouble, (Cstring, Ptr{Int32}), MyVarName, Code)
+function CktElement_Get_Variable(ctx::Ptr{Cvoid}, MyVarName, Code)
+    ccall((:ctx_CktElement_Get_Variable, LIBRARY), Cdouble, (Ptr{Cvoid}, Cstring, Ptr{Int32}), ctx, MyVarName, Code)
 end
 
-function CktElement_Set_Variable(MyVarName, Code, Value)
-    ccall((:CktElement_Set_Variable, LIBRARY), Cvoid, (Cstring, Ptr{Int32}, Cdouble), MyVarName, Code, Value)
+function CktElement_Set_Variable(ctx::Ptr{Cvoid}, MyVarName, Code, Value)
+    ccall((:ctx_CktElement_Set_Variable, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring, Ptr{Int32}, Cdouble), ctx, MyVarName, Code, Value)
 end
 
-function CktElement_Get_Variablei(Idx, Code)
-    ccall((:CktElement_Get_Variablei, LIBRARY), Cdouble, (Int32, Ptr{Int32}), Idx, Code)
+function CktElement_Get_Variablei(ctx::Ptr{Cvoid}, Idx, Code)
+    ccall((:ctx_CktElement_Get_Variablei, LIBRARY), Cdouble, (Ptr{Cvoid}, Int32, Ptr{Int32}), ctx, Idx, Code)
 end
 
-function CktElement_Set_Variablei(Idx, Code, Value)
-    ccall((:CktElement_Set_Variablei, LIBRARY), Cvoid, (Int32, Ptr{Int32}, Cdouble), Idx, Code, Value)
+function CktElement_Set_Variablei(ctx::Ptr{Cvoid}, Idx, Code, Value)
+    ccall((:ctx_CktElement_Set_Variablei, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32, Ptr{Int32}, Cdouble), ctx, Idx, Code, Value)
 end
 
-function CktElement_Get_NodeOrder(ResultPtr, ResultCount)
-    ccall((:CktElement_Get_NodeOrder, LIBRARY), Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CktElement_Get_NodeOrder(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_NodeOrder, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CktElement_Get_NodeOrder_GR()
-    ccall((:CktElement_Get_NodeOrder_GR, LIBRARY), Cvoid, ())
+function CktElement_Get_NodeOrder_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_NodeOrder_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_HasOCPDevice()
-    ccall((:CktElement_Get_HasOCPDevice, LIBRARY), UInt16, ())
+function CktElement_Get_HasOCPDevice(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_HasOCPDevice, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_NumControls()
-    ccall((:CktElement_Get_NumControls, LIBRARY), Int32, ())
+function CktElement_Get_NumControls(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_NumControls, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_OCPDevIndex()
-    ccall((:CktElement_Get_OCPDevIndex, LIBRARY), Int32, ())
+function CktElement_Get_OCPDevIndex(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_OCPDevIndex, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_OCPDevType()
-    ccall((:CktElement_Get_OCPDevType, LIBRARY), Int32, ())
+function CktElement_Get_OCPDevType(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_OCPDevType, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_CurrentsMagAng(ResultPtr, ResultCount)
-    ccall((:CktElement_Get_CurrentsMagAng, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CktElement_Get_CurrentsMagAng(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_CurrentsMagAng, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CktElement_Get_CurrentsMagAng_GR()
-    ccall((:CktElement_Get_CurrentsMagAng_GR, LIBRARY), Cvoid, ())
+function CktElement_Get_CurrentsMagAng_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_CurrentsMagAng_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_VoltagesMagAng(ResultPtr, ResultCount)
-    ccall((:CktElement_Get_VoltagesMagAng, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CktElement_Get_VoltagesMagAng(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_VoltagesMagAng, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CktElement_Get_VoltagesMagAng_GR()
-    ccall((:CktElement_Get_VoltagesMagAng_GR, LIBRARY), Cvoid, ())
+function CktElement_Get_VoltagesMagAng_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_VoltagesMagAng_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_IsIsolated()
-    ccall((:CktElement_Get_IsIsolated, LIBRARY), UInt16, ())
+function CktElement_Get_IsIsolated(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_IsIsolated, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_TotalPowers(ResultPtr, ResultCount)
-    ccall((:CktElement_Get_TotalPowers, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CktElement_Get_TotalPowers(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_TotalPowers, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CktElement_Get_TotalPowers_GR()
-    ccall((:CktElement_Get_TotalPowers_GR, LIBRARY), Cvoid, ())
+function CktElement_Get_TotalPowers_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_TotalPowers_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CmathLib_Get_cmplx(ResultPtr, ResultCount, RealPart, ImagPart)
-    ccall((:CmathLib_Get_cmplx, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, Cdouble, Cdouble), ResultPtr, ResultCount, RealPart, ImagPart)
+function CmathLib_Get_cmplx(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, RealPart, ImagPart)
+    ccall((:ctx_CmathLib_Get_cmplx, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, Cdouble, Cdouble), ctx, ResultPtr, ResultCount, RealPart, ImagPart)
 end
 
-function CmathLib_Get_cmplx_GR(RealPart, ImagPart)
-    ccall((:CmathLib_Get_cmplx_GR, LIBRARY), Cvoid, (Cdouble, Cdouble), RealPart, ImagPart)
+function CmathLib_Get_cmplx_GR(ctx::Ptr{Cvoid}, RealPart, ImagPart)
+    ccall((:ctx_CmathLib_Get_cmplx_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble, Cdouble), ctx, RealPart, ImagPart)
 end
 
-function CmathLib_Get_cabs(realpart, imagpart)
-    ccall((:CmathLib_Get_cabs, LIBRARY), Cdouble, (Cdouble, Cdouble), realpart, imagpart)
+function CmathLib_Get_cabs(ctx::Ptr{Cvoid}, realpart, imagpart)
+    ccall((:ctx_CmathLib_Get_cabs, LIBRARY), Cdouble, (Ptr{Cvoid}, Cdouble, Cdouble), ctx, realpart, imagpart)
 end
 
-function CmathLib_Get_cdang(RealPart, ImagPart)
-    ccall((:CmathLib_Get_cdang, LIBRARY), Cdouble, (Cdouble, Cdouble), RealPart, ImagPart)
+function CmathLib_Get_cdang(ctx::Ptr{Cvoid}, RealPart, ImagPart)
+    ccall((:ctx_CmathLib_Get_cdang, LIBRARY), Cdouble, (Ptr{Cvoid}, Cdouble, Cdouble), ctx, RealPart, ImagPart)
 end
 
-function CmathLib_Get_ctopolardeg(ResultPtr, ResultCount, RealPart, ImagPart)
-    ccall((:CmathLib_Get_ctopolardeg, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, Cdouble, Cdouble), ResultPtr, ResultCount, RealPart, ImagPart)
+function CmathLib_Get_ctopolardeg(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, RealPart, ImagPart)
+    ccall((:ctx_CmathLib_Get_ctopolardeg, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, Cdouble, Cdouble), ctx, ResultPtr, ResultCount, RealPart, ImagPart)
 end
 
-function CmathLib_Get_ctopolardeg_GR(RealPart, ImagPart)
-    ccall((:CmathLib_Get_ctopolardeg_GR, LIBRARY), Cvoid, (Cdouble, Cdouble), RealPart, ImagPart)
+function CmathLib_Get_ctopolardeg_GR(ctx::Ptr{Cvoid}, RealPart, ImagPart)
+    ccall((:ctx_CmathLib_Get_ctopolardeg_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble, Cdouble), ctx, RealPart, ImagPart)
 end
 
-function CmathLib_Get_pdegtocomplex(ResultPtr, ResultCount, magnitude, angle)
-    ccall((:CmathLib_Get_pdegtocomplex, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, Cdouble, Cdouble), ResultPtr, ResultCount, magnitude, angle)
+function CmathLib_Get_pdegtocomplex(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, magnitude, angle)
+    ccall((:ctx_CmathLib_Get_pdegtocomplex, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, Cdouble, Cdouble), ctx, ResultPtr, ResultCount, magnitude, angle)
 end
 
-function CmathLib_Get_pdegtocomplex_GR(magnitude, angle)
-    ccall((:CmathLib_Get_pdegtocomplex_GR, LIBRARY), Cvoid, (Cdouble, Cdouble), magnitude, angle)
+function CmathLib_Get_pdegtocomplex_GR(ctx::Ptr{Cvoid}, magnitude, angle)
+    ccall((:ctx_CmathLib_Get_pdegtocomplex_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble, Cdouble), ctx, magnitude, angle)
 end
 
-function CmathLib_Get_cmul(ResultPtr, ResultCount, a1, b1, a2, b2)
-    ccall((:CmathLib_Get_cmul, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, Cdouble, Cdouble, Cdouble, Cdouble), ResultPtr, ResultCount, a1, b1, a2, b2)
+function CmathLib_Get_cmul(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, a1, b1, a2, b2)
+    ccall((:ctx_CmathLib_Get_cmul, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, Cdouble, Cdouble, Cdouble, Cdouble), ctx, ResultPtr, ResultCount, a1, b1, a2, b2)
 end
 
-function CmathLib_Get_cmul_GR(a1, b1, a2, b2)
-    ccall((:CmathLib_Get_cmul_GR, LIBRARY), Cvoid, (Cdouble, Cdouble, Cdouble, Cdouble), a1, b1, a2, b2)
+function CmathLib_Get_cmul_GR(ctx::Ptr{Cvoid}, a1, b1, a2, b2)
+    ccall((:ctx_CmathLib_Get_cmul_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble, Cdouble, Cdouble, Cdouble), ctx, a1, b1, a2, b2)
 end
 
-function CmathLib_Get_cdiv(ResultPtr, ResultCount, a1, b1, a2, b2)
-    ccall((:CmathLib_Get_cdiv, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, Cdouble, Cdouble, Cdouble, Cdouble), ResultPtr, ResultCount, a1, b1, a2, b2)
+function CmathLib_Get_cdiv(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, a1, b1, a2, b2)
+    ccall((:ctx_CmathLib_Get_cdiv, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, Cdouble, Cdouble, Cdouble, Cdouble), ctx, ResultPtr, ResultCount, a1, b1, a2, b2)
 end
 
-function CmathLib_Get_cdiv_GR(a1, b1, a2, b2)
-    ccall((:CmathLib_Get_cdiv_GR, LIBRARY), Cvoid, (Cdouble, Cdouble, Cdouble, Cdouble), a1, b1, a2, b2)
+function CmathLib_Get_cdiv_GR(ctx::Ptr{Cvoid}, a1, b1, a2, b2)
+    ccall((:ctx_CmathLib_Get_cdiv_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble, Cdouble, Cdouble, Cdouble), ctx, a1, b1, a2, b2)
 end
 
-function CtrlQueue_ClearQueue()
-    ccall((:CtrlQueue_ClearQueue, LIBRARY), Cvoid, ())
+function CtrlQueue_ClearQueue(ctx::Ptr{Cvoid})
+    ccall((:ctx_CtrlQueue_ClearQueue, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CtrlQueue_Delete(ActionHandle)
-    ccall((:CtrlQueue_Delete, LIBRARY), Cvoid, (Int32,), ActionHandle)
+function CtrlQueue_Delete(ctx::Ptr{Cvoid}, ActionHandle)
+    ccall((:ctx_CtrlQueue_Delete, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, ActionHandle)
 end
 
-function CtrlQueue_Get_ActionCode()
-    ccall((:CtrlQueue_Get_ActionCode, LIBRARY), Int32, ())
+function CtrlQueue_Get_ActionCode(ctx::Ptr{Cvoid})
+    ccall((:ctx_CtrlQueue_Get_ActionCode, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CtrlQueue_Get_DeviceHandle()
-    ccall((:CtrlQueue_Get_DeviceHandle, LIBRARY), Int32, ())
+function CtrlQueue_Get_DeviceHandle(ctx::Ptr{Cvoid})
+    ccall((:ctx_CtrlQueue_Get_DeviceHandle, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CtrlQueue_Get_NumActions()
-    ccall((:CtrlQueue_Get_NumActions, LIBRARY), Int32, ())
+function CtrlQueue_Get_NumActions(ctx::Ptr{Cvoid})
+    ccall((:ctx_CtrlQueue_Get_NumActions, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CtrlQueue_Push(Hour, Seconds, ActionCode, DeviceHandle)
-    ccall((:CtrlQueue_Push, LIBRARY), Int32, (Int32, Cdouble, Int32, Int32), Hour, Seconds, ActionCode, DeviceHandle)
+function CtrlQueue_Push(ctx::Ptr{Cvoid}, Hour, Seconds, ActionCode, DeviceHandle)
+    ccall((:ctx_CtrlQueue_Push, LIBRARY), Int32, (Ptr{Cvoid}, Int32, Cdouble, Int32, Int32), ctx, Hour, Seconds, ActionCode, DeviceHandle)
 end
 
-function CtrlQueue_Show()
-    ccall((:CtrlQueue_Show, LIBRARY), Cvoid, ())
+function CtrlQueue_Show(ctx::Ptr{Cvoid})
+    ccall((:ctx_CtrlQueue_Show, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CtrlQueue_ClearActions()
-    ccall((:CtrlQueue_ClearActions, LIBRARY), Cvoid, ())
+function CtrlQueue_ClearActions(ctx::Ptr{Cvoid})
+    ccall((:ctx_CtrlQueue_ClearActions, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CtrlQueue_Get_PopAction()
-    ccall((:CtrlQueue_Get_PopAction, LIBRARY), Int32, ())
+function CtrlQueue_Get_PopAction(ctx::Ptr{Cvoid})
+    ccall((:ctx_CtrlQueue_Get_PopAction, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CtrlQueue_Set_Action(Param1)
-    ccall((:CtrlQueue_Set_Action, LIBRARY), Cvoid, (Int32,), Param1)
+function CtrlQueue_Set_Action(ctx::Ptr{Cvoid}, Param1)
+    ccall((:ctx_CtrlQueue_Set_Action, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Param1)
 end
 
-function CtrlQueue_Get_QueueSize()
-    ccall((:CtrlQueue_Get_QueueSize, LIBRARY), Int32, ())
+function CtrlQueue_Get_QueueSize(ctx::Ptr{Cvoid})
+    ccall((:ctx_CtrlQueue_Get_QueueSize, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CtrlQueue_DoAllQueue()
-    ccall((:CtrlQueue_DoAllQueue, LIBRARY), Cvoid, ())
+function CtrlQueue_DoAllQueue(ctx::Ptr{Cvoid})
+    ccall((:ctx_CtrlQueue_DoAllQueue, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CtrlQueue_Get_Queue(ResultPtr, ResultCount)
-    ccall((:CtrlQueue_Get_Queue, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CtrlQueue_Get_Queue(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CtrlQueue_Get_Queue, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CtrlQueue_Get_Queue_GR()
-    ccall((:CtrlQueue_Get_Queue_GR, LIBRARY), Cvoid, ())
+function CtrlQueue_Get_Queue_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CtrlQueue_Get_Queue_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_Get_NumCircuits()
-    ccall((:DSS_Get_NumCircuits, LIBRARY), Int32, ())
+function DSS_Get_NumCircuits(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_Get_NumCircuits, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_ClearAll()
-    ccall((:DSS_ClearAll, LIBRARY), Cvoid, ())
+function DSS_ClearAll(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_ClearAll, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_Get_Version()
-    ccall((:DSS_Get_Version, LIBRARY), Cstring, ())
+function DSS_Get_Version(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_Get_Version, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_Start(code)
-    ccall((:DSS_Start, LIBRARY), UInt16, (Int32,), code)
+function DSS_Start(ctx::Ptr{Cvoid}, code)
+    ccall((:ctx_DSS_Start, LIBRARY), UInt16, (Ptr{Cvoid}, Int32,), ctx, code)
 end
 
-function DSS_Get_Classes(ResultPtr, ResultCount)
-    ccall((:DSS_Get_Classes, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function DSS_Get_Classes(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_DSS_Get_Classes, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function DSS_Get_Classes_GR()
-    ccall((:DSS_Get_Classes_GR, LIBRARY), Cvoid, ())
+function DSS_Get_Classes_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_Get_Classes_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_Get_UserClasses(ResultPtr, ResultCount)
-    ccall((:DSS_Get_UserClasses, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function DSS_Get_UserClasses(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_DSS_Get_UserClasses, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function DSS_Get_UserClasses_GR()
-    ccall((:DSS_Get_UserClasses_GR, LIBRARY), Cvoid, ())
+function DSS_Get_UserClasses_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_Get_UserClasses_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_Get_NumClasses()
-    ccall((:DSS_Get_NumClasses, LIBRARY), Int32, ())
+function DSS_Get_NumClasses(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_Get_NumClasses, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_Get_NumUserClasses()
-    ccall((:DSS_Get_NumUserClasses, LIBRARY), Int32, ())
+function DSS_Get_NumUserClasses(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_Get_NumUserClasses, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_Get_DataPath()
-    ccall((:DSS_Get_DataPath, LIBRARY), Cstring, ())
+function DSS_Get_DataPath(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_Get_DataPath, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_Set_DataPath(Value)
-    ccall((:DSS_Set_DataPath, LIBRARY), Cvoid, (Cstring,), Value)
+function DSS_Set_DataPath(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_DSS_Set_DataPath, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function DSS_Reset()
-    ccall((:DSS_Reset, LIBRARY), Cvoid, ())
+function DSS_Reset(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_Reset, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_Get_DefaultEditor()
-    ccall((:DSS_Get_DefaultEditor, LIBRARY), Cstring, ())
+function DSS_Get_DefaultEditor(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_Get_DefaultEditor, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_SetActiveClass(ClassName)
-    ccall((:DSS_SetActiveClass, LIBRARY), Int32, (Cstring,), ClassName)
+function DSS_SetActiveClass(ctx::Ptr{Cvoid}, ClassName)
+    ccall((:ctx_DSS_SetActiveClass, LIBRARY), Int32, (Ptr{Cvoid}, Cstring,), ctx, ClassName)
 end
 
-function DSS_Get_AllowForms()
-    ccall((:DSS_Get_AllowForms, LIBRARY), UInt16, ())
+function DSS_Get_AllowForms(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_Get_AllowForms, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_Set_AllowForms(Value)
-    ccall((:DSS_Set_AllowForms, LIBRARY), Cvoid, (UInt16,), Value)
+function DSS_Set_AllowForms(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_DSS_Set_AllowForms, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function DSS_Get_AllowEditor()
-    ccall((:DSS_Get_AllowEditor, LIBRARY), UInt16, ())
+function DSS_Get_AllowEditor(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_Get_AllowEditor, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_Set_AllowEditor(Value)
-    ccall((:DSS_Set_AllowEditor, LIBRARY), Cvoid, (UInt16,), Value)
+function DSS_Set_AllowEditor(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_DSS_Set_AllowEditor, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function DSS_Get_LegacyModels()
-    ccall((:DSS_Get_LegacyModels, LIBRARY), UInt16, ())
+function DSS_Get_LegacyModels(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_Get_LegacyModels, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_Set_LegacyModels(Value)
-    ccall((:DSS_Set_LegacyModels, LIBRARY), Cvoid, (UInt16,), Value)
+function DSS_Set_LegacyModels(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_DSS_Set_LegacyModels, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function DSS_Get_AllowDOScmd()
-    ccall((:DSS_Get_AllowDOScmd, LIBRARY), UInt16, ())
+function DSS_Get_AllowDOScmd(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_Get_AllowDOScmd, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_Set_AllowDOScmd(Value)
-    ccall((:DSS_Set_AllowDOScmd, LIBRARY), Cvoid, (UInt16,), Value)
+function DSS_Set_AllowDOScmd(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_DSS_Set_AllowDOScmd, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function DSS_Get_AllowChangeDir()
-    ccall((:DSS_Get_AllowChangeDir, LIBRARY), UInt16, ())
+function DSS_Get_AllowChangeDir(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_Get_AllowChangeDir, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_Set_AllowChangeDir(Value)
-    ccall((:DSS_Set_AllowChangeDir, LIBRARY), Cvoid, (UInt16,), Value)
+function DSS_Set_AllowChangeDir(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_DSS_Set_AllowChangeDir, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function DSS_Get_COMErrorResults()
-    ccall((:DSS_Get_COMErrorResults, LIBRARY), UInt16, ())
+function DSS_Get_COMErrorResults(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_Get_COMErrorResults, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_Set_COMErrorResults(Value)
-    ccall((:DSS_Set_COMErrorResults, LIBRARY), Cvoid, (UInt16,), Value)
+function DSS_Set_COMErrorResults(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_DSS_Set_COMErrorResults, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function DSSElement_Get_AllPropertyNames(ResultPtr, ResultCount)
-    ccall((:DSSElement_Get_AllPropertyNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function DSSElement_Get_AllPropertyNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_DSSElement_Get_AllPropertyNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function DSSElement_Get_AllPropertyNames_GR()
-    ccall((:DSSElement_Get_AllPropertyNames_GR, LIBRARY), Cvoid, ())
+function DSSElement_Get_AllPropertyNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSSElement_Get_AllPropertyNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function DSSElement_Get_Name()
-    ccall((:DSSElement_Get_Name, LIBRARY), Cstring, ())
+function DSSElement_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSSElement_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function DSSElement_Get_NumProperties()
-    ccall((:DSSElement_Get_NumProperties, LIBRARY), Int32, ())
+function DSSElement_Get_NumProperties(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSSElement_Get_NumProperties, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function DSSElement_ToJSON(options)
-    ccall((:DSSElement_ToJSON, LIBRARY), Cstring, (Int32,), options)
+function DSSElement_ToJSON(ctx::Ptr{Cvoid}, options)
+    ccall((:ctx_DSSElement_ToJSON, LIBRARY), Cstring, (Ptr{Cvoid}, Int32,), ctx, options)
 end
 
-function DSSimComs_BusVoltagepu(ResultPtr, ResultCount, Index)
-    ccall((:DSSimComs_BusVoltagepu, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, Csize_t), ResultPtr, ResultCount, Index)
+function DSSimComs_BusVoltagepu(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, Index)
+    ccall((:ctx_DSSimComs_BusVoltagepu, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, Csize_t), ctx, ResultPtr, ResultCount, Index)
 end
 
-function DSSimComs_BusVoltagepu_GR(Index)
-    ccall((:DSSimComs_BusVoltagepu_GR, LIBRARY), Cvoid, (Csize_t,), Index)
+function DSSimComs_BusVoltagepu_GR(ctx::Ptr{Cvoid}, Index)
+    ccall((:ctx_DSSimComs_BusVoltagepu_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, Csize_t,), ctx, Index)
 end
 
-function DSSimComs_BusVoltage(ResultPtr, ResultCount, Index)
-    ccall((:DSSimComs_BusVoltage, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, Csize_t), ResultPtr, ResultCount, Index)
+function DSSimComs_BusVoltage(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, Index)
+    ccall((:ctx_DSSimComs_BusVoltage, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, Csize_t), ctx, ResultPtr, ResultCount, Index)
 end
 
-function DSSimComs_BusVoltage_GR(Index)
-    ccall((:DSSimComs_BusVoltage_GR, LIBRARY), Cvoid, (Csize_t,), Index)
+function DSSimComs_BusVoltage_GR(ctx::Ptr{Cvoid}, Index)
+    ccall((:ctx_DSSimComs_BusVoltage_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, Csize_t,), ctx, Index)
 end
 
-function DSSProgress_Close()
-    ccall((:DSSProgress_Close, LIBRARY), Cvoid, ())
+function DSSProgress_Close(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSSProgress_Close, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function DSSProgress_Set_Caption(Value)
-    ccall((:DSSProgress_Set_Caption, LIBRARY), Cvoid, (Cstring,), Value)
+function DSSProgress_Set_Caption(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_DSSProgress_Set_Caption, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function DSSProgress_Set_PctProgress(Value)
-    ccall((:DSSProgress_Set_PctProgress, LIBRARY), Cvoid, (Int32,), Value)
+function DSSProgress_Set_PctProgress(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_DSSProgress_Set_PctProgress, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function DSSProgress_Show()
-    ccall((:DSSProgress_Show, LIBRARY), Cvoid, ())
+function DSSProgress_Show(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSSProgress_Show, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function DSSProperty_Get_Description()
-    ccall((:DSSProperty_Get_Description, LIBRARY), Cstring, ())
+function DSSProperty_Get_Description(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSSProperty_Get_Description, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function DSSProperty_Get_Name()
-    ccall((:DSSProperty_Get_Name, LIBRARY), Cstring, ())
+function DSSProperty_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSSProperty_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function DSSProperty_Get_Val()
-    ccall((:DSSProperty_Get_Val, LIBRARY), Cstring, ())
+function DSSProperty_Get_Val(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSSProperty_Get_Val, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function DSSProperty_Set_Val(Value)
-    ccall((:DSSProperty_Set_Val, LIBRARY), Cvoid, (Cstring,), Value)
+function DSSProperty_Set_Val(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_DSSProperty_Set_Val, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function DSSProperty_Set_Name(Value)
-    ccall((:DSSProperty_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function DSSProperty_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_DSSProperty_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function DSSProperty_Set_Index(Value)
-    ccall((:DSSProperty_Set_Index, LIBRARY), Cvoid, (Int32,), Value)
+function DSSProperty_Set_Index(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_DSSProperty_Set_Index, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function DSS_Executive_Get_Command(i)
-    ccall((:DSS_Executive_Get_Command, LIBRARY), Cstring, (Int32,), i)
+function DSS_Executive_Get_Command(ctx::Ptr{Cvoid}, i)
+    ccall((:ctx_DSS_Executive_Get_Command, LIBRARY), Cstring, (Ptr{Cvoid}, Int32,), ctx, i)
 end
 
-function DSS_Executive_Get_NumCommands()
-    ccall((:DSS_Executive_Get_NumCommands, LIBRARY), Int32, ())
+function DSS_Executive_Get_NumCommands(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_Executive_Get_NumCommands, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_Executive_Get_NumOptions()
-    ccall((:DSS_Executive_Get_NumOptions, LIBRARY), Int32, ())
+function DSS_Executive_Get_NumOptions(ctx::Ptr{Cvoid})
+    ccall((:ctx_DSS_Executive_Get_NumOptions, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function DSS_Executive_Get_Option(i)
-    ccall((:DSS_Executive_Get_Option, LIBRARY), Cstring, (Int32,), i)
+function DSS_Executive_Get_Option(ctx::Ptr{Cvoid}, i)
+    ccall((:ctx_DSS_Executive_Get_Option, LIBRARY), Cstring, (Ptr{Cvoid}, Int32,), ctx, i)
 end
 
-function DSS_Executive_Get_CommandHelp(i)
-    ccall((:DSS_Executive_Get_CommandHelp, LIBRARY), Cstring, (Int32,), i)
+function DSS_Executive_Get_CommandHelp(ctx::Ptr{Cvoid}, i)
+    ccall((:ctx_DSS_Executive_Get_CommandHelp, LIBRARY), Cstring, (Ptr{Cvoid}, Int32,), ctx, i)
 end
 
-function DSS_Executive_Get_OptionHelp(i)
-    ccall((:DSS_Executive_Get_OptionHelp, LIBRARY), Cstring, (Int32,), i)
+function DSS_Executive_Get_OptionHelp(ctx::Ptr{Cvoid}, i)
+    ccall((:ctx_DSS_Executive_Get_OptionHelp, LIBRARY), Cstring, (Ptr{Cvoid}, Int32,), ctx, i)
 end
 
-function DSS_Executive_Get_OptionValue(i)
-    ccall((:DSS_Executive_Get_OptionValue, LIBRARY), Cstring, (Int32,), i)
+function DSS_Executive_Get_OptionValue(ctx::Ptr{Cvoid}, i)
+    ccall((:ctx_DSS_Executive_Get_OptionValue, LIBRARY), Cstring, (Ptr{Cvoid}, Int32,), ctx, i)
 end
 
-function Error_Get_Description()
-    ccall((:Error_Get_Description, LIBRARY), Cstring, ())
+function Error_Get_Description(ctx::Ptr{Cvoid})
+    ccall((:ctx_Error_Get_Description, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Error_Get_Number()
-    ccall((:Error_Get_Number, LIBRARY), Int32, ())
+function Error_Get_Number(ctx::Ptr{Cvoid})
+    ccall((:ctx_Error_Get_Number, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Error_Get_NumberPtr()
-    ccall((:Error_Get_NumberPtr, LIBRARY), Ptr{Int32}, ())
+function Error_Get_NumberPtr(ctx::Ptr{Cvoid})
+    ccall((:ctx_Error_Get_NumberPtr, LIBRARY), Ptr{Int32}, (Ptr{Cvoid},), ctx)
 end
 
-function Fuses_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:Fuses_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Fuses_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Fuses_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Fuses_Get_AllNames_GR()
-    ccall((:Fuses_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function Fuses_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Fuses_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Fuses_Get_Count()
-    ccall((:Fuses_Get_Count, LIBRARY), Int32, ())
+function Fuses_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_Fuses_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Fuses_Get_First()
-    ccall((:Fuses_Get_First, LIBRARY), Int32, ())
+function Fuses_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_Fuses_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Fuses_Get_Name()
-    ccall((:Fuses_Get_Name, LIBRARY), Cstring, ())
+function Fuses_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_Fuses_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Fuses_Get_Next()
-    ccall((:Fuses_Get_Next, LIBRARY), Int32, ())
+function Fuses_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_Fuses_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Fuses_Set_Name(Value)
-    ccall((:Fuses_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function Fuses_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Fuses_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Fuses_Get_MonitoredObj()
-    ccall((:Fuses_Get_MonitoredObj, LIBRARY), Cstring, ())
+function Fuses_Get_MonitoredObj(ctx::Ptr{Cvoid})
+    ccall((:ctx_Fuses_Get_MonitoredObj, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Fuses_Get_MonitoredTerm()
-    ccall((:Fuses_Get_MonitoredTerm, LIBRARY), Int32, ())
+function Fuses_Get_MonitoredTerm(ctx::Ptr{Cvoid})
+    ccall((:ctx_Fuses_Get_MonitoredTerm, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Fuses_Get_SwitchedObj()
-    ccall((:Fuses_Get_SwitchedObj, LIBRARY), Cstring, ())
+function Fuses_Get_SwitchedObj(ctx::Ptr{Cvoid})
+    ccall((:ctx_Fuses_Get_SwitchedObj, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Fuses_Set_MonitoredObj(Value)
-    ccall((:Fuses_Set_MonitoredObj, LIBRARY), Cvoid, (Cstring,), Value)
+function Fuses_Set_MonitoredObj(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Fuses_Set_MonitoredObj, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Fuses_Set_MonitoredTerm(Value)
-    ccall((:Fuses_Set_MonitoredTerm, LIBRARY), Cvoid, (Int32,), Value)
+function Fuses_Set_MonitoredTerm(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Fuses_Set_MonitoredTerm, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Fuses_Set_SwitchedObj(Value)
-    ccall((:Fuses_Set_SwitchedObj, LIBRARY), Cvoid, (Cstring,), Value)
+function Fuses_Set_SwitchedObj(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Fuses_Set_SwitchedObj, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Fuses_Get_SwitchedTerm()
-    ccall((:Fuses_Get_SwitchedTerm, LIBRARY), Int32, ())
+function Fuses_Get_SwitchedTerm(ctx::Ptr{Cvoid})
+    ccall((:ctx_Fuses_Get_SwitchedTerm, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Fuses_Set_SwitchedTerm(Value)
-    ccall((:Fuses_Set_SwitchedTerm, LIBRARY), Cvoid, (Int32,), Value)
+function Fuses_Set_SwitchedTerm(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Fuses_Set_SwitchedTerm, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Fuses_Get_TCCcurve()
-    ccall((:Fuses_Get_TCCcurve, LIBRARY), Cstring, ())
+function Fuses_Get_TCCcurve(ctx::Ptr{Cvoid})
+    ccall((:ctx_Fuses_Get_TCCcurve, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Fuses_Set_TCCcurve(Value)
-    ccall((:Fuses_Set_TCCcurve, LIBRARY), Cvoid, (Cstring,), Value)
+function Fuses_Set_TCCcurve(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Fuses_Set_TCCcurve, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Fuses_Get_RatedCurrent()
-    ccall((:Fuses_Get_RatedCurrent, LIBRARY), Cdouble, ())
+function Fuses_Get_RatedCurrent(ctx::Ptr{Cvoid})
+    ccall((:ctx_Fuses_Get_RatedCurrent, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Fuses_Set_RatedCurrent(Value)
-    ccall((:Fuses_Set_RatedCurrent, LIBRARY), Cvoid, (Cdouble,), Value)
+function Fuses_Set_RatedCurrent(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Fuses_Set_RatedCurrent, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Fuses_Get_Delay()
-    ccall((:Fuses_Get_Delay, LIBRARY), Cdouble, ())
+function Fuses_Get_Delay(ctx::Ptr{Cvoid})
+    ccall((:ctx_Fuses_Get_Delay, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Fuses_Open()
-    ccall((:Fuses_Open, LIBRARY), Cvoid, ())
+function Fuses_Open(ctx::Ptr{Cvoid})
+    ccall((:ctx_Fuses_Open, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Fuses_Close()
-    ccall((:Fuses_Close, LIBRARY), Cvoid, ())
+function Fuses_Close(ctx::Ptr{Cvoid})
+    ccall((:ctx_Fuses_Close, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Fuses_Set_Delay(Value)
-    ccall((:Fuses_Set_Delay, LIBRARY), Cvoid, (Cdouble,), Value)
+function Fuses_Set_Delay(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Fuses_Set_Delay, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Fuses_IsBlown()
-    ccall((:Fuses_IsBlown, LIBRARY), UInt16, ())
+function Fuses_IsBlown(ctx::Ptr{Cvoid})
+    ccall((:ctx_Fuses_IsBlown, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Fuses_Get_idx()
-    ccall((:Fuses_Get_idx, LIBRARY), Int32, ())
+function Fuses_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_Fuses_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Fuses_Set_idx(Value)
-    ccall((:Fuses_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function Fuses_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Fuses_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Fuses_Reset()
-    ccall((:Fuses_Reset, LIBRARY), Cvoid, ())
+function Fuses_Reset(ctx::Ptr{Cvoid})
+    ccall((:ctx_Fuses_Reset, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Fuses_Get_State(ResultPtr, ResultCount)
-    ccall((:Fuses_Get_State, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Fuses_Get_State(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Fuses_Get_State, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Fuses_Set_State(ValuePtr, ValueCount)
-    ccall((:Fuses_Set_State, LIBRARY), Cvoid, (Ptr{Cstring}, Int32), ValuePtr, ValueCount)
+function Fuses_Set_State(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Fuses_Set_State, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cstring}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Fuses_Get_NormalState(ResultPtr, ResultCount)
-    ccall((:Fuses_Get_NormalState, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Fuses_Get_NormalState(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Fuses_Get_NormalState, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Fuses_Set_NormalState(ValuePtr, ValueCount)
-    ccall((:Fuses_Set_NormalState, LIBRARY), Cvoid, (Ptr{Cstring}, Int32), ValuePtr, ValueCount)
+function Fuses_Set_NormalState(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Fuses_Set_NormalState, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cstring}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Fuses_Get_NumPhases()
-    ccall((:Fuses_Get_NumPhases, LIBRARY), Int32, ())
+function Fuses_Get_NumPhases(ctx::Ptr{Cvoid})
+    ccall((:ctx_Fuses_Get_NumPhases, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:Generators_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Generators_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Generators_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Generators_Get_AllNames_GR()
-    ccall((:Generators_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function Generators_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Get_First()
-    ccall((:Generators_Get_First, LIBRARY), Int32, ())
+function Generators_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Get_Name()
-    ccall((:Generators_Get_Name, LIBRARY), Cstring, ())
+function Generators_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Get_Next()
-    ccall((:Generators_Get_Next, LIBRARY), Int32, ())
+function Generators_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Get_RegisterNames(ResultPtr, ResultCount)
-    ccall((:Generators_Get_RegisterNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Generators_Get_RegisterNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Generators_Get_RegisterNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Generators_Get_RegisterNames_GR()
-    ccall((:Generators_Get_RegisterNames_GR, LIBRARY), Cvoid, ())
+function Generators_Get_RegisterNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_RegisterNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Get_RegisterValues(ResultPtr, ResultCount)
-    ccall((:Generators_Get_RegisterValues, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Generators_Get_RegisterValues(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Generators_Get_RegisterValues, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Generators_Get_RegisterValues_GR()
-    ccall((:Generators_Get_RegisterValues_GR, LIBRARY), Cvoid, ())
+function Generators_Get_RegisterValues_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_RegisterValues_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Get_ForcedON()
-    ccall((:Generators_Get_ForcedON, LIBRARY), UInt16, ())
+function Generators_Get_ForcedON(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_ForcedON, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Set_ForcedON(Value)
-    ccall((:Generators_Set_ForcedON, LIBRARY), Cvoid, (UInt16,), Value)
+function Generators_Set_ForcedON(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Generators_Set_ForcedON, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function Generators_Set_Name(Value)
-    ccall((:Generators_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function Generators_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Generators_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Generators_Get_kV()
-    ccall((:Generators_Get_kV, LIBRARY), Cdouble, ())
+function Generators_Get_kV(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_kV, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Get_kvar()
-    ccall((:Generators_Get_kvar, LIBRARY), Cdouble, ())
+function Generators_Get_kvar(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_kvar, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Get_kW()
-    ccall((:Generators_Get_kW, LIBRARY), Cdouble, ())
+function Generators_Get_kW(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_kW, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Get_PF()
-    ccall((:Generators_Get_PF, LIBRARY), Cdouble, ())
+function Generators_Get_PF(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_PF, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Get_Phases()
-    ccall((:Generators_Get_Phases, LIBRARY), Int32, ())
+function Generators_Get_Phases(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_Phases, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Set_kV(Value)
-    ccall((:Generators_Set_kV, LIBRARY), Cvoid, (Cdouble,), Value)
+function Generators_Set_kV(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Generators_Set_kV, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Generators_Set_kvar(Value)
-    ccall((:Generators_Set_kvar, LIBRARY), Cvoid, (Cdouble,), Value)
+function Generators_Set_kvar(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Generators_Set_kvar, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Generators_Set_kW(Value)
-    ccall((:Generators_Set_kW, LIBRARY), Cvoid, (Cdouble,), Value)
+function Generators_Set_kW(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Generators_Set_kW, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Generators_Set_PF(Value)
-    ccall((:Generators_Set_PF, LIBRARY), Cvoid, (Cdouble,), Value)
+function Generators_Set_PF(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Generators_Set_PF, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Generators_Set_Phases(Value)
-    ccall((:Generators_Set_Phases, LIBRARY), Cvoid, (Int32,), Value)
+function Generators_Set_Phases(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Generators_Set_Phases, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Generators_Get_Count()
-    ccall((:Generators_Get_Count, LIBRARY), Int32, ())
+function Generators_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Get_idx()
-    ccall((:Generators_Get_idx, LIBRARY), Int32, ())
+function Generators_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Set_idx(Value)
-    ccall((:Generators_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function Generators_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Generators_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Generators_Get_Model()
-    ccall((:Generators_Get_Model, LIBRARY), Int32, ())
+function Generators_Get_Model(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_Model, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Set_Model(Value)
-    ccall((:Generators_Set_Model, LIBRARY), Cvoid, (Int32,), Value)
+function Generators_Set_Model(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Generators_Set_Model, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Generators_Get_kVArated()
-    ccall((:Generators_Get_kVArated, LIBRARY), Cdouble, ())
+function Generators_Get_kVArated(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_kVArated, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Set_kVArated(Value)
-    ccall((:Generators_Set_kVArated, LIBRARY), Cvoid, (Cdouble,), Value)
+function Generators_Set_kVArated(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Generators_Set_kVArated, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Generators_Get_Vmaxpu()
-    ccall((:Generators_Get_Vmaxpu, LIBRARY), Cdouble, ())
+function Generators_Get_Vmaxpu(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_Vmaxpu, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Get_Vminpu()
-    ccall((:Generators_Get_Vminpu, LIBRARY), Cdouble, ())
+function Generators_Get_Vminpu(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_Vminpu, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Set_Vmaxpu(Value)
-    ccall((:Generators_Set_Vmaxpu, LIBRARY), Cvoid, (Cdouble,), Value)
+function Generators_Set_Vmaxpu(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Generators_Set_Vmaxpu, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Generators_Set_Vminpu(Value)
-    ccall((:Generators_Set_Vminpu, LIBRARY), Cvoid, (Cdouble,), Value)
+function Generators_Set_Vminpu(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Generators_Set_Vminpu, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Generators_Get_daily()
-    ccall((:Generators_Get_daily, LIBRARY), Cstring, ())
+function Generators_Get_daily(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_daily, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Set_daily(Value)
-    ccall((:Generators_Set_daily, LIBRARY), Cvoid, (Cstring,), Value)
+function Generators_Set_daily(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Generators_Set_daily, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Generators_Get_duty()
-    ccall((:Generators_Get_duty, LIBRARY), Cstring, ())
+function Generators_Get_duty(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_duty, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Set_duty(Value)
-    ccall((:Generators_Set_duty, LIBRARY), Cvoid, (Cstring,), Value)
+function Generators_Set_duty(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Generators_Set_duty, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Generators_Get_Yearly()
-    ccall((:Generators_Get_Yearly, LIBRARY), Cstring, ())
+function Generators_Get_Yearly(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_Yearly, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Set_Yearly(Value)
-    ccall((:Generators_Set_Yearly, LIBRARY), Cvoid, (Cstring,), Value)
+function Generators_Set_Yearly(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Generators_Set_Yearly, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Generators_Get_Status()
-    ccall((:Generators_Get_Status, LIBRARY), Int32, ())
+function Generators_Get_Status(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_Status, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Set_Status(Value)
-    ccall((:Generators_Set_Status, LIBRARY), Cvoid, (Int32,), Value)
+function Generators_Set_Status(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Generators_Set_Status, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Generators_Get_IsDelta()
-    ccall((:Generators_Get_IsDelta, LIBRARY), UInt16, ())
+function Generators_Get_IsDelta(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_IsDelta, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Set_IsDelta(Value)
-    ccall((:Generators_Set_IsDelta, LIBRARY), Cvoid, (UInt16,), Value)
+function Generators_Set_IsDelta(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Generators_Set_IsDelta, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function Generators_Get_kva()
-    ccall((:Generators_Get_kva, LIBRARY), Cdouble, ())
+function Generators_Get_kva(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_kva, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Set_kva(Value)
-    ccall((:Generators_Set_kva, LIBRARY), Cvoid, (Cdouble,), Value)
+function Generators_Set_kva(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Generators_Set_kva, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Generators_Get_Class_()
-    ccall((:Generators_Get_Class_, LIBRARY), Int32, ())
+function Generators_Get_Class_(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_Class_, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Set_Class_(Value)
-    ccall((:Generators_Set_Class_, LIBRARY), Cvoid, (Int32,), Value)
+function Generators_Set_Class_(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Generators_Set_Class_, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Generators_Get_Bus1()
-    ccall((:Generators_Get_Bus1, LIBRARY), Cstring, ())
+function Generators_Get_Bus1(ctx::Ptr{Cvoid})
+    ccall((:ctx_Generators_Get_Bus1, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Generators_Set_Bus1(Value)
-    ccall((:Generators_Set_Bus1, LIBRARY), Cvoid, (Cstring,), Value)
+function Generators_Set_Bus1(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Generators_Set_Bus1, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function GICSources_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:GICSources_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function GICSources_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_GICSources_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function GICSources_Get_AllNames_GR()
-    ccall((:GICSources_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function GICSources_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_GICSources_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function GICSources_Get_Count()
-    ccall((:GICSources_Get_Count, LIBRARY), Int32, ())
+function GICSources_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_GICSources_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function GICSources_Get_First()
-    ccall((:GICSources_Get_First, LIBRARY), Int32, ())
+function GICSources_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_GICSources_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function GICSources_Get_Next()
-    ccall((:GICSources_Get_Next, LIBRARY), Int32, ())
+function GICSources_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_GICSources_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function GICSources_Get_Name()
-    ccall((:GICSources_Get_Name, LIBRARY), Cstring, ())
+function GICSources_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_GICSources_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function GICSources_Set_Name(Value)
-    ccall((:GICSources_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function GICSources_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_GICSources_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function GICSources_Get_Phases()
-    ccall((:GICSources_Get_Phases, LIBRARY), Int32, ())
+function GICSources_Get_Phases(ctx::Ptr{Cvoid})
+    ccall((:ctx_GICSources_Get_Phases, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function GICSources_Set_Phases(Value)
-    ccall((:GICSources_Set_Phases, LIBRARY), Cvoid, (Int32,), Value)
+function GICSources_Set_Phases(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_GICSources_Set_Phases, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function GICSources_Get_Bus1()
-    ccall((:GICSources_Get_Bus1, LIBRARY), Cstring, ())
+function GICSources_Get_Bus1(ctx::Ptr{Cvoid})
+    ccall((:ctx_GICSources_Get_Bus1, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function GICSources_Get_Bus2()
-    ccall((:GICSources_Get_Bus2, LIBRARY), Cstring, ())
+function GICSources_Get_Bus2(ctx::Ptr{Cvoid})
+    ccall((:ctx_GICSources_Get_Bus2, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function GICSources_Get_EN()
-    ccall((:GICSources_Get_EN, LIBRARY), Cdouble, ())
+function GICSources_Get_EN(ctx::Ptr{Cvoid})
+    ccall((:ctx_GICSources_Get_EN, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function GICSources_Set_EN(Value)
-    ccall((:GICSources_Set_EN, LIBRARY), Cvoid, (Cdouble,), Value)
+function GICSources_Set_EN(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_GICSources_Set_EN, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function GICSources_Get_EE()
-    ccall((:GICSources_Get_EE, LIBRARY), Cdouble, ())
+function GICSources_Get_EE(ctx::Ptr{Cvoid})
+    ccall((:ctx_GICSources_Get_EE, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function GICSources_Set_EE(Value)
-    ccall((:GICSources_Set_EE, LIBRARY), Cvoid, (Cdouble,), Value)
+function GICSources_Set_EE(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_GICSources_Set_EE, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function GICSources_Get_Lat1()
-    ccall((:GICSources_Get_Lat1, LIBRARY), Cdouble, ())
+function GICSources_Get_Lat1(ctx::Ptr{Cvoid})
+    ccall((:ctx_GICSources_Get_Lat1, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function GICSources_Set_Lat1(Value)
-    ccall((:GICSources_Set_Lat1, LIBRARY), Cvoid, (Cdouble,), Value)
+function GICSources_Set_Lat1(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_GICSources_Set_Lat1, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function GICSources_Get_Lat2()
-    ccall((:GICSources_Get_Lat2, LIBRARY), Cdouble, ())
+function GICSources_Get_Lat2(ctx::Ptr{Cvoid})
+    ccall((:ctx_GICSources_Get_Lat2, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function GICSources_Set_Lat2(Value)
-    ccall((:GICSources_Set_Lat2, LIBRARY), Cvoid, (Cdouble,), Value)
+function GICSources_Set_Lat2(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_GICSources_Set_Lat2, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function GICSources_Get_Lon1()
-    ccall((:GICSources_Get_Lon1, LIBRARY), Cdouble, ())
+function GICSources_Get_Lon1(ctx::Ptr{Cvoid})
+    ccall((:ctx_GICSources_Get_Lon1, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function GICSources_Set_Lon1(Value)
-    ccall((:GICSources_Set_Lon1, LIBRARY), Cvoid, (Cdouble,), Value)
+function GICSources_Set_Lon1(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_GICSources_Set_Lon1, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function GICSources_Get_Lon2()
-    ccall((:GICSources_Get_Lon2, LIBRARY), Cdouble, ())
+function GICSources_Get_Lon2(ctx::Ptr{Cvoid})
+    ccall((:ctx_GICSources_Get_Lon2, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function GICSources_Set_Lon2(Value)
-    ccall((:GICSources_Set_Lon2, LIBRARY), Cvoid, (Cdouble,), Value)
+function GICSources_Set_Lon2(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_GICSources_Set_Lon2, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function GICSources_Get_Volts()
-    ccall((:GICSources_Get_Volts, LIBRARY), Cdouble, ())
+function GICSources_Get_Volts(ctx::Ptr{Cvoid})
+    ccall((:ctx_GICSources_Get_Volts, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function GICSources_Set_Volts(Value)
-    ccall((:GICSources_Set_Volts, LIBRARY), Cvoid, (Cdouble,), Value)
+function GICSources_Set_Volts(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_GICSources_Set_Volts, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function ISources_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:ISources_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function ISources_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_ISources_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function ISources_Get_AllNames_GR()
-    ccall((:ISources_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function ISources_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_ISources_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function ISources_Get_Count()
-    ccall((:ISources_Get_Count, LIBRARY), Int32, ())
+function ISources_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_ISources_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function ISources_Get_First()
-    ccall((:ISources_Get_First, LIBRARY), Int32, ())
+function ISources_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_ISources_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function ISources_Get_Next()
-    ccall((:ISources_Get_Next, LIBRARY), Int32, ())
+function ISources_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_ISources_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function ISources_Get_Name()
-    ccall((:ISources_Get_Name, LIBRARY), Cstring, ())
+function ISources_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_ISources_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function ISources_Set_Name(Value)
-    ccall((:ISources_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function ISources_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_ISources_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function ISources_Get_Amps()
-    ccall((:ISources_Get_Amps, LIBRARY), Cdouble, ())
+function ISources_Get_Amps(ctx::Ptr{Cvoid})
+    ccall((:ctx_ISources_Get_Amps, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function ISources_Set_Amps(Value)
-    ccall((:ISources_Set_Amps, LIBRARY), Cvoid, (Cdouble,), Value)
+function ISources_Set_Amps(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_ISources_Set_Amps, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function ISources_Get_AngleDeg()
-    ccall((:ISources_Get_AngleDeg, LIBRARY), Cdouble, ())
+function ISources_Get_AngleDeg(ctx::Ptr{Cvoid})
+    ccall((:ctx_ISources_Get_AngleDeg, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function ISources_Get_Frequency()
-    ccall((:ISources_Get_Frequency, LIBRARY), Cdouble, ())
+function ISources_Get_Frequency(ctx::Ptr{Cvoid})
+    ccall((:ctx_ISources_Get_Frequency, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function ISources_Set_AngleDeg(Value)
-    ccall((:ISources_Set_AngleDeg, LIBRARY), Cvoid, (Cdouble,), Value)
+function ISources_Set_AngleDeg(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_ISources_Set_AngleDeg, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function ISources_Set_Frequency(Value)
-    ccall((:ISources_Set_Frequency, LIBRARY), Cvoid, (Cdouble,), Value)
+function ISources_Set_Frequency(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_ISources_Set_Frequency, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function LineCodes_Get_Count()
-    ccall((:LineCodes_Get_Count, LIBRARY), Int32, ())
+function LineCodes_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineCodes_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LineCodes_Get_First()
-    ccall((:LineCodes_Get_First, LIBRARY), Int32, ())
+function LineCodes_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineCodes_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LineCodes_Get_Next()
-    ccall((:LineCodes_Get_Next, LIBRARY), Int32, ())
+function LineCodes_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineCodes_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LineCodes_Get_Name()
-    ccall((:LineCodes_Get_Name, LIBRARY), Cstring, ())
+function LineCodes_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineCodes_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function LineCodes_Set_Name(Value)
-    ccall((:LineCodes_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function LineCodes_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineCodes_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function LineCodes_Get_IsZ1Z0()
-    ccall((:LineCodes_Get_IsZ1Z0, LIBRARY), UInt16, ())
+function LineCodes_Get_IsZ1Z0(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineCodes_Get_IsZ1Z0, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function LineCodes_Get_Units()
-    ccall((:LineCodes_Get_Units, LIBRARY), Int32, ())
+function LineCodes_Get_Units(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineCodes_Get_Units, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LineCodes_Set_Units(Value)
-    ccall((:LineCodes_Set_Units, LIBRARY), Cvoid, (Int32,), Value)
+function LineCodes_Set_Units(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineCodes_Set_Units, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function LineCodes_Get_Phases()
-    ccall((:LineCodes_Get_Phases, LIBRARY), Int32, ())
+function LineCodes_Get_Phases(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineCodes_Get_Phases, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LineCodes_Set_Phases(Value)
-    ccall((:LineCodes_Set_Phases, LIBRARY), Cvoid, (Int32,), Value)
+function LineCodes_Set_Phases(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineCodes_Set_Phases, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function LineCodes_Get_R1()
-    ccall((:LineCodes_Get_R1, LIBRARY), Cdouble, ())
+function LineCodes_Get_R1(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineCodes_Get_R1, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function LineCodes_Set_R1(Value)
-    ccall((:LineCodes_Set_R1, LIBRARY), Cvoid, (Cdouble,), Value)
+function LineCodes_Set_R1(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineCodes_Set_R1, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function LineCodes_Get_X1()
-    ccall((:LineCodes_Get_X1, LIBRARY), Cdouble, ())
+function LineCodes_Get_X1(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineCodes_Get_X1, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function LineCodes_Set_X1(Value)
-    ccall((:LineCodes_Set_X1, LIBRARY), Cvoid, (Cdouble,), Value)
+function LineCodes_Set_X1(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineCodes_Set_X1, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function LineCodes_Get_R0()
-    ccall((:LineCodes_Get_R0, LIBRARY), Cdouble, ())
+function LineCodes_Get_R0(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineCodes_Get_R0, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function LineCodes_Get_X0()
-    ccall((:LineCodes_Get_X0, LIBRARY), Cdouble, ())
+function LineCodes_Get_X0(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineCodes_Get_X0, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function LineCodes_Set_R0(Value)
-    ccall((:LineCodes_Set_R0, LIBRARY), Cvoid, (Cdouble,), Value)
+function LineCodes_Set_R0(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineCodes_Set_R0, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function LineCodes_Set_X0(Value)
-    ccall((:LineCodes_Set_X0, LIBRARY), Cvoid, (Cdouble,), Value)
+function LineCodes_Set_X0(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineCodes_Set_X0, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function LineCodes_Get_C0()
-    ccall((:LineCodes_Get_C0, LIBRARY), Cdouble, ())
+function LineCodes_Get_C0(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineCodes_Get_C0, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function LineCodes_Get_C1()
-    ccall((:LineCodes_Get_C1, LIBRARY), Cdouble, ())
+function LineCodes_Get_C1(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineCodes_Get_C1, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function LineCodes_Set_C0(Value)
-    ccall((:LineCodes_Set_C0, LIBRARY), Cvoid, (Cdouble,), Value)
+function LineCodes_Set_C0(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineCodes_Set_C0, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function LineCodes_Set_C1(Value)
-    ccall((:LineCodes_Set_C1, LIBRARY), Cvoid, (Cdouble,), Value)
+function LineCodes_Set_C1(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineCodes_Set_C1, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function LineCodes_Get_Cmatrix(ResultPtr, ResultCount)
-    ccall((:LineCodes_Get_Cmatrix, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function LineCodes_Get_Cmatrix(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_LineCodes_Get_Cmatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function LineCodes_Get_Cmatrix_GR()
-    ccall((:LineCodes_Get_Cmatrix_GR, LIBRARY), Cvoid, ())
+function LineCodes_Get_Cmatrix_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineCodes_Get_Cmatrix_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function LineCodes_Get_Rmatrix(ResultPtr, ResultCount)
-    ccall((:LineCodes_Get_Rmatrix, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function LineCodes_Get_Rmatrix(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_LineCodes_Get_Rmatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function LineCodes_Get_Rmatrix_GR()
-    ccall((:LineCodes_Get_Rmatrix_GR, LIBRARY), Cvoid, ())
+function LineCodes_Get_Rmatrix_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineCodes_Get_Rmatrix_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function LineCodes_Get_Xmatrix(ResultPtr, ResultCount)
-    ccall((:LineCodes_Get_Xmatrix, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function LineCodes_Get_Xmatrix(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_LineCodes_Get_Xmatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function LineCodes_Get_Xmatrix_GR()
-    ccall((:LineCodes_Get_Xmatrix_GR, LIBRARY), Cvoid, ())
+function LineCodes_Get_Xmatrix_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineCodes_Get_Xmatrix_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function LineCodes_Set_Cmatrix(ValuePtr, ValueCount)
-    ccall((:LineCodes_Set_Cmatrix, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function LineCodes_Set_Cmatrix(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_LineCodes_Set_Cmatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function LineCodes_Set_Rmatrix(ValuePtr, ValueCount)
-    ccall((:LineCodes_Set_Rmatrix, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function LineCodes_Set_Rmatrix(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_LineCodes_Set_Rmatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function LineCodes_Set_Xmatrix(ValuePtr, ValueCount)
-    ccall((:LineCodes_Set_Xmatrix, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function LineCodes_Set_Xmatrix(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_LineCodes_Set_Xmatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function LineCodes_Get_NormAmps()
-    ccall((:LineCodes_Get_NormAmps, LIBRARY), Cdouble, ())
+function LineCodes_Get_NormAmps(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineCodes_Get_NormAmps, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function LineCodes_Set_NormAmps(Value)
-    ccall((:LineCodes_Set_NormAmps, LIBRARY), Cvoid, (Cdouble,), Value)
+function LineCodes_Set_NormAmps(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineCodes_Set_NormAmps, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function LineCodes_Get_EmergAmps()
-    ccall((:LineCodes_Get_EmergAmps, LIBRARY), Cdouble, ())
+function LineCodes_Get_EmergAmps(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineCodes_Get_EmergAmps, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function LineCodes_Set_EmergAmps(Value)
-    ccall((:LineCodes_Set_EmergAmps, LIBRARY), Cvoid, (Cdouble,), Value)
+function LineCodes_Set_EmergAmps(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineCodes_Set_EmergAmps, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function LineCodes_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:LineCodes_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function LineCodes_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_LineCodes_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function LineCodes_Get_AllNames_GR()
-    ccall((:LineCodes_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function LineCodes_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineCodes_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:Lines_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Lines_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Lines_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Lines_Get_AllNames_GR()
-    ccall((:Lines_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function Lines_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_Bus1()
-    ccall((:Lines_Get_Bus1, LIBRARY), Cstring, ())
+function Lines_Get_Bus1(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_Bus1, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_Bus2()
-    ccall((:Lines_Get_Bus2, LIBRARY), Cstring, ())
+function Lines_Get_Bus2(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_Bus2, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_First()
-    ccall((:Lines_Get_First, LIBRARY), Int32, ())
+function Lines_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_Length()
-    ccall((:Lines_Get_Length, LIBRARY), Cdouble, ())
+function Lines_Get_Length(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_Length, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_LineCode()
-    ccall((:Lines_Get_LineCode, LIBRARY), Cstring, ())
+function Lines_Get_LineCode(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_LineCode, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_Name()
-    ccall((:Lines_Get_Name, LIBRARY), Cstring, ())
+function Lines_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_Next()
-    ccall((:Lines_Get_Next, LIBRARY), Int32, ())
+function Lines_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_Phases()
-    ccall((:Lines_Get_Phases, LIBRARY), Int32, ())
+function Lines_Get_Phases(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_Phases, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_R1()
-    ccall((:Lines_Get_R1, LIBRARY), Cdouble, ())
+function Lines_Get_R1(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_R1, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_X1()
-    ccall((:Lines_Get_X1, LIBRARY), Cdouble, ())
+function Lines_Get_X1(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_X1, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_New(Name)
-    ccall((:Lines_New, LIBRARY), Int32, (Cstring,), Name)
+function Lines_New(ctx::Ptr{Cvoid}, Name)
+    ccall((:ctx_Lines_New, LIBRARY), Int32, (Ptr{Cvoid}, Cstring,), ctx, Name)
 end
 
-function Lines_Set_Bus1(Value)
-    ccall((:Lines_Set_Bus1, LIBRARY), Cvoid, (Cstring,), Value)
+function Lines_Set_Bus1(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_Bus1, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Lines_Set_Bus2(Value)
-    ccall((:Lines_Set_Bus2, LIBRARY), Cvoid, (Cstring,), Value)
+function Lines_Set_Bus2(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_Bus2, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Lines_Set_Length(Value)
-    ccall((:Lines_Set_Length, LIBRARY), Cvoid, (Cdouble,), Value)
+function Lines_Set_Length(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_Length, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Lines_Set_LineCode(Value)
-    ccall((:Lines_Set_LineCode, LIBRARY), Cvoid, (Cstring,), Value)
+function Lines_Set_LineCode(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_LineCode, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Lines_Set_Name(Value)
-    ccall((:Lines_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function Lines_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Lines_Set_Phases(Value)
-    ccall((:Lines_Set_Phases, LIBRARY), Cvoid, (Int32,), Value)
+function Lines_Set_Phases(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_Phases, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Lines_Set_R1(Value)
-    ccall((:Lines_Set_R1, LIBRARY), Cvoid, (Cdouble,), Value)
+function Lines_Set_R1(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_R1, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Lines_Set_X1(Value)
-    ccall((:Lines_Set_X1, LIBRARY), Cvoid, (Cdouble,), Value)
+function Lines_Set_X1(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_X1, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Lines_Get_C0()
-    ccall((:Lines_Get_C0, LIBRARY), Cdouble, ())
+function Lines_Get_C0(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_C0, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_C1()
-    ccall((:Lines_Get_C1, LIBRARY), Cdouble, ())
+function Lines_Get_C1(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_C1, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_Cmatrix(ResultPtr, ResultCount)
-    ccall((:Lines_Get_Cmatrix, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Lines_Get_Cmatrix(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Lines_Get_Cmatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Lines_Get_Cmatrix_GR()
-    ccall((:Lines_Get_Cmatrix_GR, LIBRARY), Cvoid, ())
+function Lines_Get_Cmatrix_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_Cmatrix_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_R0()
-    ccall((:Lines_Get_R0, LIBRARY), Cdouble, ())
+function Lines_Get_R0(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_R0, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_Rmatrix(ResultPtr, ResultCount)
-    ccall((:Lines_Get_Rmatrix, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Lines_Get_Rmatrix(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Lines_Get_Rmatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Lines_Get_Rmatrix_GR()
-    ccall((:Lines_Get_Rmatrix_GR, LIBRARY), Cvoid, ())
+function Lines_Get_Rmatrix_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_Rmatrix_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_X0()
-    ccall((:Lines_Get_X0, LIBRARY), Cdouble, ())
+function Lines_Get_X0(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_X0, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_Xmatrix(ResultPtr, ResultCount)
-    ccall((:Lines_Get_Xmatrix, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Lines_Get_Xmatrix(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Lines_Get_Xmatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Lines_Get_Xmatrix_GR()
-    ccall((:Lines_Get_Xmatrix_GR, LIBRARY), Cvoid, ())
+function Lines_Get_Xmatrix_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_Xmatrix_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Set_C0(Value)
-    ccall((:Lines_Set_C0, LIBRARY), Cvoid, (Cdouble,), Value)
+function Lines_Set_C0(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_C0, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Lines_Set_C1(Value)
-    ccall((:Lines_Set_C1, LIBRARY), Cvoid, (Cdouble,), Value)
+function Lines_Set_C1(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_C1, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Lines_Set_Cmatrix(ValuePtr, ValueCount)
-    ccall((:Lines_Set_Cmatrix, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function Lines_Set_Cmatrix(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Lines_Set_Cmatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Lines_Set_R0(Value)
-    ccall((:Lines_Set_R0, LIBRARY), Cvoid, (Cdouble,), Value)
+function Lines_Set_R0(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_R0, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Lines_Set_Rmatrix(ValuePtr, ValueCount)
-    ccall((:Lines_Set_Rmatrix, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function Lines_Set_Rmatrix(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Lines_Set_Rmatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Lines_Set_X0(Value)
-    ccall((:Lines_Set_X0, LIBRARY), Cvoid, (Cdouble,), Value)
+function Lines_Set_X0(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_X0, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Lines_Set_Xmatrix(ValuePtr, ValueCount)
-    ccall((:Lines_Set_Xmatrix, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function Lines_Set_Xmatrix(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Lines_Set_Xmatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Lines_Get_EmergAmps()
-    ccall((:Lines_Get_EmergAmps, LIBRARY), Cdouble, ())
+function Lines_Get_EmergAmps(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_EmergAmps, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_NormAmps()
-    ccall((:Lines_Get_NormAmps, LIBRARY), Cdouble, ())
+function Lines_Get_NormAmps(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_NormAmps, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Set_EmergAmps(Value)
-    ccall((:Lines_Set_EmergAmps, LIBRARY), Cvoid, (Cdouble,), Value)
+function Lines_Set_EmergAmps(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_EmergAmps, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Lines_Set_NormAmps(Value)
-    ccall((:Lines_Set_NormAmps, LIBRARY), Cvoid, (Cdouble,), Value)
+function Lines_Set_NormAmps(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_NormAmps, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Lines_Get_Geometry()
-    ccall((:Lines_Get_Geometry, LIBRARY), Cstring, ())
+function Lines_Get_Geometry(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_Geometry, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Set_Geometry(Value)
-    ccall((:Lines_Set_Geometry, LIBRARY), Cvoid, (Cstring,), Value)
+function Lines_Set_Geometry(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_Geometry, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Lines_Get_Rg()
-    ccall((:Lines_Get_Rg, LIBRARY), Cdouble, ())
+function Lines_Get_Rg(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_Rg, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_Rho()
-    ccall((:Lines_Get_Rho, LIBRARY), Cdouble, ())
+function Lines_Get_Rho(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_Rho, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_Xg()
-    ccall((:Lines_Get_Xg, LIBRARY), Cdouble, ())
+function Lines_Get_Xg(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_Xg, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Set_Rg(Value)
-    ccall((:Lines_Set_Rg, LIBRARY), Cvoid, (Cdouble,), Value)
+function Lines_Set_Rg(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_Rg, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Lines_Set_Rho(Value)
-    ccall((:Lines_Set_Rho, LIBRARY), Cvoid, (Cdouble,), Value)
+function Lines_Set_Rho(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_Rho, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Lines_Set_Xg(Value)
-    ccall((:Lines_Set_Xg, LIBRARY), Cvoid, (Cdouble,), Value)
+function Lines_Set_Xg(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_Xg, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Lines_Get_Yprim(ResultPtr, ResultCount)
-    ccall((:Lines_Get_Yprim, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Lines_Get_Yprim(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Lines_Get_Yprim, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Lines_Get_Yprim_GR()
-    ccall((:Lines_Get_Yprim_GR, LIBRARY), Cvoid, ())
+function Lines_Get_Yprim_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_Yprim_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Set_Yprim(ValuePtr, ValueCount)
-    ccall((:Lines_Set_Yprim, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function Lines_Set_Yprim(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Lines_Set_Yprim, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Lines_Get_NumCust()
-    ccall((:Lines_Get_NumCust, LIBRARY), Int32, ())
+function Lines_Get_NumCust(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_NumCust, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_TotalCust()
-    ccall((:Lines_Get_TotalCust, LIBRARY), Int32, ())
+function Lines_Get_TotalCust(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_TotalCust, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_Parent()
-    ccall((:Lines_Get_Parent, LIBRARY), Int32, ())
+function Lines_Get_Parent(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_Parent, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_Count()
-    ccall((:Lines_Get_Count, LIBRARY), Int32, ())
+function Lines_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_Spacing()
-    ccall((:Lines_Get_Spacing, LIBRARY), Cstring, ())
+function Lines_Get_Spacing(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_Spacing, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Set_Spacing(Value)
-    ccall((:Lines_Set_Spacing, LIBRARY), Cvoid, (Cstring,), Value)
+function Lines_Set_Spacing(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_Spacing, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Lines_Get_Units()
-    ccall((:Lines_Get_Units, LIBRARY), Int32, ())
+function Lines_Get_Units(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_Units, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Set_Units(Value)
-    ccall((:Lines_Set_Units, LIBRARY), Cvoid, (Int32,), Value)
+function Lines_Set_Units(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_Units, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Lines_Get_SeasonRating()
-    ccall((:Lines_Get_SeasonRating, LIBRARY), Cdouble, ())
+function Lines_Get_SeasonRating(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_SeasonRating, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Get_IsSwitch()
-    ccall((:Lines_Get_IsSwitch, LIBRARY), UInt16, ())
+function Lines_Get_IsSwitch(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_IsSwitch, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Set_IsSwitch(Value)
-    ccall((:Lines_Set_IsSwitch, LIBRARY), Cvoid, (UInt16,), Value)
+function Lines_Set_IsSwitch(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_IsSwitch, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function Loads_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:Loads_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Loads_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Loads_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Loads_Get_AllNames_GR()
-    ccall((:Loads_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function Loads_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_First()
-    ccall((:Loads_Get_First, LIBRARY), Int32, ())
+function Loads_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_idx()
-    ccall((:Loads_Get_idx, LIBRARY), Int32, ())
+function Loads_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_Name()
-    ccall((:Loads_Get_Name, LIBRARY), Cstring, ())
+function Loads_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_Next()
-    ccall((:Loads_Get_Next, LIBRARY), Int32, ())
+function Loads_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Set_idx(Value)
-    ccall((:Loads_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function Loads_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Loads_Set_Name(Value)
-    ccall((:Loads_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function Loads_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Loads_Get_kV()
-    ccall((:Loads_Get_kV, LIBRARY), Cdouble, ())
+function Loads_Get_kV(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_kV, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_kvar()
-    ccall((:Loads_Get_kvar, LIBRARY), Cdouble, ())
+function Loads_Get_kvar(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_kvar, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_kW()
-    ccall((:Loads_Get_kW, LIBRARY), Cdouble, ())
+function Loads_Get_kW(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_kW, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_PF()
-    ccall((:Loads_Get_PF, LIBRARY), Cdouble, ())
+function Loads_Get_PF(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_PF, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Set_kV(Value)
-    ccall((:Loads_Set_kV, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_kV(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_kV, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Set_kvar(Value)
-    ccall((:Loads_Set_kvar, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_kvar(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_kvar, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Set_kW(Value)
-    ccall((:Loads_Set_kW, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_kW(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_kW, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Set_PF(Value)
-    ccall((:Loads_Set_PF, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_PF(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_PF, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Get_Count()
-    ccall((:Loads_Get_Count, LIBRARY), Int32, ())
+function Loads_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_AllocationFactor()
-    ccall((:Loads_Get_AllocationFactor, LIBRARY), Cdouble, ())
+function Loads_Get_AllocationFactor(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_AllocationFactor, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_Cfactor()
-    ccall((:Loads_Get_Cfactor, LIBRARY), Cdouble, ())
+function Loads_Get_Cfactor(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_Cfactor, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_Class_()
-    ccall((:Loads_Get_Class_, LIBRARY), Int32, ())
+function Loads_Get_Class_(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_Class_, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_CVRcurve()
-    ccall((:Loads_Get_CVRcurve, LIBRARY), Cstring, ())
+function Loads_Get_CVRcurve(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_CVRcurve, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_CVRvars()
-    ccall((:Loads_Get_CVRvars, LIBRARY), Cdouble, ())
+function Loads_Get_CVRvars(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_CVRvars, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_CVRwatts()
-    ccall((:Loads_Get_CVRwatts, LIBRARY), Cdouble, ())
+function Loads_Get_CVRwatts(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_CVRwatts, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_daily()
-    ccall((:Loads_Get_daily, LIBRARY), Cstring, ())
+function Loads_Get_daily(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_daily, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_duty()
-    ccall((:Loads_Get_duty, LIBRARY), Cstring, ())
+function Loads_Get_duty(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_duty, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_Growth()
-    ccall((:Loads_Get_Growth, LIBRARY), Cstring, ())
+function Loads_Get_Growth(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_Growth, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_IsDelta()
-    ccall((:Loads_Get_IsDelta, LIBRARY), UInt16, ())
+function Loads_Get_IsDelta(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_IsDelta, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_kva()
-    ccall((:Loads_Get_kva, LIBRARY), Cdouble, ())
+function Loads_Get_kva(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_kva, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_kwh()
-    ccall((:Loads_Get_kwh, LIBRARY), Cdouble, ())
+function Loads_Get_kwh(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_kwh, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_kwhdays()
-    ccall((:Loads_Get_kwhdays, LIBRARY), Cdouble, ())
+function Loads_Get_kwhdays(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_kwhdays, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_Model()
-    ccall((:Loads_Get_Model, LIBRARY), Int32, ())
+function Loads_Get_Model(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_Model, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_NumCust()
-    ccall((:Loads_Get_NumCust, LIBRARY), Int32, ())
+function Loads_Get_NumCust(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_NumCust, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_PctMean()
-    ccall((:Loads_Get_PctMean, LIBRARY), Cdouble, ())
+function Loads_Get_PctMean(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_PctMean, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_PctStdDev()
-    ccall((:Loads_Get_PctStdDev, LIBRARY), Cdouble, ())
+function Loads_Get_PctStdDev(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_PctStdDev, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_Rneut()
-    ccall((:Loads_Get_Rneut, LIBRARY), Cdouble, ())
+function Loads_Get_Rneut(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_Rneut, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_Spectrum()
-    ccall((:Loads_Get_Spectrum, LIBRARY), Cstring, ())
+function Loads_Get_Spectrum(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_Spectrum, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_Status()
-    ccall((:Loads_Get_Status, LIBRARY), Int32, ())
+function Loads_Get_Status(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_Status, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_Vmaxpu()
-    ccall((:Loads_Get_Vmaxpu, LIBRARY), Cdouble, ())
+function Loads_Get_Vmaxpu(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_Vmaxpu, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_Vminemerg()
-    ccall((:Loads_Get_Vminemerg, LIBRARY), Cdouble, ())
+function Loads_Get_Vminemerg(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_Vminemerg, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_Vminnorm()
-    ccall((:Loads_Get_Vminnorm, LIBRARY), Cdouble, ())
+function Loads_Get_Vminnorm(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_Vminnorm, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_Vminpu()
-    ccall((:Loads_Get_Vminpu, LIBRARY), Cdouble, ())
+function Loads_Get_Vminpu(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_Vminpu, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_xfkVA()
-    ccall((:Loads_Get_xfkVA, LIBRARY), Cdouble, ())
+function Loads_Get_xfkVA(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_xfkVA, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_Xneut()
-    ccall((:Loads_Get_Xneut, LIBRARY), Cdouble, ())
+function Loads_Get_Xneut(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_Xneut, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_Yearly()
-    ccall((:Loads_Get_Yearly, LIBRARY), Cstring, ())
+function Loads_Get_Yearly(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_Yearly, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Set_AllocationFactor(Value)
-    ccall((:Loads_Set_AllocationFactor, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_AllocationFactor(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_AllocationFactor, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Set_Cfactor(Value)
-    ccall((:Loads_Set_Cfactor, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_Cfactor(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_Cfactor, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Set_Class_(Value)
-    ccall((:Loads_Set_Class_, LIBRARY), Cvoid, (Int32,), Value)
+function Loads_Set_Class_(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_Class_, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Loads_Set_CVRcurve(Value)
-    ccall((:Loads_Set_CVRcurve, LIBRARY), Cvoid, (Cstring,), Value)
+function Loads_Set_CVRcurve(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_CVRcurve, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Loads_Set_CVRvars(Value)
-    ccall((:Loads_Set_CVRvars, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_CVRvars(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_CVRvars, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Set_CVRwatts(Value)
-    ccall((:Loads_Set_CVRwatts, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_CVRwatts(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_CVRwatts, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Set_daily(Value)
-    ccall((:Loads_Set_daily, LIBRARY), Cvoid, (Cstring,), Value)
+function Loads_Set_daily(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_daily, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Loads_Set_duty(Value)
-    ccall((:Loads_Set_duty, LIBRARY), Cvoid, (Cstring,), Value)
+function Loads_Set_duty(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_duty, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Loads_Set_Growth(Value)
-    ccall((:Loads_Set_Growth, LIBRARY), Cvoid, (Cstring,), Value)
+function Loads_Set_Growth(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_Growth, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Loads_Set_IsDelta(Value)
-    ccall((:Loads_Set_IsDelta, LIBRARY), Cvoid, (UInt16,), Value)
+function Loads_Set_IsDelta(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_IsDelta, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function Loads_Set_kva(Value)
-    ccall((:Loads_Set_kva, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_kva(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_kva, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Set_kwh(Value)
-    ccall((:Loads_Set_kwh, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_kwh(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_kwh, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Set_kwhdays(Value)
-    ccall((:Loads_Set_kwhdays, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_kwhdays(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_kwhdays, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Set_Model(Value)
-    ccall((:Loads_Set_Model, LIBRARY), Cvoid, (Int32,), Value)
+function Loads_Set_Model(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_Model, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Loads_Set_NumCust(Value)
-    ccall((:Loads_Set_NumCust, LIBRARY), Cvoid, (Int32,), Value)
+function Loads_Set_NumCust(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_NumCust, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Loads_Set_PctMean(Value)
-    ccall((:Loads_Set_PctMean, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_PctMean(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_PctMean, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Set_PctStdDev(Value)
-    ccall((:Loads_Set_PctStdDev, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_PctStdDev(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_PctStdDev, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Set_Rneut(Value)
-    ccall((:Loads_Set_Rneut, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_Rneut(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_Rneut, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Set_Spectrum(Value)
-    ccall((:Loads_Set_Spectrum, LIBRARY), Cvoid, (Cstring,), Value)
+function Loads_Set_Spectrum(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_Spectrum, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Loads_Set_Status(Value)
-    ccall((:Loads_Set_Status, LIBRARY), Cvoid, (Int32,), Value)
+function Loads_Set_Status(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_Status, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Loads_Set_Vmaxpu(Value)
-    ccall((:Loads_Set_Vmaxpu, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_Vmaxpu(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_Vmaxpu, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Set_Vminemerg(Value)
-    ccall((:Loads_Set_Vminemerg, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_Vminemerg(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_Vminemerg, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Set_Vminnorm(Value)
-    ccall((:Loads_Set_Vminnorm, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_Vminnorm(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_Vminnorm, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Set_Vminpu(Value)
-    ccall((:Loads_Set_Vminpu, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_Vminpu(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_Vminpu, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Set_xfkVA(Value)
-    ccall((:Loads_Set_xfkVA, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_xfkVA(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_xfkVA, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Set_Xneut(Value)
-    ccall((:Loads_Set_Xneut, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_Xneut(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_Xneut, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Set_Yearly(Value)
-    ccall((:Loads_Set_Yearly, LIBRARY), Cvoid, (Cstring,), Value)
+function Loads_Set_Yearly(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_Yearly, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Loads_Get_ZIPV(ResultPtr, ResultCount)
-    ccall((:Loads_Get_ZIPV, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Loads_Get_ZIPV(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Loads_Get_ZIPV, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Loads_Get_ZIPV_GR()
-    ccall((:Loads_Get_ZIPV_GR, LIBRARY), Cvoid, ())
+function Loads_Get_ZIPV_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_ZIPV_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Set_ZIPV(ValuePtr, ValueCount)
-    ccall((:Loads_Set_ZIPV, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function Loads_Set_ZIPV(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Loads_Set_ZIPV, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Loads_Get_pctSeriesRL()
-    ccall((:Loads_Get_pctSeriesRL, LIBRARY), Cdouble, ())
+function Loads_Get_pctSeriesRL(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_pctSeriesRL, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Set_pctSeriesRL(Value)
-    ccall((:Loads_Set_pctSeriesRL, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_pctSeriesRL(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_pctSeriesRL, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Get_RelWeight()
-    ccall((:Loads_Get_RelWeight, LIBRARY), Cdouble, ())
+function Loads_Get_RelWeight(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_RelWeight, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Set_RelWeight(Value)
-    ccall((:Loads_Set_RelWeight, LIBRARY), Cvoid, (Cdouble,), Value)
+function Loads_Set_RelWeight(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Loads_Set_RelWeight, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Loads_Get_Sensor()
-    ccall((:Loads_Get_Sensor, LIBRARY), Cstring, ())
+function Loads_Get_Sensor(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_Sensor, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function LoadShapes_Get_Name()
-    ccall((:LoadShapes_Get_Name, LIBRARY), Cstring, ())
+function LoadShapes_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_LoadShapes_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function LoadShapes_Set_Name(Value)
-    ccall((:LoadShapes_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function LoadShapes_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LoadShapes_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function LoadShapes_Get_Count()
-    ccall((:LoadShapes_Get_Count, LIBRARY), Int32, ())
+function LoadShapes_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_LoadShapes_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LoadShapes_Get_First()
-    ccall((:LoadShapes_Get_First, LIBRARY), Int32, ())
+function LoadShapes_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_LoadShapes_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LoadShapes_Get_Next()
-    ccall((:LoadShapes_Get_Next, LIBRARY), Int32, ())
+function LoadShapes_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_LoadShapes_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LoadShapes_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:LoadShapes_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function LoadShapes_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_LoadShapes_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function LoadShapes_Get_AllNames_GR()
-    ccall((:LoadShapes_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function LoadShapes_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_LoadShapes_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function LoadShapes_Get_Npts()
-    ccall((:LoadShapes_Get_Npts, LIBRARY), Int32, ())
+function LoadShapes_Get_Npts(ctx::Ptr{Cvoid})
+    ccall((:ctx_LoadShapes_Get_Npts, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LoadShapes_Get_Pmult(ResultPtr, ResultCount)
-    ccall((:LoadShapes_Get_Pmult, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function LoadShapes_Get_Pmult(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_LoadShapes_Get_Pmult, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function LoadShapes_Get_Pmult_GR()
-    ccall((:LoadShapes_Get_Pmult_GR, LIBRARY), Cvoid, ())
+function LoadShapes_Get_Pmult_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_LoadShapes_Get_Pmult_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function LoadShapes_Get_Qmult(ResultPtr, ResultCount)
-    ccall((:LoadShapes_Get_Qmult, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function LoadShapes_Get_Qmult(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_LoadShapes_Get_Qmult, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function LoadShapes_Get_Qmult_GR()
-    ccall((:LoadShapes_Get_Qmult_GR, LIBRARY), Cvoid, ())
+function LoadShapes_Get_Qmult_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_LoadShapes_Get_Qmult_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function LoadShapes_Set_Npts(Value)
-    ccall((:LoadShapes_Set_Npts, LIBRARY), Cvoid, (Int32,), Value)
+function LoadShapes_Set_Npts(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LoadShapes_Set_Npts, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function LoadShapes_Set_Pmult(ValuePtr, ValueCount)
-    ccall((:LoadShapes_Set_Pmult, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function LoadShapes_Set_Pmult(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_LoadShapes_Set_Pmult, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function LoadShapes_Set_Qmult(ValuePtr, ValueCount)
-    ccall((:LoadShapes_Set_Qmult, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function LoadShapes_Set_Qmult(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_LoadShapes_Set_Qmult, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function LoadShapes_Normalize()
-    ccall((:LoadShapes_Normalize, LIBRARY), Cvoid, ())
+function LoadShapes_Normalize(ctx::Ptr{Cvoid})
+    ccall((:ctx_LoadShapes_Normalize, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function LoadShapes_Get_TimeArray(ResultPtr, ResultCount)
-    ccall((:LoadShapes_Get_TimeArray, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function LoadShapes_Get_TimeArray(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_LoadShapes_Get_TimeArray, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function LoadShapes_Get_TimeArray_GR()
-    ccall((:LoadShapes_Get_TimeArray_GR, LIBRARY), Cvoid, ())
+function LoadShapes_Get_TimeArray_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_LoadShapes_Get_TimeArray_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function LoadShapes_Set_TimeArray(ValuePtr, ValueCount)
-    ccall((:LoadShapes_Set_TimeArray, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function LoadShapes_Set_TimeArray(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_LoadShapes_Set_TimeArray, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function LoadShapes_Get_HrInterval()
-    ccall((:LoadShapes_Get_HrInterval, LIBRARY), Cdouble, ())
+function LoadShapes_Get_HrInterval(ctx::Ptr{Cvoid})
+    ccall((:ctx_LoadShapes_Get_HrInterval, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function LoadShapes_Get_MinInterval()
-    ccall((:LoadShapes_Get_MinInterval, LIBRARY), Cdouble, ())
+function LoadShapes_Get_MinInterval(ctx::Ptr{Cvoid})
+    ccall((:ctx_LoadShapes_Get_MinInterval, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function LoadShapes_Get_SInterval()
-    ccall((:LoadShapes_Get_SInterval, LIBRARY), Cdouble, ())
+function LoadShapes_Get_SInterval(ctx::Ptr{Cvoid})
+    ccall((:ctx_LoadShapes_Get_SInterval, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function LoadShapes_Set_SInterval(Value)
-    ccall((:LoadShapes_Set_SInterval, LIBRARY), Cvoid, (Cdouble,), Value)
+function LoadShapes_Set_SInterval(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LoadShapes_Set_SInterval, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function LoadShapes_Set_HrInterval(Value)
-    ccall((:LoadShapes_Set_HrInterval, LIBRARY), Cvoid, (Cdouble,), Value)
+function LoadShapes_Set_HrInterval(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LoadShapes_Set_HrInterval, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function LoadShapes_Set_MinInterval(Value)
-    ccall((:LoadShapes_Set_MinInterval, LIBRARY), Cvoid, (Cdouble,), Value)
+function LoadShapes_Set_MinInterval(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LoadShapes_Set_MinInterval, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function LoadShapes_New(Name)
-    ccall((:LoadShapes_New, LIBRARY), Int32, (Cstring,), Name)
+function LoadShapes_New(ctx::Ptr{Cvoid}, Name)
+    ccall((:ctx_LoadShapes_New, LIBRARY), Int32, (Ptr{Cvoid}, Cstring,), ctx, Name)
 end
 
-function LoadShapes_Get_PBase()
-    ccall((:LoadShapes_Get_PBase, LIBRARY), Cdouble, ())
+function LoadShapes_Get_PBase(ctx::Ptr{Cvoid})
+    ccall((:ctx_LoadShapes_Get_PBase, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function LoadShapes_Get_Qbase()
-    ccall((:LoadShapes_Get_Qbase, LIBRARY), Cdouble, ())
+function LoadShapes_Get_Qbase(ctx::Ptr{Cvoid})
+    ccall((:ctx_LoadShapes_Get_Qbase, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function LoadShapes_Set_PBase(Value)
-    ccall((:LoadShapes_Set_PBase, LIBRARY), Cvoid, (Cdouble,), Value)
+function LoadShapes_Set_PBase(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LoadShapes_Set_PBase, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function LoadShapes_Set_Qbase(Value)
-    ccall((:LoadShapes_Set_Qbase, LIBRARY), Cvoid, (Cdouble,), Value)
+function LoadShapes_Set_Qbase(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LoadShapes_Set_Qbase, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function LoadShapes_Get_UseActual()
-    ccall((:LoadShapes_Get_UseActual, LIBRARY), UInt16, ())
+function LoadShapes_Get_UseActual(ctx::Ptr{Cvoid})
+    ccall((:ctx_LoadShapes_Get_UseActual, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function LoadShapes_Set_UseActual(Value)
-    ccall((:LoadShapes_Set_UseActual, LIBRARY), Cvoid, (UInt16,), Value)
+function LoadShapes_Set_UseActual(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LoadShapes_Set_UseActual, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function Meters_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:Meters_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Meters_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Meters_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Meters_Get_AllNames_GR()
-    ccall((:Meters_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function Meters_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_First()
-    ccall((:Meters_Get_First, LIBRARY), Int32, ())
+function Meters_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_Name()
-    ccall((:Meters_Get_Name, LIBRARY), Cstring, ())
+function Meters_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_Next()
-    ccall((:Meters_Get_Next, LIBRARY), Int32, ())
+function Meters_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_RegisterNames(ResultPtr, ResultCount)
-    ccall((:Meters_Get_RegisterNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Meters_Get_RegisterNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Meters_Get_RegisterNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Meters_Get_RegisterNames_GR()
-    ccall((:Meters_Get_RegisterNames_GR, LIBRARY), Cvoid, ())
+function Meters_Get_RegisterNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_RegisterNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_RegisterValues(ResultPtr, ResultCount)
-    ccall((:Meters_Get_RegisterValues, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Meters_Get_RegisterValues(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Meters_Get_RegisterValues, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Meters_Get_RegisterValues_GR()
-    ccall((:Meters_Get_RegisterValues_GR, LIBRARY), Cvoid, ())
+function Meters_Get_RegisterValues_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_RegisterValues_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Reset()
-    ccall((:Meters_Reset, LIBRARY), Cvoid, ())
+function Meters_Reset(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Reset, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_ResetAll()
-    ccall((:Meters_ResetAll, LIBRARY), Cvoid, ())
+function Meters_ResetAll(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_ResetAll, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Sample()
-    ccall((:Meters_Sample, LIBRARY), Cvoid, ())
+function Meters_Sample(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Sample, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Save()
-    ccall((:Meters_Save, LIBRARY), Cvoid, ())
+function Meters_Save(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Save, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Set_Name(Value)
-    ccall((:Meters_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function Meters_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Meters_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Meters_Get_Totals(ResultPtr, ResultCount)
-    ccall((:Meters_Get_Totals, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Meters_Get_Totals(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Meters_Get_Totals, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Meters_Get_Totals_GR()
-    ccall((:Meters_Get_Totals_GR, LIBRARY), Cvoid, ())
+function Meters_Get_Totals_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_Totals_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_Peakcurrent(ResultPtr, ResultCount)
-    ccall((:Meters_Get_Peakcurrent, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Meters_Get_Peakcurrent(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Meters_Get_Peakcurrent, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Meters_Get_Peakcurrent_GR()
-    ccall((:Meters_Get_Peakcurrent_GR, LIBRARY), Cvoid, ())
+function Meters_Get_Peakcurrent_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_Peakcurrent_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Set_Peakcurrent(ValuePtr, ValueCount)
-    ccall((:Meters_Set_Peakcurrent, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function Meters_Set_Peakcurrent(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Meters_Set_Peakcurrent, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Meters_Get_CalcCurrent(ResultPtr, ResultCount)
-    ccall((:Meters_Get_CalcCurrent, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Meters_Get_CalcCurrent(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Meters_Get_CalcCurrent, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Meters_Get_CalcCurrent_GR()
-    ccall((:Meters_Get_CalcCurrent_GR, LIBRARY), Cvoid, ())
+function Meters_Get_CalcCurrent_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_CalcCurrent_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Set_CalcCurrent(ValuePtr, ValueCount)
-    ccall((:Meters_Set_CalcCurrent, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function Meters_Set_CalcCurrent(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Meters_Set_CalcCurrent, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Meters_Get_AllocFactors(ResultPtr, ResultCount)
-    ccall((:Meters_Get_AllocFactors, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Meters_Get_AllocFactors(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Meters_Get_AllocFactors, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Meters_Get_AllocFactors_GR()
-    ccall((:Meters_Get_AllocFactors_GR, LIBRARY), Cvoid, ())
+function Meters_Get_AllocFactors_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_AllocFactors_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Set_AllocFactors(ValuePtr, ValueCount)
-    ccall((:Meters_Set_AllocFactors, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function Meters_Set_AllocFactors(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Meters_Set_AllocFactors, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Meters_Get_MeteredElement()
-    ccall((:Meters_Get_MeteredElement, LIBRARY), Cstring, ())
+function Meters_Get_MeteredElement(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_MeteredElement, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_MeteredTerminal()
-    ccall((:Meters_Get_MeteredTerminal, LIBRARY), Int32, ())
+function Meters_Get_MeteredTerminal(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_MeteredTerminal, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Set_MeteredElement(Value)
-    ccall((:Meters_Set_MeteredElement, LIBRARY), Cvoid, (Cstring,), Value)
+function Meters_Set_MeteredElement(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Meters_Set_MeteredElement, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Meters_Set_MeteredTerminal(Value)
-    ccall((:Meters_Set_MeteredTerminal, LIBRARY), Cvoid, (Int32,), Value)
+function Meters_Set_MeteredTerminal(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Meters_Set_MeteredTerminal, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Meters_Get_DIFilesAreOpen()
-    ccall((:Meters_Get_DIFilesAreOpen, LIBRARY), UInt16, ())
+function Meters_Get_DIFilesAreOpen(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_DIFilesAreOpen, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_CloseAllDIFiles()
-    ccall((:Meters_CloseAllDIFiles, LIBRARY), Cvoid, ())
+function Meters_CloseAllDIFiles(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_CloseAllDIFiles, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_OpenAllDIFiles()
-    ccall((:Meters_OpenAllDIFiles, LIBRARY), Cvoid, ())
+function Meters_OpenAllDIFiles(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_OpenAllDIFiles, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_SampleAll()
-    ccall((:Meters_SampleAll, LIBRARY), Cvoid, ())
+function Meters_SampleAll(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_SampleAll, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_SaveAll()
-    ccall((:Meters_SaveAll, LIBRARY), Cvoid, ())
+function Meters_SaveAll(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_SaveAll, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_AllEndElements(ResultPtr, ResultCount)
-    ccall((:Meters_Get_AllEndElements, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Meters_Get_AllEndElements(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Meters_Get_AllEndElements, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Meters_Get_AllEndElements_GR()
-    ccall((:Meters_Get_AllEndElements_GR, LIBRARY), Cvoid, ())
+function Meters_Get_AllEndElements_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_AllEndElements_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_CountEndElements()
-    ccall((:Meters_Get_CountEndElements, LIBRARY), Int32, ())
+function Meters_Get_CountEndElements(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_CountEndElements, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_Count()
-    ccall((:Meters_Get_Count, LIBRARY), Int32, ())
+function Meters_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_AllBranchesInZone(ResultPtr, ResultCount)
-    ccall((:Meters_Get_AllBranchesInZone, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Meters_Get_AllBranchesInZone(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Meters_Get_AllBranchesInZone, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Meters_Get_AllBranchesInZone_GR()
-    ccall((:Meters_Get_AllBranchesInZone_GR, LIBRARY), Cvoid, ())
+function Meters_Get_AllBranchesInZone_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_AllBranchesInZone_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_CountBranches()
-    ccall((:Meters_Get_CountBranches, LIBRARY), Int32, ())
+function Meters_Get_CountBranches(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_CountBranches, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_SAIFI()
-    ccall((:Meters_Get_SAIFI, LIBRARY), Cdouble, ())
+function Meters_Get_SAIFI(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_SAIFI, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_SequenceIndex()
-    ccall((:Meters_Get_SequenceIndex, LIBRARY), Int32, ())
+function Meters_Get_SequenceIndex(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_SequenceIndex, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Set_SequenceIndex(Value)
-    ccall((:Meters_Set_SequenceIndex, LIBRARY), Cvoid, (Int32,), Value)
+function Meters_Set_SequenceIndex(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Meters_Set_SequenceIndex, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Meters_Get_SAIFIKW()
-    ccall((:Meters_Get_SAIFIKW, LIBRARY), Cdouble, ())
+function Meters_Get_SAIFIKW(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_SAIFIKW, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_DoReliabilityCalc(AssumeRestoration)
-    ccall((:Meters_DoReliabilityCalc, LIBRARY), Cvoid, (UInt16,), AssumeRestoration)
+function Meters_DoReliabilityCalc(ctx::Ptr{Cvoid}, AssumeRestoration)
+    ccall((:ctx_Meters_DoReliabilityCalc, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, AssumeRestoration)
 end
 
-function Meters_Get_SeqListSize()
-    ccall((:Meters_Get_SeqListSize, LIBRARY), Int32, ())
+function Meters_Get_SeqListSize(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_SeqListSize, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_TotalCustomers()
-    ccall((:Meters_Get_TotalCustomers, LIBRARY), Int32, ())
+function Meters_Get_TotalCustomers(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_TotalCustomers, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_SAIDI()
-    ccall((:Meters_Get_SAIDI, LIBRARY), Cdouble, ())
+function Meters_Get_SAIDI(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_SAIDI, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_CustInterrupts()
-    ccall((:Meters_Get_CustInterrupts, LIBRARY), Cdouble, ())
+function Meters_Get_CustInterrupts(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_CustInterrupts, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_NumSections()
-    ccall((:Meters_Get_NumSections, LIBRARY), Int32, ())
+function Meters_Get_NumSections(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_NumSections, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_SetActiveSection(SectIdx)
-    ccall((:Meters_SetActiveSection, LIBRARY), Cvoid, (Int32,), SectIdx)
+function Meters_SetActiveSection(ctx::Ptr{Cvoid}, SectIdx)
+    ccall((:ctx_Meters_SetActiveSection, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, SectIdx)
 end
 
-function Meters_Get_AvgRepairTime()
-    ccall((:Meters_Get_AvgRepairTime, LIBRARY), Cdouble, ())
+function Meters_Get_AvgRepairTime(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_AvgRepairTime, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_FaultRateXRepairHrs()
-    ccall((:Meters_Get_FaultRateXRepairHrs, LIBRARY), Cdouble, ())
+function Meters_Get_FaultRateXRepairHrs(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_FaultRateXRepairHrs, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_NumSectionBranches()
-    ccall((:Meters_Get_NumSectionBranches, LIBRARY), Int32, ())
+function Meters_Get_NumSectionBranches(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_NumSectionBranches, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_NumSectionCustomers()
-    ccall((:Meters_Get_NumSectionCustomers, LIBRARY), Int32, ())
+function Meters_Get_NumSectionCustomers(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_NumSectionCustomers, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_OCPDeviceType()
-    ccall((:Meters_Get_OCPDeviceType, LIBRARY), Int32, ())
+function Meters_Get_OCPDeviceType(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_OCPDeviceType, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_SumBranchFltRates()
-    ccall((:Meters_Get_SumBranchFltRates, LIBRARY), Cdouble, ())
+function Meters_Get_SumBranchFltRates(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_SumBranchFltRates, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_SectSeqIdx()
-    ccall((:Meters_Get_SectSeqIdx, LIBRARY), Int32, ())
+function Meters_Get_SectSeqIdx(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_SectSeqIdx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_SectTotalCust()
-    ccall((:Meters_Get_SectTotalCust, LIBRARY), Int32, ())
+function Meters_Get_SectTotalCust(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_SectTotalCust, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Get_ZonePCE(ResultPtr, ResultCount)
-    ccall((:Meters_Get_ZonePCE, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Meters_Get_ZonePCE(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Meters_Get_ZonePCE, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Monitors_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:Monitors_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Monitors_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Monitors_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Monitors_Get_AllNames_GR()
-    ccall((:Monitors_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function Monitors_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Get_FileName()
-    ccall((:Monitors_Get_FileName, LIBRARY), Cstring, ())
+function Monitors_Get_FileName(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Get_FileName, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Get_First()
-    ccall((:Monitors_Get_First, LIBRARY), Int32, ())
+function Monitors_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Get_Mode()
-    ccall((:Monitors_Get_Mode, LIBRARY), Int32, ())
+function Monitors_Get_Mode(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Get_Mode, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Get_Name()
-    ccall((:Monitors_Get_Name, LIBRARY), Cstring, ())
+function Monitors_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Get_Next()
-    ccall((:Monitors_Get_Next, LIBRARY), Int32, ())
+function Monitors_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Reset()
-    ccall((:Monitors_Reset, LIBRARY), Cvoid, ())
+function Monitors_Reset(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Reset, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_ResetAll()
-    ccall((:Monitors_ResetAll, LIBRARY), Cvoid, ())
+function Monitors_ResetAll(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_ResetAll, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Sample()
-    ccall((:Monitors_Sample, LIBRARY), Cvoid, ())
+function Monitors_Sample(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Sample, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Save()
-    ccall((:Monitors_Save, LIBRARY), Cvoid, ())
+function Monitors_Save(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Save, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Set_Mode(Value)
-    ccall((:Monitors_Set_Mode, LIBRARY), Cvoid, (Int32,), Value)
+function Monitors_Set_Mode(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Monitors_Set_Mode, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Monitors_Show()
-    ccall((:Monitors_Show, LIBRARY), Cvoid, ())
+function Monitors_Show(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Show, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Set_Name(Value)
-    ccall((:Monitors_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function Monitors_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Monitors_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Monitors_Get_ByteStream(ResultPtr, ResultCount)
-    ccall((:Monitors_Get_ByteStream, LIBRARY), Cvoid, (Ptr{Ptr{Int8}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Monitors_Get_ByteStream(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Monitors_Get_ByteStream, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int8}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Monitors_Get_ByteStream_GR()
-    ccall((:Monitors_Get_ByteStream_GR, LIBRARY), Cvoid, ())
+function Monitors_Get_ByteStream_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Get_ByteStream_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Get_SampleCount()
-    ccall((:Monitors_Get_SampleCount, LIBRARY), Int32, ())
+function Monitors_Get_SampleCount(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Get_SampleCount, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_SampleAll()
-    ccall((:Monitors_SampleAll, LIBRARY), Cvoid, ())
+function Monitors_SampleAll(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_SampleAll, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_SaveAll()
-    ccall((:Monitors_SaveAll, LIBRARY), Cvoid, ())
+function Monitors_SaveAll(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_SaveAll, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Get_Count()
-    ccall((:Monitors_Get_Count, LIBRARY), Int32, ())
+function Monitors_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Process()
-    ccall((:Monitors_Process, LIBRARY), Cvoid, ())
+function Monitors_Process(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Process, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_ProcessAll()
-    ccall((:Monitors_ProcessAll, LIBRARY), Cvoid, ())
+function Monitors_ProcessAll(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_ProcessAll, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Get_Channel(ResultPtr, ResultCount, Index)
-    ccall((:Monitors_Get_Channel, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, Int32), ResultPtr, ResultCount, Index)
+function Monitors_Get_Channel(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, Index)
+    ccall((:ctx_Monitors_Get_Channel, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, Int32), ctx, ResultPtr, ResultCount, Index)
 end
 
-function Monitors_Get_Channel_GR(Index)
-    ccall((:Monitors_Get_Channel_GR, LIBRARY), Cvoid, (Int32,), Index)
+function Monitors_Get_Channel_GR(ctx::Ptr{Cvoid}, Index)
+    ccall((:ctx_Monitors_Get_Channel_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Index)
 end
 
-function Monitors_Get_dblFreq(ResultPtr, ResultCount)
-    ccall((:Monitors_Get_dblFreq, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Monitors_Get_dblFreq(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Monitors_Get_dblFreq, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Monitors_Get_dblFreq_GR()
-    ccall((:Monitors_Get_dblFreq_GR, LIBRARY), Cvoid, ())
+function Monitors_Get_dblFreq_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Get_dblFreq_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Get_dblHour(ResultPtr, ResultCount)
-    ccall((:Monitors_Get_dblHour, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Monitors_Get_dblHour(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Monitors_Get_dblHour, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Monitors_Get_dblHour_GR()
-    ccall((:Monitors_Get_dblHour_GR, LIBRARY), Cvoid, ())
+function Monitors_Get_dblHour_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Get_dblHour_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Get_FileVersion()
-    ccall((:Monitors_Get_FileVersion, LIBRARY), Int32, ())
+function Monitors_Get_FileVersion(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Get_FileVersion, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Get_Header(ResultPtr, ResultCount)
-    ccall((:Monitors_Get_Header, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Monitors_Get_Header(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Monitors_Get_Header, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Monitors_Get_Header_GR()
-    ccall((:Monitors_Get_Header_GR, LIBRARY), Cvoid, ())
+function Monitors_Get_Header_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Get_Header_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Get_NumChannels()
-    ccall((:Monitors_Get_NumChannels, LIBRARY), Int32, ())
+function Monitors_Get_NumChannels(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Get_NumChannels, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Get_RecordSize()
-    ccall((:Monitors_Get_RecordSize, LIBRARY), Int32, ())
+function Monitors_Get_RecordSize(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Get_RecordSize, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Get_Element()
-    ccall((:Monitors_Get_Element, LIBRARY), Cstring, ())
+function Monitors_Get_Element(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Get_Element, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Set_Element(Value)
-    ccall((:Monitors_Set_Element, LIBRARY), Cvoid, (Cstring,), Value)
+function Monitors_Set_Element(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Monitors_Set_Element, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Monitors_Get_Terminal()
-    ccall((:Monitors_Get_Terminal, LIBRARY), Int32, ())
+function Monitors_Get_Terminal(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Get_Terminal, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Set_Terminal(Value)
-    ccall((:Monitors_Set_Terminal, LIBRARY), Cvoid, (Int32,), Value)
+function Monitors_Set_Terminal(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Monitors_Set_Terminal, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Parallel_Get_NumCPUs()
-    ccall((:Parallel_Get_NumCPUs, LIBRARY), Int32, ())
+function Parallel_Get_NumCPUs(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parallel_Get_NumCPUs, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Parallel_Get_NumCores()
-    ccall((:Parallel_Get_NumCores, LIBRARY), Int32, ())
+function Parallel_Get_NumCores(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parallel_Get_NumCores, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Parallel_Get_ActiveActor()
-    ccall((:Parallel_Get_ActiveActor, LIBRARY), Int32, ())
+function Parallel_Get_ActiveActor(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parallel_Get_ActiveActor, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Parallel_Set_ActiveActor(Value)
-    ccall((:Parallel_Set_ActiveActor, LIBRARY), Cvoid, (Int32,), Value)
+function Parallel_Set_ActiveActor(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Parallel_Set_ActiveActor, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Parallel_CreateActor()
-    ccall((:Parallel_CreateActor, LIBRARY), Cvoid, ())
+function Parallel_CreateActor(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parallel_CreateActor, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Parallel_Get_ActorCPU()
-    ccall((:Parallel_Get_ActorCPU, LIBRARY), Int32, ())
+function Parallel_Get_ActorCPU(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parallel_Get_ActorCPU, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Parallel_Set_ActorCPU(Value)
-    ccall((:Parallel_Set_ActorCPU, LIBRARY), Cvoid, (Int32,), Value)
+function Parallel_Set_ActorCPU(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Parallel_Set_ActorCPU, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Parallel_Get_NumOfActors()
-    ccall((:Parallel_Get_NumOfActors, LIBRARY), Int32, ())
+function Parallel_Get_NumOfActors(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parallel_Get_NumOfActors, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Parallel_Wait()
-    ccall((:Parallel_Wait, LIBRARY), Cvoid, ())
+function Parallel_Wait(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parallel_Wait, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Parallel_Get_ActorProgress(ResultPtr, ResultCount)
-    ccall((:Parallel_Get_ActorProgress, LIBRARY), Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Parallel_Get_ActorProgress(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Parallel_Get_ActorProgress, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Parallel_Get_ActorProgress_GR()
-    ccall((:Parallel_Get_ActorProgress_GR, LIBRARY), Cvoid, ())
+function Parallel_Get_ActorProgress_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parallel_Get_ActorProgress_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Parallel_Get_ActorStatus(ResultPtr, ResultCount)
-    ccall((:Parallel_Get_ActorStatus, LIBRARY), Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Parallel_Get_ActorStatus(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Parallel_Get_ActorStatus, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Parallel_Get_ActorStatus_GR()
-    ccall((:Parallel_Get_ActorStatus_GR, LIBRARY), Cvoid, ())
+function Parallel_Get_ActorStatus_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parallel_Get_ActorStatus_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Parallel_Get_ActiveParallel()
-    ccall((:Parallel_Get_ActiveParallel, LIBRARY), Int32, ())
+function Parallel_Get_ActiveParallel(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parallel_Get_ActiveParallel, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Parallel_Set_ActiveParallel(Value)
-    ccall((:Parallel_Set_ActiveParallel, LIBRARY), Cvoid, (Int32,), Value)
+function Parallel_Set_ActiveParallel(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Parallel_Set_ActiveParallel, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Parallel_Get_ConcatenateReports()
-    ccall((:Parallel_Get_ConcatenateReports, LIBRARY), Int32, ())
+function Parallel_Get_ConcatenateReports(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parallel_Get_ConcatenateReports, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Parallel_Set_ConcatenateReports(Value)
-    ccall((:Parallel_Set_ConcatenateReports, LIBRARY), Cvoid, (Int32,), Value)
+function Parallel_Set_ConcatenateReports(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Parallel_Set_ConcatenateReports, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Parser_Get_CmdString()
-    ccall((:Parser_Get_CmdString, LIBRARY), Cstring, ())
+function Parser_Get_CmdString(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parser_Get_CmdString, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Parser_Set_CmdString(Value)
-    ccall((:Parser_Set_CmdString, LIBRARY), Cvoid, (Cstring,), Value)
+function Parser_Set_CmdString(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Parser_Set_CmdString, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Parser_Get_NextParam()
-    ccall((:Parser_Get_NextParam, LIBRARY), Cstring, ())
+function Parser_Get_NextParam(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parser_Get_NextParam, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Parser_Get_AutoIncrement()
-    ccall((:Parser_Get_AutoIncrement, LIBRARY), UInt16, ())
+function Parser_Get_AutoIncrement(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parser_Get_AutoIncrement, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Parser_Set_AutoIncrement(Value)
-    ccall((:Parser_Set_AutoIncrement, LIBRARY), Cvoid, (UInt16,), Value)
+function Parser_Set_AutoIncrement(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Parser_Set_AutoIncrement, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function Parser_Get_DblValue()
-    ccall((:Parser_Get_DblValue, LIBRARY), Cdouble, ())
+function Parser_Get_DblValue(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parser_Get_DblValue, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Parser_Get_IntValue()
-    ccall((:Parser_Get_IntValue, LIBRARY), Int32, ())
+function Parser_Get_IntValue(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parser_Get_IntValue, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Parser_Get_StrValue()
-    ccall((:Parser_Get_StrValue, LIBRARY), Cstring, ())
+function Parser_Get_StrValue(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parser_Get_StrValue, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Parser_Get_WhiteSpace()
-    ccall((:Parser_Get_WhiteSpace, LIBRARY), Cstring, ())
+function Parser_Get_WhiteSpace(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parser_Get_WhiteSpace, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Parser_Set_WhiteSpace(Value)
-    ccall((:Parser_Set_WhiteSpace, LIBRARY), Cvoid, (Cstring,), Value)
+function Parser_Set_WhiteSpace(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Parser_Set_WhiteSpace, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Parser_Get_BeginQuote()
-    ccall((:Parser_Get_BeginQuote, LIBRARY), Cstring, ())
+function Parser_Get_BeginQuote(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parser_Get_BeginQuote, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Parser_Get_EndQuote()
-    ccall((:Parser_Get_EndQuote, LIBRARY), Cstring, ())
+function Parser_Get_EndQuote(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parser_Get_EndQuote, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Parser_Set_BeginQuote(Value)
-    ccall((:Parser_Set_BeginQuote, LIBRARY), Cvoid, (Cstring,), Value)
+function Parser_Set_BeginQuote(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Parser_Set_BeginQuote, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Parser_Set_EndQuote(Value)
-    ccall((:Parser_Set_EndQuote, LIBRARY), Cvoid, (Cstring,), Value)
+function Parser_Set_EndQuote(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Parser_Set_EndQuote, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Parser_Get_Delimiters()
-    ccall((:Parser_Get_Delimiters, LIBRARY), Cstring, ())
+function Parser_Get_Delimiters(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parser_Get_Delimiters, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Parser_Set_Delimiters(Value)
-    ccall((:Parser_Set_Delimiters, LIBRARY), Cvoid, (Cstring,), Value)
+function Parser_Set_Delimiters(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Parser_Set_Delimiters, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Parser_ResetDelimiters()
-    ccall((:Parser_ResetDelimiters, LIBRARY), Cvoid, ())
+function Parser_ResetDelimiters(ctx::Ptr{Cvoid})
+    ccall((:ctx_Parser_ResetDelimiters, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Parser_Get_Vector(ResultPtr, ResultCount, ExpectedSize)
-    ccall((:Parser_Get_Vector, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, Int32), ResultPtr, ResultCount, ExpectedSize)
+function Parser_Get_Vector(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, ExpectedSize)
+    ccall((:ctx_Parser_Get_Vector, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, Int32), ctx, ResultPtr, ResultCount, ExpectedSize)
 end
 
-function Parser_Get_Vector_GR(ExpectedSize)
-    ccall((:Parser_Get_Vector_GR, LIBRARY), Cvoid, (Int32,), ExpectedSize)
+function Parser_Get_Vector_GR(ctx::Ptr{Cvoid}, ExpectedSize)
+    ccall((:ctx_Parser_Get_Vector_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, ExpectedSize)
 end
 
-function Parser_Get_Matrix(ResultPtr, ResultCount, ExpectedOrder)
-    ccall((:Parser_Get_Matrix, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, Int32), ResultPtr, ResultCount, ExpectedOrder)
+function Parser_Get_Matrix(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, ExpectedOrder)
+    ccall((:ctx_Parser_Get_Matrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, Int32), ctx, ResultPtr, ResultCount, ExpectedOrder)
 end
 
-function Parser_Get_Matrix_GR(ExpectedOrder)
-    ccall((:Parser_Get_Matrix_GR, LIBRARY), Cvoid, (Int32,), ExpectedOrder)
+function Parser_Get_Matrix_GR(ctx::Ptr{Cvoid}, ExpectedOrder)
+    ccall((:ctx_Parser_Get_Matrix_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, ExpectedOrder)
 end
 
-function Parser_Get_SymMatrix(ResultPtr, ResultCount, ExpectedOrder)
-    ccall((:Parser_Get_SymMatrix, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, Int32), ResultPtr, ResultCount, ExpectedOrder)
+function Parser_Get_SymMatrix(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, ExpectedOrder)
+    ccall((:ctx_Parser_Get_SymMatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, Int32), ctx, ResultPtr, ResultCount, ExpectedOrder)
 end
 
-function Parser_Get_SymMatrix_GR(ExpectedOrder)
-    ccall((:Parser_Get_SymMatrix_GR, LIBRARY), Cvoid, (Int32,), ExpectedOrder)
+function Parser_Get_SymMatrix_GR(ctx::Ptr{Cvoid}, ExpectedOrder)
+    ccall((:ctx_Parser_Get_SymMatrix_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, ExpectedOrder)
 end
 
-function PDElements_Get_Count()
-    ccall((:PDElements_Get_Count, LIBRARY), Int32, ())
+function PDElements_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_FaultRate()
-    ccall((:PDElements_Get_FaultRate, LIBRARY), Cdouble, ())
+function PDElements_Get_FaultRate(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_FaultRate, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_First()
-    ccall((:PDElements_Get_First, LIBRARY), Int32, ())
+function PDElements_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_IsShunt()
-    ccall((:PDElements_Get_IsShunt, LIBRARY), UInt16, ())
+function PDElements_Get_IsShunt(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_IsShunt, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_Next()
-    ccall((:PDElements_Get_Next, LIBRARY), Int32, ())
+function PDElements_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_pctPermanent()
-    ccall((:PDElements_Get_pctPermanent, LIBRARY), Cdouble, ())
+function PDElements_Get_pctPermanent(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_pctPermanent, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Set_FaultRate(Value)
-    ccall((:PDElements_Set_FaultRate, LIBRARY), Cvoid, (Cdouble,), Value)
+function PDElements_Set_FaultRate(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_PDElements_Set_FaultRate, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function PDElements_Set_pctPermanent(Value)
-    ccall((:PDElements_Set_pctPermanent, LIBRARY), Cvoid, (Cdouble,), Value)
+function PDElements_Set_pctPermanent(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_PDElements_Set_pctPermanent, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function PDElements_Get_Name()
-    ccall((:PDElements_Get_Name, LIBRARY), Cstring, ())
+function PDElements_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Set_Name(Value)
-    ccall((:PDElements_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function PDElements_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_PDElements_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function PDElements_Get_AccumulatedL()
-    ccall((:PDElements_Get_AccumulatedL, LIBRARY), Cdouble, ())
+function PDElements_Get_AccumulatedL(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_AccumulatedL, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_Lambda()
-    ccall((:PDElements_Get_Lambda, LIBRARY), Cdouble, ())
+function PDElements_Get_Lambda(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_Lambda, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_Numcustomers()
-    ccall((:PDElements_Get_Numcustomers, LIBRARY), Int32, ())
+function PDElements_Get_Numcustomers(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_Numcustomers, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_ParentPDElement()
-    ccall((:PDElements_Get_ParentPDElement, LIBRARY), Int32, ())
+function PDElements_Get_ParentPDElement(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_ParentPDElement, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_RepairTime()
-    ccall((:PDElements_Get_RepairTime, LIBRARY), Cdouble, ())
+function PDElements_Get_RepairTime(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_RepairTime, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_Totalcustomers()
-    ccall((:PDElements_Get_Totalcustomers, LIBRARY), Int32, ())
+function PDElements_Get_Totalcustomers(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_Totalcustomers, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_FromTerminal()
-    ccall((:PDElements_Get_FromTerminal, LIBRARY), Int32, ())
+function PDElements_Get_FromTerminal(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_FromTerminal, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_TotalMiles()
-    ccall((:PDElements_Get_TotalMiles, LIBRARY), Cdouble, ())
+function PDElements_Get_TotalMiles(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_TotalMiles, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_SectionID()
-    ccall((:PDElements_Get_SectionID, LIBRARY), Int32, ())
+function PDElements_Get_SectionID(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_SectionID, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Set_RepairTime(Value)
-    ccall((:PDElements_Set_RepairTime, LIBRARY), Cvoid, (Cdouble,), Value)
+function PDElements_Set_RepairTime(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_PDElements_Set_RepairTime, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function PDElements_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:PDElements_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function PDElements_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_PDElements_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function PDElements_Get_AllNames_GR()
-    ccall((:PDElements_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function PDElements_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_AllMaxCurrents(ResultPtr, ResultCount, AllNodes)
-    ccall((:PDElements_Get_AllMaxCurrents, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, UInt16), ResultPtr, ResultCount, AllNodes)
+function PDElements_Get_AllMaxCurrents(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, AllNodes)
+    ccall((:ctx_PDElements_Get_AllMaxCurrents, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, UInt16), ctx, ResultPtr, ResultCount, AllNodes)
 end
 
-function PDElements_Get_AllMaxCurrents_GR(AllNodes)
-    ccall((:PDElements_Get_AllMaxCurrents_GR, LIBRARY), Cvoid, (UInt16,), AllNodes)
+function PDElements_Get_AllMaxCurrents_GR(ctx::Ptr{Cvoid}, AllNodes)
+    ccall((:ctx_PDElements_Get_AllMaxCurrents_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, AllNodes)
 end
 
-function PDElements_Get_AllPctNorm(ResultPtr, ResultCount, AllNodes)
-    ccall((:PDElements_Get_AllPctNorm, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, UInt16), ResultPtr, ResultCount, AllNodes)
+function PDElements_Get_AllPctNorm(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, AllNodes)
+    ccall((:ctx_PDElements_Get_AllPctNorm, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, UInt16), ctx, ResultPtr, ResultCount, AllNodes)
 end
 
-function PDElements_Get_AllPctNorm_GR(AllNodes)
-    ccall((:PDElements_Get_AllPctNorm_GR, LIBRARY), Cvoid, (UInt16,), AllNodes)
+function PDElements_Get_AllPctNorm_GR(ctx::Ptr{Cvoid}, AllNodes)
+    ccall((:ctx_PDElements_Get_AllPctNorm_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, AllNodes)
 end
 
-function PDElements_Get_AllPctEmerg(ResultPtr, ResultCount, AllNodes)
-    ccall((:PDElements_Get_AllPctEmerg, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, UInt16), ResultPtr, ResultCount, AllNodes)
+function PDElements_Get_AllPctEmerg(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, AllNodes)
+    ccall((:ctx_PDElements_Get_AllPctEmerg, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, UInt16), ctx, ResultPtr, ResultCount, AllNodes)
 end
 
-function PDElements_Get_AllPctEmerg_GR(AllNodes)
-    ccall((:PDElements_Get_AllPctEmerg_GR, LIBRARY), Cvoid, (UInt16,), AllNodes)
+function PDElements_Get_AllPctEmerg_GR(ctx::Ptr{Cvoid}, AllNodes)
+    ccall((:ctx_PDElements_Get_AllPctEmerg_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, AllNodes)
 end
 
-function PDElements_Get_AllCurrents(ResultPtr, ResultCount)
-    ccall((:PDElements_Get_AllCurrents, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function PDElements_Get_AllCurrents(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_PDElements_Get_AllCurrents, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function PDElements_Get_AllCurrents_GR()
-    ccall((:PDElements_Get_AllCurrents_GR, LIBRARY), Cvoid, ())
+function PDElements_Get_AllCurrents_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_AllCurrents_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_AllCurrentsMagAng(ResultPtr, ResultCount)
-    ccall((:PDElements_Get_AllCurrentsMagAng, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function PDElements_Get_AllCurrentsMagAng(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_PDElements_Get_AllCurrentsMagAng, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function PDElements_Get_AllCurrentsMagAng_GR()
-    ccall((:PDElements_Get_AllCurrentsMagAng_GR, LIBRARY), Cvoid, ())
+function PDElements_Get_AllCurrentsMagAng_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_AllCurrentsMagAng_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_AllCplxSeqCurrents(ResultPtr, ResultCount)
-    ccall((:PDElements_Get_AllCplxSeqCurrents, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function PDElements_Get_AllCplxSeqCurrents(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_PDElements_Get_AllCplxSeqCurrents, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function PDElements_Get_AllCplxSeqCurrents_GR()
-    ccall((:PDElements_Get_AllCplxSeqCurrents_GR, LIBRARY), Cvoid, ())
+function PDElements_Get_AllCplxSeqCurrents_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_AllCplxSeqCurrents_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_AllSeqCurrents(ResultPtr, ResultCount)
-    ccall((:PDElements_Get_AllSeqCurrents, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function PDElements_Get_AllSeqCurrents(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_PDElements_Get_AllSeqCurrents, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function PDElements_Get_AllSeqCurrents_GR()
-    ccall((:PDElements_Get_AllSeqCurrents_GR, LIBRARY), Cvoid, ())
+function PDElements_Get_AllSeqCurrents_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_AllSeqCurrents_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_AllPowers(ResultPtr, ResultCount)
-    ccall((:PDElements_Get_AllPowers, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function PDElements_Get_AllPowers(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_PDElements_Get_AllPowers, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function PDElements_Get_AllPowers_GR()
-    ccall((:PDElements_Get_AllPowers_GR, LIBRARY), Cvoid, ())
+function PDElements_Get_AllPowers_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_AllPowers_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_AllSeqPowers(ResultPtr, ResultCount)
-    ccall((:PDElements_Get_AllSeqPowers, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function PDElements_Get_AllSeqPowers(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_PDElements_Get_AllSeqPowers, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function PDElements_Get_AllSeqPowers_GR()
-    ccall((:PDElements_Get_AllSeqPowers_GR, LIBRARY), Cvoid, ())
+function PDElements_Get_AllSeqPowers_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_AllSeqPowers_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_AllNumPhases(ResultPtr, ResultCount)
-    ccall((:PDElements_Get_AllNumPhases, LIBRARY), Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}), ResultPtr, ResultCount)
+function PDElements_Get_AllNumPhases(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_PDElements_Get_AllNumPhases, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function PDElements_Get_AllNumPhases_GR()
-    ccall((:PDElements_Get_AllNumPhases_GR, LIBRARY), Cvoid, ())
+function PDElements_Get_AllNumPhases_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_AllNumPhases_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_AllNumConductors(ResultPtr, ResultCount)
-    ccall((:PDElements_Get_AllNumConductors, LIBRARY), Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}), ResultPtr, ResultCount)
+function PDElements_Get_AllNumConductors(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_PDElements_Get_AllNumConductors, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function PDElements_Get_AllNumConductors_GR()
-    ccall((:PDElements_Get_AllNumConductors_GR, LIBRARY), Cvoid, ())
+function PDElements_Get_AllNumConductors_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_AllNumConductors_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function PDElements_Get_AllNumTerminals(ResultPtr, ResultCount)
-    ccall((:PDElements_Get_AllNumTerminals, LIBRARY), Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}), ResultPtr, ResultCount)
+function PDElements_Get_AllNumTerminals(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_PDElements_Get_AllNumTerminals, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function PDElements_Get_AllNumTerminals_GR()
-    ccall((:PDElements_Get_AllNumTerminals_GR, LIBRARY), Cvoid, ())
+function PDElements_Get_AllNumTerminals_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_PDElements_Get_AllNumTerminals_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:PVSystems_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function PVSystems_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_PVSystems_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function PVSystems_Get_AllNames_GR()
-    ccall((:PVSystems_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function PVSystems_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Get_RegisterNames(ResultPtr, ResultCount)
-    ccall((:PVSystems_Get_RegisterNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function PVSystems_Get_RegisterNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_PVSystems_Get_RegisterNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function PVSystems_Get_RegisterNames_GR()
-    ccall((:PVSystems_Get_RegisterNames_GR, LIBRARY), Cvoid, ())
+function PVSystems_Get_RegisterNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_RegisterNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Get_RegisterValues(ResultPtr, ResultCount)
-    ccall((:PVSystems_Get_RegisterValues, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function PVSystems_Get_RegisterValues(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_PVSystems_Get_RegisterValues, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function PVSystems_Get_RegisterValues_GR()
-    ccall((:PVSystems_Get_RegisterValues_GR, LIBRARY), Cvoid, ())
+function PVSystems_Get_RegisterValues_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_RegisterValues_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Get_First()
-    ccall((:PVSystems_Get_First, LIBRARY), Int32, ())
+function PVSystems_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Get_Next()
-    ccall((:PVSystems_Get_Next, LIBRARY), Int32, ())
+function PVSystems_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Get_Count()
-    ccall((:PVSystems_Get_Count, LIBRARY), Int32, ())
+function PVSystems_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Get_idx()
-    ccall((:PVSystems_Get_idx, LIBRARY), Int32, ())
+function PVSystems_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Set_idx(Value)
-    ccall((:PVSystems_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function PVSystems_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_PVSystems_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function PVSystems_Get_Name()
-    ccall((:PVSystems_Get_Name, LIBRARY), Cstring, ())
+function PVSystems_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Set_Name(Value)
-    ccall((:PVSystems_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function PVSystems_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_PVSystems_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function PVSystems_Get_Irradiance()
-    ccall((:PVSystems_Get_Irradiance, LIBRARY), Cdouble, ())
+function PVSystems_Get_Irradiance(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_Irradiance, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Set_Irradiance(Value)
-    ccall((:PVSystems_Set_Irradiance, LIBRARY), Cvoid, (Cdouble,), Value)
+function PVSystems_Set_Irradiance(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_PVSystems_Set_Irradiance, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function PVSystems_Get_kvar()
-    ccall((:PVSystems_Get_kvar, LIBRARY), Cdouble, ())
+function PVSystems_Get_kvar(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_kvar, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Get_kVArated()
-    ccall((:PVSystems_Get_kVArated, LIBRARY), Cdouble, ())
+function PVSystems_Get_kVArated(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_kVArated, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Get_kW()
-    ccall((:PVSystems_Get_kW, LIBRARY), Cdouble, ())
+function PVSystems_Get_kW(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_kW, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Get_PF()
-    ccall((:PVSystems_Get_PF, LIBRARY), Cdouble, ())
+function PVSystems_Get_PF(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_PF, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Set_kVArated(Value)
-    ccall((:PVSystems_Set_kVArated, LIBRARY), Cvoid, (Cdouble,), Value)
+function PVSystems_Set_kVArated(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_PVSystems_Set_kVArated, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function PVSystems_Set_PF(Value)
-    ccall((:PVSystems_Set_PF, LIBRARY), Cvoid, (Cdouble,), Value)
+function PVSystems_Set_PF(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_PVSystems_Set_PF, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function PVSystems_Set_kvar(Value)
-    ccall((:PVSystems_Set_kvar, LIBRARY), Cvoid, (Cdouble,), Value)
+function PVSystems_Set_kvar(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_PVSystems_Set_kvar, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function PVSystems_Get_daily()
-    ccall((:PVSystems_Get_daily, LIBRARY), Cstring, ())
+function PVSystems_Get_daily(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_daily, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Set_daily(Value)
-    ccall((:PVSystems_Set_daily, LIBRARY), Cvoid, (Cstring,), Value)
+function PVSystems_Set_daily(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_PVSystems_Set_daily, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function PVSystems_Get_duty()
-    ccall((:PVSystems_Get_duty, LIBRARY), Cstring, ())
+function PVSystems_Get_duty(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_duty, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Set_duty(Value)
-    ccall((:PVSystems_Set_duty, LIBRARY), Cvoid, (Cstring,), Value)
+function PVSystems_Set_duty(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_PVSystems_Set_duty, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function PVSystems_Get_yearly()
-    ccall((:PVSystems_Get_yearly, LIBRARY), Cstring, ())
+function PVSystems_Get_yearly(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_yearly, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Set_yearly(Value)
-    ccall((:PVSystems_Set_yearly, LIBRARY), Cvoid, (Cstring,), Value)
+function PVSystems_Set_yearly(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_PVSystems_Set_yearly, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function PVSystems_Get_Tdaily()
-    ccall((:PVSystems_Get_Tdaily, LIBRARY), Cstring, ())
+function PVSystems_Get_Tdaily(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_Tdaily, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Set_Tdaily(Value)
-    ccall((:PVSystems_Set_Tdaily, LIBRARY), Cvoid, (Cstring,), Value)
+function PVSystems_Set_Tdaily(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_PVSystems_Set_Tdaily, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function PVSystems_Get_Tduty()
-    ccall((:PVSystems_Get_Tduty, LIBRARY), Cstring, ())
+function PVSystems_Get_Tduty(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_Tduty, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Set_Tduty(Value)
-    ccall((:PVSystems_Set_Tduty, LIBRARY), Cvoid, (Cstring,), Value)
+function PVSystems_Set_Tduty(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_PVSystems_Set_Tduty, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function PVSystems_Get_Tyearly()
-    ccall((:PVSystems_Get_Tyearly, LIBRARY), Cstring, ())
+function PVSystems_Get_Tyearly(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_Tyearly, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Set_Tyearly(Value)
-    ccall((:PVSystems_Set_Tyearly, LIBRARY), Cvoid, (Cstring,), Value)
+function PVSystems_Set_Tyearly(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_PVSystems_Set_Tyearly, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function PVSystems_Get_Pmpp()
-    ccall((:PVSystems_Get_Pmpp, LIBRARY), Cdouble, ())
+function PVSystems_Get_Pmpp(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_Pmpp, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Set_Pmpp(Value)
-    ccall((:PVSystems_Set_Pmpp, LIBRARY), Cvoid, (Cdouble,), Value)
+function PVSystems_Set_Pmpp(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_PVSystems_Set_Pmpp, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function PVSystems_Get_IrradianceNow()
-    ccall((:PVSystems_Get_IrradianceNow, LIBRARY), Cdouble, ())
+function PVSystems_Get_IrradianceNow(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_IrradianceNow, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function PVSystems_Get_Sensor()
-    ccall((:PVSystems_Get_Sensor, LIBRARY), Cstring, ())
+function PVSystems_Get_Sensor(ctx::Ptr{Cvoid})
+    ccall((:ctx_PVSystems_Get_Sensor, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:Reclosers_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Reclosers_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Reclosers_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Reclosers_Get_AllNames_GR()
-    ccall((:Reclosers_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function Reclosers_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Get_Count()
-    ccall((:Reclosers_Get_Count, LIBRARY), Int32, ())
+function Reclosers_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Get_First()
-    ccall((:Reclosers_Get_First, LIBRARY), Int32, ())
+function Reclosers_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Get_Name()
-    ccall((:Reclosers_Get_Name, LIBRARY), Cstring, ())
+function Reclosers_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Get_Next()
-    ccall((:Reclosers_Get_Next, LIBRARY), Int32, ())
+function Reclosers_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Set_Name(Value)
-    ccall((:Reclosers_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function Reclosers_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reclosers_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Reclosers_Get_MonitoredTerm()
-    ccall((:Reclosers_Get_MonitoredTerm, LIBRARY), Int32, ())
+function Reclosers_Get_MonitoredTerm(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Get_MonitoredTerm, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Set_MonitoredTerm(Value)
-    ccall((:Reclosers_Set_MonitoredTerm, LIBRARY), Cvoid, (Int32,), Value)
+function Reclosers_Set_MonitoredTerm(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reclosers_Set_MonitoredTerm, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Reclosers_Get_SwitchedObj()
-    ccall((:Reclosers_Get_SwitchedObj, LIBRARY), Cstring, ())
+function Reclosers_Get_SwitchedObj(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Get_SwitchedObj, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Set_SwitchedObj(Value)
-    ccall((:Reclosers_Set_SwitchedObj, LIBRARY), Cvoid, (Cstring,), Value)
+function Reclosers_Set_SwitchedObj(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reclosers_Set_SwitchedObj, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Reclosers_Get_MonitoredObj()
-    ccall((:Reclosers_Get_MonitoredObj, LIBRARY), Cstring, ())
+function Reclosers_Get_MonitoredObj(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Get_MonitoredObj, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Get_SwitchedTerm()
-    ccall((:Reclosers_Get_SwitchedTerm, LIBRARY), Int32, ())
+function Reclosers_Get_SwitchedTerm(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Get_SwitchedTerm, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Set_MonitoredObj(Value)
-    ccall((:Reclosers_Set_MonitoredObj, LIBRARY), Cvoid, (Cstring,), Value)
+function Reclosers_Set_MonitoredObj(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reclosers_Set_MonitoredObj, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Reclosers_Set_SwitchedTerm(Value)
-    ccall((:Reclosers_Set_SwitchedTerm, LIBRARY), Cvoid, (Int32,), Value)
+function Reclosers_Set_SwitchedTerm(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reclosers_Set_SwitchedTerm, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Reclosers_Get_NumFast()
-    ccall((:Reclosers_Get_NumFast, LIBRARY), Int32, ())
+function Reclosers_Get_NumFast(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Get_NumFast, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Get_RecloseIntervals(ResultPtr, ResultCount)
-    ccall((:Reclosers_Get_RecloseIntervals, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Reclosers_Get_RecloseIntervals(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Reclosers_Get_RecloseIntervals, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Reclosers_Get_RecloseIntervals_GR()
-    ccall((:Reclosers_Get_RecloseIntervals_GR, LIBRARY), Cvoid, ())
+function Reclosers_Get_RecloseIntervals_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Get_RecloseIntervals_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Get_Shots()
-    ccall((:Reclosers_Get_Shots, LIBRARY), Int32, ())
+function Reclosers_Get_Shots(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Get_Shots, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Set_NumFast(Value)
-    ccall((:Reclosers_Set_NumFast, LIBRARY), Cvoid, (Int32,), Value)
+function Reclosers_Set_NumFast(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reclosers_Set_NumFast, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Reclosers_Set_Shots(Value)
-    ccall((:Reclosers_Set_Shots, LIBRARY), Cvoid, (Int32,), Value)
+function Reclosers_Set_Shots(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reclosers_Set_Shots, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Reclosers_Get_PhaseTrip()
-    ccall((:Reclosers_Get_PhaseTrip, LIBRARY), Cdouble, ())
+function Reclosers_Get_PhaseTrip(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Get_PhaseTrip, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Set_PhaseTrip(Value)
-    ccall((:Reclosers_Set_PhaseTrip, LIBRARY), Cvoid, (Cdouble,), Value)
+function Reclosers_Set_PhaseTrip(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reclosers_Set_PhaseTrip, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Reclosers_Get_GroundInst()
-    ccall((:Reclosers_Get_GroundInst, LIBRARY), Cdouble, ())
+function Reclosers_Get_GroundInst(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Get_GroundInst, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Get_GroundTrip()
-    ccall((:Reclosers_Get_GroundTrip, LIBRARY), Cdouble, ())
+function Reclosers_Get_GroundTrip(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Get_GroundTrip, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Get_PhaseInst()
-    ccall((:Reclosers_Get_PhaseInst, LIBRARY), Cdouble, ())
+function Reclosers_Get_PhaseInst(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Get_PhaseInst, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Set_GroundInst(Value)
-    ccall((:Reclosers_Set_GroundInst, LIBRARY), Cvoid, (Cdouble,), Value)
+function Reclosers_Set_GroundInst(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reclosers_Set_GroundInst, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Reclosers_Set_GroundTrip(Value)
-    ccall((:Reclosers_Set_GroundTrip, LIBRARY), Cvoid, (Cdouble,), Value)
+function Reclosers_Set_GroundTrip(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reclosers_Set_GroundTrip, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Reclosers_Set_PhaseInst(Value)
-    ccall((:Reclosers_Set_PhaseInst, LIBRARY), Cvoid, (Cdouble,), Value)
+function Reclosers_Set_PhaseInst(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reclosers_Set_PhaseInst, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Reclosers_Close()
-    ccall((:Reclosers_Close, LIBRARY), Cvoid, ())
+function Reclosers_Close(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Close, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Open()
-    ccall((:Reclosers_Open, LIBRARY), Cvoid, ())
+function Reclosers_Open(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Open, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Reset()
-    ccall((:Reclosers_Reset, LIBRARY), Cvoid, ())
+function Reclosers_Reset(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Reset, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Get_idx()
-    ccall((:Reclosers_Get_idx, LIBRARY), Int32, ())
+function Reclosers_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Set_idx(Value)
-    ccall((:Reclosers_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function Reclosers_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reclosers_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Reclosers_Get_State()
-    ccall((:Reclosers_Get_State, LIBRARY), Int32, ())
+function Reclosers_Get_State(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Get_State, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Set_State(Value)
-    ccall((:Reclosers_Set_State, LIBRARY), Cvoid, (Int32,), Value)
+function Reclosers_Set_State(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reclosers_Set_State, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Reclosers_Get_NormalState()
-    ccall((:Reclosers_Get_NormalState, LIBRARY), Int32, ())
+function Reclosers_Get_NormalState(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reclosers_Get_NormalState, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Reclosers_Set_NormalState(Value)
-    ccall((:Reclosers_Set_NormalState, LIBRARY), Cvoid, (Int32,), Value)
+function Reclosers_Set_NormalState(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reclosers_Set_NormalState, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function RegControls_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:RegControls_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function RegControls_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_RegControls_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function RegControls_Get_AllNames_GR()
-    ccall((:RegControls_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function RegControls_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_CTPrimary()
-    ccall((:RegControls_Get_CTPrimary, LIBRARY), Cdouble, ())
+function RegControls_Get_CTPrimary(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_CTPrimary, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_Delay()
-    ccall((:RegControls_Get_Delay, LIBRARY), Cdouble, ())
+function RegControls_Get_Delay(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_Delay, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_First()
-    ccall((:RegControls_Get_First, LIBRARY), Int32, ())
+function RegControls_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_ForwardBand()
-    ccall((:RegControls_Get_ForwardBand, LIBRARY), Cdouble, ())
+function RegControls_Get_ForwardBand(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_ForwardBand, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_ForwardR()
-    ccall((:RegControls_Get_ForwardR, LIBRARY), Cdouble, ())
+function RegControls_Get_ForwardR(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_ForwardR, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_ForwardVreg()
-    ccall((:RegControls_Get_ForwardVreg, LIBRARY), Cdouble, ())
+function RegControls_Get_ForwardVreg(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_ForwardVreg, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_ForwardX()
-    ccall((:RegControls_Get_ForwardX, LIBRARY), Cdouble, ())
+function RegControls_Get_ForwardX(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_ForwardX, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_IsInverseTime()
-    ccall((:RegControls_Get_IsInverseTime, LIBRARY), UInt16, ())
+function RegControls_Get_IsInverseTime(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_IsInverseTime, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_IsReversible()
-    ccall((:RegControls_Get_IsReversible, LIBRARY), UInt16, ())
+function RegControls_Get_IsReversible(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_IsReversible, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_MaxTapChange()
-    ccall((:RegControls_Get_MaxTapChange, LIBRARY), Int32, ())
+function RegControls_Get_MaxTapChange(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_MaxTapChange, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_MonitoredBus()
-    ccall((:RegControls_Get_MonitoredBus, LIBRARY), Cstring, ())
+function RegControls_Get_MonitoredBus(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_MonitoredBus, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_Name()
-    ccall((:RegControls_Get_Name, LIBRARY), Cstring, ())
+function RegControls_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_Next()
-    ccall((:RegControls_Get_Next, LIBRARY), Int32, ())
+function RegControls_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_PTratio()
-    ccall((:RegControls_Get_PTratio, LIBRARY), Cdouble, ())
+function RegControls_Get_PTratio(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_PTratio, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_ReverseBand()
-    ccall((:RegControls_Get_ReverseBand, LIBRARY), Cdouble, ())
+function RegControls_Get_ReverseBand(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_ReverseBand, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_ReverseR()
-    ccall((:RegControls_Get_ReverseR, LIBRARY), Cdouble, ())
+function RegControls_Get_ReverseR(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_ReverseR, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_ReverseVreg()
-    ccall((:RegControls_Get_ReverseVreg, LIBRARY), Cdouble, ())
+function RegControls_Get_ReverseVreg(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_ReverseVreg, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_ReverseX()
-    ccall((:RegControls_Get_ReverseX, LIBRARY), Cdouble, ())
+function RegControls_Get_ReverseX(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_ReverseX, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_TapDelay()
-    ccall((:RegControls_Get_TapDelay, LIBRARY), Cdouble, ())
+function RegControls_Get_TapDelay(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_TapDelay, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_TapWinding()
-    ccall((:RegControls_Get_TapWinding, LIBRARY), Int32, ())
+function RegControls_Get_TapWinding(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_TapWinding, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_Transformer()
-    ccall((:RegControls_Get_Transformer, LIBRARY), Cstring, ())
+function RegControls_Get_Transformer(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_Transformer, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_VoltageLimit()
-    ccall((:RegControls_Get_VoltageLimit, LIBRARY), Cdouble, ())
+function RegControls_Get_VoltageLimit(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_VoltageLimit, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_Winding()
-    ccall((:RegControls_Get_Winding, LIBRARY), Int32, ())
+function RegControls_Get_Winding(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_Winding, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Get_TapNumber()
-    ccall((:RegControls_Get_TapNumber, LIBRARY), Int32, ())
+function RegControls_Get_TapNumber(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_TapNumber, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Set_CTPrimary(Value)
-    ccall((:RegControls_Set_CTPrimary, LIBRARY), Cvoid, (Cdouble,), Value)
+function RegControls_Set_CTPrimary(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_CTPrimary, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function RegControls_Set_Delay(Value)
-    ccall((:RegControls_Set_Delay, LIBRARY), Cvoid, (Cdouble,), Value)
+function RegControls_Set_Delay(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_Delay, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function RegControls_Set_ForwardBand(Value)
-    ccall((:RegControls_Set_ForwardBand, LIBRARY), Cvoid, (Cdouble,), Value)
+function RegControls_Set_ForwardBand(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_ForwardBand, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function RegControls_Set_ForwardR(Value)
-    ccall((:RegControls_Set_ForwardR, LIBRARY), Cvoid, (Cdouble,), Value)
+function RegControls_Set_ForwardR(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_ForwardR, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function RegControls_Set_ForwardVreg(Value)
-    ccall((:RegControls_Set_ForwardVreg, LIBRARY), Cvoid, (Cdouble,), Value)
+function RegControls_Set_ForwardVreg(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_ForwardVreg, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function RegControls_Set_ForwardX(Value)
-    ccall((:RegControls_Set_ForwardX, LIBRARY), Cvoid, (Cdouble,), Value)
+function RegControls_Set_ForwardX(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_ForwardX, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function RegControls_Set_IsInverseTime(Value)
-    ccall((:RegControls_Set_IsInverseTime, LIBRARY), Cvoid, (UInt16,), Value)
+function RegControls_Set_IsInverseTime(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_IsInverseTime, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function RegControls_Set_IsReversible(Value)
-    ccall((:RegControls_Set_IsReversible, LIBRARY), Cvoid, (UInt16,), Value)
+function RegControls_Set_IsReversible(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_IsReversible, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function RegControls_Set_MaxTapChange(Value)
-    ccall((:RegControls_Set_MaxTapChange, LIBRARY), Cvoid, (Int32,), Value)
+function RegControls_Set_MaxTapChange(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_MaxTapChange, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function RegControls_Set_MonitoredBus(Value)
-    ccall((:RegControls_Set_MonitoredBus, LIBRARY), Cvoid, (Cstring,), Value)
+function RegControls_Set_MonitoredBus(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_MonitoredBus, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function RegControls_Set_Name(Value)
-    ccall((:RegControls_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function RegControls_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function RegControls_Set_PTratio(Value)
-    ccall((:RegControls_Set_PTratio, LIBRARY), Cvoid, (Cdouble,), Value)
+function RegControls_Set_PTratio(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_PTratio, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function RegControls_Set_ReverseBand(Value)
-    ccall((:RegControls_Set_ReverseBand, LIBRARY), Cvoid, (Cdouble,), Value)
+function RegControls_Set_ReverseBand(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_ReverseBand, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function RegControls_Set_ReverseR(Value)
-    ccall((:RegControls_Set_ReverseR, LIBRARY), Cvoid, (Cdouble,), Value)
+function RegControls_Set_ReverseR(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_ReverseR, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function RegControls_Set_ReverseVreg(Value)
-    ccall((:RegControls_Set_ReverseVreg, LIBRARY), Cvoid, (Cdouble,), Value)
+function RegControls_Set_ReverseVreg(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_ReverseVreg, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function RegControls_Set_ReverseX(Value)
-    ccall((:RegControls_Set_ReverseX, LIBRARY), Cvoid, (Cdouble,), Value)
+function RegControls_Set_ReverseX(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_ReverseX, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function RegControls_Set_TapDelay(Value)
-    ccall((:RegControls_Set_TapDelay, LIBRARY), Cvoid, (Cdouble,), Value)
+function RegControls_Set_TapDelay(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_TapDelay, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function RegControls_Set_TapWinding(Value)
-    ccall((:RegControls_Set_TapWinding, LIBRARY), Cvoid, (Int32,), Value)
+function RegControls_Set_TapWinding(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_TapWinding, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function RegControls_Set_Transformer(Value)
-    ccall((:RegControls_Set_Transformer, LIBRARY), Cvoid, (Cstring,), Value)
+function RegControls_Set_Transformer(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_Transformer, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function RegControls_Set_VoltageLimit(Value)
-    ccall((:RegControls_Set_VoltageLimit, LIBRARY), Cvoid, (Cdouble,), Value)
+function RegControls_Set_VoltageLimit(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_VoltageLimit, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function RegControls_Set_Winding(Value)
-    ccall((:RegControls_Set_Winding, LIBRARY), Cvoid, (Int32,), Value)
+function RegControls_Set_Winding(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_Winding, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function RegControls_Set_TapNumber(Value)
-    ccall((:RegControls_Set_TapNumber, LIBRARY), Cvoid, (Int32,), Value)
+function RegControls_Set_TapNumber(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_TapNumber, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function RegControls_Get_Count()
-    ccall((:RegControls_Get_Count, LIBRARY), Int32, ())
+function RegControls_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Reset()
-    ccall((:RegControls_Reset, LIBRARY), Cvoid, ())
+function RegControls_Reset(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Reset, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Relays_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:Relays_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Relays_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Relays_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Relays_Get_AllNames_GR()
-    ccall((:Relays_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function Relays_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Relays_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Relays_Get_Count()
-    ccall((:Relays_Get_Count, LIBRARY), Int32, ())
+function Relays_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_Relays_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Relays_Get_First()
-    ccall((:Relays_Get_First, LIBRARY), Int32, ())
+function Relays_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_Relays_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Relays_Get_Name()
-    ccall((:Relays_Get_Name, LIBRARY), Cstring, ())
+function Relays_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_Relays_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Relays_Get_Next()
-    ccall((:Relays_Get_Next, LIBRARY), Int32, ())
+function Relays_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_Relays_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Relays_Set_Name(Value)
-    ccall((:Relays_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function Relays_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Relays_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Relays_Get_MonitoredObj()
-    ccall((:Relays_Get_MonitoredObj, LIBRARY), Cstring, ())
+function Relays_Get_MonitoredObj(ctx::Ptr{Cvoid})
+    ccall((:ctx_Relays_Get_MonitoredObj, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Relays_Set_MonitoredObj(Value)
-    ccall((:Relays_Set_MonitoredObj, LIBRARY), Cvoid, (Cstring,), Value)
+function Relays_Set_MonitoredObj(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Relays_Set_MonitoredObj, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Relays_Get_MonitoredTerm()
-    ccall((:Relays_Get_MonitoredTerm, LIBRARY), Int32, ())
+function Relays_Get_MonitoredTerm(ctx::Ptr{Cvoid})
+    ccall((:ctx_Relays_Get_MonitoredTerm, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Relays_Get_SwitchedObj()
-    ccall((:Relays_Get_SwitchedObj, LIBRARY), Cstring, ())
+function Relays_Get_SwitchedObj(ctx::Ptr{Cvoid})
+    ccall((:ctx_Relays_Get_SwitchedObj, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Relays_Set_MonitoredTerm(Value)
-    ccall((:Relays_Set_MonitoredTerm, LIBRARY), Cvoid, (Int32,), Value)
+function Relays_Set_MonitoredTerm(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Relays_Set_MonitoredTerm, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Relays_Set_SwitchedObj(Value)
-    ccall((:Relays_Set_SwitchedObj, LIBRARY), Cvoid, (Cstring,), Value)
+function Relays_Set_SwitchedObj(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Relays_Set_SwitchedObj, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Relays_Get_SwitchedTerm()
-    ccall((:Relays_Get_SwitchedTerm, LIBRARY), Int32, ())
+function Relays_Get_SwitchedTerm(ctx::Ptr{Cvoid})
+    ccall((:ctx_Relays_Get_SwitchedTerm, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Relays_Set_SwitchedTerm(Value)
-    ccall((:Relays_Set_SwitchedTerm, LIBRARY), Cvoid, (Int32,), Value)
+function Relays_Set_SwitchedTerm(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Relays_Set_SwitchedTerm, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Relays_Get_idx()
-    ccall((:Relays_Get_idx, LIBRARY), Int32, ())
+function Relays_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_Relays_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Relays_Set_idx(Value)
-    ccall((:Relays_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function Relays_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Relays_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Relays_Open()
-    ccall((:Relays_Open, LIBRARY), Cvoid, ())
+function Relays_Open(ctx::Ptr{Cvoid})
+    ccall((:ctx_Relays_Open, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Relays_Close()
-    ccall((:Relays_Close, LIBRARY), Cvoid, ())
+function Relays_Close(ctx::Ptr{Cvoid})
+    ccall((:ctx_Relays_Close, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Relays_Reset()
-    ccall((:Relays_Reset, LIBRARY), Cvoid, ())
+function Relays_Reset(ctx::Ptr{Cvoid})
+    ccall((:ctx_Relays_Reset, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Relays_Get_State()
-    ccall((:Relays_Get_State, LIBRARY), Int32, ())
+function Relays_Get_State(ctx::Ptr{Cvoid})
+    ccall((:ctx_Relays_Get_State, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Relays_Set_State(Value)
-    ccall((:Relays_Set_State, LIBRARY), Cvoid, (Int32,), Value)
+function Relays_Set_State(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Relays_Set_State, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Relays_Get_NormalState()
-    ccall((:Relays_Get_NormalState, LIBRARY), Int32, ())
+function Relays_Get_NormalState(ctx::Ptr{Cvoid})
+    ccall((:ctx_Relays_Get_NormalState, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Relays_Set_NormalState(Value)
-    ccall((:Relays_Set_NormalState, LIBRARY), Cvoid, (Int32,), Value)
+function Relays_Set_NormalState(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Relays_Set_NormalState, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Sensors_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:Sensors_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Sensors_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Sensors_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Sensors_Get_AllNames_GR()
-    ccall((:Sensors_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function Sensors_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Sensors_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Sensors_Get_Count()
-    ccall((:Sensors_Get_Count, LIBRARY), Int32, ())
+function Sensors_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_Sensors_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Sensors_Get_Currents(ResultPtr, ResultCount)
-    ccall((:Sensors_Get_Currents, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Sensors_Get_Currents(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Sensors_Get_Currents, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Sensors_Get_Currents_GR()
-    ccall((:Sensors_Get_Currents_GR, LIBRARY), Cvoid, ())
+function Sensors_Get_Currents_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Sensors_Get_Currents_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Sensors_Get_First()
-    ccall((:Sensors_Get_First, LIBRARY), Int32, ())
+function Sensors_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_Sensors_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Sensors_Get_IsDelta()
-    ccall((:Sensors_Get_IsDelta, LIBRARY), UInt16, ())
+function Sensors_Get_IsDelta(ctx::Ptr{Cvoid})
+    ccall((:ctx_Sensors_Get_IsDelta, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Sensors_Get_kVARS(ResultPtr, ResultCount)
-    ccall((:Sensors_Get_kVARS, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Sensors_Get_kVARS(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Sensors_Get_kVARS, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Sensors_Get_kVARS_GR()
-    ccall((:Sensors_Get_kVARS_GR, LIBRARY), Cvoid, ())
+function Sensors_Get_kVARS_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Sensors_Get_kVARS_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Sensors_Get_kVS(ResultPtr, ResultCount)
-    ccall((:Sensors_Get_kVS, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Sensors_Get_kVS(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Sensors_Get_kVS, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Sensors_Get_kVS_GR()
-    ccall((:Sensors_Get_kVS_GR, LIBRARY), Cvoid, ())
+function Sensors_Get_kVS_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Sensors_Get_kVS_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Sensors_Get_kWS(ResultPtr, ResultCount)
-    ccall((:Sensors_Get_kWS, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Sensors_Get_kWS(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Sensors_Get_kWS, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Sensors_Get_kWS_GR()
-    ccall((:Sensors_Get_kWS_GR, LIBRARY), Cvoid, ())
+function Sensors_Get_kWS_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Sensors_Get_kWS_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Sensors_Get_MeteredElement()
-    ccall((:Sensors_Get_MeteredElement, LIBRARY), Cstring, ())
+function Sensors_Get_MeteredElement(ctx::Ptr{Cvoid})
+    ccall((:ctx_Sensors_Get_MeteredElement, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Sensors_Get_MeteredTerminal()
-    ccall((:Sensors_Get_MeteredTerminal, LIBRARY), Int32, ())
+function Sensors_Get_MeteredTerminal(ctx::Ptr{Cvoid})
+    ccall((:ctx_Sensors_Get_MeteredTerminal, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Sensors_Get_Name()
-    ccall((:Sensors_Get_Name, LIBRARY), Cstring, ())
+function Sensors_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_Sensors_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Sensors_Get_Next()
-    ccall((:Sensors_Get_Next, LIBRARY), Int32, ())
+function Sensors_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_Sensors_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Sensors_Get_PctError()
-    ccall((:Sensors_Get_PctError, LIBRARY), Cdouble, ())
+function Sensors_Get_PctError(ctx::Ptr{Cvoid})
+    ccall((:ctx_Sensors_Get_PctError, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Sensors_Get_ReverseDelta()
-    ccall((:Sensors_Get_ReverseDelta, LIBRARY), UInt16, ())
+function Sensors_Get_ReverseDelta(ctx::Ptr{Cvoid})
+    ccall((:ctx_Sensors_Get_ReverseDelta, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Sensors_Get_Weight()
-    ccall((:Sensors_Get_Weight, LIBRARY), Cdouble, ())
+function Sensors_Get_Weight(ctx::Ptr{Cvoid})
+    ccall((:ctx_Sensors_Get_Weight, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Sensors_Reset()
-    ccall((:Sensors_Reset, LIBRARY), Cvoid, ())
+function Sensors_Reset(ctx::Ptr{Cvoid})
+    ccall((:ctx_Sensors_Reset, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Sensors_ResetAll()
-    ccall((:Sensors_ResetAll, LIBRARY), Cvoid, ())
+function Sensors_ResetAll(ctx::Ptr{Cvoid})
+    ccall((:ctx_Sensors_ResetAll, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Sensors_Set_Currents(ValuePtr, ValueCount)
-    ccall((:Sensors_Set_Currents, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function Sensors_Set_Currents(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Sensors_Set_Currents, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Sensors_Set_IsDelta(Value)
-    ccall((:Sensors_Set_IsDelta, LIBRARY), Cvoid, (UInt16,), Value)
+function Sensors_Set_IsDelta(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Sensors_Set_IsDelta, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function Sensors_Set_kVARS(ValuePtr, ValueCount)
-    ccall((:Sensors_Set_kVARS, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function Sensors_Set_kVARS(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Sensors_Set_kVARS, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Sensors_Set_kVS(ValuePtr, ValueCount)
-    ccall((:Sensors_Set_kVS, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function Sensors_Set_kVS(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Sensors_Set_kVS, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Sensors_Set_kWS(ValuePtr, ValueCount)
-    ccall((:Sensors_Set_kWS, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function Sensors_Set_kWS(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Sensors_Set_kWS, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Sensors_Set_MeteredElement(Value)
-    ccall((:Sensors_Set_MeteredElement, LIBRARY), Cvoid, (Cstring,), Value)
+function Sensors_Set_MeteredElement(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Sensors_Set_MeteredElement, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Sensors_Set_MeteredTerminal(Value)
-    ccall((:Sensors_Set_MeteredTerminal, LIBRARY), Cvoid, (Int32,), Value)
+function Sensors_Set_MeteredTerminal(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Sensors_Set_MeteredTerminal, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Sensors_Set_Name(Value)
-    ccall((:Sensors_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function Sensors_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Sensors_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Sensors_Set_PctError(Value)
-    ccall((:Sensors_Set_PctError, LIBRARY), Cvoid, (Cdouble,), Value)
+function Sensors_Set_PctError(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Sensors_Set_PctError, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Sensors_Set_ReverseDelta(Value)
-    ccall((:Sensors_Set_ReverseDelta, LIBRARY), Cvoid, (UInt16,), Value)
+function Sensors_Set_ReverseDelta(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Sensors_Set_ReverseDelta, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function Sensors_Set_Weight(Value)
-    ccall((:Sensors_Set_Weight, LIBRARY), Cvoid, (Cdouble,), Value)
+function Sensors_Set_Weight(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Sensors_Set_Weight, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Sensors_Get_kVbase()
-    ccall((:Sensors_Get_kVbase, LIBRARY), Cdouble, ())
+function Sensors_Get_kVbase(ctx::Ptr{Cvoid})
+    ccall((:ctx_Sensors_Get_kVbase, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Sensors_Set_kVbase(Value)
-    ccall((:Sensors_Set_kVbase, LIBRARY), Cvoid, (Cdouble,), Value)
+function Sensors_Set_kVbase(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Sensors_Set_kVbase, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Sensors_Get_AllocationFactor(ResultPtr, ResultCount)
-    ccall((:Sensors_Get_AllocationFactor, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Sensors_Get_AllocationFactor(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Sensors_Get_AllocationFactor, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Sensors_Get_AllocationFactor_GR()
-    ccall((:Sensors_Get_AllocationFactor_GR, LIBRARY), Cvoid, ())
+function Sensors_Get_AllocationFactor_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Sensors_Get_AllocationFactor_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Settings_Get_AllowDuplicates()
-    ccall((:Settings_Get_AllowDuplicates, LIBRARY), UInt16, ())
+function Settings_Get_AllowDuplicates(ctx::Ptr{Cvoid})
+    ccall((:ctx_Settings_Get_AllowDuplicates, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Settings_Get_AutoBusList()
-    ccall((:Settings_Get_AutoBusList, LIBRARY), Cstring, ())
+function Settings_Get_AutoBusList(ctx::Ptr{Cvoid})
+    ccall((:ctx_Settings_Get_AutoBusList, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Settings_Get_CktModel()
-    ccall((:Settings_Get_CktModel, LIBRARY), Int32, ())
+function Settings_Get_CktModel(ctx::Ptr{Cvoid})
+    ccall((:ctx_Settings_Get_CktModel, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Settings_Set_CktModel(Value)
-    ccall((:Settings_Set_CktModel, LIBRARY), Cvoid, (Int32,), Value)
+function Settings_Set_CktModel(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Settings_Set_CktModel, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Settings_Get_EmergVmaxpu()
-    ccall((:Settings_Get_EmergVmaxpu, LIBRARY), Cdouble, ())
+function Settings_Get_EmergVmaxpu(ctx::Ptr{Cvoid})
+    ccall((:ctx_Settings_Get_EmergVmaxpu, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Settings_Get_EmergVminpu()
-    ccall((:Settings_Get_EmergVminpu, LIBRARY), Cdouble, ())
+function Settings_Get_EmergVminpu(ctx::Ptr{Cvoid})
+    ccall((:ctx_Settings_Get_EmergVminpu, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Settings_Get_NormVmaxpu()
-    ccall((:Settings_Get_NormVmaxpu, LIBRARY), Cdouble, ())
+function Settings_Get_NormVmaxpu(ctx::Ptr{Cvoid})
+    ccall((:ctx_Settings_Get_NormVmaxpu, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Settings_Get_NormVminpu()
-    ccall((:Settings_Get_NormVminpu, LIBRARY), Cdouble, ())
+function Settings_Get_NormVminpu(ctx::Ptr{Cvoid})
+    ccall((:ctx_Settings_Get_NormVminpu, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Settings_Get_ZoneLock()
-    ccall((:Settings_Get_ZoneLock, LIBRARY), UInt16, ())
+function Settings_Get_ZoneLock(ctx::Ptr{Cvoid})
+    ccall((:ctx_Settings_Get_ZoneLock, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Settings_Set_AllocationFactors(Value)
-    ccall((:Settings_Set_AllocationFactors, LIBRARY), Cvoid, (Cdouble,), Value)
+function Settings_Set_AllocationFactors(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Settings_Set_AllocationFactors, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Settings_Set_AllowDuplicates(Value)
-    ccall((:Settings_Set_AllowDuplicates, LIBRARY), Cvoid, (UInt16,), Value)
+function Settings_Set_AllowDuplicates(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Settings_Set_AllowDuplicates, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function Settings_Set_AutoBusList(Value)
-    ccall((:Settings_Set_AutoBusList, LIBRARY), Cvoid, (Cstring,), Value)
+function Settings_Set_AutoBusList(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Settings_Set_AutoBusList, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Settings_Set_EmergVmaxpu(Value)
-    ccall((:Settings_Set_EmergVmaxpu, LIBRARY), Cvoid, (Cdouble,), Value)
+function Settings_Set_EmergVmaxpu(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Settings_Set_EmergVmaxpu, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Settings_Set_EmergVminpu(Value)
-    ccall((:Settings_Set_EmergVminpu, LIBRARY), Cvoid, (Cdouble,), Value)
+function Settings_Set_EmergVminpu(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Settings_Set_EmergVminpu, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Settings_Set_NormVmaxpu(Value)
-    ccall((:Settings_Set_NormVmaxpu, LIBRARY), Cvoid, (Cdouble,), Value)
+function Settings_Set_NormVmaxpu(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Settings_Set_NormVmaxpu, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Settings_Set_NormVminpu(Value)
-    ccall((:Settings_Set_NormVminpu, LIBRARY), Cvoid, (Cdouble,), Value)
+function Settings_Set_NormVminpu(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Settings_Set_NormVminpu, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Settings_Set_ZoneLock(Value)
-    ccall((:Settings_Set_ZoneLock, LIBRARY), Cvoid, (UInt16,), Value)
+function Settings_Set_ZoneLock(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Settings_Set_ZoneLock, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function Settings_Get_LossRegs(ResultPtr, ResultCount)
-    ccall((:Settings_Get_LossRegs, LIBRARY), Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Settings_Get_LossRegs(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Settings_Get_LossRegs, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Settings_Get_LossRegs_GR()
-    ccall((:Settings_Get_LossRegs_GR, LIBRARY), Cvoid, ())
+function Settings_Get_LossRegs_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Settings_Get_LossRegs_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Settings_Get_LossWeight()
-    ccall((:Settings_Get_LossWeight, LIBRARY), Cdouble, ())
+function Settings_Get_LossWeight(ctx::Ptr{Cvoid})
+    ccall((:ctx_Settings_Get_LossWeight, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Settings_Get_Trapezoidal()
-    ccall((:Settings_Get_Trapezoidal, LIBRARY), UInt16, ())
+function Settings_Get_Trapezoidal(ctx::Ptr{Cvoid})
+    ccall((:ctx_Settings_Get_Trapezoidal, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Settings_Get_UEregs(ResultPtr, ResultCount)
-    ccall((:Settings_Get_UEregs, LIBRARY), Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Settings_Get_UEregs(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Settings_Get_UEregs, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Settings_Get_UEregs_GR()
-    ccall((:Settings_Get_UEregs_GR, LIBRARY), Cvoid, ())
+function Settings_Get_UEregs_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Settings_Get_UEregs_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Settings_Get_UEweight()
-    ccall((:Settings_Get_UEweight, LIBRARY), Cdouble, ())
+function Settings_Get_UEweight(ctx::Ptr{Cvoid})
+    ccall((:ctx_Settings_Get_UEweight, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Settings_Set_LossRegs(ValuePtr, ValueCount)
-    ccall((:Settings_Set_LossRegs, LIBRARY), Cvoid, (Ptr{Int32}, Int32), ValuePtr, ValueCount)
+function Settings_Set_LossRegs(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Settings_Set_LossRegs, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Int32}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Settings_Set_LossWeight(Value)
-    ccall((:Settings_Set_LossWeight, LIBRARY), Cvoid, (Cdouble,), Value)
+function Settings_Set_LossWeight(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Settings_Set_LossWeight, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Settings_Set_Trapezoidal(Value)
-    ccall((:Settings_Set_Trapezoidal, LIBRARY), Cvoid, (UInt16,), Value)
+function Settings_Set_Trapezoidal(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Settings_Set_Trapezoidal, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function Settings_Set_UEregs(ValuePtr, ValueCount)
-    ccall((:Settings_Set_UEregs, LIBRARY), Cvoid, (Ptr{Int32}, Int32), ValuePtr, ValueCount)
+function Settings_Set_UEregs(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Settings_Set_UEregs, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Int32}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Settings_Set_UEweight(Value)
-    ccall((:Settings_Set_UEweight, LIBRARY), Cvoid, (Cdouble,), Value)
+function Settings_Set_UEweight(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Settings_Set_UEweight, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Settings_Get_ControlTrace()
-    ccall((:Settings_Get_ControlTrace, LIBRARY), UInt16, ())
+function Settings_Get_ControlTrace(ctx::Ptr{Cvoid})
+    ccall((:ctx_Settings_Get_ControlTrace, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Settings_Get_VoltageBases(ResultPtr, ResultCount)
-    ccall((:Settings_Get_VoltageBases, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Settings_Get_VoltageBases(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Settings_Get_VoltageBases, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Settings_Get_VoltageBases_GR()
-    ccall((:Settings_Get_VoltageBases_GR, LIBRARY), Cvoid, ())
+function Settings_Get_VoltageBases_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Settings_Get_VoltageBases_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Settings_Set_ControlTrace(Value)
-    ccall((:Settings_Set_ControlTrace, LIBRARY), Cvoid, (UInt16,), Value)
+function Settings_Set_ControlTrace(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Settings_Set_ControlTrace, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function Settings_Set_VoltageBases(ValuePtr, ValueCount)
-    ccall((:Settings_Set_VoltageBases, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function Settings_Set_VoltageBases(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Settings_Set_VoltageBases, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Settings_Get_PriceCurve()
-    ccall((:Settings_Get_PriceCurve, LIBRARY), Cstring, ())
+function Settings_Get_PriceCurve(ctx::Ptr{Cvoid})
+    ccall((:ctx_Settings_Get_PriceCurve, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Settings_Get_PriceSignal()
-    ccall((:Settings_Get_PriceSignal, LIBRARY), Cdouble, ())
+function Settings_Get_PriceSignal(ctx::Ptr{Cvoid})
+    ccall((:ctx_Settings_Get_PriceSignal, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Settings_Set_PriceCurve(Value)
-    ccall((:Settings_Set_PriceCurve, LIBRARY), Cvoid, (Cstring,), Value)
+function Settings_Set_PriceCurve(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Settings_Set_PriceCurve, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Settings_Set_PriceSignal(Value)
-    ccall((:Settings_Set_PriceSignal, LIBRARY), Cvoid, (Cdouble,), Value)
+function Settings_Set_PriceSignal(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Settings_Set_PriceSignal, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Settings_Get_LoadsTerminalCheck()
-    ccall((:Settings_Get_LoadsTerminalCheck, LIBRARY), UInt16, ())
+function Settings_Get_LoadsTerminalCheck(ctx::Ptr{Cvoid})
+    ccall((:ctx_Settings_Get_LoadsTerminalCheck, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Settings_Set_LoadsTerminalCheck(Value)
-    ccall((:Settings_Set_LoadsTerminalCheck, LIBRARY), Cvoid, (UInt16,), Value)
+function Settings_Set_LoadsTerminalCheck(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Settings_Set_LoadsTerminalCheck, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function Settings_Get_IterateDisabled()
-    ccall((:Settings_Get_IterateDisabled, LIBRARY), Int32, ())
+function Settings_Get_IterateDisabled(ctx::Ptr{Cvoid})
+    ccall((:ctx_Settings_Get_IterateDisabled, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Settings_Set_IterateDisabled(Value)
-    ccall((:Settings_Set_IterateDisabled, LIBRARY), Cvoid, (Int32,), Value)
+function Settings_Set_IterateDisabled(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Settings_Set_IterateDisabled, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Solution_Get_Frequency()
-    ccall((:Solution_Get_Frequency, LIBRARY), Cdouble, ())
+function Solution_Get_Frequency(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_Frequency, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_Hour()
-    ccall((:Solution_Get_Hour, LIBRARY), Int32, ())
+function Solution_Get_Hour(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_Hour, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_Iterations()
-    ccall((:Solution_Get_Iterations, LIBRARY), Int32, ())
+function Solution_Get_Iterations(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_Iterations, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_LoadMult()
-    ccall((:Solution_Get_LoadMult, LIBRARY), Cdouble, ())
+function Solution_Get_LoadMult(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_LoadMult, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_MaxIterations()
-    ccall((:Solution_Get_MaxIterations, LIBRARY), Int32, ())
+function Solution_Get_MaxIterations(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_MaxIterations, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_Mode()
-    ccall((:Solution_Get_Mode, LIBRARY), Int32, ())
+function Solution_Get_Mode(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_Mode, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_Number()
-    ccall((:Solution_Get_Number, LIBRARY), Int32, ())
+function Solution_Get_Number(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_Number, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Set_Random(Random)
-    ccall((:Solution_Set_Random, LIBRARY), Cvoid, (Int32,), Random)
+function Solution_Set_Random(ctx::Ptr{Cvoid}, Random)
+    ccall((:ctx_Solution_Set_Random, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Random)
 end
 
-function Solution_Get_Random()
-    ccall((:Solution_Get_Random, LIBRARY), Int32, ())
+function Solution_Get_Random(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_Random, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_Seconds()
-    ccall((:Solution_Get_Seconds, LIBRARY), Cdouble, ())
+function Solution_Get_Seconds(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_Seconds, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_StepSize()
-    ccall((:Solution_Get_StepSize, LIBRARY), Cdouble, ())
+function Solution_Get_StepSize(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_StepSize, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_Tolerance()
-    ccall((:Solution_Get_Tolerance, LIBRARY), Cdouble, ())
+function Solution_Get_Tolerance(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_Tolerance, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_Year()
-    ccall((:Solution_Get_Year, LIBRARY), Int32, ())
+function Solution_Get_Year(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_Year, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Set_Frequency(Value)
-    ccall((:Solution_Set_Frequency, LIBRARY), Cvoid, (Cdouble,), Value)
+function Solution_Set_Frequency(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_Frequency, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Solution_Set_Hour(Value)
-    ccall((:Solution_Set_Hour, LIBRARY), Cvoid, (Int32,), Value)
+function Solution_Set_Hour(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_Hour, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Solution_Set_LoadMult(Value)
-    ccall((:Solution_Set_LoadMult, LIBRARY), Cvoid, (Cdouble,), Value)
+function Solution_Set_LoadMult(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_LoadMult, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Solution_Set_MaxIterations(Value)
-    ccall((:Solution_Set_MaxIterations, LIBRARY), Cvoid, (Int32,), Value)
+function Solution_Set_MaxIterations(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_MaxIterations, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Solution_Set_Mode(Mode)
-    ccall((:Solution_Set_Mode, LIBRARY), Cvoid, (Int32,), Mode)
+function Solution_Set_Mode(ctx::Ptr{Cvoid}, Mode)
+    ccall((:ctx_Solution_Set_Mode, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Mode)
 end
 
-function Solution_Set_Number(Value)
-    ccall((:Solution_Set_Number, LIBRARY), Cvoid, (Int32,), Value)
+function Solution_Set_Number(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_Number, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Solution_Set_Seconds(Value)
-    ccall((:Solution_Set_Seconds, LIBRARY), Cvoid, (Cdouble,), Value)
+function Solution_Set_Seconds(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_Seconds, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Solution_Set_StepSize(Value)
-    ccall((:Solution_Set_StepSize, LIBRARY), Cvoid, (Cdouble,), Value)
+function Solution_Set_StepSize(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_StepSize, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Solution_Set_Tolerance(Value)
-    ccall((:Solution_Set_Tolerance, LIBRARY), Cvoid, (Cdouble,), Value)
+function Solution_Set_Tolerance(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_Tolerance, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Solution_Set_Year(Value)
-    ccall((:Solution_Set_Year, LIBRARY), Cvoid, (Int32,), Value)
+function Solution_Set_Year(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_Year, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Solution_Solve()
-    ccall((:Solution_Solve, LIBRARY), Cvoid, ())
+function Solution_Solve(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Solve, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_ModeID()
-    ccall((:Solution_Get_ModeID, LIBRARY), Cstring, ())
+function Solution_Get_ModeID(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_ModeID, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_LoadModel()
-    ccall((:Solution_Get_LoadModel, LIBRARY), Int32, ())
+function Solution_Get_LoadModel(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_LoadModel, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Set_LoadModel(Value)
-    ccall((:Solution_Set_LoadModel, LIBRARY), Cvoid, (Int32,), Value)
+function Solution_Set_LoadModel(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_LoadModel, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Solution_Get_LDCurve()
-    ccall((:Solution_Get_LDCurve, LIBRARY), Cstring, ())
+function Solution_Get_LDCurve(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_LDCurve, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Set_LDCurve(Value)
-    ccall((:Solution_Set_LDCurve, LIBRARY), Cvoid, (Cstring,), Value)
+function Solution_Set_LDCurve(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_LDCurve, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Solution_Get_pctGrowth()
-    ccall((:Solution_Get_pctGrowth, LIBRARY), Cdouble, ())
+function Solution_Get_pctGrowth(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_pctGrowth, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Set_pctGrowth(Value)
-    ccall((:Solution_Set_pctGrowth, LIBRARY), Cvoid, (Cdouble,), Value)
+function Solution_Set_pctGrowth(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_pctGrowth, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Solution_Get_AddType()
-    ccall((:Solution_Get_AddType, LIBRARY), Int32, ())
+function Solution_Get_AddType(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_AddType, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Set_AddType(Value)
-    ccall((:Solution_Set_AddType, LIBRARY), Cvoid, (Int32,), Value)
+function Solution_Set_AddType(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_AddType, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Solution_Get_GenkW()
-    ccall((:Solution_Get_GenkW, LIBRARY), Cdouble, ())
+function Solution_Get_GenkW(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_GenkW, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Set_GenkW(Value)
-    ccall((:Solution_Set_GenkW, LIBRARY), Cvoid, (Cdouble,), Value)
+function Solution_Set_GenkW(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_GenkW, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Solution_Get_GenPF()
-    ccall((:Solution_Get_GenPF, LIBRARY), Cdouble, ())
+function Solution_Get_GenPF(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_GenPF, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Set_GenPF(Value)
-    ccall((:Solution_Set_GenPF, LIBRARY), Cvoid, (Cdouble,), Value)
+function Solution_Set_GenPF(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_GenPF, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Solution_Get_Capkvar()
-    ccall((:Solution_Get_Capkvar, LIBRARY), Cdouble, ())
+function Solution_Get_Capkvar(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_Capkvar, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Set_Capkvar(Value)
-    ccall((:Solution_Set_Capkvar, LIBRARY), Cvoid, (Cdouble,), Value)
+function Solution_Set_Capkvar(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_Capkvar, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Solution_Get_Algorithm()
-    ccall((:Solution_Get_Algorithm, LIBRARY), Int32, ())
+function Solution_Get_Algorithm(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_Algorithm, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Set_Algorithm(Value)
-    ccall((:Solution_Set_Algorithm, LIBRARY), Cvoid, (Int32,), Value)
+function Solution_Set_Algorithm(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_Algorithm, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Solution_Get_ControlMode()
-    ccall((:Solution_Get_ControlMode, LIBRARY), Int32, ())
+function Solution_Get_ControlMode(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_ControlMode, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Set_ControlMode(Value)
-    ccall((:Solution_Set_ControlMode, LIBRARY), Cvoid, (Int32,), Value)
+function Solution_Set_ControlMode(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_ControlMode, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Solution_Get_GenMult()
-    ccall((:Solution_Get_GenMult, LIBRARY), Cdouble, ())
+function Solution_Get_GenMult(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_GenMult, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Set_GenMult(Value)
-    ccall((:Solution_Set_GenMult, LIBRARY), Cvoid, (Cdouble,), Value)
+function Solution_Set_GenMult(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_GenMult, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Solution_Get_DefaultDaily()
-    ccall((:Solution_Get_DefaultDaily, LIBRARY), Cstring, ())
+function Solution_Get_DefaultDaily(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_DefaultDaily, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_DefaultYearly()
-    ccall((:Solution_Get_DefaultYearly, LIBRARY), Cstring, ())
+function Solution_Get_DefaultYearly(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_DefaultYearly, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Set_DefaultDaily(Value)
-    ccall((:Solution_Set_DefaultDaily, LIBRARY), Cvoid, (Cstring,), Value)
+function Solution_Set_DefaultDaily(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_DefaultDaily, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Solution_Set_DefaultYearly(Value)
-    ccall((:Solution_Set_DefaultYearly, LIBRARY), Cvoid, (Cstring,), Value)
+function Solution_Set_DefaultYearly(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_DefaultYearly, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Solution_Get_EventLog(ResultPtr, ResultCount)
-    ccall((:Solution_Get_EventLog, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Solution_Get_EventLog(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Solution_Get_EventLog, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Solution_Get_EventLog_GR()
-    ccall((:Solution_Get_EventLog_GR, LIBRARY), Cvoid, ())
+function Solution_Get_EventLog_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_EventLog_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_dblHour()
-    ccall((:Solution_Get_dblHour, LIBRARY), Cdouble, ())
+function Solution_Get_dblHour(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_dblHour, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Set_dblHour(Value)
-    ccall((:Solution_Set_dblHour, LIBRARY), Cvoid, (Cdouble,), Value)
+function Solution_Set_dblHour(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_dblHour, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Solution_Set_StepsizeHr(Value)
-    ccall((:Solution_Set_StepsizeHr, LIBRARY), Cvoid, (Cdouble,), Value)
+function Solution_Set_StepsizeHr(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_StepsizeHr, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Solution_Set_StepsizeMin(Value)
-    ccall((:Solution_Set_StepsizeMin, LIBRARY), Cvoid, (Cdouble,), Value)
+function Solution_Set_StepsizeMin(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_StepsizeMin, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Solution_Get_ControlIterations()
-    ccall((:Solution_Get_ControlIterations, LIBRARY), Int32, ())
+function Solution_Get_ControlIterations(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_ControlIterations, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_MaxControlIterations()
-    ccall((:Solution_Get_MaxControlIterations, LIBRARY), Int32, ())
+function Solution_Get_MaxControlIterations(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_MaxControlIterations, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Sample_DoControlActions()
-    ccall((:Solution_Sample_DoControlActions, LIBRARY), Cvoid, ())
+function Solution_Sample_DoControlActions(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Sample_DoControlActions, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Set_ControlIterations(Value)
-    ccall((:Solution_Set_ControlIterations, LIBRARY), Cvoid, (Int32,), Value)
+function Solution_Set_ControlIterations(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_ControlIterations, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Solution_Set_MaxControlIterations(Value)
-    ccall((:Solution_Set_MaxControlIterations, LIBRARY), Cvoid, (Int32,), Value)
+function Solution_Set_MaxControlIterations(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_MaxControlIterations, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Solution_CheckFaultStatus()
-    ccall((:Solution_CheckFaultStatus, LIBRARY), Cvoid, ())
+function Solution_CheckFaultStatus(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_CheckFaultStatus, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_SolveDirect()
-    ccall((:Solution_SolveDirect, LIBRARY), Cvoid, ())
+function Solution_SolveDirect(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_SolveDirect, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_SolveNoControl()
-    ccall((:Solution_SolveNoControl, LIBRARY), Cvoid, ())
+function Solution_SolveNoControl(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_SolveNoControl, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_SolvePflow()
-    ccall((:Solution_SolvePflow, LIBRARY), Cvoid, ())
+function Solution_SolvePflow(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_SolvePflow, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_SolvePlusControl()
-    ccall((:Solution_SolvePlusControl, LIBRARY), Cvoid, ())
+function Solution_SolvePlusControl(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_SolvePlusControl, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_SolveSnap()
-    ccall((:Solution_SolveSnap, LIBRARY), Cvoid, ())
+function Solution_SolveSnap(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_SolveSnap, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_CheckControls()
-    ccall((:Solution_CheckControls, LIBRARY), Cvoid, ())
+function Solution_CheckControls(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_CheckControls, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_InitSnap()
-    ccall((:Solution_InitSnap, LIBRARY), Cvoid, ())
+function Solution_InitSnap(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_InitSnap, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_SystemYChanged()
-    ccall((:Solution_Get_SystemYChanged, LIBRARY), UInt16, ())
+function Solution_Get_SystemYChanged(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_SystemYChanged, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_BuildYMatrix(BuildOption, AllocateVI)
-    ccall((:Solution_BuildYMatrix, LIBRARY), Cvoid, (Int32, Int32), BuildOption, AllocateVI)
+function Solution_BuildYMatrix(ctx::Ptr{Cvoid}, BuildOption, AllocateVI)
+    ccall((:ctx_Solution_BuildYMatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32, Int32), ctx, BuildOption, AllocateVI)
 end
 
-function Solution_DoControlActions()
-    ccall((:Solution_DoControlActions, LIBRARY), Cvoid, ())
+function Solution_DoControlActions(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_DoControlActions, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_SampleControlDevices()
-    ccall((:Solution_SampleControlDevices, LIBRARY), Cvoid, ())
+function Solution_SampleControlDevices(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_SampleControlDevices, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_Converged()
-    ccall((:Solution_Get_Converged, LIBRARY), UInt16, ())
+function Solution_Get_Converged(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_Converged, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Set_Converged(Value)
-    ccall((:Solution_Set_Converged, LIBRARY), Cvoid, (UInt16,), Value)
+function Solution_Set_Converged(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_Converged, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function Solution_Get_Totaliterations()
-    ccall((:Solution_Get_Totaliterations, LIBRARY), Int32, ())
+function Solution_Get_Totaliterations(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_Totaliterations, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_MostIterationsDone()
-    ccall((:Solution_Get_MostIterationsDone, LIBRARY), Int32, ())
+function Solution_Get_MostIterationsDone(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_MostIterationsDone, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_ControlActionsDone()
-    ccall((:Solution_Get_ControlActionsDone, LIBRARY), UInt16, ())
+function Solution_Get_ControlActionsDone(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_ControlActionsDone, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Set_ControlActionsDone(Value)
-    ccall((:Solution_Set_ControlActionsDone, LIBRARY), Cvoid, (UInt16,), Value)
+function Solution_Set_ControlActionsDone(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_ControlActionsDone, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function Solution_Cleanup()
-    ccall((:Solution_Cleanup, LIBRARY), Cvoid, ())
+function Solution_Cleanup(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Cleanup, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_FinishTimeStep()
-    ccall((:Solution_FinishTimeStep, LIBRARY), Cvoid, ())
+function Solution_FinishTimeStep(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_FinishTimeStep, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_Process_Time()
-    ccall((:Solution_Get_Process_Time, LIBRARY), Cdouble, ())
+function Solution_Get_Process_Time(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_Process_Time, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_Total_Time()
-    ccall((:Solution_Get_Total_Time, LIBRARY), Cdouble, ())
+function Solution_Get_Total_Time(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_Total_Time, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Set_Total_Time(Value)
-    ccall((:Solution_Set_Total_Time, LIBRARY), Cvoid, (Cdouble,), Value)
+function Solution_Set_Total_Time(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_Total_Time, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Solution_Get_Time_of_Step()
-    ccall((:Solution_Get_Time_of_Step, LIBRARY), Cdouble, ())
+function Solution_Get_Time_of_Step(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_Time_of_Step, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_IntervalHrs()
-    ccall((:Solution_Get_IntervalHrs, LIBRARY), Cdouble, ())
+function Solution_Get_IntervalHrs(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_IntervalHrs, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Set_IntervalHrs(Value)
-    ccall((:Solution_Set_IntervalHrs, LIBRARY), Cvoid, (Cdouble,), Value)
+function Solution_Set_IntervalHrs(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_IntervalHrs, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Solution_Get_MinIterations()
-    ccall((:Solution_Get_MinIterations, LIBRARY), Int32, ())
+function Solution_Get_MinIterations(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_MinIterations, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Set_MinIterations(Value)
-    ccall((:Solution_Set_MinIterations, LIBRARY), Cvoid, (Int32,), Value)
+function Solution_Set_MinIterations(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Solution_Set_MinIterations, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Solution_SolveAll()
-    ccall((:Solution_SolveAll, LIBRARY), Cvoid, ())
+function Solution_SolveAll(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_SolveAll, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_IncMatrix(ResultPtr, ResultCount)
-    ccall((:Solution_Get_IncMatrix, LIBRARY), Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Solution_Get_IncMatrix(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Solution_Get_IncMatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Solution_Get_IncMatrix_GR()
-    ccall((:Solution_Get_IncMatrix_GR, LIBRARY), Cvoid, ())
+function Solution_Get_IncMatrix_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_IncMatrix_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_Laplacian(ResultPtr, ResultCount)
-    ccall((:Solution_Get_Laplacian, LIBRARY), Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Solution_Get_Laplacian(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Solution_Get_Laplacian, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Solution_Get_Laplacian_GR()
-    ccall((:Solution_Get_Laplacian_GR, LIBRARY), Cvoid, ())
+function Solution_Get_Laplacian_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_Laplacian_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_BusLevels(ResultPtr, ResultCount)
-    ccall((:Solution_Get_BusLevels, LIBRARY), Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Solution_Get_BusLevels(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Solution_Get_BusLevels, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Solution_Get_BusLevels_GR()
-    ccall((:Solution_Get_BusLevels_GR, LIBRARY), Cvoid, ())
+function Solution_Get_BusLevels_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_BusLevels_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_IncMatrixRows(ResultPtr, ResultCount)
-    ccall((:Solution_Get_IncMatrixRows, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Solution_Get_IncMatrixRows(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Solution_Get_IncMatrixRows, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Solution_Get_IncMatrixRows_GR()
-    ccall((:Solution_Get_IncMatrixRows_GR, LIBRARY), Cvoid, ())
+function Solution_Get_IncMatrixRows_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_IncMatrixRows_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Solution_Get_IncMatrixCols(ResultPtr, ResultCount)
-    ccall((:Solution_Get_IncMatrixCols, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Solution_Get_IncMatrixCols(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Solution_Get_IncMatrixCols, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Solution_Get_IncMatrixCols_GR()
-    ccall((:Solution_Get_IncMatrixCols_GR, LIBRARY), Cvoid, ())
+function Solution_Get_IncMatrixCols_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Solution_Get_IncMatrixCols_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function SwtControls_Get_Action()
-    ccall((:SwtControls_Get_Action, LIBRARY), Int32, ())
+function SwtControls_Get_Action(ctx::Ptr{Cvoid})
+    ccall((:ctx_SwtControls_Get_Action, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function SwtControls_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:SwtControls_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function SwtControls_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_SwtControls_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function SwtControls_Get_AllNames_GR()
-    ccall((:SwtControls_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function SwtControls_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_SwtControls_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function SwtControls_Get_Delay()
-    ccall((:SwtControls_Get_Delay, LIBRARY), Cdouble, ())
+function SwtControls_Get_Delay(ctx::Ptr{Cvoid})
+    ccall((:ctx_SwtControls_Get_Delay, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function SwtControls_Get_First()
-    ccall((:SwtControls_Get_First, LIBRARY), Int32, ())
+function SwtControls_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_SwtControls_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function SwtControls_Get_IsLocked()
-    ccall((:SwtControls_Get_IsLocked, LIBRARY), UInt16, ())
+function SwtControls_Get_IsLocked(ctx::Ptr{Cvoid})
+    ccall((:ctx_SwtControls_Get_IsLocked, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function SwtControls_Get_Name()
-    ccall((:SwtControls_Get_Name, LIBRARY), Cstring, ())
+function SwtControls_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_SwtControls_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function SwtControls_Get_Next()
-    ccall((:SwtControls_Get_Next, LIBRARY), Int32, ())
+function SwtControls_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_SwtControls_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function SwtControls_Get_SwitchedObj()
-    ccall((:SwtControls_Get_SwitchedObj, LIBRARY), Cstring, ())
+function SwtControls_Get_SwitchedObj(ctx::Ptr{Cvoid})
+    ccall((:ctx_SwtControls_Get_SwitchedObj, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function SwtControls_Get_SwitchedTerm()
-    ccall((:SwtControls_Get_SwitchedTerm, LIBRARY), Int32, ())
+function SwtControls_Get_SwitchedTerm(ctx::Ptr{Cvoid})
+    ccall((:ctx_SwtControls_Get_SwitchedTerm, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function SwtControls_Set_Action(Value)
-    ccall((:SwtControls_Set_Action, LIBRARY), Cvoid, (Int32,), Value)
+function SwtControls_Set_Action(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_SwtControls_Set_Action, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function SwtControls_Set_Delay(Value)
-    ccall((:SwtControls_Set_Delay, LIBRARY), Cvoid, (Cdouble,), Value)
+function SwtControls_Set_Delay(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_SwtControls_Set_Delay, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function SwtControls_Set_IsLocked(Value)
-    ccall((:SwtControls_Set_IsLocked, LIBRARY), Cvoid, (UInt16,), Value)
+function SwtControls_Set_IsLocked(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_SwtControls_Set_IsLocked, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function SwtControls_Set_Name(Value)
-    ccall((:SwtControls_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function SwtControls_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_SwtControls_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function SwtControls_Set_SwitchedObj(Value)
-    ccall((:SwtControls_Set_SwitchedObj, LIBRARY), Cvoid, (Cstring,), Value)
+function SwtControls_Set_SwitchedObj(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_SwtControls_Set_SwitchedObj, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function SwtControls_Set_SwitchedTerm(Value)
-    ccall((:SwtControls_Set_SwitchedTerm, LIBRARY), Cvoid, (Int32,), Value)
+function SwtControls_Set_SwitchedTerm(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_SwtControls_Set_SwitchedTerm, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function SwtControls_Get_Count()
-    ccall((:SwtControls_Get_Count, LIBRARY), Int32, ())
+function SwtControls_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_SwtControls_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function SwtControls_Get_NormalState()
-    ccall((:SwtControls_Get_NormalState, LIBRARY), Int32, ())
+function SwtControls_Get_NormalState(ctx::Ptr{Cvoid})
+    ccall((:ctx_SwtControls_Get_NormalState, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function SwtControls_Set_NormalState(Value)
-    ccall((:SwtControls_Set_NormalState, LIBRARY), Cvoid, (Int32,), Value)
+function SwtControls_Set_NormalState(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_SwtControls_Set_NormalState, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function SwtControls_Get_State()
-    ccall((:SwtControls_Get_State, LIBRARY), Int32, ())
+function SwtControls_Get_State(ctx::Ptr{Cvoid})
+    ccall((:ctx_SwtControls_Get_State, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function SwtControls_Set_State(Value)
-    ccall((:SwtControls_Set_State, LIBRARY), Cvoid, (Int32,), Value)
+function SwtControls_Set_State(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_SwtControls_Set_State, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function SwtControls_Reset()
-    ccall((:SwtControls_Reset, LIBRARY), Cvoid, ())
+function SwtControls_Reset(ctx::Ptr{Cvoid})
+    ccall((:ctx_SwtControls_Reset, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Text_Get_Command()
-    ccall((:Text_Get_Command, LIBRARY), Cstring, ())
+function Text_Get_Command(ctx::Ptr{Cvoid})
+    ccall((:ctx_Text_Get_Command, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Text_Set_Command(Value)
-    ccall((:Text_Set_Command, LIBRARY), Cvoid, (Cstring,), Value)
+function Text_Set_Command(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Text_Set_Command, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Text_Get_Result()
-    ccall((:Text_Get_Result, LIBRARY), Cstring, ())
+function Text_Get_Result(ctx::Ptr{Cvoid})
+    ccall((:ctx_Text_Get_Result, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Topology_Get_NumLoops()
-    ccall((:Topology_Get_NumLoops, LIBRARY), Int32, ())
+function Topology_Get_NumLoops(ctx::Ptr{Cvoid})
+    ccall((:ctx_Topology_Get_NumLoops, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Topology_Get_ActiveBranch()
-    ccall((:Topology_Get_ActiveBranch, LIBRARY), Int32, ())
+function Topology_Get_ActiveBranch(ctx::Ptr{Cvoid})
+    ccall((:ctx_Topology_Get_ActiveBranch, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Topology_Get_AllIsolatedBranches(ResultPtr, ResultCount)
-    ccall((:Topology_Get_AllIsolatedBranches, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Topology_Get_AllIsolatedBranches(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Topology_Get_AllIsolatedBranches, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Topology_Get_AllIsolatedBranches_GR()
-    ccall((:Topology_Get_AllIsolatedBranches_GR, LIBRARY), Cvoid, ())
+function Topology_Get_AllIsolatedBranches_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Topology_Get_AllIsolatedBranches_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Topology_Get_AllLoopedPairs(ResultPtr, ResultCount)
-    ccall((:Topology_Get_AllLoopedPairs, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Topology_Get_AllLoopedPairs(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Topology_Get_AllLoopedPairs, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Topology_Get_AllLoopedPairs_GR()
-    ccall((:Topology_Get_AllLoopedPairs_GR, LIBRARY), Cvoid, ())
+function Topology_Get_AllLoopedPairs_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Topology_Get_AllLoopedPairs_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Topology_Get_BackwardBranch()
-    ccall((:Topology_Get_BackwardBranch, LIBRARY), Int32, ())
+function Topology_Get_BackwardBranch(ctx::Ptr{Cvoid})
+    ccall((:ctx_Topology_Get_BackwardBranch, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Topology_Get_BranchName()
-    ccall((:Topology_Get_BranchName, LIBRARY), Cstring, ())
+function Topology_Get_BranchName(ctx::Ptr{Cvoid})
+    ccall((:ctx_Topology_Get_BranchName, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Topology_Get_First()
-    ccall((:Topology_Get_First, LIBRARY), Int32, ())
+function Topology_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_Topology_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Topology_Get_ForwardBranch()
-    ccall((:Topology_Get_ForwardBranch, LIBRARY), Int32, ())
+function Topology_Get_ForwardBranch(ctx::Ptr{Cvoid})
+    ccall((:ctx_Topology_Get_ForwardBranch, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Topology_Get_LoopedBranch()
-    ccall((:Topology_Get_LoopedBranch, LIBRARY), Int32, ())
+function Topology_Get_LoopedBranch(ctx::Ptr{Cvoid})
+    ccall((:ctx_Topology_Get_LoopedBranch, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Topology_Get_Next()
-    ccall((:Topology_Get_Next, LIBRARY), Int32, ())
+function Topology_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_Topology_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Topology_Get_NumIsolatedBranches()
-    ccall((:Topology_Get_NumIsolatedBranches, LIBRARY), Int32, ())
+function Topology_Get_NumIsolatedBranches(ctx::Ptr{Cvoid})
+    ccall((:ctx_Topology_Get_NumIsolatedBranches, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Topology_Get_ParallelBranch()
-    ccall((:Topology_Get_ParallelBranch, LIBRARY), Int32, ())
+function Topology_Get_ParallelBranch(ctx::Ptr{Cvoid})
+    ccall((:ctx_Topology_Get_ParallelBranch, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Topology_Set_BranchName(Value)
-    ccall((:Topology_Set_BranchName, LIBRARY), Cvoid, (Cstring,), Value)
+function Topology_Set_BranchName(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Topology_Set_BranchName, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Topology_Get_AllIsolatedLoads(ResultPtr, ResultCount)
-    ccall((:Topology_Get_AllIsolatedLoads, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Topology_Get_AllIsolatedLoads(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Topology_Get_AllIsolatedLoads, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Topology_Get_AllIsolatedLoads_GR()
-    ccall((:Topology_Get_AllIsolatedLoads_GR, LIBRARY), Cvoid, ())
+function Topology_Get_AllIsolatedLoads_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Topology_Get_AllIsolatedLoads_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Topology_Get_FirstLoad()
-    ccall((:Topology_Get_FirstLoad, LIBRARY), Int32, ())
+function Topology_Get_FirstLoad(ctx::Ptr{Cvoid})
+    ccall((:ctx_Topology_Get_FirstLoad, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Topology_Get_NextLoad()
-    ccall((:Topology_Get_NextLoad, LIBRARY), Int32, ())
+function Topology_Get_NextLoad(ctx::Ptr{Cvoid})
+    ccall((:ctx_Topology_Get_NextLoad, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Topology_Get_NumIsolatedLoads()
-    ccall((:Topology_Get_NumIsolatedLoads, LIBRARY), Int32, ())
+function Topology_Get_NumIsolatedLoads(ctx::Ptr{Cvoid})
+    ccall((:ctx_Topology_Get_NumIsolatedLoads, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Topology_Get_ActiveLevel()
-    ccall((:Topology_Get_ActiveLevel, LIBRARY), Int32, ())
+function Topology_Get_ActiveLevel(ctx::Ptr{Cvoid})
+    ccall((:ctx_Topology_Get_ActiveLevel, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Topology_Get_BusName()
-    ccall((:Topology_Get_BusName, LIBRARY), Cstring, ())
+function Topology_Get_BusName(ctx::Ptr{Cvoid})
+    ccall((:ctx_Topology_Get_BusName, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Topology_Set_BusName(Value)
-    ccall((:Topology_Set_BusName, LIBRARY), Cvoid, (Cstring,), Value)
+function Topology_Set_BusName(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Topology_Set_BusName, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Transformers_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:Transformers_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Transformers_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Transformers_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Transformers_Get_AllNames_GR()
-    ccall((:Transformers_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function Transformers_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_First()
-    ccall((:Transformers_Get_First, LIBRARY), Int32, ())
+function Transformers_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_IsDelta()
-    ccall((:Transformers_Get_IsDelta, LIBRARY), UInt16, ())
+function Transformers_Get_IsDelta(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_IsDelta, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_kV()
-    ccall((:Transformers_Get_kV, LIBRARY), Cdouble, ())
+function Transformers_Get_kV(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_kV, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_kVA()
-    ccall((:Transformers_Get_kVA, LIBRARY), Cdouble, ())
+function Transformers_Get_kVA(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_kVA, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_MaxTap()
-    ccall((:Transformers_Get_MaxTap, LIBRARY), Cdouble, ())
+function Transformers_Get_MaxTap(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_MaxTap, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_MinTap()
-    ccall((:Transformers_Get_MinTap, LIBRARY), Cdouble, ())
+function Transformers_Get_MinTap(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_MinTap, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_Name()
-    ccall((:Transformers_Get_Name, LIBRARY), Cstring, ())
+function Transformers_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_Next()
-    ccall((:Transformers_Get_Next, LIBRARY), Int32, ())
+function Transformers_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_NumTaps()
-    ccall((:Transformers_Get_NumTaps, LIBRARY), Int32, ())
+function Transformers_Get_NumTaps(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_NumTaps, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_NumWindings()
-    ccall((:Transformers_Get_NumWindings, LIBRARY), Int32, ())
+function Transformers_Get_NumWindings(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_NumWindings, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_R()
-    ccall((:Transformers_Get_R, LIBRARY), Cdouble, ())
+function Transformers_Get_R(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_R, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_Rneut()
-    ccall((:Transformers_Get_Rneut, LIBRARY), Cdouble, ())
+function Transformers_Get_Rneut(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_Rneut, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_Tap()
-    ccall((:Transformers_Get_Tap, LIBRARY), Cdouble, ())
+function Transformers_Get_Tap(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_Tap, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_Wdg()
-    ccall((:Transformers_Get_Wdg, LIBRARY), Int32, ())
+function Transformers_Get_Wdg(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_Wdg, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_XfmrCode()
-    ccall((:Transformers_Get_XfmrCode, LIBRARY), Cstring, ())
+function Transformers_Get_XfmrCode(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_XfmrCode, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_Xhl()
-    ccall((:Transformers_Get_Xhl, LIBRARY), Cdouble, ())
+function Transformers_Get_Xhl(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_Xhl, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_Xht()
-    ccall((:Transformers_Get_Xht, LIBRARY), Cdouble, ())
+function Transformers_Get_Xht(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_Xht, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_Xlt()
-    ccall((:Transformers_Get_Xlt, LIBRARY), Cdouble, ())
+function Transformers_Get_Xlt(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_Xlt, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_Xneut()
-    ccall((:Transformers_Get_Xneut, LIBRARY), Cdouble, ())
+function Transformers_Get_Xneut(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_Xneut, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Set_IsDelta(Value)
-    ccall((:Transformers_Set_IsDelta, LIBRARY), Cvoid, (UInt16,), Value)
+function Transformers_Set_IsDelta(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Transformers_Set_IsDelta, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function Transformers_Set_kV(Value)
-    ccall((:Transformers_Set_kV, LIBRARY), Cvoid, (Cdouble,), Value)
+function Transformers_Set_kV(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Transformers_Set_kV, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Transformers_Set_kVA(Value)
-    ccall((:Transformers_Set_kVA, LIBRARY), Cvoid, (Cdouble,), Value)
+function Transformers_Set_kVA(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Transformers_Set_kVA, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Transformers_Set_MaxTap(Value)
-    ccall((:Transformers_Set_MaxTap, LIBRARY), Cvoid, (Cdouble,), Value)
+function Transformers_Set_MaxTap(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Transformers_Set_MaxTap, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Transformers_Set_MinTap(Value)
-    ccall((:Transformers_Set_MinTap, LIBRARY), Cvoid, (Cdouble,), Value)
+function Transformers_Set_MinTap(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Transformers_Set_MinTap, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Transformers_Set_Name(Value)
-    ccall((:Transformers_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function Transformers_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Transformers_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Transformers_Set_NumTaps(Value)
-    ccall((:Transformers_Set_NumTaps, LIBRARY), Cvoid, (Int32,), Value)
+function Transformers_Set_NumTaps(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Transformers_Set_NumTaps, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Transformers_Set_NumWindings(Value)
-    ccall((:Transformers_Set_NumWindings, LIBRARY), Cvoid, (Int32,), Value)
+function Transformers_Set_NumWindings(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Transformers_Set_NumWindings, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Transformers_Set_R(Value)
-    ccall((:Transformers_Set_R, LIBRARY), Cvoid, (Cdouble,), Value)
+function Transformers_Set_R(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Transformers_Set_R, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Transformers_Set_Rneut(Value)
-    ccall((:Transformers_Set_Rneut, LIBRARY), Cvoid, (Cdouble,), Value)
+function Transformers_Set_Rneut(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Transformers_Set_Rneut, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Transformers_Set_Tap(Value)
-    ccall((:Transformers_Set_Tap, LIBRARY), Cvoid, (Cdouble,), Value)
+function Transformers_Set_Tap(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Transformers_Set_Tap, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Transformers_Set_Wdg(Value)
-    ccall((:Transformers_Set_Wdg, LIBRARY), Cvoid, (Int32,), Value)
+function Transformers_Set_Wdg(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Transformers_Set_Wdg, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Transformers_Set_XfmrCode(Value)
-    ccall((:Transformers_Set_XfmrCode, LIBRARY), Cvoid, (Cstring,), Value)
+function Transformers_Set_XfmrCode(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Transformers_Set_XfmrCode, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Transformers_Set_Xhl(Value)
-    ccall((:Transformers_Set_Xhl, LIBRARY), Cvoid, (Cdouble,), Value)
+function Transformers_Set_Xhl(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Transformers_Set_Xhl, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Transformers_Set_Xht(Value)
-    ccall((:Transformers_Set_Xht, LIBRARY), Cvoid, (Cdouble,), Value)
+function Transformers_Set_Xht(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Transformers_Set_Xht, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Transformers_Set_Xlt(Value)
-    ccall((:Transformers_Set_Xlt, LIBRARY), Cvoid, (Cdouble,), Value)
+function Transformers_Set_Xlt(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Transformers_Set_Xlt, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Transformers_Set_Xneut(Value)
-    ccall((:Transformers_Set_Xneut, LIBRARY), Cvoid, (Cdouble,), Value)
+function Transformers_Set_Xneut(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Transformers_Set_Xneut, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Transformers_Get_Count()
-    ccall((:Transformers_Get_Count, LIBRARY), Int32, ())
+function Transformers_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_WdgVoltages(ResultPtr, ResultCount)
-    ccall((:Transformers_Get_WdgVoltages, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Transformers_Get_WdgVoltages(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Transformers_Get_WdgVoltages, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Transformers_Get_WdgVoltages_GR()
-    ccall((:Transformers_Get_WdgVoltages_GR, LIBRARY), Cvoid, ())
+function Transformers_Get_WdgVoltages_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_WdgVoltages_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_WdgCurrents(ResultPtr, ResultCount)
-    ccall((:Transformers_Get_WdgCurrents, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Transformers_Get_WdgCurrents(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Transformers_Get_WdgCurrents, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Transformers_Get_WdgCurrents_GR()
-    ccall((:Transformers_Get_WdgCurrents_GR, LIBRARY), Cvoid, ())
+function Transformers_Get_WdgCurrents_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_WdgCurrents_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_strWdgCurrents()
-    ccall((:Transformers_Get_strWdgCurrents, LIBRARY), Cstring, ())
+function Transformers_Get_strWdgCurrents(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_strWdgCurrents, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_CoreType()
-    ccall((:Transformers_Get_CoreType, LIBRARY), Int32, ())
+function Transformers_Get_CoreType(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_CoreType, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Set_CoreType(Value)
-    ccall((:Transformers_Set_CoreType, LIBRARY), Cvoid, (Int32,), Value)
+function Transformers_Set_CoreType(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Transformers_Set_CoreType, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Transformers_Get_RdcOhms()
-    ccall((:Transformers_Get_RdcOhms, LIBRARY), Cdouble, ())
+function Transformers_Get_RdcOhms(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_RdcOhms, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Set_RdcOhms(Value)
-    ccall((:Transformers_Set_RdcOhms, LIBRARY), Cvoid, (Cdouble,), Value)
+function Transformers_Set_RdcOhms(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Transformers_Set_RdcOhms, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Transformers_Get_LossesByType(ResultPtr, ResultCount)
-    ccall((:Transformers_Get_LossesByType, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Transformers_Get_LossesByType(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Transformers_Get_LossesByType, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Transformers_Get_LossesByType_GR()
-    ccall((:Transformers_Get_LossesByType_GR, LIBRARY), Cvoid, ())
+function Transformers_Get_LossesByType_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_LossesByType_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Get_AllLossesByType(ResultPtr, ResultCount)
-    ccall((:Transformers_Get_AllLossesByType, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Transformers_Get_AllLossesByType(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Transformers_Get_AllLossesByType, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Transformers_Get_AllLossesByType_GR()
-    ccall((:Transformers_Get_AllLossesByType_GR, LIBRARY), Cvoid, ())
+function Transformers_Get_AllLossesByType_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_AllLossesByType_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Vsources_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:Vsources_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Vsources_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Vsources_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Vsources_Get_AllNames_GR()
-    ccall((:Vsources_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function Vsources_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Vsources_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Vsources_Get_Count()
-    ccall((:Vsources_Get_Count, LIBRARY), Int32, ())
+function Vsources_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_Vsources_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Vsources_Get_First()
-    ccall((:Vsources_Get_First, LIBRARY), Int32, ())
+function Vsources_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_Vsources_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Vsources_Get_Next()
-    ccall((:Vsources_Get_Next, LIBRARY), Int32, ())
+function Vsources_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_Vsources_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Vsources_Get_Name()
-    ccall((:Vsources_Get_Name, LIBRARY), Cstring, ())
+function Vsources_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_Vsources_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Vsources_Set_Name(Value)
-    ccall((:Vsources_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function Vsources_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Vsources_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Vsources_Get_BasekV()
-    ccall((:Vsources_Get_BasekV, LIBRARY), Cdouble, ())
+function Vsources_Get_BasekV(ctx::Ptr{Cvoid})
+    ccall((:ctx_Vsources_Get_BasekV, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Vsources_Get_pu()
-    ccall((:Vsources_Get_pu, LIBRARY), Cdouble, ())
+function Vsources_Get_pu(ctx::Ptr{Cvoid})
+    ccall((:ctx_Vsources_Get_pu, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Vsources_Set_BasekV(Value)
-    ccall((:Vsources_Set_BasekV, LIBRARY), Cvoid, (Cdouble,), Value)
+function Vsources_Set_BasekV(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Vsources_Set_BasekV, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Vsources_Set_pu(Value)
-    ccall((:Vsources_Set_pu, LIBRARY), Cvoid, (Cdouble,), Value)
+function Vsources_Set_pu(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Vsources_Set_pu, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Vsources_Get_AngleDeg()
-    ccall((:Vsources_Get_AngleDeg, LIBRARY), Cdouble, ())
+function Vsources_Get_AngleDeg(ctx::Ptr{Cvoid})
+    ccall((:ctx_Vsources_Get_AngleDeg, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Vsources_Get_Frequency()
-    ccall((:Vsources_Get_Frequency, LIBRARY), Cdouble, ())
+function Vsources_Get_Frequency(ctx::Ptr{Cvoid})
+    ccall((:ctx_Vsources_Get_Frequency, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Vsources_Get_Phases()
-    ccall((:Vsources_Get_Phases, LIBRARY), Int32, ())
+function Vsources_Get_Phases(ctx::Ptr{Cvoid})
+    ccall((:ctx_Vsources_Get_Phases, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Vsources_Set_AngleDeg(Value)
-    ccall((:Vsources_Set_AngleDeg, LIBRARY), Cvoid, (Cdouble,), Value)
+function Vsources_Set_AngleDeg(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Vsources_Set_AngleDeg, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Vsources_Set_Frequency(Value)
-    ccall((:Vsources_Set_Frequency, LIBRARY), Cvoid, (Cdouble,), Value)
+function Vsources_Set_Frequency(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Vsources_Set_Frequency, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Vsources_Set_Phases(Value)
-    ccall((:Vsources_Set_Phases, LIBRARY), Cvoid, (Int32,), Value)
+function Vsources_Set_Phases(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Vsources_Set_Phases, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function XYCurves_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:XYCurves_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function XYCurves_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_XYCurves_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function XYCurves_Get_AllNames_GR()
-    ccall((:XYCurves_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function XYCurves_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_XYCurves_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function XYCurves_Get_Count()
-    ccall((:XYCurves_Get_Count, LIBRARY), Int32, ())
+function XYCurves_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_XYCurves_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function XYCurves_Get_First()
-    ccall((:XYCurves_Get_First, LIBRARY), Int32, ())
+function XYCurves_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_XYCurves_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function XYCurves_Get_Name()
-    ccall((:XYCurves_Get_Name, LIBRARY), Cstring, ())
+function XYCurves_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_XYCurves_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function XYCurves_Get_Next()
-    ccall((:XYCurves_Get_Next, LIBRARY), Int32, ())
+function XYCurves_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_XYCurves_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function XYCurves_Set_Name(Value)
-    ccall((:XYCurves_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function XYCurves_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_XYCurves_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function XYCurves_Get_Npts()
-    ccall((:XYCurves_Get_Npts, LIBRARY), Int32, ())
+function XYCurves_Get_Npts(ctx::Ptr{Cvoid})
+    ccall((:ctx_XYCurves_Get_Npts, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function XYCurves_Get_Xarray(ResultPtr, ResultCount)
-    ccall((:XYCurves_Get_Xarray, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function XYCurves_Get_Xarray(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_XYCurves_Get_Xarray, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function XYCurves_Get_Xarray_GR()
-    ccall((:XYCurves_Get_Xarray_GR, LIBRARY), Cvoid, ())
+function XYCurves_Get_Xarray_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_XYCurves_Get_Xarray_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function XYCurves_Set_Npts(Value)
-    ccall((:XYCurves_Set_Npts, LIBRARY), Cvoid, (Int32,), Value)
+function XYCurves_Set_Npts(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_XYCurves_Set_Npts, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function XYCurves_Set_Xarray(ValuePtr, ValueCount)
-    ccall((:XYCurves_Set_Xarray, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function XYCurves_Set_Xarray(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_XYCurves_Set_Xarray, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function XYCurves_Get_x()
-    ccall((:XYCurves_Get_x, LIBRARY), Cdouble, ())
+function XYCurves_Get_x(ctx::Ptr{Cvoid})
+    ccall((:ctx_XYCurves_Get_x, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function XYCurves_Get_y()
-    ccall((:XYCurves_Get_y, LIBRARY), Cdouble, ())
+function XYCurves_Get_y(ctx::Ptr{Cvoid})
+    ccall((:ctx_XYCurves_Get_y, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function XYCurves_Get_Yarray(ResultPtr, ResultCount)
-    ccall((:XYCurves_Get_Yarray, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function XYCurves_Get_Yarray(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_XYCurves_Get_Yarray, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function XYCurves_Get_Yarray_GR()
-    ccall((:XYCurves_Get_Yarray_GR, LIBRARY), Cvoid, ())
+function XYCurves_Get_Yarray_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_XYCurves_Get_Yarray_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function XYCurves_Set_x(Value)
-    ccall((:XYCurves_Set_x, LIBRARY), Cvoid, (Cdouble,), Value)
+function XYCurves_Set_x(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_XYCurves_Set_x, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function XYCurves_Set_y(Value)
-    ccall((:XYCurves_Set_y, LIBRARY), Cvoid, (Cdouble,), Value)
+function XYCurves_Set_y(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_XYCurves_Set_y, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function XYCurves_Set_Yarray(ValuePtr, ValueCount)
-    ccall((:XYCurves_Set_Yarray, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function XYCurves_Set_Yarray(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_XYCurves_Set_Yarray, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function XYCurves_Get_Xscale()
-    ccall((:XYCurves_Get_Xscale, LIBRARY), Cdouble, ())
+function XYCurves_Get_Xscale(ctx::Ptr{Cvoid})
+    ccall((:ctx_XYCurves_Get_Xscale, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function XYCurves_Get_Xshift()
-    ccall((:XYCurves_Get_Xshift, LIBRARY), Cdouble, ())
+function XYCurves_Get_Xshift(ctx::Ptr{Cvoid})
+    ccall((:ctx_XYCurves_Get_Xshift, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function XYCurves_Get_Yscale()
-    ccall((:XYCurves_Get_Yscale, LIBRARY), Cdouble, ())
+function XYCurves_Get_Yscale(ctx::Ptr{Cvoid})
+    ccall((:ctx_XYCurves_Get_Yscale, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function XYCurves_Get_Yshift()
-    ccall((:XYCurves_Get_Yshift, LIBRARY), Cdouble, ())
+function XYCurves_Get_Yshift(ctx::Ptr{Cvoid})
+    ccall((:ctx_XYCurves_Get_Yshift, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function XYCurves_Set_Xscale(Value)
-    ccall((:XYCurves_Set_Xscale, LIBRARY), Cvoid, (Cdouble,), Value)
+function XYCurves_Set_Xscale(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_XYCurves_Set_Xscale, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function XYCurves_Set_Xshift(Value)
-    ccall((:XYCurves_Set_Xshift, LIBRARY), Cvoid, (Cdouble,), Value)
+function XYCurves_Set_Xshift(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_XYCurves_Set_Xshift, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function XYCurves_Set_Yscale(Value)
-    ccall((:XYCurves_Set_Yscale, LIBRARY), Cvoid, (Cdouble,), Value)
+function XYCurves_Set_Yscale(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_XYCurves_Set_Yscale, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function XYCurves_Set_Yshift(Value)
-    ccall((:XYCurves_Set_Yshift, LIBRARY), Cvoid, (Cdouble,), Value)
+function XYCurves_Set_Yshift(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_XYCurves_Set_Yshift, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function YMatrix_GetCompressedYMatrix(factor, nBus, nNz, ColPtr, RowIdxPtr, cValsPtr)
-    ccall((:YMatrix_GetCompressedYMatrix, LIBRARY), Cvoid, (UInt16, Ptr{UInt32}, Ptr{UInt32}, Ptr{Ptr{Int32}}, Ptr{Ptr{Int32}}, Ptr{Ptr{Cdouble}}), factor, nBus, nNz, ColPtr, RowIdxPtr, cValsPtr)
+function YMatrix_GetCompressedYMatrix(ctx::Ptr{Cvoid}, factor, nBus, nNz, ColPtr, RowIdxPtr, cValsPtr)
+    ccall((:ctx_YMatrix_GetCompressedYMatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16, Ptr{UInt32}, Ptr{UInt32}, Ptr{Ptr{Int32}}, Ptr{Ptr{Int32}}, Ptr{Ptr{Cdouble}}), ctx, factor, nBus, nNz, ColPtr, RowIdxPtr, cValsPtr)
 end
 
-function YMatrix_ZeroInjCurr()
-    ccall((:YMatrix_ZeroInjCurr, LIBRARY), Cvoid, ())
+function YMatrix_ZeroInjCurr(ctx::Ptr{Cvoid})
+    ccall((:ctx_YMatrix_ZeroInjCurr, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function YMatrix_GetSourceInjCurrents()
-    ccall((:YMatrix_GetSourceInjCurrents, LIBRARY), Cvoid, ())
+function YMatrix_GetSourceInjCurrents(ctx::Ptr{Cvoid})
+    ccall((:ctx_YMatrix_GetSourceInjCurrents, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function YMatrix_GetPCInjCurr()
-    ccall((:YMatrix_GetPCInjCurr, LIBRARY), Cvoid, ())
+function YMatrix_GetPCInjCurr(ctx::Ptr{Cvoid})
+    ccall((:ctx_YMatrix_GetPCInjCurr, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function YMatrix_BuildYMatrixD(BuildOps, AllocateVI)
-    ccall((:YMatrix_BuildYMatrixD, LIBRARY), Cvoid, (Int32, Int32), BuildOps, AllocateVI)
+function YMatrix_BuildYMatrixD(ctx::Ptr{Cvoid}, BuildOps, AllocateVI)
+    ccall((:ctx_YMatrix_BuildYMatrixD, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32, Int32), ctx, BuildOps, AllocateVI)
 end
 
-function YMatrix_AddInAuxCurrents(SType)
-    ccall((:YMatrix_AddInAuxCurrents, LIBRARY), Cvoid, (Int32,), SType)
+function YMatrix_AddInAuxCurrents(ctx::Ptr{Cvoid}, SType)
+    ccall((:ctx_YMatrix_AddInAuxCurrents, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, SType)
 end
 
-function YMatrix_getIpointer(IvectorPtr)
-    ccall((:YMatrix_getIpointer, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}},), IvectorPtr)
+function YMatrix_getIpointer(ctx::Ptr{Cvoid}, IvectorPtr)
+    ccall((:ctx_YMatrix_getIpointer, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}},), ctx, IvectorPtr)
 end
 
-function YMatrix_getVpointer(VvectorPtr)
-    ccall((:YMatrix_getVpointer, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}},), VvectorPtr)
+function YMatrix_getVpointer(ctx::Ptr{Cvoid}, VvectorPtr)
+    ccall((:ctx_YMatrix_getVpointer, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}},), ctx, VvectorPtr)
 end
 
-function YMatrix_SolveSystem(NodeVPtr)
-    ccall((:YMatrix_SolveSystem, LIBRARY), Int32, (Ptr{Cdouble},), NodeVPtr)
+function YMatrix_SolveSystem(ctx::Ptr{Cvoid}, NodeVPtr)
+    ccall((:ctx_YMatrix_SolveSystem, LIBRARY), Int32, (Ptr{Cvoid}, Ptr{Cdouble},), ctx, NodeVPtr)
 end
 
-function YMatrix_Set_SystemYChanged(arg)
-    ccall((:YMatrix_Set_SystemYChanged, LIBRARY), Cvoid, (UInt16,), arg)
+function YMatrix_Set_SystemYChanged(ctx::Ptr{Cvoid}, arg)
+    ccall((:ctx_YMatrix_Set_SystemYChanged, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, arg)
 end
 
-function YMatrix_Get_SystemYChanged()
-    ccall((:YMatrix_Get_SystemYChanged, LIBRARY), UInt16, ())
+function YMatrix_Get_SystemYChanged(ctx::Ptr{Cvoid})
+    ccall((:ctx_YMatrix_Get_SystemYChanged, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function YMatrix_Set_UseAuxCurrents(arg)
-    ccall((:YMatrix_Set_UseAuxCurrents, LIBRARY), Cvoid, (UInt16,), arg)
+function YMatrix_Set_UseAuxCurrents(ctx::Ptr{Cvoid}, arg)
+    ccall((:ctx_YMatrix_Set_UseAuxCurrents, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, arg)
 end
 
-function YMatrix_Get_UseAuxCurrents()
-    ccall((:YMatrix_Get_UseAuxCurrents, LIBRARY), UInt16, ())
+function YMatrix_Get_UseAuxCurrents(ctx::Ptr{Cvoid})
+    ccall((:ctx_YMatrix_Get_UseAuxCurrents, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function ReduceCkt_Get_Zmag()
-    ccall((:ReduceCkt_Get_Zmag, LIBRARY), Cdouble, ())
+function ReduceCkt_Get_Zmag(ctx::Ptr{Cvoid})
+    ccall((:ctx_ReduceCkt_Get_Zmag, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function ReduceCkt_Set_Zmag(Value)
-    ccall((:ReduceCkt_Set_Zmag, LIBRARY), Cvoid, (Cdouble,), Value)
+function ReduceCkt_Set_Zmag(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_ReduceCkt_Set_Zmag, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function ReduceCkt_Get_KeepLoad()
-    ccall((:ReduceCkt_Get_KeepLoad, LIBRARY), UInt16, ())
+function ReduceCkt_Get_KeepLoad(ctx::Ptr{Cvoid})
+    ccall((:ctx_ReduceCkt_Get_KeepLoad, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function ReduceCkt_Set_KeepLoad(Value)
-    ccall((:ReduceCkt_Set_KeepLoad, LIBRARY), Cvoid, (UInt16,), Value)
+function ReduceCkt_Set_KeepLoad(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_ReduceCkt_Set_KeepLoad, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function ReduceCkt_Get_EditString()
-    ccall((:ReduceCkt_Get_EditString, LIBRARY), Cstring, ())
+function ReduceCkt_Get_EditString(ctx::Ptr{Cvoid})
+    ccall((:ctx_ReduceCkt_Get_EditString, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function ReduceCkt_Set_EditString(Value)
-    ccall((:ReduceCkt_Set_EditString, LIBRARY), Cvoid, (Cstring,), Value)
+function ReduceCkt_Set_EditString(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_ReduceCkt_Set_EditString, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function ReduceCkt_Get_StartPDElement()
-    ccall((:ReduceCkt_Get_StartPDElement, LIBRARY), Cstring, ())
+function ReduceCkt_Get_StartPDElement(ctx::Ptr{Cvoid})
+    ccall((:ctx_ReduceCkt_Get_StartPDElement, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function ReduceCkt_Set_StartPDElement(Value)
-    ccall((:ReduceCkt_Set_StartPDElement, LIBRARY), Cvoid, (Cstring,), Value)
+function ReduceCkt_Set_StartPDElement(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_ReduceCkt_Set_StartPDElement, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function ReduceCkt_Get_EnergyMeter()
-    ccall((:ReduceCkt_Get_EnergyMeter, LIBRARY), Cstring, ())
+function ReduceCkt_Get_EnergyMeter(ctx::Ptr{Cvoid})
+    ccall((:ctx_ReduceCkt_Get_EnergyMeter, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function ReduceCkt_Set_EnergyMeter(Value)
-    ccall((:ReduceCkt_Set_EnergyMeter, LIBRARY), Cvoid, (Cstring,), Value)
+function ReduceCkt_Set_EnergyMeter(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_ReduceCkt_Set_EnergyMeter, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function ReduceCkt_SaveCircuit(CktName)
-    ccall((:ReduceCkt_SaveCircuit, LIBRARY), Cvoid, (Cstring,), CktName)
+function ReduceCkt_SaveCircuit(ctx::Ptr{Cvoid}, CktName)
+    ccall((:ctx_ReduceCkt_SaveCircuit, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, CktName)
 end
 
-function ReduceCkt_DoDefault()
-    ccall((:ReduceCkt_DoDefault, LIBRARY), Cvoid, ())
+function ReduceCkt_DoDefault(ctx::Ptr{Cvoid})
+    ccall((:ctx_ReduceCkt_DoDefault, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function ReduceCkt_DoShortLines()
-    ccall((:ReduceCkt_DoShortLines, LIBRARY), Cvoid, ())
+function ReduceCkt_DoShortLines(ctx::Ptr{Cvoid})
+    ccall((:ctx_ReduceCkt_DoShortLines, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function ReduceCkt_DoDangling()
-    ccall((:ReduceCkt_DoDangling, LIBRARY), Cvoid, ())
+function ReduceCkt_DoDangling(ctx::Ptr{Cvoid})
+    ccall((:ctx_ReduceCkt_DoDangling, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function ReduceCkt_DoLoopBreak()
-    ccall((:ReduceCkt_DoLoopBreak, LIBRARY), Cvoid, ())
+function ReduceCkt_DoLoopBreak(ctx::Ptr{Cvoid})
+    ccall((:ctx_ReduceCkt_DoLoopBreak, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function ReduceCkt_DoParallelLines()
-    ccall((:ReduceCkt_DoParallelLines, LIBRARY), Cvoid, ())
+function ReduceCkt_DoParallelLines(ctx::Ptr{Cvoid})
+    ccall((:ctx_ReduceCkt_DoParallelLines, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function ReduceCkt_DoSwitches()
-    ccall((:ReduceCkt_DoSwitches, LIBRARY), Cvoid, ())
+function ReduceCkt_DoSwitches(ctx::Ptr{Cvoid})
+    ccall((:ctx_ReduceCkt_DoSwitches, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function ReduceCkt_Do1phLaterals()
-    ccall((:ReduceCkt_Do1phLaterals, LIBRARY), Cvoid, ())
+function ReduceCkt_Do1phLaterals(ctx::Ptr{Cvoid})
+    ccall((:ctx_ReduceCkt_Do1phLaterals, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function ReduceCkt_DoBranchRemove()
-    ccall((:ReduceCkt_DoBranchRemove, LIBRARY), Cvoid, ())
+function ReduceCkt_DoBranchRemove(ctx::Ptr{Cvoid})
+    ccall((:ctx_ReduceCkt_DoBranchRemove, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Storages_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:Storages_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Storages_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Storages_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Storages_Get_First()
-    ccall((:Storages_Get_First, LIBRARY), Int32, ())
+function Storages_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_Storages_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Storages_Get_Next()
-    ccall((:Storages_Get_Next, LIBRARY), Int32, ())
+function Storages_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_Storages_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Storages_Get_Count()
-    ccall((:Storages_Get_Count, LIBRARY), Int32, ())
+function Storages_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_Storages_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Storages_Get_idx()
-    ccall((:Storages_Get_idx, LIBRARY), Int32, ())
+function Storages_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_Storages_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Storages_Set_idx(Value)
-    ccall((:Storages_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function Storages_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Storages_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Storages_Get_Name()
-    ccall((:Storages_Get_Name, LIBRARY), Cstring, ())
+function Storages_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_Storages_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Storages_Set_Name(Value)
-    ccall((:Storages_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function Storages_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Storages_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Storages_Get_RegisterNames(ResultPtr, ResultCount)
-    ccall((:Storages_Get_RegisterNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Storages_Get_RegisterNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Storages_Get_RegisterNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Storages_Get_RegisterValues(ResultPtr, ResultCount)
-    ccall((:Storages_Get_RegisterValues, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Storages_Get_RegisterValues(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Storages_Get_RegisterValues, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Storages_Get_RegisterValues_GR()
-    ccall((:Storages_Get_RegisterValues_GR, LIBRARY), Cvoid, ())
+function Storages_Get_RegisterValues_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Storages_Get_RegisterValues_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Storages_Get_puSOC()
-    ccall((:Storages_Get_puSOC, LIBRARY), Cdouble, ())
+function Storages_Get_puSOC(ctx::Ptr{Cvoid})
+    ccall((:ctx_Storages_Get_puSOC, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Storages_Set_puSOC(Value)
-    ccall((:Storages_Set_puSOC, LIBRARY), Cvoid, (Cdouble,), Value)
+function Storages_Set_puSOC(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Storages_Set_puSOC, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Storages_Get_State()
-    ccall((:Storages_Get_State, LIBRARY), Int32, ())
+function Storages_Get_State(ctx::Ptr{Cvoid})
+    ccall((:ctx_Storages_Get_State, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Storages_Set_State(Value)
-    ccall((:Storages_Set_State, LIBRARY), Cvoid, (Int32,), Value)
+function Storages_Set_State(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Storages_Set_State, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function CNData_Get_Count()
-    ccall((:CNData_Get_Count, LIBRARY), Int32, ())
+function CNData_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Get_First()
-    ccall((:CNData_Get_First, LIBRARY), Int32, ())
+function CNData_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Get_Next()
-    ccall((:CNData_Get_Next, LIBRARY), Int32, ())
+function CNData_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Get_Name()
-    ccall((:CNData_Get_Name, LIBRARY), Cstring, ())
+function CNData_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Set_Name(Value)
-    ccall((:CNData_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function CNData_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CNData_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function CNData_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:CNData_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CNData_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CNData_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CNData_Get_AllNames_GR()
-    ccall((:CNData_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function CNData_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Get_Rdc()
-    ccall((:CNData_Get_Rdc, LIBRARY), Cdouble, ())
+function CNData_Get_Rdc(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_Rdc, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Set_Rdc(Value)
-    ccall((:CNData_Set_Rdc, LIBRARY), Cvoid, (Cdouble,), Value)
+function CNData_Set_Rdc(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CNData_Set_Rdc, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CNData_Get_Rac()
-    ccall((:CNData_Get_Rac, LIBRARY), Cdouble, ())
+function CNData_Get_Rac(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_Rac, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Set_Rac(Value)
-    ccall((:CNData_Set_Rac, LIBRARY), Cvoid, (Cdouble,), Value)
+function CNData_Set_Rac(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CNData_Set_Rac, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CNData_Get_GMRac()
-    ccall((:CNData_Get_GMRac, LIBRARY), Cdouble, ())
+function CNData_Get_GMRac(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_GMRac, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Set_GMRac(Value)
-    ccall((:CNData_Set_GMRac, LIBRARY), Cvoid, (Cdouble,), Value)
+function CNData_Set_GMRac(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CNData_Set_GMRac, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CNData_Get_GMRUnits()
-    ccall((:CNData_Get_GMRUnits, LIBRARY), Int32, ())
+function CNData_Get_GMRUnits(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_GMRUnits, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Set_GMRUnits(Value)
-    ccall((:CNData_Set_GMRUnits, LIBRARY), Cvoid, (Int32,), Value)
+function CNData_Set_GMRUnits(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CNData_Set_GMRUnits, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function CNData_Get_Radius()
-    ccall((:CNData_Get_Radius, LIBRARY), Cdouble, ())
+function CNData_Get_Radius(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_Radius, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Set_Radius(Value)
-    ccall((:CNData_Set_Radius, LIBRARY), Cvoid, (Cdouble,), Value)
+function CNData_Set_Radius(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CNData_Set_Radius, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CNData_Get_RadiusUnits()
-    ccall((:CNData_Get_RadiusUnits, LIBRARY), Int32, ())
+function CNData_Get_RadiusUnits(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_RadiusUnits, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Set_RadiusUnits(Value)
-    ccall((:CNData_Set_RadiusUnits, LIBRARY), Cvoid, (Int32,), Value)
+function CNData_Set_RadiusUnits(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CNData_Set_RadiusUnits, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function CNData_Get_ResistanceUnits()
-    ccall((:CNData_Get_ResistanceUnits, LIBRARY), Int32, ())
+function CNData_Get_ResistanceUnits(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_ResistanceUnits, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Set_ResistanceUnits(Value)
-    ccall((:CNData_Set_ResistanceUnits, LIBRARY), Cvoid, (Int32,), Value)
+function CNData_Set_ResistanceUnits(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CNData_Set_ResistanceUnits, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function CNData_Get_Diameter()
-    ccall((:CNData_Get_Diameter, LIBRARY), Cdouble, ())
+function CNData_Get_Diameter(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_Diameter, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Set_Diameter(Value)
-    ccall((:CNData_Set_Diameter, LIBRARY), Cvoid, (Cdouble,), Value)
+function CNData_Set_Diameter(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CNData_Set_Diameter, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CNData_Get_NormAmps()
-    ccall((:CNData_Get_NormAmps, LIBRARY), Cdouble, ())
+function CNData_Get_NormAmps(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_NormAmps, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Set_NormAmps(Value)
-    ccall((:CNData_Set_NormAmps, LIBRARY), Cvoid, (Cdouble,), Value)
+function CNData_Set_NormAmps(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CNData_Set_NormAmps, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CNData_Get_EmergAmps()
-    ccall((:CNData_Get_EmergAmps, LIBRARY), Cdouble, ())
+function CNData_Get_EmergAmps(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_EmergAmps, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Set_EmergAmps(Value)
-    ccall((:CNData_Set_EmergAmps, LIBRARY), Cvoid, (Cdouble,), Value)
+function CNData_Set_EmergAmps(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CNData_Set_EmergAmps, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CNData_Get_EpsR()
-    ccall((:CNData_Get_EpsR, LIBRARY), Cdouble, ())
+function CNData_Get_EpsR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_EpsR, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Set_EpsR(Value)
-    ccall((:CNData_Set_EpsR, LIBRARY), Cvoid, (Cdouble,), Value)
+function CNData_Set_EpsR(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CNData_Set_EpsR, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CNData_Get_InsLayer()
-    ccall((:CNData_Get_InsLayer, LIBRARY), Cdouble, ())
+function CNData_Get_InsLayer(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_InsLayer, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Set_InsLayer(Value)
-    ccall((:CNData_Set_InsLayer, LIBRARY), Cvoid, (Cdouble,), Value)
+function CNData_Set_InsLayer(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CNData_Set_InsLayer, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CNData_Get_DiaIns()
-    ccall((:CNData_Get_DiaIns, LIBRARY), Cdouble, ())
+function CNData_Get_DiaIns(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_DiaIns, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Set_DiaIns(Value)
-    ccall((:CNData_Set_DiaIns, LIBRARY), Cvoid, (Cdouble,), Value)
+function CNData_Set_DiaIns(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CNData_Set_DiaIns, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CNData_Get_DiaCable()
-    ccall((:CNData_Get_DiaCable, LIBRARY), Cdouble, ())
+function CNData_Get_DiaCable(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_DiaCable, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Set_DiaCable(Value)
-    ccall((:CNData_Set_DiaCable, LIBRARY), Cvoid, (Cdouble,), Value)
+function CNData_Set_DiaCable(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CNData_Set_DiaCable, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CNData_Get_k()
-    ccall((:CNData_Get_k, LIBRARY), Int32, ())
+function CNData_Get_k(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_k, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Set_k(Value)
-    ccall((:CNData_Set_k, LIBRARY), Cvoid, (Int32,), Value)
+function CNData_Set_k(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CNData_Set_k, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function CNData_Get_DiaStrand()
-    ccall((:CNData_Get_DiaStrand, LIBRARY), Cdouble, ())
+function CNData_Get_DiaStrand(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_DiaStrand, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Set_DiaStrand(Value)
-    ccall((:CNData_Set_DiaStrand, LIBRARY), Cvoid, (Cdouble,), Value)
+function CNData_Set_DiaStrand(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CNData_Set_DiaStrand, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CNData_Get_GmrStrand()
-    ccall((:CNData_Get_GmrStrand, LIBRARY), Cdouble, ())
+function CNData_Get_GmrStrand(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_GmrStrand, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Set_GmrStrand(Value)
-    ccall((:CNData_Set_GmrStrand, LIBRARY), Cvoid, (Cdouble,), Value)
+function CNData_Set_GmrStrand(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CNData_Set_GmrStrand, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function CNData_Get_RStrand()
-    ccall((:CNData_Get_RStrand, LIBRARY), Cdouble, ())
+function CNData_Get_RStrand(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_RStrand, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Set_RStrand(Value)
-    ccall((:CNData_Set_RStrand, LIBRARY), Cvoid, (Cdouble,), Value)
+function CNData_Set_RStrand(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CNData_Set_RStrand, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function LineGeometries_Get_Count()
-    ccall((:LineGeometries_Get_Count, LIBRARY), Int32, ())
+function LineGeometries_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineGeometries_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LineGeometries_Get_First()
-    ccall((:LineGeometries_Get_First, LIBRARY), Int32, ())
+function LineGeometries_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineGeometries_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LineGeometries_Get_Next()
-    ccall((:LineGeometries_Get_Next, LIBRARY), Int32, ())
+function LineGeometries_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineGeometries_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LineGeometries_Get_Name()
-    ccall((:LineGeometries_Get_Name, LIBRARY), Cstring, ())
+function LineGeometries_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineGeometries_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function LineGeometries_Set_Name(Value)
-    ccall((:LineGeometries_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function LineGeometries_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineGeometries_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function LineGeometries_Get_Nconds()
-    ccall((:LineGeometries_Get_Nconds, LIBRARY), Int32, ())
+function LineGeometries_Get_Nconds(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineGeometries_Get_Nconds, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LineGeometries_Set_Nconds(Value)
-    ccall((:LineGeometries_Set_Nconds, LIBRARY), Cvoid, (Int32,), Value)
+function LineGeometries_Set_Nconds(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineGeometries_Set_Nconds, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function LineGeometries_Get_Phases()
-    ccall((:LineGeometries_Get_Phases, LIBRARY), Int32, ())
+function LineGeometries_Get_Phases(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineGeometries_Get_Phases, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LineGeometries_Set_Phases(Value)
-    ccall((:LineGeometries_Set_Phases, LIBRARY), Cvoid, (Int32,), Value)
+function LineGeometries_Set_Phases(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineGeometries_Set_Phases, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function LineGeometries_Get_Cmatrix(ResultPtr, ResultCount, Frequency, Length, Units)
-    ccall((:LineGeometries_Get_Cmatrix, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, Cdouble, Cdouble, Int32), ResultPtr, ResultCount, Frequency, Length, Units)
+function LineGeometries_Get_Cmatrix(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, Frequency, Length, Units)
+    ccall((:ctx_LineGeometries_Get_Cmatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, Cdouble, Cdouble, Int32), ctx, ResultPtr, ResultCount, Frequency, Length, Units)
 end
 
-function LineGeometries_Get_Cmatrix_GR(Frequency, Length, Units)
-    ccall((:LineGeometries_Get_Cmatrix_GR, LIBRARY), Cvoid, (Cdouble, Cdouble, Int32), Frequency, Length, Units)
+function LineGeometries_Get_Cmatrix_GR(ctx::Ptr{Cvoid}, Frequency, Length, Units)
+    ccall((:ctx_LineGeometries_Get_Cmatrix_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble, Cdouble, Int32), ctx, Frequency, Length, Units)
 end
 
-function LineGeometries_Get_Rmatrix(ResultPtr, ResultCount, Frequency, Length, Units)
-    ccall((:LineGeometries_Get_Rmatrix, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, Cdouble, Cdouble, Int32), ResultPtr, ResultCount, Frequency, Length, Units)
+function LineGeometries_Get_Rmatrix(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, Frequency, Length, Units)
+    ccall((:ctx_LineGeometries_Get_Rmatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, Cdouble, Cdouble, Int32), ctx, ResultPtr, ResultCount, Frequency, Length, Units)
 end
 
-function LineGeometries_Get_Rmatrix_GR(Frequency, Length, Units)
-    ccall((:LineGeometries_Get_Rmatrix_GR, LIBRARY), Cvoid, (Cdouble, Cdouble, Int32), Frequency, Length, Units)
+function LineGeometries_Get_Rmatrix_GR(ctx::Ptr{Cvoid}, Frequency, Length, Units)
+    ccall((:ctx_LineGeometries_Get_Rmatrix_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble, Cdouble, Int32), ctx, Frequency, Length, Units)
 end
 
-function LineGeometries_Get_Xmatrix(ResultPtr, ResultCount, Frequency, Length, Units)
-    ccall((:LineGeometries_Get_Xmatrix, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, Cdouble, Cdouble, Int32), ResultPtr, ResultCount, Frequency, Length, Units)
+function LineGeometries_Get_Xmatrix(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, Frequency, Length, Units)
+    ccall((:ctx_LineGeometries_Get_Xmatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, Cdouble, Cdouble, Int32), ctx, ResultPtr, ResultCount, Frequency, Length, Units)
 end
 
-function LineGeometries_Get_Xmatrix_GR(Frequency, Length, Units)
-    ccall((:LineGeometries_Get_Xmatrix_GR, LIBRARY), Cvoid, (Cdouble, Cdouble, Int32), Frequency, Length, Units)
+function LineGeometries_Get_Xmatrix_GR(ctx::Ptr{Cvoid}, Frequency, Length, Units)
+    ccall((:ctx_LineGeometries_Get_Xmatrix_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble, Cdouble, Int32), ctx, Frequency, Length, Units)
 end
 
-function LineGeometries_Get_Zmatrix(ResultPtr, ResultCount, Frequency, Length, Units)
-    ccall((:LineGeometries_Get_Zmatrix, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, Cdouble, Cdouble, Int32), ResultPtr, ResultCount, Frequency, Length, Units)
+function LineGeometries_Get_Zmatrix(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, Frequency, Length, Units)
+    ccall((:ctx_LineGeometries_Get_Zmatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, Cdouble, Cdouble, Int32), ctx, ResultPtr, ResultCount, Frequency, Length, Units)
 end
 
-function LineGeometries_Get_Zmatrix_GR(Frequency, Length, Units)
-    ccall((:LineGeometries_Get_Zmatrix_GR, LIBRARY), Cvoid, (Cdouble, Cdouble, Int32), Frequency, Length, Units)
+function LineGeometries_Get_Zmatrix_GR(ctx::Ptr{Cvoid}, Frequency, Length, Units)
+    ccall((:ctx_LineGeometries_Get_Zmatrix_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble, Cdouble, Int32), ctx, Frequency, Length, Units)
 end
 
-function LineGeometries_Get_Units(ResultPtr, ResultCount)
-    ccall((:LineGeometries_Get_Units, LIBRARY), Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}), ResultPtr, ResultCount)
+function LineGeometries_Get_Units(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_LineGeometries_Get_Units, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function LineGeometries_Get_Units_GR()
-    ccall((:LineGeometries_Get_Units_GR, LIBRARY), Cvoid, ())
+function LineGeometries_Get_Units_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineGeometries_Get_Units_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function LineGeometries_Set_Units(ValuePtr, ValueCount)
-    ccall((:LineGeometries_Set_Units, LIBRARY), Cvoid, (Ptr{Int32}, Int32), ValuePtr, ValueCount)
+function LineGeometries_Set_Units(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_LineGeometries_Set_Units, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Int32}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function LineGeometries_Get_Xcoords(ResultPtr, ResultCount)
-    ccall((:LineGeometries_Get_Xcoords, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function LineGeometries_Get_Xcoords(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_LineGeometries_Get_Xcoords, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function LineGeometries_Get_Xcoords_GR()
-    ccall((:LineGeometries_Get_Xcoords_GR, LIBRARY), Cvoid, ())
+function LineGeometries_Get_Xcoords_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineGeometries_Get_Xcoords_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function LineGeometries_Set_Xcoords(ValuePtr, ValueCount)
-    ccall((:LineGeometries_Set_Xcoords, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function LineGeometries_Set_Xcoords(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_LineGeometries_Set_Xcoords, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function LineGeometries_Get_Ycoords(ResultPtr, ResultCount)
-    ccall((:LineGeometries_Get_Ycoords, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function LineGeometries_Get_Ycoords(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_LineGeometries_Get_Ycoords, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function LineGeometries_Get_Ycoords_GR()
-    ccall((:LineGeometries_Get_Ycoords_GR, LIBRARY), Cvoid, ())
+function LineGeometries_Get_Ycoords_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineGeometries_Get_Ycoords_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function LineGeometries_Set_Ycoords(ValuePtr, ValueCount)
-    ccall((:LineGeometries_Set_Ycoords, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function LineGeometries_Set_Ycoords(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_LineGeometries_Set_Ycoords, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function LineGeometries_Get_Conductors(ResultPtr, ResultCount)
-    ccall((:LineGeometries_Get_Conductors, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function LineGeometries_Get_Conductors(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_LineGeometries_Get_Conductors, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function LineGeometries_Get_Conductors_GR()
-    ccall((:LineGeometries_Get_Conductors_GR, LIBRARY), Cvoid, ())
+function LineGeometries_Get_Conductors_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineGeometries_Get_Conductors_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function LineGeometries_Get_Reduce()
-    ccall((:LineGeometries_Get_Reduce, LIBRARY), UInt16, ())
+function LineGeometries_Get_Reduce(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineGeometries_Get_Reduce, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function LineGeometries_Set_Reduce(Value)
-    ccall((:LineGeometries_Set_Reduce, LIBRARY), Cvoid, (UInt16,), Value)
+function LineGeometries_Set_Reduce(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineGeometries_Set_Reduce, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function LineGeometries_Get_RhoEarth()
-    ccall((:LineGeometries_Get_RhoEarth, LIBRARY), Cdouble, ())
+function LineGeometries_Get_RhoEarth(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineGeometries_Get_RhoEarth, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function LineGeometries_Set_RhoEarth(Value)
-    ccall((:LineGeometries_Set_RhoEarth, LIBRARY), Cvoid, (Cdouble,), Value)
+function LineGeometries_Set_RhoEarth(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineGeometries_Set_RhoEarth, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function LineGeometries_Get_NormAmps()
-    ccall((:LineGeometries_Get_NormAmps, LIBRARY), Cdouble, ())
+function LineGeometries_Get_NormAmps(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineGeometries_Get_NormAmps, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function LineGeometries_Set_NormAmps(Value)
-    ccall((:LineGeometries_Set_NormAmps, LIBRARY), Cvoid, (Cdouble,), Value)
+function LineGeometries_Set_NormAmps(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineGeometries_Set_NormAmps, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function LineGeometries_Get_EmergAmps()
-    ccall((:LineGeometries_Get_EmergAmps, LIBRARY), Cdouble, ())
+function LineGeometries_Get_EmergAmps(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineGeometries_Get_EmergAmps, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function LineGeometries_Set_EmergAmps(Value)
-    ccall((:LineGeometries_Set_EmergAmps, LIBRARY), Cvoid, (Cdouble,), Value)
+function LineGeometries_Set_EmergAmps(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineGeometries_Set_EmergAmps, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function LineGeometries_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:LineGeometries_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function LineGeometries_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_LineGeometries_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function LineGeometries_Get_AllNames_GR()
-    ccall((:LineGeometries_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function LineGeometries_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineGeometries_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function LineSpacings_Get_Count()
-    ccall((:LineSpacings_Get_Count, LIBRARY), Int32, ())
+function LineSpacings_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineSpacings_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LineSpacings_Get_First()
-    ccall((:LineSpacings_Get_First, LIBRARY), Int32, ())
+function LineSpacings_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineSpacings_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LineSpacings_Get_Next()
-    ccall((:LineSpacings_Get_Next, LIBRARY), Int32, ())
+function LineSpacings_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineSpacings_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LineSpacings_Get_Name()
-    ccall((:LineSpacings_Get_Name, LIBRARY), Cstring, ())
+function LineSpacings_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineSpacings_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function LineSpacings_Set_Name(Value)
-    ccall((:LineSpacings_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function LineSpacings_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineSpacings_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function LineSpacings_Get_Nconds()
-    ccall((:LineSpacings_Get_Nconds, LIBRARY), Int32, ())
+function LineSpacings_Get_Nconds(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineSpacings_Get_Nconds, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LineSpacings_Set_Nconds(Value)
-    ccall((:LineSpacings_Set_Nconds, LIBRARY), Cvoid, (Int32,), Value)
+function LineSpacings_Set_Nconds(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineSpacings_Set_Nconds, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function LineSpacings_Get_Phases()
-    ccall((:LineSpacings_Get_Phases, LIBRARY), Int32, ())
+function LineSpacings_Get_Phases(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineSpacings_Get_Phases, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LineSpacings_Set_Phases(Value)
-    ccall((:LineSpacings_Set_Phases, LIBRARY), Cvoid, (Int32,), Value)
+function LineSpacings_Set_Phases(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineSpacings_Set_Phases, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function LineSpacings_Get_Units()
-    ccall((:LineSpacings_Get_Units, LIBRARY), Int32, ())
+function LineSpacings_Get_Units(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineSpacings_Get_Units, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LineSpacings_Set_Units(Value)
-    ccall((:LineSpacings_Set_Units, LIBRARY), Cvoid, (Int32,), Value)
+function LineSpacings_Set_Units(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineSpacings_Set_Units, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function LineSpacings_Get_Xcoords(ResultPtr, ResultCount)
-    ccall((:LineSpacings_Get_Xcoords, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function LineSpacings_Get_Xcoords(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_LineSpacings_Get_Xcoords, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function LineSpacings_Get_Xcoords_GR()
-    ccall((:LineSpacings_Get_Xcoords_GR, LIBRARY), Cvoid, ())
+function LineSpacings_Get_Xcoords_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineSpacings_Get_Xcoords_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function LineSpacings_Set_Xcoords(ValuePtr, ValueCount)
-    ccall((:LineSpacings_Set_Xcoords, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function LineSpacings_Set_Xcoords(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_LineSpacings_Set_Xcoords, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function LineSpacings_Get_Ycoords(ResultPtr, ResultCount)
-    ccall((:LineSpacings_Get_Ycoords, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function LineSpacings_Get_Ycoords(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_LineSpacings_Get_Ycoords, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function LineSpacings_Get_Ycoords_GR()
-    ccall((:LineSpacings_Get_Ycoords_GR, LIBRARY), Cvoid, ())
+function LineSpacings_Get_Ycoords_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineSpacings_Get_Ycoords_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function LineSpacings_Set_Ycoords(ValuePtr, ValueCount)
-    ccall((:LineSpacings_Set_Ycoords, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function LineSpacings_Set_Ycoords(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_LineSpacings_Set_Ycoords, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function LineSpacings_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:LineSpacings_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function LineSpacings_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_LineSpacings_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function LineSpacings_Get_AllNames_GR()
-    ccall((:LineSpacings_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function LineSpacings_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineSpacings_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Get_Phases()
-    ccall((:Loads_Get_Phases, LIBRARY), Int32, ())
+function Loads_Get_Phases(ctx::Ptr{Cvoid})
+    ccall((:ctx_Loads_Get_Phases, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Loads_Set_Phases(Integer)
-    ccall((:Loads_Set_Phases, LIBRARY), Cvoid, (Int32,), Integer)
+function Loads_Set_Phases(ctx::Ptr{Cvoid}, Integer)
+    ccall((:ctx_Loads_Set_Phases, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Integer)
 end
 
-function Reactors_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:Reactors_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Reactors_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Reactors_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Reactors_Get_AllNames_GR()
-    ccall((:Reactors_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function Reactors_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Get_Name()
-    ccall((:Reactors_Get_Name, LIBRARY), Cstring, ())
+function Reactors_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Set_Name(Value)
-    ccall((:Reactors_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function Reactors_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reactors_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Reactors_Get_First()
-    ccall((:Reactors_Get_First, LIBRARY), Int32, ())
+function Reactors_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Get_Next()
-    ccall((:Reactors_Get_Next, LIBRARY), Int32, ())
+function Reactors_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Get_Count()
-    ccall((:Reactors_Get_Count, LIBRARY), Int32, ())
+function Reactors_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Get_kV()
-    ccall((:Reactors_Get_kV, LIBRARY), Cdouble, ())
+function Reactors_Get_kV(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_kV, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Set_kV(Value)
-    ccall((:Reactors_Set_kV, LIBRARY), Cvoid, (Cdouble,), Value)
+function Reactors_Set_kV(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reactors_Set_kV, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Reactors_Get_kvar()
-    ccall((:Reactors_Get_kvar, LIBRARY), Cdouble, ())
+function Reactors_Get_kvar(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_kvar, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Set_kvar(Value)
-    ccall((:Reactors_Set_kvar, LIBRARY), Cvoid, (Cdouble,), Value)
+function Reactors_Set_kvar(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reactors_Set_kvar, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Reactors_Get_Phases()
-    ccall((:Reactors_Get_Phases, LIBRARY), Int32, ())
+function Reactors_Get_Phases(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_Phases, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Set_Phases(Integer)
-    ccall((:Reactors_Set_Phases, LIBRARY), Cvoid, (Int32,), Integer)
+function Reactors_Set_Phases(ctx::Ptr{Cvoid}, Integer)
+    ccall((:ctx_Reactors_Set_Phases, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Integer)
 end
 
-function Reactors_Get_IsDelta()
-    ccall((:Reactors_Get_IsDelta, LIBRARY), UInt16, ())
+function Reactors_Get_IsDelta(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_IsDelta, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Set_IsDelta(Value)
-    ccall((:Reactors_Set_IsDelta, LIBRARY), Cvoid, (UInt16,), Value)
+function Reactors_Set_IsDelta(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reactors_Set_IsDelta, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function Reactors_Get_Parallel()
-    ccall((:Reactors_Get_Parallel, LIBRARY), UInt16, ())
+function Reactors_Get_Parallel(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_Parallel, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Set_Parallel(Value)
-    ccall((:Reactors_Set_Parallel, LIBRARY), Cvoid, (UInt16,), Value)
+function Reactors_Set_Parallel(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reactors_Set_Parallel, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function Reactors_Get_LmH()
-    ccall((:Reactors_Get_LmH, LIBRARY), Cdouble, ())
+function Reactors_Get_LmH(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_LmH, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Set_LmH(Value)
-    ccall((:Reactors_Set_LmH, LIBRARY), Cvoid, (Cdouble,), Value)
+function Reactors_Set_LmH(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reactors_Set_LmH, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Reactors_Get_Bus1()
-    ccall((:Reactors_Get_Bus1, LIBRARY), Cstring, ())
+function Reactors_Get_Bus1(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_Bus1, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Get_Bus2()
-    ccall((:Reactors_Get_Bus2, LIBRARY), Cstring, ())
+function Reactors_Get_Bus2(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_Bus2, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Set_Bus1(Value)
-    ccall((:Reactors_Set_Bus1, LIBRARY), Cvoid, (Cstring,), Value)
+function Reactors_Set_Bus1(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reactors_Set_Bus1, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Reactors_Set_Bus2(Value)
-    ccall((:Reactors_Set_Bus2, LIBRARY), Cvoid, (Cstring,), Value)
+function Reactors_Set_Bus2(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reactors_Set_Bus2, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Reactors_Get_R()
-    ccall((:Reactors_Get_R, LIBRARY), Cdouble, ())
+function Reactors_Get_R(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_R, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Set_R(Value)
-    ccall((:Reactors_Set_R, LIBRARY), Cvoid, (Cdouble,), Value)
+function Reactors_Set_R(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reactors_Set_R, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Reactors_Get_X()
-    ccall((:Reactors_Get_X, LIBRARY), Cdouble, ())
+function Reactors_Get_X(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_X, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Set_X(Value)
-    ccall((:Reactors_Set_X, LIBRARY), Cvoid, (Cdouble,), Value)
+function Reactors_Set_X(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reactors_Set_X, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Reactors_Get_Rp()
-    ccall((:Reactors_Get_Rp, LIBRARY), Cdouble, ())
+function Reactors_Get_Rp(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_Rp, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Set_Rp(Value)
-    ccall((:Reactors_Set_Rp, LIBRARY), Cvoid, (Cdouble,), Value)
+function Reactors_Set_Rp(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reactors_Set_Rp, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Reactors_Get_RCurve()
-    ccall((:Reactors_Get_RCurve, LIBRARY), Cstring, ())
+function Reactors_Get_RCurve(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_RCurve, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Set_RCurve(Value)
-    ccall((:Reactors_Set_RCurve, LIBRARY), Cvoid, (Cstring,), Value)
+function Reactors_Set_RCurve(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reactors_Set_RCurve, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Reactors_Get_LCurve()
-    ccall((:Reactors_Get_LCurve, LIBRARY), Cstring, ())
+function Reactors_Get_LCurve(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_LCurve, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Set_LCurve(Value)
-    ccall((:Reactors_Set_LCurve, LIBRARY), Cvoid, (Cstring,), Value)
+function Reactors_Set_LCurve(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reactors_Set_LCurve, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Reactors_Get_Rmatrix(ResultPtr, ResultCount)
-    ccall((:Reactors_Get_Rmatrix, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Reactors_Get_Rmatrix(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Reactors_Get_Rmatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Reactors_Get_Rmatrix_GR()
-    ccall((:Reactors_Get_Rmatrix_GR, LIBRARY), Cvoid, ())
+function Reactors_Get_Rmatrix_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_Rmatrix_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Set_Rmatrix(ValuePtr, ValueCount)
-    ccall((:Reactors_Set_Rmatrix, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function Reactors_Set_Rmatrix(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Reactors_Set_Rmatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Reactors_Get_Xmatrix(ResultPtr, ResultCount)
-    ccall((:Reactors_Get_Xmatrix, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Reactors_Get_Xmatrix(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Reactors_Get_Xmatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Reactors_Get_Xmatrix_GR()
-    ccall((:Reactors_Get_Xmatrix_GR, LIBRARY), Cvoid, ())
+function Reactors_Get_Xmatrix_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_Xmatrix_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Set_Xmatrix(ValuePtr, ValueCount)
-    ccall((:Reactors_Set_Xmatrix, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function Reactors_Set_Xmatrix(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Reactors_Set_Xmatrix, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Reactors_Get_Z(ResultPtr, ResultCount)
-    ccall((:Reactors_Get_Z, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Reactors_Get_Z(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Reactors_Get_Z, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Reactors_Get_Z_GR()
-    ccall((:Reactors_Get_Z_GR, LIBRARY), Cvoid, ())
+function Reactors_Get_Z_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_Z_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Set_Z(ValuePtr, ValueCount)
-    ccall((:Reactors_Set_Z, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function Reactors_Set_Z(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Reactors_Set_Z, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Reactors_Get_Z1(ResultPtr, ResultCount)
-    ccall((:Reactors_Get_Z1, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Reactors_Get_Z1(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Reactors_Get_Z1, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Reactors_Get_Z1_GR()
-    ccall((:Reactors_Get_Z1_GR, LIBRARY), Cvoid, ())
+function Reactors_Get_Z1_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_Z1_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Set_Z1(ValuePtr, ValueCount)
-    ccall((:Reactors_Set_Z1, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function Reactors_Set_Z1(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Reactors_Set_Z1, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Reactors_Get_Z2(ResultPtr, ResultCount)
-    ccall((:Reactors_Get_Z2, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Reactors_Get_Z2(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Reactors_Get_Z2, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Reactors_Get_Z2_GR()
-    ccall((:Reactors_Get_Z2_GR, LIBRARY), Cvoid, ())
+function Reactors_Get_Z2_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_Z2_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Set_Z2(ValuePtr, ValueCount)
-    ccall((:Reactors_Set_Z2, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function Reactors_Set_Z2(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Reactors_Set_Z2, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Reactors_Get_Z0(ResultPtr, ResultCount)
-    ccall((:Reactors_Get_Z0, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}), ResultPtr, ResultCount)
+function Reactors_Get_Z0(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Reactors_Get_Z0, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function Reactors_Get_Z0_GR()
-    ccall((:Reactors_Get_Z0_GR, LIBRARY), Cvoid, ())
+function Reactors_Get_Z0_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_Z0_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Set_Z0(ValuePtr, ValueCount)
-    ccall((:Reactors_Set_Z0, LIBRARY), Cvoid, (Ptr{Cdouble}, Int32), ValuePtr, ValueCount)
+function Reactors_Set_Z0(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Reactors_Set_Z0, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cdouble}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function Reactors_Get_SpecType()
-    ccall((:Reactors_Get_SpecType, LIBRARY), Int32, ())
+function Reactors_Get_SpecType(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_SpecType, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Get_Count()
-    ccall((:TSData_Get_Count, LIBRARY), Int32, ())
+function TSData_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Get_First()
-    ccall((:TSData_Get_First, LIBRARY), Int32, ())
+function TSData_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Get_Next()
-    ccall((:TSData_Get_Next, LIBRARY), Int32, ())
+function TSData_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Get_Name()
-    ccall((:TSData_Get_Name, LIBRARY), Cstring, ())
+function TSData_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Set_Name(Value)
-    ccall((:TSData_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function TSData_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_TSData_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function TSData_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:TSData_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function TSData_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_TSData_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function TSData_Get_AllNames_GR()
-    ccall((:TSData_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function TSData_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Get_Rdc()
-    ccall((:TSData_Get_Rdc, LIBRARY), Cdouble, ())
+function TSData_Get_Rdc(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_Rdc, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Set_Rdc(Value)
-    ccall((:TSData_Set_Rdc, LIBRARY), Cvoid, (Cdouble,), Value)
+function TSData_Set_Rdc(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_TSData_Set_Rdc, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function TSData_Get_Rac()
-    ccall((:TSData_Get_Rac, LIBRARY), Cdouble, ())
+function TSData_Get_Rac(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_Rac, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Set_Rac(Value)
-    ccall((:TSData_Set_Rac, LIBRARY), Cvoid, (Cdouble,), Value)
+function TSData_Set_Rac(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_TSData_Set_Rac, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function TSData_Get_GMRac()
-    ccall((:TSData_Get_GMRac, LIBRARY), Cdouble, ())
+function TSData_Get_GMRac(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_GMRac, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Set_GMRac(Value)
-    ccall((:TSData_Set_GMRac, LIBRARY), Cvoid, (Cdouble,), Value)
+function TSData_Set_GMRac(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_TSData_Set_GMRac, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function TSData_Get_GMRUnits()
-    ccall((:TSData_Get_GMRUnits, LIBRARY), Int32, ())
+function TSData_Get_GMRUnits(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_GMRUnits, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Set_GMRUnits(Value)
-    ccall((:TSData_Set_GMRUnits, LIBRARY), Cvoid, (Int32,), Value)
+function TSData_Set_GMRUnits(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_TSData_Set_GMRUnits, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function TSData_Get_Radius()
-    ccall((:TSData_Get_Radius, LIBRARY), Cdouble, ())
+function TSData_Get_Radius(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_Radius, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Set_Radius(Value)
-    ccall((:TSData_Set_Radius, LIBRARY), Cvoid, (Cdouble,), Value)
+function TSData_Set_Radius(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_TSData_Set_Radius, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function TSData_Get_RadiusUnits()
-    ccall((:TSData_Get_RadiusUnits, LIBRARY), Int32, ())
+function TSData_Get_RadiusUnits(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_RadiusUnits, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Set_RadiusUnits(Value)
-    ccall((:TSData_Set_RadiusUnits, LIBRARY), Cvoid, (Int32,), Value)
+function TSData_Set_RadiusUnits(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_TSData_Set_RadiusUnits, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function TSData_Get_ResistanceUnits()
-    ccall((:TSData_Get_ResistanceUnits, LIBRARY), Int32, ())
+function TSData_Get_ResistanceUnits(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_ResistanceUnits, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Set_ResistanceUnits(Value)
-    ccall((:TSData_Set_ResistanceUnits, LIBRARY), Cvoid, (Int32,), Value)
+function TSData_Set_ResistanceUnits(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_TSData_Set_ResistanceUnits, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function TSData_Get_Diameter()
-    ccall((:TSData_Get_Diameter, LIBRARY), Cdouble, ())
+function TSData_Get_Diameter(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_Diameter, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Set_Diameter(Value)
-    ccall((:TSData_Set_Diameter, LIBRARY), Cvoid, (Cdouble,), Value)
+function TSData_Set_Diameter(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_TSData_Set_Diameter, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function TSData_Get_NormAmps()
-    ccall((:TSData_Get_NormAmps, LIBRARY), Cdouble, ())
+function TSData_Get_NormAmps(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_NormAmps, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Set_NormAmps(Value)
-    ccall((:TSData_Set_NormAmps, LIBRARY), Cvoid, (Cdouble,), Value)
+function TSData_Set_NormAmps(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_TSData_Set_NormAmps, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function TSData_Get_EmergAmps()
-    ccall((:TSData_Get_EmergAmps, LIBRARY), Cdouble, ())
+function TSData_Get_EmergAmps(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_EmergAmps, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Set_EmergAmps(Value)
-    ccall((:TSData_Set_EmergAmps, LIBRARY), Cvoid, (Cdouble,), Value)
+function TSData_Set_EmergAmps(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_TSData_Set_EmergAmps, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function TSData_Get_EpsR()
-    ccall((:TSData_Get_EpsR, LIBRARY), Cdouble, ())
+function TSData_Get_EpsR(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_EpsR, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Set_EpsR(Value)
-    ccall((:TSData_Set_EpsR, LIBRARY), Cvoid, (Cdouble,), Value)
+function TSData_Set_EpsR(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_TSData_Set_EpsR, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function TSData_Get_InsLayer()
-    ccall((:TSData_Get_InsLayer, LIBRARY), Cdouble, ())
+function TSData_Get_InsLayer(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_InsLayer, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Set_InsLayer(Value)
-    ccall((:TSData_Set_InsLayer, LIBRARY), Cvoid, (Cdouble,), Value)
+function TSData_Set_InsLayer(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_TSData_Set_InsLayer, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function TSData_Get_DiaIns()
-    ccall((:TSData_Get_DiaIns, LIBRARY), Cdouble, ())
+function TSData_Get_DiaIns(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_DiaIns, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Set_DiaIns(Value)
-    ccall((:TSData_Set_DiaIns, LIBRARY), Cvoid, (Cdouble,), Value)
+function TSData_Set_DiaIns(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_TSData_Set_DiaIns, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function TSData_Get_DiaCable()
-    ccall((:TSData_Get_DiaCable, LIBRARY), Cdouble, ())
+function TSData_Get_DiaCable(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_DiaCable, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Set_DiaCable(Value)
-    ccall((:TSData_Set_DiaCable, LIBRARY), Cvoid, (Cdouble,), Value)
+function TSData_Set_DiaCable(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_TSData_Set_DiaCable, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function TSData_Get_DiaShield()
-    ccall((:TSData_Get_DiaShield, LIBRARY), Cdouble, ())
+function TSData_Get_DiaShield(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_DiaShield, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Set_DiaShield(Value)
-    ccall((:TSData_Set_DiaShield, LIBRARY), Cvoid, (Cdouble,), Value)
+function TSData_Set_DiaShield(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_TSData_Set_DiaShield, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function TSData_Get_TapeLayer()
-    ccall((:TSData_Get_TapeLayer, LIBRARY), Cdouble, ())
+function TSData_Get_TapeLayer(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_TapeLayer, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Set_TapeLayer(Value)
-    ccall((:TSData_Set_TapeLayer, LIBRARY), Cvoid, (Cdouble,), Value)
+function TSData_Set_TapeLayer(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_TSData_Set_TapeLayer, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function TSData_Get_TapeLap()
-    ccall((:TSData_Get_TapeLap, LIBRARY), Cdouble, ())
+function TSData_Get_TapeLap(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_TapeLap, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Set_TapeLap(Value)
-    ccall((:TSData_Set_TapeLap, LIBRARY), Cvoid, (Cdouble,), Value)
+function TSData_Set_TapeLap(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_TSData_Set_TapeLap, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function WireData_Get_Count()
-    ccall((:WireData_Get_Count, LIBRARY), Int32, ())
+function WireData_Get_Count(ctx::Ptr{Cvoid})
+    ccall((:ctx_WireData_Get_Count, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function WireData_Get_First()
-    ccall((:WireData_Get_First, LIBRARY), Int32, ())
+function WireData_Get_First(ctx::Ptr{Cvoid})
+    ccall((:ctx_WireData_Get_First, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function WireData_Get_Next()
-    ccall((:WireData_Get_Next, LIBRARY), Int32, ())
+function WireData_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_WireData_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function WireData_Get_Name()
-    ccall((:WireData_Get_Name, LIBRARY), Cstring, ())
+function WireData_Get_Name(ctx::Ptr{Cvoid})
+    ccall((:ctx_WireData_Get_Name, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
 end
 
-function WireData_Set_Name(Value)
-    ccall((:WireData_Set_Name, LIBRARY), Cvoid, (Cstring,), Value)
+function WireData_Set_Name(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_WireData_Set_Name, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function WireData_Get_AllNames(ResultPtr, ResultCount)
-    ccall((:WireData_Get_AllNames, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}), ResultPtr, ResultCount)
+function WireData_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_WireData_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function WireData_Get_AllNames_GR()
-    ccall((:WireData_Get_AllNames_GR, LIBRARY), Cvoid, ())
+function WireData_Get_AllNames_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_WireData_Get_AllNames_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function WireData_Get_Rdc()
-    ccall((:WireData_Get_Rdc, LIBRARY), Cdouble, ())
+function WireData_Get_Rdc(ctx::Ptr{Cvoid})
+    ccall((:ctx_WireData_Get_Rdc, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function WireData_Set_Rdc(Value)
-    ccall((:WireData_Set_Rdc, LIBRARY), Cvoid, (Cdouble,), Value)
+function WireData_Set_Rdc(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_WireData_Set_Rdc, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function WireData_Get_Rac()
-    ccall((:WireData_Get_Rac, LIBRARY), Cdouble, ())
+function WireData_Get_Rac(ctx::Ptr{Cvoid})
+    ccall((:ctx_WireData_Get_Rac, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function WireData_Set_Rac(Value)
-    ccall((:WireData_Set_Rac, LIBRARY), Cvoid, (Cdouble,), Value)
+function WireData_Set_Rac(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_WireData_Set_Rac, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function WireData_Get_GMRac()
-    ccall((:WireData_Get_GMRac, LIBRARY), Cdouble, ())
+function WireData_Get_GMRac(ctx::Ptr{Cvoid})
+    ccall((:ctx_WireData_Get_GMRac, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function WireData_Set_GMRac(Value)
-    ccall((:WireData_Set_GMRac, LIBRARY), Cvoid, (Cdouble,), Value)
+function WireData_Set_GMRac(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_WireData_Set_GMRac, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function WireData_Get_GMRUnits()
-    ccall((:WireData_Get_GMRUnits, LIBRARY), Int32, ())
+function WireData_Get_GMRUnits(ctx::Ptr{Cvoid})
+    ccall((:ctx_WireData_Get_GMRUnits, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function WireData_Set_GMRUnits(Value)
-    ccall((:WireData_Set_GMRUnits, LIBRARY), Cvoid, (Int32,), Value)
+function WireData_Set_GMRUnits(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_WireData_Set_GMRUnits, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function WireData_Get_Radius()
-    ccall((:WireData_Get_Radius, LIBRARY), Cdouble, ())
+function WireData_Get_Radius(ctx::Ptr{Cvoid})
+    ccall((:ctx_WireData_Get_Radius, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function WireData_Set_Radius(Value)
-    ccall((:WireData_Set_Radius, LIBRARY), Cvoid, (Cdouble,), Value)
+function WireData_Set_Radius(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_WireData_Set_Radius, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function WireData_Get_RadiusUnits()
-    ccall((:WireData_Get_RadiusUnits, LIBRARY), Int32, ())
+function WireData_Get_RadiusUnits(ctx::Ptr{Cvoid})
+    ccall((:ctx_WireData_Get_RadiusUnits, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function WireData_Set_RadiusUnits(Value)
-    ccall((:WireData_Set_RadiusUnits, LIBRARY), Cvoid, (Int32,), Value)
+function WireData_Set_RadiusUnits(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_WireData_Set_RadiusUnits, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function WireData_Get_ResistanceUnits()
-    ccall((:WireData_Get_ResistanceUnits, LIBRARY), Int32, ())
+function WireData_Get_ResistanceUnits(ctx::Ptr{Cvoid})
+    ccall((:ctx_WireData_Get_ResistanceUnits, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function WireData_Set_ResistanceUnits(Value)
-    ccall((:WireData_Set_ResistanceUnits, LIBRARY), Cvoid, (Int32,), Value)
+function WireData_Set_ResistanceUnits(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_WireData_Set_ResistanceUnits, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function WireData_Get_Diameter()
-    ccall((:WireData_Get_Diameter, LIBRARY), Cdouble, ())
+function WireData_Get_Diameter(ctx::Ptr{Cvoid})
+    ccall((:ctx_WireData_Get_Diameter, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function WireData_Set_Diameter(Value)
-    ccall((:WireData_Set_Diameter, LIBRARY), Cvoid, (Cdouble,), Value)
+function WireData_Set_Diameter(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_WireData_Set_Diameter, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function WireData_Get_NormAmps()
-    ccall((:WireData_Get_NormAmps, LIBRARY), Cdouble, ())
+function WireData_Get_NormAmps(ctx::Ptr{Cvoid})
+    ccall((:ctx_WireData_Get_NormAmps, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function WireData_Set_NormAmps(Value)
-    ccall((:WireData_Set_NormAmps, LIBRARY), Cvoid, (Cdouble,), Value)
+function WireData_Set_NormAmps(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_WireData_Set_NormAmps, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function WireData_Get_EmergAmps()
-    ccall((:WireData_Get_EmergAmps, LIBRARY), Cdouble, ())
+function WireData_Get_EmergAmps(ctx::Ptr{Cvoid})
+    ccall((:ctx_WireData_Get_EmergAmps, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function WireData_Set_EmergAmps(Value)
-    ccall((:WireData_Set_EmergAmps, LIBRARY), Cvoid, (Cdouble,), Value)
+function WireData_Set_EmergAmps(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_WireData_Set_EmergAmps, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function WireData_Get_CapRadius()
-    ccall((:WireData_Get_CapRadius, LIBRARY), Cdouble, ())
+function WireData_Get_CapRadius(ctx::Ptr{Cvoid})
+    ccall((:ctx_WireData_Get_CapRadius, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function WireData_Set_CapRadius(Value)
-    ccall((:WireData_Set_CapRadius, LIBRARY), Cvoid, (Cdouble,), Value)
+function WireData_Set_CapRadius(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_WireData_Set_CapRadius, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function Bus_Get_Next()
-    ccall((:Bus_Get_Next, LIBRARY), Int32, ())
+function Bus_Get_Next(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_Next, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Error_Get_EarlyAbort()
-    ccall((:Error_Get_EarlyAbort, LIBRARY), UInt16, ())
+function Error_Get_EarlyAbort(ctx::Ptr{Cvoid})
+    ccall((:ctx_Error_Get_EarlyAbort, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Error_Set_EarlyAbort(Value)
-    ccall((:Error_Set_EarlyAbort, LIBRARY), Cvoid, (UInt16,), Value)
+function Error_Set_EarlyAbort(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Error_Set_EarlyAbort, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function Error_Get_ExtendedErrors()
-    ccall((:Error_Get_ExtendedErrors, LIBRARY), UInt16, ())
+function Error_Get_ExtendedErrors(ctx::Ptr{Cvoid})
+    ccall((:ctx_Error_Get_ExtendedErrors, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function Error_Set_ExtendedErrors(Value)
-    ccall((:Error_Set_ExtendedErrors, LIBRARY), Cvoid, (UInt16,), Value)
+function Error_Set_ExtendedErrors(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Error_Set_ExtendedErrors, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function CNData_Get_idx()
-    ccall((:CNData_Get_idx, LIBRARY), Int32, ())
+function CNData_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_CNData_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CNData_Set_idx(Value)
-    ccall((:CNData_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function CNData_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CNData_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function CapControls_Get_idx()
-    ccall((:CapControls_Get_idx, LIBRARY), Int32, ())
+function CapControls_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_CapControls_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function CapControls_Set_idx(Value)
-    ccall((:CapControls_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function CapControls_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_CapControls_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Capacitors_Get_idx()
-    ccall((:Capacitors_Get_idx, LIBRARY), Int32, ())
+function Capacitors_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_Capacitors_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Capacitors_Set_idx(Value)
-    ccall((:Capacitors_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function Capacitors_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Capacitors_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function GICSources_Get_idx()
-    ccall((:GICSources_Get_idx, LIBRARY), Int32, ())
+function GICSources_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_GICSources_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function GICSources_Set_idx(Value)
-    ccall((:GICSources_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function GICSources_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_GICSources_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function ISources_Get_idx()
-    ccall((:ISources_Get_idx, LIBRARY), Int32, ())
+function ISources_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_ISources_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function ISources_Set_idx(Value)
-    ccall((:ISources_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function ISources_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_ISources_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function LineCodes_Get_idx()
-    ccall((:LineCodes_Get_idx, LIBRARY), Int32, ())
+function LineCodes_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineCodes_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LineCodes_Set_idx(Value)
-    ccall((:LineCodes_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function LineCodes_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineCodes_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function LineGeometries_Get_idx()
-    ccall((:LineGeometries_Get_idx, LIBRARY), Int32, ())
+function LineGeometries_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineGeometries_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LineGeometries_Set_idx(Value)
-    ccall((:LineGeometries_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function LineGeometries_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineGeometries_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function LineSpacings_Get_idx()
-    ccall((:LineSpacings_Get_idx, LIBRARY), Int32, ())
+function LineSpacings_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_LineSpacings_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LineSpacings_Set_idx(Value)
-    ccall((:LineSpacings_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function LineSpacings_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LineSpacings_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Lines_Get_idx()
-    ccall((:Lines_Get_idx, LIBRARY), Int32, ())
+function Lines_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_Lines_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Lines_Set_idx(Value)
-    ccall((:Lines_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function Lines_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Lines_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function LoadShapes_Get_idx()
-    ccall((:LoadShapes_Get_idx, LIBRARY), Int32, ())
+function LoadShapes_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_LoadShapes_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function LoadShapes_Set_idx(Value)
-    ccall((:LoadShapes_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function LoadShapes_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LoadShapes_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Meters_Get_idx()
-    ccall((:Meters_Get_idx, LIBRARY), Int32, ())
+function Meters_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_Meters_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Meters_Set_idx(Value)
-    ccall((:Meters_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function Meters_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Meters_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Monitors_Get_idx()
-    ccall((:Monitors_Get_idx, LIBRARY), Int32, ())
+function Monitors_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_Monitors_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Monitors_Set_idx(Value)
-    ccall((:Monitors_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function Monitors_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Monitors_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Reactors_Get_idx()
-    ccall((:Reactors_Get_idx, LIBRARY), Int32, ())
+function Reactors_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_Reactors_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Reactors_Set_idx(Value)
-    ccall((:Reactors_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function Reactors_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Reactors_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function RegControls_Get_idx()
-    ccall((:RegControls_Get_idx, LIBRARY), Int32, ())
+function RegControls_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_RegControls_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function RegControls_Set_idx(Value)
-    ccall((:RegControls_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function RegControls_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_RegControls_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Sensors_Get_idx()
-    ccall((:Sensors_Get_idx, LIBRARY), Int32, ())
+function Sensors_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_Sensors_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Sensors_Set_idx(Value)
-    ccall((:Sensors_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function Sensors_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Sensors_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function SwtControls_Get_idx()
-    ccall((:SwtControls_Get_idx, LIBRARY), Int32, ())
+function SwtControls_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_SwtControls_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function SwtControls_Set_idx(Value)
-    ccall((:SwtControls_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function SwtControls_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_SwtControls_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function TSData_Get_idx()
-    ccall((:TSData_Get_idx, LIBRARY), Int32, ())
+function TSData_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_TSData_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function TSData_Set_idx(Value)
-    ccall((:TSData_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function TSData_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_TSData_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Transformers_Get_idx()
-    ccall((:Transformers_Get_idx, LIBRARY), Int32, ())
+function Transformers_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_Transformers_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Transformers_Set_idx(Value)
-    ccall((:Transformers_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function Transformers_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Transformers_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Vsources_Get_idx()
-    ccall((:Vsources_Get_idx, LIBRARY), Int32, ())
+function Vsources_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_Vsources_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function Vsources_Set_idx(Value)
-    ccall((:Vsources_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function Vsources_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Vsources_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function WireData_Get_idx()
-    ccall((:WireData_Get_idx, LIBRARY), Int32, ())
+function WireData_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_WireData_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function WireData_Set_idx(Value)
-    ccall((:WireData_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function WireData_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_WireData_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function XYCurves_Get_idx()
-    ccall((:XYCurves_Get_idx, LIBRARY), Int32, ())
+function XYCurves_Get_idx(ctx::Ptr{Cvoid})
+    ccall((:ctx_XYCurves_Get_idx, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function XYCurves_Set_idx(Value)
-    ccall((:XYCurves_Set_idx, LIBRARY), Cvoid, (Int32,), Value)
+function XYCurves_Set_idx(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_XYCurves_Set_idx, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function Circuit_Get_ElementLosses(ResultPtr, ResultCount, ElementsPtr, ElementsCount)
-    ccall((:Circuit_Get_ElementLosses, LIBRARY), Cvoid, (Ptr{Ptr{Cdouble}}, Ptr{Int32}, Ptr{Int32}, Int32), ResultPtr, ResultCount, ElementsPtr, ElementsCount)
+function Circuit_Get_ElementLosses(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, ElementsPtr, ElementsCount)
+    ccall((:ctx_Circuit_Get_ElementLosses, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}, Ptr{Int32}, Int32), ctx, ResultPtr, ResultCount, ElementsPtr, ElementsCount)
 end
 
-function Circuit_Get_ElementLosses_GR(ElementsPtr, ElementsCount)
-    ccall((:Circuit_Get_ElementLosses_GR, LIBRARY), Cvoid, (Ptr{Int32}, Int32), ElementsPtr, ElementsCount)
+function Circuit_Get_ElementLosses_GR(ctx::Ptr{Cvoid}, ElementsPtr, ElementsCount)
+    ccall((:ctx_Circuit_Get_ElementLosses_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Int32}, Int32), ctx, ElementsPtr, ElementsCount)
 end
 
-function LoadShapes_Set_Points(Npts, HoursPtr, PMultPtr, QMultPtr, ExternalMemory, IsFloat32, Stride)
-    ccall((:LoadShapes_Set_Points, LIBRARY), Cvoid, (Int32, Ptr{Cvoid}, Ptr{Cvoid}, Ptr{Cvoid}, UInt16, UInt16, Int32), Npts, HoursPtr, PMultPtr, QMultPtr, ExternalMemory, IsFloat32, Stride)
+function LoadShapes_Set_Points(ctx::Ptr{Cvoid}, Npts, HoursPtr, PMultPtr, QMultPtr, ExternalMemory, IsFloat32, Stride)
+    ccall((:ctx_LoadShapes_Set_Points, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32, Ptr{Cvoid}, Ptr{Cvoid}, Ptr{Cvoid}, UInt16, UInt16, Int32), ctx, Npts, HoursPtr, PMultPtr, QMultPtr, ExternalMemory, IsFloat32, Stride)
 end
 
-function LoadShapes_UseFloat32()
-    ccall((:LoadShapes_UseFloat32, LIBRARY), Cvoid, ())
+function LoadShapes_UseFloat32(ctx::Ptr{Cvoid})
+    ccall((:ctx_LoadShapes_UseFloat32, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function LoadShapes_UseFloat64()
-    ccall((:LoadShapes_UseFloat64, LIBRARY), Cvoid, ())
+function LoadShapes_UseFloat64(ctx::Ptr{Cvoid})
+    ccall((:ctx_LoadShapes_UseFloat64, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function LoadShapes_Set_MaxP(Value)
-    ccall((:LoadShapes_Set_MaxP, LIBRARY), Cvoid, (Cdouble,), Value)
+function LoadShapes_Set_MaxP(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LoadShapes_Set_MaxP, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function LoadShapes_Get_MaxP()
-    ccall((:LoadShapes_Get_MaxP, LIBRARY), Cdouble, ())
+function LoadShapes_Get_MaxP(ctx::Ptr{Cvoid})
+    ccall((:ctx_LoadShapes_Get_MaxP, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function LoadShapes_Set_MaxQ(Value)
-    ccall((:LoadShapes_Set_MaxQ, LIBRARY), Cvoid, (Cdouble,), Value)
+function LoadShapes_Set_MaxQ(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_LoadShapes_Set_MaxQ, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
-function LoadShapes_Get_MaxQ()
-    ccall((:LoadShapes_Get_MaxQ, LIBRARY), Cdouble, ())
+function LoadShapes_Get_MaxQ(ctx::Ptr{Cvoid})
+    ccall((:ctx_LoadShapes_Get_MaxQ, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
 
-function CktElement_Get_NodeRef(ResultPtr, ResultCount)
-    ccall((:CktElement_Get_NodeRef, LIBRARY), Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}), ResultPtr, ResultCount)
+function CktElement_Get_NodeRef(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_NodeRef, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
 
-function CktElement_Get_NodeRef_GR()
-    ccall((:CktElement_Get_NodeRef_GR, LIBRARY), Cvoid, ())
+function CktElement_Get_NodeRef_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_NodeRef_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function YMatrix_CheckConvergence()
-    ccall((:YMatrix_CheckConvergence, LIBRARY), UInt16, ())
+function YMatrix_CheckConvergence(ctx::Ptr{Cvoid})
+    ccall((:ctx_YMatrix_CheckConvergence, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function YMatrix_SetGeneratordQdV()
-    ccall((:YMatrix_SetGeneratordQdV, LIBRARY), Cvoid, ())
+function YMatrix_SetGeneratordQdV(ctx::Ptr{Cvoid})
+    ccall((:ctx_YMatrix_SetGeneratordQdV, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
-function YMatrix_Get_LoadsNeedUpdating()
-    ccall((:YMatrix_Get_LoadsNeedUpdating, LIBRARY), UInt16, ())
+function YMatrix_Get_LoadsNeedUpdating(ctx::Ptr{Cvoid})
+    ccall((:ctx_YMatrix_Get_LoadsNeedUpdating, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function YMatrix_Set_LoadsNeedUpdating(Value)
-    ccall((:YMatrix_Set_LoadsNeedUpdating, LIBRARY), Cvoid, (UInt16,), Value)
+function YMatrix_Set_LoadsNeedUpdating(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_YMatrix_Set_LoadsNeedUpdating, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function YMatrix_Get_SolutionInitialized()
-    ccall((:YMatrix_Get_SolutionInitialized, LIBRARY), UInt16, ())
+function YMatrix_Get_SolutionInitialized(ctx::Ptr{Cvoid})
+    ccall((:ctx_YMatrix_Get_SolutionInitialized, LIBRARY), UInt16, (Ptr{Cvoid},), ctx)
 end
 
-function YMatrix_Set_SolutionInitialized(Value)
-    ccall((:YMatrix_Set_SolutionInitialized, LIBRARY), Cvoid, (UInt16,), Value)
+function YMatrix_Set_SolutionInitialized(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_YMatrix_Set_SolutionInitialized, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt16,), ctx, Value)
 end
 
-function YMatrix_Get_Iteration()
-    ccall((:YMatrix_Get_Iteration, LIBRARY), Int32, ())
+function YMatrix_Get_Iteration(ctx::Ptr{Cvoid})
+    ccall((:ctx_YMatrix_Get_Iteration, LIBRARY), Int32, (Ptr{Cvoid},), ctx)
 end
 
-function YMatrix_Set_Iteration(Value)
-    ccall((:YMatrix_Set_Iteration, LIBRARY), Cvoid, (Int32,), Value)
+function YMatrix_Set_Iteration(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_YMatrix_Set_Iteration, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
-function YMatrix_Get_Handle()
-    ccall((:YMatrix_Get_Handle, LIBRARY), Ptr{Cvoid}, ())
+function YMatrix_Get_Handle(ctx::Ptr{Cvoid})
+    ccall((:ctx_YMatrix_Get_Handle, LIBRARY), Ptr{Cvoid}, (Ptr{Cvoid},), ctx)
 end
 
-function YMatrix_Set_SolverOptions(opts)
-    ccall((:YMatrix_Set_SolverOptions, LIBRARY), Cvoid, (UInt64,), opts)
+function YMatrix_Set_SolverOptions(ctx::Ptr{Cvoid}, opts)
+    ccall((:ctx_YMatrix_Set_SolverOptions, LIBRARY), Cvoid, (Ptr{Cvoid}, UInt64,), ctx, opts)
 end
 
-function YMatrix_Get_SolverOptions()
-    ccall((:YMatrix_Get_SolverOptions, LIBRARY), UInt64, ())
+function YMatrix_Get_SolverOptions(ctx::Ptr{Cvoid})
+    ccall((:ctx_YMatrix_Get_SolverOptions, LIBRARY), UInt64, (Ptr{Cvoid},), ctx)
 end
 
-function Text_CommandBlock(Value)
-    ccall((:Text_CommandBlock, LIBRARY), Cvoid, (Cstring,), Value)
+function Text_CommandBlock(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Text_CommandBlock, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
-function Text_CommandArray(ValuePtr, ValueCount)
-    ccall((:Text_CommandArray, LIBRARY), Cvoid, (Ptr{Cstring}, Int32), ValuePtr, ValueCount)
+function Text_CommandArray(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Text_CommandArray, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Cstring}, Int32), ctx, ValuePtr, ValueCount)
 end
 
-function ZIP_Open(FileName)
-    ccall((:ZIP_Open, LIBRARY), Cvoid, (Cstring,), FileName)
+function ZIP_Open(ctx::Ptr{Cvoid}, FileName)
+    ccall((:ctx_ZIP_Open, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, FileName)
 end
 
-function ZIP_Redirect(FileInZip)
-    ccall((:ZIP_Redirect, LIBRARY), Cvoid, (Cstring,), FileInZip)
+function ZIP_Redirect(ctx::Ptr{Cvoid}, FileInZip)
+    ccall((:ctx_ZIP_Redirect, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, FileInZip)
 end
 
-function ZIP_Contains(Name)
-    ccall((:ZIP_Contains, LIBRARY), UInt16, (Cstring,), Name)
+function ZIP_Contains(ctx::Ptr{Cvoid}, Name)
+    ccall((:ctx_ZIP_Contains, LIBRARY), UInt16, (Ptr{Cvoid}, Cstring,), ctx, Name)
 end
 
-function ZIP_List(ResultPtr, ResultCount, RegExp)
-    ccall((:ZIP_List, LIBRARY), Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}, Cstring), ResultPtr, ResultCount, RegExp)
+function ZIP_List(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, RegExp)
+    ccall((:ctx_ZIP_List, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}, Cstring), ctx, ResultPtr, ResultCount, RegExp)
 end
 
-function ZIP_Extract(ResultPtr, ResultCount, FileName)
-    ccall((:ZIP_Extract, LIBRARY), Cvoid, (Ptr{Ptr{Int8}}, Ptr{Int32}, Cstring), ResultPtr, ResultCount, FileName)
+function ZIP_Extract(ctx::Ptr{Cvoid}, ResultPtr, ResultCount, FileName)
+    ccall((:ctx_ZIP_Extract, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int8}}, Ptr{Int32}, Cstring), ctx, ResultPtr, ResultCount, FileName)
 end
 
-function ZIP_Extract_GR(FileName)
-    ccall((:ZIP_Extract_GR, LIBRARY), Cvoid, (Cstring,), FileName)
+function ZIP_Extract_GR(ctx::Ptr{Cvoid}, FileName)
+    ccall((:ctx_ZIP_Extract_GR, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, FileName)
 end
 
-function ZIP_Close()
-    ccall((:ZIP_Close, LIBRARY), Cvoid, ())
+function ZIP_Close(ctx::Ptr{Cvoid})
+    ccall((:ctx_ZIP_Close, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
 function DSS_ExtractSchema(ctx)
@@ -7132,5 +7135,28 @@ function DSS_SetPropertiesMO(Value)
     ccall((:DSS_SetPropertiesMO, LIBRARY), Cvoid, (Cstring,), Value)
 end
 
-const DSS_CAPI_VERSION = "0.12.1"
+function ctx_New()
+    ccall((:ctx_New, LIBRARY), Ptr{Cvoid}, ())
+end
 
+function ctx_Get_Prime()
+    ccall((:ctx_Get_Prime, LIBRARY), Ptr{Cvoid}, ())
+end
+
+function ctx_Set_Prime(ctx::Ptr{Cvoid})
+    ccall((:ctx_Set_Prime, LIBRARY), Ptr{Cvoid}, (Ptr{Cvoid},), ctx)
+end
+
+function ctx_Dispose(ctx::Ptr{Cvoid})
+    ccall((:ctx_Dispose, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
+end
+
+function DSS_Set_CompatFlags(opts)
+    ccall((:DSS_Set_CompatFlags, LIBRARY), Cvoid, (UInt32,), opts)
+end
+
+function DSS_Get_CompatFlags()
+    ccall((:DSS_Get_CompatFlags, LIBRARY), UInt32, ())
+end
+
+const DSS_CAPI_VERSION = "0.13.0"

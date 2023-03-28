@@ -15,30 +15,30 @@ New XYCurve.MyEff npts=4  xarray=[.1  .2  .4  1.0]  yarray=[.86  .9  .93  .97]
 @test XYCurves.Idx() == 2
 @test_throws OpenDSSDirect.OpenDSSDirectException XYCurves.Idx(0)
 @test_throws OpenDSSDirect.OpenDSSDirectException XYCurves.Idx(100)
-@test XYCurves.Idx(1) == nothing
+@test XYCurves.Idx(1) === nothing
 @test XYCurves.Idx() == 1
-@test XYCurves.Idx(2) == nothing
+@test XYCurves.Idx(2) === nothing
 @test XYCurves.Idx() == 2
 @test XYCurves.Npts() == 4
-@test XYCurves.Npts(XYCurves.Npts()) == nothing
+@test XYCurves.Npts(XYCurves.Npts()) === nothing
 @test XYCurves.X() ≋ 0.1
-@test XYCurves.X(XYCurves.X()) == nothing
+@test XYCurves.X(XYCurves.X()) === nothing
 @test XYCurves.Y() ≋ .86
-@test XYCurves.Y(XYCurves.Y()) == nothing
+@test XYCurves.Y(XYCurves.Y()) === nothing
 @test XYCurves.XShift() ≋ 0.0
-@test XYCurves.XShift(XYCurves.XShift()) == nothing
+@test XYCurves.XShift(XYCurves.XShift()) === nothing
 @test XYCurves.YShift() ≋ 0.0
-@test XYCurves.YShift(XYCurves.YShift()) == nothing
+@test XYCurves.YShift(XYCurves.YShift()) === nothing
 @test XYCurves.XScale() ≋ 1.0
-@test XYCurves.XScale(XYCurves.XScale()) == nothing
+@test XYCurves.XScale(XYCurves.XScale()) === nothing
 @test XYCurves.YScale() ≋ 1.0
-@test XYCurves.YScale(XYCurves.YScale()) == nothing
+@test XYCurves.YScale(XYCurves.YScale()) === nothing
 @test XYCurves.Name() == "myeff"
-@test XYCurves.Name(XYCurves.Name()) == nothing
+@test XYCurves.Name(XYCurves.Name()) === nothing
 @test XYCurves.XArray()[1] ≋ 0.1
-@test XYCurves.XArray(XYCurves.XArray()) == nothing
+@test XYCurves.XArray(XYCurves.XArray()) === nothing
 @test XYCurves.YArray()[1] ≋ 0.86
-@test XYCurves.YArray(XYCurves.YArray()) == nothing
+@test XYCurves.YArray(XYCurves.YArray()) === nothing
 
 arr = String[]
 for i in OpenDSSDirect.EachMember(XYCurves); push!(arr, XYCurves.Name()); end

@@ -14,34 +14,34 @@ OpenDSSDirect.Text.Command("""
 @test LoadShape.Idx() == 2
 @test_throws OpenDSSDirect.OpenDSSDirectException LoadShape.Idx(0)
 @test LoadShape.Idx() == 2
-@test LoadShape.Idx(1) == nothing
+@test LoadShape.Idx(1) === nothing
 @test LoadShape.Idx() == 1
-@test LoadShape.Idx(2) == nothing
+@test LoadShape.Idx(2) === nothing
 @test LoadShape.Idx() == 2
 @test LoadShape.Npts() == 8760
-@test LoadShape.Npts(LoadShape.Npts()) == nothing
-@test LoadShape.Normalize() == nothing
+@test LoadShape.Npts(LoadShape.Npts()) === nothing
+@test LoadShape.Normalize() === nothing
 @test LoadShape.UseActual() == 0
-@test LoadShape.UseActual(LoadShape.UseActual()) == nothing
+@test LoadShape.UseActual(LoadShape.UseActual()) === nothing
 @test LoadShape.HrInterval() ≋ 1.0
-@test LoadShape.HrInterval(LoadShape.HrInterval()) == nothing
+@test LoadShape.HrInterval(LoadShape.HrInterval()) === nothing
 @test LoadShape.MinInterval() ≋ 60.0
-@test LoadShape.MinInterval(LoadShape.MinInterval()) == nothing
+@test LoadShape.MinInterval(LoadShape.MinInterval()) === nothing
 @test LoadShape.PBase() ≋ 0.0
-@test LoadShape.PBase(LoadShape.PBase()) == nothing
+@test LoadShape.PBase(LoadShape.PBase()) === nothing
 @test LoadShape.QBase() ≋ 0.0
-@test LoadShape.QBase(LoadShape.QBase()) == nothing
+@test LoadShape.QBase(LoadShape.QBase()) === nothing
 @test LoadShape.SInterval() ≋ 3600.0
-@test LoadShape.SInterval(LoadShape.SInterval()) == nothing
+@test LoadShape.SInterval(LoadShape.SInterval()) === nothing
 @test LoadShape.Name() == "residential"
-@test LoadShape.Name(LoadShape.Name()) == nothing
+@test LoadShape.Name(LoadShape.Name()) === nothing
 @test LoadShape.AllNames() == ["default","residential","commercial_sm","commercial_md"]
 @test LoadShape.PMult()[end] ≋ 0.539266
-@test LoadShape.PMult(LoadShape.PMult()) == nothing
+@test LoadShape.PMult(LoadShape.PMult()) === nothing
 @test LoadShape.QMult() ≋ [0.0]
-@test_throws OpenDSSDirect.OpenDSSDirectException LoadShape.QMult(LoadShape.QMult()) == nothing
+@test_throws OpenDSSDirect.OpenDSSDirectException LoadShape.QMult(LoadShape.QMult()) === nothing
 @test LoadShape.TimeArray() ≋ [0.0]
-@test_throws OpenDSSDirect.OpenDSSDirectException LoadShape.TimeArray(LoadShape.TimeArray()) == nothing
+@test_throws OpenDSSDirect.OpenDSSDirectException LoadShape.TimeArray(LoadShape.TimeArray()) === nothing
 
 arr = String[]
 for i in OpenDSSDirect.EachMember(LoadShape); push!(arr, LoadShape.Name()); end

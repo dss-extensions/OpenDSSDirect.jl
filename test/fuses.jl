@@ -9,23 +9,23 @@ OpenDSSDirect.Text.Command("Redirect $fuses")
 @test Fuses.First() == 1
 @test Fuses.Next() == 2
 @test Fuses.MonitoredTerm() == 1
-@test Fuses.MonitoredTerm(Fuses.MonitoredTerm()) == nothing
-@test Fuses.Open() == nothing
-@test Fuses.Close() == nothing
+@test Fuses.MonitoredTerm(Fuses.MonitoredTerm()) === nothing
+@test Fuses.Open() === nothing
+@test Fuses.Close() === nothing
 @test Fuses.IsBlown() == false
 @test Fuses.Idx() == 2
-@test Fuses.Idx(Fuses.Idx()) == nothing
+@test Fuses.Idx(Fuses.Idx()) === nothing
 @test Fuses.NumPhases() == 1
 @test Fuses.RatedCurrent() ≋ 10.0
-@test Fuses.RatedCurrent(Fuses.RatedCurrent()) == nothing
+@test Fuses.RatedCurrent(Fuses.RatedCurrent()) === nothing
 @test Fuses.Name() == "ln6409873-1"
-@test Fuses.Name(Fuses.Name()) == nothing
+@test Fuses.Name(Fuses.Name()) === nothing
 @test Fuses.MonitoredObj() == "line.ln6409873-1"
-@test Fuses.MonitoredObj(Fuses.MonitoredObj()) == nothing
+@test Fuses.MonitoredObj(Fuses.MonitoredObj()) === nothing
 @test Fuses.SwitchedObj() == "line.ln6409873-1"
-@test Fuses.SwitchedObj(Fuses.SwitchedObj()) == nothing
+@test Fuses.SwitchedObj(Fuses.SwitchedObj()) === nothing
 @test Fuses.TCCCurve() == "tlink"
-@test Fuses.TCCCurve(Fuses.TCCCurve()) == nothing
+@test Fuses.TCCCurve(Fuses.TCCCurve()) === nothing
 @test Fuses.AllNames()[end] == "ln6991377-9"
 
 arr = String[]

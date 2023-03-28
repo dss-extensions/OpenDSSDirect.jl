@@ -11,20 +11,20 @@ init8500()
 @test_throws OpenDSSDirect.OpenDSSDirectException Vsources.Idx(0)
 @test_throws OpenDSSDirect.OpenDSSDirectException Vsources.Idx(100)
 @test Vsources.Idx() == 1
-@test Vsources.Idx(1) == nothing
+@test Vsources.Idx(1) === nothing
 @test Vsources.Idx() == 1
 @test Vsources.Phases() == 3
-@test Vsources.Phases(Vsources.Phases()) == nothing
+@test Vsources.Phases(Vsources.Phases()) === nothing
 @test Vsources.BasekV() ≋ 115.0
-@test Vsources.BasekV(Vsources.BasekV()) == nothing
+@test Vsources.BasekV(Vsources.BasekV()) === nothing
 @test Vsources.PU() ≋ 1.05
-@test Vsources.PU(Vsources.PU()) == nothing
+@test Vsources.PU(Vsources.PU()) === nothing
 @test Vsources.AngleDeg() ≋ 0.0
-@test Vsources.AngleDeg(Vsources.AngleDeg()) == nothing
+@test Vsources.AngleDeg(Vsources.AngleDeg()) === nothing
 @test Vsources.Frequency() ≋ 60.0
-@test Vsources.Frequency(Vsources.Frequency()) == nothing
+@test Vsources.Frequency(Vsources.Frequency()) === nothing
 @test Vsources.Name() == "source"
-@test Vsources.Name(Vsources.Name()) == nothing
+@test Vsources.Name(Vsources.Name()) === nothing
 @test Vsources.AllNames() == ["source"]
 
 arr = String[]

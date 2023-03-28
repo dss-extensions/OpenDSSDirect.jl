@@ -11,270 +11,322 @@ using ..Utils
                                  """
 
 """Array of strings containing all Load names"""
-function AllNames()::Vector{String}
-    return get_string_array(Lib.Loads_Get_AllNames)
+function AllNames(dss::DSSContext)::Vector{String}
+    return get_string_array(Lib.Loads_Get_AllNames, dss.ctx)
 end
+AllNames() = AllNames(DSS_DEFAULT_CTX)
 
 """Factor for allocating loads by connected xfkva (Getter)"""
-function AllocationFactor()::Float64
-    return @checked Lib.Loads_Get_AllocationFactor()
+function AllocationFactor(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_AllocationFactor(dss.ctx)
 end
+AllocationFactor() = AllocationFactor(DSS_DEFAULT_CTX)
 
 """Factor for allocating loads by connected xfkva (Setter)"""
-function AllocationFactor(Value::Float64)
-    @checked Lib.Loads_Set_AllocationFactor(Value)
+function AllocationFactor(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_AllocationFactor(dss.ctx, Value)
 end
+AllocationFactor(Value::Float64) = AllocationFactor(DSS_DEFAULT_CTX, Value)
 
 """Name of a loadshape with both Mult and Qmult, for CVR factors as a function of time. (Getter)"""
-function CVRCurve()::String
-    return get_string(Lib.Loads_Get_CVRcurve())
+function CVRCurve(dss::DSSContext)::String
+    return get_string(Lib.Loads_Get_CVRcurve(dss.ctx))
 end
+CVRCurve() = CVRCurve(DSS_DEFAULT_CTX)
 
 """Name of a loadshape with both Mult and Qmult, for CVR factors as a function of time. (Setter)"""
-function CVRCurve(Value::String)
-    @checked Lib.Loads_Set_CVRcurve(Cstring(pointer(Value)))
+function CVRCurve(dss::DSSContext, Value::String)
+    @checked Lib.Loads_Set_CVRcurve(dss.ctx, Cstring(pointer(Value)))
 end
+CVRCurve(Value::String) = CVRCurve(DSS_DEFAULT_CTX, Value)
 
 """Percent reduction in Q for percent reduction in V. Must be used with dssLoadModelCVR. (Getter)"""
-function CVRvars()::Float64
-    return @checked Lib.Loads_Get_CVRvars()
+function CVRvars(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_CVRvars(dss.ctx)
 end
+CVRvars() = CVRvars(DSS_DEFAULT_CTX)
 
 """Percent reduction in Q for percent reduction in V. Must be used with dssLoadModelCVR. (Setter)"""
-function CVRvars(Value::Float64)
-    @checked Lib.Loads_Set_CVRvars(Value)
+function CVRvars(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_CVRvars(dss.ctx, Value)
 end
+CVRvars(Value::Float64) = CVRvars(DSS_DEFAULT_CTX, Value)
 
 """Percent reduction in P for percent reduction in V. Must be used with dssLoadModelCVR. (Getter)"""
-function CVRwatts()::Float64
-    return @checked Lib.Loads_Get_CVRwatts()
+function CVRwatts(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_CVRwatts(dss.ctx)
 end
+CVRwatts() = CVRwatts(DSS_DEFAULT_CTX)
 
 """Percent reduction in P for percent reduction in V. Must be used with dssLoadModelCVR. (Setter)"""
-function CVRwatts(Value::Float64)
-    @checked Lib.Loads_Set_CVRwatts(Value)
+function CVRwatts(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_CVRwatts(dss.ctx, Value)
 end
+CVRwatts(Value::Float64) = CVRwatts(DSS_DEFAULT_CTX, Value)
 
 """Factor relates average to peak kw.  Used for allocation with kwh and kwhdays/ (Getter)"""
-function CFactor()::Float64
-    return @checked Lib.Loads_Get_Cfactor()
+function CFactor(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_Cfactor(dss.ctx)
 end
+CFactor() = CFactor(DSS_DEFAULT_CTX)
 
 """Factor relates average to peak kw.  Used for allocation with kwh and kwhdays/ (Setter)"""
-function CFactor(Value::Float64)
-    @checked Lib.Loads_Set_Cfactor(Value)
+function CFactor(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_Cfactor(dss.ctx, Value)
 end
+CFactor(Value::Float64) = CFactor(DSS_DEFAULT_CTX, Value)
 
 """Load Class (Getter)"""
-function Class()::Int
-    return @checked Lib.Loads_Get_Class_()
+function Class(dss::DSSContext)::Int
+    return @checked Lib.Loads_Get_Class_(dss.ctx)
 end
+Class() = Class(DSS_DEFAULT_CTX)
 
 """Load Class (Setter)"""
-function Class(Value::Int)
-    @checked Lib.Loads_Set_Class_(Value)
+function Class(dss::DSSContext, Value::Int)
+    @checked Lib.Loads_Set_Class_(dss.ctx, Value)
 end
+Class(Value::Int) = Class(DSS_DEFAULT_CTX, Value)
 
 """Number of Load objects in active circuit."""
-function Count()::Int
-    return @checked Lib.Loads_Get_Count()
+function Count(dss::DSSContext)::Int
+    return @checked Lib.Loads_Get_Count(dss.ctx)
 end
+Count() = Count(DSS_DEFAULT_CTX)
 
 """Set first Load element to be active; returns 0 if none."""
-function First()::Int
-    return @checked Lib.Loads_Get_First()
+function First(dss::DSSContext)::Int
+    return @checked Lib.Loads_Get_First(dss.ctx)
 end
+First() = First(DSS_DEFAULT_CTX)
 
 """Name of the growthshape curve for yearly load growth factors. (Getter)"""
-function Growth()::String
-    return get_string(@checked Lib.Loads_Get_Growth())
+function Growth(dss::DSSContext)::String
+    return get_string(@checked Lib.Loads_Get_Growth(dss.ctx))
 end
+Growth() = Growth(DSS_DEFAULT_CTX)
 
 """Name of the growthshape curve for yearly load growth factors. (Setter)"""
-function Growth(Value::String)
-    @checked Lib.Loads_Set_Growth(Cstring(pointer(Value)))
+function Growth(dss::DSSContext, Value::String)
+    @checked Lib.Loads_Set_Growth(dss.ctx, Cstring(pointer(Value)))
 end
+Growth(Value::String) = Growth(DSS_DEFAULT_CTX, Value)
 
 """Delta loads are connected line-to-line. (Getter)"""
-function IsDelta()::Bool
-    return @checked(Lib.Loads_Get_IsDelta()) != 0
+function IsDelta(dss::DSSContext)::Bool
+    return @checked(Lib.Loads_Get_IsDelta(dss.ctx)) != 0
 end
+IsDelta() = IsDelta(DSS_DEFAULT_CTX)
 
 """Delta loads are connected line-to-line. (Setter)"""
-function IsDelta(Value::Bool)
-    @checked Lib.Loads_Set_IsDelta(Value ? 1 : 0)
+function IsDelta(dss::DSSContext, Value::Bool)
+    @checked Lib.Loads_Set_IsDelta(dss.ctx, Value ? 1 : 0)
 end
+IsDelta(Value::Bool) = IsDelta(DSS_DEFAULT_CTX, Value)
 
 """The Load Model defines variation of P and Q with voltage. (Getter)"""
-function Model()::Lib.LoadModels
-    return @checked Lib.Loads_Get_Model()
+function Model(dss::DSSContext)::Lib.LoadModels
+    return @checked Lib.Loads_Get_Model(dss.ctx)
 end
+Model() = Model(DSS_DEFAULT_CTX)
 
 """The Load Model defines variation of P and Q with voltage. (Setter)"""
-function Model(Value::Union{Int,Lib.LoadModels})
+function Model(dss::DSSContext, Value::Union{Int,Lib.LoadModels})
     Value = convert(Lib.LoadModels, Value)
-    @checked Lib.Loads_Set_Model(Value)
+    @checked Lib.Loads_Set_Model(dss.ctx, Value)
 end
+Model(Value::Union{Int,Lib.LoadModels}) = Model(DSS_DEFAULT_CTX, Value)
 
 """Set active load by name. (Getter)"""
-function Name()::String
-    return get_string(@checked Lib.Loads_Get_Name())
+function Name(dss::DSSContext)::String
+    return get_string(@checked Lib.Loads_Get_Name(dss.ctx))
 end
+Name() = Name(DSS_DEFAULT_CTX)
 
 """Set active load by name. (Setter)"""
-function Name(Value::String)
-    @checked Lib.Loads_Set_Name(Cstring(pointer(Value)))
+function Name(dss::DSSContext, Value::String)
+    @checked Lib.Loads_Set_Name(dss.ctx, Cstring(pointer(Value)))
 end
+Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 
 """Sets next Load element to be active; returns 0 of none else index of active load."""
-function Next()::Int
-    return @checked Lib.Loads_Get_Next()
+function Next(dss::DSSContext)::Int
+    return @checked Lib.Loads_Get_Next(dss.ctx)
 end
+Next() = Next(DSS_DEFAULT_CTX)
 
 """Number of customers in this load, defaults to one. (Getter)"""
-function NumCust()::Int
-    return @checked Lib.Loads_Get_NumCust()
+function NumCust(dss::DSSContext)::Int
+    return @checked Lib.Loads_Get_NumCust(dss.ctx)
 end
+NumCust() = NumCust(DSS_DEFAULT_CTX)
 
 """Number of customers in this load, defaults to one. (Setter)"""
-function NumCust(Value::Int)
-    @checked Lib.Loads_Set_NumCust(Value)
+function NumCust(dss::DSSContext, Value::Int)
+    @checked Lib.Loads_Set_NumCust(dss.ctx, Value)
 end
+NumCust(Value::Int) = NumCust(DSS_DEFAULT_CTX, Value)
 
 """Power Factor for Active Load. Specify leading PF as negative. Updates kvar based on present value of kW value (Getter)"""
-function PF()::Float64
-    return @checked Lib.Loads_Get_PF()
+function PF(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_PF(dss.ctx)
 end
+PF() = PF(DSS_DEFAULT_CTX)
 
 """Power Factor for Active Load. Specify leading PF as negative. Updates kvar based on present value of kW value (Setter)"""
-function PF(Value::Float64)
-    @checked Lib.Loads_Set_PF(Value)
+function PF(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_PF(dss.ctx, Value)
 end
+PF(Value::Float64) = PF(DSS_DEFAULT_CTX, Value)
 
 """Average percent of nominal load in Monte Carlo studies; only if no loadshape defined for this load. (Getter)"""
-function PctMean()::Float64
-    return @checked Lib.Loads_Get_PctMean()
+function PctMean(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_PctMean(dss.ctx)
 end
+PctMean() = PctMean(DSS_DEFAULT_CTX)
 
 """Average percent of nominal load in Monte Carlo studies; only if no loadshape defined for this load. (Setter)"""
-function PctMean(Value::Float64)
-    @checked Lib.Loads_Set_PctMean(Value)
+function PctMean(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_PctMean(dss.ctx, Value)
 end
+PctMean(Value::Float64) = PctMean(DSS_DEFAULT_CTX, Value)
 
 """Percent standard deviation for Monte Carlo load studies; if there is no loadshape assigned to this load. (Getter)"""
-function PctStdDev()::Float64
-    return @checked Lib.Loads_Get_PctStdDev()
+function PctStdDev(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_PctStdDev(dss.ctx)
 end
+PctStdDev() = PctStdDev(DSS_DEFAULT_CTX)
 
 """Percent standard deviation for Monte Carlo load studies; if there is no loadshape assigned to this load. (Setter)"""
-function PctStdDev(Value::Float64)
-    @checked Lib.Loads_Set_PctStdDev(Value)
+function PctStdDev(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_PctStdDev(dss.ctx, Value)
 end
+PctStdDev(Value::Float64) = PctStdDev(DSS_DEFAULT_CTX, Value)
 
 """Relative Weighting factor for the active LOAD (Getter)"""
-function RelWeighting()::Float64
-    return @checked Lib.Loads_Get_RelWeight()
+function RelWeighting(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_RelWeight(dss.ctx)
 end
+RelWeighting() = RelWeighting(DSS_DEFAULT_CTX)
 
 """Relative Weighting factor for the active LOAD (Setter)"""
-function RelWeighting(Value::Float64)
-    @checked Lib.Loads_Set_RelWeight(Value)
+function RelWeighting(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_RelWeight(dss.ctx, Value)
 end
+RelWeighting(Value::Float64) = RelWeighting(DSS_DEFAULT_CTX, Value)
 
 """Neutral resistance for wye-connected loads. (Getter)"""
-function Rneut()::Float64
-    return @checked Lib.Loads_Get_Rneut()
+function Rneut(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_Rneut(dss.ctx)
 end
+Rneut() = Rneut(DSS_DEFAULT_CTX)
 
 """Neutral resistance for wye-connected loads. (Setter)"""
-function Rneut(Value::Float64)
-    @checked Lib.Loads_Set_Rneut(Value)
+function Rneut(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_Rneut(dss.ctx, Value)
 end
+Rneut(Value::Float64) = Rneut(DSS_DEFAULT_CTX, Value)
 
 """Load Spectrum (Getter)"""
-function Spectrum()::String
-    return get_string(@checked Lib.Loads_Get_Spectrum())
+function Spectrum(dss::DSSContext)::String
+    return get_string(@checked Lib.Loads_Get_Spectrum(dss.ctx))
 end
+Spectrum() = Spectrum(DSS_DEFAULT_CTX)
 
 """Load Spectrum (Setter)"""
-function Spectrum(Value::String)
-    @checked Lib.Loads_Set_Spectrum(Cstring(pointer(Value)))
+function Spectrum(dss::DSSContext, Value::String)
+    @checked Lib.Loads_Set_Spectrum(dss.ctx, Cstring(pointer(Value)))
 end
+Spectrum(Value::String) = Spectrum(DSS_DEFAULT_CTX, Value)
 
 """Response to load multipliers: Fixed (growth only), Exempt (no LD curve), Variable (all). (Getter)"""
-function Status()::Lib.LoadStatus
-    return @checked Lib.Loads_Get_Status()
+function Status(dss::DSSContext)::Lib.LoadStatus
+    return @checked Lib.Loads_Get_Status(dss.ctx)
 end
+Status() = Status(DSS_DEFAULT_CTX)
 
 """Response to load multipliers: Fixed (growth only), Exempt (no LD curve), Variable (all). (Setter)"""
-function Status(Value::Union{Int,Lib.LoadStatus})
+function Status(dss::DSSContext, Value::Union{Int,Lib.LoadStatus})
     Value = convert(Lib.LoadStatus, Value)
-    @checked Lib.Loads_Set_Status(Value)
+    @checked Lib.Loads_Set_Status(dss.ctx, Value)
 end
+Status(Value::Union{Int,Lib.LoadStatus}) = Status(DSS_DEFAULT_CTX, Value)
 
 """Maximum per-unit voltage to use the load model. Above this, constant Z applies. (Getter)"""
-function Vmaxpu()::Float64
-    return @checked Lib.Loads_Get_Vmaxpu()
+function Vmaxpu(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_Vmaxpu(dss.ctx)
 end
+Vmaxpu() = Vmaxpu(DSS_DEFAULT_CTX)
 
 """Maximum per-unit voltage to use the load model. Above this, constant Z applies. (Setter)"""
-function Vmaxpu(Value::Float64)
-    @checked Lib.Loads_Set_Vmaxpu(Value)
+function Vmaxpu(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_Vmaxpu(dss.ctx, Value)
 end
+Vmaxpu(Value::Float64) = Vmaxpu(DSS_DEFAULT_CTX, Value)
 
 """Minimum voltage for unserved energy (UE) evaluation. (Getter)"""
-function VminEmerg()::Float64
-    return @checked Lib.Loads_Get_Vminemerg()
+function VminEmerg(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_Vminemerg(dss.ctx)
 end
+VminEmerg() = VminEmerg(DSS_DEFAULT_CTX)
 
 """Minimum voltage for unserved energy (UE) evaluation. (Setter)"""
-function VminEmerg(Value::Float64)
-    @checked Lib.Loads_Set_Vminemerg(Value)
+function VminEmerg(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_Vminemerg(dss.ctx, Value)
 end
+VminEmerg(Value::Float64) = VminEmerg(DSS_DEFAULT_CTX, Value)
 
 """Minimum voltage for energy exceeding normal (EEN) evaluations. (Getter)"""
-function VminNorm()::Float64
-    return @checked Lib.Loads_Get_Vminnorm()
+function VminNorm(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_Vminnorm(dss.ctx)
 end
+VminNorm() = VminNorm(DSS_DEFAULT_CTX)
 
 """Minimum voltage for energy exceeding normal (EEN) evaluations. (Setter)"""
-function VminNorm(Value::Float64)
-    @checked Lib.Loads_Set_Vminnorm(Value)
+function VminNorm(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_Vminnorm(dss.ctx, Value)
 end
+VminNorm(Value::Float64) = VminNorm(DSS_DEFAULT_CTX, Value)
 
 """Minimum voltage to apply the load model. Below this, constant Z is used. (Getter)"""
-function Vminpu()::Float64
-    return @checked Lib.Loads_Get_Vminpu()
+function Vminpu(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_Vminpu(dss.ctx)
 end
+Vminpu() = Vminpu(DSS_DEFAULT_CTX)
 
 """Minimum voltage to apply the load model. Below this, constant Z is used. (Setter)"""
-function Vminpu(Value::Float64)
-    @checked Lib.Loads_Set_Vminpu(Value)
+function Vminpu(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_Vminpu(dss.ctx, Value)
 end
+Vminpu(Value::Float64) = Vminpu(DSS_DEFAULT_CTX, Value)
 
 """Neutral reactance for wye-connected loads. (Getter)"""
-function Xneut()::Float64
-    return @checked Lib.Loads_Get_Xneut()
+function Xneut(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_Xneut(dss.ctx)
 end
+Xneut() = Xneut(DSS_DEFAULT_CTX)
 
 """Neutral reactance for wye-connected loads. (Setter)"""
-function Xneut(Value::Float64)
-    @checked Lib.Loads_Set_Xneut(Value)
+function Xneut(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_Xneut(dss.ctx, Value)
 end
+Xneut(Value::Float64) = Xneut(DSS_DEFAULT_CTX, Value)
 
 """Name of yearly duration loadshape (Getter)"""
-function Yearly()::String
-    return get_string(@checked Lib.Loads_Get_Yearly())
+function Yearly(dss::DSSContext)::String
+    return get_string(@checked Lib.Loads_Get_Yearly(dss.ctx))
 end
+Yearly() = Yearly(DSS_DEFAULT_CTX)
 
 """Name of yearly duration loadshape (Setter)"""
-function Yearly(Value::String)
-    @checked Lib.Loads_Set_Yearly(Cstring(pointer(Value)))
+function Yearly(dss::DSSContext, Value::String)
+    @checked Lib.Loads_Set_Yearly(dss.ctx, Cstring(pointer(Value)))
 end
+Yearly(Value::String) = Yearly(DSS_DEFAULT_CTX, Value)
 
 """Array of 7 doubles with values for ZIPV property of the LOAD object (Getter)"""
-function ZipV()::Vector{Float64}
-    result = get_float64_array(Lib.Loads_Get_ZIPV)
+function ZipV(dss::DSSContext)::Vector{Float64}
+    result = get_float64_array(Lib.Loads_Get_ZIPV, dss.ctx)
         # TODO: make more general? Currently [0.0] is changed to []
     if result == [0.0]
         return []
@@ -282,137 +334,164 @@ function ZipV()::Vector{Float64}
 
     return result
 end
+ZipV() = ZipV(DSS_DEFAULT_CTX)
 
 """Array of 7 doubles with values for ZIPV property of the LOAD object (Setter)"""
-function ZipV(Value::Vector{Float64})
+function ZipV(dss::DSSContext, Value::Vector{Float64})
     Value, ValuePtr, ValueCount = prepare_float64_array(Value)
-    @checked Lib.Loads_Set_ZIPV(ValuePtr, ValueCount)
+    @checked Lib.Loads_Set_ZIPV(dss.ctx, ValuePtr, ValueCount)
 end
+ZipV(Value::Vector{Float64}) = ZipV(DSS_DEFAULT_CTX, Value)
 
 """Name of the loadshape for a daily load profile. (Getter)"""
-function Daily()::String
-    return get_string(Lib.Loads_Get_daily())
+function Daily(dss::DSSContext)::String
+    return get_string(Lib.Loads_Get_daily(dss.ctx))
 end
+Daily() = Daily(DSS_DEFAULT_CTX)
 
 """Name of the loadshape for a daily load profile. (Setter)"""
-function Daily(Value::String)
-    @checked Lib.Loads_Set_daily(Cstring(pointer(Value)))
+function Daily(dss::DSSContext, Value::String)
+    @checked Lib.Loads_Set_daily(dss.ctx, Cstring(pointer(Value)))
 end
+Daily(Value::String) = Daily(DSS_DEFAULT_CTX, Value)
 
 """Name of the loadshape for a duty cycle simulation. (Getter)"""
-function Duty()::String
-    return get_string(@checked Lib.Loads_Get_duty())
+function Duty(dss::DSSContext)::String
+    return get_string(@checked Lib.Loads_Get_duty(dss.ctx))
 end
+Duty() = Duty(DSS_DEFAULT_CTX)
 
 """Name of the loadshape for a duty cycle simulation. (Setter)"""
-function Duty(Value::String)
-    @checked Lib.Loads_Set_duty(Cstring(pointer(Value)))
+function Duty(dss::DSSContext, Value::String)
+    @checked Lib.Loads_Set_duty(dss.ctx, Cstring(pointer(Value)))
 end
+Duty(Value::String) = Duty(DSS_DEFAULT_CTX, Value)
 
 """Load Index (Getter)"""
-function Idx()::Int
-    return @checked Lib.Loads_Get_idx()
+function Idx(dss::DSSContext)::Int
+    return @checked Lib.Loads_Get_idx(dss.ctx)
 end
+Idx() = Idx(DSS_DEFAULT_CTX)
 
 """Load Index (Setter)"""
-function Idx(Value::Int)
-    @checked Lib.Loads_Set_idx(Value)
+function Idx(dss::DSSContext, Value::Int)
+    @checked Lib.Loads_Set_idx(dss.ctx, Value)
 end
+Idx(Value::Int) = Idx(DSS_DEFAULT_CTX, Value)
 
 """Set kV rating for active Load. For 2 or more phases set Line-Line kV. Else actual kV across terminals. (Getter)"""
-function kV()::Float64
-    return @checked Lib.Loads_Get_kV()
+function kV(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_kV(dss.ctx)
 end
+kV() = kV(DSS_DEFAULT_CTX)
 
 """Set kV rating for active Load. For 2 or more phases set Line-Line kV. Else actual kV across terminals. (Setter)"""
-function kV(Value::Float64)
-    @checked Lib.Loads_Set_kV(Value)
+function kV(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_kV(dss.ctx, Value)
 end
+kV(Value::Float64) = kV(DSS_DEFAULT_CTX, Value)
 
 """Set kW for active Load. Updates kvar based on present PF. (Getter)"""
-function kW()::Float64
-    return @checked Lib.Loads_Get_kW()
+function kW(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_kW(dss.ctx)
 end
+kW() = kW(DSS_DEFAULT_CTX)
 
 """Set kW for active Load. Updates kvar based on present PF. (Setter)"""
-function kW(Value::Float64)
-    @checked Lib.Loads_Set_kW(Value)
+function kW(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_kW(dss.ctx, Value)
 end
+kW(Value::Float64) = kW(DSS_DEFAULT_CTX, Value)
 
 """Base load kva. Also defined kw and kvar or pf input, or load allocation by kwh or xfkva. (Getter)"""
-function kVABase()::Float64
-    return @checked Lib.Loads_Get_kva()
+function kVABase(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_kva(dss.ctx)
 end
+kVABase() = kVABase(DSS_DEFAULT_CTX)
 
 """Base load kva. Also defined kw and kvar or pf input, or load allocation by kwh or xfkva. (Setter)"""
-function kVABase(Value::Float64)
-    @checked Lib.Loads_Set_kva(Value)
+function kVABase(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_kva(dss.ctx, Value)
 end
+kVABase(Value::Float64) = kVABase(DSS_DEFAULT_CTX, Value)
 
 """Set kvar for active Load. Updates PF based on present kW. (Getter)"""
-function kvar()::Float64
-    return @checked Lib.Loads_Get_kvar()
+function kvar(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_kvar(dss.ctx)
 end
+kvar() = kvar(DSS_DEFAULT_CTX)
 
 """Set kvar for active Load. Updates PF based on present kW. (Setter)"""
-function kvar(Value::Float64)
-    @checked Lib.Loads_Set_kvar(Value)
+function kvar(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_kvar(dss.ctx, Value)
 end
+kvar(Value::Float64) = kvar(DSS_DEFAULT_CTX, Value)
 
 """kwh billed for this period. Can be used with Cfactor for load allocation. (Getter)"""
-function kWh()::Float64
-    return @checked Lib.Loads_Get_kwh()
+function kWh(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_kwh(dss.ctx)
 end
+kWh() = kWh(DSS_DEFAULT_CTX)
 
 """kwh billed for this period. Can be used with Cfactor for load allocation. (Setter)"""
-function kWh(Value::Float64)
-    @checked Lib.Loads_Set_kwh(Value)
+function kWh(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_kwh(dss.ctx, Value)
 end
+kWh(Value::Float64) = kWh(DSS_DEFAULT_CTX, Value)
 
 """Length of kwh billing period for average demand calculation. Default 30. (Getter)"""
-function kWhDays()::Float64
-    return @checked Lib.Loads_Get_kwhdays()
+function kWhDays(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_kwhdays(dss.ctx)
 end
+kWhDays() = kWhDays(DSS_DEFAULT_CTX)
 
 """Length of kwh billing period for average demand calculation. Default 30. (Setter)"""
-function kWhDays(Value::Float64)
-    @checked Lib.Loads_Set_kwhdays(Value)
+function kWhDays(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_kwhdays(dss.ctx, Value)
 end
+kWhDays(Value::Float64) = kWhDays(DSS_DEFAULT_CTX, Value)
 
 """Percent of Load that is modeled as series R-L for harmonics studies (Getter)"""
-function puSeriesRL()::Float64
-    return @checked Lib.Loads_Get_pctSeriesRL()
+function puSeriesRL(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_pctSeriesRL(dss.ctx)
 end
+puSeriesRL() = puSeriesRL(DSS_DEFAULT_CTX)
 
 """Percent of Load that is modeled as series R-L for harmonics studies (Setter)"""
-function puSeriesRL(Value::Float64)
-    @checked Lib.Loads_Set_pctSeriesRL(Value)
+function puSeriesRL(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_pctSeriesRL(dss.ctx, Value)
 end
+puSeriesRL(Value::Float64) = puSeriesRL(DSS_DEFAULT_CTX, Value)
 
 """Rated service transformer kVA for load allocation, using AllocationFactor. Affects kW, kvar, and pf. (Getter)"""
-function XfkVA()::Float64
-    return @checked Lib.Loads_Get_xfkVA()
+function XfkVA(dss::DSSContext)::Float64
+    return @checked Lib.Loads_Get_xfkVA(dss.ctx)
 end
+XfkVA() = XfkVA(DSS_DEFAULT_CTX)
 
 """Rated service transformer kVA for load allocation, using AllocationFactor. Affects kW, kvar, and pf. (Setter)"""
-function XfkVA(Value::Float64)
-    @checked Lib.Loads_Set_xfkVA(Value)
+function XfkVA(dss::DSSContext, Value::Float64)
+    @checked Lib.Loads_Set_xfkVA(dss.ctx, Value)
 end
+XfkVA(Value::Float64) = XfkVA(DSS_DEFAULT_CTX, Value)
 
 """Number of phases (Getter)"""
-function Phases()::Int
-    return @checked Lib.Loads_Get_Phases()
+function Phases(dss::DSSContext)::Int
+    return @checked Lib.Loads_Get_Phases(dss.ctx)
 end
+Phases() = Phases(DSS_DEFAULT_CTX)
 
 """Number of phases (Setter)"""
-function Phases(Value::Int)
-    return @checked Lib.Loads_Set_Phases(Value)
+function Phases(dss::DSSContext, Value::Int)
+    return @checked Lib.Loads_Set_Phases(dss.ctx, Value)
 end
+Phases(Value::Int) = Phases(DSS_DEFAULT_CTX, Value)
 
 """Sensor"""
-function Sensor()::String
-    return get_string(@checked Lib.Loads_Get_Sensor())
+function Sensor(dss::DSSContext)::String
+    return get_string(@checked Lib.Loads_Get_Sensor(dss.ctx))
 end
+Sensor() = Sensor(DSS_DEFAULT_CTX)
 
 _columns = [
     :AllocationFactor,

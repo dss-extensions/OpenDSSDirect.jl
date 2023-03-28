@@ -8,7 +8,7 @@ init8500()
 @test ActiveClass.NumElements() == 12
 @test ActiveClass.Count() == 12
 @test ActiveClass.Name() == "feeder_regb"
-@test ActiveClass.Name(ActiveClass.Name()) == nothing
+@test ActiveClass.Name(ActiveClass.Name()) === nothing
 @test ActiveClass.ActiveClassName() == "RegControl"
 @test ActiveClass.ActiveClassParent() == "TControlClass"
 x = ActiveClass.AllNames()

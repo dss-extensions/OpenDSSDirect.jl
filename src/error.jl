@@ -11,14 +11,16 @@ using ..Utils
                                  """
 
 """Description of error for last operation"""
-function Description()::String
-    return get_string(Lib.Error_Get_Description())
+function Description(dss::DSSContext)::String
+    return get_string(Lib.Error_Get_Description(dss.ctx))
 end
+Description() = Description(DSS_DEFAULT_CTX)
 
 """Error Number"""
-function Number()::Int
-    return Lib.Error_Get_Number()
+function Number(dss::DSSContext)::Int
+    return Lib.Error_Get_Number(dss.ctx)
 end
+Number() = Number(DSS_DEFAULT_CTX)
 
 """
 Get/set the state of the Legacy Models mechanism (Getter)
@@ -33,9 +35,10 @@ the legacy components, using the old models from the start.
 
 (API Extension)
 """
-function ExtendedErrors()::Bool
-    return @checked(Lib.Error_Get_ExtendedErrors()) != 0
+function ExtendedErrors(dss::DSSContext)::Bool
+    return @checked(Lib.Error_Get_ExtendedErrors(dss.ctx)) != 0
 end
+ExtendedErrors() = ExtendedErrors(DSS_DEFAULT_CTX)
 
 """
 Get/set the state of the Legacy Models mechanism (Setter)
@@ -50,22 +53,25 @@ the legacy components, using the old models from the start.
 
 (API Extension)
 """
-function ExtendedErrors(Value::Bool)
-    @checked Lib.Error_Set_ExtendedErrors(Value ? 1 : 0)
+function ExtendedErrors(dss::DSSContext, Value::Bool)
+    @checked Lib.Error_Set_ExtendedErrors(dss.ctx, Value ? 1 : 0)
 end
+ExtendedErrors(Value::Bool) = ExtendedErrors(DSS_DEFAULT_CTX, Value)
 
 """EarlyAbort controls whether all errors halts the DSS script processing (Compile/Redirect), defaults to True. (Getter)
 
 (API Extension)"""
-function EarlyAbort()::Bool
-    return (@checked Lib.Error_Get_EarlyAbort()) != 0
+function EarlyAbort(dss::DSSContext)::Bool
+    return (@checked Lib.Error_Get_EarlyAbort(dss.ctx)) != 0
 end
+EarlyAbort() = EarlyAbort(DSS_DEFAULT_CTX)
 
 """EarlyAbort controls whether all errors halts the DSS script processing (Compile/Redirect), defaults to True. (Setter)
 
 (API Extension) """
-function EarlyAbort(Value::Bool)
-    return @checked Lib.Error_Set_EarlyAbort(Value)
+function EarlyAbort(dss::DSSContext, Value::Bool)
+    return @checked Lib.Error_Set_EarlyAbort(dss.ctx, Value)
 end
+EarlyAbort(Value::Bool) = EarlyAbort(DSS_DEFAULT_CTX, Value)
 
 end

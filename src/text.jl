@@ -13,16 +13,17 @@ using ..Utils
 export dss
 
 """Input command string for the DSS. (Getter)"""
-function Command()::String
-    return get_string(@checked Lib.Text_Get_Command())
+function Command(dss::DSSContext)::String
+    return get_string(@checked Lib.Text_Get_Command(dss.ctx))
 end
+Command() = Command(DSS_DEFAULT_CTX)
 
 """Input command string for the DSS. (Setter)"""
-function Command(Value::String)::String
+function Command(dss::DSSContext, Value::String)::String
     value = readlines(IOBuffer(Value))
     r = Vector{String}([])
     for v in value
-        @checked Lib.Text_Set_Command(v)
+        @checked Lib.Text_Set_Command(dss.ctx, v)
         push!(r, Result())
         if length(r[end]) > 0
             @warn "Result of running OpenDSS Command \"$v\" is: $(r[end])"
@@ -31,28 +32,32 @@ function Command(Value::String)::String
     res = strip(join(r, "\n"))
     return res
 end
+Command(Value::String) = Command(DSS_DEFAULT_CTX, Value)
 
 """Result string for the last command."""
-function Result()::String
-    return get_string(@checked Lib.Text_Get_Result())
+function Result(dss::DSSContext)::String
+    return get_string(@checked Lib.Text_Get_Result(dss.ctx))
 end
+Result() = Result(DSS_DEFAULT_CTX)
 
 """Runs a list of commands all at once in the engine.
 Ignores potential intermediate output in the global result.
 
 (API Extension)"""
-function Command(Value::Vector{String})
+function Command(dss::DSSContext, Value::Vector{String})
     Value, ValuePtr, ValueCount = prepare_string_array(Value)
-    @checked Lib.Text_CommandArray(ValuePtr, ValueCount)
+    @checked Lib.Text_CommandArray(dss.ctx, ValuePtr, ValueCount)
 end
+Command(Value::Vector{String}) = Command(DSS_DEFAULT_CTX, Value)
 
 """Runs a large string (block) containing many lines of commands.
 Ignores potential intermediate output in the global result.
 
 (API Extension)"""
-function CommandBlock(Value::String)::String
-    @checked Lib.Text_CommandBlock(Value)
+function CommandBlock(dss::DSSContext, Value::String)::String
+    @checked Lib.Text_CommandBlock(dss.ctx, Value)
 end
+CommandBlock(Value::String) = CommandBlock(DSS_DEFAULT_CTX, Value)
 
 const dss = Command
 

@@ -4,7 +4,8 @@ include("init.jl")
 
 println(OpenDSSDirect.Basic.Version())
 
-@test ODD.Lib.DSS_CAPI_VERSION == "0.12.1"
+# We probably don't need to test this
+# @test ODD.Lib.DSS_CAPI_VERSION == "0.13.0rc1"
 
 include("lowlevel.jl")
 include("basics.jl")
@@ -45,5 +46,7 @@ include("transformers.jl")
 include("vsources.jl")
 include("xycurves.jl")
 include("ymatrix.jl")
+
+include("ctx_threads.jl")
 
 include("examples.jl")

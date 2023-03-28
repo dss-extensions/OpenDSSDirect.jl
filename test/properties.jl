@@ -6,7 +6,7 @@ init8500()
 
 
 # Set an invalid property through the low-level interface to test if exceptions work
-OpenDSSDirect.Lib.DSSProperty_Set_Index(-1)
+OpenDSSDirect.Lib.DSSProperty_Set_Index(C_NULL, -1)
 @test_throws OpenDSSDirect.OpenDSSDirectException Properties.Description() == ""
 @test_throws OpenDSSDirect.OpenDSSDirectException Properties.Name() == ""
 
@@ -34,7 +34,7 @@ Properties._setCurrentProperty("transformer")
 @test uppercase(Properties.Value("transformer")) == "VREG4_C"
 
 # An invalid property value is not allowed anymore removes the association since DSS C-API 0.12
-@test_throws OpenDSSDirect.OpenDSSDirectException Properties.Value("transformer", "VREG4_C_new") == nothing
+@test_throws OpenDSSDirect.OpenDSSDirectException Properties.Value("transformer", "VREG4_C_new") === nothing
 @test uppercase(Properties.Value("transformer")) == "" 
 
 end # testset

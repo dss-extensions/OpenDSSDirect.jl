@@ -1,8 +1,6 @@
 
 module OpenDSSDirect
 
-__precompile__(false)
-
 export ActiveClass
 export Basic
 export Bus
@@ -40,6 +38,7 @@ export Transformers
 export Vsources
 export XYCurves
 export YMatrix
+export DSSContext
 
 export dss
 
@@ -75,6 +74,10 @@ module Lib
     include("common.jl")
     include("extensions.jl")
 
+end
+
+struct DSSContext
+    ctx::Ptr{Cvoid}
 end
 
 include("utils.jl")
