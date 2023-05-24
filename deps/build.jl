@@ -88,7 +88,10 @@ function download(::Type{Windows})
     if Base.VERSION < v"1.3.0"
         bin7z = "$home/7z"
     else
-        bin7z = "$(joinpath(home, "..", "libexec", "7z"))"
+        bin7z = "$(joinpath(home, "..", "libexec", "7z.exe"))"
+        if !isfile(bin7z)
+            bin7z = "$(joinpath(home, "..", "libexec", "julia", "7z.exe"))"
+        end
     end
 
     success(`$bin7z x $filename -y -o$directory`)
@@ -114,7 +117,10 @@ function download_messages(::Type{Windows})
     if Base.VERSION < v"1.3.0"
         bin7z = "$home/7z"
     else
-        bin7z = "$(joinpath(home, "..", "libexec", "7z"))"
+        bin7z = "$(joinpath(home, "..", "libexec", "7z.exe"))"
+        if !isfile(bin7z)
+            bin7z = "$(joinpath(home, "..", "libexec", "julia", "7z.exe"))"
+        end
     end
 
     success(`$bin7z x $filename -y -o$directory`)
