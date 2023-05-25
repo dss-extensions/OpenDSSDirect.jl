@@ -147,8 +147,8 @@ end
     DSSJSONFlags_FullNames = 8
     DSSJSONFlags_Pretty = 16
     DSSJSONFlags_ExcludeDisabled = 32
-    DSSJSONFlags_State = 64
-    DSSJSONFlags_Debug = 128
+    DSSJSONFlags_SkipDSSClass = 64
+    DSSJSONFlags_LowercaseKeys = 128
 end
 
 @cenum BatchOperation::UInt32 begin
