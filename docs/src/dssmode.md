@@ -1,6 +1,8 @@
 
 # DSS REPL Mode
 
+**NOTE:** this currently [does not support Linux](https://github.com/dss-extensions/OpenDSSDirect.jl/issues/72). Contributions are welcome!
+
 OpenDSSDirect also includes a custom REPL mode for entering OpenDSS commands directly.
 This is similar to the Help (`?`) and Shell (`;`) modes.
 Use the right parenthesis (`)`) to enter DSS mode.

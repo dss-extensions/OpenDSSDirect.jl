@@ -26,4 +26,7 @@ Lib.LoadStatus
 Lib.Options
 Lib.MonitorModes
 Lib.SolveModes
+Lib.DSSJSONFlags
+Lib.SolverOptions
+Lib.DSSCompatFlags
 ```

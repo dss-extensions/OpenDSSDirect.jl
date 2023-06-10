@@ -118,6 +118,9 @@ search: Circuit
 
 Here is a list of modules supported by this API. Each module has several functions.
 
+Functions or modules that are not present in the official OpenDSS implementation 
+are marked "(API Extension)".
+
 ## `dss`
 
 ```@docs
