@@ -275,7 +275,11 @@ function RdcOhms(dss::DSSContext, Value::Float64)
 end
 RdcOhms(Value::Float64) = RdcOhms(DSS_DEFAULT_CTX, Value)
 
-"""All winding currents in CSV string form like the WdgCurrents property"""
+"""All winding currents in CSV string form like the WdgCurrents property
+
+WARNING: If the transformer has open terminal(s), results may be wrong, i.e. avoid using this
+in those situations. For more information, see https://github.com/dss-extensions/dss-extensions/issues/24
+"""
 function strWdgCurrents(dss::DSSContext)::String
     return get_string(@checked Lib.Transformers_Get_strWdgCurrents(dss.ctx))
 end
@@ -287,13 +291,21 @@ function LossesByType(dss::DSSContext)::Array{ComplexF64}
 end
 LossesByType() = LossesByType(DSS_DEFAULT_CTX)
 
-"""All Winding currents (ph1, wdg1, wdg2,... ph2, wdg1, wdg2 ...)"""
+"""All Winding currents (ph1, wdg1, wdg2,... ph2, wdg1, wdg2 ...)
+
+WARNING: If the transformer has open terminal(s), results may be wrong, i.e. avoid using this
+in those situations. For more information, see https://github.com/dss-extensions/dss-extensions/issues/24
+"""
 function WdgCurrents(dss::DSSContext)::Array{Float64}
     return get_float64_array(Lib.Transformers_Get_WdgCurrents, dss.ctx)
 end
 WdgCurrents() = WdgCurrents(DSS_DEFAULT_CTX)
 
-"""Complex array of voltages for active winding"""
+"""Complex array of voltages for active winding
+
+WARNING: If the transformer has open terminal(s), results may be wrong, i.e. avoid using this
+in those situations. For more information, see https://github.com/dss-extensions/dss-extensions/issues/24
+"""
 function WdgVoltages(dss::DSSContext)::Array{ComplexF64}
     return get_complex64_array(Lib.Transformers_Get_WdgVoltages, dss.ctx)
 end
