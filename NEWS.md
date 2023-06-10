@@ -1,3 +1,56 @@
+**Please also read the [DSS C-API engine changelog](https://github.com/dss-extensions/dss_capi/blob/master/docs/changelog.md) which tracks the engine changes.** Most of the engine changes do not affect the API code on the Julia level.**
+
+For a more complete list of changes, visit the [Git repository and Releases page on GitHub](https://github.com/dss-extensions/OpenDSSDirect.jl).
+
+### OpenDSSDirect v0.9.3 Release Notes
+
+- Update the engine to DSS C-API v0.13.3. This includes important bugfixes to UPFC, Capacitor, and Reactor components, as well as other small changes.
+- Update documentation.
+- Add new flag `DSSCompatFlags_SaveCalcVoltageBases`: this flag forces the `save circuit` to always include `CalcVoltageBases` in the saved files. 
+Use it with `Basic.DSSCompatFlags()`.
+
+### OpenDSSDirect v0.9.2 Release Notes
+
+- Update the engine to DSS C-API v0.13.2.
+- Address Julia 1.9 compatibility issues on Windows.
+- Add new flags `DSSJSONFlags_SkipDSSClass` and `DSSJSONFlags_LowercaseKeys` to control JSON output of the engine.
+
+### OpenDSSDirect v0.9.1 Release Notes
+
+- Update the engine to DSS C-API v0.13.1.
+
+### OpenDSSDirect v0.9.0 Release Notes
+
+- Update the engine to DSS C-API v0.13.0.
+- Enable creating multiple DSS engines. Each engine instance is thread-safe, so multiple Julia threads can be used. That is, using one thread per engine is safe.
+
+### OpenDSSDirect v0.8.1 Release Notes
+
+- Update the engine to DSS C-API v0.12.1.
+- Update modules with new functions and add several modules (CNData, GICSources, LineGeometries, LineSpacings, Parallel, Reactors, ReduceCkt, Storages, TSData, WireData, ZIP).
+
+### OpenDSSDirect v0.8.0 Release Notes
+
+- Update the engine to DSS C-API v0.12.0.
+
+### OpenDSSDirect v0.7.3 Release Notes
+
+- Add more `Idx` functions (several modules).
+- Use flags/enums in more functions.
+
+### OpenDSSDirect v0.7.2 Release Notes
+
+- Update the engine to DSS C-API v0.10.7-1, which includes a fix to an issue with energy meter reports.
+
+### OpenDSSDirect v0.7.1 Release Notes
+
+- Update the engine to DSS C-API v0.10.7.
+
+### OpenDSSDirect v0.7.0 Release Notes
+
+- Update the engine to DSS C-API v0.10.6.
+- Adjust several modules to add new functions.
+
 ### OpenDSSDirect v0.6.1 Release Notes
 
 - Translate OpenDSS Errors to Julia Exceptions

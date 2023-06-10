@@ -1,11 +1,15 @@
 # OpenDSSDirect
 
 [OpenDSS](http://smartgrid.epri.com/SimulationTool.aspx) is an open-source
-distribution system simulator. This Julia package implements a "direct" library
-interface to OpenDSS. See [this
-documentation](http://svn.code.sf.net/p/electricdss/code/trunk/Distrib/Doc/OpenDSS_Direct_DLL.pdf)
-for detailed information on the direct library interface to OpenDSS. The direct
-library interface can be faster than the more traditional COM interface.
+distribution system simulator. This Julia package implements a native, "direct" library
+interface to OpenDSS. Since 2019, this project uses DSS C-API, an alternative API and OpenDSS engine
+implementation maintained by the community. See the [DSS C-API repository](https://github.com/dss-extensions/dss_capi/)
+for move information in general, as well as alternatives for other programming languages.
+
+The interface can be faster than the more traditional COM interface, and allows for multi-platform
+support. Currently we support Windows, Linux and macOS, on ARM and x86 processors.
+
+See also the [DSS-Extensions site](https://dss-extensions.org/) for more.
 
 ## Installation
 
@@ -23,13 +27,15 @@ To install the latest development version, use the following from within Julia:
 (v1.1) pkg> dev OpenDSSDirect
 ```
 
-This package includes OpenDSS as a library. You do not have to install OpenDSS
+This package includes our alternative OpenDSS as a library. You do not have to install OpenDSS
 separately. In particular, it includes the OpenDSSDirect dynamically linked
 library using [dss_capi](https://github.com/dss-extensions/dss_capi) that implements the direct-access API.
 
+Users new to OpenDSS are still encouraged to use EPRI's official documentation and examples in general.
+
 Note that this should work on 32- and 64-bit Windows systems and 64-bit Linux
-and Mac systems. The Windows, Mac and Linux libraries are taken from the
-[dss_capi releases](https://github.com/dss-extensions/dss_capi/releases) page.
+and Mac systems. The Windows, macOS and Linux libraries are taken from the
+[dss_capi releases](https://github.com/dss-extensions/dss_capi/releases) page, downloaded automatically.
 
 ## Features
 
@@ -44,7 +50,13 @@ Julia has several key features for advanced operations with OpenDSS:
   parallel. This includes parallel operations on multiple CPU cores and
   parallel operations on processes in a cluster. See
   [examples/8760_pmap.jl](https://github.com/dss-extensions/OpenDSSDirect.jl/blob/master/examples/8760_pmap.jl)
-  for an example of an annual simulation split among local CPU cores.
+  for an example of an annual simulation split among local CPU cores. The
+  parallel support also includes the context API from DSS-Extensions, which
+  allows using multiple DSS engines in the same process. See
+  [test/ctx_threads.jl](https://github.com/dss-extensions/OpenDSSDirect.jl/blob/master/test/ctx_threads.jl)
+  for a minimal example of how to use this feature. Note that this is not possible in the official OpenDSS engine.
+  For completeness, the `Parallel` API from the PM version of OpenDSS is also available, but using
+  Julia-native operations is recommended.
 
 * **Optimization** -- Julia has strong support for optimization.
 
