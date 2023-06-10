@@ -7159,4 +7159,4 @@ function DSS_Get_CompatFlags()
     ccall((:DSS_Get_CompatFlags, LIBRARY), UInt32, ())
 end
 
-const DSS_CAPI_VERSION = "0.13.2"
+const DSS_CAPI_VERSION = "0.13.3"
