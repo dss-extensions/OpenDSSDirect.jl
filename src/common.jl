@@ -169,4 +169,5 @@ end
     DSSCompatFlags_NoSolverFloatChecks = 1
     DSSCompatFlags_BadPrecision = 2
     DSSCompatFlags_InvControl9611 = 4
+    DSSCompatFlags_SaveCalcVoltageBases = 8
 end
