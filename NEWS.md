@@ -2,6 +2,10 @@
 
 For a more complete list of changes, visit the [Git repository and Releases page on GitHub](https://github.com/dss-extensions/OpenDSSDirect.jl).
 
+### OpenDSSDirect v0.9.4 Release Notes
+
+- Update the engine to DSS C-API v0.13.4. This includes a bugfix to CapControl and some other incremental improvements.
+
 ### OpenDSSDirect v0.9.3 Release Notes
 
 - Update the engine to DSS C-API v0.13.3. This includes important bugfixes to UPFC, Capacitor, and Reactor components, as well as other small changes.
