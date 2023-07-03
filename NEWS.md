@@ -2,6 +2,10 @@
 
 For a more complete list of changes, visit the [Git repository and Releases page on GitHub](https://github.com/dss-extensions/OpenDSSDirect.jl).
 
+### OpenDSSDirect v0.9.5 Release Notes
+
+- Update the DocStringExtensions dependency to avoid conflicts with other packages.
+
 ### OpenDSSDirect v0.9.4 Release Notes
 
 - Update the engine to DSS C-API v0.13.4. This includes a bugfix to CapControl and some other incremental improvements.
