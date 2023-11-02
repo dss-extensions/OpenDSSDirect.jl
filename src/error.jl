@@ -30,7 +30,7 @@ WARNING: Changing the active value runs a "Clear" command, discarding the curren
 
 Defaults to false (disabled state).
 
-This can also be set through the environment variable DSS_CAPI_LEGACY_MODELS. Setting it to 1 enables
+This can also be set through the environment variable `DSS_CAPI_LEGACY_MODELS`. Setting it to 1 enables
 the legacy components, using the old models from the start.
 
 (API Extension)
@@ -48,7 +48,7 @@ WARNING: Changing the active value runs a "Clear" command, discarding the curren
 
 Defaults to false (disabled state).
 
-This can also be set through the environment variable DSS_CAPI_LEGACY_MODELS. Setting it to 1 enables
+This can also be set through the environment variable `DSS_CAPI_LEGACY_MODELS`. Setting it to 1 enables
 the legacy components, using the old models from the start.
 
 (API Extension)

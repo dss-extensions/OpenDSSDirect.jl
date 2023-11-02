@@ -120,7 +120,7 @@ WARNING: Changing the active value runs a "Clear" command, discarding the curren
 
 Defaults to false (disabled state).
 
-This can also be set through the environment variable DSS_CAPI_LEGACY_MODELS. Setting it to 1 enables
+This can also be set through the environment variable `DSS_CAPI_LEGACY_MODELS`. Setting it to 1 enables
 the legacy components, using the old models from the start.
 
 (API Extension)
@@ -138,7 +138,7 @@ WARNING: Changing the active value runs a "Clear" command, discarding the curren
 
 Defaults to false (disabled state).
 
-This can also be set through the environment variable DSS_CAPI_LEGACY_MODELS. Setting it to 1 enables
+This can also be set through the environment variable `DSS_CAPI_LEGACY_MODELS`. Setting it to 1 enables
 the legacy components, using the old models from the start.
 
 (API Extension)
@@ -158,7 +158,7 @@ For example, consider the function Loads_Get_ZIPV. If there is no active circuit
 
 Defaults to True/1 (enabled state) in the v0.12.x series. This will change to false in future series.
 
-This can also be set through the environment variable DSS_CAPI_COM_DEFAULTS. Setting it to 0 disables
+This can also be set through the environment variable `DSS_CAPI_COM_DEFAULTS`. Setting it to 0 disables
 the legacy/COM behavior. The value can be toggled through the API at any time.
 
 (Getter)
@@ -179,7 +179,7 @@ For example, consider the function Loads_Get_ZIPV. If there is no active circuit
 
 Defaults to True/1 (enabled state) in the v0.12.x series. This will change to false in future series.
 
-This can also be set through the environment variable DSS_CAPI_COM_DEFAULTS. Setting it to 0 disables
+This can also be set through the environment variable `DSS_CAPI_COM_DEFAULTS`. Setting it to 0 disables
 the legacy/COM behavior. The value can be toggled through the API at any time.
 
 (Setter)
@@ -198,7 +198,7 @@ If you have issues with long paths, enabling this might help in some scenarios.
 Defaults to True (allow changes, backwards compatible) in the 0.10.x versions of DSS C-API.
 This might change to False in future versions.
 
-This can also be set through the environment variable DSS_CAPI_ALLOW_CHANGE_DIR. Set it to 0 to
+This can also be set through the environment variable `DSS_CAPI_ALLOW_CHANGE_DIR`. Set it to 0 to
 disallow changing the active working directory.
 
 (Getter)
@@ -216,7 +216,7 @@ If you have issues with long paths, enabling this might help in some scenarios.
 Defaults to True (allow changes, backwards compatible) in the 0.10.x versions of DSS C-API.
 This might change to False in future versions.
 
-This can also be set through the environment variable DSS_CAPI_ALLOW_CHANGE_DIR. Set it to 0 to
+This can also be set through the environment variable `DSS_CAPI_ALLOW_CHANGE_DIR`. Set it to 0 to
 disallow changing the active working directory.
 
 (Setter)
@@ -256,7 +256,7 @@ AllowEditor(Value::Bool) = AllowEditor(DSS_DEFAULT_CTX, Value)
     
 Defaults to False/0 (disabled state). Users should consider DOScmd deprecated on DSS Extensions.
 
-This can also be set through the environment variable DSS_CAPI_LEGACY_MODELS. Setting it to 1 enables
+This can also be set through the environment variable `DSS_CAPI_LEGACY_MODELS`. Setting it to 1 enables
 the legacy components, using the old models from the start.
 
 (Getter)
@@ -270,7 +270,7 @@ AllowDOScmd() = AllowDOScmd(DSS_DEFAULT_CTX)
     
 Defaults to False/0 (disabled state). Users should consider DOScmd deprecated on DSS Extensions.
 
-This can also be set through the environment variable DSS_CAPI_LEGACY_MODELS. Setting it to 1 enables
+This can also be set through the environment variable `DSS_CAPI_LEGACY_MODELS`. Setting it to 1 enables
 the legacy components, using the old models from the start.
 
 (Setter)
