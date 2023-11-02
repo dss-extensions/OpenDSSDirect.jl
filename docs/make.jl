@@ -10,7 +10,8 @@ makedocs(
               ],
     doctest = false,
     clean = false,
-    format = Documenter.HTML(),
+    checkdocs=:exports,
+    format = Documenter.HTML(size_threshold_ignore = ["api.md"]),
     sitename = "OpenDSSDirect.jl",
     authors = "Tom Short",
     pages = Any[
