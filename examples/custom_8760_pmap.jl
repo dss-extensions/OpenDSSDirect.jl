@@ -10,7 +10,7 @@ using OpenDSSDirect, Distributed
 
     dss("""
         clear
-        compile $filename
+        compile "$filename"
         Solve  ! This executes a snaphot power flow solution of the circuit
     """)
     const nloads = Loads.Count()

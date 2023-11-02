@@ -10,7 +10,7 @@ const DSS = OpenDSSDirect
     filename = string(normpath("$(dirname(@__FILE__))/../examples/8500-Node/Master.dss"))
     OpenDSSDirect.Text.Command("""
         clear
-        redirect $filename
+        redirect "$filename"
         """)
     loadnumber = DSS.Loads.First()
     @test DSS.Loads.Name() == "138236b0"
@@ -37,7 +37,7 @@ const DSS = OpenDSSDirect
 
     DSS.Text.Command("""
         clear
-        redirect $filename
+        redirect "$filename"
         solve
         """)
 

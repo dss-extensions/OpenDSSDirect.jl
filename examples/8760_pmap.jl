@@ -11,7 +11,7 @@ using OpenDSSDirect, Distributed
     filename = joinpath(@__DIR__, "ckt5", "Master_ckt5.dss")
     dss("""
         clear
-        compile $filename
+        compile "$filename"
         Solve  ! This executes a snaphot power flow solution of the circuit
         set mode=yearly number=$numhours
     """)

@@ -3,7 +3,7 @@ using OpenDSSDirect
 filename = abspath(joinpath(@__DIR__, "../examples/8500-Node/Master.dss"))
 
 OpenDSSDirect.Text.Command("clear")
-OpenDSSDirect.Text.Command("redirect $filename")
+OpenDSSDirect.Text.Command("redirect '$filename'")
 function setloads()
     for i = 1:1000
         loadnumber = Loads.First()
@@ -23,7 +23,7 @@ using OpenDSSDirect
 
 dss("""
     clear
-    redirect $filename
+    redirect "$filename"
 """)
 function setloads2()
     for i = 1:1000
