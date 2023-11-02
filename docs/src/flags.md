@@ -19,14 +19,22 @@ Pages = ["flags.md"]
 
 ```@docs
 Lib.ActionCodes
+Lib.AutoAddTypes
+Lib.BatchOperation
 Lib.CapControlModes
+Lib.CktModels
+Lib.ControlModes
+Lib.DSSMessageType
+Lib.GeneratorStatus
 Lib.LineUnits
 Lib.LoadModels
 Lib.LoadStatus
-Lib.Options
 Lib.MonitorModes
+Lib.RandomModes
+Lib.SolutionAlgorithms
+Lib.SolutionLoadModels
 Lib.SolveModes
-Lib.DSSJSONFlags
-Lib.SolverOptions
-Lib.DSSCompatFlags
+Lib.StorageStates
 ```
+
+<!-- TODO: DSSCompatFlags, DSSJSONFlags, SolverOptions -->
