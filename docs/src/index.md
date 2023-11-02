@@ -83,7 +83,7 @@ using OpenDSSDirect
 filename = joinpath(dirname(dirname(pathof(OpenDSSDirect))), "examples", "8500-Node", "Master.dss")
 dss("""
     clear
-    compile $filename
+    compile "$filename"
     solve
 """)
 

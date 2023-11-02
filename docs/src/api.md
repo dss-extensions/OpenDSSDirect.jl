@@ -14,7 +14,7 @@ using OpenDSSDirect
 filename = "C:/OpenDSS/electricdss/IEEETestCases/8500-Node/Master.dss"
 dss("""
     clear
-    compile $filename
+    compile "$filename"
 """)
 ```
 
@@ -33,7 +33,7 @@ using OpenDSSDirect
 filename = "C:/OpenDSS/electricdss/IEEETestCases/8500-Node/Master.dss"
 dss("""
     clear
-    compile $filename
+    compile "$filename"
 """)
 loadnumber = Loads.First()
 while loadnumber > 0
@@ -65,7 +65,7 @@ julia> filename = joinpath(Pkg.dir(), "OpenDSSDirect", "examples", "8500-Node", 
 
 julia> dss("""
            clear
-           compile $filename
+           compile "$filename"
        """)
 
 julia> Solution.Solve();
