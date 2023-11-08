@@ -1,35 +1,27 @@
-using Clang
+using Clang.Generators
 
-# LIBCLANG_HEADERS are those headers to be wrapped.
-const LIBOPENDSS_INCLUDE = [
-                           joinpath(@__DIR__, "../../dss_capi/include/v7/") |> normpath,
-                          ]
+error("This is broken for modern versions, but should be fixed when DSS C-API v1.0 is released.")
+
+const LIBOPENDSS_INCLUDE = joinpath(@__DIR__, "../../dss_capi/include/") |> normpath
 
 const LIBOPENDSS_HEADERS = String[]
 
-for folder in LIBOPENDSS_INCLUDE
-    for header in readdir(folder)
-        if endswith(header, ".h")
-            push!(LIBOPENDSS_HEADERS, joinpath(folder, header))
-        end
-    end
-end
+push!(LIBOPENDSS_HEADERS, joinpath(LIBOPENDSS_INCLUDE, "dss_capi.h"))
+push!(LIBOPENDSS_HEADERS, joinpath(LIBOPENDSS_INCLUDE, "dss_capi_ctx.h"))
+
+# for header in readdir(folder)
+#     if endswith(header, ".h")
+#         push!(LIBOPENDSS_HEADERS, joinpath(LIBOPENDSS_INCLUDE, header))
+#     end
+# end
+
+LIBOPENDSS_ARGS = get_default_args() 
 
 LIBOPENDSS_ARGS = String[]
 for path in LIBOPENDSS_INCLUDE
-    push!(LIBOPENDSS_ARGS, "-I")
-    push!(LIBOPENDSS_ARGS, path)
+    push!(LIBOPENDSS_ARGS, "-I$path")
 end
 
-
-wc = init(; headers = LIBOPENDSS_HEADERS,
-            output_file = joinpath(@__DIR__, "../src/lib.jl"),
-            common_file = joinpath(@__DIR__, "../src/common.jl"),
-            clang_includes = vcat(LIBOPENDSS_INCLUDE..., CLANG_INCLUDE),
-            clang_args = LIBOPENDSS_ARGS,
-            header_wrapped = (root, current)->root == current,
-            header_library = x->"LIBRARY",
-            clang_diagnostics = true,
-            )
-
-run(wc)
+options = load_options(joinpath(@__DIR__, "generator.toml"))
+ctx = create_context(LIBOPENDSS_HEADERS, LIBOPENDSS_ARGS, options)
+build!(ctx)

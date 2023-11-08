@@ -20,7 +20,6 @@ Pages = ["flags.md"]
 ```@docs
 Lib.ActionCodes
 Lib.AutoAddTypes
-Lib.BatchOperation
 Lib.CapControlModes
 Lib.CktModels
 Lib.ControlModes

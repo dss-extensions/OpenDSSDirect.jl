@@ -286,4 +286,57 @@ function ElementLosses(dss::DSSContext, Idx::Vector{Int32})::Vector{ComplexF64}
 end
 ElementLosses(Idx::Vector{Int32}) = ElementLosses(DSS_DEFAULT_CTX, Idx)
 
+"""EXPERIMENTAL: Loads a full circuit from a JSON-encoded string. The data must 
+be encoded using the proposed AltDSS Schema, see
+https://github.com/dss-extensions/altdss-schema/ and 
+https://github.com/orgs/dss-extensions/discussions/ for links to docs and to
+provide feedback for future revisions.
+
+The options argument is an integer bitset from the enum `DSSJSONFlags`.
+
+(API Extension)"""
+function FromJSON(dss::DSSContext, circ::String, options::Int32)
+    @checked Lib.Circuit_FromJSON(dss.ctx, Cstring(pointer(circ)), options)
+end
+FromJSON(circ::String, options::Int32) = FromJSON(DSS_DEFAULT_CTX, circ, options)
+
+"""EXPERIMENTAL: Returns the general circuit data, including all DSS objects, as a
+JSON-encoded string. The data is encoded using the proposed AltDSS Schema, see
+https://github.com/dss-extensions/altdss-schema/ and 
+https://github.com/orgs/dss-extensions/discussions/ for links to docs and to
+provide feedback for future revisions.
+
+The options argument is an integer bitset from the enum `DSSJSONFlags`.
+
+(API Extension)"""
+function ToJSON(dss::DSSContext, options::Int32)::String
+    return get_string(@checked Lib.Circuit_ToJSON(dss.ctx, options))
+end
+ToJSON(options::Int32) = ToJSON(DSS_DEFAULT_CTX, options)
+
+"""
+Equivalent of the "save circuit" DSS command, but allows customization
+through the `saveFlags` argument, which is a set of bit flags. 
+See the `DSSSaveFlags` enumeration for available flags:
+
+- `CalcVoltageBases`: Include the command CalcVoltageBases.
+- `SetVoltageBases`: Include commands to set the voltage bases individually.
+- `IncludeOptions`: Include most of the options (from the Set/Get DSS commands).
+- `IncludeDisabled`: Include disabled circuit elements (and LoadShapes).
+- `ExcludeDefault`: Exclude default DSS items if they are not modified by the user.
+- `SingleFile`: Use a single file instead of a folder for output.
+- `KeepOrder`: Save the circuit elements in the order they were loaded in the active circuit. Guarantees better reproducibility, especially when the system is ill-conditioned. Requires "SingleFile" flag.
+- `ExcludeMeterZones`: Do not export meter zones (as "feeders") separately. Has no effect when using a single file.
+- `IsOpen`: Export commands to open terminals of elements.
+- `ToString`: to the result string. Requires "SingleFile" flag.
+
+If `SingleFile` is enabled, the path name argument (`dirOrFilePath`) is the file path,
+otherwise it is the folder path. For string output, the argument is not used.
+
+(API Extension)"""
+function Save(dss::DSSContext, dirOrFilePath::String, saveFlags::Int32)::String
+    return get_string(@checked Lib.Circuit_Save(dss.ctx, Cstring(pointer(dirOrFilePath)), saveFlags))
+end
+Save(dirOrFilePath::String, saveFlags::Int32) = Save(DSS_DEFAULT_CTX, dirOrFilePath, saveFlags)
+
 end
