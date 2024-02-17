@@ -1,7 +1,14 @@
 module Circuit
 
+using DocStringExtensions
+
 using ..Lib
 using ..Utils
+
+@template (FUNCTIONS, METHODS) = """
+                                 $(TYPEDSIGNATURES)
+                                 $(DOCSTRING)
+                                 """
 
 """Compute capacity"""
 function Capacity(dss::DSSContext, Start, Increment)::Float64
