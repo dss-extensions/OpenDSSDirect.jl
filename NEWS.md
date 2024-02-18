@@ -2,6 +2,10 @@
 
 For a more complete list of changes, visit the [Git repository and Releases page on GitHub](https://github.com/dss-extensions/OpenDSSDirect.jl).
 
+### OpenDSSDirect v0.9.7 Release Notes
+
+- Fix low-level signature for `Lib.Circuit_FromJSON`.
+
 ### OpenDSSDirect v0.9.6 Release Notes
 
 - Update the engine to DSS C-API v0.14.1. There are a few bugfixes but also an extensive list of new features, [please check the AltDSS/DSS C-API changelog](https://github.com/dss-extensions/dss_capi/blob/master/docs/changelog.md#version-0141-2024-02-16).
