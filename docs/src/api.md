@@ -116,6 +116,25 @@ search: Circuit
   {truncated...}
 ```
 
+Besides that, the [`methods` function](https://docs.julialang.org/en/v1.10/base/base/#Base.methods)
+can be helpful to list the alternatives. Besides the getter (no value arguments) and setter 
+(when a value argument provided), most functions allow passing a `dss::DSSContext` argument. 
+For example:
+
+```julia
+julia> using OpenDSSDirect
+
+julia> methods(OpenDSSDirect.Loads.Name)
+# 4 methods for generic function "Name":
+[1] Name() in OpenDSSDirect.Loads at /home/user/.julia/packages/OpenDSSDirect/5wwHs/src/loads.jl:144
+[2] Name(dss::DSSContext) in OpenDSSDirect.Loads at /home/user/.julia/packages/OpenDSSDirect/5wwHs/src/loads.jl:141
+[3] Name(dss::DSSContext, Value::String) in OpenDSSDirect.Loads at /home/user/.julia/packages/OpenDSSDirect/5wwHs/src/loads.jl:147
+[4] Name(Value::String) in OpenDSSDirect.Loads at /home/user/.julia/packages/OpenDSSDirect/5wwHs/src/loads.jl:150
+```
+
+For typical usage with a single circuit, users can use the variations without this argument. 
+For using multiple DSS circuits and potentially multiple circuits, provide the context explicitly.
+
 Here is a list of modules supported by this API. Each module has several functions.
 
 Functions or modules that are not present in the official OpenDSS implementation 

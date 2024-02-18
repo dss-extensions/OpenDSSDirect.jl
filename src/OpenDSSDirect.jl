@@ -1,43 +1,55 @@
 
 module OpenDSSDirect
 
-export ActiveClass
-export Basic
-export Bus
-export CapControls
-export Capacitors
-export Circuit
-export CktElement
-export Element
-export Error
-export Executive
-export Fuses
-export Generators
-export Isource
-export LineCodes
-export Lines
-export Loads
-export LoadShape
-export Meters
-export Monitors
-export Parser
-export PDElements
-export Progress
-export Properties
-export PVsystems
-export Reclosers
-export RegControls
-export Relays
-export Sensors
-export Settings
-export Solution
-export SwtControls
-export Text
-export Topology
-export Transformers
-export Vsources
-export XYCurves
-export YMatrix
+export ActiveClass 
+export Basic 
+export Bus 
+export Capacitors 
+export CapControls 
+export Circuit 
+export CktElement 
+export CNData 
+export CtrlQueue 
+export Element 
+export Error 
+export Executive 
+export Fuses 
+export Generators 
+export GICSources 
+export Isource 
+export LineCodes 
+export LineGeometries 
+export Lines 
+export LineSpacings 
+export Loads 
+export LoadShape 
+export Meters 
+export Monitors 
+export Parallel 
+export Parser 
+export PDElements 
+export Progress 
+export Properties 
+export PVsystems 
+export Reactors 
+export Reclosers 
+export ReduceCkt 
+export RegControls 
+export Relays 
+export Sensors 
+export Settings 
+export Solution 
+export Storages 
+export SwtControls 
+export Text 
+export Topology 
+export TSData 
+export Transformers 
+export Vsources 
+export WireData 
+export XYCurves 
+export YMatrix 
+export ZIP
 export DSSContext
 
 export dss
@@ -151,6 +163,8 @@ function __init__()
 
     # Load the default descriptions/help strings
     Lib.DSS_SetPropertiesMO(abspath(joinpath(@__DIR__, "../deps/messages/properties-en-US.mo")))
+    # Leave the properties with the legacy names for now
+    Lib.Settings_SetPropertyNameStyle(C_NULL, 2)
 
     if !Sys.islinux()
         global commandhelp = Dict{String, String}()

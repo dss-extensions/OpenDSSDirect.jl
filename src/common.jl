@@ -1,4 +1,4 @@
-# Automatically generated using Clang.jl
+# Previously generated using Clang.jl; now updated manually
 
 @cenum MonitorModes::UInt32 begin
     MonitorModes_VI = 0
@@ -128,33 +128,18 @@ end
     StorageStates_Discharging = 1
 end
 
-@cenum DSSMessageType::Int32 begin
-    DSSMessageType_Error = -1
-    DSSMessageType_General = 0
-    DSSMessageType_Info = 1
-    DSSMessageType_Help = 2
-    DSSMessageType_Progress = 3
-    DSSMessageType_ProgressCaption = 4
-    DSSMessageType_ProgressFormCaption = 5
-    DSSMessageType_ProgressPercent = 6
-    DSSMessageType_FireOffEditor = 7
-end
-
-@cenum DSSJSONFlags::UInt32 begin
+@enum DSSJSONFlags::Int32 begin
     DSSJSONFlags_Full = 1
     DSSJSONFlags_SkipRedundant = 2
     DSSJSONFlags_EnumAsInt = 4
     DSSJSONFlags_FullNames = 8
     DSSJSONFlags_Pretty = 16
     DSSJSONFlags_ExcludeDisabled = 32
-    DSSJSONFlags_SkipDSSClass = 64
+    DSSJSONFlags_IncludeDSSClass = 64
     DSSJSONFlags_LowercaseKeys = 128
-end
-
-@cenum BatchOperation::UInt32 begin
-    BatchOperation_Set = 0
-    BatchOperation_Multiply = 1
-    BatchOperation_Increment = 2
+    DSSJSONFlags_IncludeDefaultObjs = 256
+    DSSJSONFlags_SkipTimestamp = 512
+    DSSJSONFlags_SkipBuses = 1024    
 end
 
 @cenum SolverOptions::UInt32 begin
@@ -170,4 +155,87 @@ end
     DSSCompatFlags_BadPrecision = 2
     DSSCompatFlags_InvControl9611 = 4
     DSSCompatFlags_SaveCalcVoltageBases = 8
+    DSSCompatFlags_ActiveLine = 16
+    DSSCompatFlags_NoPropertyTracking = 32
+    DSSCompatFlags_SkipSideEffects = 64    
+end
+
+@cenum EnergyMeterRegisters::Int32 begin
+    EnergyMeterRegisters_kWh = 0
+    EnergyMeterRegisters_kvarh = 1
+    EnergyMeterRegisters_MaxkW = 2
+    EnergyMeterRegisters_MaxkVA = 3
+    EnergyMeterRegisters_ZonekWh = 4
+    EnergyMeterRegisters_Zonekvarh = 5
+    EnergyMeterRegisters_ZoneMaxkW = 6
+    EnergyMeterRegisters_ZoneMaxkVA = 7
+    EnergyMeterRegisters_OverloadkWhNorm = 8
+    EnergyMeterRegisters_OverloadkWhEmerg = 9
+    EnergyMeterRegisters_LoadEEN = 10
+    EnergyMeterRegisters_LoadUE = 11
+    EnergyMeterRegisters_ZoneLosseskWh = 12
+    EnergyMeterRegisters_ZoneLosseskvarh = 13
+    EnergyMeterRegisters_LossesMaxkW = 14
+    EnergyMeterRegisters_LossesMaxkvar = 15
+    EnergyMeterRegisters_LoadLosseskWh = 16
+    EnergyMeterRegisters_LoadLosseskvarh = 17
+    EnergyMeterRegisters_NoLoadLosseskWh = 18
+    EnergyMeterRegisters_NoLoadLosseskvarh = 19
+    EnergyMeterRegisters_MaxLoadLosses = 20
+    EnergyMeterRegisters_MaxNoLoadLosses = 21
+    EnergyMeterRegisters_LineLosseskWh = 22
+    EnergyMeterRegisters_TransformerLosseskWh = 23
+    EnergyMeterRegisters_LineModeLineLoss = 24
+    EnergyMeterRegisters_ZeroModeLineLoss = 25
+    EnergyMeterRegisters_ThreePhaseLineLoss = 26
+    EnergyMeterRegisters_OnePhaseLineLoss = 27
+    EnergyMeterRegisters_GenkWh = 28
+    EnergyMeterRegisters_Genkvarh = 29
+    EnergyMeterRegisters_GenMaxkW = 30
+    EnergyMeterRegisters_GenMaxkVA = 31
+    EnergyMeterRegisters_VBaseStart = 32
+end
+
+@cenum GeneratorRegisters::Int32 begin
+    GeneratorRegisters_kWh = 0
+    GeneratorRegisters_kvarh = 1
+    GeneratorRegisters_MaxkW = 2
+    GeneratorRegisters_MaxkVA = 3
+    GeneratorRegisters_Hours = 4
+    GeneratorRegisters_Price = 5
+end
+
+@cenum DSSMessageType::Int32 begin
+    DSSMessageType_Error = -1
+    DSSMessageType_General = 0
+    DSSMessageType_Info = 1
+    DSSMessageType_Help = 2
+    DSSMessageType_Progress = 3
+    DSSMessageType_ProgressCaption = 4
+    DSSMessageType_ProgressFormCaption = 5
+    DSSMessageType_ProgressPercent = 6
+    DSSMessageType_FireOffEditor = 7
+    DSSMessageType_ProgressSummary = 8
+    DSSMessageType_ReportOutput = 9
+    DSSMessageType_ShowOutput = 10
+    DSSMessageType_ShowTreeView = 11
+end
+
+@cenum DSSPropertyNameStyle::Int32 begin
+    DSSPropertyNameStyle_Modern = 0
+    DSSPropertyNameStyle_Lowercase = 1
+    DSSPropertyNameStyle_Legacy = 2
+end
+
+@cenum DSSSaveFlags::Int32 begin
+    DSSSaveFlags_CalcVoltageBases = 1
+    DSSSaveFlags_SetVoltageBases = 2
+    DSSSaveFlags_IncludeOptions = 4
+    DSSSaveFlags_IncludeDisabled = 8
+    DSSSaveFlags_ExcludeDefault = 16
+    DSSSaveFlags_SingleFile = 32
+    DSSSaveFlags_KeepOrder = 64
+    DSSSaveFlags_ExcludeMeterZones = 128
+    DSSSaveFlags_IsOpen = 256
+    DSSSaveFlags_ToString = 512
 end

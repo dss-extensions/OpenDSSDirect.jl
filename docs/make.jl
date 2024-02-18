@@ -5,13 +5,14 @@ using Documenter, OpenDSSDirect
 
 makedocs(
     # options
-    modules = [
-               OpenDSSDirect,
-              ],
+    modules = [OpenDSSDirect, ],
     doctest = false,
     clean = false,
     checkdocs=:exports,
-    format = Documenter.HTML(size_threshold_ignore = ["api.md"]),
+    format = Documenter.HTML(
+        size_threshold_ignore = ["api.md"], 
+        sidebar_sitename = false
+    ),
     sitename = "OpenDSSDirect.jl",
     authors = "Tom Short",
     pages = Any[
@@ -26,8 +27,8 @@ makedocs(
         "License" => "LICENSE.md"]
 )
 
-# Deploy built documentation from Travis.
-# =======================================
+# Deploy built documentation from CI
+# ==================================
 
 deploydocs(
     # options

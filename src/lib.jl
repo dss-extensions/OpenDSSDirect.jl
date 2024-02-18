@@ -4443,6 +4443,10 @@ function Settings_Set_IterateDisabled(ctx::Ptr{Cvoid}, Value)
     ccall((:ctx_Settings_Set_IterateDisabled, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
 end
 
+function Settings_SetPropertyNameStyle(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Settings_SetPropertyNameStyle, LIBRARY), Cvoid, (Ptr{Cvoid}, Int32,), ctx, Value)
+end
+
 function Solution_Get_Frequency(ctx::Ptr{Cvoid})
     ccall((:ctx_Solution_Get_Frequency, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
@@ -7159,4 +7163,16 @@ function DSS_Get_CompatFlags()
     ccall((:DSS_Get_CompatFlags, LIBRARY), UInt32, ())
 end
 
-const DSS_CAPI_VERSION = "0.13.4"
+function Circuit_ToJSON(ctx::Ptr{Cvoid}, options)
+    ccall((:ctx_Circuit_ToJSON, LIBRARY), Cstring, (Ptr{Cvoid}, Int32,), ctx, options)
+end
+
+function Circuit_Save(ctx::Ptr{Cvoid}, dirOrFilePath, saveFlags)
+    ccall((:ctx_Circuit_Save, LIBRARY), Cstring, (Ptr{Cvoid}, Cstring, Int32,), ctx, dirOrFilePath, saveFlags)
+end
+
+function Circuit_FromJSON(ctx::Ptr{Cvoid}, circ, options)
+    ccall((:ctx_Circuit_FromJSON, LIBRARY), Cstring, (Ptr{Cvoid}, Cstring, Int32,), ctx, circ, options)
+end
+
+const DSS_CAPI_VERSION = "0.14.1"

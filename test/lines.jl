@@ -4,9 +4,14 @@ init8500()
 
 @testset "Lines" begin
 
+# These three used to get invalid data as the Lines API used the last activated CktElement
+# instead of a Line. This was changed in DSS C-API 0.14.0, so no error anymore. We can get
+# the old behavior with the compat flag.
+Basic.CompatFlags(OpenDSSDirect.Lib.DSSCompatFlags_ActiveLine)
 @test_throws OpenDSSDirect.OpenDSSDirectException Lines.RMatrix() == reshape([], (0, 0))
 @test_throws OpenDSSDirect.OpenDSSDirectException Lines.CMatrix() == reshape([], (0, 0))
 @test_throws OpenDSSDirect.OpenDSSDirectException Lines.XMatrix() == reshape([], (0, 0))
+Basic.CompatFlags(UInt32(0))
 
 @test Lines.First() == 1
 @test Lines.Next() == 2

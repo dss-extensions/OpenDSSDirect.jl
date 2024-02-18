@@ -2,6 +2,14 @@
 
 For a more complete list of changes, visit the [Git repository and Releases page on GitHub](https://github.com/dss-extensions/OpenDSSDirect.jl).
 
+### OpenDSSDirect v0.9.6 Release Notes
+
+- Update the engine to DSS C-API v0.14.1. There are a few bugfixes but also an extensive list of new features, [please check the AltDSS/DSS C-API changelog](https://github.com/dss-extensions/dss_capi/blob/master/docs/changelog.md#version-0141-2024-02-16).
+- Export more modules; while previously accessible with `using OpenDSSDirect`, `import OpenDSSDirect` was missing many modules.
+- Enums `DSSJSONFlags` and `DSSCompatFlags` were updated.
+- Added enums `EnergyMeterRegisters`, `GeneratorRegisters`, `DSSPropertyNameStyle`, `DSSSaveFlags`.
+- Expose new API functions `Circuit.Save` (extended equivalent of `save circuit dir=...`, with several flags for customization), `Circuit.FromJSON`, `Circuit.ToJSON`. The JSON functions are still experimental.
+
 ### OpenDSSDirect v0.9.5 Release Notes
 
 - Update the DocStringExtensions dependency to avoid conflicts with other packages.
@@ -15,7 +23,7 @@ For a more complete list of changes, visit the [Git repository and Releases page
 - Update the engine to DSS C-API v0.13.3. This includes important bugfixes to UPFC, Capacitor, and Reactor components, as well as other small changes.
 - Update documentation.
 - Add new flag `DSSCompatFlags_SaveCalcVoltageBases`: this flag forces the `save circuit` to always include `CalcVoltageBases` in the saved files. 
-Use it with `Basic.DSSCompatFlags()`.
+Use it with `Basic.CompatFlags()`.
 
 ### OpenDSSDirect v0.9.2 Release Notes
 
