@@ -7175,4 +7175,4 @@ function Circuit_FromJSON(ctx::Ptr{Cvoid}, circ, options)
     ccall((:ctx_Circuit_FromJSON, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring, Int32,), ctx, circ, options)
 end
 
-const DSS_CAPI_VERSION = "0.14.1"
+const DSS_CAPI_VERSION = "0.14.3"
