@@ -9,9 +9,12 @@ Lines.Next()
 @test CktElement.NumTerminals() == 2
 @test CktElement.NumConductors() == 1
 @test CktElement.NumPhases() == 1
-@test CktElement.Open(0, 0) === nothing
-@test CktElement.Close(0, 0) === nothing
-@test CktElement.IsOpen(0, 0) == false
+@test_throws OpenDSSDirect.OpenDSSDirectException CktElement.Open(0, 0)
+@test_throws OpenDSSDirect.OpenDSSDirectException CktElement.Close(0, 0)
+@test_throws OpenDSSDirect.OpenDSSDirectException CktElement.IsOpen(0, 0)
+@test CktElement.Open(1, -1) === nothing
+@test CktElement.Close(1, -1) === nothing
+@test CktElement.IsOpen(1, 0) == false
 @test CktElement.NumProperties() == 38
 @test CktElement.HasSwitchControl() == false
 @test CktElement.HasVoltControl() == false
