@@ -155,13 +155,13 @@ function LineCode(dss::DSSContext, Value::String)
 end
 LineCode(Value::String) = LineCode(DSS_DEFAULT_CTX, Value)
 
-"""Specify the name of the Line element to set it active. (Getter)"""
+"""Gets the name of the active Line element."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.Lines_Get_Name(dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""Specify the name of the Line element to set it active. (Setter)"""
+"""Specify the name of the Line element to set it active."""
 function Name(dss::DSSContext, Value::String)
     @checked Lib.Lines_Set_Name(dss.ctx, Cstring(pointer(Value)))
 end

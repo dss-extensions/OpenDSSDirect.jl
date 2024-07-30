@@ -187,19 +187,13 @@ function MeteredTerminal(dss::DSSContext, Value::Int)
 end
 MeteredTerminal(Value::Int) = MeteredTerminal(DSS_DEFAULT_CTX, Value)
 
-"""
-(read) Get/Set the active meter  name.
-(write) Set a meter to be active by name.
-"""
+"""Gets the name of the active Meter element."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.Meters_Get_Name(dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""
-(read) Get/Set the active meter  name.
-(write) Set a meter to be active by name.
-"""
+"""Set a meter to be active by name."""
 function Name(dss::DSSContext, Value::String)
     @checked Lib.Meters_Set_Name(dss.ctx, Cstring(pointer(Value)))
 end

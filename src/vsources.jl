@@ -65,13 +65,13 @@ function Frequency(dss::DSSContext, Value::Float64)
 end
 Frequency(Value::Float64) = Frequency(DSS_DEFAULT_CTX, Value)
 
-"""Active VSOURCE name (Getter)"""
+"""Gets the name of the active VSource object."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.Vsources_Get_Name(dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""Active VSOURCE name (Setter)"""
+"""Sets the active VSource object by name."""
 function Name(dss::DSSContext, Value::String)
     @checked Lib.Vsources_Set_Name(dss.ctx, Value)
 end

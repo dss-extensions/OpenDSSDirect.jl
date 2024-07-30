@@ -64,13 +64,13 @@ else
 end
 
 if Sys.iswindows()
-    const LIBRARY = abspath(joinpath(@__DIR__, "../deps/windows/dss_capi$(LIBRARY_SUFFIX).dll"))
+    const LIBRARY = abspath(joinpath(@__DIR__, "../deps/windows/altdss_capi$(LIBRARY_SUFFIX).dll"))
     const KLUSOLVE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/windows/libklusolvex.dll"))
 elseif Sys.islinux()
-    const LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libdss_capi$(LIBRARY_SUFFIX).so"))
+    const LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libaltdss_capi$(LIBRARY_SUFFIX).so"))
     const KLUSOLVE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libklusolvex.so"))
 elseif Sys.isapple()
-    const LIBRARY = abspath(joinpath(@__DIR__, "../deps/apple/libdss_capi$(LIBRARY_SUFFIX).dylib"))
+    const LIBRARY = abspath(joinpath(@__DIR__, "../deps/apple/libaltdss_capi$(LIBRARY_SUFFIX).dylib"))
     const KLUSOLVE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/apple/libklusolvex.dylib"))
 else
     error("Unknown operating system. Cannot use OpenDSSDirect")
@@ -143,6 +143,7 @@ include("linespacings.jl")
 include("reactors.jl")
 include("tsdata.jl")
 include("wiredata.jl")
+include("windgens.jl")
 
 include("repl.jl")
 include("iterators.jl")

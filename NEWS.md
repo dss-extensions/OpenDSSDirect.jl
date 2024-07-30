@@ -2,6 +2,12 @@
 
 For a more complete list of changes, visit the [Git repository and Releases page on GitHub](https://github.com/dss-extensions/OpenDSSDirect.jl).
 
+### OpenDSSDirect v0.10.0 Release Notes
+
+- Update the engine to DSS C-API v0.15.0, matching OpenDSS v10.0.0.1.
+- Add new functions in the Storages module
+- Add new module WindGens
+
 ### OpenDSSDirect v0.9.9 Release Notes
 
 Only Julia code changes, the engine remains as v0.14.3.

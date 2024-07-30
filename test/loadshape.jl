@@ -38,9 +38,21 @@ OpenDSSDirect.Text.Command("""
 @test LoadShape.AllNames() == ["default","residential","commercial_sm","commercial_md"]
 @test LoadShape.PMult()[end] ≋ 0.539266
 @test LoadShape.PMult(LoadShape.PMult()) === nothing
-@test LoadShape.QMult() ≋ [0.0]
+
+if Basic.COMErrorResults()
+    @test LoadShape.QMult() ≋ [0.0]
+else
+    @test LoadShape.QMult() == []
+end
+
 @test_throws OpenDSSDirect.OpenDSSDirectException LoadShape.QMult(LoadShape.QMult()) === nothing
-@test LoadShape.TimeArray() ≋ [0.0]
+
+if Basic.COMErrorResults()
+    @test LoadShape.TimeArray() ≋ [0.0]
+else
+    @test LoadShape.TimeArray() == []
+end
+
 @test_throws OpenDSSDirect.OpenDSSDirectException LoadShape.TimeArray(LoadShape.TimeArray()) === nothing
 
 arr = String[]

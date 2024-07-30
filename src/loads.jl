@@ -137,13 +137,13 @@ function Model(dss::DSSContext, Value::Union{Int,Lib.LoadModels})
 end
 Model(Value::Union{Int,Lib.LoadModels}) = Model(DSS_DEFAULT_CTX, Value)
 
-"""Set active load by name. (Getter)"""
+"""Gets the name of the active Load element."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.Loads_Get_Name(dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""Set active load by name. (Setter)"""
+"""Set active load by name."""
 function Name(dss::DSSContext, Value::String)
     @checked Lib.Loads_Set_Name(dss.ctx, Cstring(pointer(Value)))
 end

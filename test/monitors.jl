@@ -47,11 +47,28 @@ OpenDSSDirect.Text.Command("""
 # In 2021, the header was removed from the bytestream (following the official OpenDSS implementation)
 @test Monitors.ByteStream() == Int8[-20, -86, 0, 0, 1, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-@test Monitors.Channel(1) == Float64[0.0] #TODO: better test -- solve in daily mode, capture a sample channel
+#TODO: better test -- solve in daily mode, capture a sample channel
+if Basic.COMErrorResults()
+    @test Monitors.Channel(1) == Float64[0.0]
+else
+    @test Monitors.Channel(1) == []
+end
+
 # @test Monitors.DblHourS()[1] == " V1"
-@test Monitors.DblHour() ≋ [0.0]
+
+if Basic.COMErrorResults()
+    @test Monitors.DblHour() ≋ [0.0]
+else
+    @test Monitors.DblHour() == []
+end
+
 # @test Monitors.DblFreqS() ≋ [0.0]
-@test Monitors.DblFreq() ≋ [0.0]
+if Basic.COMErrorResults()
+    @test Monitors.DblFreq() ≋ [0.0]
+else
+    @test Monitors.DblFreq() == []
+end
+
 
 arr = String[]
 for i in OpenDSSDirect.EachMember(Monitors); push!(arr, Monitors.Name()); end

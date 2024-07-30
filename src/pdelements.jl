@@ -59,13 +59,13 @@ function Lambda(dss::DSSContext)::Float64
 end
 Lambda() = Lambda(DSS_DEFAULT_CTX)
 
-"""Name of active PD Element. Returns null string if active element is not PDElement type. (Getter)"""
+"""Name of active PD Element. Returns null string if active element is not PDElement type."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.PDElements_Get_Name(dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""Name of active PD Element. Returns null string if active element is not PDElement type. (Setter)"""
+"""Activate a PD element by name."""
 function Name(dss::DSSContext, Value::String)
     @checked Lib.PDElements_Set_Name(dss.ctx, Cstring(pointer(Value)))
 end
@@ -198,7 +198,7 @@ Complex array of currents for all conductors, all terminals, for each PD element
 function AllCurrentsAllCurrents(dss::DSSContext)::Vector{ComplexF64}
     return get_complex64_array(Lib.PDElements_Get_AllCurrents, dss.ctx)
 end
-AllCurrentsAllCurrents() = AllCurrentsAllCurrents(DSS_DEFAULT_CTX)
+AllCurrents() = AllCurrents(DSS_DEFAULT_CTX)
 
 """
 Array of currents (complex magnitude, angle) for all conductors, all terminals, for each PD element. 

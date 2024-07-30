@@ -113,10 +113,11 @@ AllVariableValues() = AllVariableValues(DSS_DEFAULT_CTX)
 """
 Array of strings. Get Bus definitions to which each terminal is connected. 0-based array.
 """
-function BusNames(dss::DSSContext)::Vector{String}
-    return get_string_array(Lib.CktElement_Get_BusNames, dss.ctx)
+function BusNames(dss::DSSContext, removeNodes::Bool)::Vector{String}
+    return get_string_array(Lib.CktElement_Get_BusNames, dss.ctx, removeNodes)
 end
-BusNames() = BusNames(DSS_DEFAULT_CTX)
+BusNames(removeNodes::Bool) = BusNames(DSS_DEFAULT_CTX, removeNodes)
+BusNames() = BusNames(DSS_DEFAULT_CTX, false)
 
 """
 Array of strings. Set Bus definitions for each terminal is connected.

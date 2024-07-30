@@ -139,7 +139,7 @@ function Mode(dss::DSSContext, Value::Union{Int,UInt32,Lib.MonitorModes})
 end
 Mode(Value::Union{Int,UInt32,Lib.MonitorModes}) = Mode(DSS_DEFAULT_CTX, Value)
 
-"""Sets the active Monitor object by name"""
+"""Gets the name of the active Monitor object."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.Monitors_Get_Name(dss.ctx))
 end

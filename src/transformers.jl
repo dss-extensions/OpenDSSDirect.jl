@@ -65,13 +65,13 @@ function MinTap(dss::DSSContext, Value::Float64)
 end
 MinTap(Value::Float64) = MinTap(DSS_DEFAULT_CTX, Value)
 
-"""Sets a Transformer active by Name. (Getter)"""
+"""Gets the name of the active Transformer object."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.Transformers_Get_Name(dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""Sets a Transformer active by Name. (Setter)"""
+"""Sets a Transformer active by name."""
 function Name(dss::DSSContext, Value::String)
     @checked Lib.Transformers_Set_Name(dss.ctx, Value)
 end

@@ -17,7 +17,7 @@ function AllNames(dss::DSSContext)::Vector{String}
 end
 AllNames() = AllNames(DSS_DEFAULT_CTX)
 
-"""Sets a CNData active by name."""
+"""Gets the name of the active CNData object."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.CNData_Get_Name(dss.ctx))
 end

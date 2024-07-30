@@ -52,7 +52,7 @@ function Model(dss::DSSContext, Value::Int)
 end
 Model(Value::Int) = Model(DSS_DEFAULT_CTX, Value)
 
-"""Sets a generator active by name."""
+"""Gets the name of the active Generator object."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.Generators_Get_Name(dss.ctx))
 end

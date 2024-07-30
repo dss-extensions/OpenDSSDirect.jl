@@ -34,7 +34,7 @@ end
 
 function get_string_array(func::Function, ctx::Ptr{Cvoid})::Vector{String}
     ptr = Ref{Ptr{Cstring}}([])
-    cnt = Vector{Cint}([0, 0])
+    cnt = Vector{Cint}([0, 0, 0, 0])
     func(ctx, ptr, cnt)
     error_num = OpenDSSDirect.Lib.Error_Get_Number(ctx)
     if (error_num != 0)
@@ -58,7 +58,7 @@ end
 
 function get_string_array(func::Function, ctx::Ptr{Cvoid}, param::Union{Bool,Int,Cstring})::Vector{String}
     ptr = Ref{Ptr{Cstring}}([])
-    cnt = Vector{Cint}([0, 0])
+    cnt = Vector{Cint}([0, 0, 0, 0])
     func(ctx, ptr, cnt, param)
     error_num = OpenDSSDirect.Lib.Error_Get_Number(ctx)
     if (error_num != 0)
@@ -82,7 +82,7 @@ end
 
 function get_int32_array(func::Function, ctx::Ptr{Cvoid})::Vector{Int}
     ptr = Ref{Ptr{Cint}}([])
-    cnt = Vector{Cint}([0, 0])
+    cnt = Vector{Cint}([0, 0, 0, 0])
     func(ctx, ptr, cnt)
     error_num = OpenDSSDirect.Lib.Error_Get_Number(ctx)
     if (error_num != 0)
@@ -103,7 +103,7 @@ end
 
 function get_int8_array(func::Function, ctx::Ptr{Cvoid})::Vector{Int8}
     ptr = Ref{Ptr{Int8}}([])
-    cnt = Vector{Cint}([0, 0])
+    cnt = Vector{Cint}([0, 0, 0, 0])
     func(ctx, ptr, cnt)
     error_num = OpenDSSDirect.Lib.Error_Get_Number(ctx)
     if (error_num != 0)
@@ -124,7 +124,7 @@ end
 
 function get_int8_array(func::Function, ctx::Ptr{Cvoid}, param::Cstring)::Vector{Int8}
     ptr = Ref{Ptr{Int8}}([])
-    cnt = Vector{Cint}([0, 0])
+    cnt = Vector{Cint}([0, 0, 0, 0])
     func(ctx, ptr, cnt, param)
     error_num = OpenDSSDirect.Lib.Error_Get_Number(ctx)
     if (error_num != 0)
@@ -145,7 +145,7 @@ end
 
 function get_float64_array(func::Function, ctx::Ptr{Cvoid})::Vector{Float64}
     ptr = Ref{Ptr{Cdouble}}([])
-    cnt = Vector{Cint}([0, 0])
+    cnt = Vector{Cint}([0, 0, 0, 0])
     func(ctx, ptr, cnt)
     error_num = OpenDSSDirect.Lib.Error_Get_Number(ctx)
     if (error_num != 0)
@@ -166,7 +166,7 @@ end
 
 function get_float64_array(func::Function, ctx::Ptr{Cvoid}, param::Union{Bool,Int})::Vector{Float64}
     ptr = Ref{Ptr{Cdouble}}([])
-    cnt = Vector{Cint}([0, 0])
+    cnt = Vector{Cint}([0, 0, 0, 0])
     func(ctx, ptr, cnt, param)
     error_num = OpenDSSDirect.Lib.Error_Get_Number(ctx)
     if (error_num != 0)
@@ -187,7 +187,7 @@ end
 
 function get_float64_array(func::Function, ctx::Ptr{Cvoid}, param1::Ptr{Int32}, param2::Int32)::Vector{Float64}
     ptr = Ref{Ptr{Cdouble}}([])
-    cnt = Vector{Cint}([0, 0])
+    cnt = Vector{Cint}([0, 0, 0, 0])
     func(ctx, ptr, cnt, param1, param2)
     error_num = OpenDSSDirect.Lib.Error_Get_Number(ctx)
     if (error_num != 0)
@@ -208,7 +208,7 @@ end
 
 function get_float64_array(func::Function, ctx::Ptr{Cvoid}, param1::Float64, param2::Float64, param3::Int32)::Vector{Float64}
     ptr = Ref{Ptr{Cdouble}}([])
-    cnt = Vector{Cint}([0, 0])
+    cnt = Vector{Cint}([0, 0, 0, 0])
     func(ctx, ptr, cnt, param1, param2, param3)
     error_num = OpenDSSDirect.Lib.Error_Get_Number(ctx)
     if (error_num != 0)

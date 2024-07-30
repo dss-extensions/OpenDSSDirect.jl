@@ -52,13 +52,13 @@ function MonitoredTerm(dss::DSSContext, Value::Int)
 end
 MonitoredTerm(Value::Int) = MonitoredTerm(DSS_DEFAULT_CTX, Value)
 
-"""Name of active relay. (Getter)"""
+"""Gets the name of the active Relay object."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.Relays_Get_Name(dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""Name of active relay. (Setter)"""
+"""Set the active Relay object by name."""
 function Name(dss::DSSContext, Value::String)
     @checked Lib.Relays_Set_Name(dss.ctx, Value)
 end

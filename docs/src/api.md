@@ -461,6 +461,13 @@ Modules = [Vsources]
 Order   = [:function, :type]
 ```
 
+## `WindGens`
+
+```@autodocs
+Modules = [WindGens]
+Order   = [:function, :type]
+```
+
 ## `WireData`
 
 ```@autodocs

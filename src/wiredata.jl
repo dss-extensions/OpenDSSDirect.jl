@@ -17,7 +17,7 @@ function AllNames(dss::DSSContext)::Vector{String}
 end
 AllNames() = AllNames(DSS_DEFAULT_CTX)
 
-"""Sets a WireData active by name."""
+"""Gets the name of the active WireData object."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.WireData_Get_Name(dss.ctx))
 end

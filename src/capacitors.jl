@@ -70,13 +70,13 @@ function IsDelta(dss::DSSContext, Value::Bool)
 end
 IsDelta(Value::Bool) = IsDelta(DSS_DEFAULT_CTX, Value)
 
-"""Sets the active Capacitor by Name. (Getter)"""
+"""Gets the name of the active Capacitor object."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.Capacitors_Get_Name(dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""Sets the active Capacitor by Name. (Setter)"""
+"""Sets the active Capacitor by name."""
 function Name(dss::DSSContext, Value::String)
     @checked Lib.Capacitors_Set_Name(dss.ctx, Cstring(pointer(Value)))
 end

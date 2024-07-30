@@ -65,13 +65,13 @@ function MinInterval(dss::DSSContext, Value::Float64)
 end
 MinInterval(Value::Float64) = MinInterval(DSS_DEFAULT_CTX, Value)
 
-"""Name of the active Loadshape (Getter)"""
+"""Gets the name of the active LoadShape object."""
 function Name(dss::DSSContext)::String
     return get_string(Lib.LoadShapes_Get_Name(dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""Name of the active Loadshape (Setter)"""
+"""Sets the active Loadshape object by name."""
 function Name(dss::DSSContext, Value::String)
     @checked Lib.LoadShapes_Set_Name(dss.ctx, Cstring(pointer(Value)))
 end

@@ -70,13 +70,13 @@ function IsLocked(dss::DSSContext, Value::Bool)
 end
 IsLocked(Value::Bool) = IsLocked(DSS_DEFAULT_CTX, Value)
 
-"""Sets a SwtControl active by Name. (Getter)"""
+"""Gets the name of the active SwtControl object."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.SwtControls_Get_Name(dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""Sets a SwtControl active by Name. (Setter)"""
+"""Sets a SwtControl active by Name."""
 function Name(dss::DSSContext, Value::String)
     @checked Lib.SwtControls_Set_Name(dss.ctx, Value)
 end
