@@ -36,7 +36,7 @@ See `Obj_ToJSON` (C-API) for more.
 (API Extension)
 """
 function ToJSON(dss::DSSContext, Flags::Int)::String #TODO: use enum
-    return getstring(@checked Lib.DSSElement_ToJSON(dss.ctx, Flags))
+    return get_string(@checked Lib.DSSElement_ToJSON(dss.ctx, Flags))
 end
 ToJSON(Flags::Int) = ToJSON(DSS_DEFAULT_CTX, Flags)
 

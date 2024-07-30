@@ -80,7 +80,7 @@ Additionally, the `ExcludeDisabled` flag can be used to exclude disabled element
 
 (API Extension)"""
 function ToJSON(dss::DSSContext, Flags::Int)::String #TODO: Use enum
-    return getstring(@checked Lib.ActiveClass_ToJSON(dss.ctx, Flags))
+    return get_string(@checked Lib.ActiveClass_ToJSON(dss.ctx, Flags))
 end
 ToJSON(Flags::Int) = ToJSON(DSS_DEFAULT_CTX, Flags)
 

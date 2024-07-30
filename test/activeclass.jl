@@ -23,4 +23,13 @@ end
 @test arr == ActiveClass.AllNames()
 @test length(arr) == length(OpenDSSDirect.EachMember(ActiveClass))
 
+rcjson = replace(lowercase(ActiveClass.ToJSON(Int32(0))), r"\s" => "")
+@test occursin("feeder_regb", rcjson)
+@test occursin("vreg2_a", rcjson)
+@test occursin("vreg3_b", rcjson)
+@test occursin("vreg4_c", rcjson)
+@test occursin("\"winding\":2", rcjson)
+@test occursin("\"vreg\":1.25", rcjson)
+
+
 end # testset
