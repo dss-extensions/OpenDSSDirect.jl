@@ -79,9 +79,9 @@ See `Obj_ToJSON` (C-API) for more.
 Additionally, the `ExcludeDisabled` flag can be used to exclude disabled elements from the output.
 
 (API Extension)"""
-function ToJSON(dss::DSSContext, Flags::Int)::String #TODO: Use enum
+function ToJSON(dss::DSSContext, Flags::Int32)::String #TODO: Use enum
     return get_string(@checked Lib.ActiveClass_ToJSON(dss.ctx, Flags))
 end
-ToJSON(Flags::Int) = ToJSON(DSS_DEFAULT_CTX, Flags)
+ToJSON(Flags::Int32) = ToJSON(DSS_DEFAULT_CTX, Flags)
 
 end # ActiveClass
