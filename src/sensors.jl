@@ -87,13 +87,13 @@ function MeteredTerminal(dss::DSSContext, Value::Int)
 end
 MeteredTerminal(Value::Int) = MeteredTerminal(DSS_DEFAULT_CTX, Value)
 
-"""Name of the active sensor. (Getter)"""
+"""Gets the name of the active Sensor object."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.Sensors_Get_Name(dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""Name of the active sensor. (Setter)"""
+"""Set the active Sensor object by name."""
 function Name(dss::DSSContext, Value::String)
     @checked Lib.Sensors_Set_Name(dss.ctx, Value)
 end

@@ -17,7 +17,7 @@ function AllNames(dss::DSSContext)::Vector{String}
 end
 AllNames() = AllNames(DSS_DEFAULT_CTX)
 
-"""Sets a Reactor active by name."""
+"""Gets the name of the active Reactor object."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.Reactors_Get_Name(dss.ctx))
 end

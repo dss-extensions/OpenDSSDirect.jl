@@ -94,13 +94,13 @@ function IsZ1Z0(dss::DSSContext)::Bool
 end
 IsZ1Z0() = IsZ1Z0(DSS_DEFAULT_CTX)
 
-"""Name of active LineCode (Getter)"""
+"""Gets the name of the active LineCode object."""
 function Name(dss::DSSContext)::String
     return get_string(Lib.LineCodes_Get_Name(dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""Name of active LineCode (Setter)"""
+"""Sets the active LineCode by name."""
 function Name(dss::DSSContext, Value::String)
     @checked Lib.LineCodes_Set_Name(dss.ctx, Cstring(pointer(Value)))
 end

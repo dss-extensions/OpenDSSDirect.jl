@@ -29,13 +29,13 @@ function First(dss::DSSContext)::Int
 end
 First() = First(DSS_DEFAULT_CTX)
 
-"""Name of active XYCurve Object (Getter)"""
+"""Gets the name of the active XYCurve object."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.XYCurves_Get_Name(dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""Name of active XYCurve Object (Setter)"""
+"""Sets the active XYCurve object by name."""
 function Name(dss::DSSContext, Value::String)
     @checked Lib.XYCurves_Set_Name(dss.ctx, Value)
 end

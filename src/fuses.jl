@@ -87,13 +87,13 @@ function MonitoredTerm(dss::DSSContext, Value::Int)
 end
 MonitoredTerm(Value::Int) = MonitoredTerm(DSS_DEFAULT_CTX, Value)
 
-"""Name of the active Fuse element (Getter)"""
+"""Gets the name of the active Fuse element."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.Fuses_Get_Name(dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""Name of the active Fuse element (Setter)"""
+"""Sets the active Fuse element by name."""
 function Name(dss::DSSContext, Value::String)
     @checked Lib.Fuses_Set_Name(dss.ctx, Cstring(pointer(Value)))
 end

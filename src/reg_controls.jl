@@ -153,13 +153,13 @@ function MonitoredBus(dss::DSSContext, Value::String)
 end
 MonitoredBus(Value::String) = MonitoredBus(DSS_DEFAULT_CTX, Value)
 
-"""Active RegControl name (Getter)"""
+"""Gets the name of the active RegControl object."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.RegControls_Get_Name(dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""Active RegControl name (Setter)"""
+"""Set the active RegControl object by name."""
 function Name(dss::DSSContext, Value::String)
     @checked Lib.RegControls_Set_Name(dss.ctx, Value)
 end

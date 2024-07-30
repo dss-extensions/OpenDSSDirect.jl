@@ -88,13 +88,13 @@ function MonitoredTerm(dss::DSSContext, Value::Int)
 end
 MonitoredTerm(Value::Int) = MonitoredTerm(DSS_DEFAULT_CTX, Value)
 
-"""Get Name of active Recloser or set the active Recloser by name. (Getter)"""
+"""Gets the name of the active Recloser object."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.Reclosers_Get_Name(dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""Get Name of active Recloser or set the active Recloser by name. (Setter)"""
+"""Set the active Recloser by name."""
 function Name(dss::DSSContext, Value::String)
     @checked Lib.Reclosers_Set_Name(dss.ctx, Value)
 end

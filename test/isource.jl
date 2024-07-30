@@ -8,7 +8,11 @@ init8500()
 @test Isource.Next() == 0
 @test_throws OpenDSSDirect.OpenDSSDirectException Isource.Name()
 @test_throws OpenDSSDirect.OpenDSSDirectException Isource.Name("invalid_isource_name")
-@test Isource.AllNames()[end] == "NONE" # TODO: should this return empty array instead?
+if Basic.COMErrorResults()
+    @test Isource.AllNames()[end] == ["NONE"]
+else
+    @test Isource.AllNames() == []
+end
 
 # Add an arbitrary ISource to test the rest
 OpenDSSDirect.Text.Command("""

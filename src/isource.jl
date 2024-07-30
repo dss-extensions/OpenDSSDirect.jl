@@ -64,13 +64,13 @@ function Frequency(dss::DSSContext, Value::Float64)
 end
 Frequency(Value::Float64) = Frequency(DSS_DEFAULT_CTX, Value)
 
-"""Name of Active ISOURCE (Getter)"""
+"""Gets the name of the active ISource element."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.ISources_Get_Name(dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""Name of Active ISOURCE (Setter)"""
+"""Sets the active ISource by name."""
 function Name(dss::DSSContext, Value::String)
     @checked Lib.ISources_Set_Name(dss.ctx, Cstring(pointer(Value)))
 end

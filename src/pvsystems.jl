@@ -46,13 +46,13 @@ function IrradianceNow(dss::DSSContext)::Float64
 end
 IrradianceNow() = IrradianceNow(DSS_DEFAULT_CTX)
 
-"""Name of the active PVSystem (Getter)"""
+"""Gets the name of the active PVSystem element."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.PVSystems_Get_Name(dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""Name of the active PVSystem (Setter)"""
+"""Sets the active PVSystem element by name."""
 function Name(dss::DSSContext, Value::String)
     @checked Lib.PVSystems_Set_Name(dss.ctx, Cstring(pointer(Value)))
 end

@@ -131,13 +131,13 @@ function MonitoredTerm(dss::DSSContext, Value::Int)
 end
 MonitoredTerm(Value::Int) = MonitoredTerm(DSS_DEFAULT_CTX, Value)
 
-"""Sets a CapControl active by name. (Getter)"""
+"""Gets the name of the active CapControl object."""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.CapControls_Get_Name(dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""Sets a CapControl active by name. (Setter)"""
+"""Sets a CapControl active by name."""
 function Name(dss::DSSContext, Value::String)
     @checked Lib.CapControls_Set_Name(dss.ctx, Cstring(pointer(Value)))
 end

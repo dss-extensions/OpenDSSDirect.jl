@@ -82,7 +82,7 @@ function N_interrupts(dss::DSSContext)::Float64
 end
 N_interrupts() = N_interrupts(DSS_DEFAULT_CTX)
 
-"""Name of Bus"""
+"""Name of the active Bus"""
 function Name(dss::DSSContext)::String
     return get_string(@checked Lib.Bus_Get_Name(dss.ctx))
 end
