@@ -1,3 +1,4 @@
+using Downloads
 
 dir =  joinpath(@__DIR__, "../examples")
 
@@ -11,6 +12,6 @@ dir =  joinpath(@__DIR__, "../examples")
     @test include(joinpath(dir, "timings.jl")) === nothing
 
     cd(joinpath(@__DIR__, ".."))
-    @test abspath(download(OpenDSSDirect.Examples, force = true)) == abspath(joinpath(@__DIR__, "../examples/electricdss-tst-master"))
+    @test abspath(Downloads.download(OpenDSSDirect.Examples, force = true)) == abspath(joinpath(@__DIR__, "../examples/electricdss-tst-master"))
 
 end # testset

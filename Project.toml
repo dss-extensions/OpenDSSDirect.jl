@@ -1,11 +1,12 @@
 name = "OpenDSSDirect"
 uuid = "a8b11937-1041-50f2-9818-136bb7a8fb06"
 authors = ["Tom Short <tshort.rlists@gmail.com>"]
-version = "0.9.8"
+version = "0.9.9"
 
 [deps]
 CEnum = "fa961155-64e5-5f13-b03f-caf6b980ea82"
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
+Downloads = "f43a241f-c20a-4ad4-852c-f6b1247861c6"
 Libdl = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 REPL = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
@@ -13,8 +14,9 @@ SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [compat]
-CEnum = "^0.4"
+CEnum = "0.4, 0.5"
 DocStringExtensions = "^0.9"
+Downloads = "^1"
 julia = "^1"
 
 [extras]

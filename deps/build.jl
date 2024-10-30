@@ -1,3 +1,5 @@
+using Downloads
+
 abstract type AbstractOS end
 abstract type Unix <: AbstractOS end
 abstract type BSD <: Unix end
@@ -18,7 +20,7 @@ function download(::Type{MacOS})
     url = "https://github.com/dss-extensions/dss_capi/releases/download/$(DSS_CAPI_TAG)/dss_capi_$(DSS_CAPI_TAG)_darwin_$(DSS_CAPI_ARCH).tar.gz"
     @show url
     filename = normpath(joinpath(@__DIR__, "dss_capi.tar.gz"))
-    Base.download(url, filename)
+    Downloads.download(url, filename)
 
     directory = normpath(@__DIR__)
     run(`tar -xvf $filename -C $directory`)
@@ -42,7 +44,7 @@ function download(::Type{Linux})
     url = "https://github.com/dss-extensions/dss_capi/releases/download/$(DSS_CAPI_TAG)/dss_capi_$(DSS_CAPI_TAG)_linux_$(DSS_CAPI_ARCH).tar.gz"
     @show url
     filename = normpath(joinpath(@__DIR__, "dss_capi.tar.gz"))
-    Base.download(url, filename)
+    Downloads.download(url, filename)
 
     directory = normpath(@__DIR__)
     run(`tar -xvf $filename -C $directory`)
@@ -60,7 +62,7 @@ function download_messages(::Union{Type{Linux}, Type{MacOS}})
     url = "https://github.com/dss-extensions/dss_capi/releases/download/$(DSS_CAPI_TAG)/messages.tar.gz"
     @show url
     filename = normpath(joinpath(@__DIR__, "messages.tar.gz"))
-    Base.download(url, filename)
+    Downloads.download(url, filename)
 
     directory = normpath(@__DIR__)
     run(`tar -xvf $filename -C $directory`)
@@ -79,7 +81,7 @@ function download(::Type{Windows})
     url = "https://github.com/dss-extensions/dss_capi/releases/download/$(DSS_CAPI_TAG)/dss_capi_$(DSS_CAPI_TAG)_win_$(BIT).zip"
     @show url
     filename = normpath(joinpath(@__DIR__, "dss_capi.zip"))
-    Base.download(url, filename)
+    Downloads.download(url, filename)
 
     directory = normpath(@__DIR__)
     mkpath(directory)
@@ -109,7 +111,7 @@ function download_messages(::Type{Windows})
     url = "https://github.com/dss-extensions/dss_capi/releases/download/$(DSS_CAPI_TAG)/messages.zip"
     @show url
     filename = normpath(joinpath(@__DIR__, "messages.zip"))
-    Base.download(url, filename)
+    Downloads.download(url, filename)
 
     directory = normpath(@__DIR__)
 

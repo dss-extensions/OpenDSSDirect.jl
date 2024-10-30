@@ -1,6 +1,7 @@
 module Utils
 
 using ..OpenDSSDirect
+using Downloads
 
 export get_string
 export get_string_array
@@ -403,12 +404,12 @@ Defaults to the "examples" folder in the OpenDSSDirect package.
 
 Returns the downloaded folder name.
 """
-function Base.download(::Type{Examples}, folder::AbstractString=joinpath(@__DIR__, "../examples"); force::Bool=false)
+function Downloads.download(::Type{Examples}, folder::AbstractString=joinpath(@__DIR__, "../examples"); force::Bool=false)
     directory = abspath(normpath(folder))
     electricdss_tst_master_folder = joinpath(directory, "electricdss-tst-master")
     if force || !isdir(electricdss_tst_master_folder)
         url = "https://github.com/dss-extensions/electricdss-tst/archive/master.tar.gz"
-        tempfilename = Base.download(url)
+        tempfilename = Downloads.download(url)
         mkpath(directory)
         rm(electricdss_tst_master_folder, recursive=true, force=true)
         unzip(os, tempfilename, directory)
