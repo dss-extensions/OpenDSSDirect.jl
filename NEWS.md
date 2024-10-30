@@ -2,6 +2,13 @@
 
 For a more complete list of changes, visit the [Git repository and Releases page on GitHub](https://github.com/dss-extensions/OpenDSSDirect.jl).
 
+### OpenDSSDirect v0.9.9 Release Notes
+
+Only Julia code changes, the engine remains as v0.14.3.
+
+- Fix ToJSON in `ActiveClass` and `Element`
+- Update dependencies, migrating to `Downloads.jl` for examples and dependency downloads
+
 ### OpenDSSDirect v0.9.8 Release Notes
 
 - Update the engine to DSS C-API v0.14.3. There are a few bugfixes, [please check the AltDSS/DSS C-API changelog](https://github.com/dss-extensions/dss_capi/blob/master/docs/changelog.md#version-0143-2024-03-13), notably functions CktElement.Open/Close/IsOpen have been fixed and now also check for valid terminals.
