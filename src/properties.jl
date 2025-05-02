@@ -22,7 +22,9 @@ function Name(dss::DSSContext)::String
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""Sets the current DSS property based on a 1-based integer (or integer as a string) as an property index, or a string as a property name."""
+"""
+Sets the current DSS property based on a 1-based integer (or integer as a string) as an property index, or a string as a property name.
+"""
 function _setCurrentProperty(dss::DSSContext, argIndex::Int)
     if argIndex <= 0
         error("argIndex must be positive, not $argIndex.")
@@ -42,20 +44,32 @@ function _setCurrentProperty(dss::DSSContext, Name::String)
 end
 _setCurrentProperty(Name::String) = _setCurrentProperty(DSS_DEFAULT_CTX, Name)
 
-"""Value of Property (Getter)"""
+"""
+Value of Property
+
+(Getter)
+"""
 function Value(dss::DSSContext)::String
     return get_string(@checked Lib.DSSProperty_Get_Val(dss.ctx))
 end
 Value() = Value(DSS_DEFAULT_CTX)
 
-"""Value of Property of Index or Name (getter)"""
+"""
+Value of Property of Index or Name 
+
+(Getter)
+"""
 function Value(dss::DSSContext, argIndex_or_Name::Union{String,Int})::String
     _setCurrentProperty(argIndex_or_Name)
     return get_string(@checked Lib.DSSProperty_Get_Val(dss.ctx))
 end
 Value(argIndex_or_Name::Union{String,Int}) = Value(DSS_DEFAULT_CTX, argIndex_or_Name)
 
-"""Value of Property of Index or Name (setter)"""
+"""
+Value of Property of Index or Name
+
+(Setter)
+"""
 function Value(dss::DSSContext, argIndex_or_Name::Union{String,Int}, value::String)
     _setCurrentProperty(argIndex_or_Name)
     @checked Lib.DSSProperty_Set_Val(dss.ctx, value)

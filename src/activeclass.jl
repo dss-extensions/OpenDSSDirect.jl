@@ -10,78 +10,112 @@ using ..Utils
                                  $(DOCSTRING)
                                  """
 
-"""Returns name of active class."""
-function ActiveClassName(dss::DSSContext)::String
-    return get_string(@checked Lib.ActiveClass_Get_ActiveClassName(dss.ctx))
-end
-ActiveClassName() = ActiveClassName(DSS_DEFAULT_CTX)
 
-
-"""Returns the name of the parent class of the active class."""
-function ActiveClassParent(dss::DSSContext)::String
-    return get_string(@checked Lib.ActiveClass_Get_ActiveClassParent(dss.ctx))
-end
-ActiveClassParent() = ActiveClassParent(DSS_DEFAULT_CTX)
-
-
-"""Array of strings consisting of all element names in the active class."""
+"""Array of names of all objects in the current ActiveClass."""
 function AllNames(dss::DSSContext)::Vector{String}
     return get_string_array(Lib.ActiveClass_Get_AllNames, dss.ctx)
 end
 AllNames() = AllNames(DSS_DEFAULT_CTX)
 
-
-"""Number of elements in Active Class. Same as NumElements Property."""
-function Count(dss::DSSContext)::Int
-    return @checked Lib.ActiveClass_Get_Count(dss.ctx)
-end
-Count() = Count(DSS_DEFAULT_CTX)
-
-
-"""Sets first element in the active class to be the active DSS object. If object is a CktElement, ActiveCktELment also points to this element. Returns 0 if none."""
-function First(dss::DSSContext)::Int
-    return @checked Lib.ActiveClass_Get_First(dss.ctx)
-end
-First() = First(DSS_DEFAULT_CTX)
-
-
-"""Name of the Active Element of the Active Class (Getter)"""
+"""Gets the name of the active object in ActiveClass."""
 function Name(dss::DSSContext)::String
-    return get_string(Lib.ActiveClass_Get_Name(dss.ctx))
+    return get_string(@checked Lib.ActiveClass_Get_Name(dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""Name of the Active Element of the Active Class (Setter)"""
+"""Activates an object from ActiveClass by name."""
 function Name(dss::DSSContext, Value::String)
     @checked Lib.ActiveClass_Set_Name(dss.ctx, Cstring(pointer(Value)))
 end
 Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 
+"""Number of objects in the current ActiveClass in the Active Circuit"""
+function Count(dss::DSSContext)::Int
+    return @checked Lib.ActiveClass_Get_Count(dss.ctx)
+end
+Count() = Count(DSS_DEFAULT_CTX)
 
-"""Sets next element in active class to be the active DSS object. If object is a CktElement, ActiveCktElement also points to this element.  Returns 0 if no more."""
+"""
+Activates the first object in the ActiveClass.
+Returns 0 if none.
+"""
+function First(dss::DSSContext)::Int
+    return @checked Lib.ActiveClass_Get_First(dss.ctx)
+end
+First() = First(DSS_DEFAULT_CTX)
+
+"""
+Activates the next object in the ActiveClass.
+Returns 0 if no more.
+"""
 function Next(dss::DSSContext)::Int
     return @checked Lib.ActiveClass_Get_Next(dss.ctx)
 end
 Next() = Next(DSS_DEFAULT_CTX)
 
+"""
+Returns the current object index in ActiveClass (1-based)
 
-"""Number of elements in this class. Same as Count property."""
+(Getter)
+"""
+function Idx(dss::DSSContext)::Int
+    return @checked Lib.ActiveClass_Get_idx(dss.ctx)
+end
+Idx() = Idx(DSS_DEFAULT_CTX)
+
+"""
+Activate an object in the ActiveClass by index (1-based)
+
+(Setter)
+"""
+function Idx(dss::DSSContext, Value::Int)
+    @checked Lib.ActiveClass_Set_idx(dss.ctx, Value)
+end
+Idx(Value::Int) = Idx(DSS_DEFAULT_CTX, Value)
+
+"""
+Returns name of active class.
+
+Original COM help: https://opendss.epri.com/ActiveClassName.html
+"""
+function ActiveClassName(dss::DSSContext)::String
+    return get_string(@checked Lib.ActiveClass_Get_ActiveClassName(dss.ctx))
+end
+ActiveClassName() = ActiveClassName(DSS_DEFAULT_CTX)
+
+"""
+Get the name of the parent class of the active class
+
+Original COM help: https://opendss.epri.com/ActiveClassParent.html
+"""
+function ActiveClassParent(dss::DSSContext)::String
+    return get_string(@checked Lib.ActiveClass_Get_ActiveClassParent(dss.ctx))
+end
+ActiveClassParent() = ActiveClassParent(DSS_DEFAULT_CTX)
+
+"""
+Number of elements in this class. Same as `Count()` function.
+
+Original COM help: https://opendss.epri.com/NumElements.html
+"""
 function NumElements(dss::DSSContext)::Int
     return @checked Lib.ActiveClass_Get_NumElements(dss.ctx)
 end
 NumElements() = NumElements(DSS_DEFAULT_CTX)
 
-"""Returns the data (as a list) of all elements from the active class as a JSON-encoded string.
+"""
+Returns the data (as a list) of all elements from the active class as a JSON-encoded string.
 
 The `options` parameter contains bit-flags to toggle specific features.
-See `Obj_ToJSON` (C-API) for more.
+See `Obj_ToJSON` (C-API) for more, or `DSSObj.to_json` in Python.
 
 Additionally, the `ExcludeDisabled` flag can be used to exclude disabled elements from the output.
 
-(API Extension)"""
+**(API Extension)**
+"""
 function ToJSON(dss::DSSContext, Flags::Int32)::String #TODO: Use enum
     return get_string(@checked Lib.ActiveClass_ToJSON(dss.ctx, Flags))
 end
 ToJSON(Flags::Int32) = ToJSON(DSS_DEFAULT_CTX, Flags)
 
-end # ActiveClass
+end

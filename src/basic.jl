@@ -40,13 +40,21 @@ function Classes(dss::DSSContext)::Vector{String}
 end
 Classes() = Classes(DSS_DEFAULT_CTX)
 
-"""DSS Data File Path.  Default path for reports, etc. from DSS (Getter)"""
+"""
+DSS Data File Path.  Default path for reports, etc. from DSS
+
+(Getter)
+"""
 function DataPath(dss::DSSContext)::String
     return get_string(Lib.DSS_Get_DataPath(dss.ctx))
 end
 DataPath() = DataPath(DSS_DEFAULT_CTX)
 
-"""DSS Data File Path.  Default path for reports, etc. from DSS (Setter)"""
+"""
+DSS Data File Path.  Default path for reports, etc. from DSS
+
+(Setter)
+"""
 function DataPath(dss::DSSContext, Value::String)
     @checked Lib.DSS_Set_DataPath(dss.ctx, Cstring(pointer(Value)))
 end
@@ -88,13 +96,29 @@ function Version(dss::DSSContext)::String
 end
 Version() = Version(DSS_DEFAULT_CTX)
 
-"""Gets/sets whether text output is allowed (Getter)"""
+"""
+Indicates whether text output is allowed or forms are used
+
+Currently, forms/windows are only used for EPRI's OpenDSS distribution on Windows.
+
+Original COM help: https://opendss.epri.com/AllowForms.html
+
+(Getter)
+"""
 function AllowForms(dss::DSSContext)::Bool
     return @checked(Lib.DSS_Get_AllowForms(dss.ctx)) != 0
 end
 AllowForms() = AllowForms(DSS_DEFAULT_CTX)
 
-"""Gets/sets whether text output is allowed (Setter)"""
+"""
+Indicates whether text output is allowed or forms are used
+
+Currently, forms/windows are only used for EPRI's OpenDSS distribution on Windows.
+
+Original COM help: https://opendss.epri.com/AllowForms.html
+
+(Setter)
+"""
 function AllowForms(dss::DSSContext, Value::Bool)
     @checked Lib.DSS_Set_AllowForms(dss.ctx, Value ? 1 : 0)
 end
@@ -113,17 +137,13 @@ end
 NewCircuit(name::String) = NewCircuit(DSS_DEFAULT_CTX, name)
 
 """
-Gets/sets the state of the Legacy Models mechanism (Getter)
+Legacy models was a feature in a previous release that allowed toggling older/removed models for certain components.
 
-If enabled, the legacy/deprecated models for PVSystem, InvControl, Storage and StorageControl are used.
-WARNING: Changing the active value runs a "Clear" command, discarding the current circuit. 
+*This has been removed after some years of deprecation*
 
-Defaults to false (disabled state).
+**(API Extension)**
 
-This can also be set through the environment variable `DSS_CAPI_LEGACY_MODELS`. Setting it to 1 enables
-the legacy components, using the old models from the start.
-
-(API Extension)
+(Getter)
 """
 function LegacyModelsLegacyModels(dss::DSSContext)::Bool
     return @checked(Lib.DSS_Get_LegacyModels(dss.ctx)) != 0
@@ -131,66 +151,71 @@ end
 LegacyModelsLegacyModels() = LegacyModelsLegacyModels(DSS_DEFAULT_CTX)
 
 """
-Gets/sets the state of the Legacy Models mechanism (Setter)
+Legacy models was a feature in a previous release that allowed toggling older/removed models for certain components.
 
-If enabled, the legacy/deprecated models for PVSystem, InvControl, Storage and StorageControl are used.
-WARNING: Changing the active value runs a "Clear" command, discarding the current circuit. 
+*This has been removed after some years of deprecation*
 
-Defaults to false (disabled state).
+**(API Extension)**
 
-This can also be set through the environment variable `DSS_CAPI_LEGACY_MODELS`. Setting it to 1 enables
-the legacy components, using the old models from the start.
-
-(API Extension)
+(Setter)
 """
 function LegacyModels(dss::DSSContext, Value::Bool)
     @checked Lib.DSS_Set_LegacyModels(dss.ctx, Value ? 1 : 0)
 end
 LegacyModels(Value::Bool) = LegacyModels(DSS_DEFAULT_CTX, Value)
 
-"""If enabled, in case of errors or empty arrays, the API returns arrays with values compatible with the 
+"""
+If enabled, in case of errors or empty arrays, the API returns arrays with values compatible with the 
 official OpenDSS COM interface. 
 
-For example, consider the function Loads_Get_ZIPV. If there is no active circuit or active load element:
-- In the disabled state (COMErrorResults=False), the function will return "[]", an array with 0 elements.
-- In the enabled state (COMErrorResults=True), the function will return "[0.0]" instead. This should
+For example, consider the function `Loads.ZipV`. If there is no active circuit or active load element:
+- In the disabled state (`COMErrorResults(false)`), the function will return "[]", an array with 0 elements.
+- In the enabled state (`COMErrorResults(true)`), the function will return "[0.0]" instead. This should
   be compatible with the return value of the official COM interface.
 
-Defaults to True/1 (enabled state) in the v0.12.x series. This will change to false in future series.
+**Defaults to false** (disabled state) in AltDSS since the v0.15.x series.
 
-This can also be set through the environment variable `DSS_CAPI_COM_DEFAULTS`. Setting it to 0 disables
+This does not affect the results when using EPRI's OpenDSS distribution through Oddie.
+
+This can also be set through the environment variable `DSS_CAPI_COM_DEFAULTS`. Setting it to 1 enables
 the legacy/COM behavior. The value can be toggled through the API at any time.
 
+**(API Extension)**
+
 (Getter)
-(API Extension)
 """
 function COMErrorResults(dss::DSSContext)::Bool
     return (@checked Lib.DSS_Get_COMErrorResults(dss.ctx)) != 0
 end
 COMErrorResults() = COMErrorResults(DSS_DEFAULT_CTX)
 
-"""If enabled, in case of errors or empty arrays, the API returns arrays with values compatible with the 
+"""
+If enabled, in case of errors or empty arrays, the API returns arrays with values compatible with the 
 official OpenDSS COM interface. 
 
-For example, consider the function Loads_Get_ZIPV. If there is no active circuit or active load element:
-- In the disabled state (COMErrorResults=False), the function will return "[]", an array with 0 elements.
-- In the enabled state (COMErrorResults=True), the function will return "[0.0]" instead. This should
+For example, consider the function `Loads.ZipV`. If there is no active circuit or active load element:
+- In the disabled state (`COMErrorResults(false)`), the function will return "[]", an array with 0 elements.
+- In the enabled state (`COMErrorResults(true)`), the function will return "[0.0]" instead. This should
   be compatible with the return value of the official COM interface.
 
-Defaults to True/1 (enabled state) in the v0.12.x series. This will change to false in future series.
+**Defaults to false** (disabled state) in AltDSS since the v0.15.x series.
 
-This can also be set through the environment variable `DSS_CAPI_COM_DEFAULTS`. Setting it to 0 disables
+This does not affect the results when using EPRI's OpenDSS distribution through Oddie.
+
+This can also be set through the environment variable `DSS_CAPI_COM_DEFAULTS`. Setting it to 1 enables
 the legacy/COM behavior. The value can be toggled through the API at any time.
 
+**(API Extension)**
+
 (Setter)
-(API Extension)
 """
 function COMErrorResults(dss::DSSContext, Value::Bool)
     return @checked Lib.DSS_Set_COMErrorResults(dss.ctx, Value)
 end
 COMErrorResults(Value::Bool) = COMErrorResults(DSS_DEFAULT_CTX, Value)
 
-"""If disabled, the engine will not change the active working directory during execution. E.g. a "compile"
+"""
+If disabled, the engine will not change the active working directory during execution. E.g. a "compile"
 command will not "chdir" to the file path.
 
 If you have issues with long paths, enabling this might help in some scenarios.
@@ -201,14 +226,17 @@ This might change to False in future versions.
 This can also be set through the environment variable `DSS_CAPI_ALLOW_CHANGE_DIR`. Set it to 0 to
 disallow changing the active working directory.
 
+**(API Extension)**
+
 (Getter)
-(API Extension)"""
+"""
 function AllowChangeDir(dss::DSSContext)::Bool
     return (@checked Lib.DSS_Get_AllowChangeDir(dss.ctx)) != 0
 end
 AllowChangeDir() = AllowChangeDir(DSS_DEFAULT_CTX)
 
-"""If disabled, the engine will not change the active working directory during execution. E.g. a "compile"
+"""
+If disabled, the engine will not change the active working directory during execution. E.g. a "compile"
 command will not "chdir" to the file path.
 
 If you have issues with long paths, enabling this might help in some scenarios.
@@ -219,70 +247,87 @@ This might change to False in future versions.
 This can also be set through the environment variable `DSS_CAPI_ALLOW_CHANGE_DIR`. Set it to 0 to
 disallow changing the active working directory.
 
+**(API Extension)**
+
 (Setter)
-(API Extension)"""
+"""
 function AllowChangeDir(dss::DSSContext, Value::Bool)
     return @checked Lib.DSS_Set_AllowChangeDir(dss.ctx, Value)
 end
 AllowChangeDir(Value::Bool) = AllowChangeDir(DSS_DEFAULT_CTX, Value)
 
-"""Gets/sets whether running the external editor for "Show" is allowed
+"""
+Gets/sets whether running the external editor for "Show" is allowed
 
 AllowEditor controls whether the external editor is used in commands like "Show".
 If you set to 0 (false), the editor is not executed. Note that other side effects,
 such as the creation of files, are not affected.
 
+**(API Extension)**
+
 (Getter)
-(API Extension)"""
+"""
 function AllowEditor(dss::DSSContext)::Bool
     return (@checked Lib.DSS_Get_AllowEditor(dss.ctx)) != 0
 end
 AllowEditor() = AllowEditor(DSS_DEFAULT_CTX)
 
-"""Gets/sets whether running the external editor for "Show" is allowed
+"""
+Gets/sets whether running the external editor for "Show" is allowed
 
 AllowEditor controls whether the external editor is used in commands like "Show".
 If you set to 0 (false), the editor is not executed. Note that other side effects,
 such as the creation of files, are not affected. 
 
+**(API Extension)**
+
 (Setter)
-(API Extension)"""
+"""
 function AllowEditor(dss::DSSContext, Value::Bool)
     return @checked Lib.DSS_Set_AllowEditor(dss.ctx, Value)
 end
 AllowEditor(Value::Bool) = AllowEditor(DSS_DEFAULT_CTX, Value)
 
-"""If enabled, the DOScmd command is allowed. Otherwise, an error is reported if the user tries to use it.
+"""
+If enabled, the DOScmd command is allowed. Otherwise, an error is reported if the user tries to use it.
     
 Defaults to False/0 (disabled state). Users should consider DOScmd deprecated on DSS Extensions.
 
 This can also be set through the environment variable `DSS_CAPI_LEGACY_MODELS`. Setting it to 1 enables
 the legacy components, using the old models from the start.
 
+**(API Extension)**
+
 (Getter)
-(API Extension)"""
+"""
 function AllowDOScmd(dss::DSSContext)::Bool
     return (@checked Lib.DSS_Get_AllowDOScmd(dss.ctx)) != 0
 end
 AllowDOScmd() = AllowDOScmd(DSS_DEFAULT_CTX)
 
-"""If enabled, the DOScmd command is allowed. Otherwise, an error is reported if the user tries to use it.
+"""
+If enabled, the DOScmd command is allowed. Otherwise, an error is reported if the user tries to use it.
     
 Defaults to False/0 (disabled state). Users should consider DOScmd deprecated on DSS Extensions.
 
 This can also be set through the environment variable `DSS_CAPI_LEGACY_MODELS`. Setting it to 1 enables
 the legacy components, using the old models from the start.
 
+**(API Extension)**
+
 (Setter)
-(API Extension)"""
+"""
 function AllowDOScmd(dss::DSSContext, Value::Bool)
     return @checked Lib.DSS_Set_AllowDOScmd(dss.ctx, Value)
 end
 AllowDOScmd(Value::Bool) = AllowDOScmd(DSS_DEFAULT_CTX, Value)
 
 """
-Create a new DSS engine context.
-(API Extension)
+Create a new AltDSS engine context.
+
+Not available with EPRI's OpenDSS distribution.
+
+**(API Extension)**
 """
 function NewContext()::DSSContext
     return DSSContext(Lib.ctx_New())
@@ -291,7 +336,8 @@ end
 """
 Disposes a DSS engine context. 
 Cannot be called with the prime instance.
-(API Extension)
+
+**(API Extension)**
 """
 function DisposeContext(dss::DSSContext)
     return DSSContext(Lib.ctx_Dispose(dss.ctx))
@@ -325,7 +371,7 @@ flag.
 
 Related enumeration: DSSCompatFlags
 
-(API Extension)
+**(API Extension)**
 """
 function CompatFlags(dss::DSSContext, Value::Union{UInt32,Lib.DSSCompatFlags})
     @checked Lib.DSS_Set_CompatFlags(Value)
@@ -338,3 +384,5 @@ end
 CompatFlags() = CompatFlags(DSS_DEFAULT_CTX)
 
 end
+
+const DSS = Basic

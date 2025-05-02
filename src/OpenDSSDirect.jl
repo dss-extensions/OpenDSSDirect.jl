@@ -2,7 +2,8 @@
 module OpenDSSDirect
 
 export ActiveClass 
-export Basic 
+export Basic
+export DSS
 export Bus 
 export Capacitors 
 export CapControls 
