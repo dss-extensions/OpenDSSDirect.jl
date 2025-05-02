@@ -27,8 +27,8 @@ Lines.Next()
 @test CktElement.NormalAmps(CktElement.NormalAmps()) === nothing
 @test CktElement.EmergAmps() ≋ 600.0
 @test CktElement.EmergAmps(CktElement.EmergAmps()) === nothing
-@test_throws OpenDSSDirect.OpenDSSDirectException CktElement.Variable("0", 0)
-@test_throws OpenDSSDirect.OpenDSSDirectException CktElement.Variablei(0, 0)
+@test_throws OpenDSSDirect.OpenDSSDirectException CktElement.Variable("0", 0.)
+@test_throws OpenDSSDirect.OpenDSSDirectException CktElement.Variablei(0, 0.)
 @test CktElement.Name() == "Line.ln5502549-1"
 @test CktElement.DisplayName() == "Line_ln5502549-1"
 @test CktElement.DisplayName(CktElement.DisplayName()) === nothing
@@ -74,5 +74,9 @@ Loads.First()
 OpenDSSDirect.Text.Command("New Generator.TestGen")
 @test CktElement.AllVariableNames() == ["Frequency", "Theta (Deg)", "Vd", "PShaft", "dSpeed (Deg/sec)", "dTheta (Deg)"]
 @test CktElement.AllVariableValues() ≋ [60.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+Transformers.First()
+@test CktElement.AllLosses() == Transformers.LossesByType()
+@test CktElement.AllLosses() ≋ ComplexF64[65189.4707 + 752300.6305im, 65189.4707 + 752300.6305im, 0.0]
 
 end # testset

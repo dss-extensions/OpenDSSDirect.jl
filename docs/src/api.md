@@ -138,7 +138,7 @@ For using multiple DSS circuits and potentially multiple circuits, provide the c
 Here is a list of modules supported by this API. Each module has several functions.
 
 Functions or modules that are not present in the official OpenDSS implementation 
-are marked "(API Extension)".
+are marked "**(API Extension)**".
 
 ## `dss`
 

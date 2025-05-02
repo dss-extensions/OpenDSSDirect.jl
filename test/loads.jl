@@ -63,8 +63,9 @@ init8500()
 @test Loads.XfkVA(Loads.XfkVA()) === nothing
 @test Loads.Xneut() ≋ 0.0
 @test Loads.Xneut(Loads.Xneut()) === nothing
-@test Loads.puSeriesRL() ≋ 50.0
-@test Loads.puSeriesRL(Loads.puSeriesRL()) === nothing
+@test Loads.puSeriesRL() ≋ 0.5
+@test Loads.PctSeriesRL() ≋ 50.0
+@test Loads.PctSeriesRL(Loads.PctSeriesRL()) === nothing
 @test Loads.RelWeighting() ≋ 1.0
 @test Loads.RelWeighting(Loads.RelWeighting()) === nothing
 @test Loads.Name() == "138237b0"

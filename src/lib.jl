@@ -251,6 +251,22 @@ function Bus_Set_y(ctx::Ptr{Cvoid}, Value)
     ccall((:ctx_Bus_Set_y, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
 end
 
+function Bus_Get_Latitude(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_Latitude, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
+end
+
+function Bus_Set_Latitude(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Bus_Set_Latitude, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
+end
+
+function Bus_Get_Longitude(ctx::Ptr{Cvoid})
+    ccall((:ctx_Bus_Get_Longitude, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
+end
+
+function Bus_Set_Longitude(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Bus_Set_Longitude, LIBRARY), Cvoid, (Ptr{Cvoid}, Cdouble,), ctx, Value)
+end
+
 function Bus_Get_Distance(ctx::Ptr{Cvoid})
     ccall((:ctx_Bus_Get_Distance, LIBRARY), Cdouble, (Ptr{Cvoid},), ctx)
 end
@@ -877,6 +893,14 @@ end
 
 function CktElement_Get_Losses_GR(ctx::Ptr{Cvoid})
     ccall((:ctx_CktElement_Get_Losses_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
+end
+
+function CktElement_Get_AllLosses(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_CktElement_Get_AllLosses, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cdouble}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
+end
+
+function CktElement_Get_AllLosses_GR(ctx::Ptr{Cvoid})
+    ccall((:ctx_CktElement_Get_AllLosses_GR, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
 end
 
 function CktElement_Get_NormalAmps(ctx::Ptr{Cvoid})
@@ -7167,6 +7191,10 @@ function Circuit_FromJSON(ctx::Ptr{Cvoid}, circ, options)
     ccall((:ctx_Circuit_FromJSON, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring, Int32,), ctx, circ, options)
 end
 
+function Circuit_Flatten(ctx::Ptr{Cvoid})
+    ccall((:ctx_Circuit_Flatten, LIBRARY), Cvoid, (Ptr{Cvoid},), ctx)
+end
+
 function WindGens_Get_AllNames(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
     ccall((:ctx_WindGens_Get_AllNames, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
 end
@@ -7441,6 +7469,22 @@ end
 
 function WindGens_Set_Bus1(ctx::Ptr{Cvoid}, Value)
     ccall((:ctx_WindGens_Set_Bus1, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring), ctx, Value)
+end
+
+function Settings_Set_SkipCommands(ctx::Ptr{Cvoid}, ValuePtr, ValueCount)
+    ccall((:ctx_Settings_Set_SkipCommands, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Int32}, Int32), ctx, ValuePtr, ValueCount)
+end
+
+function Settings_Get_SkipCommands(ctx::Ptr{Cvoid}, ResultPtr, ResultCount)
+    ccall((:ctx_Settings_Get_SkipCommands, LIBRARY), Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}), ctx, ResultPtr, ResultCount)
+end
+
+function Settings_Get_SkipFileRegExp(ctx::Ptr{Cvoid})
+    ccall((:ctx_Settings_Get_SkipFileRegExp, LIBRARY), Cstring, (Ptr{Cvoid},), ctx)
+end
+
+function Settings_Set_SkipFileRegExp(ctx::Ptr{Cvoid}, Value)
+    ccall((:ctx_Settings_Set_SkipFileRegExp, LIBRARY), Cvoid, (Ptr{Cvoid}, Cstring,), ctx, Value)
 end
 
 const DSS_CAPI_VERSION = "0.15.0"

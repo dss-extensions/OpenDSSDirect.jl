@@ -10,30 +10,62 @@ using ..Utils
                                  $(DOCSTRING)
                                  """
 
-"""Description of error for last operation"""
+"""
+Description of error for last operation
+
+Original COM help: https://opendss.epri.com/Description1.html
+
+(Getter)
+"""
 function Description(dss::DSSContext)::String
     return get_string(Lib.Error_Get_Description(dss.ctx))
 end
 Description() = Description(DSS_DEFAULT_CTX)
 
-"""Error Number"""
+"""
+Error Number (returns current value and then resets to zero)
+
+Original COM help: https://opendss.epri.com/Number.html
+"""
 function Number(dss::DSSContext)::Int
     return Lib.Error_Get_Number(dss.ctx)
 end
 Number() = Number(DSS_DEFAULT_CTX)
 
 """
-Get/set the state of the Legacy Models mechanism (Getter)
+Set the description of error for last operation; for advanced usage, not typically used directly by users.
 
-If enabled, the legacy/deprecated models for PVSystem, InvControl, Storage and StorageControl are used.
-WARNING: Changing the active value runs a "Clear" command, discarding the current circuit. 
+Original COM help: https://opendss.epri.com/Description1.html
 
-Defaults to false (disabled state).
+(Setter)
+"""
+function Description(dss::DSSContext, Value::String)
+    @checked Lib.Error_Set_Description(dss.ctx, Cstring(pointer(Value)))
+end
+Description(Value::String) = Description(DSS_DEFAULT_CTX, Value)
 
-This can also be set through the environment variable `DSS_CAPI_LEGACY_MODELS`. Setting it to 1 enables
-the legacy components, using the old models from the start.
+"""
+Controls whether the extended error mechanism is used. Defaults to True.
 
-(API Extension)
+Extended errors are errors derived from checks across the API to ensure
+a valid state. Although many of these checks are already present in the
+original/official COM interface, the checks do not produce any error
+message. An error value can be returned by a function but this value
+can, for many of the functions, be a valid value. As such, the user
+has no means to detect an invalid API call.
+
+Extended errors use the Error interface to provide a more clear message
+and should help users, especially new users, to find usage issues earlier.
+
+At Julia level, an exception is raised when an error is detected through
+the Error interface.
+
+The current default state is ON. For compatibility, the user can turn it
+off to restore the previous behavior.
+
+**(API Extension)**
+
+(Getter)
 """
 function ExtendedErrors(dss::DSSContext)::Bool
     return @checked(Lib.Error_Get_ExtendedErrors(dss.ctx)) != 0
@@ -41,36 +73,54 @@ end
 ExtendedErrors() = ExtendedErrors(DSS_DEFAULT_CTX)
 
 """
-Get/set the state of the Legacy Models mechanism (Setter)
+Controls whether the extended error mechanism is used. Defaults to True.
 
-If enabled, the legacy/deprecated models for PVSystem, InvControl, Storage and StorageControl are used.
-WARNING: Changing the active value runs a "Clear" command, discarding the current circuit. 
+Extended errors are errors derived from checks across the API to ensure
+a valid state. Although many of these checks are already present in the
+original/official COM interface, the checks do not produce any error
+message. An error value can be returned by a function but this value
+can, for many of the functions, be a valid value. As such, the user
+has no means to detect an invalid API call.
 
-Defaults to false (disabled state).
+Extended errors use the Error interface to provide a more clear message
+and should help users, especially new users, to find usage issues earlier.
 
-This can also be set through the environment variable `DSS_CAPI_LEGACY_MODELS`. Setting it to 1 enables
-the legacy components, using the old models from the start.
+At Julia level, an exception is raised when an error is detected through
+the Error interface.
 
-(API Extension)
+The current default state is ON. For compatibility, the user can turn it
+off to restore the previous behavior.
+
+**(API Extension)**
+
+(Setter)
 """
 function ExtendedErrors(dss::DSSContext, Value::Bool)
     @checked Lib.Error_Set_ExtendedErrors(dss.ctx, Value ? 1 : 0)
 end
 ExtendedErrors(Value::Bool) = ExtendedErrors(DSS_DEFAULT_CTX, Value)
 
-"""EarlyAbort controls whether all errors halts the DSS script processing (Compile/Redirect), defaults to True. (Getter)
+"""
+EarlyAbort controls whether all errors halts the DSS script processing (Compile/Redirect), defaults to True.
 
-(API Extension)"""
+**(API Extension)**
+
+(Getter)
+"""
 function EarlyAbort(dss::DSSContext)::Bool
     return (@checked Lib.Error_Get_EarlyAbort(dss.ctx)) != 0
 end
 EarlyAbort() = EarlyAbort(DSS_DEFAULT_CTX)
 
-"""EarlyAbort controls whether all errors halts the DSS script processing (Compile/Redirect), defaults to True. (Setter)
+"""
+EarlyAbort controls whether all errors halts the DSS script processing (Compile/Redirect), defaults to True.
 
-(API Extension) """
+**(API Extension)**
+
+(Setter)
+"""
 function EarlyAbort(dss::DSSContext, Value::Bool)
-    return @checked Lib.Error_Set_EarlyAbort(dss.ctx, Value)
+    @checked Lib.Error_Set_EarlyAbort(dss.ctx, Value ? 1 : 0)
 end
 EarlyAbort(Value::Bool) = EarlyAbort(DSS_DEFAULT_CTX, Value)
 
