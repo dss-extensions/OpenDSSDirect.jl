@@ -568,10 +568,10 @@ end
 kVDC(Value::Float64) = kVDC(DSS_DEFAULT_CTX, Value)
 
 """
-(Read only) Indicates whether the inverter entered (Yes) or not (No) into Safe Mode.
+(Read only) Indicates whether the inverter entered or not into Safe Mode.
 """
-function SafeMode(dss::DSSContext)::Float64
-    return @checked Lib.Storages_Get_SafeMode(dss.ctx)
+function SafeMode(dss::DSSContext)::Bool
+    return (@checked Lib.Storages_Get_SafeMode(dss.ctx)) != 0
 end
 SafeMode() = SafeMode(DSS_DEFAULT_CTX)
 
