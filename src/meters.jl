@@ -25,7 +25,7 @@ Name() = Name(DSS_DEFAULT_CTX)
 
 """Sets a Meter object active by name."""
 function Name(dss::DSSContext, Value::String)
-    @checked Lib.Meters_Set_Name(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Meters_Set_Name(dss.ctx, Value)
 end
 Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 
@@ -319,7 +319,7 @@ Original COM help: https://opendss.epri.com/MeteredElement.html
 (Setter)
 """
 function MeteredElement(dss::DSSContext, Value::String)
-    @checked Lib.Meters_Set_MeteredElement(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Meters_Set_MeteredElement(dss.ctx, Value)
 end
 MeteredElement(Value::String) = MeteredElement(DSS_DEFAULT_CTX, Value)
 

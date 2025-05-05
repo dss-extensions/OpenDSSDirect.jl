@@ -45,7 +45,7 @@ Original COM help: https://opendss.epri.com/SetActiveBus.html
 Equivalent to `Circuit.SetActiveBus`
 """
 function Name(dss::DSSContext, Value::String)::Int
-    return @checked Lib.Circuit_SetActiveBus(dss.ctx, Cstring(pointer(BusName)))
+    return @checked Lib.Circuit_SetActiveBus(dss.ctx, BusName)
 end
 Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 

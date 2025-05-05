@@ -25,7 +25,7 @@ Name() = Name(DSS_DEFAULT_CTX)
 
 """Sets a Transformers object active by name."""
 function Name(dss::DSSContext, Value::String)
-    @checked Lib.Transformers_Set_Name(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Transformers_Set_Name(dss.ctx, Value)
 end
 Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 

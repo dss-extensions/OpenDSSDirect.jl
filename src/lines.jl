@@ -25,7 +25,7 @@ Name() = Name(DSS_DEFAULT_CTX)
 
 """Sets a Line object active by name."""
 function Name(dss::DSSContext, Value::String)
-    @checked Lib.Lines_Set_Name(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Lines_Set_Name(dss.ctx, Value)
 end
 Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 
@@ -75,7 +75,7 @@ Idx(Value::Int) = Idx(DSS_DEFAULT_CTX, Value)
 
 """Create new Line object with the given `Name`"""
 function New(dss::DSSContext, Name::String)::Int
-    return @checked Lib.Lines_New(dss.ctx, Cstring(pointer(Name)))
+    return @checked Lib.Lines_New(dss.ctx, Name)
 end
 New(Name::String) = New(DSS_DEFAULT_CTX, Name)
 
@@ -99,7 +99,7 @@ Original COM help: https://opendss.epri.com/Bus1.html
 (Setter)
 """
 function Bus1(dss::DSSContext, Value::String)
-    @checked Lib.Lines_Set_Bus1(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Lines_Set_Bus1(dss.ctx, Value)
 end
 Bus1(Value::String) = Bus1(DSS_DEFAULT_CTX, Value)
 
@@ -123,7 +123,7 @@ Original COM help: https://opendss.epri.com/Bus2.html
 (Setter)
 """
 function Bus2(dss::DSSContext, Value::String)
-    @checked Lib.Lines_Set_Bus2(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Lines_Set_Bus2(dss.ctx, Value)
 end
 Bus2(Value::String) = Bus2(DSS_DEFAULT_CTX, Value)
 
@@ -256,7 +256,7 @@ Original COM help: https://opendss.epri.com/Geometry.html
 (Setter)
 """
 function Geometry(dss::DSSContext, Value::String)
-    @checked Lib.Lines_Set_Geometry(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Lines_Set_Geometry(dss.ctx, Value)
 end
 Geometry(Value::String) = Geometry(DSS_DEFAULT_CTX, Value)
 
@@ -304,7 +304,7 @@ Original COM help: https://opendss.epri.com/LineCode.html
 (Setter)
 """
 function LineCode(dss::DSSContext, Value::String)
-    @checked Lib.Lines_Set_LineCode(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Lines_Set_LineCode(dss.ctx, Value)
 end
 LineCode(Value::String) = LineCode(DSS_DEFAULT_CTX, Value)
 
@@ -539,7 +539,7 @@ Original COM help: https://opendss.epri.com/Spacing.html
 (Setter)
 """
 function Spacing(dss::DSSContext, Value::String)
-    @checked Lib.Lines_Set_Spacing(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Lines_Set_Spacing(dss.ctx, Value)
 end
 Spacing(Value::String) = Spacing(DSS_DEFAULT_CTX, Value)
 

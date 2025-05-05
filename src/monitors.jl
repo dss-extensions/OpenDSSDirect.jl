@@ -25,7 +25,7 @@ Name() = Name(DSS_DEFAULT_CTX)
 
 """Sets a Monitor object active by name."""
 function Name(dss::DSSContext, Value::String)
-    @checked Lib.Monitors_Set_Name(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Monitors_Set_Name(dss.ctx, Value)
 end
 Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 
@@ -212,7 +212,7 @@ Original COM help: https://opendss.epri.com/Element.html
 (Setter)
 """
 function Element(dss::DSSContext, Value::String)
-    @checked Lib.Monitors_Set_Element(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Monitors_Set_Element(dss.ctx, Value)
 end
 Element(Value::String) = Element(DSS_DEFAULT_CTX, Value)
 

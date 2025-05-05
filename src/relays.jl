@@ -25,7 +25,7 @@ Name() = Name(DSS_DEFAULT_CTX)
 
 """Sets a Relay object active by name."""
 function Name(dss::DSSContext, Value::String)
-    @checked Lib.Relays_Set_Name(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Relays_Set_Name(dss.ctx, Value)
 end
 Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 
@@ -93,7 +93,7 @@ Original COM help: https://opendss.epri.com/MonitoredObj3.html
 (Setter)
 """
 function MonitoredObj(dss::DSSContext, Value::String)
-    @checked Lib.Relays_Set_MonitoredObj(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Relays_Set_MonitoredObj(dss.ctx, Value)
 end
 MonitoredObj(Value::String) = MonitoredObj(DSS_DEFAULT_CTX, Value)
 
@@ -141,7 +141,7 @@ Original COM help: https://opendss.epri.com/SwitchedObj2.html
 (Setter)
 """
 function SwitchedObj(dss::DSSContext, Value::String)
-    @checked Lib.Relays_Set_SwitchedObj(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Relays_Set_SwitchedObj(dss.ctx, Value)
 end
 SwitchedObj(Value::String) = SwitchedObj(DSS_DEFAULT_CTX, Value)
 

@@ -25,7 +25,7 @@ Name() = Name(DSS_DEFAULT_CTX)
 
 """Sets a LoadShape object active by name."""
 function Name(dss::DSSContext, Value::String)
-    @checked Lib.LoadShapes_Set_Name(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.LoadShapes_Set_Name(dss.ctx, Value)
 end
 Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 
@@ -75,7 +75,7 @@ Idx(Value::Int) = Idx(DSS_DEFAULT_CTX, Value)
 
 """Create a new LoadShape, with default parameters"""
 function New(dss::DSSContext, Name::String)::Int
-    return @checked Lib.LoadShapes_New(dss.ctx, Cstring(pointer(Name)))
+    return @checked Lib.LoadShapes_New(dss.ctx, Name)
 end
 New(Name) = New(DSS_DEFAULT_CTX, Name)
 

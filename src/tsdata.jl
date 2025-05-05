@@ -31,7 +31,7 @@ Name() = Name(DSS_DEFAULT_CTX)
 Sets a TSData object active by name.
 """
 function Name(dss::DSSContext, Value::String)
-    @checked Lib.TSData_Set_Name(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.TSData_Set_Name(dss.ctx, Value)
 end
 Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 

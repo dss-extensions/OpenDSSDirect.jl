@@ -25,7 +25,7 @@ Name() = Name(DSS_DEFAULT_CTX)
 
 """Sets a PVSystem object active by name."""
 function Name(dss::DSSContext, Value::String)
-    @checked Lib.PVSystems_Set_Name(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.PVSystems_Set_Name(dss.ctx, Value)
 end
 Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 
@@ -262,7 +262,7 @@ mode, the PVSystem element uses this loadshape to trigger State changes.
 (Setter)
 """
 function Daily(dss::DSSContext, Value::String)
-    @checked Lib.PVSystems_Set_daily(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.PVSystems_Set_daily(dss.ctx, Value)
 end
 Daily(Value::String) = Daily(DSS_DEFAULT_CTX, Value)
 
@@ -290,7 +290,7 @@ object. Typically would have time intervals of 1-5 seconds.
 (Setter)
 """
 function Duty(dss::DSSContext, Value::String)
-    @checked Lib.PVSystems_Set_duty(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.PVSystems_Set_duty(dss.ctx, Value)
 end
 Duty(Value::String) = Duty(DSS_DEFAULT_CTX, Value)
 
@@ -320,7 +320,7 @@ mode, the PVSystem element uses this loadshape to trigger State changes.
 (Setter)
 """
 function Yearly(dss::DSSContext, Value::String)
-    @checked Lib.PVSystems_Set_yearly(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.PVSystems_Set_yearly(dss.ctx, Value)
 end
 Yearly(Value::String) = Yearly(DSS_DEFAULT_CTX, Value)
 
@@ -350,7 +350,7 @@ with the Pmpp vs T curve.
 (Setter)
 """
 function TDaily(dss::DSSContext, Value::String)
-    @checked Lib.PVSystems_Set_Tdaily(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.PVSystems_Set_Tdaily(dss.ctx, Value)
 end
 TDaily(Value::String) = TDaily(DSS_DEFAULT_CTX, Value)
 
@@ -386,7 +386,7 @@ Units must agree with the Pmpp vs T curve.
 (Setter)
 """
 function TDuty(dss::DSSContext, Value::String)
-    @checked Lib.PVSystems_Set_Tduty(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.PVSystems_Set_Tduty(dss.ctx, Value)
 end
 TDuty(Value::String) = TDuty(DSS_DEFAULT_CTX, Value)
 
@@ -418,7 +418,7 @@ agree with the Pmpp vs T curve.
 (Setter)
 """
 function TYearly(dss::DSSContext, Value::String)
-    @checked Lib.PVSystems_Set_Tyearly(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.PVSystems_Set_Tyearly(dss.ctx, Value)
 end
 TYearly(Value::String) = TYearly(DSS_DEFAULT_CTX, Value)
 

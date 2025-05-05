@@ -25,7 +25,7 @@ Name() = Name(DSS_DEFAULT_CTX)
 
 """Sets a Load object active by name."""
 function Name(dss::DSSContext, Value::String)
-    @checked Lib.Loads_Set_Name(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Loads_Set_Name(dss.ctx, Value)
 end
 Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 
@@ -117,7 +117,7 @@ Original COM help: https://opendss.epri.com/CVRcurve.html
 (Setter)
 """
 function CVRCurve(dss::DSSContext, Value::String)
-    @checked Lib.Loads_Set_CVRcurve(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Loads_Set_CVRcurve(dss.ctx, Value)
 end
 CVRCurve(Value::String) = CVRCurve(DSS_DEFAULT_CTX, Value)
 
@@ -237,7 +237,7 @@ Original COM help: https://opendss.epri.com/Growth.html
 (Setter)
 """
 function Growth(dss::DSSContext, Value::String)
-    @checked Lib.Loads_Set_Growth(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Loads_Set_Growth(dss.ctx, Value)
 end
 Growth(Value::String) = Growth(DSS_DEFAULT_CTX, Value)
 
@@ -456,7 +456,7 @@ Original COM help: https://opendss.epri.com/Spectrum.html
 (Setter)
 """
 function Spectrum(dss::DSSContext, Value::String)
-    @checked Lib.Loads_Set_Spectrum(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Loads_Set_Spectrum(dss.ctx, Value)
 end
 Spectrum(Value::String) = Spectrum(DSS_DEFAULT_CTX, Value)
 
@@ -625,7 +625,7 @@ Original COM help: https://opendss.epri.com/Yearly.html
 (Setter)
 """
 function Yearly(dss::DSSContext, Value::String)
-    @checked Lib.Loads_Set_Yearly(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Loads_Set_Yearly(dss.ctx, Value)
 end
 Yearly(Value::String) = Yearly(DSS_DEFAULT_CTX, Value)
 
@@ -674,7 +674,7 @@ Original COM help: https://opendss.epri.com/daily.html
 (Setter)
 """
 function Daily(dss::DSSContext, Value::String)
-    @checked Lib.Loads_Set_daily(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Loads_Set_daily(dss.ctx, Value)
 end
 Daily(Value::String) = Daily(DSS_DEFAULT_CTX, Value)
 
@@ -698,7 +698,7 @@ Original COM help: https://opendss.epri.com/duty.html
 (Setter)
 """
 function Duty(dss::DSSContext, Value::String)
-    @checked Lib.Loads_Set_duty(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Loads_Set_duty(dss.ctx, Value)
 end
 Duty(Value::String) = Duty(DSS_DEFAULT_CTX, Value)
 

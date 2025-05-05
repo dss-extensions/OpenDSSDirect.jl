@@ -25,7 +25,7 @@ Name() = Name(DSS_DEFAULT_CTX)
 
 """Activates an object from ActiveClass by name."""
 function Name(dss::DSSContext, Value::String)
-    @checked Lib.ActiveClass_Set_Name(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.ActiveClass_Set_Name(dss.ctx, Value)
 end
 Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 

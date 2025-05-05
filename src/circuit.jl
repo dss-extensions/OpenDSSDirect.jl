@@ -36,7 +36,7 @@ Disable a circuit element by name (removes from circuit but leave in database).
 Original COM help: https://opendss.epri.com/Disable.html
 """
 function Disable(dss::DSSContext, Name::String)
-    @checked Lib.Circuit_Disable(dss.ctx, Cstring(pointer(Name)))
+    @checked Lib.Circuit_Disable(dss.ctx, Name)
 end
 Disable(Name::String) = Disable(DSS_DEFAULT_CTX, Name)
 
@@ -46,7 +46,7 @@ Enable a circuit element by name
 Original COM help: https://opendss.epri.com/Enable.html
 """
 function Enable(dss::DSSContext, Name::String)
-    @checked Lib.Circuit_Enable(dss.ctx, Cstring(pointer(Name)))
+    @checked Lib.Circuit_Enable(dss.ctx, Name)
 end
 Enable(Name::String) = Enable(DSS_DEFAULT_CTX, Name)
 
@@ -179,7 +179,7 @@ Ignores node list. Returns bus index (zero based) compatible with `AllBusNames` 
 Original COM help: https://opendss.epri.com/SetActiveBus.html
 """
 function SetActiveBus(dss::DSSContext, BusName::String)::Int
-    return @checked Lib.Circuit_SetActiveBus(dss.ctx, Cstring(pointer(BusName)))
+    return @checked Lib.Circuit_SetActiveBus(dss.ctx, BusName)
 end
 SetActiveBus(BusName::String) = SetActiveBus(DSS_DEFAULT_CTX, BusName)
 
@@ -204,7 +204,7 @@ Use FirstElement, NextElement to iterate through the class. Returns -1 if fails.
 Original COM help: https://opendss.epri.com/SetActiveClass.html
 """
 function SetActiveClass(dss::DSSContext, ClassName::String)::Int
-    return @checked Lib.Circuit_SetActiveClass(dss.ctx, Cstring(pointer(ClassName)))
+    return @checked Lib.Circuit_SetActiveClass(dss.ctx, ClassName)
 end
 SetActiveClass(ClassName::String) = SetActiveClass(DSS_DEFAULT_CTX, ClassName)
 
@@ -216,7 +216,7 @@ Returns -1 if not found. Else index to be used in CktElements collection or `All
 Original COM help: https://opendss.epri.com/SetActiveElement.html
 """
 function SetActiveElement(dss::DSSContext, FullName::String)::Int
-    return @checked Lib.Circuit_SetActiveElement(dss.ctx, Cstring(pointer(FullName)))
+    return @checked Lib.Circuit_SetActiveElement(dss.ctx, FullName)
 end
 SetActiveElement(FullName::String) = SetActiveElement(DSS_DEFAULT_CTX, FullName)
 
@@ -488,7 +488,7 @@ The options argument is an integer bitset from the enum `DSSJSONFlags`.
 **(API Extension)**
 """
 function FromJSON(dss::DSSContext, circ::String, options::Int32)
-    @checked Lib.Circuit_FromJSON(dss.ctx, Cstring(pointer(circ)), options)
+    @checked Lib.Circuit_FromJSON(dss.ctx, circ, options)
 end
 FromJSON(dss::DSSContext, circ::String) = FromJSON(dss, circ, 0)
 FromJSON(circ::String, options::Int32) = FromJSON(DSS_DEFAULT_CTX, circ, options)
@@ -534,7 +534,7 @@ otherwise it is the folder path. For string output, the argument is not used.
 **(API Extension)**
 """
 function Save(dss::DSSContext, dirOrFilePath::String, saveFlags::Int32)::String
-    return get_string(@checked Lib.Circuit_Save(dss.ctx, Cstring(pointer(dirOrFilePath)), saveFlags))
+    return get_string(@checked Lib.Circuit_Save(dss.ctx, dirOrFilePath, saveFlags))
 end
 Save(dirOrFilePath::String, saveFlags::Int32) = Save(DSS_DEFAULT_CTX, dirOrFilePath, saveFlags)
 

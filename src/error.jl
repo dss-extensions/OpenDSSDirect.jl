@@ -40,7 +40,7 @@ Original COM help: https://opendss.epri.com/Description1.html
 (Setter)
 """
 function Description(dss::DSSContext, Value::String)
-    @checked Lib.Error_Set_Description(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Error_Set_Description(dss.ctx, Value)
 end
 Description(Value::String) = Description(DSS_DEFAULT_CTX, Value)
 

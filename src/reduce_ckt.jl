@@ -30,7 +30,7 @@ Original COM help: https://opendss.epri.com/EnergyMeter1.html
 (Setter)
 """
 function EnergyMeter(dss::DSSContext, Value::String)
-    @checked Lib.ReduceCkt_Set_EnergyMeter(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.ReduceCkt_Set_EnergyMeter(dss.ctx, Value)
 end
 EnergyMeter(Value::String) = EnergyMeter(DSS_DEFAULT_CTX, Value)
 
@@ -78,7 +78,7 @@ Original COM help: https://opendss.epri.com/EditString.html
 (Setter)
 """
 function EditString(dss::DSSContext, Value::String)
-    @checked Lib.ReduceCkt_Set_EditString(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.ReduceCkt_Set_EditString(dss.ctx, Value)
 end
 EditString(Value::String) = EditString(DSS_DEFAULT_CTX, Value)
 
@@ -126,7 +126,7 @@ Original COM help: https://opendss.epri.com/StartPDElement.html
 (Setter)
 """
 function StartPDElement(dss::DSSContext, Value::String)
-    @checked Lib.ReduceCkt_Set_StartPDElement(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.ReduceCkt_Set_StartPDElement(dss.ctx, Value)
 end
 StartPDElement(Value::String) = StartPDElement(DSS_DEFAULT_CTX, Value)
 
