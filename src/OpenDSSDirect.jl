@@ -165,8 +165,6 @@ function __init__()
 
     # Load the default descriptions/help strings
     Lib.DSS_SetPropertiesMO(abspath(joinpath(@__DIR__, "../deps/messages/properties-en-US.mo")))
-    # Leave the properties with the legacy names for now
-    Lib.Settings_SetPropertyNameStyle(C_NULL, 2)
 
     if !Sys.islinux()
         global commandhelp = Dict{String, String}()
