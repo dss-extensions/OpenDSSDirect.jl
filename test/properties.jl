@@ -15,21 +15,21 @@ Properties._setCurrentProperty(1)
 
 @test replace(Properties.Description(), "\r\n" => "\n") == "Name of Transformer or AutoTrans element to which the RegControl is connected. Do not specify the full object name; \"Transformer\" or \"AutoTrans\" is assumed for the object class.  Example:\n\nTransformer=Xfmr1"
 
-@test Properties.Name() == "transformer"
+@test lowercase(Properties.Name()) == "transformer"
 
 Properties._setCurrentProperty("1")
 @test uppercase(Properties.Value()) == "VREG4_C"
 
 @test replace(Properties.Description(), "\r\n" => "\n") == "Name of Transformer or AutoTrans element to which the RegControl is connected. Do not specify the full object name; \"Transformer\" or \"AutoTrans\" is assumed for the object class.  Example:\n\nTransformer=Xfmr1"
 
-@test Properties.Name() == "transformer"
+@test lowercase(Properties.Name()) == "transformer"
 
 Properties._setCurrentProperty("transformer")
 @test uppercase(Properties.Value()) == "VREG4_C"
 
 @test replace(Properties.Description(), "\r\n" => "\n") == "Name of Transformer or AutoTrans element to which the RegControl is connected. Do not specify the full object name; \"Transformer\" or \"AutoTrans\" is assumed for the object class.  Example:\n\nTransformer=Xfmr1"
 
-@test Properties.Name() == "transformer"
+@test lowercase(Properties.Name()) == "transformer"
 
 @test uppercase(Properties.Value("transformer")) == "VREG4_C"
 

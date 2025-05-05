@@ -46,7 +46,7 @@ Lines.Next()
 @test CktElement.SeqVoltages() ≋ [1.0,1.0,1.0,1.0,1.0,1.0]
 @test CktElement.SeqCurrents() ≋ [1.0,1.0,1.0,1.0,1.0,1.0]
 @test CktElement.SeqPowers() ≋ [-1.0 - 1.0im,-1.0 - 1.0im,-1.0 - 1.0im,-1.0 - 1.0im,-1.0 - 1.0im,-1.0 - 1.0im]
-@test CktElement.AllPropertyNames()[1] == "bus1"
+@test lowercase(CktElement.AllPropertyNames()[1]) == "bus1"
 @test CktElement.Residuals() ≋ [1.8847523948057756 1.8849048106162245
                                 177.9319402443363 -2.0853832620851183]
 @test CktElement.YPrim() ≋ [14.151460302936526 - 7.897357479424346im -14.151460302936526 + 7.897357517772179im
