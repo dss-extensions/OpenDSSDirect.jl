@@ -25,7 +25,7 @@ Name() = Name(DSS_DEFAULT_CTX)
 
 """Sets a Generator object active by name."""
 function Name(dss::DSSContext, Value::String)
-    @checked Lib.Generators_Set_Name(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Generators_Set_Name(dss.ctx, Value)
 end
 Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 
@@ -353,7 +353,7 @@ Name of the loadshape for a daily generation profile.
 (Setter)
 """
 function daily(dss::DSSContext, Value::String)
-    @checked Lib.Generators_Set_daily(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Generators_Set_daily(dss.ctx, Value)
 end
 daily(Value::String) = daily(DSS_DEFAULT_CTX, Value)
 
@@ -377,7 +377,7 @@ Name of the loadshape for a duty cycle simulation.
 (Setter)
 """
 function duty(dss::DSSContext, Value::String)
-    @checked Lib.Generators_Set_duty(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Generators_Set_duty(dss.ctx, Value)
 end
 duty(Value::String) = duty(DSS_DEFAULT_CTX, Value)
 
@@ -401,7 +401,7 @@ Name of yearly loadshape
 (Setter)
 """
 function Yearly(dss::DSSContext, Value::String)
-    @checked Lib.Generators_Set_Yearly(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Generators_Set_Yearly(dss.ctx, Value)
 end
 Yearly(Value::String) = Yearly(DSS_DEFAULT_CTX, Value)
 
@@ -525,7 +525,7 @@ Bus to which the Generator is connected. May include specific node specification
 (Setter)
 """
 function Bus1(dss::DSSContext, Value::String)
-    @checked Lib.Generators_Set_Bus1(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Generators_Set_Bus1(dss.ctx, Value)
 end
 Bus1(Value::String) = Bus1(DSS_DEFAULT_CTX, Value)
 

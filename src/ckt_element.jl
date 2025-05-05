@@ -277,7 +277,7 @@ Original COM help: https://opendss.epri.com/DisplayName.html
 (Setter)
 """
 function DisplayName(dss::DSSContext, Value::String)
-    @checked Lib.CktElement_Set_DisplayName(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.CktElement_Set_DisplayName(dss.ctx, Value)
 end
 DisplayName(Value::String) = DisplayName(DSS_DEFAULT_CTX, Value)
 

@@ -25,7 +25,7 @@ Name() = Name(DSS_DEFAULT_CTX)
 
 """Sets a Capacitors object active by name."""
 function Name(dss::DSSContext, Value::String)
-    @checked Lib.Capacitors_Set_Name(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Capacitors_Set_Name(dss.ctx, Value)
 end
 Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 

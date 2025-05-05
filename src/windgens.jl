@@ -25,7 +25,7 @@ Name() = Name(DSS_DEFAULT_CTX)
 
 """Sets a WindGen object active by name."""
 function Name(dss::DSSContext, Value::String)
-    @checked Lib.WindGens_Set_Name(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.WindGens_Set_Name(dss.ctx, Value)
 end
 Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 
@@ -113,7 +113,7 @@ Name of the loadshape for a duty cycle simulation.
 (Setter)
 """
 function duty(dss::DSSContext, Value::Float64)
-    @checked Lib.WindGens_Set_duty(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.WindGens_Set_duty(dss.ctx, Value)
 end
 duty(Value::Float64) = duty(DSS_DEFAULT_CTX, Value)
 
@@ -217,7 +217,7 @@ Bus to which the WindGen is connected. May include specific node specification.
 (Setter)
 """
 function Bus1(dss::DSSContext, Value::String)
-    @checked Lib.WindGens_Set_Bus1(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.WindGens_Set_Bus1(dss.ctx, Value)
 end
 Bus1(Value::String) = Bus1(DSS_DEFAULT_CTX, Value)
 
@@ -597,7 +597,7 @@ Name of the loadshape for daily wind speed
 (Setter)
 """
 function daily(dss::DSSContext, Value::String)
-    @checked Lib.WindGens_Set_daily(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.WindGens_Set_daily(dss.ctx, Value)
 end
 daily(Value::String) = daily(DSS_DEFAULT_CTX, Value)
 

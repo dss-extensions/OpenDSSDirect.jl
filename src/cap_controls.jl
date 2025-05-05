@@ -25,7 +25,7 @@ Name() = Name(DSS_DEFAULT_CTX)
 
 """Sets a CapControl object active by name."""
 function Name(dss::DSSContext, Value::String)
-    @checked Lib.CapControls_Set_Name(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.CapControls_Set_Name(dss.ctx, Value)
 end
 Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 
@@ -127,7 +127,7 @@ Original COM help: https://opendss.epri.com/Capacitor.html
 (Setter)
 """
 function Capacitor(dss::DSSContext, Value::String)
-    @checked Lib.CapControls_Set_Capacitor(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.CapControls_Set_Capacitor(dss.ctx, Value)
 end
 Capacitor(Value::String) = Capacitor(DSS_DEFAULT_CTX, Value)
 
@@ -252,7 +252,7 @@ Original COM help: https://opendss.epri.com/MonitoredObj.html
 (Setter)
 """
 function MonitoredObj(dss::DSSContext, Value::String)
-    @checked Lib.CapControls_Set_MonitoredObj(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.CapControls_Set_MonitoredObj(dss.ctx, Value)
 end
 MonitoredObj(Value::String) = MonitoredObj(DSS_DEFAULT_CTX, Value)
 

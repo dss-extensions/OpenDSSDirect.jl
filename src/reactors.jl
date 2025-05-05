@@ -25,7 +25,7 @@ Name() = Name(DSS_DEFAULT_CTX)
 
 """Sets a Reactor object active by name."""
 function Name(dss::DSSContext, Value::String)
-    @checked Lib.Reactors_Set_Name(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Reactors_Set_Name(dss.ctx, Value)
 end
 Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 
@@ -131,7 +131,7 @@ Not necessary to specify for delta (LL) connection
 (Setter)
 """
 function Bus2(dss::DSSContext, Value::String)
-    return @checked Lib.Reactors_Set_Bus2(dss.ctx, Cstring(pointer(Value)))
+    return @checked Lib.Reactors_Set_Bus2(dss.ctx, Value)
 end
 Bus2(Value::String) = Bus2(DSS_DEFAULT_CTX, Value)
 
@@ -175,7 +175,7 @@ Only Bus1 need be specified for a Yg shunt reactor.
 (Setter)
 """
 function Bus1(dss::DSSContext, Value::String)
-    return @checked Lib.Reactors_Set_Bus1(dss.ctx, Cstring(pointer(Value)))
+    return @checked Lib.Reactors_Set_Bus1(dss.ctx, Value)
 end
 Bus1(Value::String) = Bus1(DSS_DEFAULT_CTX, Value)
 
@@ -195,7 +195,7 @@ Name of XYCurve object, previously defined, describing per-unit variation of pha
 (Setter)
 """
 function RCurve(dss::DSSContext, Value::String)
-    return @checked Lib.Reactors_Set_RCurve(dss.ctx, Cstring(pointer(Value)))
+    return @checked Lib.Reactors_Set_RCurve(dss.ctx, Value)
 end
 RCurve(Value::String) = RCurve(DSS_DEFAULT_CTX, Value)
 

@@ -56,7 +56,7 @@ DSS Data File Path.  Default path for reports, etc. from DSS
 (Setter)
 """
 function DataPath(dss::DSSContext, Value::String)
-    @checked Lib.DSS_Set_DataPath(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.DSS_Set_DataPath(dss.ctx, Value)
 end
 DataPath(Value::String) = DataPath(DSS_DEFAULT_CTX, Value)
 
@@ -131,7 +131,7 @@ end
 
 """Create a new circuit"""
 function NewCircuit(dss::DSSContext, name::String)::String
-    @checked Lib.DSS_NewCircuit(dss.ctx, Cstring(pointer(name)))
+    @checked Lib.DSS_NewCircuit(dss.ctx, name)
     return "New Circuit: $name"
 end
 NewCircuit(name::String) = NewCircuit(DSS_DEFAULT_CTX, name)

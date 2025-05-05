@@ -31,7 +31,7 @@ The limitations should be removed in a future revision.
 **(API Extension)**
 """
 function Open(dss::DSSContext, Value::String)
-    @checked Lib.ZIP_Open(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.ZIP_Open(dss.ctx, Value)
 end
 Open(Value::String) = Open(DSS_DEFAULT_CTX, Value)
 
@@ -54,7 +54,7 @@ memory-mapped files.
 **(API Extension)**
 """
 function Redirect(dss::DSSContext, FileInZip::String)
-    @checked Lib.ZIP_Redirect(dss.ctx, Cstring(pointer(FileInZip)))
+    @checked Lib.ZIP_Redirect(dss.ctx, FileInZip)
 end
 Redirect(FileInZip::String) = Redirect(DSS_DEFAULT_CTX, FileInZip)
 
@@ -65,7 +65,7 @@ Returns a byte-string.
 **(API Extension)**
 """
 function Extract(dss::DSSContext, FileName::String)::Vector{Int8}
-    return get_int8_array(Lib.ZIP_Extract, dss.ctx, Cstring(pointer(FileName)))
+    return get_int8_array(Lib.ZIP_Extract, dss.ctx, FileName)
 end
 Extract(FileName::String) = Extract(DSS_DEFAULT_CTX, FileName)
 
@@ -79,7 +79,7 @@ the expression syntax and options.
 **(API Extension)**
 """
 function List(dss::DSSContext, regexp::String)::Vector{String}
-    return get_string_array(Lib.ZIP_List, dss.ctx, Cstring(pointer(regexp)))
+    return get_string_array(Lib.ZIP_List, dss.ctx, regexp)
 end
 List(regexp::String) = List(DSS_DEFAULT_CTX, regexp)
 
@@ -94,7 +94,7 @@ Check if the given path name is present in the current ZIP file.
 **(API Extension)**
 """
 function Contains(dss::DSSContext, Name::String)
-    return @checked(Lib.ZIP_Contains(dss.ctx, Cstring(pointer(Name)))) != 0
+    return @checked(Lib.ZIP_Contains(dss.ctx, Name)) != 0
 end
 Contains(Name::String) = Contains(DSS_DEFAULT_CTX, Name)
 

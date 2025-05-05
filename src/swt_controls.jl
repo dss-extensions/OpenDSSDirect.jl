@@ -25,7 +25,7 @@ Name() = Name(DSS_DEFAULT_CTX)
 
 """Sets a SwtControl object active by name."""
 function Name(dss::DSSContext, Value::String)
-    @checked Lib.SwtControls_Set_Name(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.SwtControls_Set_Name(dss.ctx, Value)
 end
 Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 
@@ -218,7 +218,7 @@ Original COM help: https://opendss.epri.com/SwitchedObj3.html
 (Setter)
 """
 function SwitchedObj(dss::DSSContext, Value::String)
-    @checked Lib.SwtControls_Set_SwitchedObj(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.SwtControls_Set_SwitchedObj(dss.ctx, Value)
 end
 SwitchedObj(Value::String) = SwitchedObj(DSS_DEFAULT_CTX, Value)
 

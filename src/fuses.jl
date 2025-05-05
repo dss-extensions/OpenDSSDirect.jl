@@ -25,7 +25,7 @@ Name() = Name(DSS_DEFAULT_CTX)
 
 """Sets a Fuse object active by name."""
 function Name(dss::DSSContext, Value::String)
-    @checked Lib.Fuses_Set_Name(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Fuses_Set_Name(dss.ctx, Value)
 end
 Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 
@@ -149,7 +149,7 @@ Original COM help: https://opendss.epri.com/MonitoredObj1.html
 (Setter)
 """
 function MonitoredObj(dss::DSSContext, Value::String)
-    @checked Lib.Fuses_Set_MonitoredObj(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Fuses_Set_MonitoredObj(dss.ctx, Value)
 end
 MonitoredObj(Value::String) = MonitoredObj(DSS_DEFAULT_CTX, Value)
 
@@ -237,7 +237,7 @@ Original COM help: https://opendss.epri.com/SwitchedObj.html
 (Setter)
 """
 function SwitchedObj(dss::DSSContext, Value::String)
-    @checked Lib.Fuses_Set_SwitchedObj(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Fuses_Set_SwitchedObj(dss.ctx, Value)
 end
 SwitchedObj(Value::String) = SwitchedObj(DSS_DEFAULT_CTX, Value)
 
@@ -285,7 +285,7 @@ Original COM help: https://opendss.epri.com/TCCcurve.html
 (Setter)
 """
 function TCCCurve(dss::DSSContext, Value::String)
-    @checked Lib.Fuses_Set_TCCcurve(dss.ctx, Cstring(pointer(Value)))
+    @checked Lib.Fuses_Set_TCCcurve(dss.ctx, Value)
 end
 TCCCurve(Value::String) = TCCCurve(DSS_DEFAULT_CTX, Value)
 
