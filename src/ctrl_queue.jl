@@ -16,7 +16,7 @@ Clear all actions from the Control Proxy's Action List (they are popped off the 
 Original COM help: https://opendss.epri.com/ClearActions.html
 """
 function ClearActions(dss::DSSContext)
-    @checked Lib.CtrlQueue_ClearActions(dss.ctx)
+    @checked dss_ccall(dss.capi.CtrlQueue_ClearActions, dss.ctx)
 end
 ClearActions() = ClearActions(DSS_DEFAULT_CTX)
 
@@ -26,7 +26,7 @@ Clear the control queue.
 Original COM help: https://opendss.epri.com/ClearQueue.html
 """
 function ClearQueue(dss::DSSContext)
-    @checked Lib.CtrlQueue_ClearQueue(dss.ctx)
+    @checked dss_ccall(dss.capi.CtrlQueue_ClearQueue, dss.ctx)
 end
 ClearQueue() = ClearQueue(DSS_DEFAULT_CTX)
 
@@ -38,7 +38,7 @@ Delete an Action from the DSS Control Queue by the handle that is returned when 
 Original COM help: https://opendss.epri.com/Delete.html
 """
 function Delete(dss::DSSContext, ActionHandle::Int)
-    @checked Lib.CtrlQueue_Delete(dss.ctx, ActionHandle)
+    @checked dss_ccall(dss.capi.CtrlQueue_Delete, dss.ctx, ActionHandle)
 end
 Delete(ActionHandle::Int) = Delete(DSS_DEFAULT_CTX, ActionHandle)
 
@@ -50,7 +50,7 @@ Side effect: clears the queue.
 Original COM help: https://opendss.epri.com/DoAllQueue.html
 """
 function DoAllQueue(dss::DSSContext)
-    @checked Lib.CtrlQueue_DoAllQueue(dss.ctx)
+    @checked dss_ccall(dss.capi.CtrlQueue_DoAllQueue, dss.ctx)
 end
 DoAllQueue() = DoAllQueue(DSS_DEFAULT_CTX)
 
@@ -60,7 +60,7 @@ Export the queue to a CSV table and show it.
 Original COM help: https://opendss.epri.com/Show.html
 """
 function Show(dss::DSSContext)
-    @checked Lib.CtrlQueue_Show(dss.ctx)
+    @checked dss_ccall(dss.capi.CtrlQueue_Show, dss.ctx)
 end
 Show() = Show(DSS_DEFAULT_CTX)
 
@@ -73,7 +73,7 @@ It can be any 32-bit integer of the user's choosing and is the same value that t
 Original COM help: https://opendss.epri.com/ActionCode.html
 """
 function ActionCode(dss::DSSContext)::Lib.ActionCodes
-    return @checked Lib.CtrlQueue_Get_ActionCode(dss.ctx)
+    return @checked dss_ccall(dss.capi.CtrlQueue_Get_ActionCode, dss.ctx)
 end
 ActionCode() = ActionCode(DSS_DEFAULT_CTX)
 
@@ -88,7 +88,7 @@ control is to perform the active action.
 Original COM help: https://opendss.epri.com/DeviceHandle.html
 """
 function DeviceHandle(dss::DSSContext)::Int
-    return @checked Lib.CtrlQueue_Get_DeviceHandle(dss.ctx)
+    return @checked dss_ccall(dss.capi.CtrlQueue_Get_DeviceHandle, dss.ctx)
 end
 DeviceHandle() = DeviceHandle(DSS_DEFAULT_CTX)
 
@@ -98,7 +98,7 @@ Number of Actions on the current action list (that have been popped off the cont
 Original COM help: https://opendss.epri.com/NumActions.html
 """
 function NumActions(dss::DSSContext)::Int
-    return @checked Lib.CtrlQueue_Get_NumActions(dss.ctx)
+    return @checked dss_ccall(dss.capi.CtrlQueue_Get_NumActions, dss.ctx)
 end
 NumActions() = NumActions(DSS_DEFAULT_CTX)
 
@@ -108,7 +108,7 @@ Pops next action off the action list and makes it the active action. Returns zer
 Original COM help: https://opendss.epri.com/PopAction.html
 """
 function PopAction(dss::DSSContext)::Int
-    return @checked Lib.CtrlQueue_Get_PopAction(dss.ctx)
+    return @checked dss_ccall(dss.capi.CtrlQueue_Get_PopAction, dss.ctx)
 end
 PopAction() = PopAction(DSS_DEFAULT_CTX)
 
@@ -118,7 +118,7 @@ Array of strings containing the entire queue in CSV format
 Original COM help: https://opendss.epri.com/Queue.html
 """
 function Queue(dss::DSSContext)::Vector{String}
-    return get_string_array(Lib.CtrlQueue_Get_Queue, dss.ctx)
+    return get_string_array(dss.capi.CtrlQueue_Get_Queue, dss)
 end
 Queue() = Queue(DSS_DEFAULT_CTX)
 
@@ -128,7 +128,7 @@ Number of items on the OpenDSS control Queue
 Original COM help: https://opendss.epri.com/QueueSize.html
 """
 function QueueSize(dss::DSSContext)::Int
-    return @checked Lib.CtrlQueue_Get_QueueSize(dss.ctx)
+    return @checked dss_ccall(dss.capi.CtrlQueue_Get_QueueSize, dss.ctx)
 end
 QueueSize() = QueueSize(DSS_DEFAULT_CTX)
 
@@ -138,7 +138,7 @@ QueueSize() = QueueSize(DSS_DEFAULT_CTX)
 Original COM help: https://opendss.epri.com/Action.html
 """
 function Action(dss::DSSContext, Param1::Int)
-    @checked Lib.CtrlQueue_Set_Action(dss.ctx, Param1)
+    @checked dss_ccall(dss.capi.CtrlQueue_Set_Action, dss.ctx, Param1)
 end
 Action(Param1::Int) = Action(DSS_DEFAULT_CTX, Param1)
 
@@ -148,7 +148,7 @@ Push a control action onto the DSS control queue by time, action code, and devic
 Original COM help: https://opendss.epri.com/Push.html
 """
 function Push(dss::DSSContext, Hour::Int32, Seconds::Float64, ActionCode::Union{Int32,Lib.ActionCodes}, DeviceHandle::Int32)::Int
-    return @checked Lib.CtrlQueue_Push(dss.ctx, Hour, Seconds, ActionCode, DeviceHandle);
+    return @checked dss_ccall(dss.capi.CtrlQueue_Push, dss.ctx, Hour, Seconds, ActionCode, DeviceHandle);
 end
 Push(Hour::Int32, Seconds::Float64, ActionCode::Union{Int32,Lib.ActionCodes}, DeviceHandle::Int32) = Push(DSS_DEFAULT_CTX, Hour, Seconds, ActionCode, DeviceHandle)
 

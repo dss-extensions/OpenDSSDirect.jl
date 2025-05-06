@@ -12,31 +12,31 @@ using ..Utils
 
 """Clear All"""
 function ClearAll(dss::DSSContext)
-    @checked Lib.DSS_ClearAll(dss.ctx)
+    @checked dss_ccall(dss.capi.DSS_ClearAll, dss.ctx)
 end
 ClearAll() = ClearAll(DSS_DEFAULT_CTX)
 
 """Reset"""
 function Reset(dss::DSSContext)
-    @checked Lib.DSS_Reset(dss.ctx)
+    @checked dss_ccall(dss.capi.DSS_Reset, dss.ctx)
 end
 Reset() = Reset(DSS_DEFAULT_CTX)
 
 """Set the Active Class"""
 function SetActiveClass(dss::DSSContext, ClassName::String)::Int
-    return @checked Lib.DSS_SetActiveClass(dss.ctx, ClassName)
+    return @checked dss_ccall(dss.capi.DSS_SetActiveClass, dss.ctx, ClassName)
 end
 SetActiveClass(ClassName::String) = SetActiveClass(DSS_DEFAULT_CTX, ClassName)
 
 """Set the start code"""
 function Start(dss::DSSContext, code::Int)
-    return @checked(Lib.DSS_Start(dss.ctx, code)) != 0
+    return @checked(dss_ccall(dss.capi.DSS_Start, dss.ctx, code)) != 0
 end
 Start(code::Int) = Start(DSS_DEFAULT_CTX, code)
 
 """List of DSS intrinsic classes (names of the classes)"""
 function Classes(dss::DSSContext)::Vector{String}
-    return get_string_array(Lib.DSS_Get_Classes, dss.ctx)
+    return get_string_array(dss.capi.DSS_Get_Classes, dss)
 end
 Classes() = Classes(DSS_DEFAULT_CTX)
 
@@ -46,7 +46,7 @@ DSS Data File Path.  Default path for reports, etc. from DSS
 (Getter)
 """
 function DataPath(dss::DSSContext)::String
-    return get_string(Lib.DSS_Get_DataPath(dss.ctx))
+    return get_string(dss_ccall(dss.capi.DSS_Get_DataPath, dss.ctx))
 end
 DataPath() = DataPath(DSS_DEFAULT_CTX)
 
@@ -56,43 +56,43 @@ DSS Data File Path.  Default path for reports, etc. from DSS
 (Setter)
 """
 function DataPath(dss::DSSContext, Value::String)
-    @checked Lib.DSS_Set_DataPath(dss.ctx, Value)
+    @checked dss_ccall(dss.capi.DSS_Set_DataPath, dss.ctx, Value)
 end
 DataPath(Value::String) = DataPath(DSS_DEFAULT_CTX, Value)
 
 """Returns the path name for the default text editor."""
 function DefaultEditor(dss::DSSContext)::String
-    return get_string(@checked Lib.DSS_Get_DefaultEditor(dss.ctx))
+    return get_string(@checked dss_ccall(dss.capi.DSS_Get_DefaultEditor, dss.ctx))
 end
 DefaultEditor() = DefaultEditor(DSS_DEFAULT_CTX)
 
 """Number of Circuits currently defined"""
 function NumCircuits(dss::DSSContext)::Int
-    return @checked Lib.DSS_Get_NumCircuits(dss.ctx)
+    return @checked dss_ccall(dss.capi.DSS_Get_NumCircuits, dss.ctx)
 end
 NumCircuits() = NumCircuits(DSS_DEFAULT_CTX)
 
 """Number of DSS intrinsic classes"""
 function NumClasses(dss::DSSContext)::Int
-    return @checked Lib.DSS_Get_NumClasses(dss.ctx)
+    return @checked dss_ccall(dss.capi.DSS_Get_NumClasses, dss.ctx)
 end
 NumClasses() = NumClasses(DSS_DEFAULT_CTX)
 
 """Number of user-defined classes"""
 function NumUserClasses(dss::DSSContext)::Int
-    return @checked Lib.DSS_Get_NumUserClasses(dss.ctx)
+    return @checked dss_ccall(dss.capi.DSS_Get_NumUserClasses, dss.ctx)
 end
 NumUserClasses() = NumUserClasses(DSS_DEFAULT_CTX)
 
 """List of user-defined classes"""
 function UserClasses(dss::DSSContext)::Vector{String}
-    return get_string_array(Lib.DSS_Get_UserClasses, dss.ctx)
+    return get_string_array(dss.capi.DSS_Get_UserClasses, dss)
 end
 UserClasses() = UserClasses(DSS_DEFAULT_CTX)
 
 """Get version string for the DSS."""
 function Version(dss::DSSContext)::String
-    return get_string(@checked Lib.DSS_Get_Version(dss.ctx))
+    return get_string(@checked dss_ccall(dss.capi.DSS_Get_Version, dss.ctx))
 end
 Version() = Version(DSS_DEFAULT_CTX)
 
@@ -106,7 +106,7 @@ Original COM help: https://opendss.epri.com/AllowForms.html
 (Getter)
 """
 function AllowForms(dss::DSSContext)::Bool
-    return @checked(Lib.DSS_Get_AllowForms(dss.ctx)) != 0
+    return @checked(dss_ccall(dss.capi.DSS_Get_AllowForms, dss.ctx)) != 0
 end
 AllowForms() = AllowForms(DSS_DEFAULT_CTX)
 
@@ -120,7 +120,7 @@ Original COM help: https://opendss.epri.com/AllowForms.html
 (Setter)
 """
 function AllowForms(dss::DSSContext, Value::Bool)
-    @checked Lib.DSS_Set_AllowForms(dss.ctx, Value ? 1 : 0)
+    @checked dss_ccall(dss.capi.DSS_Set_AllowForms, dss.ctx, Value ? 1 : 0)
 end
 AllowForms(Value::Bool) = AllowForms(DSS_DEFAULT_CTX, Value)
 
@@ -131,7 +131,7 @@ end
 
 """Create a new circuit"""
 function NewCircuit(dss::DSSContext, name::String)::String
-    @checked Lib.DSS_NewCircuit(dss.ctx, name)
+    @checked dss_ccall(dss.capi.DSS_NewCircuit, dss.ctx, name)
     return "New Circuit: $name"
 end
 NewCircuit(name::String) = NewCircuit(DSS_DEFAULT_CTX, name)
@@ -146,7 +146,7 @@ Legacy models was a feature in a previous release that allowed toggling older/re
 (Getter)
 """
 function LegacyModelsLegacyModels(dss::DSSContext)::Bool
-    return @checked(Lib.DSS_Get_LegacyModels(dss.ctx)) != 0
+    return @checked(dss_ccall(dss.capi.DSS_Get_LegacyModels, dss.ctx)) != 0
 end
 LegacyModelsLegacyModels() = LegacyModelsLegacyModels(DSS_DEFAULT_CTX)
 
@@ -160,7 +160,7 @@ Legacy models was a feature in a previous release that allowed toggling older/re
 (Setter)
 """
 function LegacyModels(dss::DSSContext, Value::Bool)
-    @checked Lib.DSS_Set_LegacyModels(dss.ctx, Value ? 1 : 0)
+    @checked dss_ccall(dss.capi.DSS_Set_LegacyModels, dss.ctx, Value ? 1 : 0)
 end
 LegacyModels(Value::Bool) = LegacyModels(DSS_DEFAULT_CTX, Value)
 
@@ -185,7 +185,7 @@ the legacy/COM behavior. The value can be toggled through the API at any time.
 (Getter)
 """
 function COMErrorResults(dss::DSSContext)::Bool
-    return (@checked Lib.DSS_Get_COMErrorResults(dss.ctx)) != 0
+    return (@checked dss_ccall(dss.capi.DSS_Get_COMErrorResults, dss.ctx)) != 0
 end
 COMErrorResults() = COMErrorResults(DSS_DEFAULT_CTX)
 
@@ -210,7 +210,7 @@ the legacy/COM behavior. The value can be toggled through the API at any time.
 (Setter)
 """
 function COMErrorResults(dss::DSSContext, Value::Bool)
-    return @checked Lib.DSS_Set_COMErrorResults(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.DSS_Set_COMErrorResults, dss.ctx, Value)
 end
 COMErrorResults(Value::Bool) = COMErrorResults(DSS_DEFAULT_CTX, Value)
 
@@ -231,7 +231,7 @@ disallow changing the active working directory.
 (Getter)
 """
 function AllowChangeDir(dss::DSSContext)::Bool
-    return (@checked Lib.DSS_Get_AllowChangeDir(dss.ctx)) != 0
+    return (@checked dss_ccall(dss.capi.DSS_Get_AllowChangeDir, dss.ctx)) != 0
 end
 AllowChangeDir() = AllowChangeDir(DSS_DEFAULT_CTX)
 
@@ -252,7 +252,7 @@ disallow changing the active working directory.
 (Setter)
 """
 function AllowChangeDir(dss::DSSContext, Value::Bool)
-    return @checked Lib.DSS_Set_AllowChangeDir(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.DSS_Set_AllowChangeDir, dss.ctx, Value)
 end
 AllowChangeDir(Value::Bool) = AllowChangeDir(DSS_DEFAULT_CTX, Value)
 
@@ -268,7 +268,7 @@ such as the creation of files, are not affected.
 (Getter)
 """
 function AllowEditor(dss::DSSContext)::Bool
-    return (@checked Lib.DSS_Get_AllowEditor(dss.ctx)) != 0
+    return (@checked dss_ccall(dss.capi.DSS_Get_AllowEditor, dss.ctx)) != 0
 end
 AllowEditor() = AllowEditor(DSS_DEFAULT_CTX)
 
@@ -284,7 +284,7 @@ such as the creation of files, are not affected.
 (Setter)
 """
 function AllowEditor(dss::DSSContext, Value::Bool)
-    return @checked Lib.DSS_Set_AllowEditor(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.DSS_Set_AllowEditor, dss.ctx, Value)
 end
 AllowEditor(Value::Bool) = AllowEditor(DSS_DEFAULT_CTX, Value)
 
@@ -301,7 +301,7 @@ the legacy components, using the old models from the start.
 (Getter)
 """
 function AllowDOScmd(dss::DSSContext)::Bool
-    return (@checked Lib.DSS_Get_AllowDOScmd(dss.ctx)) != 0
+    return (@checked dss_ccall(dss.capi.DSS_Get_AllowDOScmd, dss.ctx)) != 0
 end
 AllowDOScmd() = AllowDOScmd(DSS_DEFAULT_CTX)
 
@@ -318,7 +318,7 @@ the legacy components, using the old models from the start.
 (Setter)
 """
 function AllowDOScmd(dss::DSSContext, Value::Bool)
-    return @checked Lib.DSS_Set_AllowDOScmd(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.DSS_Set_AllowDOScmd, dss.ctx, Value)
 end
 AllowDOScmd(Value::Bool) = AllowDOScmd(DSS_DEFAULT_CTX, Value)
 
@@ -329,9 +329,12 @@ Not available with EPRI's OpenDSS distribution.
 
 **(API Extension)**
 """
-function NewContext()::DSSContext
-    return DSSContext(Lib.ctx_New())
+function NewContext(dss::DSSContext)::DSSContext
+    new_ctx = dss_ccall(dss.capi.ctx_New)
+    error_ptr = dss_ccall(dss.capi.Error_Get_NumberPtr, new_ctx)
+    return DSSContext(new_ctx, dss.capi, error_ptr)
 end
+NewContext() = NewContext(DSS_DEFAULT_CTX)
 
 """
 Disposes a DSS engine context. 
@@ -340,9 +343,8 @@ Cannot be called with the prime instance.
 **(API Extension)**
 """
 function DisposeContext(dss::DSSContext)
-    return DSSContext(Lib.ctx_Dispose(dss.ctx))
+    return DSSContext(dss_ccall(dss.capi.ctx_Dispose, dss.ctx))
 end
-
 
 """
 Controls some compatibility flags introduced to toggle some behavior from the official OpenDSS.
@@ -374,12 +376,12 @@ Related enumeration: DSSCompatFlags
 **(API Extension)**
 """
 function CompatFlags(dss::DSSContext, Value::Union{UInt32,Lib.DSSCompatFlags})
-    @checked Lib.DSS_Set_CompatFlags(Value)
+    @checked dss_ccall(dss.capi.DSS_Set_CompatFlags, dss.ctx, Value)
 end
 CompatFlags(Value::Union{UInt32,Lib.DSSCompatFlags}) = CompatFlags(DSS_DEFAULT_CTX, Value)
 
 function CompatFlags(dss::DSSContext)::UInt32
-    return @checked Lib.DSS_Get_CompatFlags()
+    return @checked dss_ccall(dss.capi.DSS_Get_CompatFlags, dss.ctx)
 end
 CompatFlags() = CompatFlags(DSS_DEFAULT_CTX)
 

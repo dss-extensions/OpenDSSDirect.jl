@@ -1,0 +1,3062 @@
+""" 
+Generic wrapper to document the types and simplify calling
+"""
+struct DSSCFunctionPtr{ArgTypes<:Tuple, RetType}
+    cfunc::Ptr{Cvoid}
+end
+
+# For callbacks/events
+
+const altdss_callback_plot_t = Ptr{Cvoid}
+const altdss_callback_message_t = Ptr{Cvoid}
+const altdss_callback_event_t = Ptr{Cvoid}
+const dss_obj_float64_func_t = Ptr{Cvoid}
+const dss_obj_float64_int32_func_t = Ptr{Cvoid}
+const dss_obj_int32_func_t = Ptr{Cvoid}
+const dss_ctx_bus_float64_func_t = Ptr{Cvoid}
+const dss_ctx_bus_int32_func_t = Ptr{Cvoid}
+
+
+# Function types -- collected from the C headers
+#region function_types
+const altdss_func_v_i8pp = DSSCFunctionPtr{Tuple{Ptr{Ptr{Int8}},}, Cvoid}
+const altdss_func_v_f64pp = DSSCFunctionPtr{Tuple{Ptr{Ptr{Float64}},}, Cvoid}
+const altdss_func_v_i32pp = DSSCFunctionPtr{Tuple{Ptr{Ptr{Int32}},}, Cvoid}
+const altdss_func_v_strs_i32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cstring}}, Int32}, Cvoid}
+const altdss_func_cstr_vp_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32}, Cstring}
+const altdss_func_v_vp_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Cvoid}}, Cvoid}
+const altdss_func_cstr_vp_u16 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, UInt16}, Cstring}
+const altdss_func_v_cstr = DSSCFunctionPtr{Tuple{Cstring,}, Cvoid}
+const altdss_func_v_vppp = DSSCFunctionPtr{Tuple{Ptr{Ptr{Ptr{Cvoid}}},}, Cvoid}
+const altdss_func_vp_vp_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Cvoid}}, Ptr{Cvoid}}
+const altdss_func_v_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, Cvoid}
+const altdss_func_cvp_v = DSSCFunctionPtr{Tuple{}, Ptr{Cvoid}}
+const altdss_func_v_cvp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, Cvoid}
+const altdss_func_cvp_cvp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, Ptr{Cvoid}}
+const altdss_func_v_cvp_f64ppp_i32ppp_i8ppp_i32pp_i32pp_i32pp = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Ptr{Float64}}}, Ptr{Ptr{Ptr{Int32}}}, Ptr{Ptr{Ptr{Int8}}}, Ptr{Ptr{Int32}}, Ptr{Ptr{Int32}}, Ptr{Ptr{Int32}}}, Cvoid}
+const altdss_func_f64p_cvp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, Ptr{Float64}}
+const altdss_func_i32p_cvp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, Ptr{Int32}}
+const altdss_func_i8p_cvp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, Ptr{Int8}}
+const altdss_func_vp_cvp_u64 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, UInt64}, Ptr{Cvoid}}
+const altdss_func_v_cvp_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Cvoid}}, Cvoid}
+const altdss_func_v_cvp_altdss_callback_plot_t = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, altdss_callback_plot_t}, Cvoid}
+const altdss_func_v_cvp_altdss_callback_message_t = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, altdss_callback_message_t}, Cvoid}
+const altdss_func_u16_cvp_i32_altdss_callback_event_t = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, altdss_callback_event_t}, UInt16}
+const altdss_func_v_cvp_cstr = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Cstring}, Cvoid}
+const altdss_func_v_cvp_strs_i32p = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}}, Cvoid}
+const altdss_func_i32_cvp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, Int32}
+const altdss_func_cstr_cvp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, Cstring}
+const altdss_func_cstr_cvp_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32}, Cstring}
+const altdss_func_v_cvp_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32}, Cvoid}
+const altdss_func_v_cvp_f64pp_i32p = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}}, Cvoid}
+const altdss_func_v_cvp_i32pp_i32p = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}}, Cvoid}
+const altdss_func_f64_cvp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, Float64}
+const altdss_func_u16_cvp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, UInt16}
+const altdss_func_v_cvp_f64 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Float64}, Cvoid}
+const altdss_func_i32_cvp_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32}, Int32}
+const altdss_func_v_cvp_u16 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, UInt16}, Cvoid}
+const altdss_func_v_cvp_ci32p_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Int32}, Int32}, Cvoid}
+const altdss_func_i32_cvp_cstr = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Cstring}, Int32}
+const altdss_func_f64_cvp_f64_f64 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Float64, Float64}, Float64}
+const altdss_func_v_cvp_f64pp_i32p_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}, Int32}, Cvoid}
+const altdss_func_v_cvp_strs_i32p_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}, Int32}, Cvoid}
+const altdss_func_cstr_cvp_cstr_u32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Cstring, UInt32}, Cstring}
+const altdss_func_v_cvp_cstr_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Cstring, Int32}, Cvoid}
+const altdss_func_v_cvp_strs_i32p_u16 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}, UInt16}, Cvoid}
+const altdss_func_v_cvp_cstrp_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Cstring}, Int32}, Cvoid}
+const altdss_func_v_cvp_i32_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Int32}, Cvoid}
+const altdss_func_u16_cvp_i32_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Int32}, UInt16}
+const altdss_func_f64_cvp_cstr_i32p = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Cstring, Ptr{Int32}}, Float64}
+const altdss_func_v_cvp_cstr_i32p_f64 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Cstring, Ptr{Int32}, Float64}, Cvoid}
+const altdss_func_f64_cvp_i32_i32p = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Ptr{Int32}}, Float64}
+const altdss_func_v_cvp_i32_i32p_f64 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Ptr{Int32}, Float64}, Cvoid}
+const altdss_func_v_cvp_f64pp_i32p_f64_f64 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}, Float64, Float64}, Cvoid}
+const altdss_func_v_cvp_f64_f64 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Float64, Float64}, Cvoid}
+const altdss_func_v_cvp_f64pp_i32p_f64_f64_f64_f64 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}, Float64, Float64, Float64, Float64}, Cvoid}
+const altdss_func_v_cvp_f64_f64_f64_f64 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Float64, Float64, Float64, Float64}, Cvoid}
+const altdss_func_i32_cvp_i32_f64_i32_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Float64, Int32, Int32}, Int32}
+const altdss_func_u16_cvp_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32}, UInt16}
+const altdss_func_u32_cvp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, UInt32}
+const altdss_func_v_cvp_u32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, UInt32}, Cvoid}
+const altdss_func_v_cvp_f64pp_i32p_size = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}, UInt64}, Cvoid}
+const altdss_func_v_cvp_size = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, UInt64}, Cvoid}
+const altdss_func_v_cvp_cf64p_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Float64}, Int32}, Cvoid}
+const altdss_func_v_cvp_i8pp_i32p = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Int8}}, Ptr{Int32}}, Cvoid}
+const altdss_func_v_cvp_f64pp_i32p_u16 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}, UInt16}, Cvoid}
+const altdss_func_v_cvp_u16_u32p_u32p_i32pp_i32pp_f64pp = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, UInt16, Ptr{UInt32}, Ptr{UInt32}, Ptr{Ptr{Int32}}, Ptr{Ptr{Int32}}, Ptr{Ptr{Float64}}}, Cvoid}
+const altdss_func_v_cvp_f64pp = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Float64}}}, Cvoid}
+const altdss_func_i32_cvp_f64p = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Float64}}, Int32}
+const altdss_func_v_cvp_f64pp_i32p_f64_f64_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}, Float64, Float64, Int32}, Cvoid}
+const altdss_func_v_cvp_f64_f64_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Float64, Float64, Int32}, Cvoid}
+const altdss_func_v_cvp_f64pp_i32p_i32p_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Int32}, Int32}, Cvoid}
+const altdss_func_v_cvp_i32p_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Int32}, Int32}, Cvoid}
+const altdss_func_v_cvp_i32_vp_vp_vp_u16_u16_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Ptr{Cvoid}, Ptr{Cvoid}, Ptr{Cvoid}, UInt16, UInt16, Int32}, Cvoid}
+const altdss_func_vp_cvp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, Ptr{Cvoid}}
+const altdss_func_v_cvp_u64 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, UInt64}, Cvoid}
+const altdss_func_u64_cvp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, UInt64}
+const altdss_func_u16_cvp_cstr = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Cstring}, UInt16}
+const altdss_func_v_cvp_strs_i32p_cstr = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}, Cstring}, Cvoid}
+const altdss_func_v_cvp_i8pp_i32p_cstr = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Int8}}, Ptr{Int32}, Cstring}, Cvoid}
+const altdss_func_vp_cvp_i32_cstr_u16_u16 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Cstring, UInt16, UInt16}, Ptr{Cvoid}}
+const altdss_func_vpp_cvp_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32}, Ptr{Ptr{Cvoid}}}
+const altdss_func_vp_cvp_i32_cstr = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Cstring}, Ptr{Cvoid}}
+const altdss_func_vp_cvp_i32_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Int32}, Ptr{Cvoid}}
+const altdss_func_u16_vp_i32_i32_u32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Int32, UInt32}, UInt16}
+const altdss_func_v_vp_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32}, Cvoid}
+const altdss_func_i32_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, Int32}
+const altdss_func_cstr_vp_u32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, UInt32}, Cstring}
+const altdss_func_cstr_vpp_i32_u32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, UInt32}, Cstring}
+const altdss_func_cstr_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, Cstring}
+const altdss_func_v_vp_b = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32}, Cvoid}
+const altdss_func_i32p_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, Ptr{Int32}}
+const altdss_func_u32_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, UInt32}
+const altdss_func_v_vp_u32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, UInt32}, Cvoid}
+const altdss_func_f64_vp_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32}, Float64}
+const altdss_func_i32_vp_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32}, Int32}
+const altdss_func_vp_vp_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32}, Ptr{Cvoid}}
+const altdss_func_v_f64pp_i32p_vp_i32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Cvoid}, Int32}, Cvoid}
+const altdss_func_f64_vp_i32_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Int32}, Float64}
+const altdss_func_v_i32pp_i32p_vp_i32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Int32}}, Ptr{Int32}, Ptr{Cvoid}, Int32}, Cvoid}
+const altdss_func_i32_vp_i32_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Int32}, Int32}
+const altdss_func_v_strs_i32p_vp_i32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cstring}}, Ptr{Int32}, Ptr{Cvoid}, Int32}, Cvoid}
+const altdss_func_cstr_vp_i32_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Int32}, Cstring}
+const altdss_func_v_vppp_i32p_vp_i32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Ptr{Cvoid}, Int32}, Cvoid}
+const altdss_func_vp_vp_i32_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Int32}, Ptr{Cvoid}}
+const altdss_func_v_vp_i32_cstr_u32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Cstring, UInt32}, Cvoid}
+const altdss_func_v_vp_i32_f64_u32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Float64, UInt32}, Cvoid}
+const altdss_func_v_vp_i32_i32_u32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Int32, UInt32}, Cvoid}
+const altdss_func_v_vp_i32_vp_u32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Ptr{Cvoid}, UInt32}, Cvoid}
+const altdss_func_v_vp_i32_f64p_i32_u32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Ptr{Float64}, Int32, UInt32}, Cvoid}
+const altdss_func_v_vp_i32_f64_f64_u32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Float64, Float64, UInt32}, Cvoid}
+const altdss_func_v_vp_i32_i32p_i32_u32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Ptr{Int32}, Int32, UInt32}, Cvoid}
+const altdss_func_v_vp_i32_i32_i32_u32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Int32, Int32, UInt32}, Cvoid}
+const altdss_func_v_vp_i32_cstrp_i32_u32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Ptr{Cstring}, Int32, UInt32}, Cvoid}
+const altdss_func_v_vp_i32_i32_cstr_u32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Int32, Cstring, UInt32}, Cvoid}
+const altdss_func_v_vp_i32_vpp_i32_u32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Ptr{Ptr{Cvoid}}, Int32, UInt32}, Cvoid}
+const altdss_func_v_vp_i32_i32_vp_u32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Int32, Ptr{Cvoid}, UInt32}, Cvoid}
+const altdss_func_v_vpp = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}},}, Cvoid}
+const altdss_func_v_vpp_i32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32}, Cvoid}
+const altdss_func_v_vpp_i32_i32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, Int32}, Cvoid}
+const altdss_func_v_i32pp_i32p_vpp_i32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Int32}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32}, Cvoid}
+const altdss_func_v_cvp_vppp_i32p_i32_cstrp_i32_b = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Int32, Ptr{Cstring}, Int32, Int32}, Cvoid}
+const altdss_func_v_cvp_vppp_i32p_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Int32}, Cvoid}
+const altdss_func_v_cvp_vppp_i32p_i32_cstr = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Int32, Cstring}, Cvoid}
+const altdss_func_v_cvp_vppp_i32p_i32_i32p_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Int32, Ptr{Int32}, Int32}, Cvoid}
+const altdss_func_v_cvp_vppp_i32p_i32_i32_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Int32, Int32, Int32}, Cvoid}
+const altdss_func_v_cvp_vppp_i32p_i32_i32_f64_f64 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Int32, Int32, Float64, Float64}, Cvoid}
+const altdss_func_v_cvp_vppp_i32p_vpp_i32_i32_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Int32, Int32}, Cvoid}
+const altdss_func_v_cvp_vppp_i32p_vpp_i32_i32_f64_f64 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Int32, Float64, Float64}, Cvoid}
+const altdss_func_v_f64pp_i32p_vpp_i32_i32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Int32}, Cvoid}
+const altdss_func_v_f64pp_i32p_vpp_i32_dss_obj_f3264_func_t = DSSCFunctionPtr{Tuple{Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, dss_obj_float64_func_t}, Cvoid}
+const altdss_func_v_f64pp_i32p_vpp_i32_dss_obj_f3264_i32_func_t_i32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, dss_obj_float64_int32_func_t, Int32}, Cvoid}
+const altdss_func_v_i32pp_i32p_vpp_i32_i32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Int32}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Int32}, Cvoid}
+const altdss_func_v_i32pp_i32p_vpp_i32_dss_obj_i32_func_t = DSSCFunctionPtr{Tuple{Ptr{Ptr{Int32}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, dss_obj_int32_func_t}, Cvoid}
+const altdss_func_v_strs_i32p_vpp_i32_i32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cstring}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Int32}, Cvoid}
+const altdss_func_v_vppp_i32p_vpp_i32_i32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Int32}, Cvoid}
+const altdss_func_v_vpp_i32_i32_i32_f64_u32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, Int32, Int32, Float64, UInt32}, Cvoid}
+const altdss_func_v_vpp_i32_i32_i32_i32_u32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, Int32, Int32, Int32, UInt32}, Cvoid}
+const altdss_func_v_vpp_i32_i32_cstr_u32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, Int32, Cstring, UInt32}, Cvoid}
+const altdss_func_v_vpp_i32_i32_cvp_u32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, Int32, Ptr{Cvoid}, UInt32}, Cvoid}
+const altdss_func_v_vpp_i32_i32_i32_f64p_u32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, Int32, Int32, Ptr{Float64}, UInt32}, Cvoid}
+const altdss_func_v_vpp_i32_i32_i32_i32p_u32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, Int32, Int32, Ptr{Int32}, UInt32}, Cvoid}
+const altdss_func_v_vpp_i32_i32_f64p_u32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, Int32, Ptr{Float64}, UInt32}, Cvoid}
+const altdss_func_v_vpp_i32_i32_i32p_u32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, Int32, Ptr{Int32}, UInt32}, Cvoid}
+const altdss_func_v_vpp_i32_i32_cstrp_u32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, Int32, Ptr{Cstring}, UInt32}, Cvoid}
+const altdss_func_v_vpp_i32_i32_cvpp_u32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, Int32, Ptr{Ptr{Cvoid}}, UInt32}, Cvoid}
+const altdss_func_v_cvp_vppp_i32p_cstr_cstrp_i32_b = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Cstring, Ptr{Cstring}, Int32, Int32}, Cvoid}
+const altdss_func_v_cvp_vppp_i32p_cstr = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Cstring}, Cvoid}
+const altdss_func_v_cvp_vppp_i32p_cstr_cstr = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Cstring, Cstring}, Cvoid}
+const altdss_func_v_cvp_vppp_i32p_cstr_i32p_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Cstring, Ptr{Int32}, Int32}, Cvoid}
+const altdss_func_v_cvp_vppp_i32p_cstr_cstr_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Cstring, Cstring, Int32}, Cvoid}
+const altdss_func_v_cvp_vppp_i32p_cstr_cstr_f64_f64 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Cstring, Cstring, Float64, Float64}, Cvoid}
+const altdss_func_v_f64pp_i32p_vpp_i32_cstr = DSSCFunctionPtr{Tuple{Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Cstring}, Cvoid}
+const altdss_func_v_i32pp_i32p_vpp_i32_cstr = DSSCFunctionPtr{Tuple{Ptr{Ptr{Int32}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Cstring}, Cvoid}
+const altdss_func_v_strs_i32p_vpp_i32_cstr = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cstring}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Cstring}, Cvoid}
+const altdss_func_v_vppp_i32p_vpp_i32_cstr = DSSCFunctionPtr{Tuple{Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Cstring}, Cvoid}
+const altdss_func_v_vpp_i32_cstr_i32_f64_u32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, Cstring, Int32, Float64, UInt32}, Cvoid}
+const altdss_func_v_vpp_i32_cstr_i32_i32_u32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, Cstring, Int32, Int32, UInt32}, Cvoid}
+const altdss_func_v_vpp_i32_cstr_cstr_u32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, Cstring, Cstring, UInt32}, Cvoid}
+const altdss_func_v_vpp_i32_cstr_cvp_u32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, Cstring, Ptr{Cvoid}, UInt32}, Cvoid}
+const altdss_func_v_vpp_i32_cstr_i32_f64p_u32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, Cstring, Int32, Ptr{Float64}, UInt32}, Cvoid}
+const altdss_func_v_vpp_i32_cstr_f64p_u32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, Cstring, Ptr{Float64}, UInt32}, Cvoid}
+const altdss_func_v_vpp_i32_cstr_i32_i32p_u32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, Cstring, Int32, Ptr{Int32}, UInt32}, Cvoid}
+const altdss_func_v_vpp_i32_cstr_i32p_u32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, Cstring, Ptr{Int32}, UInt32}, Cvoid}
+const altdss_func_v_vpp_i32_cstr_cstrp_u32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, Cstring, Ptr{Cstring}, UInt32}, Cvoid}
+const altdss_func_v_vpp_i32_cstr_cvpp_u32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cvoid}}, Int32, Cstring, Ptr{Ptr{Cvoid}}, UInt32}, Cvoid}
+const altdss_func_v_vp_cstrp_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Cstring}, Int32}, Cvoid}
+const altdss_func_v_f64pp_i32p_vp = DSSCFunctionPtr{Tuple{Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Cvoid}}, Cvoid}
+const altdss_func_v_vp_i32_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Int32}, Cvoid}
+const altdss_func_b_vp_i32_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Int32}, Int32}
+const altdss_func_v_vppp_i32p_vp = DSSCFunctionPtr{Tuple{Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Ptr{Cvoid}}, Cvoid}
+const altdss_func_b_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, Int32}
+const altdss_func_v_i32pp_i32p_vp = DSSCFunctionPtr{Tuple{Ptr{Ptr{Int32}}, Ptr{Int32}, Ptr{Cvoid}}, Cvoid}
+const altdss_func_vp_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, Ptr{Cvoid}}
+const altdss_func_v_vp_cstr = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Cstring}, Cvoid}
+const altdss_func_v_strs_i32p_vp = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cstring}}, Ptr{Int32}, Ptr{Cvoid}}, Cvoid}
+const altdss_func_v_vp_i32_f64 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Float64}, Cvoid}
+const altdss_func_v_vp_cstr_f64 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Cstring, Float64}, Cvoid}
+const altdss_func_f64_vp_cstr = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Cstring}, Float64}
+const altdss_func_v_f64pp_i32p_vpp_i32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32}, Cvoid}
+const altdss_func_f64_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, Float64}
+const altdss_func_f64_vp_b = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32}, Float64}
+const altdss_func_v_f64pp_i32p_vpp_i32_b = DSSCFunctionPtr{Tuple{Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Int32}, Cvoid}
+const altdss_func_v_vp_i32_vp_vp_vp_b_b_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Ptr{Cvoid}, Ptr{Cvoid}, Ptr{Cvoid}, Int32, Int32, Int32}, Cvoid}
+const altdss_func_v_i8pp_i32p_vp = DSSCFunctionPtr{Tuple{Ptr{Ptr{Int8}}, Ptr{Int32}, Ptr{Cvoid}}, Cvoid}
+const altdss_func_v_vp_cf64p_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Float64}, Int32}, Cvoid}
+const altdss_func_cstr_cvp_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Cvoid}}, Cstring}
+const altdss_func_i32_cvp_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Cvoid}}, Int32}
+const altdss_func_f64_cvp_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Cvoid}}, Float64}
+const altdss_func_b_cvp_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Cvoid}}, Int32}
+const altdss_func_v_cvp_vp_f64 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Cvoid}, Float64}, Cvoid}
+const altdss_func_i32_vp_vp_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Cvoid}, Int32}, Int32}
+const altdss_func_v_cvp_f64pp_i32p_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Cvoid}}, Cvoid}
+const altdss_func_v_cvp_i32pp_i32p_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}, Ptr{Cvoid}}, Cvoid}
+const altdss_func_v_cvp_vppp_i32p_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Ptr{Cvoid}}, Cvoid}
+const altdss_func_vpp_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, Ptr{Ptr{Cvoid}}}
+const altdss_func_vp_vp_cstr = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Cstring}, Ptr{Cvoid}}
+const altdss_func_cstr_vp_vp_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Cvoid}, Int32}, Cstring}
+const altdss_func_v_vp_f64pp_i32p_vpp_i32_dss_ctx_bus_f3264_func_t = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, dss_ctx_bus_float64_func_t}, Cvoid}
+const altdss_func_v_vp_i32pp_i32p_vpp_i32_dss_ctx_bus_i32_func_t = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, dss_ctx_bus_int32_func_t}, Cvoid}
+const altdss_func_cstr_vp_vpp_i32_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Cvoid}}, Int32, Int32}, Cstring}
+const altdss_func_v_cstr_u32p = DSSCFunctionPtr{Tuple{Cstring, Ptr{UInt32}}, Cvoid}
+#endregion function_types
+
+# The main struct to be filled by the libraries (AltDSS Engine, AltDSS Oddie)
+#region main_struct
+mutable struct AltDSSCAPI
+    # ctx::Ptr{Cvoid}
+    libHandle::Ptr{Cvoid}
+    versionSignature::UInt64
+    isAltDSS::UInt64
+    engineName::Cstring
+
+    ActiveClass_Get_ActiveClassName::altdss_func_cstr_cvp
+    ActiveClass_Get_ActiveClassParent::altdss_func_cstr_cvp
+    ActiveClass_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    ActiveClass_Get_Count::altdss_func_i32_cvp
+    ActiveClass_Get_First::altdss_func_i32_cvp
+    ActiveClass_Get_Name::altdss_func_cstr_cvp
+    ActiveClass_Get_Next::altdss_func_i32_cvp
+    ActiveClass_Get_NumElements::altdss_func_i32_cvp
+    ActiveClass_Get_Pointer::altdss_func_vp_cvp
+    ActiveClass_Get_idx::altdss_func_i32_cvp
+    ActiveClass_Set_Name::altdss_func_v_cvp_cstr
+    ActiveClass_Set_idx::altdss_func_v_cvp_i32
+    ActiveClass_ToJSON::altdss_func_cstr_cvp_i32
+    Alt_BusBatch_GetFloat64FromFunc::altdss_func_v_vp_f64pp_i32p_vpp_i32_dss_ctx_bus_f3264_func_t
+    Alt_BusBatch_GetInt32FromFunc::altdss_func_v_vp_i32pp_i32p_vpp_i32_dss_ctx_bus_i32_func_t
+    Alt_BusBatch_ToJSON::altdss_func_cstr_vp_vpp_i32_i32
+    Alt_Bus_GetByIndex::altdss_func_vp_vp_i32
+    Alt_Bus_GetByName::altdss_func_vp_vp_cstr
+    Alt_Bus_GetListPtr::altdss_func_vpp_vp
+    Alt_Bus_GetUniqueNodeNumber::altdss_func_i32_vp_vp_i32
+    Alt_Bus_Get_ComplexSeqVoltages::altdss_func_v_cvp_f64pp_i32p_vp
+    Alt_Bus_Get_CoordDefined::altdss_func_b_cvp_vp
+    Alt_Bus_Get_CustDuration::altdss_func_f64_cvp_vp
+    Alt_Bus_Get_CustInterrupts::altdss_func_f64_cvp_vp
+    Alt_Bus_Get_Distance::altdss_func_f64_cvp_vp
+    Alt_Bus_Get_IntDuration::altdss_func_f64_cvp_vp
+    Alt_Bus_Get_Isc::altdss_func_v_cvp_f64pp_i32p_vp
+    Alt_Bus_Get_Lambda::altdss_func_f64_cvp_vp
+    Alt_Bus_Get_Lines::altdss_func_v_cvp_vppp_i32p_vp
+    Alt_Bus_Get_Loads::altdss_func_v_cvp_vppp_i32p_vp
+    Alt_Bus_Get_Name::altdss_func_cstr_cvp_vp
+    Alt_Bus_Get_Nodes::altdss_func_v_cvp_i32pp_i32p_vp
+    Alt_Bus_Get_NumCustomers::altdss_func_i32_cvp_vp
+    Alt_Bus_Get_NumInterrupts::altdss_func_f64_cvp_vp
+    Alt_Bus_Get_NumNodes::altdss_func_i32_cvp_vp
+    Alt_Bus_Get_PCElements::altdss_func_v_cvp_vppp_i32p_vp
+    Alt_Bus_Get_PDElements::altdss_func_v_cvp_vppp_i32p_vp
+    Alt_Bus_Get_SectionID::altdss_func_i32_cvp_vp
+    Alt_Bus_Get_SeqVoltages::altdss_func_v_cvp_f64pp_i32p_vp
+    Alt_Bus_Get_TotalMiles::altdss_func_f64_cvp_vp
+    Alt_Bus_Get_VLL::altdss_func_v_cvp_f64pp_i32p_vp
+    Alt_Bus_Get_VMagAngle::altdss_func_v_cvp_f64pp_i32p_vp
+    Alt_Bus_Get_Voc::altdss_func_v_cvp_f64pp_i32p_vp
+    Alt_Bus_Get_Voltages::altdss_func_v_cvp_f64pp_i32p_vp
+    Alt_Bus_Get_X::altdss_func_f64_cvp_vp
+    Alt_Bus_Get_Y::altdss_func_f64_cvp_vp
+    Alt_Bus_Get_YscMatrix::altdss_func_v_cvp_f64pp_i32p_vp
+    Alt_Bus_Get_Zsc0::altdss_func_v_cvp_f64pp_i32p_vp
+    Alt_Bus_Get_Zsc012Matrix::altdss_func_v_cvp_f64pp_i32p_vp
+    Alt_Bus_Get_Zsc1::altdss_func_v_cvp_f64pp_i32p_vp
+    Alt_Bus_Get_ZscMatrix::altdss_func_v_cvp_f64pp_i32p_vp
+    Alt_Bus_Get_kVBase::altdss_func_f64_cvp_vp
+    Alt_Bus_Get_puVLL::altdss_func_v_cvp_f64pp_i32p_vp
+    Alt_Bus_Get_puVMagAngle::altdss_func_v_cvp_f64pp_i32p_vp
+    Alt_Bus_Get_puVoltages::altdss_func_v_cvp_f64pp_i32p_vp
+    Alt_Bus_Set_X::altdss_func_v_cvp_vp_f64
+    Alt_Bus_Set_Y::altdss_func_v_cvp_vp_f64
+    Alt_Bus_ToJSON::altdss_func_cstr_vp_vp_i32
+    Alt_Bus_ZscRefresh::altdss_func_b_cvp_vp
+    Alt_CEBatch_Get_ComplexSeqCurrents::altdss_func_v_f64pp_i32p_vpp_i32
+    Alt_CEBatch_Get_ComplexSeqVoltages::altdss_func_v_f64pp_i32p_vpp_i32
+    Alt_CEBatch_Get_Currents::altdss_func_v_f64pp_i32p_vpp_i32
+    Alt_CEBatch_Get_CurrentsMagAng::altdss_func_v_f64pp_i32p_vpp_i32
+    Alt_CEBatch_Get_Losses::altdss_func_v_f64pp_i32p_vpp_i32
+    Alt_CEBatch_Get_PhaseLosses::altdss_func_v_f64pp_i32p_vpp_i32
+    Alt_CEBatch_Get_Powers::altdss_func_v_f64pp_i32p_vpp_i32
+    Alt_CEBatch_Get_SeqCurrents::altdss_func_v_f64pp_i32p_vpp_i32
+    Alt_CEBatch_Get_SeqPowers::altdss_func_v_f64pp_i32p_vpp_i32
+    Alt_CEBatch_Get_SeqVoltages::altdss_func_v_f64pp_i32p_vpp_i32
+    Alt_CEBatch_Get_TotalPowers::altdss_func_v_f64pp_i32p_vpp_i32
+    Alt_CEBatch_Get_Voltages::altdss_func_v_f64pp_i32p_vpp_i32
+    Alt_CEBatch_Get_VoltagesMagAng::altdss_func_v_f64pp_i32p_vpp_i32
+    Alt_CE_Close::altdss_func_v_vp_i32_i32
+    Alt_CE_Get_BusNames::altdss_func_v_strs_i32p_vp_i32
+    Alt_CE_Get_ComplexSeqCurrents::altdss_func_v_f64pp_i32p_vp
+    Alt_CE_Get_ComplexSeqVoltages::altdss_func_v_f64pp_i32p_vp
+    Alt_CE_Get_Controllers::altdss_func_v_vppp_i32p_vp
+    Alt_CE_Get_Currents::altdss_func_v_f64pp_i32p_vp
+    Alt_CE_Get_CurrentsMagAng::altdss_func_v_f64pp_i32p_vp
+    Alt_CE_Get_DisplayName::altdss_func_cstr_vp
+    Alt_CE_Get_GUID::altdss_func_cstr_vp
+    Alt_CE_Get_Handle::altdss_func_i32_vp
+    Alt_CE_Get_HasOCPDevice::altdss_func_b_vp
+    Alt_CE_Get_HasSwitchControl::altdss_func_b_vp
+    Alt_CE_Get_HasVoltControl::altdss_func_b_vp
+    Alt_CE_Get_IsIsolated::altdss_func_b_vp
+    Alt_CE_Get_Losses::altdss_func_v_f64pp_i32p_vp
+    Alt_CE_Get_NodeOrder::altdss_func_v_i32pp_i32p_vp
+    Alt_CE_Get_NodeRef::altdss_func_v_i32pp_i32p_vp
+    Alt_CE_Get_NumConductors::altdss_func_i32_vp
+    Alt_CE_Get_NumControllers::altdss_func_i32_vp
+    Alt_CE_Get_NumPhases::altdss_func_i32_vp
+    Alt_CE_Get_NumTerminals::altdss_func_i32_vp
+    Alt_CE_Get_OCPDevice::altdss_func_vp_vp
+    Alt_CE_Get_OCPDeviceIndex::altdss_func_i32_vp
+    Alt_CE_Get_OCPDeviceType::altdss_func_i32_vp
+    Alt_CE_Get_PhaseLosses::altdss_func_v_f64pp_i32p_vp
+    Alt_CE_Get_Powers::altdss_func_v_f64pp_i32p_vp
+    Alt_CE_Get_RegisterNames::altdss_func_v_strs_i32p_vp
+    Alt_CE_Get_RegisterValues::altdss_func_v_f64pp_i32p_vp
+    Alt_CE_Get_Residuals::altdss_func_v_f64pp_i32p_vp
+    Alt_CE_Get_SeqCurrents::altdss_func_v_f64pp_i32p_vp
+    Alt_CE_Get_SeqPowers::altdss_func_v_f64pp_i32p_vp
+    Alt_CE_Get_SeqVoltages::altdss_func_v_f64pp_i32p_vp
+    Alt_CE_Get_TotalPowers::altdss_func_v_f64pp_i32p_vp
+    Alt_CE_Get_Voltages::altdss_func_v_f64pp_i32p_vp
+    Alt_CE_Get_VoltagesMagAng::altdss_func_v_f64pp_i32p_vp
+    Alt_CE_Get_YPrim::altdss_func_v_f64pp_i32p_vp
+    Alt_CE_Get_YPrimOrder::altdss_func_i32_vp
+    Alt_CE_IsOpen::altdss_func_b_vp_i32_i32
+    Alt_CE_MaxCurrent::altdss_func_f64_vp_i32
+    Alt_CE_Open::altdss_func_v_vp_i32_i32
+    Alt_CE_Set_BusNames::altdss_func_v_vp_cstrp_i32
+    Alt_CE_Set_DisplayName::altdss_func_v_vp_cstr
+    Alt_LoadShape_Set_Points::altdss_func_v_vp_i32_vp_vp_vp_b_b_i32
+    Alt_LoadShape_UseFloat32::altdss_func_v_vp
+    Alt_LoadShape_UseFloat64::altdss_func_v_vp
+    Alt_MeterSection_AvgRepairTime::altdss_func_f64_vp_i32
+    Alt_MeterSection_FaultRateXRepairHours::altdss_func_f64_vp_i32
+    Alt_MeterSection_NumBranches::altdss_func_i32_vp_i32
+    Alt_MeterSection_NumCustomers::altdss_func_i32_vp_i32
+    Alt_MeterSection_OCPDeviceType::altdss_func_i32_vp_i32
+    Alt_MeterSection_SequenceIndex::altdss_func_i32_vp_i32
+    Alt_MeterSection_SumBranchFaultRates::altdss_func_f64_vp_i32
+    Alt_MeterSection_TotalCustomers::altdss_func_i32_vp_i32
+    Alt_Meter_DoReliabilityCalc::altdss_func_v_vp_b
+    Alt_Meter_Get_AllocFactors::altdss_func_v_f64pp_i32p_vp
+    Alt_Meter_Get_BranchesInZone::altdss_func_v_vppp_i32p_vp
+    Alt_Meter_Get_CalcCurrent::altdss_func_v_f64pp_i32p_vp
+    Alt_Meter_Get_EndElements::altdss_func_v_vppp_i32p_vp
+    Alt_Meter_Get_Loads::altdss_func_v_vppp_i32p_vp
+    Alt_Meter_Get_NumBranchesInZone::altdss_func_i32_vp
+    Alt_Meter_Get_NumEndElements::altdss_func_i32_vp
+    Alt_Meter_Get_NumSections::altdss_func_i32_vp
+    Alt_Meter_Get_SequenceList::altdss_func_v_vppp_i32p_vp
+    Alt_Meter_Get_TotalCustomers::altdss_func_i32_vp
+    Alt_Meter_Get_ZonePCEs::altdss_func_v_vppp_i32p_vp
+    Alt_Meter_Set_AllocFactors::altdss_func_v_vp_cf64p_i32
+    Alt_Meter_Set_CalcCurrent::altdss_func_v_vp_cf64p_i32
+    Alt_Monitor_Get_ByteStream::altdss_func_v_i8pp_i32p_vp
+    Alt_Monitor_Get_Channel::altdss_func_v_f64pp_i32p_vp_i32
+    Alt_Monitor_Get_FileName::altdss_func_cstr_vp
+    Alt_Monitor_Get_Header::altdss_func_v_strs_i32p_vp
+    Alt_Monitor_Get_NumChannels::altdss_func_i32_vp
+    Alt_Monitor_Get_RecordSize::altdss_func_i32_vp
+    Alt_Monitor_Get_SampleCount::altdss_func_i32_vp
+    Alt_Monitor_Get_dblFreq::altdss_func_v_f64pp_i32p_vp
+    Alt_Monitor_Get_dblHour::altdss_func_v_f64pp_i32p_vp
+    Alt_Monitor_Show::altdss_func_v_vp
+    Alt_PCE_Get_EnergyMeter::altdss_func_vp_vp
+    Alt_PCE_Get_EnergyMeterName::altdss_func_cstr_vp
+    Alt_PCE_Get_VariableName::altdss_func_cstr_vp_i32
+    Alt_PCE_Get_VariableNames::altdss_func_v_strs_i32p_vp
+    Alt_PCE_Get_VariableSValue::altdss_func_f64_vp_cstr
+    Alt_PCE_Get_VariableValue::altdss_func_f64_vp_i32
+    Alt_PCE_Get_VariableValues::altdss_func_v_f64pp_i32p_vp
+    Alt_PCE_Set_VariableSValue::altdss_func_v_vp_cstr_f64
+    Alt_PCE_Set_VariableValue::altdss_func_v_vp_i32_f64
+    Alt_PDEBatch_Get_pctEmerg::altdss_func_v_f64pp_i32p_vpp_i32_b
+    Alt_PDEBatch_Get_pctNorm::altdss_func_v_f64pp_i32p_vpp_i32_b
+    Alt_PDE_Get_AccumulatedL::altdss_func_f64_vp
+    Alt_PDE_Get_EnergyMeter::altdss_func_vp_vp
+    Alt_PDE_Get_EnergyMeterName::altdss_func_cstr_vp
+    Alt_PDE_Get_FromTerminal::altdss_func_i32_vp
+    Alt_PDE_Get_IsShunt::altdss_func_b_vp
+    Alt_PDE_Get_Lambda::altdss_func_f64_vp
+    Alt_PDE_Get_NumCustomers::altdss_func_i32_vp
+    Alt_PDE_Get_ParentPDElement::altdss_func_vp_vp
+    Alt_PDE_Get_SectionID::altdss_func_i32_vp
+    Alt_PDE_Get_TotalCustomers::altdss_func_i32_vp
+    Alt_PDE_Get_TotalMiles::altdss_func_f64_vp
+    Alt_PDE_Get_pctEmerg::altdss_func_f64_vp_b
+    Alt_PDE_Get_pctNorm::altdss_func_f64_vp_b
+    Alt_Transformer_Get_LossesByType::altdss_func_v_f64pp_i32p_vp
+    Alt_Transformer_Get_WdgCurrents::altdss_func_v_f64pp_i32p_vp
+    Alt_Transformer_Get_WdgVoltages::altdss_func_v_f64pp_i32p_vp_i32
+    Batch_BeginEdit::altdss_func_v_vpp_i32
+    Batch_CreateByClass::altdss_func_v_cvp_vppp_i32p_i32
+    Batch_CreateByClassS::altdss_func_v_cvp_vppp_i32p_cstr
+    Batch_CreateByFloat64PropertyRange::altdss_func_v_cvp_vppp_i32p_i32_i32_f64_f64
+    Batch_CreateByFloat64PropertyRangeS::altdss_func_v_cvp_vppp_i32p_cstr_cstr_f64_f64
+    Batch_CreateByIndex::altdss_func_v_cvp_vppp_i32p_i32_i32p_i32
+    Batch_CreateByIndexS::altdss_func_v_cvp_vppp_i32p_cstr_i32p_i32
+    Batch_CreateByInt32Property::altdss_func_v_cvp_vppp_i32p_i32_i32_i32
+    Batch_CreateByInt32PropertyS::altdss_func_v_cvp_vppp_i32p_cstr_cstr_i32
+    Batch_CreateByRegExp::altdss_func_v_cvp_vppp_i32p_i32_cstr
+    Batch_CreateByRegExpS::altdss_func_v_cvp_vppp_i32p_cstr_cstr
+    Batch_CreateFromNew::altdss_func_v_cvp_vppp_i32p_i32_cstrp_i32_b
+    Batch_CreateFromNewS::altdss_func_v_cvp_vppp_i32p_cstr_cstrp_i32_b
+    Batch_Dispose::altdss_func_v_vpp
+    Batch_EndEdit::altdss_func_v_vpp_i32_i32
+    Batch_FilterByFloat64PropertyRange::altdss_func_v_cvp_vppp_i32p_vpp_i32_i32_f64_f64
+    Batch_FilterByInt32Property::altdss_func_v_cvp_vppp_i32p_vpp_i32_i32_i32
+    Batch_Float64::altdss_func_v_vpp_i32_i32_i32_f64_u32
+    Batch_Float64Array::altdss_func_v_vpp_i32_i32_i32_f64p_u32
+    Batch_Float64ArrayS::altdss_func_v_vpp_i32_cstr_i32_f64p_u32
+    Batch_Float64S::altdss_func_v_vpp_i32_cstr_i32_f64_u32
+    Batch_GetAsString::altdss_func_v_strs_i32p_vpp_i32_i32
+    Batch_GetAsStringS::altdss_func_v_strs_i32p_vpp_i32_cstr
+    Batch_GetFloat64::altdss_func_v_f64pp_i32p_vpp_i32_i32
+    Batch_GetFloat64FromFunc::altdss_func_v_f64pp_i32p_vpp_i32_dss_obj_f3264_func_t
+    Batch_GetFloat64FromFunc2::altdss_func_v_f64pp_i32p_vpp_i32_dss_obj_f3264_i32_func_t_i32
+    Batch_GetFloat64S::altdss_func_v_f64pp_i32p_vpp_i32_cstr
+    Batch_GetInt32::altdss_func_v_i32pp_i32p_vpp_i32_i32
+    Batch_GetInt32FromFunc::altdss_func_v_i32pp_i32p_vpp_i32_dss_obj_i32_func_t
+    Batch_GetInt32S::altdss_func_v_i32pp_i32p_vpp_i32_cstr
+    Batch_GetObject::altdss_func_v_vppp_i32p_vpp_i32_i32
+    Batch_GetObjectS::altdss_func_v_vppp_i32p_vpp_i32_cstr
+    Batch_GetPropSeq::altdss_func_v_i32pp_i32p_vpp_i32
+    Batch_GetString::altdss_func_v_strs_i32p_vpp_i32_i32
+    Batch_GetStringS::altdss_func_v_strs_i32p_vpp_i32_cstr
+    Batch_Int32::altdss_func_v_vpp_i32_i32_i32_i32_u32
+    Batch_Int32Array::altdss_func_v_vpp_i32_i32_i32_i32p_u32
+    Batch_Int32ArrayS::altdss_func_v_vpp_i32_cstr_i32_i32p_u32
+    Batch_Int32S::altdss_func_v_vpp_i32_cstr_i32_i32_u32
+    Batch_SetFloat64Array::altdss_func_v_vpp_i32_i32_f64p_u32
+    Batch_SetFloat64ArrayS::altdss_func_v_vpp_i32_cstr_f64p_u32
+    Batch_SetInt32Array::altdss_func_v_vpp_i32_i32_i32p_u32
+    Batch_SetInt32ArrayS::altdss_func_v_vpp_i32_cstr_i32p_u32
+    Batch_SetObject::altdss_func_v_vpp_i32_i32_cvp_u32
+    Batch_SetObjectArray::altdss_func_v_vpp_i32_i32_cvpp_u32
+    Batch_SetObjectArrayS::altdss_func_v_vpp_i32_cstr_cvpp_u32
+    Batch_SetObjectS::altdss_func_v_vpp_i32_cstr_cvp_u32
+    Batch_SetString::altdss_func_v_vpp_i32_i32_cstr_u32
+    Batch_SetStringArray::altdss_func_v_vpp_i32_i32_cstrp_u32
+    Batch_SetStringArrayS::altdss_func_v_vpp_i32_cstr_cstrp_u32
+    Batch_SetStringS::altdss_func_v_vpp_i32_cstr_cstr_u32
+    Batch_ToJSON::altdss_func_cstr_vpp_i32_u32
+    Bus_GetUniqueNodeNumber::altdss_func_i32_cvp_i32
+    Bus_Get_AllPCEatBus::altdss_func_v_cvp_strs_i32p
+    Bus_Get_AllPDEatBus::altdss_func_v_cvp_strs_i32p
+    Bus_Get_Coorddefined::altdss_func_u16_cvp
+    Bus_Get_CplxSeqVoltages::altdss_func_v_cvp_f64pp_i32p
+    Bus_Get_CplxSeqVoltages_GR::altdss_func_v_cvp
+    Bus_Get_Cust_Duration::altdss_func_f64_cvp
+    Bus_Get_Cust_Interrupts::altdss_func_f64_cvp
+    Bus_Get_Distance::altdss_func_f64_cvp
+    Bus_Get_Int_Duration::altdss_func_f64_cvp
+    Bus_Get_Isc::altdss_func_v_cvp_f64pp_i32p
+    Bus_Get_Isc_GR::altdss_func_v_cvp
+    Bus_Get_Lambda::altdss_func_f64_cvp
+    Bus_Get_Latitude::altdss_func_f64_cvp
+    Bus_Get_LineList::altdss_func_v_cvp_strs_i32p
+    Bus_Get_LoadList::altdss_func_v_cvp_strs_i32p
+    Bus_Get_Longitude::altdss_func_f64_cvp
+    Bus_Get_N_Customers::altdss_func_i32_cvp
+    Bus_Get_N_interrupts::altdss_func_f64_cvp
+    Bus_Get_Name::altdss_func_cstr_cvp
+    Bus_Get_Next::altdss_func_i32_cvp
+    Bus_Get_Nodes::altdss_func_v_cvp_i32pp_i32p
+    Bus_Get_Nodes_GR::altdss_func_v_cvp
+    Bus_Get_NumNodes::altdss_func_i32_cvp
+    Bus_Get_SectionID::altdss_func_i32_cvp
+    Bus_Get_SeqVoltages::altdss_func_v_cvp_f64pp_i32p
+    Bus_Get_SeqVoltages_GR::altdss_func_v_cvp
+    Bus_Get_TotalMiles::altdss_func_f64_cvp
+    Bus_Get_VLL::altdss_func_v_cvp_f64pp_i32p
+    Bus_Get_VLL_GR::altdss_func_v_cvp
+    Bus_Get_VMagAngle::altdss_func_v_cvp_f64pp_i32p
+    Bus_Get_VMagAngle_GR::altdss_func_v_cvp
+    Bus_Get_Voc::altdss_func_v_cvp_f64pp_i32p
+    Bus_Get_Voc_GR::altdss_func_v_cvp
+    Bus_Get_Voltages::altdss_func_v_cvp_f64pp_i32p
+    Bus_Get_Voltages_GR::altdss_func_v_cvp
+    Bus_Get_YscMatrix::altdss_func_v_cvp_f64pp_i32p
+    Bus_Get_YscMatrix_GR::altdss_func_v_cvp
+    Bus_Get_ZSC012Matrix::altdss_func_v_cvp_f64pp_i32p
+    Bus_Get_ZSC012Matrix_GR::altdss_func_v_cvp
+    Bus_Get_Zsc0::altdss_func_v_cvp_f64pp_i32p
+    Bus_Get_Zsc0_GR::altdss_func_v_cvp
+    Bus_Get_Zsc1::altdss_func_v_cvp_f64pp_i32p
+    Bus_Get_Zsc1_GR::altdss_func_v_cvp
+    Bus_Get_ZscMatrix::altdss_func_v_cvp_f64pp_i32p
+    Bus_Get_ZscMatrix_GR::altdss_func_v_cvp
+    Bus_Get_idx::altdss_func_i32_cvp
+    Bus_Get_kVBase::altdss_func_f64_cvp
+    Bus_Get_puVLL::altdss_func_v_cvp_f64pp_i32p
+    Bus_Get_puVLL_GR::altdss_func_v_cvp
+    Bus_Get_puVmagAngle::altdss_func_v_cvp_f64pp_i32p
+    Bus_Get_puVmagAngle_GR::altdss_func_v_cvp
+    Bus_Get_puVoltages::altdss_func_v_cvp_f64pp_i32p
+    Bus_Get_puVoltages_GR::altdss_func_v_cvp
+    Bus_Get_x::altdss_func_f64_cvp
+    Bus_Get_y::altdss_func_f64_cvp
+    Bus_Set_Latitude::altdss_func_v_cvp_f64
+    Bus_Set_Longitude::altdss_func_v_cvp_f64
+    Bus_Set_x::altdss_func_v_cvp_f64
+    Bus_Set_y::altdss_func_v_cvp_f64
+    Bus_ZscRefresh::altdss_func_u16_cvp
+    CNData_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    CNData_Get_Count::altdss_func_i32_cvp
+    CNData_Get_DiaCable::altdss_func_f64_cvp
+    CNData_Get_DiaIns::altdss_func_f64_cvp
+    CNData_Get_DiaStrand::altdss_func_f64_cvp
+    CNData_Get_Diameter::altdss_func_f64_cvp
+    CNData_Get_EmergAmps::altdss_func_f64_cvp
+    CNData_Get_EpsR::altdss_func_f64_cvp
+    CNData_Get_First::altdss_func_i32_cvp
+    CNData_Get_GMRUnits::altdss_func_i32_cvp
+    CNData_Get_GMRac::altdss_func_f64_cvp
+    CNData_Get_GmrStrand::altdss_func_f64_cvp
+    CNData_Get_InsLayer::altdss_func_f64_cvp
+    CNData_Get_Name::altdss_func_cstr_cvp
+    CNData_Get_Next::altdss_func_i32_cvp
+    CNData_Get_NormAmps::altdss_func_f64_cvp
+    CNData_Get_Pointer::altdss_func_vp_cvp
+    CNData_Get_RStrand::altdss_func_f64_cvp
+    CNData_Get_Rac::altdss_func_f64_cvp
+    CNData_Get_Radius::altdss_func_f64_cvp
+    CNData_Get_RadiusUnits::altdss_func_i32_cvp
+    CNData_Get_Rdc::altdss_func_f64_cvp
+    CNData_Get_ResistanceUnits::altdss_func_i32_cvp
+    CNData_Get_idx::altdss_func_i32_cvp
+    CNData_Get_k::altdss_func_i32_cvp
+    CNData_Set_DiaCable::altdss_func_v_cvp_f64
+    CNData_Set_DiaIns::altdss_func_v_cvp_f64
+    CNData_Set_DiaStrand::altdss_func_v_cvp_f64
+    CNData_Set_Diameter::altdss_func_v_cvp_f64
+    CNData_Set_EmergAmps::altdss_func_v_cvp_f64
+    CNData_Set_EpsR::altdss_func_v_cvp_f64
+    CNData_Set_GMRUnits::altdss_func_v_cvp_i32
+    CNData_Set_GMRac::altdss_func_v_cvp_f64
+    CNData_Set_GmrStrand::altdss_func_v_cvp_f64
+    CNData_Set_InsLayer::altdss_func_v_cvp_f64
+    CNData_Set_Name::altdss_func_v_cvp_cstr
+    CNData_Set_NormAmps::altdss_func_v_cvp_f64
+    CNData_Set_RStrand::altdss_func_v_cvp_f64
+    CNData_Set_Rac::altdss_func_v_cvp_f64
+    CNData_Set_Radius::altdss_func_v_cvp_f64
+    CNData_Set_RadiusUnits::altdss_func_v_cvp_i32
+    CNData_Set_Rdc::altdss_func_v_cvp_f64
+    CNData_Set_ResistanceUnits::altdss_func_v_cvp_i32
+    CNData_Set_idx::altdss_func_v_cvp_i32
+    CNData_Set_k::altdss_func_v_cvp_i32
+    CapControls_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    CapControls_Get_CTratio::altdss_func_f64_cvp
+    CapControls_Get_Capacitor::altdss_func_cstr_cvp
+    CapControls_Get_Count::altdss_func_i32_cvp
+    CapControls_Get_DeadTime::altdss_func_f64_cvp
+    CapControls_Get_Delay::altdss_func_f64_cvp
+    CapControls_Get_DelayOff::altdss_func_f64_cvp
+    CapControls_Get_First::altdss_func_i32_cvp
+    CapControls_Get_Mode::altdss_func_i32_cvp
+    CapControls_Get_MonitoredObj::altdss_func_cstr_cvp
+    CapControls_Get_MonitoredTerm::altdss_func_i32_cvp
+    CapControls_Get_Name::altdss_func_cstr_cvp
+    CapControls_Get_Next::altdss_func_i32_cvp
+    CapControls_Get_OFFSetting::altdss_func_f64_cvp
+    CapControls_Get_ONSetting::altdss_func_f64_cvp
+    CapControls_Get_PTratio::altdss_func_f64_cvp
+    CapControls_Get_Pointer::altdss_func_vp_cvp
+    CapControls_Get_UseVoltOverride::altdss_func_u16_cvp
+    CapControls_Get_Vmax::altdss_func_f64_cvp
+    CapControls_Get_Vmin::altdss_func_f64_cvp
+    CapControls_Get_idx::altdss_func_i32_cvp
+    CapControls_Reset::altdss_func_v_cvp
+    CapControls_Set_CTratio::altdss_func_v_cvp_f64
+    CapControls_Set_Capacitor::altdss_func_v_cvp_cstr
+    CapControls_Set_DeadTime::altdss_func_v_cvp_f64
+    CapControls_Set_Delay::altdss_func_v_cvp_f64
+    CapControls_Set_DelayOff::altdss_func_v_cvp_f64
+    CapControls_Set_Mode::altdss_func_v_cvp_i32
+    CapControls_Set_MonitoredObj::altdss_func_v_cvp_cstr
+    CapControls_Set_MonitoredTerm::altdss_func_v_cvp_i32
+    CapControls_Set_Name::altdss_func_v_cvp_cstr
+    CapControls_Set_OFFSetting::altdss_func_v_cvp_f64
+    CapControls_Set_ONSetting::altdss_func_v_cvp_f64
+    CapControls_Set_PTratio::altdss_func_v_cvp_f64
+    CapControls_Set_UseVoltOverride::altdss_func_v_cvp_u16
+    CapControls_Set_Vmax::altdss_func_v_cvp_f64
+    CapControls_Set_Vmin::altdss_func_v_cvp_f64
+    CapControls_Set_idx::altdss_func_v_cvp_i32
+    Capacitors_AddStep::altdss_func_u16_cvp
+    Capacitors_Close::altdss_func_v_cvp
+    Capacitors_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    Capacitors_Get_AvailableSteps::altdss_func_i32_cvp
+    Capacitors_Get_Count::altdss_func_i32_cvp
+    Capacitors_Get_First::altdss_func_i32_cvp
+    Capacitors_Get_IsDelta::altdss_func_u16_cvp
+    Capacitors_Get_Name::altdss_func_cstr_cvp
+    Capacitors_Get_Next::altdss_func_i32_cvp
+    Capacitors_Get_NumSteps::altdss_func_i32_cvp
+    Capacitors_Get_Pointer::altdss_func_vp_cvp
+    Capacitors_Get_States::altdss_func_v_cvp_i32pp_i32p
+    Capacitors_Get_States_GR::altdss_func_v_cvp
+    Capacitors_Get_idx::altdss_func_i32_cvp
+    Capacitors_Get_kV::altdss_func_f64_cvp
+    Capacitors_Get_kvar::altdss_func_f64_cvp
+    Capacitors_Open::altdss_func_v_cvp
+    Capacitors_Set_IsDelta::altdss_func_v_cvp_u16
+    Capacitors_Set_Name::altdss_func_v_cvp_cstr
+    Capacitors_Set_NumSteps::altdss_func_v_cvp_i32
+    Capacitors_Set_States::altdss_func_v_cvp_ci32p_i32
+    Capacitors_Set_idx::altdss_func_v_cvp_i32
+    Capacitors_Set_kV::altdss_func_v_cvp_f64
+    Capacitors_Set_kvar::altdss_func_v_cvp_f64
+    Capacitors_SubtractStep::altdss_func_u16_cvp
+    Circuit_Capacity::altdss_func_f64_cvp_f64_f64
+    Circuit_Disable::altdss_func_v_cvp_cstr
+    Circuit_Enable::altdss_func_v_cvp_cstr
+    Circuit_EndOfTimeStepUpdate::altdss_func_v_cvp
+    Circuit_FirstElement::altdss_func_i32_cvp
+    Circuit_FirstPCElement::altdss_func_i32_cvp
+    Circuit_FirstPDElement::altdss_func_i32_cvp
+    Circuit_Flatten::altdss_func_v_cvp_i32
+    Circuit_FromJSON::altdss_func_v_cvp_cstr_i32
+    Circuit_Get_AllBusDistances::altdss_func_v_cvp_f64pp_i32p
+    Circuit_Get_AllBusDistances_GR::altdss_func_v_cvp
+    Circuit_Get_AllBusNames::altdss_func_v_cvp_strs_i32p
+    Circuit_Get_AllBusVmag::altdss_func_v_cvp_f64pp_i32p
+    Circuit_Get_AllBusVmagPu::altdss_func_v_cvp_f64pp_i32p
+    Circuit_Get_AllBusVmagPu_GR::altdss_func_v_cvp
+    Circuit_Get_AllBusVmag_GR::altdss_func_v_cvp
+    Circuit_Get_AllBusVolts::altdss_func_v_cvp_f64pp_i32p
+    Circuit_Get_AllBusVolts_GR::altdss_func_v_cvp
+    Circuit_Get_AllElementLosses::altdss_func_v_cvp_f64pp_i32p
+    Circuit_Get_AllElementLosses_GR::altdss_func_v_cvp
+    Circuit_Get_AllElementNames::altdss_func_v_cvp_strs_i32p
+    Circuit_Get_AllNodeDistances::altdss_func_v_cvp_f64pp_i32p
+    Circuit_Get_AllNodeDistancesByPhase::altdss_func_v_cvp_f64pp_i32p_i32
+    Circuit_Get_AllNodeDistancesByPhase_GR::altdss_func_v_cvp_i32
+    Circuit_Get_AllNodeDistances_GR::altdss_func_v_cvp
+    Circuit_Get_AllNodeNames::altdss_func_v_cvp_strs_i32p
+    Circuit_Get_AllNodeNamesByPhase::altdss_func_v_cvp_strs_i32p_i32
+    Circuit_Get_AllNodeVmagByPhase::altdss_func_v_cvp_f64pp_i32p_i32
+    Circuit_Get_AllNodeVmagByPhase_GR::altdss_func_v_cvp_i32
+    Circuit_Get_AllNodeVmagPUByPhase::altdss_func_v_cvp_f64pp_i32p_i32
+    Circuit_Get_AllNodeVmagPUByPhase_GR::altdss_func_v_cvp_i32
+    Circuit_Get_ElementLosses::altdss_func_v_cvp_f64pp_i32p_i32p_i32
+    Circuit_Get_ElementLosses_GR::altdss_func_v_cvp_i32p_i32
+    Circuit_Get_LineLosses::altdss_func_v_cvp_f64pp_i32p
+    Circuit_Get_LineLosses_GR::altdss_func_v_cvp
+    Circuit_Get_Losses::altdss_func_v_cvp_f64pp_i32p
+    Circuit_Get_Losses_GR::altdss_func_v_cvp
+    Circuit_Get_Name::altdss_func_cstr_cvp
+    Circuit_Get_NumBuses::altdss_func_i32_cvp
+    Circuit_Get_NumCktElements::altdss_func_i32_cvp
+    Circuit_Get_NumNodes::altdss_func_i32_cvp
+    Circuit_Get_ParentPDElement::altdss_func_i32_cvp
+    Circuit_Get_SubstationLosses::altdss_func_v_cvp_f64pp_i32p
+    Circuit_Get_SubstationLosses_GR::altdss_func_v_cvp
+    Circuit_Get_SystemY::altdss_func_v_cvp_f64pp_i32p
+    Circuit_Get_SystemY_GR::altdss_func_v_cvp
+    Circuit_Get_TotalPower::altdss_func_v_cvp_f64pp_i32p
+    Circuit_Get_TotalPower_GR::altdss_func_v_cvp
+    Circuit_Get_YCurrents::altdss_func_v_cvp_f64pp_i32p
+    Circuit_Get_YCurrents_GR::altdss_func_v_cvp
+    Circuit_Get_YNodeOrder::altdss_func_v_cvp_strs_i32p
+    Circuit_Get_YNodeVarray::altdss_func_v_cvp_f64pp_i32p
+    Circuit_Get_YNodeVarray_GR::altdss_func_v_cvp
+    Circuit_NextElement::altdss_func_i32_cvp
+    Circuit_NextPCElement::altdss_func_i32_cvp
+    Circuit_NextPDElement::altdss_func_i32_cvp
+    Circuit_Sample::altdss_func_v_cvp
+    Circuit_Save::altdss_func_cstr_cvp_cstr_u32
+    Circuit_SaveSample::altdss_func_v_cvp
+    Circuit_SetActiveBus::altdss_func_i32_cvp_cstr
+    Circuit_SetActiveBusi::altdss_func_i32_cvp_i32
+    Circuit_SetActiveClass::altdss_func_i32_cvp_cstr
+    Circuit_SetActiveElement::altdss_func_i32_cvp_cstr
+    Circuit_SetCktElementIndex::altdss_func_v_cvp_i32
+    Circuit_SetCktElementName::altdss_func_v_cvp_cstr
+    Circuit_ToJSON::altdss_func_cstr_cvp_i32
+    Circuit_UpdateStorage::altdss_func_v_cvp
+    CktElement_Close::altdss_func_v_cvp_i32_i32
+    CktElement_Get_AllLosses::altdss_func_v_cvp_f64pp_i32p
+    CktElement_Get_AllLosses_GR::altdss_func_v_cvp
+    CktElement_Get_AllPropertyNames::altdss_func_v_cvp_strs_i32p
+    CktElement_Get_AllVariableNames::altdss_func_v_cvp_strs_i32p
+    CktElement_Get_AllVariableValues::altdss_func_v_cvp_f64pp_i32p
+    CktElement_Get_AllVariableValues_GR::altdss_func_v_cvp
+    CktElement_Get_BusNames::altdss_func_v_cvp_strs_i32p_u16
+    CktElement_Get_Controller::altdss_func_cstr_cvp_i32
+    CktElement_Get_CplxSeqCurrents::altdss_func_v_cvp_f64pp_i32p
+    CktElement_Get_CplxSeqCurrents_GR::altdss_func_v_cvp
+    CktElement_Get_CplxSeqVoltages::altdss_func_v_cvp_f64pp_i32p
+    CktElement_Get_CplxSeqVoltages_GR::altdss_func_v_cvp
+    CktElement_Get_Currents::altdss_func_v_cvp_f64pp_i32p
+    CktElement_Get_CurrentsMagAng::altdss_func_v_cvp_f64pp_i32p
+    CktElement_Get_CurrentsMagAng_GR::altdss_func_v_cvp
+    CktElement_Get_Currents_GR::altdss_func_v_cvp
+    CktElement_Get_DisplayName::altdss_func_cstr_cvp
+    CktElement_Get_EmergAmps::altdss_func_f64_cvp
+    CktElement_Get_Enabled::altdss_func_u16_cvp
+    CktElement_Get_EnergyMeter::altdss_func_cstr_cvp
+    CktElement_Get_GUID::altdss_func_cstr_cvp
+    CktElement_Get_Handle::altdss_func_i32_cvp
+    CktElement_Get_HasOCPDevice::altdss_func_u16_cvp
+    CktElement_Get_HasSwitchControl::altdss_func_u16_cvp
+    CktElement_Get_HasVoltControl::altdss_func_u16_cvp
+    CktElement_Get_IsIsolated::altdss_func_u16_cvp
+    CktElement_Get_Losses::altdss_func_v_cvp_f64pp_i32p
+    CktElement_Get_Losses_GR::altdss_func_v_cvp
+    CktElement_Get_Name::altdss_func_cstr_cvp
+    CktElement_Get_NodeOrder::altdss_func_v_cvp_i32pp_i32p
+    CktElement_Get_NodeOrder_GR::altdss_func_v_cvp
+    CktElement_Get_NodeRef::altdss_func_v_cvp_i32pp_i32p
+    CktElement_Get_NodeRef_GR::altdss_func_v_cvp
+    CktElement_Get_NormalAmps::altdss_func_f64_cvp
+    CktElement_Get_NumConductors::altdss_func_i32_cvp
+    CktElement_Get_NumControls::altdss_func_i32_cvp
+    CktElement_Get_NumPhases::altdss_func_i32_cvp
+    CktElement_Get_NumProperties::altdss_func_i32_cvp
+    CktElement_Get_NumTerminals::altdss_func_i32_cvp
+    CktElement_Get_OCPDevIndex::altdss_func_i32_cvp
+    CktElement_Get_OCPDevType::altdss_func_i32_cvp
+    CktElement_Get_PhaseLosses::altdss_func_v_cvp_f64pp_i32p
+    CktElement_Get_PhaseLosses_GR::altdss_func_v_cvp
+    CktElement_Get_Pointer::altdss_func_vp_cvp
+    CktElement_Get_Powers::altdss_func_v_cvp_f64pp_i32p
+    CktElement_Get_Powers_GR::altdss_func_v_cvp
+    CktElement_Get_Residuals::altdss_func_v_cvp_f64pp_i32p
+    CktElement_Get_Residuals_GR::altdss_func_v_cvp
+    CktElement_Get_SeqCurrents::altdss_func_v_cvp_f64pp_i32p
+    CktElement_Get_SeqCurrents_GR::altdss_func_v_cvp
+    CktElement_Get_SeqPowers::altdss_func_v_cvp_f64pp_i32p
+    CktElement_Get_SeqPowers_GR::altdss_func_v_cvp
+    CktElement_Get_SeqVoltages::altdss_func_v_cvp_f64pp_i32p
+    CktElement_Get_SeqVoltages_GR::altdss_func_v_cvp
+    CktElement_Get_TotalPowers::altdss_func_v_cvp_f64pp_i32p
+    CktElement_Get_TotalPowers_GR::altdss_func_v_cvp
+    CktElement_Get_Variable::altdss_func_f64_cvp_cstr_i32p
+    CktElement_Get_VariableIdx::altdss_func_i32_cvp
+    CktElement_Get_VariableName::altdss_func_cstr_cvp
+    CktElement_Get_VariableValue::altdss_func_f64_cvp
+    CktElement_Get_Variablei::altdss_func_f64_cvp_i32_i32p
+    CktElement_Get_Voltages::altdss_func_v_cvp_f64pp_i32p
+    CktElement_Get_VoltagesMagAng::altdss_func_v_cvp_f64pp_i32p
+    CktElement_Get_VoltagesMagAng_GR::altdss_func_v_cvp
+    CktElement_Get_Voltages_GR::altdss_func_v_cvp
+    CktElement_Get_Yprim::altdss_func_v_cvp_f64pp_i32p
+    CktElement_Get_YprimOrder::altdss_func_i32_cvp
+    CktElement_Get_Yprim_GR::altdss_func_v_cvp
+    CktElement_IsOpen::altdss_func_u16_cvp_i32_i32
+    CktElement_Open::altdss_func_v_cvp_i32_i32
+    CktElement_Set_BusNames::altdss_func_v_cvp_cstrp_i32
+    CktElement_Set_DisplayName::altdss_func_v_cvp_cstr
+    CktElement_Set_EmergAmps::altdss_func_v_cvp_f64
+    CktElement_Set_Enabled::altdss_func_v_cvp_u16
+    CktElement_Set_NormalAmps::altdss_func_v_cvp_f64
+    CktElement_Set_Variable::altdss_func_v_cvp_cstr_i32p_f64
+    CktElement_Set_VariableIdx::altdss_func_v_cvp_i32
+    CktElement_Set_VariableName::altdss_func_v_cvp_cstr
+    CktElement_Set_VariableValue::altdss_func_v_cvp_f64
+    CktElement_Set_Variablei::altdss_func_v_cvp_i32_i32p_f64
+    CmathLib_Get_cabs::altdss_func_f64_cvp_f64_f64
+    CmathLib_Get_cdang::altdss_func_f64_cvp_f64_f64
+    CmathLib_Get_cdiv::altdss_func_v_cvp_f64pp_i32p_f64_f64_f64_f64
+    CmathLib_Get_cdiv_GR::altdss_func_v_cvp_f64_f64_f64_f64
+    CmathLib_Get_cmplx::altdss_func_v_cvp_f64pp_i32p_f64_f64
+    CmathLib_Get_cmplx_GR::altdss_func_v_cvp_f64_f64
+    CmathLib_Get_cmul::altdss_func_v_cvp_f64pp_i32p_f64_f64_f64_f64
+    CmathLib_Get_cmul_GR::altdss_func_v_cvp_f64_f64_f64_f64
+    CmathLib_Get_ctopolardeg::altdss_func_v_cvp_f64pp_i32p_f64_f64
+    CmathLib_Get_ctopolardeg_GR::altdss_func_v_cvp_f64_f64
+    CmathLib_Get_pdegtocomplex::altdss_func_v_cvp_f64pp_i32p_f64_f64
+    CmathLib_Get_pdegtocomplex_GR::altdss_func_v_cvp_f64_f64
+    CtrlQueue_ClearActions::altdss_func_v_cvp
+    CtrlQueue_ClearQueue::altdss_func_v_cvp
+    CtrlQueue_Delete::altdss_func_v_cvp_i32
+    CtrlQueue_DoAllQueue::altdss_func_v_cvp
+    CtrlQueue_Get_ActionCode::altdss_func_i32_cvp
+    CtrlQueue_Get_DeviceHandle::altdss_func_i32_cvp
+    CtrlQueue_Get_NumActions::altdss_func_i32_cvp
+    CtrlQueue_Get_PopAction::altdss_func_i32_cvp
+    CtrlQueue_Get_Queue::altdss_func_v_cvp_strs_i32p
+    CtrlQueue_Get_QueueSize::altdss_func_i32_cvp
+    CtrlQueue_Push::altdss_func_i32_cvp_i32_f64_i32_i32
+    CtrlQueue_Set_Action::altdss_func_v_cvp_i32
+    CtrlQueue_Show::altdss_func_v_cvp
+    DSSElement_Get_AllPropertyNames::altdss_func_v_cvp_strs_i32p
+    DSSElement_Get_Name::altdss_func_cstr_cvp
+    DSSElement_Get_NumProperties::altdss_func_i32_cvp
+    DSSElement_Get_Pointer::altdss_func_vp_cvp
+    DSSElement_ToJSON::altdss_func_cstr_cvp_i32
+    DSSEvents_RegisterAlt::altdss_func_u16_cvp_i32_altdss_callback_event_t
+    DSSEvents_UnregisterAlt::altdss_func_u16_cvp_i32_altdss_callback_event_t
+    DSSProgress_Close::altdss_func_v_cvp
+    DSSProgress_Set_Caption::altdss_func_v_cvp_cstr
+    DSSProgress_Set_PctProgress::altdss_func_v_cvp_i32
+    DSSProgress_Show::altdss_func_v_cvp
+    DSSProperty_Get_Description::altdss_func_cstr_cvp
+    DSSProperty_Get_Name::altdss_func_cstr_cvp
+    DSSProperty_Get_Val::altdss_func_cstr_cvp
+    DSSProperty_Set_Index::altdss_func_v_cvp_i32
+    DSSProperty_Set_Name::altdss_func_v_cvp_cstr
+    DSSProperty_Set_Val::altdss_func_v_cvp_cstr
+    DSS_BeginPascalThread::altdss_func_vp_vp_vp
+    DSS_ClearAll::altdss_func_v_cvp
+    DSS_DisposeGRData::altdss_func_v_cvp
+    DSS_Dispose_PByte::altdss_func_v_i8pp
+    DSS_Dispose_PDouble::altdss_func_v_f64pp
+    DSS_Dispose_PInteger::altdss_func_v_i32pp
+    DSS_Dispose_PPAnsiChar::altdss_func_v_strs_i32
+    DSS_Dispose_PPointer::altdss_func_v_vppp
+    DSS_Dispose_String::altdss_func_v_cstr
+    DSS_Executive_Get_Command::altdss_func_cstr_cvp_i32
+    DSS_Executive_Get_CommandHelp::altdss_func_cstr_cvp_i32
+    DSS_Executive_Get_NumCommands::altdss_func_i32_cvp
+    DSS_Executive_Get_NumOptions::altdss_func_i32_cvp
+    DSS_Executive_Get_Option::altdss_func_cstr_cvp_i32
+    DSS_Executive_Get_OptionHelp::altdss_func_cstr_cvp_i32
+    DSS_Executive_Get_OptionValue::altdss_func_cstr_cvp_i32
+    DSS_ExtractSchema::altdss_func_cstr_vp_u16
+    DSS_FreeMem::altdss_func_v_cvp_vp
+    DSS_GR_CountPtr_PByte::altdss_func_i32p_cvp
+    DSS_GR_CountPtr_PDouble::altdss_func_i32p_cvp
+    DSS_GR_CountPtr_PInteger::altdss_func_i32p_cvp
+    DSS_GR_DataPtr_PByte::altdss_func_i8p_cvp
+    DSS_GR_DataPtr_PDouble::altdss_func_f64p_cvp
+    DSS_GR_DataPtr_PInteger::altdss_func_i32p_cvp
+    DSS_GetGRPointers::altdss_func_v_cvp_f64ppp_i32ppp_i8ppp_i32pp_i32pp_i32pp
+    DSS_GetMem::altdss_func_vp_cvp_u64
+    DSS_Get_AllowChangeDir::altdss_func_u16_cvp
+    DSS_Get_AllowDOScmd::altdss_func_u16_cvp
+    DSS_Get_AllowEditor::altdss_func_u16_cvp
+    DSS_Get_AllowForms::altdss_func_u16_cvp
+    DSS_Get_COMErrorResults::altdss_func_u16_cvp
+    DSS_Get_Classes::altdss_func_v_cvp_strs_i32p
+    DSS_Get_CompatFlags::altdss_func_u32_cvp
+    DSS_Get_DataPath::altdss_func_cstr_cvp
+    DSS_Get_DefaultEditor::altdss_func_cstr_cvp
+    DSS_Get_EnableArrayDimensions::altdss_func_u16_cvp
+    DSS_Get_LegacyModels::altdss_func_u16_cvp
+    DSS_Get_NumCircuits::altdss_func_i32_cvp
+    DSS_Get_NumClasses::altdss_func_i32_cvp
+    DSS_Get_NumUserClasses::altdss_func_i32_cvp
+    DSS_Get_PAnsiChar::altdss_func_cstr_vp_i32
+    DSS_Get_UserClasses::altdss_func_v_cvp_strs_i32p
+    DSS_Get_Version::altdss_func_cstr_cvp
+    DSS_NewCircuit::altdss_func_v_cvp_cstr
+    DSS_RegisterMessageCallback::altdss_func_v_cvp_altdss_callback_message_t
+    DSS_RegisterPlotCallback::altdss_func_v_cvp_altdss_callback_plot_t
+    DSS_Reset::altdss_func_v_cvp
+    DSS_ResetStringBuffer::altdss_func_v_cvp
+    DSS_SetActiveClass::altdss_func_i32_cvp_cstr
+    DSS_SetMessagesMO::altdss_func_v_cstr
+    DSS_SetPropertiesMO::altdss_func_v_cstr
+    DSS_Set_AllowChangeDir::altdss_func_v_cvp_u16
+    DSS_Set_AllowDOScmd::altdss_func_v_cvp_u16
+    DSS_Set_AllowEditor::altdss_func_v_cvp_u16
+    DSS_Set_AllowForms::altdss_func_v_cvp_u16
+    DSS_Set_COMErrorResults::altdss_func_v_cvp_u16
+    DSS_Set_CompatFlags::altdss_func_v_cvp_u32
+    DSS_Set_DataPath::altdss_func_v_cvp_cstr
+    DSS_Set_EnableArrayDimensions::altdss_func_v_cvp_u16
+    DSS_Set_LegacyModels::altdss_func_v_cvp_u16
+    DSS_Start::altdss_func_u16_cvp_i32
+    DSS_WaitPascalThread::altdss_func_v_vp
+    DSSimComs_BusVoltage::altdss_func_v_cvp_f64pp_i32p_size
+    DSSimComs_BusVoltage_GR::altdss_func_v_cvp_size
+    DSSimComs_BusVoltagepu::altdss_func_v_cvp_f64pp_i32p_size
+    DSSimComs_BusVoltagepu_GR::altdss_func_v_cvp_size
+    Error_Get_Description::altdss_func_cstr_cvp
+    Error_Get_EarlyAbort::altdss_func_u16_cvp
+    Error_Get_ExtendedErrors::altdss_func_u16_cvp
+    Error_Get_Number::altdss_func_i32_cvp
+    Error_Get_NumberPtr::altdss_func_i32p_cvp
+    Error_Set_Description::altdss_func_v_cvp_cstr
+    Error_Set_EarlyAbort::altdss_func_v_cvp_u16
+    Error_Set_ExtendedErrors::altdss_func_v_cvp_u16
+    Fuses_Close::altdss_func_v_cvp
+    Fuses_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    Fuses_Get_Count::altdss_func_i32_cvp
+    Fuses_Get_Delay::altdss_func_f64_cvp
+    Fuses_Get_First::altdss_func_i32_cvp
+    Fuses_Get_MonitoredObj::altdss_func_cstr_cvp
+    Fuses_Get_MonitoredTerm::altdss_func_i32_cvp
+    Fuses_Get_Name::altdss_func_cstr_cvp
+    Fuses_Get_Next::altdss_func_i32_cvp
+    Fuses_Get_NormalState::altdss_func_v_cvp_strs_i32p
+    Fuses_Get_NumPhases::altdss_func_i32_cvp
+    Fuses_Get_Pointer::altdss_func_vp_cvp
+    Fuses_Get_RatedCurrent::altdss_func_f64_cvp
+    Fuses_Get_State::altdss_func_v_cvp_strs_i32p
+    Fuses_Get_SwitchedObj::altdss_func_cstr_cvp
+    Fuses_Get_SwitchedTerm::altdss_func_i32_cvp
+    Fuses_Get_TCCcurve::altdss_func_cstr_cvp
+    Fuses_Get_idx::altdss_func_i32_cvp
+    Fuses_IsBlown::altdss_func_u16_cvp
+    Fuses_Open::altdss_func_v_cvp
+    Fuses_Reset::altdss_func_v_cvp
+    Fuses_Set_Delay::altdss_func_v_cvp_f64
+    Fuses_Set_MonitoredObj::altdss_func_v_cvp_cstr
+    Fuses_Set_MonitoredTerm::altdss_func_v_cvp_i32
+    Fuses_Set_Name::altdss_func_v_cvp_cstr
+    Fuses_Set_NormalState::altdss_func_v_cvp_cstrp_i32
+    Fuses_Set_RatedCurrent::altdss_func_v_cvp_f64
+    Fuses_Set_State::altdss_func_v_cvp_cstrp_i32
+    Fuses_Set_SwitchedObj::altdss_func_v_cvp_cstr
+    Fuses_Set_SwitchedTerm::altdss_func_v_cvp_i32
+    Fuses_Set_TCCcurve::altdss_func_v_cvp_cstr
+    Fuses_Set_idx::altdss_func_v_cvp_i32
+    GICSources_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    GICSources_Get_Bus1::altdss_func_cstr_cvp
+    GICSources_Get_Bus2::altdss_func_cstr_cvp
+    GICSources_Get_Count::altdss_func_i32_cvp
+    GICSources_Get_EE::altdss_func_f64_cvp
+    GICSources_Get_EN::altdss_func_f64_cvp
+    GICSources_Get_First::altdss_func_i32_cvp
+    GICSources_Get_Lat1::altdss_func_f64_cvp
+    GICSources_Get_Lat2::altdss_func_f64_cvp
+    GICSources_Get_Lon1::altdss_func_f64_cvp
+    GICSources_Get_Lon2::altdss_func_f64_cvp
+    GICSources_Get_Name::altdss_func_cstr_cvp
+    GICSources_Get_Next::altdss_func_i32_cvp
+    GICSources_Get_Phases::altdss_func_i32_cvp
+    GICSources_Get_Pointer::altdss_func_vp_cvp
+    GICSources_Get_Volts::altdss_func_f64_cvp
+    GICSources_Get_idx::altdss_func_i32_cvp
+    GICSources_Set_EE::altdss_func_v_cvp_f64
+    GICSources_Set_EN::altdss_func_v_cvp_f64
+    GICSources_Set_Lat1::altdss_func_v_cvp_f64
+    GICSources_Set_Lat2::altdss_func_v_cvp_f64
+    GICSources_Set_Lon1::altdss_func_v_cvp_f64
+    GICSources_Set_Lon2::altdss_func_v_cvp_f64
+    GICSources_Set_Name::altdss_func_v_cvp_cstr
+    GICSources_Set_Phases::altdss_func_v_cvp_i32
+    GICSources_Set_Volts::altdss_func_v_cvp_f64
+    GICSources_Set_idx::altdss_func_v_cvp_i32
+    Generators_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    Generators_Get_Bus1::altdss_func_cstr_cvp
+    Generators_Get_Class_::altdss_func_i32_cvp
+    Generators_Get_Count::altdss_func_i32_cvp
+    Generators_Get_First::altdss_func_i32_cvp
+    Generators_Get_ForcedON::altdss_func_u16_cvp
+    Generators_Get_IsDelta::altdss_func_u16_cvp
+    Generators_Get_Model::altdss_func_i32_cvp
+    Generators_Get_Name::altdss_func_cstr_cvp
+    Generators_Get_Next::altdss_func_i32_cvp
+    Generators_Get_PF::altdss_func_f64_cvp
+    Generators_Get_Phases::altdss_func_i32_cvp
+    Generators_Get_Pointer::altdss_func_vp_cvp
+    Generators_Get_RegisterNames::altdss_func_v_cvp_strs_i32p
+    Generators_Get_RegisterValues::altdss_func_v_cvp_f64pp_i32p
+    Generators_Get_RegisterValues_GR::altdss_func_v_cvp
+    Generators_Get_Status::altdss_func_i32_cvp
+    Generators_Get_Vmaxpu::altdss_func_f64_cvp
+    Generators_Get_Vminpu::altdss_func_f64_cvp
+    Generators_Get_Yearly::altdss_func_cstr_cvp
+    Generators_Get_daily::altdss_func_cstr_cvp
+    Generators_Get_duty::altdss_func_cstr_cvp
+    Generators_Get_idx::altdss_func_i32_cvp
+    Generators_Get_kV::altdss_func_f64_cvp
+    Generators_Get_kVArated::altdss_func_f64_cvp
+    Generators_Get_kW::altdss_func_f64_cvp
+    Generators_Get_kva::altdss_func_f64_cvp
+    Generators_Get_kvar::altdss_func_f64_cvp
+    Generators_Set_Bus1::altdss_func_v_cvp_cstr
+    Generators_Set_Class_::altdss_func_v_cvp_i32
+    Generators_Set_ForcedON::altdss_func_v_cvp_u16
+    Generators_Set_IsDelta::altdss_func_v_cvp_u16
+    Generators_Set_Model::altdss_func_v_cvp_i32
+    Generators_Set_Name::altdss_func_v_cvp_cstr
+    Generators_Set_PF::altdss_func_v_cvp_f64
+    Generators_Set_Phases::altdss_func_v_cvp_i32
+    Generators_Set_Status::altdss_func_v_cvp_i32
+    Generators_Set_Vmaxpu::altdss_func_v_cvp_f64
+    Generators_Set_Vminpu::altdss_func_v_cvp_f64
+    Generators_Set_Yearly::altdss_func_v_cvp_cstr
+    Generators_Set_daily::altdss_func_v_cvp_cstr
+    Generators_Set_duty::altdss_func_v_cvp_cstr
+    Generators_Set_idx::altdss_func_v_cvp_i32
+    Generators_Set_kV::altdss_func_v_cvp_f64
+    Generators_Set_kVArated::altdss_func_v_cvp_f64
+    Generators_Set_kW::altdss_func_v_cvp_f64
+    Generators_Set_kva::altdss_func_v_cvp_f64
+    Generators_Set_kvar::altdss_func_v_cvp_f64
+    ISources_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    ISources_Get_Amps::altdss_func_f64_cvp
+    ISources_Get_AngleDeg::altdss_func_f64_cvp
+    ISources_Get_Count::altdss_func_i32_cvp
+    ISources_Get_First::altdss_func_i32_cvp
+    ISources_Get_Frequency::altdss_func_f64_cvp
+    ISources_Get_Name::altdss_func_cstr_cvp
+    ISources_Get_Next::altdss_func_i32_cvp
+    ISources_Get_Pointer::altdss_func_vp_cvp
+    ISources_Get_idx::altdss_func_i32_cvp
+    ISources_Set_Amps::altdss_func_v_cvp_f64
+    ISources_Set_AngleDeg::altdss_func_v_cvp_f64
+    ISources_Set_Frequency::altdss_func_v_cvp_f64
+    ISources_Set_Name::altdss_func_v_cvp_cstr
+    ISources_Set_idx::altdss_func_v_cvp_i32
+    LineCodes_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    LineCodes_Get_C0::altdss_func_f64_cvp
+    LineCodes_Get_C1::altdss_func_f64_cvp
+    LineCodes_Get_Cmatrix::altdss_func_v_cvp_f64pp_i32p
+    LineCodes_Get_Cmatrix_GR::altdss_func_v_cvp
+    LineCodes_Get_Count::altdss_func_i32_cvp
+    LineCodes_Get_EmergAmps::altdss_func_f64_cvp
+    LineCodes_Get_First::altdss_func_i32_cvp
+    LineCodes_Get_IsZ1Z0::altdss_func_u16_cvp
+    LineCodes_Get_Name::altdss_func_cstr_cvp
+    LineCodes_Get_Next::altdss_func_i32_cvp
+    LineCodes_Get_NormAmps::altdss_func_f64_cvp
+    LineCodes_Get_Phases::altdss_func_i32_cvp
+    LineCodes_Get_Pointer::altdss_func_vp_cvp
+    LineCodes_Get_R0::altdss_func_f64_cvp
+    LineCodes_Get_R1::altdss_func_f64_cvp
+    LineCodes_Get_Rmatrix::altdss_func_v_cvp_f64pp_i32p
+    LineCodes_Get_Rmatrix_GR::altdss_func_v_cvp
+    LineCodes_Get_Units::altdss_func_i32_cvp
+    LineCodes_Get_X0::altdss_func_f64_cvp
+    LineCodes_Get_X1::altdss_func_f64_cvp
+    LineCodes_Get_Xmatrix::altdss_func_v_cvp_f64pp_i32p
+    LineCodes_Get_Xmatrix_GR::altdss_func_v_cvp
+    LineCodes_Get_idx::altdss_func_i32_cvp
+    LineCodes_Set_C0::altdss_func_v_cvp_f64
+    LineCodes_Set_C1::altdss_func_v_cvp_f64
+    LineCodes_Set_Cmatrix::altdss_func_v_cvp_cf64p_i32
+    LineCodes_Set_EmergAmps::altdss_func_v_cvp_f64
+    LineCodes_Set_Name::altdss_func_v_cvp_cstr
+    LineCodes_Set_NormAmps::altdss_func_v_cvp_f64
+    LineCodes_Set_Phases::altdss_func_v_cvp_i32
+    LineCodes_Set_R0::altdss_func_v_cvp_f64
+    LineCodes_Set_R1::altdss_func_v_cvp_f64
+    LineCodes_Set_Rmatrix::altdss_func_v_cvp_cf64p_i32
+    LineCodes_Set_Units::altdss_func_v_cvp_i32
+    LineCodes_Set_X0::altdss_func_v_cvp_f64
+    LineCodes_Set_X1::altdss_func_v_cvp_f64
+    LineCodes_Set_Xmatrix::altdss_func_v_cvp_cf64p_i32
+    LineCodes_Set_idx::altdss_func_v_cvp_i32
+    LineGeometries_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    LineGeometries_Get_Cmatrix::altdss_func_v_cvp_f64pp_i32p_f64_f64_i32
+    LineGeometries_Get_Cmatrix_GR::altdss_func_v_cvp_f64_f64_i32
+    LineGeometries_Get_Conductors::altdss_func_v_cvp_strs_i32p
+    LineGeometries_Get_Count::altdss_func_i32_cvp
+    LineGeometries_Get_EmergAmps::altdss_func_f64_cvp
+    LineGeometries_Get_First::altdss_func_i32_cvp
+    LineGeometries_Get_Name::altdss_func_cstr_cvp
+    LineGeometries_Get_Nconds::altdss_func_i32_cvp
+    LineGeometries_Get_Next::altdss_func_i32_cvp
+    LineGeometries_Get_NormAmps::altdss_func_f64_cvp
+    LineGeometries_Get_Phases::altdss_func_i32_cvp
+    LineGeometries_Get_Pointer::altdss_func_vp_cvp
+    LineGeometries_Get_Reduce::altdss_func_u16_cvp
+    LineGeometries_Get_RhoEarth::altdss_func_f64_cvp
+    LineGeometries_Get_Rmatrix::altdss_func_v_cvp_f64pp_i32p_f64_f64_i32
+    LineGeometries_Get_Rmatrix_GR::altdss_func_v_cvp_f64_f64_i32
+    LineGeometries_Get_Units::altdss_func_v_cvp_i32pp_i32p
+    LineGeometries_Get_Units_GR::altdss_func_v_cvp
+    LineGeometries_Get_Xcoords::altdss_func_v_cvp_f64pp_i32p
+    LineGeometries_Get_Xcoords_GR::altdss_func_v_cvp
+    LineGeometries_Get_Xmatrix::altdss_func_v_cvp_f64pp_i32p_f64_f64_i32
+    LineGeometries_Get_Xmatrix_GR::altdss_func_v_cvp_f64_f64_i32
+    LineGeometries_Get_Ycoords::altdss_func_v_cvp_f64pp_i32p
+    LineGeometries_Get_Ycoords_GR::altdss_func_v_cvp
+    LineGeometries_Get_Zmatrix::altdss_func_v_cvp_f64pp_i32p_f64_f64_i32
+    LineGeometries_Get_Zmatrix_GR::altdss_func_v_cvp_f64_f64_i32
+    LineGeometries_Get_idx::altdss_func_i32_cvp
+    LineGeometries_Set_EmergAmps::altdss_func_v_cvp_f64
+    LineGeometries_Set_Name::altdss_func_v_cvp_cstr
+    LineGeometries_Set_Nconds::altdss_func_v_cvp_i32
+    LineGeometries_Set_NormAmps::altdss_func_v_cvp_f64
+    LineGeometries_Set_Phases::altdss_func_v_cvp_i32
+    LineGeometries_Set_Reduce::altdss_func_v_cvp_u16
+    LineGeometries_Set_RhoEarth::altdss_func_v_cvp_f64
+    LineGeometries_Set_Units::altdss_func_v_cvp_ci32p_i32
+    LineGeometries_Set_Xcoords::altdss_func_v_cvp_cf64p_i32
+    LineGeometries_Set_Ycoords::altdss_func_v_cvp_cf64p_i32
+    LineGeometries_Set_idx::altdss_func_v_cvp_i32
+    LineSpacings_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    LineSpacings_Get_Count::altdss_func_i32_cvp
+    LineSpacings_Get_First::altdss_func_i32_cvp
+    LineSpacings_Get_Name::altdss_func_cstr_cvp
+    LineSpacings_Get_Nconds::altdss_func_i32_cvp
+    LineSpacings_Get_Next::altdss_func_i32_cvp
+    LineSpacings_Get_Phases::altdss_func_i32_cvp
+    LineSpacings_Get_Pointer::altdss_func_vp_cvp
+    LineSpacings_Get_Units::altdss_func_i32_cvp
+    LineSpacings_Get_Xcoords::altdss_func_v_cvp_f64pp_i32p
+    LineSpacings_Get_Xcoords_GR::altdss_func_v_cvp
+    LineSpacings_Get_Ycoords::altdss_func_v_cvp_f64pp_i32p
+    LineSpacings_Get_Ycoords_GR::altdss_func_v_cvp
+    LineSpacings_Get_idx::altdss_func_i32_cvp
+    LineSpacings_Set_Name::altdss_func_v_cvp_cstr
+    LineSpacings_Set_Nconds::altdss_func_v_cvp_i32
+    LineSpacings_Set_Phases::altdss_func_v_cvp_i32
+    LineSpacings_Set_Units::altdss_func_v_cvp_i32
+    LineSpacings_Set_Xcoords::altdss_func_v_cvp_cf64p_i32
+    LineSpacings_Set_Ycoords::altdss_func_v_cvp_cf64p_i32
+    LineSpacings_Set_idx::altdss_func_v_cvp_i32
+    Lines_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    Lines_Get_Bus1::altdss_func_cstr_cvp
+    Lines_Get_Bus2::altdss_func_cstr_cvp
+    Lines_Get_C0::altdss_func_f64_cvp
+    Lines_Get_C1::altdss_func_f64_cvp
+    Lines_Get_Cmatrix::altdss_func_v_cvp_f64pp_i32p
+    Lines_Get_Cmatrix_GR::altdss_func_v_cvp
+    Lines_Get_Count::altdss_func_i32_cvp
+    Lines_Get_EmergAmps::altdss_func_f64_cvp
+    Lines_Get_First::altdss_func_i32_cvp
+    Lines_Get_Geometry::altdss_func_cstr_cvp
+    Lines_Get_IsSwitch::altdss_func_u16_cvp
+    Lines_Get_Length::altdss_func_f64_cvp
+    Lines_Get_LineCode::altdss_func_cstr_cvp
+    Lines_Get_Name::altdss_func_cstr_cvp
+    Lines_Get_Next::altdss_func_i32_cvp
+    Lines_Get_NormAmps::altdss_func_f64_cvp
+    Lines_Get_NumCust::altdss_func_i32_cvp
+    Lines_Get_Parent::altdss_func_i32_cvp
+    Lines_Get_Phases::altdss_func_i32_cvp
+    Lines_Get_Pointer::altdss_func_vp_cvp
+    Lines_Get_R0::altdss_func_f64_cvp
+    Lines_Get_R1::altdss_func_f64_cvp
+    Lines_Get_Rg::altdss_func_f64_cvp
+    Lines_Get_Rho::altdss_func_f64_cvp
+    Lines_Get_Rmatrix::altdss_func_v_cvp_f64pp_i32p
+    Lines_Get_Rmatrix_GR::altdss_func_v_cvp
+    Lines_Get_SeasonRating::altdss_func_f64_cvp
+    Lines_Get_Spacing::altdss_func_cstr_cvp
+    Lines_Get_TotalCust::altdss_func_i32_cvp
+    Lines_Get_Units::altdss_func_i32_cvp
+    Lines_Get_X0::altdss_func_f64_cvp
+    Lines_Get_X1::altdss_func_f64_cvp
+    Lines_Get_Xg::altdss_func_f64_cvp
+    Lines_Get_Xmatrix::altdss_func_v_cvp_f64pp_i32p
+    Lines_Get_Xmatrix_GR::altdss_func_v_cvp
+    Lines_Get_Yprim::altdss_func_v_cvp_f64pp_i32p
+    Lines_Get_Yprim_GR::altdss_func_v_cvp
+    Lines_Get_idx::altdss_func_i32_cvp
+    Lines_New::altdss_func_i32_cvp_cstr
+    Lines_Set_Bus1::altdss_func_v_cvp_cstr
+    Lines_Set_Bus2::altdss_func_v_cvp_cstr
+    Lines_Set_C0::altdss_func_v_cvp_f64
+    Lines_Set_C1::altdss_func_v_cvp_f64
+    Lines_Set_Cmatrix::altdss_func_v_cvp_cf64p_i32
+    Lines_Set_EmergAmps::altdss_func_v_cvp_f64
+    Lines_Set_Geometry::altdss_func_v_cvp_cstr
+    Lines_Set_IsSwitch::altdss_func_v_cvp_u16
+    Lines_Set_Length::altdss_func_v_cvp_f64
+    Lines_Set_LineCode::altdss_func_v_cvp_cstr
+    Lines_Set_Name::altdss_func_v_cvp_cstr
+    Lines_Set_NormAmps::altdss_func_v_cvp_f64
+    Lines_Set_Phases::altdss_func_v_cvp_i32
+    Lines_Set_R0::altdss_func_v_cvp_f64
+    Lines_Set_R1::altdss_func_v_cvp_f64
+    Lines_Set_Rg::altdss_func_v_cvp_f64
+    Lines_Set_Rho::altdss_func_v_cvp_f64
+    Lines_Set_Rmatrix::altdss_func_v_cvp_cf64p_i32
+    Lines_Set_Spacing::altdss_func_v_cvp_cstr
+    Lines_Set_Units::altdss_func_v_cvp_i32
+    Lines_Set_X0::altdss_func_v_cvp_f64
+    Lines_Set_X1::altdss_func_v_cvp_f64
+    Lines_Set_Xg::altdss_func_v_cvp_f64
+    Lines_Set_Xmatrix::altdss_func_v_cvp_cf64p_i32
+    Lines_Set_Yprim::altdss_func_v_cvp_cf64p_i32
+    Lines_Set_idx::altdss_func_v_cvp_i32
+    LoadShapes_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    LoadShapes_Get_Count::altdss_func_i32_cvp
+    LoadShapes_Get_First::altdss_func_i32_cvp
+    LoadShapes_Get_HrInterval::altdss_func_f64_cvp
+    LoadShapes_Get_MaxP::altdss_func_f64_cvp
+    LoadShapes_Get_MaxQ::altdss_func_f64_cvp
+    LoadShapes_Get_MinInterval::altdss_func_f64_cvp
+    LoadShapes_Get_Name::altdss_func_cstr_cvp
+    LoadShapes_Get_Next::altdss_func_i32_cvp
+    LoadShapes_Get_Npts::altdss_func_i32_cvp
+    LoadShapes_Get_PBase::altdss_func_f64_cvp
+    LoadShapes_Get_Pmult::altdss_func_v_cvp_f64pp_i32p
+    LoadShapes_Get_Pmult_GR::altdss_func_v_cvp
+    LoadShapes_Get_Pointer::altdss_func_vp_cvp
+    LoadShapes_Get_Qbase::altdss_func_f64_cvp
+    LoadShapes_Get_Qmult::altdss_func_v_cvp_f64pp_i32p
+    LoadShapes_Get_Qmult_GR::altdss_func_v_cvp
+    LoadShapes_Get_SInterval::altdss_func_f64_cvp
+    LoadShapes_Get_TimeArray::altdss_func_v_cvp_f64pp_i32p
+    LoadShapes_Get_TimeArray_GR::altdss_func_v_cvp
+    LoadShapes_Get_UseActual::altdss_func_u16_cvp
+    LoadShapes_Get_idx::altdss_func_i32_cvp
+    LoadShapes_New::altdss_func_i32_cvp_cstr
+    LoadShapes_Normalize::altdss_func_v_cvp
+    LoadShapes_Set_HrInterval::altdss_func_v_cvp_f64
+    LoadShapes_Set_MaxP::altdss_func_v_cvp_f64
+    LoadShapes_Set_MaxQ::altdss_func_v_cvp_f64
+    LoadShapes_Set_MinInterval::altdss_func_v_cvp_f64
+    LoadShapes_Set_Name::altdss_func_v_cvp_cstr
+    LoadShapes_Set_Npts::altdss_func_v_cvp_i32
+    LoadShapes_Set_PBase::altdss_func_v_cvp_f64
+    LoadShapes_Set_Pmult::altdss_func_v_cvp_cf64p_i32
+    LoadShapes_Set_Points::altdss_func_v_cvp_i32_vp_vp_vp_u16_u16_i32
+    LoadShapes_Set_Qbase::altdss_func_v_cvp_f64
+    LoadShapes_Set_Qmult::altdss_func_v_cvp_cf64p_i32
+    LoadShapes_Set_SInterval::altdss_func_v_cvp_f64
+    LoadShapes_Set_TimeArray::altdss_func_v_cvp_cf64p_i32
+    LoadShapes_Set_UseActual::altdss_func_v_cvp_u16
+    LoadShapes_Set_idx::altdss_func_v_cvp_i32
+    LoadShapes_UseFloat32::altdss_func_v_cvp
+    LoadShapes_UseFloat64::altdss_func_v_cvp
+    Loads_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    Loads_Get_AllocationFactor::altdss_func_f64_cvp
+    Loads_Get_CVRcurve::altdss_func_cstr_cvp
+    Loads_Get_CVRvars::altdss_func_f64_cvp
+    Loads_Get_CVRwatts::altdss_func_f64_cvp
+    Loads_Get_Cfactor::altdss_func_f64_cvp
+    Loads_Get_Class_::altdss_func_i32_cvp
+    Loads_Get_Count::altdss_func_i32_cvp
+    Loads_Get_First::altdss_func_i32_cvp
+    Loads_Get_Growth::altdss_func_cstr_cvp
+    Loads_Get_IsDelta::altdss_func_u16_cvp
+    Loads_Get_Model::altdss_func_i32_cvp
+    Loads_Get_Name::altdss_func_cstr_cvp
+    Loads_Get_Next::altdss_func_i32_cvp
+    Loads_Get_NumCust::altdss_func_i32_cvp
+    Loads_Get_PF::altdss_func_f64_cvp
+    Loads_Get_PctMean::altdss_func_f64_cvp
+    Loads_Get_PctStdDev::altdss_func_f64_cvp
+    Loads_Get_Phases::altdss_func_i32_cvp
+    Loads_Get_Pointer::altdss_func_vp_cvp
+    Loads_Get_RelWeight::altdss_func_f64_cvp
+    Loads_Get_Rneut::altdss_func_f64_cvp
+    Loads_Get_Sensor::altdss_func_cstr_cvp
+    Loads_Get_Spectrum::altdss_func_cstr_cvp
+    Loads_Get_Status::altdss_func_i32_cvp
+    Loads_Get_Vmaxpu::altdss_func_f64_cvp
+    Loads_Get_Vminemerg::altdss_func_f64_cvp
+    Loads_Get_Vminnorm::altdss_func_f64_cvp
+    Loads_Get_Vminpu::altdss_func_f64_cvp
+    Loads_Get_Xneut::altdss_func_f64_cvp
+    Loads_Get_Yearly::altdss_func_cstr_cvp
+    Loads_Get_ZIPV::altdss_func_v_cvp_f64pp_i32p
+    Loads_Get_ZIPV_GR::altdss_func_v_cvp
+    Loads_Get_daily::altdss_func_cstr_cvp
+    Loads_Get_duty::altdss_func_cstr_cvp
+    Loads_Get_idx::altdss_func_i32_cvp
+    Loads_Get_kV::altdss_func_f64_cvp
+    Loads_Get_kW::altdss_func_f64_cvp
+    Loads_Get_kva::altdss_func_f64_cvp
+    Loads_Get_kvar::altdss_func_f64_cvp
+    Loads_Get_kwh::altdss_func_f64_cvp
+    Loads_Get_kwhdays::altdss_func_f64_cvp
+    Loads_Get_pctSeriesRL::altdss_func_f64_cvp
+    Loads_Get_xfkVA::altdss_func_f64_cvp
+    Loads_Set_AllocationFactor::altdss_func_v_cvp_f64
+    Loads_Set_CVRcurve::altdss_func_v_cvp_cstr
+    Loads_Set_CVRvars::altdss_func_v_cvp_f64
+    Loads_Set_CVRwatts::altdss_func_v_cvp_f64
+    Loads_Set_Cfactor::altdss_func_v_cvp_f64
+    Loads_Set_Class_::altdss_func_v_cvp_i32
+    Loads_Set_Growth::altdss_func_v_cvp_cstr
+    Loads_Set_IsDelta::altdss_func_v_cvp_u16
+    Loads_Set_Model::altdss_func_v_cvp_i32
+    Loads_Set_Name::altdss_func_v_cvp_cstr
+    Loads_Set_NumCust::altdss_func_v_cvp_i32
+    Loads_Set_PF::altdss_func_v_cvp_f64
+    Loads_Set_PctMean::altdss_func_v_cvp_f64
+    Loads_Set_PctStdDev::altdss_func_v_cvp_f64
+    Loads_Set_Phases::altdss_func_v_cvp_i32
+    Loads_Set_RelWeight::altdss_func_v_cvp_f64
+    Loads_Set_Rneut::altdss_func_v_cvp_f64
+    Loads_Set_Spectrum::altdss_func_v_cvp_cstr
+    Loads_Set_Status::altdss_func_v_cvp_i32
+    Loads_Set_Vmaxpu::altdss_func_v_cvp_f64
+    Loads_Set_Vminemerg::altdss_func_v_cvp_f64
+    Loads_Set_Vminnorm::altdss_func_v_cvp_f64
+    Loads_Set_Vminpu::altdss_func_v_cvp_f64
+    Loads_Set_Xneut::altdss_func_v_cvp_f64
+    Loads_Set_Yearly::altdss_func_v_cvp_cstr
+    Loads_Set_ZIPV::altdss_func_v_cvp_cf64p_i32
+    Loads_Set_daily::altdss_func_v_cvp_cstr
+    Loads_Set_duty::altdss_func_v_cvp_cstr
+    Loads_Set_idx::altdss_func_v_cvp_i32
+    Loads_Set_kV::altdss_func_v_cvp_f64
+    Loads_Set_kW::altdss_func_v_cvp_f64
+    Loads_Set_kva::altdss_func_v_cvp_f64
+    Loads_Set_kvar::altdss_func_v_cvp_f64
+    Loads_Set_kwh::altdss_func_v_cvp_f64
+    Loads_Set_kwhdays::altdss_func_v_cvp_f64
+    Loads_Set_pctSeriesRL::altdss_func_v_cvp_f64
+    Loads_Set_xfkVA::altdss_func_v_cvp_f64
+    Meters_CloseAllDIFiles::altdss_func_v_cvp
+    Meters_DoReliabilityCalc::altdss_func_v_cvp_u16
+    Meters_Get_AllBranchesInZone::altdss_func_v_cvp_strs_i32p
+    Meters_Get_AllEndElements::altdss_func_v_cvp_strs_i32p
+    Meters_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    Meters_Get_AllocFactors::altdss_func_v_cvp_f64pp_i32p
+    Meters_Get_AllocFactors_GR::altdss_func_v_cvp
+    Meters_Get_AvgRepairTime::altdss_func_f64_cvp
+    Meters_Get_CalcCurrent::altdss_func_v_cvp_f64pp_i32p
+    Meters_Get_CalcCurrent_GR::altdss_func_v_cvp
+    Meters_Get_Count::altdss_func_i32_cvp
+    Meters_Get_CountBranches::altdss_func_i32_cvp
+    Meters_Get_CountEndElements::altdss_func_i32_cvp
+    Meters_Get_CustInterrupts::altdss_func_f64_cvp
+    Meters_Get_DIFilesAreOpen::altdss_func_u16_cvp
+    Meters_Get_FaultRateXRepairHrs::altdss_func_f64_cvp
+    Meters_Get_First::altdss_func_i32_cvp
+    Meters_Get_MeteredElement::altdss_func_cstr_cvp
+    Meters_Get_MeteredTerminal::altdss_func_i32_cvp
+    Meters_Get_Name::altdss_func_cstr_cvp
+    Meters_Get_Next::altdss_func_i32_cvp
+    Meters_Get_NumSectionBranches::altdss_func_i32_cvp
+    Meters_Get_NumSectionCustomers::altdss_func_i32_cvp
+    Meters_Get_NumSections::altdss_func_i32_cvp
+    Meters_Get_OCPDeviceType::altdss_func_i32_cvp
+    Meters_Get_Peakcurrent::altdss_func_v_cvp_f64pp_i32p
+    Meters_Get_Peakcurrent_GR::altdss_func_v_cvp
+    Meters_Get_Pointer::altdss_func_vp_cvp
+    Meters_Get_RegisterNames::altdss_func_v_cvp_strs_i32p
+    Meters_Get_RegisterValues::altdss_func_v_cvp_f64pp_i32p
+    Meters_Get_RegisterValues_GR::altdss_func_v_cvp
+    Meters_Get_SAIDI::altdss_func_f64_cvp
+    Meters_Get_SAIFI::altdss_func_f64_cvp
+    Meters_Get_SAIFIKW::altdss_func_f64_cvp
+    Meters_Get_SectSeqIdx::altdss_func_i32_cvp
+    Meters_Get_SectTotalCust::altdss_func_i32_cvp
+    Meters_Get_SeqListSize::altdss_func_i32_cvp
+    Meters_Get_SequenceIndex::altdss_func_i32_cvp
+    Meters_Get_SumBranchFltRates::altdss_func_f64_cvp
+    Meters_Get_TotalCustomers::altdss_func_i32_cvp
+    Meters_Get_Totals::altdss_func_v_cvp_f64pp_i32p
+    Meters_Get_Totals_GR::altdss_func_v_cvp
+    Meters_Get_ZonePCE::altdss_func_v_cvp_strs_i32p
+    Meters_Get_idx::altdss_func_i32_cvp
+    Meters_OpenAllDIFiles::altdss_func_v_cvp
+    Meters_Reset::altdss_func_v_cvp
+    Meters_ResetAll::altdss_func_v_cvp
+    Meters_Sample::altdss_func_v_cvp
+    Meters_SampleAll::altdss_func_v_cvp
+    Meters_Save::altdss_func_v_cvp
+    Meters_SaveAll::altdss_func_v_cvp
+    Meters_SetActiveSection::altdss_func_v_cvp_i32
+    Meters_Set_AllocFactors::altdss_func_v_cvp_cf64p_i32
+    Meters_Set_CalcCurrent::altdss_func_v_cvp_cf64p_i32
+    Meters_Set_MeteredElement::altdss_func_v_cvp_cstr
+    Meters_Set_MeteredTerminal::altdss_func_v_cvp_i32
+    Meters_Set_Name::altdss_func_v_cvp_cstr
+    Meters_Set_Peakcurrent::altdss_func_v_cvp_cf64p_i32
+    Meters_Set_SequenceIndex::altdss_func_v_cvp_i32
+    Meters_Set_idx::altdss_func_v_cvp_i32
+    Monitors_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    Monitors_Get_ByteStream::altdss_func_v_cvp_i8pp_i32p
+    Monitors_Get_ByteStream_GR::altdss_func_v_cvp
+    Monitors_Get_Channel::altdss_func_v_cvp_f64pp_i32p_i32
+    Monitors_Get_Channel_GR::altdss_func_v_cvp_i32
+    Monitors_Get_Count::altdss_func_i32_cvp
+    Monitors_Get_Element::altdss_func_cstr_cvp
+    Monitors_Get_FileName::altdss_func_cstr_cvp
+    Monitors_Get_FileVersion::altdss_func_i32_cvp
+    Monitors_Get_First::altdss_func_i32_cvp
+    Monitors_Get_Header::altdss_func_v_cvp_strs_i32p
+    Monitors_Get_Mode::altdss_func_i32_cvp
+    Monitors_Get_Name::altdss_func_cstr_cvp
+    Monitors_Get_Next::altdss_func_i32_cvp
+    Monitors_Get_NumChannels::altdss_func_i32_cvp
+    Monitors_Get_Pointer::altdss_func_vp_cvp
+    Monitors_Get_RecordSize::altdss_func_i32_cvp
+    Monitors_Get_SampleCount::altdss_func_i32_cvp
+    Monitors_Get_Terminal::altdss_func_i32_cvp
+    Monitors_Get_dblFreq::altdss_func_v_cvp_f64pp_i32p
+    Monitors_Get_dblFreq_GR::altdss_func_v_cvp
+    Monitors_Get_dblHour::altdss_func_v_cvp_f64pp_i32p
+    Monitors_Get_dblHour_GR::altdss_func_v_cvp
+    Monitors_Get_idx::altdss_func_i32_cvp
+    Monitors_Process::altdss_func_v_cvp
+    Monitors_ProcessAll::altdss_func_v_cvp
+    Monitors_Reset::altdss_func_v_cvp
+    Monitors_ResetAll::altdss_func_v_cvp
+    Monitors_Sample::altdss_func_v_cvp
+    Monitors_SampleAll::altdss_func_v_cvp
+    Monitors_Save::altdss_func_v_cvp
+    Monitors_SaveAll::altdss_func_v_cvp
+    Monitors_Set_Element::altdss_func_v_cvp_cstr
+    Monitors_Set_Mode::altdss_func_v_cvp_i32
+    Monitors_Set_Name::altdss_func_v_cvp_cstr
+    Monitors_Set_Terminal::altdss_func_v_cvp_i32
+    Monitors_Set_idx::altdss_func_v_cvp_i32
+    Monitors_Show::altdss_func_v_cvp
+    Obj_Activate::altdss_func_v_vp_b
+    Obj_BeginEdit::altdss_func_v_vp
+    Obj_Circuit_Set_ActiveCktElement::altdss_func_v_vp
+    Obj_CktElement_MaxCurrent::altdss_func_f64_vp_i32
+    Obj_EndEdit::altdss_func_v_vp_i32
+    Obj_GetAsString::altdss_func_cstr_vp_i32
+    Obj_GetClassIdx::altdss_func_i32_vp
+    Obj_GetClassName::altdss_func_cstr_vp
+    Obj_GetCount::altdss_func_i32_cvp_i32
+    Obj_GetFlags::altdss_func_u32_vp
+    Obj_GetFloat64::altdss_func_f64_vp_i32
+    Obj_GetFloat64Array::altdss_func_v_f64pp_i32p_vp_i32
+    Obj_GetFloat64ArrayElement::altdss_func_f64_vp_i32_i32
+    Obj_GetFullName::altdss_func_cstr_vp
+    Obj_GetHandleByIdx::altdss_func_vp_cvp_i32_i32
+    Obj_GetHandleByName::altdss_func_vp_cvp_i32_cstr
+    Obj_GetIdx::altdss_func_i32_vp
+    Obj_GetInt32::altdss_func_i32_vp_i32
+    Obj_GetInt32Array::altdss_func_v_i32pp_i32p_vp_i32
+    Obj_GetInt32ArrayElement::altdss_func_i32_vp_i32_i32
+    Obj_GetListPointer::altdss_func_vpp_cvp_i32
+    Obj_GetName::altdss_func_cstr_vp
+    Obj_GetNumProperties::altdss_func_i32_vp
+    Obj_GetObject::altdss_func_vp_vp_i32
+    Obj_GetObjectArray::altdss_func_v_vppp_i32p_vp_i32
+    Obj_GetObjectArrayElement::altdss_func_vp_vp_i32_i32
+    Obj_GetPropSeqPtr::altdss_func_i32p_vp
+    Obj_GetString::altdss_func_cstr_vp_i32
+    Obj_GetStringArray::altdss_func_v_strs_i32p_vp_i32
+    Obj_GetStringArrayElement::altdss_func_cstr_vp_i32_i32
+    Obj_New::altdss_func_vp_cvp_i32_cstr_u16_u16
+    Obj_PropertySideEffects::altdss_func_u16_vp_i32_i32_u32
+    Obj_SetAsString::altdss_func_v_vp_i32_cstr_u32
+    Obj_SetFlags::altdss_func_v_vp_u32
+    Obj_SetFloat64::altdss_func_v_vp_i32_f64_u32
+    Obj_SetFloat64Array::altdss_func_v_vp_i32_f64p_i32_u32
+    Obj_SetFloat64ArrayElement::altdss_func_v_vp_i32_f64_f64_u32
+    Obj_SetInt32::altdss_func_v_vp_i32_i32_u32
+    Obj_SetInt32Array::altdss_func_v_vp_i32_i32p_i32_u32
+    Obj_SetInt32ArrayElement::altdss_func_v_vp_i32_i32_i32_u32
+    Obj_SetObject::altdss_func_v_vp_i32_vp_u32
+    Obj_SetObjectArray::altdss_func_v_vp_i32_vpp_i32_u32
+    Obj_SetObjectArrayElement::altdss_func_v_vp_i32_i32_vp_u32
+    Obj_SetString::altdss_func_v_vp_i32_cstr_u32
+    Obj_SetStringArray::altdss_func_v_vp_i32_cstrp_i32_u32
+    Obj_SetStringArrayElement::altdss_func_v_vp_i32_i32_cstr_u32
+    Obj_ToJSON::altdss_func_cstr_vp_u32
+    Oddie_SetLibOptions::altdss_func_v_cstr_u32p
+    Oddie_SetOptions::altdss_func_v_cvp_u32
+    PDElements_Get_AccumulatedL::altdss_func_f64_cvp
+    PDElements_Get_AllCplxSeqCurrents::altdss_func_v_cvp_f64pp_i32p
+    PDElements_Get_AllCplxSeqCurrents_GR::altdss_func_v_cvp
+    PDElements_Get_AllCurrents::altdss_func_v_cvp_f64pp_i32p
+    PDElements_Get_AllCurrentsMagAng::altdss_func_v_cvp_f64pp_i32p
+    PDElements_Get_AllCurrentsMagAng_GR::altdss_func_v_cvp
+    PDElements_Get_AllCurrents_GR::altdss_func_v_cvp
+    PDElements_Get_AllMaxCurrents::altdss_func_v_cvp_f64pp_i32p_u16
+    PDElements_Get_AllMaxCurrents_GR::altdss_func_v_cvp_u16
+    PDElements_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    PDElements_Get_AllNumConductors::altdss_func_v_cvp_i32pp_i32p
+    PDElements_Get_AllNumConductors_GR::altdss_func_v_cvp
+    PDElements_Get_AllNumPhases::altdss_func_v_cvp_i32pp_i32p
+    PDElements_Get_AllNumPhases_GR::altdss_func_v_cvp
+    PDElements_Get_AllNumTerminals::altdss_func_v_cvp_i32pp_i32p
+    PDElements_Get_AllNumTerminals_GR::altdss_func_v_cvp
+    PDElements_Get_AllPctEmerg::altdss_func_v_cvp_f64pp_i32p_u16
+    PDElements_Get_AllPctEmerg_GR::altdss_func_v_cvp_u16
+    PDElements_Get_AllPctNorm::altdss_func_v_cvp_f64pp_i32p_u16
+    PDElements_Get_AllPctNorm_GR::altdss_func_v_cvp_u16
+    PDElements_Get_AllPowers::altdss_func_v_cvp_f64pp_i32p
+    PDElements_Get_AllPowers_GR::altdss_func_v_cvp
+    PDElements_Get_AllSeqCurrents::altdss_func_v_cvp_f64pp_i32p
+    PDElements_Get_AllSeqCurrents_GR::altdss_func_v_cvp
+    PDElements_Get_AllSeqPowers::altdss_func_v_cvp_f64pp_i32p
+    PDElements_Get_AllSeqPowers_GR::altdss_func_v_cvp
+    PDElements_Get_Count::altdss_func_i32_cvp
+    PDElements_Get_FaultRate::altdss_func_f64_cvp
+    PDElements_Get_First::altdss_func_i32_cvp
+    PDElements_Get_FromTerminal::altdss_func_i32_cvp
+    PDElements_Get_IsShunt::altdss_func_u16_cvp
+    PDElements_Get_Lambda::altdss_func_f64_cvp
+    PDElements_Get_Name::altdss_func_cstr_cvp
+    PDElements_Get_Next::altdss_func_i32_cvp
+    PDElements_Get_Numcustomers::altdss_func_i32_cvp
+    PDElements_Get_ParentPDElement::altdss_func_i32_cvp
+    PDElements_Get_RepairTime::altdss_func_f64_cvp
+    PDElements_Get_SectionID::altdss_func_i32_cvp
+    PDElements_Get_TotalMiles::altdss_func_f64_cvp
+    PDElements_Get_Totalcustomers::altdss_func_i32_cvp
+    PDElements_Get_idx::altdss_func_i32_cvp
+    PDElements_Get_pctPermanent::altdss_func_f64_cvp
+    PDElements_Set_FaultRate::altdss_func_v_cvp_f64
+    PDElements_Set_Name::altdss_func_v_cvp_cstr
+    PDElements_Set_RepairTime::altdss_func_v_cvp_f64
+    PDElements_Set_idx::altdss_func_v_cvp_i32
+    PDElements_Set_pctPermanent::altdss_func_v_cvp_f64
+    PVSystems_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    PVSystems_Get_Count::altdss_func_i32_cvp
+    PVSystems_Get_First::altdss_func_i32_cvp
+    PVSystems_Get_Irradiance::altdss_func_f64_cvp
+    PVSystems_Get_IrradianceNow::altdss_func_f64_cvp
+    PVSystems_Get_Name::altdss_func_cstr_cvp
+    PVSystems_Get_Next::altdss_func_i32_cvp
+    PVSystems_Get_PF::altdss_func_f64_cvp
+    PVSystems_Get_Pmpp::altdss_func_f64_cvp
+    PVSystems_Get_Pointer::altdss_func_vp_cvp
+    PVSystems_Get_RegisterNames::altdss_func_v_cvp_strs_i32p
+    PVSystems_Get_RegisterValues::altdss_func_v_cvp_f64pp_i32p
+    PVSystems_Get_RegisterValues_GR::altdss_func_v_cvp
+    PVSystems_Get_Sensor::altdss_func_cstr_cvp
+    PVSystems_Get_Tdaily::altdss_func_cstr_cvp
+    PVSystems_Get_Tduty::altdss_func_cstr_cvp
+    PVSystems_Get_Tyearly::altdss_func_cstr_cvp
+    PVSystems_Get_daily::altdss_func_cstr_cvp
+    PVSystems_Get_duty::altdss_func_cstr_cvp
+    PVSystems_Get_idx::altdss_func_i32_cvp
+    PVSystems_Get_kVArated::altdss_func_f64_cvp
+    PVSystems_Get_kW::altdss_func_f64_cvp
+    PVSystems_Get_kvar::altdss_func_f64_cvp
+    PVSystems_Get_yearly::altdss_func_cstr_cvp
+    PVSystems_Set_Irradiance::altdss_func_v_cvp_f64
+    PVSystems_Set_Name::altdss_func_v_cvp_cstr
+    PVSystems_Set_PF::altdss_func_v_cvp_f64
+    PVSystems_Set_Pmpp::altdss_func_v_cvp_f64
+    PVSystems_Set_Tdaily::altdss_func_v_cvp_cstr
+    PVSystems_Set_Tduty::altdss_func_v_cvp_cstr
+    PVSystems_Set_Tyearly::altdss_func_v_cvp_cstr
+    PVSystems_Set_daily::altdss_func_v_cvp_cstr
+    PVSystems_Set_duty::altdss_func_v_cvp_cstr
+    PVSystems_Set_idx::altdss_func_v_cvp_i32
+    PVSystems_Set_kVArated::altdss_func_v_cvp_f64
+    PVSystems_Set_kvar::altdss_func_v_cvp_f64
+    PVSystems_Set_yearly::altdss_func_v_cvp_cstr
+    Parallel_CreateActor::altdss_func_v_cvp
+    Parallel_Get_ActiveActor::altdss_func_i32_cvp
+    Parallel_Get_ActiveParallel::altdss_func_i32_cvp
+    Parallel_Get_ActorCPU::altdss_func_i32_cvp
+    Parallel_Get_ActorProgress::altdss_func_v_cvp_i32pp_i32p
+    Parallel_Get_ActorProgress_GR::altdss_func_v_cvp
+    Parallel_Get_ActorStatus::altdss_func_v_cvp_i32pp_i32p
+    Parallel_Get_ActorStatus_GR::altdss_func_v_cvp
+    Parallel_Get_ConcatenateReports::altdss_func_i32_cvp
+    Parallel_Get_NumCPUs::altdss_func_i32_cvp
+    Parallel_Get_NumCores::altdss_func_i32_cvp
+    Parallel_Get_NumOfActors::altdss_func_i32_cvp
+    Parallel_Set_ActiveActor::altdss_func_v_cvp_i32
+    Parallel_Set_ActiveParallel::altdss_func_v_cvp_i32
+    Parallel_Set_ActorCPU::altdss_func_v_cvp_i32
+    Parallel_Set_ConcatenateReports::altdss_func_v_cvp_i32
+    Parallel_Wait::altdss_func_v_cvp
+    Parser_Get_AutoIncrement::altdss_func_u16_cvp
+    Parser_Get_BeginQuote::altdss_func_cstr_cvp
+    Parser_Get_CmdString::altdss_func_cstr_cvp
+    Parser_Get_DblValue::altdss_func_f64_cvp
+    Parser_Get_Delimiters::altdss_func_cstr_cvp
+    Parser_Get_EndQuote::altdss_func_cstr_cvp
+    Parser_Get_IntValue::altdss_func_i32_cvp
+    Parser_Get_Matrix::altdss_func_v_cvp_f64pp_i32p_i32
+    Parser_Get_Matrix_GR::altdss_func_v_cvp_i32
+    Parser_Get_NextParam::altdss_func_cstr_cvp
+    Parser_Get_StrValue::altdss_func_cstr_cvp
+    Parser_Get_SymMatrix::altdss_func_v_cvp_f64pp_i32p_i32
+    Parser_Get_SymMatrix_GR::altdss_func_v_cvp_i32
+    Parser_Get_Vector::altdss_func_v_cvp_f64pp_i32p_i32
+    Parser_Get_Vector_GR::altdss_func_v_cvp_i32
+    Parser_Get_WhiteSpace::altdss_func_cstr_cvp
+    Parser_ResetDelimiters::altdss_func_v_cvp
+    Parser_Set_AutoIncrement::altdss_func_v_cvp_u16
+    Parser_Set_BeginQuote::altdss_func_v_cvp_cstr
+    Parser_Set_CmdString::altdss_func_v_cvp_cstr
+    Parser_Set_Delimiters::altdss_func_v_cvp_cstr
+    Parser_Set_EndQuote::altdss_func_v_cvp_cstr
+    Parser_Set_WhiteSpace::altdss_func_v_cvp_cstr
+    Reactors_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    Reactors_Get_Bus1::altdss_func_cstr_cvp
+    Reactors_Get_Bus2::altdss_func_cstr_cvp
+    Reactors_Get_Count::altdss_func_i32_cvp
+    Reactors_Get_First::altdss_func_i32_cvp
+    Reactors_Get_IsDelta::altdss_func_u16_cvp
+    Reactors_Get_LCurve::altdss_func_cstr_cvp
+    Reactors_Get_LmH::altdss_func_f64_cvp
+    Reactors_Get_Name::altdss_func_cstr_cvp
+    Reactors_Get_Next::altdss_func_i32_cvp
+    Reactors_Get_Parallel::altdss_func_u16_cvp
+    Reactors_Get_Phases::altdss_func_i32_cvp
+    Reactors_Get_Pointer::altdss_func_vp_cvp
+    Reactors_Get_R::altdss_func_f64_cvp
+    Reactors_Get_RCurve::altdss_func_cstr_cvp
+    Reactors_Get_Rmatrix::altdss_func_v_cvp_f64pp_i32p
+    Reactors_Get_Rmatrix_GR::altdss_func_v_cvp
+    Reactors_Get_Rp::altdss_func_f64_cvp
+    Reactors_Get_SpecType::altdss_func_i32_cvp
+    Reactors_Get_X::altdss_func_f64_cvp
+    Reactors_Get_Xmatrix::altdss_func_v_cvp_f64pp_i32p
+    Reactors_Get_Xmatrix_GR::altdss_func_v_cvp
+    Reactors_Get_Z::altdss_func_v_cvp_f64pp_i32p
+    Reactors_Get_Z0::altdss_func_v_cvp_f64pp_i32p
+    Reactors_Get_Z0_GR::altdss_func_v_cvp
+    Reactors_Get_Z1::altdss_func_v_cvp_f64pp_i32p
+    Reactors_Get_Z1_GR::altdss_func_v_cvp
+    Reactors_Get_Z2::altdss_func_v_cvp_f64pp_i32p
+    Reactors_Get_Z2_GR::altdss_func_v_cvp
+    Reactors_Get_Z_GR::altdss_func_v_cvp
+    Reactors_Get_idx::altdss_func_i32_cvp
+    Reactors_Get_kV::altdss_func_f64_cvp
+    Reactors_Get_kvar::altdss_func_f64_cvp
+    Reactors_Set_Bus1::altdss_func_v_cvp_cstr
+    Reactors_Set_Bus2::altdss_func_v_cvp_cstr
+    Reactors_Set_IsDelta::altdss_func_v_cvp_u16
+    Reactors_Set_LCurve::altdss_func_v_cvp_cstr
+    Reactors_Set_LmH::altdss_func_v_cvp_f64
+    Reactors_Set_Name::altdss_func_v_cvp_cstr
+    Reactors_Set_Parallel::altdss_func_v_cvp_u16
+    Reactors_Set_Phases::altdss_func_v_cvp_i32
+    Reactors_Set_R::altdss_func_v_cvp_f64
+    Reactors_Set_RCurve::altdss_func_v_cvp_cstr
+    Reactors_Set_Rmatrix::altdss_func_v_cvp_cf64p_i32
+    Reactors_Set_Rp::altdss_func_v_cvp_f64
+    Reactors_Set_X::altdss_func_v_cvp_f64
+    Reactors_Set_Xmatrix::altdss_func_v_cvp_cf64p_i32
+    Reactors_Set_Z::altdss_func_v_cvp_cf64p_i32
+    Reactors_Set_Z0::altdss_func_v_cvp_cf64p_i32
+    Reactors_Set_Z1::altdss_func_v_cvp_cf64p_i32
+    Reactors_Set_Z2::altdss_func_v_cvp_cf64p_i32
+    Reactors_Set_idx::altdss_func_v_cvp_i32
+    Reactors_Set_kV::altdss_func_v_cvp_f64
+    Reactors_Set_kvar::altdss_func_v_cvp_f64
+    Reclosers_Close::altdss_func_v_cvp
+    Reclosers_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    Reclosers_Get_Count::altdss_func_i32_cvp
+    Reclosers_Get_First::altdss_func_i32_cvp
+    Reclosers_Get_GroundInst::altdss_func_f64_cvp
+    Reclosers_Get_GroundTrip::altdss_func_f64_cvp
+    Reclosers_Get_MonitoredObj::altdss_func_cstr_cvp
+    Reclosers_Get_MonitoredTerm::altdss_func_i32_cvp
+    Reclosers_Get_Name::altdss_func_cstr_cvp
+    Reclosers_Get_Next::altdss_func_i32_cvp
+    Reclosers_Get_NormalState::altdss_func_i32_cvp
+    Reclosers_Get_NumFast::altdss_func_i32_cvp
+    Reclosers_Get_PhaseInst::altdss_func_f64_cvp
+    Reclosers_Get_PhaseTrip::altdss_func_f64_cvp
+    Reclosers_Get_Pointer::altdss_func_vp_cvp
+    Reclosers_Get_RecloseIntervals::altdss_func_v_cvp_f64pp_i32p
+    Reclosers_Get_RecloseIntervals_GR::altdss_func_v_cvp
+    Reclosers_Get_Shots::altdss_func_i32_cvp
+    Reclosers_Get_State::altdss_func_i32_cvp
+    Reclosers_Get_SwitchedObj::altdss_func_cstr_cvp
+    Reclosers_Get_SwitchedTerm::altdss_func_i32_cvp
+    Reclosers_Get_idx::altdss_func_i32_cvp
+    Reclosers_Open::altdss_func_v_cvp
+    Reclosers_Reset::altdss_func_v_cvp
+    Reclosers_Set_GroundInst::altdss_func_v_cvp_f64
+    Reclosers_Set_GroundTrip::altdss_func_v_cvp_f64
+    Reclosers_Set_MonitoredObj::altdss_func_v_cvp_cstr
+    Reclosers_Set_MonitoredTerm::altdss_func_v_cvp_i32
+    Reclosers_Set_Name::altdss_func_v_cvp_cstr
+    Reclosers_Set_NormalState::altdss_func_v_cvp_i32
+    Reclosers_Set_NumFast::altdss_func_v_cvp_i32
+    Reclosers_Set_PhaseInst::altdss_func_v_cvp_f64
+    Reclosers_Set_PhaseTrip::altdss_func_v_cvp_f64
+    Reclosers_Set_Shots::altdss_func_v_cvp_i32
+    Reclosers_Set_State::altdss_func_v_cvp_i32
+    Reclosers_Set_SwitchedObj::altdss_func_v_cvp_cstr
+    Reclosers_Set_SwitchedTerm::altdss_func_v_cvp_i32
+    Reclosers_Set_idx::altdss_func_v_cvp_i32
+    ReduceCkt_Do1phLaterals::altdss_func_v_cvp
+    ReduceCkt_DoBranchRemove::altdss_func_v_cvp
+    ReduceCkt_DoDangling::altdss_func_v_cvp
+    ReduceCkt_DoDefault::altdss_func_v_cvp
+    ReduceCkt_DoLoopBreak::altdss_func_v_cvp
+    ReduceCkt_DoParallelLines::altdss_func_v_cvp
+    ReduceCkt_DoShortLines::altdss_func_v_cvp
+    ReduceCkt_DoSwitches::altdss_func_v_cvp
+    ReduceCkt_Get_EditString::altdss_func_cstr_cvp
+    ReduceCkt_Get_EnergyMeter::altdss_func_cstr_cvp
+    ReduceCkt_Get_KeepLoad::altdss_func_u16_cvp
+    ReduceCkt_Get_StartPDElement::altdss_func_cstr_cvp
+    ReduceCkt_Get_Zmag::altdss_func_f64_cvp
+    ReduceCkt_SaveCircuit::altdss_func_v_cvp_cstr
+    ReduceCkt_Set_EditString::altdss_func_v_cvp_cstr
+    ReduceCkt_Set_EnergyMeter::altdss_func_v_cvp_cstr
+    ReduceCkt_Set_KeepLoad::altdss_func_v_cvp_u16
+    ReduceCkt_Set_StartPDElement::altdss_func_v_cvp_cstr
+    ReduceCkt_Set_Zmag::altdss_func_v_cvp_f64
+    RegControls_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    RegControls_Get_CTPrimary::altdss_func_f64_cvp
+    RegControls_Get_Count::altdss_func_i32_cvp
+    RegControls_Get_Delay::altdss_func_f64_cvp
+    RegControls_Get_First::altdss_func_i32_cvp
+    RegControls_Get_ForwardBand::altdss_func_f64_cvp
+    RegControls_Get_ForwardR::altdss_func_f64_cvp
+    RegControls_Get_ForwardVreg::altdss_func_f64_cvp
+    RegControls_Get_ForwardX::altdss_func_f64_cvp
+    RegControls_Get_IsInverseTime::altdss_func_u16_cvp
+    RegControls_Get_IsReversible::altdss_func_u16_cvp
+    RegControls_Get_MaxTapChange::altdss_func_i32_cvp
+    RegControls_Get_MonitoredBus::altdss_func_cstr_cvp
+    RegControls_Get_Name::altdss_func_cstr_cvp
+    RegControls_Get_Next::altdss_func_i32_cvp
+    RegControls_Get_PTratio::altdss_func_f64_cvp
+    RegControls_Get_Pointer::altdss_func_vp_cvp
+    RegControls_Get_ReverseBand::altdss_func_f64_cvp
+    RegControls_Get_ReverseR::altdss_func_f64_cvp
+    RegControls_Get_ReverseVreg::altdss_func_f64_cvp
+    RegControls_Get_ReverseX::altdss_func_f64_cvp
+    RegControls_Get_TapDelay::altdss_func_f64_cvp
+    RegControls_Get_TapNumber::altdss_func_i32_cvp
+    RegControls_Get_TapWinding::altdss_func_i32_cvp
+    RegControls_Get_Transformer::altdss_func_cstr_cvp
+    RegControls_Get_VoltageLimit::altdss_func_f64_cvp
+    RegControls_Get_Winding::altdss_func_i32_cvp
+    RegControls_Get_idx::altdss_func_i32_cvp
+    RegControls_Reset::altdss_func_v_cvp
+    RegControls_Set_CTPrimary::altdss_func_v_cvp_f64
+    RegControls_Set_Delay::altdss_func_v_cvp_f64
+    RegControls_Set_ForwardBand::altdss_func_v_cvp_f64
+    RegControls_Set_ForwardR::altdss_func_v_cvp_f64
+    RegControls_Set_ForwardVreg::altdss_func_v_cvp_f64
+    RegControls_Set_ForwardX::altdss_func_v_cvp_f64
+    RegControls_Set_IsInverseTime::altdss_func_v_cvp_u16
+    RegControls_Set_IsReversible::altdss_func_v_cvp_u16
+    RegControls_Set_MaxTapChange::altdss_func_v_cvp_i32
+    RegControls_Set_MonitoredBus::altdss_func_v_cvp_cstr
+    RegControls_Set_Name::altdss_func_v_cvp_cstr
+    RegControls_Set_PTratio::altdss_func_v_cvp_f64
+    RegControls_Set_ReverseBand::altdss_func_v_cvp_f64
+    RegControls_Set_ReverseR::altdss_func_v_cvp_f64
+    RegControls_Set_ReverseVreg::altdss_func_v_cvp_f64
+    RegControls_Set_ReverseX::altdss_func_v_cvp_f64
+    RegControls_Set_TapDelay::altdss_func_v_cvp_f64
+    RegControls_Set_TapNumber::altdss_func_v_cvp_i32
+    RegControls_Set_TapWinding::altdss_func_v_cvp_i32
+    RegControls_Set_Transformer::altdss_func_v_cvp_cstr
+    RegControls_Set_VoltageLimit::altdss_func_v_cvp_f64
+    RegControls_Set_Winding::altdss_func_v_cvp_i32
+    RegControls_Set_idx::altdss_func_v_cvp_i32
+    Relays_Close::altdss_func_v_cvp
+    Relays_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    Relays_Get_Count::altdss_func_i32_cvp
+    Relays_Get_First::altdss_func_i32_cvp
+    Relays_Get_MonitoredObj::altdss_func_cstr_cvp
+    Relays_Get_MonitoredTerm::altdss_func_i32_cvp
+    Relays_Get_Name::altdss_func_cstr_cvp
+    Relays_Get_Next::altdss_func_i32_cvp
+    Relays_Get_NormalState::altdss_func_i32_cvp
+    Relays_Get_Pointer::altdss_func_vp_cvp
+    Relays_Get_State::altdss_func_i32_cvp
+    Relays_Get_SwitchedObj::altdss_func_cstr_cvp
+    Relays_Get_SwitchedTerm::altdss_func_i32_cvp
+    Relays_Get_idx::altdss_func_i32_cvp
+    Relays_Open::altdss_func_v_cvp
+    Relays_Reset::altdss_func_v_cvp
+    Relays_Set_MonitoredObj::altdss_func_v_cvp_cstr
+    Relays_Set_MonitoredTerm::altdss_func_v_cvp_i32
+    Relays_Set_Name::altdss_func_v_cvp_cstr
+    Relays_Set_NormalState::altdss_func_v_cvp_i32
+    Relays_Set_State::altdss_func_v_cvp_i32
+    Relays_Set_SwitchedObj::altdss_func_v_cvp_cstr
+    Relays_Set_SwitchedTerm::altdss_func_v_cvp_i32
+    Relays_Set_idx::altdss_func_v_cvp_i32
+    Sensors_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    Sensors_Get_AllocationFactor::altdss_func_v_cvp_f64pp_i32p
+    Sensors_Get_AllocationFactor_GR::altdss_func_v_cvp
+    Sensors_Get_Count::altdss_func_i32_cvp
+    Sensors_Get_Currents::altdss_func_v_cvp_f64pp_i32p
+    Sensors_Get_Currents_GR::altdss_func_v_cvp
+    Sensors_Get_First::altdss_func_i32_cvp
+    Sensors_Get_IsDelta::altdss_func_u16_cvp
+    Sensors_Get_MeteredElement::altdss_func_cstr_cvp
+    Sensors_Get_MeteredTerminal::altdss_func_i32_cvp
+    Sensors_Get_Name::altdss_func_cstr_cvp
+    Sensors_Get_Next::altdss_func_i32_cvp
+    Sensors_Get_PctError::altdss_func_f64_cvp
+    Sensors_Get_Pointer::altdss_func_vp_cvp
+    Sensors_Get_ReverseDelta::altdss_func_u16_cvp
+    Sensors_Get_Weight::altdss_func_f64_cvp
+    Sensors_Get_idx::altdss_func_i32_cvp
+    Sensors_Get_kVARS::altdss_func_v_cvp_f64pp_i32p
+    Sensors_Get_kVARS_GR::altdss_func_v_cvp
+    Sensors_Get_kVS::altdss_func_v_cvp_f64pp_i32p
+    Sensors_Get_kVS_GR::altdss_func_v_cvp
+    Sensors_Get_kVbase::altdss_func_f64_cvp
+    Sensors_Get_kWS::altdss_func_v_cvp_f64pp_i32p
+    Sensors_Get_kWS_GR::altdss_func_v_cvp
+    Sensors_Reset::altdss_func_v_cvp
+    Sensors_ResetAll::altdss_func_v_cvp
+    Sensors_Set_Currents::altdss_func_v_cvp_cf64p_i32
+    Sensors_Set_IsDelta::altdss_func_v_cvp_u16
+    Sensors_Set_MeteredElement::altdss_func_v_cvp_cstr
+    Sensors_Set_MeteredTerminal::altdss_func_v_cvp_i32
+    Sensors_Set_Name::altdss_func_v_cvp_cstr
+    Sensors_Set_PctError::altdss_func_v_cvp_f64
+    Sensors_Set_ReverseDelta::altdss_func_v_cvp_u16
+    Sensors_Set_Weight::altdss_func_v_cvp_f64
+    Sensors_Set_idx::altdss_func_v_cvp_i32
+    Sensors_Set_kVARS::altdss_func_v_cvp_cf64p_i32
+    Sensors_Set_kVS::altdss_func_v_cvp_cf64p_i32
+    Sensors_Set_kVbase::altdss_func_v_cvp_f64
+    Sensors_Set_kWS::altdss_func_v_cvp_cf64p_i32
+    Settings_Get_AllowDuplicates::altdss_func_u16_cvp
+    Settings_Get_AutoBusList::altdss_func_cstr_cvp
+    Settings_Get_CktModel::altdss_func_i32_cvp
+    Settings_Get_ControlTrace::altdss_func_u16_cvp
+    Settings_Get_EmergVmaxpu::altdss_func_f64_cvp
+    Settings_Get_EmergVminpu::altdss_func_f64_cvp
+    Settings_Get_IterateDisabled::altdss_func_i32_cvp
+    Settings_Get_LoadsTerminalCheck::altdss_func_u16_cvp
+    Settings_Get_LossRegs::altdss_func_v_cvp_i32pp_i32p
+    Settings_Get_LossRegs_GR::altdss_func_v_cvp
+    Settings_Get_LossWeight::altdss_func_f64_cvp
+    Settings_Get_NormVmaxpu::altdss_func_f64_cvp
+    Settings_Get_NormVminpu::altdss_func_f64_cvp
+    Settings_Get_PriceCurve::altdss_func_cstr_cvp
+    Settings_Get_PriceSignal::altdss_func_f64_cvp
+    Settings_Get_SkipCommands::altdss_func_v_cvp_i32pp_i32p
+    Settings_Get_SkipCommands_GR::altdss_func_v_cvp
+    Settings_Get_SkipFileRegExp::altdss_func_cstr_cvp
+    Settings_Get_Trapezoidal::altdss_func_u16_cvp
+    Settings_Get_UEregs::altdss_func_v_cvp_i32pp_i32p
+    Settings_Get_UEregs_GR::altdss_func_v_cvp
+    Settings_Get_UEweight::altdss_func_f64_cvp
+    Settings_Get_VoltageBases::altdss_func_v_cvp_f64pp_i32p
+    Settings_Get_VoltageBases_GR::altdss_func_v_cvp
+    Settings_Get_ZoneLock::altdss_func_u16_cvp
+    Settings_SetPropertyNameStyle::altdss_func_v_cvp_i32
+    Settings_Set_AllocationFactors::altdss_func_v_cvp_f64
+    Settings_Set_AllowDuplicates::altdss_func_v_cvp_u16
+    Settings_Set_AutoBusList::altdss_func_v_cvp_cstr
+    Settings_Set_CktModel::altdss_func_v_cvp_i32
+    Settings_Set_ControlTrace::altdss_func_v_cvp_u16
+    Settings_Set_EmergVmaxpu::altdss_func_v_cvp_f64
+    Settings_Set_EmergVminpu::altdss_func_v_cvp_f64
+    Settings_Set_IterateDisabled::altdss_func_v_cvp_i32
+    Settings_Set_LoadsTerminalCheck::altdss_func_v_cvp_u16
+    Settings_Set_LossRegs::altdss_func_v_cvp_ci32p_i32
+    Settings_Set_LossWeight::altdss_func_v_cvp_f64
+    Settings_Set_NormVmaxpu::altdss_func_v_cvp_f64
+    Settings_Set_NormVminpu::altdss_func_v_cvp_f64
+    Settings_Set_PriceCurve::altdss_func_v_cvp_cstr
+    Settings_Set_PriceSignal::altdss_func_v_cvp_f64
+    Settings_Set_SkipCommands::altdss_func_v_cvp_ci32p_i32
+    Settings_Set_SkipFileRegExp::altdss_func_v_cvp_cstr
+    Settings_Set_Trapezoidal::altdss_func_v_cvp_u16
+    Settings_Set_UEregs::altdss_func_v_cvp_ci32p_i32
+    Settings_Set_UEweight::altdss_func_v_cvp_f64
+    Settings_Set_VoltageBases::altdss_func_v_cvp_cf64p_i32
+    Settings_Set_ZoneLock::altdss_func_v_cvp_u16
+    Solution_BuildYMatrix::altdss_func_v_cvp_i32_i32
+    Solution_CheckControls::altdss_func_v_cvp
+    Solution_CheckFaultStatus::altdss_func_v_cvp
+    Solution_Cleanup::altdss_func_v_cvp
+    Solution_DoControlActions::altdss_func_v_cvp
+    Solution_FinishTimeStep::altdss_func_v_cvp
+    Solution_Get_AddType::altdss_func_i32_cvp
+    Solution_Get_Algorithm::altdss_func_i32_cvp
+    Solution_Get_BusLevels::altdss_func_v_cvp_i32pp_i32p
+    Solution_Get_BusLevels_GR::altdss_func_v_cvp
+    Solution_Get_Capkvar::altdss_func_f64_cvp
+    Solution_Get_ControlActionsDone::altdss_func_u16_cvp
+    Solution_Get_ControlIterations::altdss_func_i32_cvp
+    Solution_Get_ControlMode::altdss_func_i32_cvp
+    Solution_Get_Converged::altdss_func_u16_cvp
+    Solution_Get_DefaultDaily::altdss_func_cstr_cvp
+    Solution_Get_DefaultYearly::altdss_func_cstr_cvp
+    Solution_Get_EventLog::altdss_func_v_cvp_strs_i32p
+    Solution_Get_Frequency::altdss_func_f64_cvp
+    Solution_Get_GenMult::altdss_func_f64_cvp
+    Solution_Get_GenPF::altdss_func_f64_cvp
+    Solution_Get_GenkW::altdss_func_f64_cvp
+    Solution_Get_Hour::altdss_func_i32_cvp
+    Solution_Get_IncMatrix::altdss_func_v_cvp_i32pp_i32p
+    Solution_Get_IncMatrixCols::altdss_func_v_cvp_strs_i32p
+    Solution_Get_IncMatrixRows::altdss_func_v_cvp_strs_i32p
+    Solution_Get_IncMatrix_GR::altdss_func_v_cvp
+    Solution_Get_IntervalHrs::altdss_func_f64_cvp
+    Solution_Get_Iterations::altdss_func_i32_cvp
+    Solution_Get_LDCurve::altdss_func_cstr_cvp
+    Solution_Get_Laplacian::altdss_func_v_cvp_i32pp_i32p
+    Solution_Get_Laplacian_GR::altdss_func_v_cvp
+    Solution_Get_LoadModel::altdss_func_i32_cvp
+    Solution_Get_LoadMult::altdss_func_f64_cvp
+    Solution_Get_MaxControlIterations::altdss_func_i32_cvp
+    Solution_Get_MaxIterations::altdss_func_i32_cvp
+    Solution_Get_MinIterations::altdss_func_i32_cvp
+    Solution_Get_Mode::altdss_func_i32_cvp
+    Solution_Get_ModeID::altdss_func_cstr_cvp
+    Solution_Get_MostIterationsDone::altdss_func_i32_cvp
+    Solution_Get_Number::altdss_func_i32_cvp
+    Solution_Get_Process_Time::altdss_func_f64_cvp
+    Solution_Get_Random::altdss_func_i32_cvp
+    Solution_Get_Seconds::altdss_func_f64_cvp
+    Solution_Get_StepSize::altdss_func_f64_cvp
+    Solution_Get_SystemYChanged::altdss_func_u16_cvp
+    Solution_Get_Time_of_Step::altdss_func_f64_cvp
+    Solution_Get_Tolerance::altdss_func_f64_cvp
+    Solution_Get_Total_Time::altdss_func_f64_cvp
+    Solution_Get_Totaliterations::altdss_func_i32_cvp
+    Solution_Get_Year::altdss_func_i32_cvp
+    Solution_Get_dblHour::altdss_func_f64_cvp
+    Solution_Get_pctGrowth::altdss_func_f64_cvp
+    Solution_InitSnap::altdss_func_v_cvp
+    Solution_SampleControlDevices::altdss_func_v_cvp
+    Solution_Sample_DoControlActions::altdss_func_v_cvp
+    Solution_Set_AddType::altdss_func_v_cvp_i32
+    Solution_Set_Algorithm::altdss_func_v_cvp_i32
+    Solution_Set_Capkvar::altdss_func_v_cvp_f64
+    Solution_Set_ControlActionsDone::altdss_func_v_cvp_u16
+    Solution_Set_ControlIterations::altdss_func_v_cvp_i32
+    Solution_Set_ControlMode::altdss_func_v_cvp_i32
+    Solution_Set_Converged::altdss_func_v_cvp_u16
+    Solution_Set_DefaultDaily::altdss_func_v_cvp_cstr
+    Solution_Set_DefaultYearly::altdss_func_v_cvp_cstr
+    Solution_Set_Frequency::altdss_func_v_cvp_f64
+    Solution_Set_GenMult::altdss_func_v_cvp_f64
+    Solution_Set_GenPF::altdss_func_v_cvp_f64
+    Solution_Set_GenkW::altdss_func_v_cvp_f64
+    Solution_Set_Hour::altdss_func_v_cvp_i32
+    Solution_Set_IntervalHrs::altdss_func_v_cvp_f64
+    Solution_Set_LDCurve::altdss_func_v_cvp_cstr
+    Solution_Set_LoadModel::altdss_func_v_cvp_i32
+    Solution_Set_LoadMult::altdss_func_v_cvp_f64
+    Solution_Set_MaxControlIterations::altdss_func_v_cvp_i32
+    Solution_Set_MaxIterations::altdss_func_v_cvp_i32
+    Solution_Set_MinIterations::altdss_func_v_cvp_i32
+    Solution_Set_Mode::altdss_func_v_cvp_i32
+    Solution_Set_Number::altdss_func_v_cvp_i32
+    Solution_Set_Random::altdss_func_v_cvp_i32
+    Solution_Set_Seconds::altdss_func_v_cvp_f64
+    Solution_Set_StepSize::altdss_func_v_cvp_f64
+    Solution_Set_StepsizeHr::altdss_func_v_cvp_f64
+    Solution_Set_StepsizeMin::altdss_func_v_cvp_f64
+    Solution_Set_Tolerance::altdss_func_v_cvp_f64
+    Solution_Set_Total_Time::altdss_func_v_cvp_f64
+    Solution_Set_Year::altdss_func_v_cvp_i32
+    Solution_Set_dblHour::altdss_func_v_cvp_f64
+    Solution_Set_pctGrowth::altdss_func_v_cvp_f64
+    Solution_Solve::altdss_func_v_cvp
+    Solution_SolveAll::altdss_func_v_cvp
+    Solution_SolveDirect::altdss_func_v_cvp
+    Solution_SolveNoControl::altdss_func_v_cvp
+    Solution_SolvePflow::altdss_func_v_cvp
+    Solution_SolvePlusControl::altdss_func_v_cvp
+    Solution_SolveSnap::altdss_func_v_cvp
+    Storages_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    Storages_Get_AmpLimit::altdss_func_f64_cvp
+    Storages_Get_AmpLimitGain::altdss_func_f64_cvp
+    Storages_Get_ChargeTrigger::altdss_func_f64_cvp
+    Storages_Get_ControlMode::altdss_func_i32_cvp
+    Storages_Get_Count::altdss_func_i32_cvp
+    Storages_Get_DischargeTrigger::altdss_func_f64_cvp
+    Storages_Get_EffCharge::altdss_func_f64_cvp
+    Storages_Get_EffDischarge::altdss_func_f64_cvp
+    Storages_Get_First::altdss_func_i32_cvp
+    Storages_Get_Kp::altdss_func_f64_cvp
+    Storages_Get_LimitCurrent::altdss_func_u16_cvp
+    Storages_Get_Name::altdss_func_cstr_cvp
+    Storages_Get_Next::altdss_func_i32_cvp
+    Storages_Get_PF::altdss_func_f64_cvp
+    Storages_Get_PITol::altdss_func_f64_cvp
+    Storages_Get_Pointer::altdss_func_vp_cvp
+    Storages_Get_RegisterNames::altdss_func_v_cvp_strs_i32p
+    Storages_Get_RegisterValues::altdss_func_v_cvp_f64pp_i32p
+    Storages_Get_RegisterValues_GR::altdss_func_v_cvp
+    Storages_Get_SafeMode::altdss_func_i32_cvp
+    Storages_Get_SafeVoltage::altdss_func_f64_cvp
+    Storages_Get_State::altdss_func_i32_cvp
+    Storages_Get_TimeChargeTrig::altdss_func_f64_cvp
+    Storages_Get_VarFollowInverter::altdss_func_i32_cvp
+    Storages_Get_idx::altdss_func_i32_cvp
+    Storages_Get_kV::altdss_func_f64_cvp
+    Storages_Get_kVA::altdss_func_f64_cvp
+    Storages_Get_kVDC::altdss_func_f64_cvp
+    Storages_Get_kW::altdss_func_f64_cvp
+    Storages_Get_kWRated::altdss_func_f64_cvp
+    Storages_Get_kWhRated::altdss_func_f64_cvp
+    Storages_Get_kvar::altdss_func_f64_cvp
+    Storages_Get_puSOC::altdss_func_f64_cvp
+    Storages_Set_AmpLimit::altdss_func_v_cvp_f64
+    Storages_Set_AmpLimitGain::altdss_func_v_cvp_f64
+    Storages_Set_ChargeTrigger::altdss_func_v_cvp_f64
+    Storages_Set_ControlMode::altdss_func_v_cvp_i32
+    Storages_Set_DischargeTrigger::altdss_func_v_cvp_f64
+    Storages_Set_EffCharge::altdss_func_v_cvp_f64
+    Storages_Set_EffDischarge::altdss_func_v_cvp_f64
+    Storages_Set_Kp::altdss_func_v_cvp_f64
+    Storages_Set_LimitCurrent::altdss_func_v_cvp_u16
+    Storages_Set_Name::altdss_func_v_cvp_cstr
+    Storages_Set_PF::altdss_func_v_cvp_f64
+    Storages_Set_PITol::altdss_func_v_cvp_f64
+    Storages_Set_SafeVoltage::altdss_func_v_cvp_f64
+    Storages_Set_State::altdss_func_v_cvp_i32
+    Storages_Set_TimeChargeTrig::altdss_func_v_cvp_f64
+    Storages_Set_VarFollowInverter::altdss_func_v_cvp_i32
+    Storages_Set_idx::altdss_func_v_cvp_i32
+    Storages_Set_kV::altdss_func_v_cvp_f64
+    Storages_Set_kVA::altdss_func_v_cvp_f64
+    Storages_Set_kVDC::altdss_func_v_cvp_f64
+    Storages_Set_kW::altdss_func_v_cvp_f64
+    Storages_Set_kWRated::altdss_func_v_cvp_f64
+    Storages_Set_kWhRated::altdss_func_v_cvp_f64
+    Storages_Set_kvar::altdss_func_v_cvp_f64
+    Storages_Set_puSOC::altdss_func_v_cvp_f64
+    SwtControls_Get_Action::altdss_func_i32_cvp
+    SwtControls_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    SwtControls_Get_Count::altdss_func_i32_cvp
+    SwtControls_Get_Delay::altdss_func_f64_cvp
+    SwtControls_Get_First::altdss_func_i32_cvp
+    SwtControls_Get_IsLocked::altdss_func_u16_cvp
+    SwtControls_Get_Name::altdss_func_cstr_cvp
+    SwtControls_Get_Next::altdss_func_i32_cvp
+    SwtControls_Get_NormalState::altdss_func_i32_cvp
+    SwtControls_Get_Pointer::altdss_func_vp_cvp
+    SwtControls_Get_State::altdss_func_i32_cvp
+    SwtControls_Get_SwitchedObj::altdss_func_cstr_cvp
+    SwtControls_Get_SwitchedTerm::altdss_func_i32_cvp
+    SwtControls_Get_idx::altdss_func_i32_cvp
+    SwtControls_Reset::altdss_func_v_cvp
+    SwtControls_Set_Action::altdss_func_v_cvp_i32
+    SwtControls_Set_Delay::altdss_func_v_cvp_f64
+    SwtControls_Set_IsLocked::altdss_func_v_cvp_u16
+    SwtControls_Set_Name::altdss_func_v_cvp_cstr
+    SwtControls_Set_NormalState::altdss_func_v_cvp_i32
+    SwtControls_Set_State::altdss_func_v_cvp_i32
+    SwtControls_Set_SwitchedObj::altdss_func_v_cvp_cstr
+    SwtControls_Set_SwitchedTerm::altdss_func_v_cvp_i32
+    SwtControls_Set_idx::altdss_func_v_cvp_i32
+    TSData_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    TSData_Get_Count::altdss_func_i32_cvp
+    TSData_Get_DiaCable::altdss_func_f64_cvp
+    TSData_Get_DiaIns::altdss_func_f64_cvp
+    TSData_Get_DiaShield::altdss_func_f64_cvp
+    TSData_Get_Diameter::altdss_func_f64_cvp
+    TSData_Get_EmergAmps::altdss_func_f64_cvp
+    TSData_Get_EpsR::altdss_func_f64_cvp
+    TSData_Get_First::altdss_func_i32_cvp
+    TSData_Get_GMRUnits::altdss_func_i32_cvp
+    TSData_Get_GMRac::altdss_func_f64_cvp
+    TSData_Get_InsLayer::altdss_func_f64_cvp
+    TSData_Get_Name::altdss_func_cstr_cvp
+    TSData_Get_Next::altdss_func_i32_cvp
+    TSData_Get_NormAmps::altdss_func_f64_cvp
+    TSData_Get_Pointer::altdss_func_vp_cvp
+    TSData_Get_Rac::altdss_func_f64_cvp
+    TSData_Get_Radius::altdss_func_f64_cvp
+    TSData_Get_RadiusUnits::altdss_func_i32_cvp
+    TSData_Get_Rdc::altdss_func_f64_cvp
+    TSData_Get_ResistanceUnits::altdss_func_i32_cvp
+    TSData_Get_TapeLap::altdss_func_f64_cvp
+    TSData_Get_TapeLayer::altdss_func_f64_cvp
+    TSData_Get_idx::altdss_func_i32_cvp
+    TSData_Set_DiaCable::altdss_func_v_cvp_f64
+    TSData_Set_DiaIns::altdss_func_v_cvp_f64
+    TSData_Set_DiaShield::altdss_func_v_cvp_f64
+    TSData_Set_Diameter::altdss_func_v_cvp_f64
+    TSData_Set_EmergAmps::altdss_func_v_cvp_f64
+    TSData_Set_EpsR::altdss_func_v_cvp_f64
+    TSData_Set_GMRUnits::altdss_func_v_cvp_i32
+    TSData_Set_GMRac::altdss_func_v_cvp_f64
+    TSData_Set_InsLayer::altdss_func_v_cvp_f64
+    TSData_Set_Name::altdss_func_v_cvp_cstr
+    TSData_Set_NormAmps::altdss_func_v_cvp_f64
+    TSData_Set_Rac::altdss_func_v_cvp_f64
+    TSData_Set_Radius::altdss_func_v_cvp_f64
+    TSData_Set_RadiusUnits::altdss_func_v_cvp_i32
+    TSData_Set_Rdc::altdss_func_v_cvp_f64
+    TSData_Set_ResistanceUnits::altdss_func_v_cvp_i32
+    TSData_Set_TapeLap::altdss_func_v_cvp_f64
+    TSData_Set_TapeLayer::altdss_func_v_cvp_f64
+    TSData_Set_idx::altdss_func_v_cvp_i32
+    Text_CommandArray::altdss_func_v_cvp_cstrp_i32
+    Text_CommandBlock::altdss_func_v_cvp_cstr
+    Text_Get_Command::altdss_func_cstr_cvp
+    Text_Get_Result::altdss_func_cstr_cvp
+    Text_Set_Command::altdss_func_v_cvp_cstr
+    Topology_Get_ActiveBranch::altdss_func_i32_cvp
+    Topology_Get_ActiveLevel::altdss_func_i32_cvp
+    Topology_Get_AllIsolatedBranches::altdss_func_v_cvp_strs_i32p
+    Topology_Get_AllIsolatedLoads::altdss_func_v_cvp_strs_i32p
+    Topology_Get_AllLoopedPairs::altdss_func_v_cvp_strs_i32p
+    Topology_Get_BackwardBranch::altdss_func_i32_cvp
+    Topology_Get_BranchName::altdss_func_cstr_cvp
+    Topology_Get_BusName::altdss_func_cstr_cvp
+    Topology_Get_First::altdss_func_i32_cvp
+    Topology_Get_FirstLoad::altdss_func_i32_cvp
+    Topology_Get_ForwardBranch::altdss_func_i32_cvp
+    Topology_Get_LoopedBranch::altdss_func_i32_cvp
+    Topology_Get_Next::altdss_func_i32_cvp
+    Topology_Get_NextLoad::altdss_func_i32_cvp
+    Topology_Get_NumIsolatedBranches::altdss_func_i32_cvp
+    Topology_Get_NumIsolatedLoads::altdss_func_i32_cvp
+    Topology_Get_NumLoops::altdss_func_i32_cvp
+    Topology_Get_ParallelBranch::altdss_func_i32_cvp
+    Topology_Set_BranchName::altdss_func_v_cvp_cstr
+    Topology_Set_BusName::altdss_func_v_cvp_cstr
+    Transformers_Get_AllLossesByType::altdss_func_v_cvp_f64pp_i32p
+    Transformers_Get_AllLossesByType_GR::altdss_func_v_cvp
+    Transformers_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    Transformers_Get_CoreType::altdss_func_i32_cvp
+    Transformers_Get_Count::altdss_func_i32_cvp
+    Transformers_Get_First::altdss_func_i32_cvp
+    Transformers_Get_IsDelta::altdss_func_u16_cvp
+    Transformers_Get_LossesByType::altdss_func_v_cvp_f64pp_i32p
+    Transformers_Get_LossesByType_GR::altdss_func_v_cvp
+    Transformers_Get_MaxTap::altdss_func_f64_cvp
+    Transformers_Get_MinTap::altdss_func_f64_cvp
+    Transformers_Get_Name::altdss_func_cstr_cvp
+    Transformers_Get_Next::altdss_func_i32_cvp
+    Transformers_Get_NumTaps::altdss_func_i32_cvp
+    Transformers_Get_NumWindings::altdss_func_i32_cvp
+    Transformers_Get_Pointer::altdss_func_vp_cvp
+    Transformers_Get_R::altdss_func_f64_cvp
+    Transformers_Get_RdcOhms::altdss_func_f64_cvp
+    Transformers_Get_Rneut::altdss_func_f64_cvp
+    Transformers_Get_Tap::altdss_func_f64_cvp
+    Transformers_Get_Wdg::altdss_func_i32_cvp
+    Transformers_Get_WdgCurrents::altdss_func_v_cvp_f64pp_i32p
+    Transformers_Get_WdgCurrents_GR::altdss_func_v_cvp
+    Transformers_Get_WdgVoltages::altdss_func_v_cvp_f64pp_i32p
+    Transformers_Get_WdgVoltages_GR::altdss_func_v_cvp
+    Transformers_Get_XfmrCode::altdss_func_cstr_cvp
+    Transformers_Get_Xhl::altdss_func_f64_cvp
+    Transformers_Get_Xht::altdss_func_f64_cvp
+    Transformers_Get_Xlt::altdss_func_f64_cvp
+    Transformers_Get_Xneut::altdss_func_f64_cvp
+    Transformers_Get_idx::altdss_func_i32_cvp
+    Transformers_Get_kV::altdss_func_f64_cvp
+    Transformers_Get_kVA::altdss_func_f64_cvp
+    Transformers_Get_strWdgCurrents::altdss_func_cstr_cvp
+    Transformers_Set_CoreType::altdss_func_v_cvp_i32
+    Transformers_Set_IsDelta::altdss_func_v_cvp_u16
+    Transformers_Set_MaxTap::altdss_func_v_cvp_f64
+    Transformers_Set_MinTap::altdss_func_v_cvp_f64
+    Transformers_Set_Name::altdss_func_v_cvp_cstr
+    Transformers_Set_NumTaps::altdss_func_v_cvp_i32
+    Transformers_Set_NumWindings::altdss_func_v_cvp_i32
+    Transformers_Set_R::altdss_func_v_cvp_f64
+    Transformers_Set_RdcOhms::altdss_func_v_cvp_f64
+    Transformers_Set_Rneut::altdss_func_v_cvp_f64
+    Transformers_Set_Tap::altdss_func_v_cvp_f64
+    Transformers_Set_Wdg::altdss_func_v_cvp_i32
+    Transformers_Set_XfmrCode::altdss_func_v_cvp_cstr
+    Transformers_Set_Xhl::altdss_func_v_cvp_f64
+    Transformers_Set_Xht::altdss_func_v_cvp_f64
+    Transformers_Set_Xlt::altdss_func_v_cvp_f64
+    Transformers_Set_Xneut::altdss_func_v_cvp_f64
+    Transformers_Set_idx::altdss_func_v_cvp_i32
+    Transformers_Set_kV::altdss_func_v_cvp_f64
+    Transformers_Set_kVA::altdss_func_v_cvp_f64
+    Vsources_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    Vsources_Get_AngleDeg::altdss_func_f64_cvp
+    Vsources_Get_BasekV::altdss_func_f64_cvp
+    Vsources_Get_Count::altdss_func_i32_cvp
+    Vsources_Get_First::altdss_func_i32_cvp
+    Vsources_Get_Frequency::altdss_func_f64_cvp
+    Vsources_Get_Name::altdss_func_cstr_cvp
+    Vsources_Get_Next::altdss_func_i32_cvp
+    Vsources_Get_Phases::altdss_func_i32_cvp
+    Vsources_Get_Pointer::altdss_func_vp_cvp
+    Vsources_Get_idx::altdss_func_i32_cvp
+    Vsources_Get_pu::altdss_func_f64_cvp
+    Vsources_Set_AngleDeg::altdss_func_v_cvp_f64
+    Vsources_Set_BasekV::altdss_func_v_cvp_f64
+    Vsources_Set_Frequency::altdss_func_v_cvp_f64
+    Vsources_Set_Name::altdss_func_v_cvp_cstr
+    Vsources_Set_Phases::altdss_func_v_cvp_i32
+    Vsources_Set_idx::altdss_func_v_cvp_i32
+    Vsources_Set_pu::altdss_func_v_cvp_f64
+    WindGens_Get_Ag::altdss_func_f64_cvp
+    WindGens_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    WindGens_Get_Bus1::altdss_func_cstr_cvp
+    WindGens_Get_Class_::altdss_func_i32_cvp
+    WindGens_Get_Count::altdss_func_i32_cvp
+    WindGens_Get_Cp::altdss_func_f64_cvp
+    WindGens_Get_First::altdss_func_i32_cvp
+    WindGens_Get_IsDelta::altdss_func_u16_cvp
+    WindGens_Get_Lamda::altdss_func_f64_cvp
+    WindGens_Get_NPoles::altdss_func_i32_cvp
+    WindGens_Get_N_WTG::altdss_func_i32_cvp
+    WindGens_Get_Name::altdss_func_cstr_cvp
+    WindGens_Get_Next::altdss_func_i32_cvp
+    WindGens_Get_PF::altdss_func_f64_cvp
+    WindGens_Get_PSS::altdss_func_f64_cvp
+    WindGens_Get_Phases::altdss_func_i32_cvp
+    WindGens_Get_Pointer::altdss_func_vp_cvp
+    WindGens_Get_QFlag::altdss_func_i32_cvp
+    WindGens_Get_QMode::altdss_func_i32_cvp
+    WindGens_Get_QSS::altdss_func_f64_cvp
+    WindGens_Get_RThev::altdss_func_f64_cvp
+    WindGens_Get_Rad::altdss_func_f64_cvp
+    WindGens_Get_RegisterNames::altdss_func_v_cvp_strs_i32p
+    WindGens_Get_RegisterValues::altdss_func_v_cvp_f64pp_i32p
+    WindGens_Get_RegisterValues_GR::altdss_func_v_cvp
+    WindGens_Get_VCutIn::altdss_func_f64_cvp
+    WindGens_Get_VCutOut::altdss_func_f64_cvp
+    WindGens_Get_Vss::altdss_func_f64_cvp
+    WindGens_Get_WindSpeed::altdss_func_f64_cvp
+    WindGens_Get_XThev::altdss_func_f64_cvp
+    WindGens_Get_Yearly::altdss_func_cstr_cvp
+    WindGens_Get_daily::altdss_func_cstr_cvp
+    WindGens_Get_duty::altdss_func_cstr_cvp
+    WindGens_Get_idx::altdss_func_i32_cvp
+    WindGens_Get_kV::altdss_func_f64_cvp
+    WindGens_Get_kVA::altdss_func_f64_cvp
+    WindGens_Get_kW::altdss_func_f64_cvp
+    WindGens_Get_kvar::altdss_func_f64_cvp
+    WindGens_Get_pd::altdss_func_f64_cvp
+    WindGens_Set_Ag::altdss_func_v_cvp_f64
+    WindGens_Set_Bus1::altdss_func_v_cvp_cstr
+    WindGens_Set_Class_::altdss_func_v_cvp_i32
+    WindGens_Set_Cp::altdss_func_v_cvp_f64
+    WindGens_Set_IsDelta::altdss_func_v_cvp_u16
+    WindGens_Set_Lamda::altdss_func_v_cvp_f64
+    WindGens_Set_NPoles::altdss_func_v_cvp_i32
+    WindGens_Set_N_WTG::altdss_func_v_cvp_i32
+    WindGens_Set_Name::altdss_func_v_cvp_cstr
+    WindGens_Set_PF::altdss_func_v_cvp_f64
+    WindGens_Set_PSS::altdss_func_v_cvp_f64
+    WindGens_Set_Phases::altdss_func_v_cvp_i32
+    WindGens_Set_QFlag::altdss_func_v_cvp_i32
+    WindGens_Set_QMode::altdss_func_v_cvp_i32
+    WindGens_Set_QSS::altdss_func_v_cvp_f64
+    WindGens_Set_RThev::altdss_func_v_cvp_f64
+    WindGens_Set_Rad::altdss_func_v_cvp_f64
+    WindGens_Set_VCutIn::altdss_func_v_cvp_f64
+    WindGens_Set_VCutOut::altdss_func_v_cvp_f64
+    WindGens_Set_Vss::altdss_func_v_cvp_f64
+    WindGens_Set_WindSpeed::altdss_func_v_cvp_f64
+    WindGens_Set_XThev::altdss_func_v_cvp_f64
+    WindGens_Set_Yearly::altdss_func_v_cvp_cstr
+    WindGens_Set_daily::altdss_func_v_cvp_cstr
+    WindGens_Set_duty::altdss_func_v_cvp_cstr
+    WindGens_Set_idx::altdss_func_v_cvp_i32
+    WindGens_Set_kV::altdss_func_v_cvp_f64
+    WindGens_Set_kVA::altdss_func_v_cvp_f64
+    WindGens_Set_kW::altdss_func_v_cvp_f64
+    WindGens_Set_kvar::altdss_func_v_cvp_f64
+    WindGens_Set_pd::altdss_func_v_cvp_f64
+    WireData_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    WireData_Get_CapRadius::altdss_func_f64_cvp
+    WireData_Get_Count::altdss_func_i32_cvp
+    WireData_Get_Diameter::altdss_func_f64_cvp
+    WireData_Get_EmergAmps::altdss_func_f64_cvp
+    WireData_Get_First::altdss_func_i32_cvp
+    WireData_Get_GMRUnits::altdss_func_i32_cvp
+    WireData_Get_GMRac::altdss_func_f64_cvp
+    WireData_Get_Name::altdss_func_cstr_cvp
+    WireData_Get_Next::altdss_func_i32_cvp
+    WireData_Get_NormAmps::altdss_func_f64_cvp
+    WireData_Get_Pointer::altdss_func_vp_cvp
+    WireData_Get_Rac::altdss_func_f64_cvp
+    WireData_Get_Radius::altdss_func_f64_cvp
+    WireData_Get_RadiusUnits::altdss_func_i32_cvp
+    WireData_Get_Rdc::altdss_func_f64_cvp
+    WireData_Get_ResistanceUnits::altdss_func_i32_cvp
+    WireData_Get_idx::altdss_func_i32_cvp
+    WireData_Set_CapRadius::altdss_func_v_cvp_f64
+    WireData_Set_Diameter::altdss_func_v_cvp_f64
+    WireData_Set_EmergAmps::altdss_func_v_cvp_f64
+    WireData_Set_GMRUnits::altdss_func_v_cvp_i32
+    WireData_Set_GMRac::altdss_func_v_cvp_f64
+    WireData_Set_Name::altdss_func_v_cvp_cstr
+    WireData_Set_NormAmps::altdss_func_v_cvp_f64
+    WireData_Set_Rac::altdss_func_v_cvp_f64
+    WireData_Set_Radius::altdss_func_v_cvp_f64
+    WireData_Set_RadiusUnits::altdss_func_v_cvp_i32
+    WireData_Set_Rdc::altdss_func_v_cvp_f64
+    WireData_Set_ResistanceUnits::altdss_func_v_cvp_i32
+    WireData_Set_idx::altdss_func_v_cvp_i32
+    XYCurves_Get_AllNames::altdss_func_v_cvp_strs_i32p
+    XYCurves_Get_Count::altdss_func_i32_cvp
+    XYCurves_Get_First::altdss_func_i32_cvp
+    XYCurves_Get_Name::altdss_func_cstr_cvp
+    XYCurves_Get_Next::altdss_func_i32_cvp
+    XYCurves_Get_Npts::altdss_func_i32_cvp
+    XYCurves_Get_Pointer::altdss_func_vp_cvp
+    XYCurves_Get_Xarray::altdss_func_v_cvp_f64pp_i32p
+    XYCurves_Get_Xarray_GR::altdss_func_v_cvp
+    XYCurves_Get_Xscale::altdss_func_f64_cvp
+    XYCurves_Get_Xshift::altdss_func_f64_cvp
+    XYCurves_Get_Yarray::altdss_func_v_cvp_f64pp_i32p
+    XYCurves_Get_Yarray_GR::altdss_func_v_cvp
+    XYCurves_Get_Yscale::altdss_func_f64_cvp
+    XYCurves_Get_Yshift::altdss_func_f64_cvp
+    XYCurves_Get_idx::altdss_func_i32_cvp
+    XYCurves_Get_x::altdss_func_f64_cvp
+    XYCurves_Get_y::altdss_func_f64_cvp
+    XYCurves_Set_Name::altdss_func_v_cvp_cstr
+    XYCurves_Set_Npts::altdss_func_v_cvp_i32
+    XYCurves_Set_Xarray::altdss_func_v_cvp_cf64p_i32
+    XYCurves_Set_Xscale::altdss_func_v_cvp_f64
+    XYCurves_Set_Xshift::altdss_func_v_cvp_f64
+    XYCurves_Set_Yarray::altdss_func_v_cvp_cf64p_i32
+    XYCurves_Set_Yscale::altdss_func_v_cvp_f64
+    XYCurves_Set_Yshift::altdss_func_v_cvp_f64
+    XYCurves_Set_idx::altdss_func_v_cvp_i32
+    XYCurves_Set_x::altdss_func_v_cvp_f64
+    XYCurves_Set_y::altdss_func_v_cvp_f64
+    YMatrix_AddInAuxCurrents::altdss_func_v_cvp_i32
+    YMatrix_BuildYMatrixD::altdss_func_v_cvp_i32_i32
+    YMatrix_CheckConvergence::altdss_func_u16_cvp
+    YMatrix_GetCompressedYMatrix::altdss_func_v_cvp_u16_u32p_u32p_i32pp_i32pp_f64pp
+    YMatrix_GetPCInjCurr::altdss_func_v_cvp
+    YMatrix_GetSourceInjCurrents::altdss_func_v_cvp
+    YMatrix_Get_Handle::altdss_func_vp_cvp
+    YMatrix_Get_Iteration::altdss_func_i32_cvp
+    YMatrix_Get_LoadsNeedUpdating::altdss_func_u16_cvp
+    YMatrix_Get_SolutionInitialized::altdss_func_u16_cvp
+    YMatrix_Get_SolverOptions::altdss_func_u64_cvp
+    YMatrix_Get_SystemYChanged::altdss_func_u16_cvp
+    YMatrix_Get_UseAuxCurrents::altdss_func_u16_cvp
+    YMatrix_SaveAsMarketFiles::altdss_func_v_cvp_cstr
+    YMatrix_SetGeneratordQdV::altdss_func_v_cvp
+    YMatrix_Set_Iteration::altdss_func_v_cvp_i32
+    YMatrix_Set_LoadsNeedUpdating::altdss_func_v_cvp_u16
+    YMatrix_Set_SolutionInitialized::altdss_func_v_cvp_u16
+    YMatrix_Set_SolverOptions::altdss_func_v_cvp_u64
+    YMatrix_Set_SystemYChanged::altdss_func_v_cvp_u16
+    YMatrix_Set_UseAuxCurrents::altdss_func_v_cvp_u16
+    YMatrix_SolveSystem::altdss_func_i32_cvp_f64p
+    YMatrix_ZeroInjCurr::altdss_func_v_cvp
+    YMatrix_getIpointer::altdss_func_v_cvp_f64pp
+    YMatrix_getVpointer::altdss_func_v_cvp_f64pp
+    ZIP_Close::altdss_func_v_cvp
+    ZIP_Contains::altdss_func_u16_cvp_cstr
+    ZIP_Extract::altdss_func_v_cvp_i8pp_i32p_cstr
+    ZIP_Extract_GR::altdss_func_v_cvp_cstr
+    ZIP_List::altdss_func_v_cvp_strs_i32p_cstr
+    ZIP_Open::altdss_func_v_cvp_cstr
+    ZIP_Redirect::altdss_func_v_cvp_cstr
+    ctx_Dispose::altdss_func_v_cvp
+    ctx_Get_Prime::altdss_func_cvp_v
+    ctx_New::altdss_func_cvp_v
+    ctx_Set_Prime::altdss_func_cvp_cvp
+    ctx_ShareGeneral::altdss_func_v_vp_vp
+
+    AltDSSCAPI() = new()
+end # struct AltDSSCAPI
+#endregion main_struct
+const LIBRARY_SUFFIX = ""
+const LOADER_LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libaltdss_capi_loader$(LIBRARY_SUFFIX).so"))
+const ODDIE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libaltdss_oddie_capi$(LIBRARY_SUFFIX).so"))
+const ALTDSS_LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libaltdss_capi$(LIBRARY_SUFFIX).so"))
+
+function AltDSSCAPILibInit(libName::String, libInitFuncName::String, funcs::Ref{AltDSSCAPI})::Int32
+    ccall(
+        (:AltDSSCAPILibInit, LOADER_LIBRARY),
+        Int32,
+        (
+            Cstring,
+            Ptr{UInt64},
+            Cstring,
+            Ptr{Cvoid},
+            UInt64,
+            UInt64,
+            UInt64,
+            Ptr{Cvoid},
+        ),
+        libName,
+        C_NULL,
+        libInitFuncName,
+        funcs, # Ref{funcs.libHandle},
+        sizeof(AltDSSCAPI), # - sizeof(Ptr{Cvoid}),
+        1,
+        0,
+        C_NULL,
+    )
+end
+
+function AltDSSCAPILibClose(funcs::Ref{AltDSSCAPI})
+    ccall((:AltDSSCAPILibClose, LOADER_LIBRARY), Cvoid, (Ptr{AltDSSCAPI},), funcs)
+end
+
+#TODO: (from @pmeira) use @generated and ccall
+# The following is dumb since I couldn't easily make @generated and ccall
+# work like I wanted; if someone wants to give it a try, I found a discussion on this topic at:
+# https://discourse.julialang.org/t/is-it-possible-to-splat-into-ccall/95761
+
+function dss_ccall(f::altdss_func_v_i8pp, x0)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Int8}},), x0)
+end
+
+function dss_ccall(f::altdss_func_v_f64pp, x0)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Float64}},), x0)
+end
+
+function dss_ccall(f::altdss_func_v_i32pp, x0)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Int32}},), x0)
+end
+
+function dss_ccall(f::altdss_func_v_strs_i32, x0, x1)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cstring}}, Int32), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_cstr_vp_i32, x0, x1)::Cstring
+    ccall(f.cfunc, Cstring, (Ptr{Cvoid}, Int32), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_v_vp_vp, x0, x1)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Cvoid}), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_cstr_vp_u16, x0, x1)::Cstring
+    ccall(f.cfunc, Cstring, (Ptr{Cvoid}, UInt16), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_v_cstr, x0)
+    ccall(f.cfunc, Cvoid, (Cstring,), x0)
+end
+
+function dss_ccall(f::altdss_func_v_vppp, x0)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Ptr{Cvoid}}},), x0)
+end
+
+function dss_ccall(f::altdss_func_vp_vp_vp, x0, x1)::Ptr{Cvoid}
+    ccall(f.cfunc, Ptr{Cvoid}, (Ptr{Cvoid}, Ptr{Cvoid}), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_v_vp, x0)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid},), x0)
+end
+
+function dss_ccall(f::altdss_func_cvp_v)::Ptr{Cvoid}
+    ccall(f.cfunc, Ptr{Cvoid}, ())
+end
+
+function dss_ccall(f::altdss_func_cvp_cvp, x0)::Ptr{Cvoid}
+    ccall(f.cfunc, Ptr{Cvoid}, (Ptr{Cvoid},), x0)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_f64ppp_i32ppp_i8ppp_i32pp_i32pp_i32pp, x0, x1, x2, x3, x4, x5, x6)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Ptr{Float64}}}, Ptr{Ptr{Ptr{Int32}}}, Ptr{Ptr{Ptr{Int8}}}, Ptr{Ptr{Int32}}, Ptr{Ptr{Int32}}, Ptr{Ptr{Int32}}), x0, x1, x2, x3, x4, x5, x6)
+end
+
+function dss_ccall(f::altdss_func_f64p_cvp, x0)::Ptr{Float64}
+    ccall(f.cfunc, Ptr{Float64}, (Ptr{Cvoid},), x0)
+end
+
+function dss_ccall(f::altdss_func_i32p_cvp, x0)::Ptr{Int32}
+    ccall(f.cfunc, Ptr{Int32}, (Ptr{Cvoid},), x0)
+end
+
+function dss_ccall(f::altdss_func_i8p_cvp, x0)::Ptr{Int8}
+    ccall(f.cfunc, Ptr{Int8}, (Ptr{Cvoid},), x0)
+end
+
+function dss_ccall(f::altdss_func_vp_cvp_u64, x0, x1)::Ptr{Cvoid}
+    ccall(f.cfunc, Ptr{Cvoid}, (Ptr{Cvoid}, UInt64), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_cstr, x0, x1)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Cstring), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_strs_i32p, x0, x1, x2)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_i32_cvp, x0)::Int32
+    ccall(f.cfunc, Int32, (Ptr{Cvoid},), x0)
+end
+
+function dss_ccall(f::altdss_func_cstr_cvp, x0)::Cstring
+    ccall(f.cfunc, Cstring, (Ptr{Cvoid},), x0)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_i32, x0, x1)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Int32), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_f64pp_i32p, x0, x1, x2)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_i32pp_i32p, x0, x1, x2)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_f64_cvp, x0)::Float64
+    ccall(f.cfunc, Float64, (Ptr{Cvoid},), x0)
+end
+
+function dss_ccall(f::altdss_func_u16_cvp, x0)::UInt16
+    ccall(f.cfunc, UInt16, (Ptr{Cvoid},), x0)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_f64, x0, x1)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Float64), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_i32_cvp_i32, x0, x1)::Int32
+    ccall(f.cfunc, Int32, (Ptr{Cvoid}, Int32), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_u16, x0, x1)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, UInt16), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_ci32p_i32, x0, x1, x2)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Int32}, Int32), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_i32_cvp_cstr, x0, x1)::Int32
+    ccall(f.cfunc, Int32, (Ptr{Cvoid}, Cstring), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_f64_cvp_f64_f64, x0, x1, x2)::Float64
+    ccall(f.cfunc, Float64, (Ptr{Cvoid}, Float64, Float64), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_f64pp_i32p_i32, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}, Int32), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_strs_i32p_i32, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}, Int32), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_cstr_cvp_cstr_u32, x0, x1, x2)::Cstring
+    ccall(f.cfunc, Cstring, (Ptr{Cvoid}, Cstring, UInt32), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_cstr_i32, x0, x1, x2)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Cstring, Int32), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_strs_i32p_u16, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}, UInt16), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_cstrp_i32, x0, x1, x2)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Cstring}, Int32), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_i32_i32, x0, x1, x2)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Int32, Int32), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_u16_cvp_i32_i32, x0, x1, x2)::UInt16
+    ccall(f.cfunc, UInt16, (Ptr{Cvoid}, Int32, Int32), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_f64_cvp_cstr_i32p, x0, x1, x2)::Float64
+    ccall(f.cfunc, Float64, (Ptr{Cvoid}, Cstring, Ptr{Int32}), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_cstr_i32p_f64, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Cstring, Ptr{Int32}, Float64), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_f64_cvp_i32_i32p, x0, x1, x2)::Float64
+    ccall(f.cfunc, Float64, (Ptr{Cvoid}, Int32, Ptr{Int32}), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_i32_i32p_f64, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Int32, Ptr{Int32}, Float64), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_f64pp_i32p_f64_f64, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}, Float64, Float64), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_f64_f64, x0, x1, x2)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Float64, Float64), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_f64pp_i32p_f64_f64_f64_f64, x0, x1, x2, x3, x4, x5, x6)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}, Float64, Float64, Float64, Float64), x0, x1, x2, x3, x4, x5, x6)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_f64_f64_f64_f64, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Float64, Float64, Float64, Float64), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_i32_cvp_i32_f64_i32_i32, x0, x1, x2, x3, x4)::Int32
+    ccall(f.cfunc, Int32, (Ptr{Cvoid}, Int32, Float64, Int32, Int32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_u16_cvp_i32, x0, x1)::UInt16
+    ccall(f.cfunc, UInt16, (Ptr{Cvoid}, Int32), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_u32_cvp, x0)::UInt32
+    ccall(f.cfunc, UInt32, (Ptr{Cvoid},), x0)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_u32, x0, x1)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, UInt32), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_f64pp_i32p_size, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}, UInt64), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_size, x0, x1)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, UInt64), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_cf64p_i32, x0, x1, x2)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Float64}, Int32), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_i8pp_i32p, x0, x1, x2)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int8}}, Ptr{Int32}), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_f64pp_i32p_u16, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}, UInt16), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_u16_u32p_u32p_i32pp_i32pp_f64pp, x0, x1, x2, x3, x4, x5, x6)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, UInt16, Ptr{UInt32}, Ptr{UInt32}, Ptr{Ptr{Int32}}, Ptr{Ptr{Int32}}, Ptr{Ptr{Float64}}), x0, x1, x2, x3, x4, x5, x6)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_f64pp, x0, x1)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Float64}}), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_i32_cvp_f64p, x0, x1)::Int32
+    ccall(f.cfunc, Int32, (Ptr{Cvoid}, Ptr{Float64}), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_f64pp_i32p_f64_f64_i32, x0, x1, x2, x3, x4, x5)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}, Float64, Float64, Int32), x0, x1, x2, x3, x4, x5)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_f64_f64_i32, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Float64, Float64, Int32), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_f64pp_i32p_i32p_i32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Int32}, Int32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_i32_vp_vp_vp_u16_u16_i32, x0, x1, x2, x3, x4, x5, x6, x7)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Int32, Ptr{Cvoid}, Ptr{Cvoid}, Ptr{Cvoid}, UInt16, UInt16, Int32), x0, x1, x2, x3, x4, x5, x6, x7)
+end
+
+function dss_ccall(f::altdss_func_u64_cvp, x0)::UInt64
+    ccall(f.cfunc, UInt64, (Ptr{Cvoid},), x0)
+end
+
+function dss_ccall(f::altdss_func_u16_cvp_cstr, x0, x1)::UInt16
+    ccall(f.cfunc, UInt16, (Ptr{Cvoid}, Cstring), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_strs_i32p_cstr, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Cstring}}, Ptr{Int32}, Cstring), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_i8pp_i32p_cstr, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int8}}, Ptr{Int32}, Cstring), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_vp_cvp_i32_cstr_u16_u16, x0, x1, x2, x3, x4)::Ptr{Cvoid}
+    ccall(f.cfunc, Ptr{Cvoid}, (Ptr{Cvoid}, Int32, Cstring, UInt16, UInt16), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_vpp_cvp_i32, x0, x1)::Ptr{Ptr{Cvoid}}
+    ccall(f.cfunc, Ptr{Ptr{Cvoid}}, (Ptr{Cvoid}, Int32), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_vp_cvp_i32_cstr, x0, x1, x2)::Ptr{Cvoid}
+    ccall(f.cfunc, Ptr{Cvoid}, (Ptr{Cvoid}, Int32, Cstring), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_vp_cvp_i32_i32, x0, x1, x2)::Ptr{Cvoid}
+    ccall(f.cfunc, Ptr{Cvoid}, (Ptr{Cvoid}, Int32, Int32), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_u16_vp_i32_i32_u32, x0, x1, x2, x3)::UInt16
+    ccall(f.cfunc, UInt16, (Ptr{Cvoid}, Int32, Int32, UInt32), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_cstr_vp_u32, x0, x1)::Cstring
+    ccall(f.cfunc, Cstring, (Ptr{Cvoid}, UInt32), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_cstr_vpp_i32_u32, x0, x1, x2)::Cstring
+    ccall(f.cfunc, Cstring, (Ptr{Ptr{Cvoid}}, Int32, UInt32), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_f64_vp_i32, x0, x1)::Float64
+    ccall(f.cfunc, Float64, (Ptr{Cvoid}, Int32), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_vp_vp_i32, x0, x1)::Ptr{Cvoid}
+    ccall(f.cfunc, Ptr{Cvoid}, (Ptr{Cvoid}, Int32), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_v_f64pp_i32p_vp_i32, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Cvoid}, Int32), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_f64_vp_i32_i32, x0, x1, x2)::Float64
+    ccall(f.cfunc, Float64, (Ptr{Cvoid}, Int32, Int32), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_v_i32pp_i32p_vp_i32, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}, Ptr{Cvoid}, Int32), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_i32_vp_i32_i32, x0, x1, x2)::Int32
+    ccall(f.cfunc, Int32, (Ptr{Cvoid}, Int32, Int32), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_v_strs_i32p_vp_i32, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}, Ptr{Cvoid}, Int32), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_cstr_vp_i32_i32, x0, x1, x2)::Cstring
+    ccall(f.cfunc, Cstring, (Ptr{Cvoid}, Int32, Int32), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_v_vppp_i32p_vp_i32, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Ptr{Cvoid}, Int32), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_v_vp_i32_cstr_u32, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Int32, Cstring, UInt32), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_v_vp_i32_f64_u32, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Int32, Float64, UInt32), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_v_vp_i32_i32_u32, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Int32, Int32, UInt32), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_v_vp_i32_vp_u32, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Int32, Ptr{Cvoid}, UInt32), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_v_vp_i32_f64p_i32_u32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Int32, Ptr{Float64}, Int32, UInt32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vp_i32_f64_f64_u32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Int32, Float64, Float64, UInt32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vp_i32_i32p_i32_u32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Int32, Ptr{Int32}, Int32, UInt32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vp_i32_i32_i32_u32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Int32, Int32, Int32, UInt32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vp_i32_cstrp_i32_u32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Int32, Ptr{Cstring}, Int32, UInt32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vp_i32_i32_cstr_u32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Int32, Int32, Cstring, UInt32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vp_i32_vpp_i32_u32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Int32, Ptr{Ptr{Cvoid}}, Int32, UInt32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vp_i32_i32_vp_u32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Int32, Int32, Ptr{Cvoid}, UInt32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vpp, x0)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}},), x0)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32, x0, x1)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32_i32, x0, x1, x2)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32, Int32), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_v_i32pp_i32p_vpp_i32, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_vppp_i32p_i32_cstrp_i32_b, x0, x1, x2, x3, x4, x5, x6)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Int32, Ptr{Cstring}, Int32, Int32), x0, x1, x2, x3, x4, x5, x6)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_vppp_i32p_i32, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Int32), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_vppp_i32p_i32_cstr, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Int32, Cstring), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_vppp_i32p_i32_i32p_i32, x0, x1, x2, x3, x4, x5)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Int32, Ptr{Int32}, Int32), x0, x1, x2, x3, x4, x5)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_vppp_i32p_i32_i32_i32, x0, x1, x2, x3, x4, x5)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Int32, Int32, Int32), x0, x1, x2, x3, x4, x5)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_vppp_i32p_i32_i32_f64_f64, x0, x1, x2, x3, x4, x5, x6)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Int32, Int32, Float64, Float64), x0, x1, x2, x3, x4, x5, x6)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_vppp_i32p_vpp_i32_i32_i32, x0, x1, x2, x3, x4, x5, x6)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Int32, Int32), x0, x1, x2, x3, x4, x5, x6)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_vppp_i32p_vpp_i32_i32_f64_f64, x0, x1, x2, x3, x4, x5, x6, x7)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Int32, Float64, Float64), x0, x1, x2, x3, x4, x5, x6, x7)
+end
+
+function dss_ccall(f::altdss_func_v_f64pp_i32p_vpp_i32_i32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Int32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_f64pp_i32p_vpp_i32_dss_obj_f3264_func_t, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, dss_obj_float64_func_t), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_f64pp_i32p_vpp_i32_dss_obj_f3264_i32_func_t_i32, x0, x1, x2, x3, x4, x5)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, dss_obj_float64_int32_func_t, Int32), x0, x1, x2, x3, x4, x5)
+end
+
+function dss_ccall(f::altdss_func_v_i32pp_i32p_vpp_i32_i32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Int32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_i32pp_i32p_vpp_i32_dss_obj_i32_func_t, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, dss_obj_int32_func_t), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_strs_i32p_vpp_i32_i32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Int32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vppp_i32p_vpp_i32_i32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Int32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32_i32_i32_f64_u32, x0, x1, x2, x3, x4, x5)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32, Int32, Int32, Float64, UInt32), x0, x1, x2, x3, x4, x5)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32_i32_i32_i32_u32, x0, x1, x2, x3, x4, x5)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32, Int32, Int32, Int32, UInt32), x0, x1, x2, x3, x4, x5)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32_i32_cstr_u32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32, Int32, Cstring, UInt32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32_i32_cvp_u32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32, Int32, Ptr{Cvoid}, UInt32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32_i32_i32_f64p_u32, x0, x1, x2, x3, x4, x5)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32, Int32, Int32, Ptr{Float64}, UInt32), x0, x1, x2, x3, x4, x5)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32_i32_i32_i32p_u32, x0, x1, x2, x3, x4, x5)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32, Int32, Int32, Ptr{Int32}, UInt32), x0, x1, x2, x3, x4, x5)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32_i32_f64p_u32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32, Int32, Ptr{Float64}, UInt32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32_i32_i32p_u32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32, Int32, Ptr{Int32}, UInt32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32_i32_cstrp_u32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32, Int32, Ptr{Cstring}, UInt32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32_i32_cvpp_u32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32, Int32, Ptr{Ptr{Cvoid}}, UInt32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_vppp_i32p_cstr_cstrp_i32_b, x0, x1, x2, x3, x4, x5, x6)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Cstring, Ptr{Cstring}, Int32, Int32), x0, x1, x2, x3, x4, x5, x6)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_vppp_i32p_cstr, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Cstring), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_vppp_i32p_cstr_cstr, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Cstring, Cstring), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_vppp_i32p_cstr_i32p_i32, x0, x1, x2, x3, x4, x5)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Cstring, Ptr{Int32}, Int32), x0, x1, x2, x3, x4, x5)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_vppp_i32p_cstr_cstr_i32, x0, x1, x2, x3, x4, x5)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Cstring, Cstring, Int32), x0, x1, x2, x3, x4, x5)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_vppp_i32p_cstr_cstr_f64_f64, x0, x1, x2, x3, x4, x5, x6)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Cstring, Cstring, Float64, Float64), x0, x1, x2, x3, x4, x5, x6)
+end
+
+function dss_ccall(f::altdss_func_v_f64pp_i32p_vpp_i32_cstr, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Cstring), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_i32pp_i32p_vpp_i32_cstr, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Cstring), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_strs_i32p_vpp_i32_cstr, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Cstring), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vppp_i32p_vpp_i32_cstr, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Cstring), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32_cstr_i32_f64_u32, x0, x1, x2, x3, x4, x5)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32, Cstring, Int32, Float64, UInt32), x0, x1, x2, x3, x4, x5)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32_cstr_i32_i32_u32, x0, x1, x2, x3, x4, x5)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32, Cstring, Int32, Int32, UInt32), x0, x1, x2, x3, x4, x5)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32_cstr_cstr_u32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32, Cstring, Cstring, UInt32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32_cstr_cvp_u32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32, Cstring, Ptr{Cvoid}, UInt32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32_cstr_i32_f64p_u32, x0, x1, x2, x3, x4, x5)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32, Cstring, Int32, Ptr{Float64}, UInt32), x0, x1, x2, x3, x4, x5)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32_cstr_f64p_u32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32, Cstring, Ptr{Float64}, UInt32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32_cstr_i32_i32p_u32, x0, x1, x2, x3, x4, x5)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32, Cstring, Int32, Ptr{Int32}, UInt32), x0, x1, x2, x3, x4, x5)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32_cstr_i32p_u32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32, Cstring, Ptr{Int32}, UInt32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32_cstr_cstrp_u32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32, Cstring, Ptr{Cstring}, UInt32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_vpp_i32_cstr_cvpp_u32, x0, x1, x2, x3, x4)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cvoid}}, Int32, Cstring, Ptr{Ptr{Cvoid}}, UInt32), x0, x1, x2, x3, x4)
+end
+
+function dss_ccall(f::altdss_func_v_f64pp_i32p_vp, x0, x1, x2)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Cvoid}), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_v_vppp_i32p_vp, x0, x1, x2)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Ptr{Cvoid}), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_v_i32pp_i32p_vp, x0, x1, x2)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Int32}}, Ptr{Int32}, Ptr{Cvoid}), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_v_strs_i32p_vp, x0, x1, x2)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Cstring}}, Ptr{Int32}, Ptr{Cvoid}), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_v_vp_i32_f64, x0, x1, x2)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Int32, Float64), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_v_vp_cstr_f64, x0, x1, x2)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Cstring, Float64), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_f64_vp_cstr, x0, x1)::Float64
+    ccall(f.cfunc, Float64, (Ptr{Cvoid}, Cstring), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_v_f64pp_i32p_vpp_i32, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_v_vp_i32_vp_vp_vp_b_b_i32, x0, x1, x2, x3, x4, x5, x6, x7)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Int32, Ptr{Cvoid}, Ptr{Cvoid}, Ptr{Cvoid}, Int32, Int32, Int32), x0, x1, x2, x3, x4, x5, x6, x7)
+end
+
+function dss_ccall(f::altdss_func_v_i8pp_i32p_vp, x0, x1, x2)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Int8}}, Ptr{Int32}, Ptr{Cvoid}), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_cstr_cvp_vp, x0, x1)::Cstring
+    ccall(f.cfunc, Cstring, (Ptr{Cvoid}, Ptr{Cvoid}), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_i32_cvp_vp, x0, x1)::Int32
+    ccall(f.cfunc, Int32, (Ptr{Cvoid}, Ptr{Cvoid}), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_f64_cvp_vp, x0, x1)::Float64
+    ccall(f.cfunc, Float64, (Ptr{Cvoid}, Ptr{Cvoid}), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_vp_f64, x0, x1, x2)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Cvoid}, Float64), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_i32_vp_vp_i32, x0, x1, x2)::Int32
+    ccall(f.cfunc, Int32, (Ptr{Cvoid}, Ptr{Cvoid}, Int32), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_f64pp_i32p_vp, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Cvoid}), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_i32pp_i32p_vp, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}, Ptr{Cvoid}), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_vppp_i32p_vp, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Ptr{Cvoid}}}, Ptr{Int32}, Ptr{Cvoid}), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_vpp_vp, x0)::Ptr{Ptr{Cvoid}}
+    ccall(f.cfunc, Ptr{Ptr{Cvoid}}, (Ptr{Cvoid},), x0)
+end
+
+function dss_ccall(f::altdss_func_vp_vp_cstr, x0, x1)::Ptr{Cvoid}
+    ccall(f.cfunc, Ptr{Cvoid}, (Ptr{Cvoid}, Cstring), x0, x1)
+end
+
+function dss_ccall(f::altdss_func_cstr_vp_vp_i32, x0, x1, x2)::Cstring
+    ccall(f.cfunc, Cstring, (Ptr{Cvoid}, Ptr{Cvoid}, Int32), x0, x1, x2)
+end
+
+function dss_ccall(f::altdss_func_v_vp_f64pp_i32p_vpp_i32_dss_ctx_bus_f3264_func_t, x0, x1, x2, x3, x4, x5)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, dss_ctx_bus_float64_func_t), x0, x1, x2, x3, x4, x5)
+end
+
+function dss_ccall(f::altdss_func_v_vp_i32pp_i32p_vpp_i32_dss_ctx_bus_i32_func_t, x0, x1, x2, x3, x4, x5)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Int32}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, dss_ctx_bus_int32_func_t), x0, x1, x2, x3, x4, x5)
+end
+
+function dss_ccall(f::altdss_func_cstr_vp_vpp_i32_i32, x0, x1, x2, x3)::Cstring
+    ccall(f.cfunc, Cstring, (Ptr{Cvoid}, Ptr{Ptr{Cvoid}}, Int32, Int32), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_v_cstr_u32p, x0, x1)
+    ccall(f.cfunc, Cvoid, (Cstring, Ptr{UInt32}), x0, x1)
+end
+
+export AltDSSCAPILibInit, AltDSSCAPILibClose, AltDSSCAPI, LOADER_LIBRARY, ALTDSS_LIBRARY, ODDIE_LIBRARY, dss_ccall

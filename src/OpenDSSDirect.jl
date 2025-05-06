@@ -55,11 +55,13 @@ export DSSContext
 
 export dss
 
+export DSS_DEFAULT_STRUCT
+
 import Libdl
 
 if get(ENV, "DSS_EXTENSIONS_DEBUG", "0") == "1"
     LIBRARY_SUFFIX = "d"
-    @warn "Environment variable DSS_EXTENSIONS_DEBUG=1 is set: loading the debug version of DSS C-API library"
+    @warn "Environment variable DSS_EXTENSIONS_DEBUG=1 is set: loading the debug version of AltDSS engine library for the default context"
 else
     LIBRARY_SUFFIX = ""
 end
@@ -83,15 +85,22 @@ module Lib
 
     import ..OpenDSSDirect: LIBRARY
 
-    include("lib.jl")
+    const DSS_CAPI_VERSION = "0.15.0"
+
     include("common.jl")
     include("extensions.jl")
-
+    include("capi.jl")
 end
 
-struct DSSContext
+using .Lib
+
+mutable struct DSSContext
     ctx::Ptr{Cvoid}
+    const capi::AltDSSCAPI
+    error::Ptr{Int32}
 end
+
+DSS_DEFAULT_STRUCT = AltDSSCAPI()
 
 include("utils.jl")
 
@@ -149,22 +158,123 @@ include("windgens.jl")
 include("repl.jl")
 include("iterators.jl")
 
+include("bench.jl")
+
 const dss = OpenDSSDirect.Text.Command
 
 using .Utils
 
+"""
+Load an EPRI OpenDSS library, returning its context
+
+EPRI's OpenDSS distribution or OpenDSS-C can be loaded, as well as
+any library that implements its direct API (aka OpenDSSDirect.DLL, aka DCSL).
+
+The library is loaded through AltDSS Oddie, a compatibility and extension library.
+This allows projects on DSS-Extensions to use EPRI's distribution without sacrificing
+the maintainance or performance when using our own AltDSS engine.
+
+`DSS.Start` is automatically called.
+
+**(API Extension)**
+"""
+function LoadOpenDSSLib(libpath::String)::DSSContext
+    capi = AltDSSCAPI()
+    # First, load Oddie
+    loaded_status = AltDSSCAPILibInit(ODDIE_LIBRARY, "AltDSSOddieCAPIInit", Ref(capi))
+    if loaded_status != 1
+        error("Oddie could not be loaded (error $loaded_status)!")
+    end
+    finalizer(Utils.finalize_capi, capi)
+
+    # Now load the target library
+    dss_ccall(capi.Oddie_SetLibOptions, libpath, C_NULL)
+
+    # Create the context    
+    new_ctx = dss_ccall(capi.ctx_New)
+    if new_ctx == C_NULL
+        error("The OpenDSS library could not be loaded!")
+    end
+
+    # Always start to avoid issues with OpenDSS-C, or potentially threads in AltDSS
+    dss_ccall(capi.DSS_Start, new_ctx, 0)
+
+    error_ptr = dss_ccall(capi.Error_Get_NumberPtr, new_ctx)
+    wrapped_ctx = DSSContext(new_ctx, capi, error_ptr)
+    finalizer(Utils.finalize_ctx, wrapped_ctx)
+
+    return wrapped_ctx
+end
+#TODO: provide a default lib here? LoadOpenDSSLib() = LoadOpenDSSLib(OPENDSSC_LIBRARY)
+
+"""
+Load an AltDSS library, returning its prime DSS context
+
+*AltDSS is the official implementation on DSS-Extensions since 2018, previously
+known as DSS C-API.*
+
+Useful for loading different builds that are compatible. For example, users can
+load the debug version of the library to investigate issues.
+
+**(API Extension)**
+"""
+function LoadAltDSSLib(libpath::String)::DSSContext
+    capi = AltDSSCAPI()
+    # First, load Oddie
+    loaded_status = AltDSSCAPILibInit(libpath, "", Ref(capi))
+    if loaded_status != 1
+        error("The target library could not be loaded (error $loaded_status)!")
+    end
+    finalizer(Utils.finalize_capi, capi)
+
+    # Get the prime context    
+    prime_ctx = dss_ccall(capi.ctx_Get_Prime)
+    if prime_ctx == C_NULL
+        error("The AltDSS context not be read!")
+    end
+
+    # Always start to avoid issues with OpenDSS-C, or potentially threads in AltDSS
+    dss_ccall(capi.DSS_Start, prime_ctx, 0)
+
+    error_ptr = dss_ccall(capi.Error_Get_NumberPtr, prime_ctx)
+    wrapped_ctx = DSSContext(prime_ctx, capi, error_ptr)
+    finalizer(Utils.finalize_ctx, wrapped_ctx)
+
+    return wrapped_ctx
+end
+
 function __init__()
+    global DSS_DEFAULT_STRUCT
 
-    if Libdl.dlopen(KLUSOLVE_LIBRARY) == C_NULL
-        error("$KLUSOLVE_LIBRARY cannot be opened. Please check 'deps/build.log' for more information.")
+    if Libdl.dlopen(LOADER_LIBRARY) == C_NULL
+        error("$(LOADER_LIBRARY) cannot be opened. Please check 'deps/build.log' for more information.")
     end
 
-    if Libdl.dlopen(LIBRARY) == C_NULL
-        error("$LIBRARY cannot be opened. Please check 'deps/build.log' for more information.")
+    rfuncs = Ref(DSS_DEFAULT_STRUCT)
+
+    loaded_status = AltDSSCAPILibInit(LIBRARY, "", rfuncs)
+    if loaded_status != 1
+        error("DSS engine could not be loaded (error $loaded_status)!")
     end
+    finalizer(Utils.finalize_capi, DSS_DEFAULT_STRUCT)
+
+    # if Libdl.dlopen(KLUSOLVE_LIBRARY) == C_NULL
+    #     error("$KLUSOLVE_LIBRARY cannot be opened. Please check 'deps/build.log' for more information.")
+    # end
+
+    # if Libdl.dlopen(LIBRARY) == C_NULL
+    #     error("$LIBRARY cannot be opened. Please check 'deps/build.log' for more information.")
+    # end
 
     # Load the default descriptions/help strings
-    Lib.DSS_SetPropertiesMO(abspath(joinpath(@__DIR__, "../deps/messages/properties-en-US.mo")))
+    dss_ccall(DSS_DEFAULT_STRUCT.DSS_SetPropertiesMO, abspath(joinpath(@__DIR__, "../deps/messages/properties-en-US.mo")))
+
+    # Always start to avoid issues with OpenDSS-C, or potentially threads in AltDSS
+    dss_ccall(DSS_DEFAULT_STRUCT.DSS_Start, C_NULL, 0)
+
+    finalizer(Utils.finalize_ctx, DSS_DEFAULT_CTX)
+
+    DSS_DEFAULT_CTX.error = dss_ccall(DSS_DEFAULT_STRUCT.Error_Get_NumberPtr, C_NULL)
 
     if !Sys.islinux()
         global commandhelp = Dict{String, String}()
