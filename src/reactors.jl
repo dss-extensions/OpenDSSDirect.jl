@@ -13,25 +13,25 @@ using ..Utils
 
 """Array of names of all Reactor objects."""
 function AllNames(dss::DSSContext)::Vector{String}
-    return get_string_array(Lib.Reactors_Get_AllNames, dss.ctx)
+    return get_string_array(dss.capi.Reactors_Get_AllNames, dss)
 end
 AllNames() = AllNames(DSS_DEFAULT_CTX)
 
 """Gets the name of the active Reactor object."""
 function Name(dss::DSSContext)::String
-    return get_string(@checked Lib.Reactors_Get_Name(dss.ctx))
+    return get_string(@checked dss_ccall(dss.capi.Reactors_Get_Name, dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
 """Sets a Reactor object active by name."""
 function Name(dss::DSSContext, Value::String)
-    @checked Lib.Reactors_Set_Name(dss.ctx, Value)
+    @checked dss_ccall(dss.capi.Reactors_Set_Name, dss.ctx, Value)
 end
 Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 
 """Number of Reactor Objects in Active Circuit"""
 function Count(dss::DSSContext)::Int
-    return @checked Lib.Reactors_Get_Count(dss.ctx)
+    return @checked dss_ccall(dss.capi.Reactors_Get_Count, dss.ctx)
 end
 Count() = Count(DSS_DEFAULT_CTX)
 
@@ -40,7 +40,7 @@ Sets first Reactor to be active.
 Returns 0 if none.
 """
 function First(dss::DSSContext)::Int
-    return @checked Lib.Reactors_Get_First(dss.ctx)
+    return @checked dss_ccall(dss.capi.Reactors_Get_First, dss.ctx)
 end
 First() = First(DSS_DEFAULT_CTX)
 
@@ -49,7 +49,7 @@ Sets next Reactor to be active.
 Returns 0 if no more.
 """
 function Next(dss::DSSContext)::Int
-    return @checked Lib.Reactors_Get_Next(dss.ctx)
+    return @checked dss_ccall(dss.capi.Reactors_Get_Next, dss.ctx)
 end
 Next() = Next(DSS_DEFAULT_CTX)
 
@@ -59,7 +59,7 @@ Returns the index of the current active Reactor (1-based)
 (Getter)
 """
 function Idx(dss::DSSContext)::Int
-    return @checked Lib.Reactors_Get_idx(dss.ctx)
+    return @checked dss_ccall(dss.capi.Reactors_Get_idx, dss.ctx)
 end
 Idx() = Idx(DSS_DEFAULT_CTX)
 
@@ -69,7 +69,7 @@ Activate Reactor by index (1-based)
 (Setter)
 """
 function Idx(dss::DSSContext, Value::Int)
-    @checked Lib.Reactors_Set_idx(dss.ctx, Value)
+    @checked dss_ccall(dss.capi.Reactors_Set_idx, dss.ctx, Value)
 end
 Idx(Value::Int) = Idx(DSS_DEFAULT_CTX, Value)
 
@@ -79,7 +79,7 @@ Delta connection or wye?
 (Getter)
 """
 function IsDelta(dss::DSSContext)::Bool
-    return (@checked Lib.Reactors_Get_IsDelta(dss.ctx)) != 0
+    return (@checked dss_ccall(dss.capi.Reactors_Get_IsDelta, dss.ctx)) != 0
 end
 IsDelta() = IsDelta(DSS_DEFAULT_CTX)
 
@@ -89,7 +89,7 @@ Delta connection or wye?
 (Setter)
 """
 function IsDelta(dss::DSSContext, Value::Bool)
-    return @checked Lib.Reactors_Set_IsDelta(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.Reactors_Set_IsDelta, dss.ctx, Value)
 end
 IsDelta(Value::Bool) = IsDelta(DSS_DEFAULT_CTX, Value)
 
@@ -99,7 +99,7 @@ For 2, 3-phase, kV phase-phase. Otherwise specify actual coil rating.
 (Getter)
 """
 function kV(dss::DSSContext)::Float64
-    return @checked Lib.Reactors_Get_kV(dss.ctx)
+    return @checked dss_ccall(dss.capi.Reactors_Get_kV, dss.ctx)
 end
 kV() = kV(DSS_DEFAULT_CTX)
 
@@ -109,7 +109,7 @@ For 2, 3-phase, kV phase-phase. Otherwise specify actual coil rating.
 (Setter)
 """
 function kV(dss::DSSContext, Value::Float64)
-    return @checked Lib.Reactors_Set_kV(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.Reactors_Set_kV, dss.ctx, Value)
 end
 kV(Value::Float64) = kV(DSS_DEFAULT_CTX, Value)
 
@@ -120,7 +120,7 @@ Not necessary to specify for delta (LL) connection
 (Getter)
 """
 function Bus2(dss::DSSContext)::String
-    return get_string(@checked Lib.Reactors_Get_Bus2(dss.ctx))
+    return get_string(@checked dss_ccall(dss.capi.Reactors_Get_Bus2, dss.ctx))
 end
 Bus2() = Bus2(DSS_DEFAULT_CTX)
 
@@ -131,7 +131,7 @@ Not necessary to specify for delta (LL) connection
 (Setter)
 """
 function Bus2(dss::DSSContext, Value::String)
-    return @checked Lib.Reactors_Set_Bus2(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.Reactors_Set_Bus2, dss.ctx, Value)
 end
 Bus2(Value::String) = Bus2(DSS_DEFAULT_CTX, Value)
 
@@ -141,7 +141,7 @@ Indicates whether Rmatrix and Xmatrix are to be considered in parallel.
 (Getter)
 """
 function Parallel(dss::DSSContext)::Bool
-    return (@checked Lib.Reactors_Get_Parallel(dss.ctx)) != 0
+    return (@checked dss_ccall(dss.capi.Reactors_Get_Parallel, dss.ctx)) != 0
 end
 Parallel() = Parallel(DSS_DEFAULT_CTX)
 
@@ -151,7 +151,7 @@ Indicates whether Rmatrix and Xmatrix are to be considered in parallel.
 (Setter)
 """
 function Parallel(dss::DSSContext, Value::Bool)
-    return @checked Lib.Reactors_Set_Parallel(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.Reactors_Set_Parallel, dss.ctx, Value)
 end
 Parallel(Value::Bool) = Parallel(DSS_DEFAULT_CTX, Value)
 
@@ -163,7 +163,7 @@ Only Bus1 need be specified for a Yg shunt reactor.
 (Getter)
 """
 function Bus1(dss::DSSContext)::String
-    return get_string(@checked Lib.Reactors_Get_Bus1(dss.ctx))
+    return get_string(@checked dss_ccall(dss.capi.Reactors_Get_Bus1, dss.ctx))
 end
 Bus1() = Bus1(DSS_DEFAULT_CTX)
 
@@ -175,7 +175,7 @@ Only Bus1 need be specified for a Yg shunt reactor.
 (Setter)
 """
 function Bus1(dss::DSSContext, Value::String)
-    return @checked Lib.Reactors_Set_Bus1(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.Reactors_Set_Bus1, dss.ctx, Value)
 end
 Bus1(Value::String) = Bus1(DSS_DEFAULT_CTX, Value)
 
@@ -185,7 +185,7 @@ Name of XYCurve object, previously defined, describing per-unit variation of pha
 (Getter)
 """
 function RCurve(dss::DSSContext)::String
-    return get_string(@checked Lib.Reactors_Get_RCurve(dss.ctx))
+    return get_string(@checked dss_ccall(dss.capi.Reactors_Get_RCurve, dss.ctx))
 end
 RCurve() = RCurve(DSS_DEFAULT_CTX)
 
@@ -195,7 +195,7 @@ Name of XYCurve object, previously defined, describing per-unit variation of pha
 (Setter)
 """
 function RCurve(dss::DSSContext, Value::String)
-    return @checked Lib.Reactors_Set_RCurve(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.Reactors_Set_RCurve, dss.ctx, Value)
 end
 RCurve(Value::String) = RCurve(DSS_DEFAULT_CTX, Value)
 
@@ -205,7 +205,7 @@ Number of phases.
 (Getter)
 """
 function Phases(dss::DSSContext)::Int
-    return @checked Lib.Reactors_Get_Phases(dss.ctx)
+    return @checked dss_ccall(dss.capi.Reactors_Get_Phases, dss.ctx)
 end
 Phases() = Phases(DSS_DEFAULT_CTX)
 
@@ -215,7 +215,7 @@ Number of phases.
 (Setter)
 """
 function Phases(dss::DSSContext, Value::Int)
-    return @checked Lib.Reactors_Set_Phases(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.Reactors_Set_Phases, dss.ctx, Value)
 end
 Phases(Value::Int) = Phases(DSS_DEFAULT_CTX, Value)
 
@@ -225,7 +225,7 @@ Resistance in parallel with R and X (the entire branch). Assumed infinite if not
 (Getter)
 """
 function Rp(dss::DSSContext)::Float64
-    return @checked Lib.Reactors_Get_Rp(dss.ctx)
+    return @checked dss_ccall(dss.capi.Reactors_Get_Rp, dss.ctx)
 end
 Rp() = Rp(DSS_DEFAULT_CTX)
 
@@ -235,7 +235,7 @@ Resistance in parallel with R and X (the entire branch). Assumed infinite if not
 (Setter)
 """
 function Rp(dss::DSSContext, Value::Float64)
-    return @checked Lib.Reactors_Set_Rp(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.Reactors_Set_Rp, dss.ctx, Value)
 end
 Rp(Value::Float64) = Rp(DSS_DEFAULT_CTX, Value)
 
@@ -245,7 +245,7 @@ Name of XYCurve object, previously defined, describing per-unit variation of pha
 (Getter)
 """
 function LCurve(dss::DSSContext)::Float64
-    return @checked Lib.Reactors_Get_LCurve(dss.ctx)
+    return @checked dss_ccall(dss.capi.Reactors_Get_LCurve, dss.ctx)
 end
 LCurve() = LCurve(DSS_DEFAULT_CTX)
 
@@ -255,7 +255,7 @@ Name of XYCurve object, previously defined, describing per-unit variation of pha
 (Setter)
 """
 function LCurve(dss::DSSContext, Value::Float64)
-    return @checked Lib.Reactors_Set_LCurve(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.Reactors_Set_LCurve, dss.ctx, Value)
 end
 LCurve(Value::Float64) = LCurve(DSS_DEFAULT_CTX, Value)
 
@@ -265,7 +265,7 @@ Total kvar, all phases.  Evenly divided among phases. Only determines X. Specify
 (Getter)
 """
 function kvar(dss::DSSContext)::Float64
-    return @checked Lib.Reactors_Get_kvar(dss.ctx)
+    return @checked dss_ccall(dss.capi.Reactors_Get_kvar, dss.ctx)
 end
 kvar() = kvar(DSS_DEFAULT_CTX)
 
@@ -275,7 +275,7 @@ Total kvar, all phases.  Evenly divided among phases. Only determines X. Specify
 (Setter)
 """
 function kvar(dss::DSSContext, Value::Float64)
-    return @checked Lib.Reactors_Set_kvar(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.Reactors_Set_kvar, dss.ctx, Value)
 end
 kvar(Value::Float64) = kvar(DSS_DEFAULT_CTX, Value)
 
@@ -285,7 +285,7 @@ Resistance (in series with reactance), each phase, ohms. This property applies t
 (Getter)
 """
 function R(dss::DSSContext)::Float64
-    return @checked Lib.Reactors_Get_R(dss.ctx)
+    return @checked dss_ccall(dss.capi.Reactors_Get_R, dss.ctx)
 end
 R() = R(DSS_DEFAULT_CTX)
 
@@ -295,7 +295,7 @@ Resistance (in series with reactance), each phase, ohms. This property applies t
 (Setter)
 """
 function R(dss::DSSContext, Value::Float64)
-    return @checked Lib.Reactors_Set_R(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.Reactors_Set_R, dss.ctx, Value)
 end
 R(Value::Float64) = R(DSS_DEFAULT_CTX, Value)
 
@@ -305,7 +305,7 @@ Inductance, mH. Alternate way to define the reactance, X, property.
 (Getter)
 """
 function LmH(dss::DSSContext)::Float64
-    return @checked Lib.Reactors_Get_LmH(dss.ctx)
+    return @checked dss_ccall(dss.capi.Reactors_Get_LmH, dss.ctx)
 end
 LmH() = LmH(DSS_DEFAULT_CTX)
 
@@ -315,7 +315,7 @@ Inductance, mH. Alternate way to define the reactance, X, property.
 (Setter)
 """
 function LmH(dss::DSSContext, Value::Float64)
-    return @checked Lib.Reactors_Set_LmH(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.Reactors_Set_LmH, dss.ctx, Value)
 end
 LmH(Value::Float64) = LmH(DSS_DEFAULT_CTX, Value)
 
@@ -325,7 +325,7 @@ Reactance, each phase, ohms at base frequency. See also help on Z and LmH proper
 (Getter)
 """
 function X(dss::DSSContext)::Float64
-    return @checked Lib.Reactors_Get_X(dss.ctx)
+    return @checked dss_ccall(dss.capi.Reactors_Get_X, dss.ctx)
 end
 X() = X(DSS_DEFAULT_CTX)
 
@@ -335,7 +335,7 @@ Reactance, each phase, ohms at base frequency. See also help on Z and LmH proper
 (Setter)
 """
 function X(dss::DSSContext, Value::Float64)
-    return @checked Lib.Reactors_Set_X(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.Reactors_Set_X, dss.ctx, Value)
 end
 X(Value::Float64) = X(DSS_DEFAULT_CTX, Value)
 
@@ -346,7 +346,7 @@ Depending on this value, only some properties are filled or make sense in the co
 **(API Extension)**
 """
 function SpecType(dss::DSSContext)::Int
-    return @checked Lib.Reactors_Get_SpecType(dss.ctx)
+    return @checked dss_ccall(dss.capi.Reactors_Get_SpecType, dss.ctx)
 end
 SpecType() = SpecType(DSS_DEFAULT_CTX)
 
@@ -356,7 +356,7 @@ Reactance matrix, ohms at base frequency. Order of the matrix is the number of p
 (Getter)
 """
 function Xmatrix(dss::DSSContext)::Array{Float64}
-    return get_float64_array(Lib.Reactors_Get_Xmatrix, dss.ctx)
+    return get_float64_array(dss.capi.Reactors_Get_Xmatrix, dss)
 end
 Xmatrix() = Xmatrix(DSS_DEFAULT_CTX)
 
@@ -366,7 +366,7 @@ Reactance matrix, ohms at base frequency. Order of the matrix is the number of p
 (Setter)
 """
 function Xmatrix(dss::DSSContext, Value::Array{Float64})
-    return set_float64_array(Lib.Reactors_Set_Xmatrix, dss.ctx, Value)
+    return set_float64_array(dss.capi.Reactors_Set_Xmatrix, dss, Value)
 end
 Xmatrix(Value::Array{Float64}) = Xmatrix(DSS_DEFAULT_CTX, Value)
 
@@ -376,7 +376,7 @@ Resistance matrix, ohms at base frequency. Order of the matrix is the number of 
 (Getter)
 """
 function Rmatrix(dss::DSSContext)::Array{Float64}
-    return get_float64_array(Lib.Reactors_Get_Rmatrix, dss.ctx)
+    return get_float64_array(dss.capi.Reactors_Get_Rmatrix, dss)
 end
 Rmatrix() = Rmatrix(DSS_DEFAULT_CTX)
 
@@ -386,7 +386,7 @@ Resistance matrix, ohms at base frequency. Order of the matrix is the number of 
 (Setter)
 """
 function Rmatrix(dss::DSSContext, Value::Array{Float64})
-    return set_float64_array(Lib.Reactors_Set_Rmatrix, dss.ctx, Value)
+    return set_float64_array(dss.capi.Reactors_Set_Rmatrix, dss, Value)
 end
 Rmatrix(Value::Array{Float64}) = Rmatrix(DSS_DEFAULT_CTX, Value)
 
@@ -400,7 +400,7 @@ Note: Z0 defaults to Z1 if it is not specifically defined.
 (Getter)
 """
 function Z0(dss::DSSContext)::ComplexF64
-    return get_complex64(Lib.Reactors_Get_Z0, dss.ctx)
+    return get_complex64(dss.capi.Reactors_Get_Z0, dss)
 end
 Z0() = Z0(DSS_DEFAULT_CTX)
 
@@ -414,7 +414,7 @@ Note: Z0 defaults to Z1 if it is not specifically defined.
 (Setter)
 """
 function Z0(dss::DSSContext, Value::ComplexF64)
-    @checked Lib.Reactors_Set_Z0(dss.ctx, pointer(Value), 2)
+    @checked dss_ccall(dss.capi.Reactors_Set_Z0, dss.ctx, pointer(Value), 2)
 end
 Z0(Value::ComplexF64) = Z0(DSS_DEFAULT_CTX, Value)
 
@@ -430,7 +430,7 @@ Side Effect: Sets Z2 and Z0 to same values unless they were previously defined.
 (Getter)
 """
 function Z1(dss::DSSContext)::ComplexF64
-    return get_complex64(Lib.Reactors_Get_Z1, dss.ctx)
+    return get_complex64(dss.capi.Reactors_Get_Z1, dss)
 end
 Z1() = Z1(DSS_DEFAULT_CTX)
 
@@ -446,7 +446,7 @@ Side Effect: Sets Z2 and Z0 to same values unless they were previously defined.
 (Setter)
 """
 function Z1(dss::DSSContext, Value::ComplexF64)
-    @checked Lib.Reactors_Set_Z1(dss.ctx, pointer(Value), 2)
+    @checked dss_ccall(dss.capi.Reactors_Set_Z1, dss.ctx, pointer(Value), 2)
 end
 Z1(Value::ComplexF64) = Z1(DSS_DEFAULT_CTX, Value)
 
@@ -460,7 +460,7 @@ Note: Z2 defaults to Z1 if it is not specifically defined. If Z2 is not equal to
 (Getter)
 """
 function Z2(dss::DSSContext)::ComplexF64
-    return get_complex64(Lib.Reactors_Get_Z2, dss.ctx)
+    return get_complex64(dss.capi.Reactors_Get_Z2, dss)
 end
 Z2() = Z2(DSS_DEFAULT_CTX)
 
@@ -474,7 +474,7 @@ Note: Z2 defaults to Z1 if it is not specifically defined. If Z2 is not equal to
 (Setter)
 """
 function Z2(dss::DSSContext, Value::ComplexF64)
-    @checked Lib.Reactors_Set_Z2(dss.ctx, pointer(Value), 2)
+    @checked dss_ccall(dss.capi.Reactors_Set_Z2, dss.ctx, pointer(Value), 2)
 end
 Z2(Value::ComplexF64) = Z2(DSS_DEFAULT_CTX, Value)
 
@@ -484,7 +484,7 @@ Alternative way of defining R and X properties
 (Getter)
 """
 function Z(dss::DSSContext)::ComplexF64
-    return get_complex64(Lib.Reactors_Get_Z, dss.ctx)
+    return get_complex64(dss.capi.Reactors_Get_Z, dss)
 end
 Z() = Z(DSS_DEFAULT_CTX)
 
@@ -494,7 +494,7 @@ Alternative way of defining R and X properties
 (Setter)
 """
 function Z(dss::DSSContext, Value::ComplexF64)
-    @checked Lib.Reactors_Set_Z(dss.ctx, pointer(Value), 2)
+    @checked dss_ccall(dss.capi.Reactors_Set_Z, dss.ctx, pointer(Value), 2)
 end
 Z(Value::ComplexF64) = Z(DSS_DEFAULT_CTX, Value)
 

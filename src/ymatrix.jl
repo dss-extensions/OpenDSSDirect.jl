@@ -18,9 +18,9 @@ function getYsparse(dss::DSSContext, factor::Bool = true)::SparseMatrixCSC{Compl
 
     ColPtr = Ref{Ptr{Int32}}(0)
     RowIdxPtr = Ref{Ptr{Int32}}(0)
-    cValsPtr = Ref{Ptr{Cdouble}}(0)
+    cValsPtr = Ref{Ptr{Float64}}(0)
 
-    @checked Lib.YMatrix_GetCompressedYMatrix(
+    @checked dss_ccall(dss.capi.YMatrix_GetCompressedYMatrix,
         dss.ctx,
         factor ? 1 : 0,
         nBus,
@@ -43,9 +43,9 @@ function getYsparse(dss::DSSContext, factor::Bool = true)::SparseMatrixCSC{Compl
         res = SparseMatrixCSC(nBus[], nBus[], indptr .+ 1, indices .+ 1, data)
     end
 
-    Lib.DSS_Dispose_PInteger(ColPtr)
-    Lib.DSS_Dispose_PInteger(RowIdxPtr)
-    Lib.DSS_Dispose_PDouble(cValsPtr)
+    dss_ccall(dss.capi.DSS_Dispose_PInteger, ColPtr)
+    dss_ccall(dss.capi.DSS_Dispose_PInteger, RowIdxPtr)
+    dss_ccall(dss.capi.DSS_Dispose_PDouble, cValsPtr)
 
     return res
 end
@@ -55,7 +55,7 @@ getYsparse(factor::Bool = true) = getYsparse(DSS_DEFAULT_CTX, factor)
 Zero Current Injections
 """
 function ZeroInjCurr(dss::DSSContext)
-    @checked Lib.YMatrix_ZeroInjCurr(dss.ctx)
+    @checked dss_ccall(dss.capi.YMatrix_ZeroInjCurr, dss.ctx)
 end
 ZeroInjCurr() = ZeroInjCurr(DSS_DEFAULT_CTX)
 
@@ -63,7 +63,7 @@ ZeroInjCurr() = ZeroInjCurr(DSS_DEFAULT_CTX)
 Get Source Current Injections
 """
 function GetSourceInjCurrents(dss::DSSContext)
-    @checked Lib.YMatrix_GetSourceInjCurrents(dss.ctx)
+    @checked dss_ccall(dss.capi.YMatrix_GetSourceInjCurrents, dss.ctx)
 end
 GetSourceInjCurrents() = GetSourceInjCurrents(DSS_DEFAULT_CTX)
 
@@ -71,7 +71,7 @@ GetSourceInjCurrents() = GetSourceInjCurrents(DSS_DEFAULT_CTX)
 Get PC Current Injections
 """
 function GetPCInjCurr(dss::DSSContext)
-    @checked Lib.YMatrix_GetPCInjCurr(dss.ctx)
+    @checked dss_ccall(dss.capi.YMatrix_GetPCInjCurr, dss.ctx)
 end
 GetPCInjCurr() = GetPCInjCurr(DSS_DEFAULT_CTX)
 
@@ -79,7 +79,7 @@ GetPCInjCurr() = GetPCInjCurr(DSS_DEFAULT_CTX)
 Rebuild the circuit's YMatrix
 """
 function BuildYMatrixD(dss::DSSContext, BuildOps::Int, AllocateVI::Bool)
-    @checked Lib.YMatrix_BuildYMatrixD(dss.ctx, BuildOps, AllocateVI ? 1 : 0)
+    @checked dss_ccall(dss.capi.YMatrix_BuildYMatrixD, dss.ctx, BuildOps, AllocateVI ? 1 : 0)
 end
 BuildYMatrixD(BuildOps::Int, AllocateVI::Bool) = BuildYMatrixD(DSS_DEFAULT_CTX, BuildOps, AllocateVI)
 
@@ -87,7 +87,7 @@ BuildYMatrixD(BuildOps::Int, AllocateVI::Bool) = BuildYMatrixD(DSS_DEFAULT_CTX, 
 Add in auxiliary currents
 """
 function AddInAuxCurrents(dss::DSSContext, SType::Int)
-    @checked Lib.YMatrix_AddInAuxCurrents(dss.ctx, SType)
+    @checked dss_ccall(dss.capi.YMatrix_AddInAuxCurrents, dss.ctx, SType)
 end
 AddInAuxCurrents(SType::Int) = AddInAuxCurrents(DSS_DEFAULT_CTX, SType)
 
@@ -96,7 +96,7 @@ Get access to the internal Current pointer
 """
 function IVector(dss::DSSContext)
     IvectorPtr = Ref{Ptr{Float64}}()
-    @checked Lib.YMatrix_getIpointer(dss.ctx, IvectorPtr)
+    @checked dss_ccall(dss.capi.YMatrix_getIpointer, dss.ctx, IvectorPtr)
     return convert(Ptr{ComplexF64}, IvectorPtr[])
 end
 IVector() = IVector(DSS_DEFAULT_CTX)
@@ -106,7 +106,7 @@ Get access to the internal Voltage pointer
 """
 function VVector(dss::DSSContext)
     VvectorPtr = Ref{Ptr{Float64}}()
-    @checked Lib.YMatrix_getVpointer(dss.ctx, VvectorPtr)
+    @checked dss_ccall(dss.capi.YMatrix_getVpointer, dss.ctx, VvectorPtr)
     return convert(Ptr{ComplexF64}, VvectorPtr[])
 end
 VVector() = VVector(DSS_DEFAULT_CTX)
@@ -116,7 +116,7 @@ Get the data from the internal Current pointer
 """
 function getI(dss::DSSContext)::Vector{ComplexF64}
     IvectorPtr = IVector()
-    return unsafe_wrap(Array, IvectorPtr, @checked(Lib.Circuit_Get_NumNodes(dss.ctx)) + 1)
+    return unsafe_wrap(Array, IvectorPtr, @checked(dss_ccall(dss.capi.Circuit_Get_NumNodes, dss.ctx)) + 1)
 end
 getI() = getI(DSS_DEFAULT_CTX)
 
@@ -125,7 +125,7 @@ Get the data from the internal Voltage pointer
 """
 function getV(dss::DSSContext)::Vector{ComplexF64}
     VvectorPtr = VVector()
-    return unsafe_wrap(Array, VvectorPtr, @checked(Lib.Circuit_Get_NumNodes(dss.ctx)) + 1)
+    return unsafe_wrap(Array, VvectorPtr, @checked(dss_ccall(dss.capi.Circuit_Get_NumNodes, dss.ctx)) + 1)
 end
 getV() = getV(DSS_DEFAULT_CTX)
 
@@ -134,7 +134,7 @@ Solve System for a given V vector
     """
 function SolveSystem(dss::DSSContext, NodeV::Vector{ComplexF64})::Int
     NodeV = pointer(NodeV)
-    return @checked Lib.YMatrix_SolveSystem(dss.ctx, NodeV)
+    return @checked dss_ccall(dss.capi.YMatrix_SolveSystem, dss.ctx, NodeV)
 end
 SolveSystem(NodeV::Vector{ComplexF64}) = SolveSystem(DSS_DEFAULT_CTX, NodeV)
 
@@ -142,7 +142,7 @@ SolveSystem(NodeV::Vector{ComplexF64}) = SolveSystem(DSS_DEFAULT_CTX, NodeV)
 Solve System for the internal V vector
     """
 function SolveSystem(dss::DSSContext)::Int
-    return @checked Lib.YMatrix_SolveSystem(dss.ctx, C_NULL)
+    return @checked dss_ccall(dss.capi.YMatrix_SolveSystem, dss.ctx, C_NULL)
 end
 SolveSystem() = SolveSystem(DSS_DEFAULT_CTX)
 
@@ -152,7 +152,7 @@ SystemY has changed
 (Getter)
 """
 function SystemYChanged(dss::DSSContext)::Bool
-    return @checked(Lib.YMatrix_Get_SystemYChanged(dss.ctx)) != 0
+    return @checked(dss_ccall(dss.capi.YMatrix_Get_SystemYChanged, dss.ctx)) != 0
 end
 SystemYChanged() = SystemYChanged(DSS_DEFAULT_CTX)
 
@@ -162,7 +162,7 @@ SystemY has changed
 (Setter)
 """
 function SystemYChanged(dss::DSSContext, Value::Bool)
-    @checked Lib.YMatrix_Set_SystemYChanged(dss.ctx, Value ? 1 : 0)
+    @checked dss_ccall(dss.capi.YMatrix_Set_SystemYChanged, dss.ctx, Value ? 1 : 0)
 end
 SystemYChanged(Value::Bool) = SystemYChanged(DSS_DEFAULT_CTX, Value)
 
@@ -172,7 +172,7 @@ Use auxiliary currents
 (Getter)
 """
 function UseAuxCurrents(dss::DSSContext)::Bool
-    return @checked(Lib.YMatrix_Get_UseAuxCurrents(dss.ctx)) != 0
+    return @checked(dss_ccall(dss.capi.YMatrix_Get_UseAuxCurrents, dss.ctx)) != 0
 end
 UseAuxCurrents() = UseAuxCurrents(DSS_DEFAULT_CTX)
 
@@ -182,7 +182,7 @@ Use auxiliary currents
 (Setter)
 """
 function UseAuxCurrents(dss::DSSContext, Value::Bool)
-    @checked Lib.YMatrix_Set_UseAuxCurrents(dss.ctx, Value ? 1 : 0)
+    @checked dss_ccall(dss.capi.YMatrix_Set_UseAuxCurrents, dss.ctx, Value ? 1 : 0)
 end
 UseAuxCurrents(Value::Bool) = UseAuxCurrents(DSS_DEFAULT_CTX, Value)
 
@@ -194,7 +194,7 @@ Iteration
 (Getter)
 """
 function Iteration(dss::DSSContext)::Int
-    return @checked Lib.YMatrix_Get_Iteration(dss.ctx)
+    return @checked dss_ccall(dss.capi.YMatrix_Get_Iteration, dss.ctx)
 end
 Iteration() = Iteration(DSS_DEFAULT_CTX)
 
@@ -206,7 +206,7 @@ Iteration
 (Setter)
 """
 function Iteration(dss::DSSContext, Value::Int)
-    return @checked Lib.YMatrix_Set_Iteration(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.YMatrix_Set_Iteration, dss.ctx, Value)
 end
 Iteration(Value::Int) = Iteration(DSS_DEFAULT_CTX, Value)
 
@@ -218,7 +218,7 @@ LoadsNeedUpdating
 (Getter)
 """
 function LoadsNeedUpdating(dss::DSSContext)::Bool
-    return (@checked Lib.YMatrix_Get_LoadsNeedUpdating(dss.ctx)) != 0
+    return (@checked dss_ccall(dss.capi.YMatrix_Get_LoadsNeedUpdating, dss.ctx)) != 0
 end
 LoadsNeedUpdating() = LoadsNeedUpdating(DSS_DEFAULT_CTX)
 
@@ -230,7 +230,7 @@ LoadsNeedUpdating
 (Setter)
 """
 function LoadsNeedUpdating(dss::DSSContext, Value::Bool)
-    return @checked Lib.YMatrix_Set_LoadsNeedUpdating(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.YMatrix_Set_LoadsNeedUpdating, dss.ctx, Value)
 end
 LoadsNeedUpdating(Value::Bool) = LoadsNeedUpdating(DSS_DEFAULT_CTX, Value)
 
@@ -242,7 +242,7 @@ SolutionInitialized
 (Getter)
 """
 function SolutionInitialized(dss::DSSContext)::Bool
-    return (@checked Lib.YMatrix_Get_SolutionInitialized(dss.ctx)) != 0
+    return (@checked dss_ccall(dss.capi.YMatrix_Get_SolutionInitialized, dss.ctx)) != 0
 end
 SolutionInitialized() = SolutionInitialized(DSS_DEFAULT_CTX)
 
@@ -254,7 +254,7 @@ SolutionInitialized
 (Setter)
 """
 function SolutionInitialized(dss::DSSContext, Value::Bool)
-    return @checked Lib.YMatrix_Set_SolutionInitialized(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.YMatrix_Set_SolutionInitialized, dss.ctx, Value)
 end
 SolutionInitialized(Value::Bool) = SolutionInitialized(DSS_DEFAULT_CTX, Value)
 
@@ -266,7 +266,7 @@ SolverOptions
 (Getter)
 """
 function SolverOptions(dss::DSSContext)::Int
-    return @checked Lib.YMatrix_Get_SolverOptions(dss.ctx)
+    return @checked dss_ccall(dss.capi.YMatrix_Get_SolverOptions, dss.ctx)
 end
 SolverOptions() = SolverOptions(DSS_DEFAULT_CTX)
 
@@ -278,13 +278,13 @@ SolverOptions
 (Setter)
 """
 function SolverOptions(dss::DSSContext, Value::Int)
-    return @checked Lib.YMatrix_Set_SolverOptions(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.YMatrix_Set_SolverOptions, dss.ctx, Value)
 end
 SolverOptions(Value::Int) = SolverOptions(DSS_DEFAULT_CTX, Value)
 
 # """Handle **(API Extension)**"""
 # function Handle()::UInt64
-#     return @checked Lib.YMatrix_Get_Handle()
+#     return @checked dss_ccall(dss.capi.YMatrix_Get_Handle, )
 # end
 
 """
@@ -293,7 +293,7 @@ Update and return the convergence flag. Used for external solver loops.
 **(API Extension)**
 """
 function CheckConvergence(dss::DSSContext)::Bool
-    return @checked Lib.YMatrix_CheckConvergence(dss.ctx)
+    return @checked dss_ccall(dss.capi.YMatrix_CheckConvergence, dss.ctx)
 end
 CheckConvergence() = CheckConvergence(DSS_DEFAULT_CTX)
 
@@ -303,7 +303,7 @@ SetGeneratordQdV
 **(API Extension)**
 """
 function SetGeneratordQdV(dss::DSSContext)
-    @checked Lib.YMatrix_SetGeneratordQdV(dss.ctx)
+    @checked dss_ccall(dss.capi.YMatrix_SetGeneratordQdV, dss.ctx)
 end
 SetGeneratordQdV() = SetGeneratordQdV(DSS_DEFAULT_CTX)
 
