@@ -76,7 +76,7 @@ Idx(Value::Int) = Idx(DSS_DEFAULT_CTX, Value)
 """
 Zero-sequence capacitance, nF per unit length
 
-Original COM help: https://opendss.epri.com/C2.html
+Original COM help: <https://opendss.epri.com/C2.html>
 
 (Getter)
 """
@@ -88,7 +88,7 @@ C0() = C0(DSS_DEFAULT_CTX)
 """
 Zero-sequence capacitance, nF per unit length
 
-Original COM help: https://opendss.epri.com/C2.html
+Original COM help: <https://opendss.epri.com/C2.html>
 
 (Setter)
 """
@@ -100,7 +100,7 @@ C0(Value::Float64) = C0(DSS_DEFAULT_CTX, Value)
 """
 Positive-sequence capacitance, nF per unit length
 
-Original COM help: https://opendss.epri.com/C3.html
+Original COM help: <https://opendss.epri.com/C3.html>
 
 (Getter)
 """
@@ -112,7 +112,7 @@ C1() = C1(DSS_DEFAULT_CTX)
 """
 Positive-sequence capacitance, nF per unit length
 
-Original COM help: https://opendss.epri.com/C3.html
+Original COM help: <https://opendss.epri.com/C3.html>
 
 (Setter)
 """
@@ -124,7 +124,7 @@ C1(Value::Float64) = C1(DSS_DEFAULT_CTX, Value)
 """
 Capacitance matrix, nF per unit length
 
-Original COM help: https://opendss.epri.com/Cmatrix1.html
+Original COM help: <https://opendss.epri.com/Cmatrix1.html>
 
 (Getter)
 """
@@ -142,7 +142,7 @@ Cmatrix() = Cmatrix(DSS_DEFAULT_CTX)
 """
 Capacitance matrix, nF per unit length
 
-Original COM help: https://opendss.epri.com/Cmatrix1.html
+Original COM help: <https://opendss.epri.com/Cmatrix1.html>
 
 (Setter)
 """
@@ -154,7 +154,7 @@ end
 """
 Capacitance matrix, nF per unit length
 
-Original COM help: https://opendss.epri.com/Cmatrix1.html
+Original COM help: <https://opendss.epri.com/Cmatrix1.html>
 
 (Setter)
 """
@@ -167,7 +167,7 @@ Cmatrix(Value::Vector{Float64}) = Cmatrix(DSS_DEFAULT_CTX, Value)
 """
 Emergency ampere rating
 
-Original COM help: https://opendss.epri.com/EmergAmps2.html
+Original COM help: <https://opendss.epri.com/EmergAmps2.html>
 
 (Getter)
 """
@@ -179,7 +179,7 @@ EmergAmps() = EmergAmps(DSS_DEFAULT_CTX)
 """
 Emergency ampere rating
 
-Original COM help: https://opendss.epri.com/EmergAmps2.html
+Original COM help: <https://opendss.epri.com/EmergAmps2.html>
 
 (Setter)
 """
@@ -191,7 +191,7 @@ EmergAmps(Value::Float64) = EmergAmps(DSS_DEFAULT_CTX, Value)
 """
 Flag denoting whether impedance data were entered in symmetrical components
 
-Original COM help: https://opendss.epri.com/IsZ1Z0.html
+Original COM help: <https://opendss.epri.com/IsZ1Z0.html>
 """
 function IsZ1Z0(dss::DSSContext)::Bool
     return @checked(dss_ccall(dss.capi.LineCodes_Get_IsZ1Z0, dss.ctx)) != 0
@@ -201,7 +201,7 @@ IsZ1Z0() = IsZ1Z0(DSS_DEFAULT_CTX)
 """
 Normal Ampere rating
 
-Original COM help: https://opendss.epri.com/NormAmps1.html
+Original COM help: <https://opendss.epri.com/NormAmps1.html>
 
 (Getter)
 """
@@ -213,7 +213,7 @@ NormAmps() = NormAmps(DSS_DEFAULT_CTX)
 """
 Normal Ampere rating
 
-Original COM help: https://opendss.epri.com/NormAmps1.html
+Original COM help: <https://opendss.epri.com/NormAmps1.html>
 
 (Setter)
 """
@@ -225,7 +225,7 @@ NormAmps(Value::Float64) = NormAmps(DSS_DEFAULT_CTX, Value)
 """
 Number of Phases
 
-Original COM help: https://opendss.epri.com/Phases2.html
+Original COM help: <https://opendss.epri.com/Phases2.html>
 
 (Getter)
 """
@@ -237,7 +237,7 @@ Phases() = Phases(DSS_DEFAULT_CTX)
 """
 Number of Phases
 
-Original COM help: https://opendss.epri.com/Phases2.html
+Original COM help: <https://opendss.epri.com/Phases2.html>
 
 (Setter)
 """
@@ -249,7 +249,7 @@ Phases(Value::Int) = Phases(DSS_DEFAULT_CTX, Value)
 """
 Zero-Sequence Resistance, ohms per unit length
 
-Original COM help: https://opendss.epri.com/R2.html
+Original COM help: <https://opendss.epri.com/R2.html>
 
 (Getter)
 """
@@ -261,7 +261,7 @@ R0() = R0(DSS_DEFAULT_CTX)
 """
 Zero-Sequence Resistance, ohms per unit length
 
-Original COM help: https://opendss.epri.com/R2.html
+Original COM help: <https://opendss.epri.com/R2.html>
 
 (Setter)
 """
@@ -273,7 +273,7 @@ R0(Value::Float64) = R0(DSS_DEFAULT_CTX, Value)
 """
 Positive-sequence resistance ohms per unit length
 
-Original COM help: https://opendss.epri.com/R3.html
+Original COM help: <https://opendss.epri.com/R3.html>
 
 (Getter)
 """
@@ -285,7 +285,7 @@ R1() = R1(DSS_DEFAULT_CTX)
 """
 Positive-sequence resistance ohms per unit length
 
-Original COM help: https://opendss.epri.com/R3.html
+Original COM help: <https://opendss.epri.com/R3.html>
 
 (Setter)
 """
@@ -297,7 +297,7 @@ R1(Value::Float64) = R1(DSS_DEFAULT_CTX, Value)
 """
 Resistance matrix, ohms per unit length
 
-Original COM help: https://opendss.epri.com/Rmatrix1.html
+Original COM help: <https://opendss.epri.com/Rmatrix1.html>
 
 (Getter)
 """
@@ -315,7 +315,7 @@ Rmatrix() = Rmatrix(DSS_DEFAULT_CTX)
 """
 Resistance matrix, ohms per unit length
 
-Original COM help: https://opendss.epri.com/Rmatrix1.html
+Original COM help: <https://opendss.epri.com/Rmatrix1.html>
 
 (Setter)
 """
@@ -327,7 +327,7 @@ end
 """
 Resistance matrix, ohms per unit length
 
-Original COM help: https://opendss.epri.com/Rmatrix1.html
+Original COM help: <https://opendss.epri.com/Rmatrix1.html>
 
 (Setter)
 """
@@ -361,7 +361,7 @@ Units(Value::Union{Int,Lib.LineUnits}) = Units(DSS_DEFAULT_CTX, Value)
 """
 Zero Sequence Reactance, Ohms per unit length
 
-Original COM help: https://opendss.epri.com/X2.html
+Original COM help: <https://opendss.epri.com/X2.html>
 
 (Getter)
 """
@@ -373,7 +373,7 @@ X0() = X0(DSS_DEFAULT_CTX)
 """
 Zero Sequence Reactance, Ohms per unit length
 
-Original COM help: https://opendss.epri.com/X2.html
+Original COM help: <https://opendss.epri.com/X2.html>
 
 (Setter)
 """
@@ -385,7 +385,7 @@ X0(Value::Float64) = X0(DSS_DEFAULT_CTX, Value)
 """
 Positive-sequence reactance, ohms per unit length
 
-Original COM help: https://opendss.epri.com/X3.html
+Original COM help: <https://opendss.epri.com/X3.html>
 
 (Getter)
 """
@@ -397,7 +397,7 @@ X1() = X1(DSS_DEFAULT_CTX)
 """
 Positive-sequence reactance, ohms per unit length
 
-Original COM help: https://opendss.epri.com/X3.html
+Original COM help: <https://opendss.epri.com/X3.html>
 
 (Setter)
 """
@@ -409,7 +409,7 @@ X1(Value::Float64) = X1(DSS_DEFAULT_CTX, Value)
 """
 Reactance matrix, ohms per unit length
 
-Original COM help: https://opendss.epri.com/Xmatrix1.html
+Original COM help: <https://opendss.epri.com/Xmatrix1.html>
 
 (Getter)
 """
@@ -427,7 +427,7 @@ Xmatrix() = Xmatrix(DSS_DEFAULT_CTX)
 """
 Reactance matrix, ohms per unit length
 
-Original COM help: https://opendss.epri.com/Xmatrix1.html
+Original COM help: <https://opendss.epri.com/Xmatrix1.html>
 
 (Setter)
 """
@@ -439,7 +439,7 @@ end
 """
 Reactance matrix, ohms per unit length
 
-Original COM help: https://opendss.epri.com/Xmatrix1.html
+Original COM help: <https://opendss.epri.com/Xmatrix1.html>
 
 (Setter)
 """

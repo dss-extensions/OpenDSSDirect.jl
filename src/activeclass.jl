@@ -76,7 +76,7 @@ Idx(Value::Int) = Idx(DSS_DEFAULT_CTX, Value)
 """
 Returns name of active class.
 
-Original COM help: https://opendss.epri.com/ActiveClassName.html
+Original COM help: <https://opendss.epri.com/ActiveClassName.html>
 """
 function ActiveClassName(dss::DSSContext)::String
     return get_string(@checked dss_ccall(dss.capi.ActiveClass_Get_ActiveClassName, dss.ctx))
@@ -86,7 +86,7 @@ ActiveClassName() = ActiveClassName(DSS_DEFAULT_CTX)
 """
 Get the name of the parent class of the active class
 
-Original COM help: https://opendss.epri.com/ActiveClassParent.html
+Original COM help: <https://opendss.epri.com/ActiveClassParent.html>
 """
 function ActiveClassParent(dss::DSSContext)::String
     return get_string(@checked dss_ccall(dss.capi.ActiveClass_Get_ActiveClassParent, dss.ctx))
@@ -96,7 +96,7 @@ ActiveClassParent() = ActiveClassParent(DSS_DEFAULT_CTX)
 """
 Number of elements in this class. Same as `Count()` function.
 
-Original COM help: https://opendss.epri.com/NumElements.html
+Original COM help: <https://opendss.epri.com/NumElements.html>
 """
 function NumElements(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.ActiveClass_Get_NumElements, dss.ctx)

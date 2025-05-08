@@ -76,7 +76,7 @@ Idx(Value::Int) = Idx(DSS_DEFAULT_CTX, Value)
 """
 Phase angle of first phase in degrees
 
-Original COM help: https://opendss.epri.com/AngleDeg1.html
+Original COM help: <https://opendss.epri.com/AngleDeg1.html>
 
 (Getter)
 """
@@ -88,7 +88,7 @@ AngleDeg() = AngleDeg(DSS_DEFAULT_CTX)
 """
 Phase angle of first phase in degrees
 
-Original COM help: https://opendss.epri.com/AngleDeg1.html
+Original COM help: <https://opendss.epri.com/AngleDeg1.html>
 
 (Setter)
 """
@@ -100,7 +100,7 @@ AngleDeg(Value::Float64) = AngleDeg(DSS_DEFAULT_CTX, Value)
 """
 Source voltage in kV
 
-Original COM help: https://opendss.epri.com/BasekV.html
+Original COM help: <https://opendss.epri.com/BasekV.html>
 
 (Getter)
 """
@@ -112,7 +112,7 @@ BasekV() = BasekV(DSS_DEFAULT_CTX)
 """
 Source voltage in kV
 
-Original COM help: https://opendss.epri.com/BasekV.html
+Original COM help: <https://opendss.epri.com/BasekV.html>
 
 (Setter)
 """
@@ -124,7 +124,7 @@ BasekV(Value::Float64) = BasekV(DSS_DEFAULT_CTX, Value)
 """
 Source frequency in Hz
 
-Original COM help: https://opendss.epri.com/Frequency2.html
+Original COM help: <https://opendss.epri.com/Frequency2.html>
 
 (Getter)
 """
@@ -136,7 +136,7 @@ Frequency() = Frequency(DSS_DEFAULT_CTX)
 """
 Source frequency in Hz
 
-Original COM help: https://opendss.epri.com/Frequency2.html
+Original COM help: <https://opendss.epri.com/Frequency2.html>
 
 (Setter)
 """
@@ -148,7 +148,7 @@ Frequency(Value::Float64) = Frequency(DSS_DEFAULT_CTX, Value)
 """
 Number of phases
 
-Original COM help: https://opendss.epri.com/Phases3.html
+Original COM help: <https://opendss.epri.com/Phases3.html>
 
 (Getter)
 """
@@ -160,7 +160,7 @@ Phases() = Phases(DSS_DEFAULT_CTX)
 """
 Number of phases
 
-Original COM help: https://opendss.epri.com/Phases3.html
+Original COM help: <https://opendss.epri.com/Phases3.html>
 
 (Setter)
 """
@@ -172,7 +172,7 @@ Phases(Value::Int) = Phases(DSS_DEFAULT_CTX, Value)
 """
 Per-unit value of source voltage
 
-Original COM help: https://opendss.epri.com/pu.html
+Original COM help: <https://opendss.epri.com/pu.html>
 
 (Getter)
 """
@@ -184,7 +184,7 @@ PU() = PU(DSS_DEFAULT_CTX)
 """
 Per-unit value of source voltage
 
-Original COM help: https://opendss.epri.com/pu.html
+Original COM help: <https://opendss.epri.com/pu.html>
 
 (Setter)
 """

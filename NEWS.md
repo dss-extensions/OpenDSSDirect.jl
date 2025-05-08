@@ -1,12 +1,18 @@
-**Please also read the [DSS C-API engine changelog](https://github.com/dss-extensions/dss_capi/blob/master/docs/changelog.md) which tracks the engine changes.** Most of the engine changes do not affect the API code on the Julia level.**
+**Please also read the [DSS C-API engine changelog](https://github.com/dss-extensions/dss_capi/blob/master/docs/changelog.md) which tracks the engine changes.** Most of the engine changes do not affect the API code on the Julia level.
 
 For a more complete list of changes, visit the [Git repository and Releases page on GitHub](https://github.com/dss-extensions/OpenDSSDirect.jl).
 
 ### OpenDSSDirect v0.10.0 Release Notes
 
-- Update the engine to DSS C-API v0.15.0, matching OpenDSS v10.0.0.1.
-- Add new functions in the Storages module
-- Add new module WindGens
+- Update the engine to AltDSS/DSS C-API v0.15.0, matching most of OpenDSS v10.2.0.1.
+- Now supports loading both AltDSS and EPRI's OpenDSS implementations. A new backend implementation was adopted to allow this.
+- Most of the API documentation updated to include links to [EPRI's OpenDSS online help](https://opendss.epri.com/).
+- Add new functions in the Storages module.
+- Add new module WindGens.
+- Fixes issues with error handling when using multiple engines.
+
+- Defaults updated when using the default engine
+    - `COMErrorResults` now defaults to false. Some functions already had special handling, most users shouldn't notice this.
 
 ### OpenDSSDirect v0.9.9 Release Notes
 

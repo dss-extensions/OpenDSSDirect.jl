@@ -13,7 +13,7 @@ using ..Utils
 """
 Get i-th command
 
-Original COM help: https://opendss.epri.com/Command.html
+Original COM help: <https://opendss.epri.com/Command.html>
 """
 function Command(dss::DSSContext, i::Int)::String
     return get_string(@checked dss_ccall(dss.capi.DSS_Executive_Get_Command, dss.ctx, i))
@@ -23,7 +23,7 @@ Command(i::Int) = Command(DSS_DEFAULT_CTX, i)
 """
 Get help string for i-th command
 
-Original COM help: https://opendss.epri.com/CommandHelp.html
+Original COM help: <https://opendss.epri.com/CommandHelp.html>
 """
 function CommandHelp(dss::DSSContext, i::Int)::String
     return get_string(@checked dss_ccall(dss.capi.DSS_Executive_Get_CommandHelp, dss.ctx, i))
@@ -33,7 +33,7 @@ CommandHelp(i::Int) = CommandHelp(DSS_DEFAULT_CTX, i)
 """
 Get i-th option
 
-Original COM help: https://opendss.epri.com/Option.html
+Original COM help: <https://opendss.epri.com/Option.html>
 """
 function Option(dss::DSSContext, i::Int)::String
     return get_string(@checked dss_ccall(dss.capi.DSS_Executive_Get_Option, dss.ctx, i))
@@ -43,7 +43,7 @@ Option(i::Int) = Option(DSS_DEFAULT_CTX, i)
 """
 Get help string for i-th option
 
-Original COM help: https://opendss.epri.com/OptionHelp.html
+Original COM help: <https://opendss.epri.com/OptionHelp.html>
 """
 function OptionHelp(dss::DSSContext, i::Int)::String
     return get_string(@checked dss_ccall(dss.capi.DSS_Executive_Get_OptionHelp, dss.ctx, i))
@@ -53,7 +53,7 @@ OptionHelp(i::Int) = OptionHelp(DSS_DEFAULT_CTX, i)
 """
 Get present value of i-th option
 
-Original COM help: https://opendss.epri.com/OptionValue.html
+Original COM help: <https://opendss.epri.com/OptionValue.html>
 """
 function OptionValue(dss::DSSContext, i::Int)::String
     return get_string(@checked dss_ccall(dss.capi.DSS_Executive_Get_OptionValue, dss.ctx, i))
@@ -63,7 +63,7 @@ OptionValue(i::Int) = OptionValue(DSS_DEFAULT_CTX, i)
 """
 Number of DSS Executive Commands
 
-Original COM help: https://opendss.epri.com/NumCommands.html
+Original COM help: <https://opendss.epri.com/NumCommands.html>
 """
 function NumCommands(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.DSS_Executive_Get_NumCommands, dss.ctx)
@@ -73,7 +73,7 @@ NumCommands() = NumCommands(DSS_DEFAULT_CTX)
 """
 Number of DSS Executive Options
 
-Original COM help: https://opendss.epri.com/NumOptions.html
+Original COM help: <https://opendss.epri.com/NumOptions.html>
 """
 function NumOptions(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.DSS_Executive_Get_NumOptions, dss.ctx)

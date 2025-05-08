@@ -35,7 +35,7 @@ Set the caption to appear on the bottom of the DSS Progress form.
 
 Typically used with EPRI's OpenDSS, on Windows. Otherwise, it could be a no-op.
 
-Original COM help: https://opendss.epri.com/Caption.html
+Original COM help: <https://opendss.epri.com/Caption.html>
 """
 function Caption(dss::DSSContext, Value::String)
     @checked dss_ccall(dss.capi.DSSProgress_Set_Caption, dss.ctx, Value)
@@ -47,7 +47,7 @@ Set the percent progress to indicate [0..100] on the progress form.
 
 Typically used with EPRI's OpenDSS, on Windows. Otherwise, it could be a no-op.
 
-Original COM help: https://opendss.epri.com/PctProgress.html
+Original COM help: <https://opendss.epri.com/PctProgress.html>
 """
 function PctProgress(dss::DSSContext, Value::Int)
     @checked dss_ccall(dss.capi.DSSProgress_Set_PctProgress, dss.ctx, Value)

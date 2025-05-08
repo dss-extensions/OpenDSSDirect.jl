@@ -82,7 +82,7 @@ New(Name::String) = New(DSS_DEFAULT_CTX, Name)
 """
 Name of bus for terminal 1.
 
-Original COM help: https://opendss.epri.com/Bus1.html
+Original COM help: <https://opendss.epri.com/Bus1.html>
 
 (Getter)
 """
@@ -94,7 +94,7 @@ Bus1() = Bus1(DSS_DEFAULT_CTX)
 """
 Name of bus for terminal 1.
 
-Original COM help: https://opendss.epri.com/Bus1.html
+Original COM help: <https://opendss.epri.com/Bus1.html>
 
 (Setter)
 """
@@ -106,7 +106,7 @@ Bus1(Value::String) = Bus1(DSS_DEFAULT_CTX, Value)
 """
 Name of bus for terminal 2.
 
-Original COM help: https://opendss.epri.com/Bus2.html
+Original COM help: <https://opendss.epri.com/Bus2.html>
 
 (Getter)
 """
@@ -118,7 +118,7 @@ Bus2() = Bus2(DSS_DEFAULT_CTX)
 """
 Name of bus for terminal 2.
 
-Original COM help: https://opendss.epri.com/Bus2.html
+Original COM help: <https://opendss.epri.com/Bus2.html>
 
 (Setter)
 """
@@ -130,7 +130,7 @@ Bus2(Value::String) = Bus2(DSS_DEFAULT_CTX, Value)
 """
 Zero Sequence capacitance, nanofarads per unit length.
 
-Original COM help: https://opendss.epri.com/C0.html
+Original COM help: <https://opendss.epri.com/C0.html>
 
 (Getter)
 """
@@ -142,7 +142,7 @@ C0() = C0(DSS_DEFAULT_CTX)
 """
 Zero Sequence capacitance, nanofarads per unit length.
 
-Original COM help: https://opendss.epri.com/C0.html
+Original COM help: <https://opendss.epri.com/C0.html>
 
 (Setter)
 """
@@ -154,7 +154,7 @@ C0(Value::Float64) = C0(DSS_DEFAULT_CTX, Value)
 """
 Positive Sequence capacitance, nanofarads per unit length.
 
-Original COM help: https://opendss.epri.com/C1.html
+Original COM help: <https://opendss.epri.com/C1.html>
 
 (Getter)
 """
@@ -166,7 +166,7 @@ C1() = C1(DSS_DEFAULT_CTX)
 """
 Positive Sequence capacitance, nanofarads per unit length.
 
-Original COM help: https://opendss.epri.com/C1.html
+Original COM help: <https://opendss.epri.com/C1.html>
 
 (Setter)
 """
@@ -215,7 +215,7 @@ CMatrix(Value::Vector{Float64}) = CMatrix(DSS_DEFAULT_CTX, Value)
 """
 Emergency (maximum) ampere rating of Line.
 
-Original COM help: https://opendss.epri.com/EmergAmps1.html
+Original COM help: <https://opendss.epri.com/EmergAmps1.html>
 
 (Getter)
 """
@@ -227,7 +227,7 @@ EmergAmps() = EmergAmps(DSS_DEFAULT_CTX)
 """
 Emergency (maximum) ampere rating of Line.
 
-Original COM help: https://opendss.epri.com/EmergAmps1.html
+Original COM help: <https://opendss.epri.com/EmergAmps1.html>
 
 (Setter)
 """
@@ -239,7 +239,7 @@ EmergAmps(Value::Float64) = EmergAmps(DSS_DEFAULT_CTX, Value)
 """
 Line geometry code
 
-Original COM help: https://opendss.epri.com/Geometry.html
+Original COM help: <https://opendss.epri.com/Geometry.html>
 
 (Getter)
 """
@@ -251,7 +251,7 @@ Geometry() = Geometry(DSS_DEFAULT_CTX)
 """
 Line geometry code
 
-Original COM help: https://opendss.epri.com/Geometry.html
+Original COM help: <https://opendss.epri.com/Geometry.html>
 
 (Setter)
 """
@@ -263,7 +263,7 @@ Geometry(Value::String) = Geometry(DSS_DEFAULT_CTX, Value)
 """
 Length of line section in units compatible with the LineCode definition.
 
-Original COM help: https://opendss.epri.com/Length.html
+Original COM help: <https://opendss.epri.com/Length.html>
 
 (Getter)
 """
@@ -275,7 +275,7 @@ Length() = Length(DSS_DEFAULT_CTX)
 """
 Length of line section in units compatible with the LineCode definition.
 
-Original COM help: https://opendss.epri.com/Length.html
+Original COM help: <https://opendss.epri.com/Length.html>
 
 (Setter)
 """
@@ -287,7 +287,7 @@ Length(Value::Float64) = Length(DSS_DEFAULT_CTX, Value)
 """
 Name of LineCode object that defines the impedances.
 
-Original COM help: https://opendss.epri.com/LineCode.html
+Original COM help: <https://opendss.epri.com/LineCode.html>
 
 (Getter)
 """
@@ -299,7 +299,7 @@ LineCode() = LineCode(DSS_DEFAULT_CTX)
 """
 Name of LineCode object that defines the impedances.
 
-Original COM help: https://opendss.epri.com/LineCode.html
+Original COM help: <https://opendss.epri.com/LineCode.html>
 
 (Setter)
 """
@@ -311,7 +311,7 @@ LineCode(Value::String) = LineCode(DSS_DEFAULT_CTX, Value)
 """
 Normal ampere rating of Line.
 
-Original COM help: https://opendss.epri.com/NormAmps.html
+Original COM help: <https://opendss.epri.com/NormAmps.html>
 
 (Getter)
 """
@@ -323,7 +323,7 @@ NormAmps() = NormAmps(DSS_DEFAULT_CTX)
 """
 Normal ampere rating of Line.
 
-Original COM help: https://opendss.epri.com/NormAmps.html
+Original COM help: <https://opendss.epri.com/NormAmps.html>
 
 (Setter)
 """
@@ -337,7 +337,7 @@ Number of customers on this line section.
 
 *Requires an energy meter with an updated zone.*
 
-Original COM help: https://opendss.epri.com/NumCust.html
+Original COM help: <https://opendss.epri.com/NumCust.html>
 """
 function NumCust(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Lines_Get_NumCust, dss.ctx)
@@ -349,7 +349,7 @@ Sets Parent of the active Line to be the active line. Returns 0 if no parent or 
 
 *Requires an energy meter with an updated zone.*
 
-Original COM help: https://opendss.epri.com/Parent.html
+Original COM help: <https://opendss.epri.com/Parent.html>
 """
 function Parent(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Lines_Get_Parent, dss.ctx)
@@ -359,7 +359,7 @@ Parent() = Parent(DSS_DEFAULT_CTX)
 """
 Number of Phases, this Line element.
 
-Original COM help: https://opendss.epri.com/Phases1.html
+Original COM help: <https://opendss.epri.com/Phases1.html>
 
 (Getter)
 """
@@ -371,7 +371,7 @@ Phases() = Phases(DSS_DEFAULT_CTX)
 """
 Number of Phases, this Line element.
 
-Original COM help: https://opendss.epri.com/Phases1.html
+Original COM help: <https://opendss.epri.com/Phases1.html>
 
 (Setter)
 """
@@ -383,7 +383,7 @@ Phases(Value::Int) = Phases(DSS_DEFAULT_CTX, Value)
 """
 Zero Sequence resistance, ohms per unit length.
 
-Original COM help: https://opendss.epri.com/R0.html
+Original COM help: <https://opendss.epri.com/R0.html>
 
 (Getter)
 """
@@ -395,7 +395,7 @@ R0() = R0(DSS_DEFAULT_CTX)
 """
 Zero Sequence resistance, ohms per unit length.
 
-Original COM help: https://opendss.epri.com/R0.html
+Original COM help: <https://opendss.epri.com/R0.html>
 
 (Setter)
 """
@@ -407,7 +407,7 @@ R0(Value::Float64) = R0(DSS_DEFAULT_CTX, Value)
 """
 Positive Sequence resistance, ohms per unit length.
 
-Original COM help: https://opendss.epri.com/R1.html
+Original COM help: <https://opendss.epri.com/R1.html>
 
 (Getter)
 """
@@ -419,7 +419,7 @@ R1() = R1(DSS_DEFAULT_CTX)
 """
 Positive Sequence resistance, ohms per unit length.
 
-Original COM help: https://opendss.epri.com/R1.html
+Original COM help: <https://opendss.epri.com/R1.html>
 
 (Setter)
 """
@@ -431,7 +431,7 @@ R1(Value::Float64) = R1(DSS_DEFAULT_CTX, Value)
 """
 Earth return resistance value used to compute line impedances at power frequency
 
-Original COM help: https://opendss.epri.com/Rg.html
+Original COM help: <https://opendss.epri.com/Rg.html>
 
 (Getter)
 """
@@ -443,7 +443,7 @@ Rg() = Rg(DSS_DEFAULT_CTX)
 """
 Earth return resistance value used to compute line impedances at power frequency
 
-Original COM help: https://opendss.epri.com/Rg.html
+Original COM help: <https://opendss.epri.com/Rg.html>
 
 (Setter)
 """
@@ -455,7 +455,7 @@ Rg(Value::Float64) = Rg(DSS_DEFAULT_CTX, Value)
 """
 Earth Resistivity, m-ohms
 
-Original COM help: https://opendss.epri.com/Rho.html
+Original COM help: <https://opendss.epri.com/Rho.html>
 
 (Getter)
 """
@@ -467,7 +467,7 @@ Rho() = Rho(DSS_DEFAULT_CTX)
 """
 Earth Resistivity, m-ohms
 
-Original COM help: https://opendss.epri.com/Rho.html
+Original COM help: <https://opendss.epri.com/Rho.html>
 
 (Setter)
 """
@@ -479,7 +479,7 @@ Rho(Value::Float64) = Rho(DSS_DEFAULT_CTX, Value)
 """
 Resistance matrix (full), ohms per unit length.
 
-Original COM help: https://opendss.epri.com/Rmatrix.html
+Original COM help: <https://opendss.epri.com/Rmatrix.html>
 
 (Getter)
 """
@@ -497,7 +497,7 @@ RMatrix() = RMatrix(DSS_DEFAULT_CTX)
 """
 Resistance matrix (full), ohms per unit length. Array of doubles.
 
-Original COM help: https://opendss.epri.com/Rmatrix.html
+Original COM help: <https://opendss.epri.com/Rmatrix.html>
 
 (Setter)
 """
@@ -510,7 +510,7 @@ RMatrix(Value::Vector{Float64}) = RMatrix(DSS_DEFAULT_CTX, Value)
 """
 Resistance matrix (full), ohms per unit length. Array of doubles.
 
-Original COM help: https://opendss.epri.com/Rmatrix.html
+Original COM help: <https://opendss.epri.com/Rmatrix.html>
 
 (Setter)
 """
@@ -522,7 +522,7 @@ RMatrix(Value::Matrix{Float64}) = RMatrix(DSS_DEFAULT_CTX, Value)
 """
 Line spacing code
 
-Original COM help: https://opendss.epri.com/Spacing.html
+Original COM help: <https://opendss.epri.com/Spacing.html>
 
 (Getter)
 """
@@ -534,7 +534,7 @@ Spacing() = Spacing(DSS_DEFAULT_CTX)
 """
 Line spacing code
 
-Original COM help: https://opendss.epri.com/Spacing.html
+Original COM help: <https://opendss.epri.com/Spacing.html>
 
 (Setter)
 """
@@ -546,7 +546,7 @@ Spacing(Value::String) = Spacing(DSS_DEFAULT_CTX, Value)
 """
 Total Number of customers served from this line section.
 
-Original COM help: https://opendss.epri.com/TotalCust.html
+Original COM help: <https://opendss.epri.com/TotalCust.html>
 """
 function TotalCust(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Lines_Get_TotalCust, dss.ctx)
@@ -577,7 +577,7 @@ Units(Value::Union{Int,Lib.LineUnits}) = Units(DSS_DEFAULT_CTX, Value)
 """
 Zero Sequence reactance ohms per unit length.
 
-Original COM help: https://opendss.epri.com/X0.html
+Original COM help: <https://opendss.epri.com/X0.html>
 
 (Getter)
 """
@@ -589,7 +589,7 @@ X0() = X0(DSS_DEFAULT_CTX)
 """
 Zero Sequence reactance ohms per unit length.
 
-Original COM help: https://opendss.epri.com/X0.html
+Original COM help: <https://opendss.epri.com/X0.html>
 
 (Setter)
 """
@@ -601,7 +601,7 @@ X0(Value::Float64) = X0(DSS_DEFAULT_CTX, Value)
 """
 Positive Sequence reactance, ohms per unit length.
 
-Original COM help: https://opendss.epri.com/X1.html
+Original COM help: <https://opendss.epri.com/X1.html>
 
 (Getter)
 """
@@ -613,7 +613,7 @@ X1() = X1(DSS_DEFAULT_CTX)
 """
 Positive Sequence reactance, ohms per unit length.
 
-Original COM help: https://opendss.epri.com/X1.html
+Original COM help: <https://opendss.epri.com/X1.html>
 
 (Setter)
 """
@@ -625,7 +625,7 @@ X1(Value::Float64) = X1(DSS_DEFAULT_CTX, Value)
 """
 Earth return reactance value used to compute line impedances at power frequency
 
-Original COM help: https://opendss.epri.com/Xg.html
+Original COM help: <https://opendss.epri.com/Xg.html>
 
 (Getter)
 """
@@ -637,7 +637,7 @@ Xg() = Xg(DSS_DEFAULT_CTX)
 """
 Earth return reactance value used to compute line impedances at power frequency
 
-Original COM help: https://opendss.epri.com/Xg.html
+Original COM help: <https://opendss.epri.com/Xg.html>
 
 (Setter)
 """
@@ -649,7 +649,7 @@ Xg(Value::Float64) = Xg(DSS_DEFAULT_CTX, Value)
 """
 Reactance matrix (full), ohms per unit length.
 
-Original COM help: https://opendss.epri.com/Xmatrix.html
+Original COM help: <https://opendss.epri.com/Xmatrix.html>
 
 (Getter)
 """
@@ -667,7 +667,7 @@ XMatrix() = XMatrix(DSS_DEFAULT_CTX)
 """
 Reactance matrix (full), ohms per unit length.
 
-Original COM help: https://opendss.epri.com/Xmatrix.html
+Original COM help: <https://opendss.epri.com/Xmatrix.html>
 
 (Setter)
 """
@@ -679,7 +679,7 @@ XMatrix(Value::Matrix{Float64}) = XMatrix(DSS_DEFAULT_CTX, Value)
 """
 Reactance matrix (full), ohms per unit length.
 
-Original COM help: https://opendss.epri.com/Xmatrix.html
+Original COM help: <https://opendss.epri.com/Xmatrix.html>
 
 (Setter)
 """
@@ -692,7 +692,7 @@ XMatrix(Value::Vector{Float64}) = XMatrix(DSS_DEFAULT_CTX, Value)
 """
 Yprimitive for the active line object (complex array).
 
-Original COM help: https://opendss.epri.com/Yprim1.html
+Original COM help: <https://opendss.epri.com/Yprim1.html>
 
 (Getter)
 """
@@ -705,7 +705,7 @@ Yprim() = Yprim(DSS_DEFAULT_CTX)
 """
 Yprimitive for the active line object (complex array).
 
-Original COM help: https://opendss.epri.com/Yprim1.html
+Original COM help: <https://opendss.epri.com/Yprim1.html>
 
 (Setter)
 """
@@ -764,7 +764,7 @@ IsSwitch(Value::Bool) = IsSwitch(DSS_DEFAULT_CTX, Value)
 """
 Delivers the rating for the current season (in Amps)  if the "SeasonalRatings" option is active
 
-Original COM help: https://opendss.epri.com/SeasonRating.html
+Original COM help: <https://opendss.epri.com/SeasonRating.html>
 """
 function SeasonRating(dss::DSSContext)::Float64
     return @checked dss_ccall(dss.capi.Lines_Get_SeasonRating, dss.ctx)

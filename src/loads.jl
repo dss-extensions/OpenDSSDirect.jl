@@ -76,7 +76,7 @@ Idx(Value::Int) = Idx(DSS_DEFAULT_CTX, Value)
 """
 Factor for allocating loads by connected xfkva
 
-Original COM help: https://opendss.epri.com/AllocationFactor.html
+Original COM help: <https://opendss.epri.com/AllocationFactor.html>
 
 (Getter)
 """
@@ -88,7 +88,7 @@ AllocationFactor() = AllocationFactor(DSS_DEFAULT_CTX)
 """
 Factor for allocating loads by connected xfkva
 
-Original COM help: https://opendss.epri.com/AllocationFactor.html
+Original COM help: <https://opendss.epri.com/AllocationFactor.html>
 
 (Setter)
 """
@@ -100,7 +100,7 @@ AllocationFactor(Value::Float64) = AllocationFactor(DSS_DEFAULT_CTX, Value)
 """
 Name of a loadshape with both Mult and Qmult, for CVR factors as a function of time.
 
-Original COM help: https://opendss.epri.com/CVRcurve.html
+Original COM help: <https://opendss.epri.com/CVRcurve.html>
 
 (Getter)
 """
@@ -112,7 +112,7 @@ CVRCurve() = CVRCurve(DSS_DEFAULT_CTX)
 """
 Name of a loadshape with both Mult and Qmult, for CVR factors as a function of time.
 
-Original COM help: https://opendss.epri.com/CVRcurve.html
+Original COM help: <https://opendss.epri.com/CVRcurve.html>
 
 (Setter)
 """
@@ -124,7 +124,7 @@ CVRCurve(Value::String) = CVRCurve(DSS_DEFAULT_CTX, Value)
 """
 Percent reduction in Q for percent reduction in V. Must be used with dssLoadModelCVR.
 
-Original COM help: https://opendss.epri.com/CVRvars.html
+Original COM help: <https://opendss.epri.com/CVRvars.html>
 
 (Getter)
 """
@@ -136,7 +136,7 @@ CVRvars() = CVRvars(DSS_DEFAULT_CTX)
 """
 Percent reduction in Q for percent reduction in V. Must be used with dssLoadModelCVR.
 
-Original COM help: https://opendss.epri.com/CVRvars.html
+Original COM help: <https://opendss.epri.com/CVRvars.html>
 
 (Setter)
 """
@@ -148,7 +148,7 @@ CVRvars(Value::Float64) = CVRvars(DSS_DEFAULT_CTX, Value)
 """
 Percent reduction in P for percent reduction in V. Must be used with dssLoadModelCVR.
 
-Original COM help: https://opendss.epri.com/CVRwatts.html
+Original COM help: <https://opendss.epri.com/CVRwatts.html>
 
 (Getter)
 """
@@ -160,7 +160,7 @@ CVRwatts() = CVRwatts(DSS_DEFAULT_CTX)
 """
 Percent reduction in P for percent reduction in V. Must be used with dssLoadModelCVR.
 
-Original COM help: https://opendss.epri.com/CVRwatts.html
+Original COM help: <https://opendss.epri.com/CVRwatts.html>
 
 (Setter)
 """
@@ -172,7 +172,7 @@ CVRwatts(Value::Float64) = CVRwatts(DSS_DEFAULT_CTX, Value)
 """
 CFactor relates average to peak kw.  Used for allocation with kwh and kwhdays
 
-Original COM help: https://opendss.epri.com/Cfactor.html
+Original COM help: <https://opendss.epri.com/Cfactor.html>
 
 (Getter)
 """
@@ -184,7 +184,7 @@ CFactor() = CFactor(DSS_DEFAULT_CTX)
 """
 CFactor relates average to peak kw.  Used for allocation with kwh and kwhdays
 
-Original COM help: https://opendss.epri.com/Cfactor.html
+Original COM help: <https://opendss.epri.com/Cfactor.html>
 
 (Setter)
 """
@@ -196,7 +196,7 @@ CFactor(Value::Float64) = CFactor(DSS_DEFAULT_CTX, Value)
 """
 Code number used to separate loads by class or group. No effect on the solution.
 
-Original COM help: https://opendss.epri.com/Class.html
+Original COM help: <https://opendss.epri.com/Class.html>
 
 (Getter)
 """
@@ -208,7 +208,7 @@ Class() = Class(DSS_DEFAULT_CTX)
 """
 Code number used to separate loads by class or group. No effect on the solution.
 
-Original COM help: https://opendss.epri.com/Class.html
+Original COM help: <https://opendss.epri.com/Class.html>
 
 (Setter)
 """
@@ -220,7 +220,7 @@ Class(Value::Int) = Class(DSS_DEFAULT_CTX, Value)
 """
 Name of the growthshape curve for yearly load growth factors.
 
-Original COM help: https://opendss.epri.com/Growth.html
+Original COM help: <https://opendss.epri.com/Growth.html>
 
 (Getter)
 """
@@ -232,7 +232,7 @@ Growth() = Growth(DSS_DEFAULT_CTX)
 """
 Name of the growthshape curve for yearly load growth factors.
 
-Original COM help: https://opendss.epri.com/Growth.html
+Original COM help: <https://opendss.epri.com/Growth.html>
 
 (Setter)
 """
@@ -244,7 +244,7 @@ Growth(Value::String) = Growth(DSS_DEFAULT_CTX, Value)
 """
 Delta loads are connected line-to-line.
 
-Original COM help: https://opendss.epri.com/IsDelta1.html
+Original COM help: <https://opendss.epri.com/IsDelta1.html>
 
 (Getter)
 """
@@ -256,7 +256,7 @@ IsDelta() = IsDelta(DSS_DEFAULT_CTX)
 """
 Delta loads are connected line-to-line.
 
-Original COM help: https://opendss.epri.com/IsDelta1.html
+Original COM help: <https://opendss.epri.com/IsDelta1.html>
 
 (Setter)
 """
@@ -268,7 +268,7 @@ IsDelta(Value::Bool) = IsDelta(DSS_DEFAULT_CTX, Value)
 """
 The Load Model defines variation of P and Q with voltage.
 
-Original COM help: https://opendss.epri.com/Model1.html
+Original COM help: <https://opendss.epri.com/Model1.html>
 
 (Getter)
 """
@@ -280,7 +280,7 @@ Model() = Model(DSS_DEFAULT_CTX)
 """
 The Load Model defines variation of P and Q with voltage.
 
-Original COM help: https://opendss.epri.com/Model1.html
+Original COM help: <https://opendss.epri.com/Model1.html>
 
 (Setter)
 """
@@ -293,7 +293,7 @@ Model(Value::Union{Int,Lib.LoadModels}) = Model(DSS_DEFAULT_CTX, Value)
 """
 Number of customers in this load, defaults to one.
 
-Original COM help: https://opendss.epri.com/NumCust1.html
+Original COM help: <https://opendss.epri.com/NumCust1.html>
 
 (Getter)
 """
@@ -305,7 +305,7 @@ NumCust() = NumCust(DSS_DEFAULT_CTX)
 """
 Number of customers in this load, defaults to one.
 
-Original COM help: https://opendss.epri.com/NumCust1.html
+Original COM help: <https://opendss.epri.com/NumCust1.html>
 
 (Setter)
 """
@@ -317,7 +317,7 @@ NumCust(Value::Int) = NumCust(DSS_DEFAULT_CTX, Value)
 """
 Get or set Power Factor for Active Load. Specify leading PF as negative. Updates kvar based on present value of kW
 
-Original COM help: https://opendss.epri.com/PF1.html
+Original COM help: <https://opendss.epri.com/PF1.html>
 
 (Getter)
 """
@@ -329,7 +329,7 @@ PF() = PF(DSS_DEFAULT_CTX)
 """
 Get or set Power Factor for Active Load. Specify leading PF as negative. Updates kvar based on present value of kW
 
-Original COM help: https://opendss.epri.com/PF1.html
+Original COM help: <https://opendss.epri.com/PF1.html>
 
 (Setter)
 """
@@ -341,7 +341,7 @@ PF(Value::Float64) = PF(DSS_DEFAULT_CTX, Value)
 """
 Average percent of nominal load in Monte Carlo studies; only if no loadshape defined for this load.
 
-Original COM help: https://opendss.epri.com/PctMean.html
+Original COM help: <https://opendss.epri.com/PctMean.html>
 
 (Getter)
 """
@@ -353,7 +353,7 @@ PctMean() = PctMean(DSS_DEFAULT_CTX)
 """
 Average percent of nominal load in Monte Carlo studies; only if no loadshape defined for this load.
 
-Original COM help: https://opendss.epri.com/PctMean.html
+Original COM help: <https://opendss.epri.com/PctMean.html>
 
 (Setter)
 """
@@ -365,7 +365,7 @@ PctMean(Value::Float64) = PctMean(DSS_DEFAULT_CTX, Value)
 """
 Percent standard deviation for Monte Carlo load studies; if there is no loadshape assigned to this load.
 
-Original COM help: https://opendss.epri.com/PctStdDev.html
+Original COM help: <https://opendss.epri.com/PctStdDev.html>
 
 (Getter)
 """
@@ -377,7 +377,7 @@ PctStdDev() = PctStdDev(DSS_DEFAULT_CTX)
 """
 Percent standard deviation for Monte Carlo load studies; if there is no loadshape assigned to this load.
 
-Original COM help: https://opendss.epri.com/PctStdDev.html
+Original COM help: <https://opendss.epri.com/PctStdDev.html>
 
 (Setter)
 """
@@ -403,7 +403,7 @@ Relative Weighting factor for the active load.
 
 This value is used in reliability methods.
 
-Original COM help: https://opendss.epri.com/RelWeight.html
+Original COM help: <https://opendss.epri.com/RelWeight.html>
 
 (Setter)
 """
@@ -415,7 +415,7 @@ RelWeighting(Value::Float64) = RelWeighting(DSS_DEFAULT_CTX, Value)
 """
 Neutral resistance for wye-connected loads.
 
-Original COM help: https://opendss.epri.com/Rneut.html
+Original COM help: <https://opendss.epri.com/Rneut.html>
 
 (Getter)
 """
@@ -427,7 +427,7 @@ Rneut() = Rneut(DSS_DEFAULT_CTX)
 """
 Neutral resistance for wye-connected loads.
 
-Original COM help: https://opendss.epri.com/Rneut.html
+Original COM help: <https://opendss.epri.com/Rneut.html>
 
 (Setter)
 """
@@ -439,7 +439,7 @@ Rneut(Value::Float64) = Rneut(DSS_DEFAULT_CTX, Value)
 """
 Name of harmonic current spectrum shape.
 
-Original COM help: https://opendss.epri.com/Spectrum.html
+Original COM help: <https://opendss.epri.com/Spectrum.html>
 
 (Getter)
 """
@@ -451,7 +451,7 @@ Spectrum() = Spectrum(DSS_DEFAULT_CTX)
 """
 Name of harmonic current spectrum shape.
 
-Original COM help: https://opendss.epri.com/Spectrum.html
+Original COM help: <https://opendss.epri.com/Spectrum.html>
 
 (Setter)
 """
@@ -463,7 +463,7 @@ Spectrum(Value::String) = Spectrum(DSS_DEFAULT_CTX, Value)
 """
 Response to load multipliers: Fixed (growth only), Exempt (no LD curve), Variable (all).
 
-Original COM help: https://opendss.epri.com/Status.html
+Original COM help: <https://opendss.epri.com/Status.html>
 
 (Getter)
 """
@@ -475,7 +475,7 @@ Status() = Status(DSS_DEFAULT_CTX)
 """
 Response to load multipliers: Fixed (growth only), Exempt (no LD curve), Variable (all).
 
-Original COM help: https://opendss.epri.com/Status.html
+Original COM help: <https://opendss.epri.com/Status.html>
 
 (Setter)
 """
@@ -488,7 +488,7 @@ Status(Value::Union{Int,Lib.LoadStatus}) = Status(DSS_DEFAULT_CTX, Value)
 """
 Maximum per-unit voltage to use the load model. Above this, constant Z applies.
 
-Original COM help: https://opendss.epri.com/Vmaxpu1.html
+Original COM help: <https://opendss.epri.com/Vmaxpu1.html>
 
 (Getter)
 """
@@ -500,7 +500,7 @@ Vmaxpu() = Vmaxpu(DSS_DEFAULT_CTX)
 """
 Maximum per-unit voltage to use the load model. Above this, constant Z applies.
 
-Original COM help: https://opendss.epri.com/Vmaxpu1.html
+Original COM help: <https://opendss.epri.com/Vmaxpu1.html>
 
 (Setter)
 """
@@ -512,7 +512,7 @@ Vmaxpu(Value::Float64) = Vmaxpu(DSS_DEFAULT_CTX, Value)
 """
 Minimum voltage for unserved energy (UE) evaluation.
 
-Original COM help: https://opendss.epri.com/Vminemerg.html
+Original COM help: <https://opendss.epri.com/Vminemerg.html>
 
 (Getter)
 """
@@ -524,7 +524,7 @@ VminEmerg() = VminEmerg(DSS_DEFAULT_CTX)
 """
 Minimum voltage for unserved energy (UE) evaluation.
 
-Original COM help: https://opendss.epri.com/Vminemerg.html
+Original COM help: <https://opendss.epri.com/Vminemerg.html>
 
 (Setter)
 """
@@ -536,7 +536,7 @@ VminEmerg(Value::Float64) = VminEmerg(DSS_DEFAULT_CTX, Value)
 """
 Minimum voltage for energy exceeding normal (EEN) evaluations.
 
-Original COM help: https://opendss.epri.com/Vminnorm.html
+Original COM help: <https://opendss.epri.com/Vminnorm.html>
 
 (Getter)
 """
@@ -548,7 +548,7 @@ VminNorm() = VminNorm(DSS_DEFAULT_CTX)
 """
 Minimum voltage for energy exceeding normal (EEN) evaluations.
 
-Original COM help: https://opendss.epri.com/Vminnorm.html
+Original COM help: <https://opendss.epri.com/Vminnorm.html>
 
 (Setter)
 """
@@ -560,7 +560,7 @@ VminNorm(Value::Float64) = VminNorm(DSS_DEFAULT_CTX, Value)
 """
 Minimum voltage to apply the load model. Below this, constant Z is used.
 
-Original COM help: https://opendss.epri.com/Vminpu1.html
+Original COM help: <https://opendss.epri.com/Vminpu1.html>
 
 (Getter)
 """
@@ -572,7 +572,7 @@ Vminpu() = Vminpu(DSS_DEFAULT_CTX)
 """
 Minimum voltage to apply the load model. Below this, constant Z is used.
 
-Original COM help: https://opendss.epri.com/Vminpu1.html
+Original COM help: <https://opendss.epri.com/Vminpu1.html>
 
 (Setter)
 """
@@ -584,7 +584,7 @@ Vminpu(Value::Float64) = Vminpu(DSS_DEFAULT_CTX, Value)
 """
 Neutral reactance for wye-connected loads.
 
-Original COM help: https://opendss.epri.com/Xneut.html
+Original COM help: <https://opendss.epri.com/Xneut.html>
 
 (Getter)
 """
@@ -596,7 +596,7 @@ Xneut() = Xneut(DSS_DEFAULT_CTX)
 """
 Neutral reactance for wye-connected loads.
 
-Original COM help: https://opendss.epri.com/Xneut.html
+Original COM help: <https://opendss.epri.com/Xneut.html>
 
 (Setter)
 """
@@ -608,7 +608,7 @@ Xneut(Value::Float64) = Xneut(DSS_DEFAULT_CTX, Value)
 """
 Name of yearly duration loadshape
 
-Original COM help: https://opendss.epri.com/Yearly.html
+Original COM help: <https://opendss.epri.com/Yearly.html>
 
 (Getter)
 """
@@ -620,7 +620,7 @@ Yearly() = Yearly(DSS_DEFAULT_CTX)
 """
 Name of yearly duration loadshape
 
-Original COM help: https://opendss.epri.com/Yearly.html
+Original COM help: <https://opendss.epri.com/Yearly.html>
 
 (Setter)
 """
@@ -632,7 +632,7 @@ Yearly(Value::String) = Yearly(DSS_DEFAULT_CTX, Value)
 """
 Array of 7 doubles with values for ZIPV property of the load object
 
-Original COM help: https://opendss.epri.com/ZIPV.html
+Original COM help: <https://opendss.epri.com/ZIPV.html>
 
 (Getter)
 """
@@ -644,7 +644,7 @@ ZipV() = ZipV(DSS_DEFAULT_CTX)
 """
 Array of 7 doubles with values for ZIPV property of the load object
 
-Original COM help: https://opendss.epri.com/ZIPV.html
+Original COM help: <https://opendss.epri.com/ZIPV.html>
 
 (Setter)
 """
@@ -657,7 +657,7 @@ ZipV(Value::Vector{Float64}) = ZipV(DSS_DEFAULT_CTX, Value)
 """
 Name of the loadshape for a daily load profile.
 
-Original COM help: https://opendss.epri.com/daily.html
+Original COM help: <https://opendss.epri.com/daily.html>
 
 (Getter)
 """
@@ -669,7 +669,7 @@ Daily() = Daily(DSS_DEFAULT_CTX)
 """
 Name of the loadshape for a daily load profile.
 
-Original COM help: https://opendss.epri.com/daily.html
+Original COM help: <https://opendss.epri.com/daily.html>
 
 (Setter)
 """
@@ -681,7 +681,7 @@ Daily(Value::String) = Daily(DSS_DEFAULT_CTX, Value)
 """
 Name of the loadshape for a duty cycle simulation.
 
-Original COM help: https://opendss.epri.com/duty.html
+Original COM help: <https://opendss.epri.com/duty.html>
 
 (Getter)
 """
@@ -693,7 +693,7 @@ Duty() = Duty(DSS_DEFAULT_CTX)
 """
 Name of the loadshape for a duty cycle simulation.
 
-Original COM help: https://opendss.epri.com/duty.html
+Original COM help: <https://opendss.epri.com/duty.html>
 
 (Setter)
 """
@@ -705,7 +705,7 @@ Duty(Value::String) = Duty(DSS_DEFAULT_CTX, Value)
 """
 kV rating for active Load. For 2 or more phases set Line-Line kV. Else actual kV across terminals.
 
-Original COM help: https://opendss.epri.com/kV2.html
+Original COM help: <https://opendss.epri.com/kV2.html>
 
 (Getter)
 """
@@ -717,7 +717,7 @@ kV() = kV(DSS_DEFAULT_CTX)
 """
 kV rating for active Load. For 2 or more phases set Line-Line kV. Else actual kV across terminals.
 
-Original COM help: https://opendss.epri.com/kV2.html
+Original COM help: <https://opendss.epri.com/kV2.html>
 
 (Setter)
 """
@@ -729,7 +729,7 @@ kV(Value::Float64) = kV(DSS_DEFAULT_CTX, Value)
 """
 Set kW for active Load. Updates kvar based on present PF.
 
-Original COM help: https://opendss.epri.com/kW1.html
+Original COM help: <https://opendss.epri.com/kW1.html>
 
 (Getter)
 """
@@ -741,7 +741,7 @@ kW() = kW(DSS_DEFAULT_CTX)
 """
 Set kW for active Load. Updates kvar based on present PF.
 
-Original COM help: https://opendss.epri.com/kW1.html
+Original COM help: <https://opendss.epri.com/kW1.html>
 
 (Setter)
 """
@@ -755,7 +755,7 @@ Base load kVA.
 
 Also defined kW and kvar or PF input, or load allocation by kWh or XFkVA.
 
-Original COM help: https://opendss.epri.com/kva.html
+Original COM help: <https://opendss.epri.com/kva.html>
 
 (Getter)
 """
@@ -769,7 +769,7 @@ Base load kVA.
 
 Also defined kW and kvar or PF input, or load allocation by kWh or XFkVA.
 
-Original COM help: https://opendss.epri.com/kva.html
+Original COM help: <https://opendss.epri.com/kva.html>
 
 (Setter)
 """
@@ -781,7 +781,7 @@ kVABase(Value::Float64) = kVABase(DSS_DEFAULT_CTX, Value)
 """
 Reactive power in kvar for active Load. If set, updates PF based on present kW.
 
-Original COM help: https://opendss.epri.com/kvar1.html
+Original COM help: <https://opendss.epri.com/kvar1.html>
 
 (Getter)
 """
@@ -793,7 +793,7 @@ kvar() = kvar(DSS_DEFAULT_CTX)
 """
 Reactive power in kvar for active Load. If set, updates PF based on present kW.
 
-Original COM help: https://opendss.epri.com/kvar1.html
+Original COM help: <https://opendss.epri.com/kvar1.html>
 
 (Setter)
 """
@@ -805,7 +805,7 @@ kvar(Value::Float64) = kvar(DSS_DEFAULT_CTX, Value)
 """
 kWh billed for this period. Can be used with Cfactor for load allocation.
 
-Original COM help: https://opendss.epri.com/kwh.html
+Original COM help: <https://opendss.epri.com/kwh.html>
 
 (Getter)
 """
@@ -817,7 +817,7 @@ kWh() = kWh(DSS_DEFAULT_CTX)
 """
 kWh billed for this period. Can be used with Cfactor for load allocation.
 
-Original COM help: https://opendss.epri.com/kwh.html
+Original COM help: <https://opendss.epri.com/kwh.html>
 
 (Setter)
 """
@@ -829,7 +829,7 @@ kWh(Value::Float64) = kWh(DSS_DEFAULT_CTX, Value)
 """
 Length of kWh billing period for average demand calculation. Default 30.
 
-Original COM help: https://opendss.epri.com/kwhdays.html
+Original COM help: <https://opendss.epri.com/kwhdays.html>
 
 (Getter)
 """
@@ -841,7 +841,7 @@ kWhDays() = kWhDays(DSS_DEFAULT_CTX)
 """
 Length of kWh billing period for average demand calculation. Default 30.
 
-Original COM help: https://opendss.epri.com/kwhdays.html
+Original COM help: <https://opendss.epri.com/kwhdays.html>
 
 (Setter)
 """
@@ -899,7 +899,7 @@ PctSeriesRL(Value::Float64) = PctSeriesRL(DSS_DEFAULT_CTX, Value)
 """
 Rated service transformer kVA for load allocation, using AllocationFactor. Affects kW, kvar, and pf.
 
-Original COM help: https://opendss.epri.com/xfkVA.html
+Original COM help: <https://opendss.epri.com/xfkVA.html>
 
 (Getter)
 """
@@ -911,7 +911,7 @@ XfkVA() = XfkVA(DSS_DEFAULT_CTX)
 """
 Rated service transformer kVA for load allocation, using AllocationFactor. Affects kW, kvar, and pf.
 
-Original COM help: https://opendss.epri.com/xfkVA.html
+Original COM help: <https://opendss.epri.com/xfkVA.html>
 
 (Setter)
 """
@@ -947,7 +947,7 @@ Phases(Value::Int) = Phases(DSS_DEFAULT_CTX, Value)
 """
 Name of the sensor monitoring this load.
 
-Original COM help: https://opendss.epri.com/Sensor.html
+Original COM help: <https://opendss.epri.com/Sensor.html>
 """
 function Sensor(dss::DSSContext)::String
     return get_string(@checked dss_ccall(dss.capi.Loads_Get_Sensor, dss.ctx))

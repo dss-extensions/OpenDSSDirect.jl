@@ -25,7 +25,7 @@ using ..Utils
 """
 Close the specified terminal and phase, if non-zero, or all conductors at the terminal.
 
-Original COM help: https://opendss.epri.com/Close1.html
+Original COM help: <https://opendss.epri.com/Close1.html>
 """
 function Close(dss::DSSContext, Term::Int, Phs::Int)
     @checked dss_ccall(dss.capi.CktElement_Close, dss.ctx, Term, Phs)
@@ -127,7 +127,7 @@ Provide zero in the `Phs` argument to check if any conductor of the terminal `Te
 
 Provide a non-zero phase number in `Phs` to check if a specific phase conductor is open.
 
-Original COM help: https://opendss.epri.com/IsOpen.html
+Original COM help: <https://opendss.epri.com/IsOpen.html>
 """
 function IsOpen(dss::DSSContext, Term::Int, Phs::Int)::Bool
     return @checked(dss_ccall(dss.capi.CktElement_IsOpen, dss.ctx, Term, Phs)) != 0
@@ -137,7 +137,7 @@ IsOpen(Term::Int, Phs::Int) = IsOpen(DSS_DEFAULT_CTX, Term, Phs)
 """
 Indicates if any of the phase conductors of the specified terminal is open.
 
-Original COM help: https://opendss.epri.com/Open1.html
+Original COM help: <https://opendss.epri.com/Open1.html>
 """
 function IsOpen(dss::DSSContext, Term::Int)::Bool
     return @checked(dss_ccall(dss.capi.CktElement_IsOpen, dss.ctx, Term, 0)) != 0
@@ -147,7 +147,7 @@ IsOpen(Term::Int) = IsOpen(DSS_DEFAULT_CTX, Term)
 """
 Open the specified terminal and phase, if non-zero, or all conductors at the terminal.
 
-Original COM help: https://opendss.epri.com/Open1.html
+Original COM help: <https://opendss.epri.com/Open1.html>
 """
 function Open(dss::DSSContext, Term::Int, Phs::Int)
     @checked dss_ccall(dss.capi.CktElement_Open, dss.ctx, Term, Phs)
@@ -157,7 +157,7 @@ Open(Term::Int, Phs::Int) = Open(DSS_DEFAULT_CTX, Term, Phs)
 """
 Array containing all property names of the active device.
 
-Original COM help: https://opendss.epri.com/AllPropertyNames.html
+Original COM help: <https://opendss.epri.com/AllPropertyNames.html>
 """
 function AllPropertyNames(dss::DSSContext)::Vector{String}
     return get_string_array(dss.capi.CktElement_Get_AllPropertyNames, dss)
@@ -168,7 +168,7 @@ AllPropertyNames() = AllPropertyNames(DSS_DEFAULT_CTX)
 Array of strings listing all the published state variable names.
 Valid only for PCElements.
 
-Original COM help: https://opendss.epri.com/AllVariableNames.html
+Original COM help: <https://opendss.epri.com/AllVariableNames.html>
 """
 function AllVariableNames(dss::DSSContext)::Vector{String}
     return get_string_array(dss.capi.CktElement_Get_AllVariableNames, dss)
@@ -179,7 +179,7 @@ AllVariableNames() = AllVariableNames(DSS_DEFAULT_CTX)
 Array of doubles. Values of state variables of active element if PC element.
 Valid only for PCElements.
 
-Original COM help: https://opendss.epri.com/AllVariableValues.html
+Original COM help: <https://opendss.epri.com/AllVariableValues.html>
 """
 function AllVariableValues(dss::DSSContext)::Vector{Float64}
     return get_float64_array(dss.capi.CktElement_Get_AllVariableValues, dss)
@@ -192,7 +192,7 @@ Bus definitions to which each terminal is connected.
 In getter mode, the argument `removeNodes` is an **API Extension**.
 Use it to get only the bus names, without the connection/node specification, if present.
 
-Original COM help: https://opendss.epri.com/BusNames.html
+Original COM help: <https://opendss.epri.com/BusNames.html>
 
 (Getter)
 """
@@ -206,7 +206,7 @@ BusNames() = BusNames(DSS_DEFAULT_CTX, false)
 """
 Bus definitions to which each terminal is connected.
 
-Original COM help: https://opendss.epri.com/BusNames.html
+Original COM help: <https://opendss.epri.com/BusNames.html>
 
 (Setter)
 """
@@ -219,7 +219,7 @@ BusNames(Value::Vector{String}) = BusNames(DSS_DEFAULT_CTX, Value)
 """
 Complex double array of Sequence Currents for all conductors of all terminals of active circuit element.
 
-Original COM help: https://opendss.epri.com/CplxSeqCurrents.html
+Original COM help: <https://opendss.epri.com/CplxSeqCurrents.html>
 """
 function CplxSeqCurrents(dss::DSSContext)::Vector{ComplexF64}
     return get_complex64_array(dss.capi.CktElement_Get_CplxSeqCurrents, dss)
@@ -229,7 +229,7 @@ CplxSeqCurrents() = CplxSeqCurrents(DSS_DEFAULT_CTX)
 """
 Complex double array of Sequence Voltage for all terminals of active circuit element.
 
-Original COM help: https://opendss.epri.com/CplxSeqVoltages1.html
+Original COM help: <https://opendss.epri.com/CplxSeqVoltages1.html>
 """
 function CplxSeqVoltages(dss::DSSContext)::Vector{ComplexF64}
     return get_complex64_array(dss.capi.CktElement_Get_CplxSeqVoltages, dss)
@@ -239,7 +239,7 @@ CplxSeqVoltages() = CplxSeqVoltages(DSS_DEFAULT_CTX)
 """
 Complex array of currents into each conductor of each terminal
 
-Original COM help: https://opendss.epri.com/Currents1.html
+Original COM help: <https://opendss.epri.com/Currents1.html>
 """
 function Currents(dss::DSSContext)::Vector{ComplexF64}
     return get_complex64_array(dss.capi.CktElement_Get_Currents, dss)
@@ -249,7 +249,7 @@ Currents() = Currents(DSS_DEFAULT_CTX)
 """
 Currents in magnitude, angle (degrees) format as an array of doubles.
 
-Original COM help: https://opendss.epri.com/CurrentsMagAng.html
+Original COM help: <https://opendss.epri.com/CurrentsMagAng.html>
 """
 function CurrentsMagAng(dss::DSSContext)::Array{Float64,2}
     r = get_float64_array(dss.capi.CktElement_Get_CurrentsMagAng, dss)
@@ -260,7 +260,7 @@ CurrentsMagAng() = CurrentsMagAng(DSS_DEFAULT_CTX)
 """
 Display name of the object (not necessarily unique)
 
-Original COM help: https://opendss.epri.com/DisplayName.html
+Original COM help: <https://opendss.epri.com/DisplayName.html>
 
 (Getter)
 """
@@ -272,7 +272,7 @@ DisplayName() = DisplayName(DSS_DEFAULT_CTX)
 """
 Display name of the object (not necessarily unique)
 
-Original COM help: https://opendss.epri.com/DisplayName.html
+Original COM help: <https://opendss.epri.com/DisplayName.html>
 
 (Setter)
 """
@@ -284,7 +284,7 @@ DisplayName(Value::String) = DisplayName(DSS_DEFAULT_CTX, Value)
 """
 Emergency Ampere Rating for PD elements
 
-Original COM help: https://opendss.epri.com/EmergAmps.html
+Original COM help: <https://opendss.epri.com/EmergAmps.html>
 
 (Getter)
 """
@@ -296,7 +296,7 @@ EmergAmps() = EmergAmps(DSS_DEFAULT_CTX)
 """
 Emergency Ampere Rating for PD elements
 
-Original COM help: https://opendss.epri.com/EmergAmps.html
+Original COM help: <https://opendss.epri.com/EmergAmps.html>
 
 (Setter)
 """
@@ -308,7 +308,7 @@ EmergAmps(Value::Float64) = EmergAmps(DSS_DEFAULT_CTX, Value)
 """
 Boolean indicating that element is currently in the circuit.
 
-Original COM help: https://opendss.epri.com/Enabled.html
+Original COM help: <https://opendss.epri.com/Enabled.html>
 
 (Getter)
 """
@@ -320,7 +320,7 @@ Enabled() = Enabled(DSS_DEFAULT_CTX)
 """
 Boolean indicating that element is currently in the circuit.
 
-Original COM help: https://opendss.epri.com/Enabled.html
+Original COM help: <https://opendss.epri.com/Enabled.html>
 
 (Setter)
 """
@@ -334,7 +334,7 @@ Name of the Energy Meter this element is assigned to.
 
 *Requires an energy meter with an updated zone.*
 
-Original COM help: https://opendss.epri.com/EnergyMeter.html
+Original COM help: <https://opendss.epri.com/EnergyMeter.html>
 """
 function EnergyMeter(dss::DSSContext)::String
     return get_string(dss_ccall(dss.capi.CktElement_Get_EnergyMeter, dss.ctx))
@@ -344,7 +344,7 @@ EnergyMeter() = EnergyMeter(DSS_DEFAULT_CTX)
 """
 GUID/UUID for this object.
 
-Original COM help: https://opendss.epri.com/GUID.html
+Original COM help: <https://opendss.epri.com/GUID.html>
 """
 function GUID(dss::DSSContext)::String
     return get_string(dss_ccall(dss.capi.CktElement_Get_GUID, dss.ctx))
@@ -354,7 +354,7 @@ GUID() = GUID(DSS_DEFAULT_CTX)
 """
 Index of this element into the circuit's element list.
 
-Original COM help: https://opendss.epri.com/Handle.html
+Original COM help: <https://opendss.epri.com/Handle.html>
 """
 function Handle(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.CktElement_Get_Handle, dss.ctx)
@@ -364,7 +364,7 @@ Handle() = Handle(DSS_DEFAULT_CTX)
 """
 True if a recloser, relay, or fuse controlling this ckt element. OCP = Overcurrent Protection
 
-Original COM help: https://opendss.epri.com/HasOCPDevice.html
+Original COM help: <https://opendss.epri.com/HasOCPDevice.html>
 """
 function HasOCPDevice(dss::DSSContext)::Bool
     return @checked(dss_ccall(dss.capi.CktElement_Get_HasOCPDevice, dss.ctx)) != 0
@@ -374,7 +374,7 @@ HasOCPDevice() = HasOCPDevice(DSS_DEFAULT_CTX)
 """
 True if this element has a SwtControl attached.
 
-Original COM help: https://opendss.epri.com/HasSwitchControl.html
+Original COM help: <https://opendss.epri.com/HasSwitchControl.html>
 """
 function HasSwitchControl(dss::DSSContext)::Bool
     return @checked(dss_ccall(dss.capi.CktElement_Get_HasSwitchControl, dss.ctx)) != 0
@@ -384,7 +384,7 @@ HasSwitchControl() = HasSwitchControl(DSS_DEFAULT_CTX)
 """
 True if this element has a CapControl or RegControl attached.
 
-Original COM help: https://opendss.epri.com/HasVoltControl.html
+Original COM help: <https://opendss.epri.com/HasVoltControl.html>
 """
 function HasVoltControl(dss::DSSContext)::Bool
     return @checked(dss_ccall(dss.capi.CktElement_Get_HasVoltControl, dss.ctx)) != 0
@@ -394,7 +394,7 @@ HasVoltControl() = HasVoltControl(DSS_DEFAULT_CTX)
 """
 Total losses in the element: two-element double array (complex), in VA (watts, vars)
 
-Original COM help: https://opendss.epri.com/Losses1.html
+Original COM help: <https://opendss.epri.com/Losses1.html>
 """
 function Losses(dss::DSSContext)::Vector{ComplexF64}
     #TODO: change to a single complex value
@@ -415,7 +415,7 @@ AllLosses() = AllLosses(DSS_DEFAULT_CTX)
 """
 Full Name of Active Circuit Element
 
-Original COM help: https://opendss.epri.com/Name4.html
+Original COM help: <https://opendss.epri.com/Name4.html>
 """
 function Name(dss::DSSContext)::String
     return get_string(dss_ccall(dss.capi.CktElement_Get_Name, dss.ctx))
@@ -427,7 +427,7 @@ Array of integer containing the node numbers (representing phases, for example) 
 
 Be sure to run a solution to initialize the values after the circuit is created or modified.
 
-Original COM help: https://opendss.epri.com/NodeOrder.html
+Original COM help: <https://opendss.epri.com/NodeOrder.html>
 """
 function NodeOrder(dss::DSSContext)::Vector{Int}
     return get_int32_array(dss.capi.CktElement_Get_NodeOrder, dss)
@@ -437,7 +437,7 @@ NodeOrder() = NodeOrder(DSS_DEFAULT_CTX)
 """
 Normal ampere rating for PD Elements
 
-Original COM help: https://opendss.epri.com/NormalAmps.html
+Original COM help: <https://opendss.epri.com/NormalAmps.html>
 
 (Getter)
 """
@@ -449,7 +449,7 @@ NormalAmps() = NormalAmps(DSS_DEFAULT_CTX)
 """
 Normal ampere rating for PD Elements
 
-Original COM help: https://opendss.epri.com/NormalAmps.html
+Original COM help: <https://opendss.epri.com/NormalAmps.html>
 
 (Setter)
 """
@@ -461,7 +461,7 @@ NormalAmps(Value::Float64) = NormalAmps(DSS_DEFAULT_CTX, Value)
 """
 Number of Conductors per Terminal
 
-Original COM help: https://opendss.epri.com/NumConductors.html
+Original COM help: <https://opendss.epri.com/NumConductors.html>
 """
 function NumConductors(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.CktElement_Get_NumConductors, dss.ctx)
@@ -472,7 +472,7 @@ NumConductors() = NumConductors(DSS_DEFAULT_CTX)
 Number of controls connected to this device.
 Use to determine valid range for index into Controller array.
 
-Original COM help: https://opendss.epri.com/NumControls.html
+Original COM help: <https://opendss.epri.com/NumControls.html>
 """
 function NumControls(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.CktElement_Get_NumControls, dss.ctx)
@@ -482,7 +482,7 @@ NumControls() = NumControls(DSS_DEFAULT_CTX)
 """
 Number of Phases
 
-Original COM help: https://opendss.epri.com/NumPhases.html
+Original COM help: <https://opendss.epri.com/NumPhases.html>
 """
 function NumPhases(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.CktElement_Get_NumPhases, dss.ctx)
@@ -492,7 +492,7 @@ NumPhases() = NumPhases(DSS_DEFAULT_CTX)
 """
 Number of Properties this Circuit Element.
 
-Original COM help: https://opendss.epri.com/NumProperties.html
+Original COM help: <https://opendss.epri.com/NumProperties.html>
 """
 function NumProperties(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.CktElement_Get_NumProperties, dss.ctx)
@@ -502,7 +502,7 @@ NumProperties() = NumProperties(DSS_DEFAULT_CTX)
 """
 Number of terminals in this Circuit Element
 
-Original COM help: https://opendss.epri.com/NumTerminals.html
+Original COM help: <https://opendss.epri.com/NumTerminals.html>
 """
 function NumTerminals(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.CktElement_Get_NumTerminals, dss.ctx)
@@ -512,7 +512,7 @@ NumTerminals() = NumTerminals(DSS_DEFAULT_CTX)
 """
 Index into Controller list of OCP Device controlling this CktElement
 
-Original COM help: https://opendss.epri.com/OCPDevIndex.html
+Original COM help: <https://opendss.epri.com/OCPDevIndex.html>
 """
 function OCPDevIndex(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.CktElement_Get_OCPDevIndex, dss.ctx)
@@ -522,7 +522,7 @@ OCPDevIndex() = OCPDevIndex(DSS_DEFAULT_CTX)
 """
 0=None; 1=Fuse; 2=Recloser; 3=Relay;  Type of OCP controller device
 
-Original COM help: https://opendss.epri.com/OCPDevType.html
+Original COM help: <https://opendss.epri.com/OCPDevType.html>
 """
 function OCPDevType(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.CktElement_Get_OCPDevType, dss.ctx)
@@ -532,7 +532,7 @@ OCPDevType() = OCPDevType(DSS_DEFAULT_CTX)
 """
 Complex array of losses (kVA) by phase
 
-Original COM help: https://opendss.epri.com/PhaseLosses.html
+Original COM help: <https://opendss.epri.com/PhaseLosses.html>
 """
 function PhaseLosses(dss::DSSContext)::Vector{ComplexF64}
     return get_complex64_array(dss.capi.CktElement_Get_PhaseLosses, dss)
@@ -542,7 +542,7 @@ PhaseLosses() = PhaseLosses(DSS_DEFAULT_CTX)
 """
 Complex array of powers (kVA) into each conductor of each terminal
 
-Original COM help: https://opendss.epri.com/Powers.html
+Original COM help: <https://opendss.epri.com/Powers.html>
 """
 function Powers(dss::DSSContext)::Vector{ComplexF64}
     return get_complex64_array(dss.capi.CktElement_Get_Powers, dss)
@@ -552,7 +552,7 @@ Powers() = Powers(DSS_DEFAULT_CTX)
 """
 Residual currents for each terminal: (magnitude, angle in degrees)
 
-Original COM help: https://opendss.epri.com/Residuals.html
+Original COM help: <https://opendss.epri.com/Residuals.html>
 """
 function Residuals(dss::DSSContext)::Array{Float64,2}
     r = get_float64_array(dss.capi.CktElement_Get_Residuals, dss)
@@ -563,7 +563,7 @@ Residuals() = Residuals(DSS_DEFAULT_CTX)
 """
 Double array of symmetrical component currents (magnitudes only) into each 3-phase terminal
 
-Original COM help: https://opendss.epri.com/SeqCurrents.html
+Original COM help: <https://opendss.epri.com/SeqCurrents.html>
 """
 function SeqCurrents(dss::DSSContext)::Vector{Float64}
     return get_float64_array(dss.capi.CktElement_Get_SeqCurrents, dss)
@@ -573,7 +573,7 @@ SeqCurrents() = SeqCurrents(DSS_DEFAULT_CTX)
 """
 Complex array of sequence powers (kW, kvar) into each 3-phase terminal
 
-Original COM help: https://opendss.epri.com/SeqPowers.html
+Original COM help: <https://opendss.epri.com/SeqPowers.html>
 """
 function SeqPowers(dss::DSSContext)::Vector{ComplexF64}
     return get_complex64_array(dss.capi.CktElement_Get_SeqPowers, dss)
@@ -583,7 +583,7 @@ SeqPowers() = SeqPowers(DSS_DEFAULT_CTX)
 """
 Double array of symmetrical component voltages (magnitudes only) at each 3-phase terminal
 
-Original COM help: https://opendss.epri.com/SeqVoltages1.html
+Original COM help: <https://opendss.epri.com/SeqVoltages1.html>
 """
 function SeqVoltages(dss::DSSContext)::Vector{Float64}
     return get_float64_array(dss.capi.CktElement_Get_SeqVoltages, dss)
@@ -593,7 +593,7 @@ SeqVoltages() = SeqVoltages(DSS_DEFAULT_CTX)
 """
 Returns an array with the total powers (complex, kVA) at ALL terminals of the active circuit element.
 
-Original COM help: https://opendss.epri.com/TotalPowers.html
+Original COM help: <https://opendss.epri.com/TotalPowers.html>
 """
 function TotalPowers(dss::DSSContext)::Vector{ComplexF64}
     return get_complex64_array(dss.capi.CktElement_Get_TotalPowers, dss)
@@ -603,7 +603,7 @@ TotalPowers() = TotalPowers(DSS_DEFAULT_CTX)
 """
 Complex array of voltages at terminals
 
-Original COM help: https://opendss.epri.com/Voltages1.html
+Original COM help: <https://opendss.epri.com/Voltages1.html>
 """
 function Voltages(dss::DSSContext)::Vector{ComplexF64}
     return get_complex64_array(dss.capi.CktElement_Get_Voltages, dss)
@@ -613,7 +613,7 @@ Voltages() = Voltages(DSS_DEFAULT_CTX)
 """
 Voltages at each conductor in magnitude, angle form as array of doubles.
 
-Original COM help: https://opendss.epri.com/VoltagesMagAng.html
+Original COM help: <https://opendss.epri.com/VoltagesMagAng.html>
 """
 function VoltagesMagAng(dss::DSSContext)::Array{Float64,2}
     r = get_float64_array(dss.capi.CktElement_Get_VoltagesMagAng, dss)
@@ -624,7 +624,7 @@ VoltagesMagAng() = VoltagesMagAng(DSS_DEFAULT_CTX)
 """
 YPrim matrix, column order, complex numbers
 
-Original COM help: https://opendss.epri.com/Yprim.html
+Original COM help: <https://opendss.epri.com/Yprim.html>
 """
 function YPrim(dss::DSSContext)::Array{ComplexF64,2}
     r = get_complex64_array(dss.capi.CktElement_Get_Yprim, dss)

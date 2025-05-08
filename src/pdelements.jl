@@ -99,7 +99,7 @@ Accumulated failure rate for this branch on downline
 
 *Requires a previous call to `RelCalc` command*
 
-Original COM help: https://opendss.epri.com/AccumulatedL.html
+Original COM help: <https://opendss.epri.com/AccumulatedL.html>
 """
 function AccumulatedL(dss::DSSContext)::Float64
     return @checked dss_ccall(dss.capi.PDElements_Get_AccumulatedL, dss.ctx)
@@ -154,7 +154,7 @@ Failure rate for this branch. Faults per year including length of line.
 
 *Requires a previous call to `RelCalc` command*
 
-Original COM help: https://opendss.epri.com/Lambda1.html
+Original COM help: <https://opendss.epri.com/Lambda1.html>
 """
 function Lambda(dss::DSSContext)::Float64
     return @checked dss_ccall(dss.capi.PDElements_Get_Lambda, dss.ctx)
@@ -166,7 +166,7 @@ Number of customers, this branch
 
 *Requires an energy meter with an updated zone.*
 
-Original COM help: https://opendss.epri.com/Numcustomers.html
+Original COM help: <https://opendss.epri.com/Numcustomers.html>
 """
 function NumCustomers(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.PDElements_Get_Numcustomers, dss.ctx)
@@ -187,7 +187,7 @@ ParentPDElement() = ParentPDElement(DSS_DEFAULT_CTX)
 """
 Average repair time for this element in hours
 
-Original COM help: https://opendss.epri.com/RepairTime.html
+Original COM help: <https://opendss.epri.com/RepairTime.html>
 
 (Getter)
 """
@@ -199,7 +199,7 @@ RepairTime() = RepairTime(DSS_DEFAULT_CTX)
 """
 Average repair time for this element in hours
 
-Original COM help: https://opendss.epri.com/RepairTime.html
+Original COM help: <https://opendss.epri.com/RepairTime.html>
 
 (Setter)
 """
@@ -213,7 +213,7 @@ Integer ID of the feeder section that this PDElement branch is part of
 
 *Requires a previous call to `RelCalc` command*
 
-Original COM help: https://opendss.epri.com/SectionID1.html
+Original COM help: <https://opendss.epri.com/SectionID1.html>
 """
 function SectionID(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.PDElements_Get_SectionID, dss.ctx)
@@ -225,7 +225,7 @@ Total miles of line from this element to the end of the zone. For recloser sitin
 
 *Requires a previous call to `RelCalc` command*
 
-Original COM help: https://opendss.epri.com/TotalMiles1.html
+Original COM help: <https://opendss.epri.com/TotalMiles1.html>
 """
 function TotalMiles(dss::DSSContext)::Float64
     return @checked dss_ccall(dss.capi.PDElements_Get_TotalMiles, dss.ctx)
@@ -237,7 +237,7 @@ Total number of customers from this branch to the end of the zone
 
 *Requires a circuit with an energy meter with an updated zone.*
 
-Original COM help: https://opendss.epri.com/TotalCustomers1.html
+Original COM help: <https://opendss.epri.com/TotalCustomers1.html>
 """
 function TotalCustomers(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.PDElements_Get_Totalcustomers, dss.ctx)
@@ -247,7 +247,7 @@ TotalCustomers() = TotalCustomers(DSS_DEFAULT_CTX)
 """
 Get/Set percent of faults that are permanent (require repair). Otherwise, fault is assumed to be transient/temporary.
 
-Original COM help: https://opendss.epri.com/pctPermanent.html
+Original COM help: <https://opendss.epri.com/pctPermanent.html>
 
 (Getter)
 """
@@ -259,7 +259,7 @@ PctPermanent() = PctPermanent(DSS_DEFAULT_CTX)
 """
 Get/Set percent of faults that are permanent (require repair). Otherwise, fault is assumed to be transient/temporary.
 
-Original COM help: https://opendss.epri.com/pctPermanent.html
+Original COM help: <https://opendss.epri.com/pctPermanent.html>
 
 (Setter)
 """

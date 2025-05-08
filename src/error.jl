@@ -13,7 +13,7 @@ using ..Utils
 """
 Description of error for last operation
 
-Original COM help: https://opendss.epri.com/Description1.html
+Original COM help: <https://opendss.epri.com/Description1.html>
 
 (Getter)
 """
@@ -25,7 +25,7 @@ Description() = Description(DSS_DEFAULT_CTX)
 """
 Error Number (returns current value and then resets to zero)
 
-Original COM help: https://opendss.epri.com/Number.html
+Original COM help: <https://opendss.epri.com/Number.html>
 """
 function Number(dss::DSSContext)::Int
     return dss_ccall(dss.capi.Error_Get_Number, dss.ctx)
@@ -35,7 +35,7 @@ Number() = Number(DSS_DEFAULT_CTX)
 """
 Set the description of error for last operation; for advanced usage, not typically used directly by users.
 
-Original COM help: https://opendss.epri.com/Description1.html
+Original COM help: <https://opendss.epri.com/Description1.html>
 
 (Setter)
 """

@@ -76,7 +76,7 @@ Idx(Value::Int) = Idx(DSS_DEFAULT_CTX, Value)
 """
 Close All Demand Interval Files. Users are required to close the DI files at the end of a run.
 
-Original COM help: https://opendss.epri.com/CloseAllDIFiles.html
+Original COM help: <https://opendss.epri.com/CloseAllDIFiles.html>
 """
 function CloseAllDIFiles(dss::DSSContext)
     @checked dss_ccall(dss.capi.Meters_CloseAllDIFiles, dss.ctx)
@@ -86,7 +86,7 @@ CloseAllDIFiles() = CloseAllDIFiles(DSS_DEFAULT_CTX)
 """
 Calculate reliability indices
 
-Original COM help: https://opendss.epri.com/DoReliabilityCalc.html
+Original COM help: <https://opendss.epri.com/DoReliabilityCalc.html>
 """
 function DoReliabilityCalc(dss::DSSContext, AssumeRestoration::Bool)
     @checked dss_ccall(dss.capi.Meters_DoReliabilityCalc, dss.ctx, AssumeRestoration ? 1 : 0)
@@ -96,7 +96,7 @@ DoReliabilityCalc(AssumeRestoration::Bool) = DoReliabilityCalc(DSS_DEFAULT_CTX, 
 """
 Open Demand Interval (DI) files
 
-Original COM help: https://opendss.epri.com/OpenAllDIFiles.html
+Original COM help: <https://opendss.epri.com/OpenAllDIFiles.html>
 """
 function OpenAllDIFiles(dss::DSSContext)
     @checked dss_ccall(dss.capi.Meters_OpenAllDIFiles, dss.ctx)
@@ -106,7 +106,7 @@ OpenAllDIFiles() = OpenAllDIFiles(DSS_DEFAULT_CTX)
 """
 Resets registers of active meter.
 
-Original COM help: https://opendss.epri.com/Reset2.html
+Original COM help: <https://opendss.epri.com/Reset2.html>
 """
 function Reset(dss::DSSContext)
     @checked dss_ccall(dss.capi.Meters_Reset, dss.ctx)
@@ -116,7 +116,7 @@ Reset() = Reset(DSS_DEFAULT_CTX)
 """
 Resets registers of all meter objects.
 
-Original COM help: https://opendss.epri.com/ResetAll.html
+Original COM help: <https://opendss.epri.com/ResetAll.html>
 """
 function ResetAll(dss::DSSContext)
     @checked dss_ccall(dss.capi.Meters_ResetAll, dss.ctx)
@@ -126,7 +126,7 @@ ResetAll() = ResetAll(DSS_DEFAULT_CTX)
 """
 Forces active Meter to take a sample.
 
-Original COM help: https://opendss.epri.com/Sample1.html
+Original COM help: <https://opendss.epri.com/Sample1.html>
 """
 function Sample(dss::DSSContext)
     @checked dss_ccall(dss.capi.Meters_Sample, dss.ctx)
@@ -136,7 +136,7 @@ Sample() = Sample(DSS_DEFAULT_CTX)
 """
 Causes all EnergyMeter objects to take a sample at the present time.
 
-Original COM help: https://opendss.epri.com/SampleAll.html
+Original COM help: <https://opendss.epri.com/SampleAll.html>
 """
 function SampleAll(dss::DSSContext)
     @checked dss_ccall(dss.capi.Meters_SampleAll, dss.ctx)
@@ -146,7 +146,7 @@ SampleAll() = SampleAll(DSS_DEFAULT_CTX)
 """
 Saves meter register values.
 
-Original COM help: https://opendss.epri.com/Save.html
+Original COM help: <https://opendss.epri.com/Save.html>
 """
 function Save(dss::DSSContext)
     @checked dss_ccall(dss.capi.Meters_Save, dss.ctx)
@@ -156,7 +156,7 @@ Save() = Save(DSS_DEFAULT_CTX)
 """
 Save All EnergyMeter objects
 
-Original COM help: https://opendss.epri.com/SaveAll.html
+Original COM help: <https://opendss.epri.com/SaveAll.html>
 """
 function SaveAll(dss::DSSContext)
     @checked dss_ccall(dss.capi.Meters_SaveAll, dss.ctx)
@@ -172,7 +172,7 @@ SetActiveSection(SectIdx::Int) = SetActiveSection(DSS_DEFAULT_CTX, SectIdx)
 """
 List (strings) of all branches in zone of the active EnergyMeter object.
 
-Original COM help: https://opendss.epri.com/AllBranchesInZone.html
+Original COM help: <https://opendss.epri.com/AllBranchesInZone.html>
 """
 function AllBranchesInZone(dss::DSSContext)::Vector{String}
     return get_string_array(dss.capi.Meters_Get_AllBranchesInZone, dss)
@@ -182,7 +182,7 @@ AllBranchesInZone() = AllBranchesInZone(DSS_DEFAULT_CTX)
 """
 Array of names of all zone end elements.
 
-Original COM help: https://opendss.epri.com/AllEndElements.html
+Original COM help: <https://opendss.epri.com/AllEndElements.html>
 """
 function AllEndElements(dss::DSSContext)::Vector{String}
     return get_string_array(dss.capi.Meters_Get_AllEndElements, dss)
@@ -192,7 +192,7 @@ AllEndElements() = AllEndElements(DSS_DEFAULT_CTX)
 """
 Array of doubles: set the phase allocation factors for the active meter.
 
-Original COM help: https://opendss.epri.com/AllocFactors.html
+Original COM help: <https://opendss.epri.com/AllocFactors.html>
 
 (Getter)
 """
@@ -204,7 +204,7 @@ AllocFactors() = AllocFactors(DSS_DEFAULT_CTX)
 """
 Array of doubles: set the phase allocation factors for the active meter.
 
-Original COM help: https://opendss.epri.com/AllocFactors.html
+Original COM help: <https://opendss.epri.com/AllocFactors.html>
 
 (Setter)
 """
@@ -217,7 +217,7 @@ AllocFactors(Value::Vector{Float64}) = AllocFactors(DSS_DEFAULT_CTX, Value)
 """
 Average Repair time in this section of the meter zone
 
-Original COM help: https://opendss.epri.com/AvgRepairTime.html
+Original COM help: <https://opendss.epri.com/AvgRepairTime.html>
 """
 function AvgRepairTime(dss::DSSContext)::Float64
     return @checked dss_ccall(dss.capi.Meters_Get_AvgRepairTime, dss.ctx)
@@ -227,7 +227,7 @@ AvgRepairTime() = AvgRepairTime(DSS_DEFAULT_CTX)
 """
 Set the magnitude of the real part of the Calculated Current (normally determined by solution) for the Meter to force some behavior on Load Allocation
 
-Original COM help: https://opendss.epri.com/CalcCurrent.html
+Original COM help: <https://opendss.epri.com/CalcCurrent.html>
 
 (Getter)
 """
@@ -239,7 +239,7 @@ CalcCurrent() = CalcCurrent(DSS_DEFAULT_CTX)
 """
 Set the magnitude of the real part of the Calculated Current (normally determined by solution) for the Meter to force some behavior on Load Allocation
 
-Original COM help: https://opendss.epri.com/CalcCurrent.html
+Original COM help: <https://opendss.epri.com/CalcCurrent.html>
 
 (Setter)
 """
@@ -252,7 +252,7 @@ CalcCurrent(Value::Vector{Float64}) = CalcCurrent(DSS_DEFAULT_CTX, Value)
 """
 Number of branches in Active EnergyMeter zone. (Same as sequence list size)
 
-Original COM help: https://opendss.epri.com/CountBranches.html
+Original COM help: <https://opendss.epri.com/CountBranches.html>
 """
 function CountBranches(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Meters_Get_CountBranches, dss.ctx)
@@ -262,7 +262,7 @@ CountBranches() = CountBranches(DSS_DEFAULT_CTX)
 """
 Number of zone end elements in the active meter zone.
 
-Original COM help: https://opendss.epri.com/CountEndElements.html
+Original COM help: <https://opendss.epri.com/CountEndElements.html>
 """
 function CountEndElements(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Meters_Get_CountEndElements, dss.ctx)
@@ -272,7 +272,7 @@ CountEndElements() = CountEndElements(DSS_DEFAULT_CTX)
 """
 Total customer interruptions for this Meter zone based on reliability calcs.
 
-Original COM help: https://opendss.epri.com/CustInterrupts.html
+Original COM help: <https://opendss.epri.com/CustInterrupts.html>
 """
 function CustInterrupts(dss::DSSContext)::Float64
     return @checked dss_ccall(dss.capi.Meters_Get_CustInterrupts, dss.ctx)
@@ -282,7 +282,7 @@ CustInterrupts() = CustInterrupts(DSS_DEFAULT_CTX)
 """
 Global Flag in the DSS to indicate if Demand Interval (DI) files have been properly opened.
 
-Original COM help: https://opendss.epri.com/DIFilesAreOpen.html
+Original COM help: <https://opendss.epri.com/DIFilesAreOpen.html>
 """
 function DIFilesAreOpen(dss::DSSContext)::Bool
     return @checked(dss_ccall(dss.capi.Meters_Get_DIFilesAreOpen, dss.ctx)) != 0
@@ -292,7 +292,7 @@ DIFilesAreOpen() = DIFilesAreOpen(DSS_DEFAULT_CTX)
 """
 Sum of Fault Rate time Repair Hrs in this section of the meter zone
 
-Original COM help: https://opendss.epri.com/FaultRateXRepairHrs.html
+Original COM help: <https://opendss.epri.com/FaultRateXRepairHrs.html>
 """
 function FaultRateXRepairHrs(dss::DSSContext)::Float64
     return @checked dss_ccall(dss.capi.Meters_Get_FaultRateXRepairHrs, dss.ctx)
@@ -302,7 +302,7 @@ FaultRateXRepairHrs() = FaultRateXRepairHrs(DSS_DEFAULT_CTX)
 """
 Name of metered element
 
-Original COM help: https://opendss.epri.com/MeteredElement.html
+Original COM help: <https://opendss.epri.com/MeteredElement.html>
 
 (Getter)
 """
@@ -314,7 +314,7 @@ MeteredElement() = MeteredElement(DSS_DEFAULT_CTX)
 """
 Name of metered element
 
-Original COM help: https://opendss.epri.com/MeteredElement.html
+Original COM help: <https://opendss.epri.com/MeteredElement.html>
 
 (Setter)
 """
@@ -326,7 +326,7 @@ MeteredElement(Value::String) = MeteredElement(DSS_DEFAULT_CTX, Value)
 """
 Number of Metered Terminal
 
-Original COM help: https://opendss.epri.com/MeteredTerminal.html
+Original COM help: <https://opendss.epri.com/MeteredTerminal.html>
 
 (Getter)
 """
@@ -338,7 +338,7 @@ MeteredTerminal() = MeteredTerminal(DSS_DEFAULT_CTX)
 """
 Number of Metered Terminal
 
-Original COM help: https://opendss.epri.com/MeteredTerminal.html
+Original COM help: <https://opendss.epri.com/MeteredTerminal.html>
 
 (Setter)
 """
@@ -350,7 +350,7 @@ MeteredTerminal(Value::Int) = MeteredTerminal(DSS_DEFAULT_CTX, Value)
 """
 Number of branches (lines) in this section
 
-Original COM help: https://opendss.epri.com/NumSectionBranches.html
+Original COM help: <https://opendss.epri.com/NumSectionBranches.html>
 """
 function NumSectionBranches(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Meters_Get_NumSectionBranches, dss.ctx)
@@ -360,7 +360,7 @@ NumSectionBranches() = NumSectionBranches(DSS_DEFAULT_CTX)
 """
 Number of Customers in the active section.
 
-Original COM help: https://opendss.epri.com/NumSectionCustomers.html
+Original COM help: <https://opendss.epri.com/NumSectionCustomers.html>
 """
 function NumSectionCustomers(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Meters_Get_NumSectionCustomers, dss.ctx)
@@ -370,7 +370,7 @@ NumSectionCustomers() = NumSectionCustomers(DSS_DEFAULT_CTX)
 """
 Number of feeder sections in this meter's zone
 
-Original COM help: https://opendss.epri.com/NumSections.html
+Original COM help: <https://opendss.epri.com/NumSections.html>
 """
 function NumSections(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Meters_Get_NumSections, dss.ctx)
@@ -380,7 +380,7 @@ NumSections() = NumSections(DSS_DEFAULT_CTX)
 """
 Type of OCP device. 1=Fuse; 2=Recloser; 3=Relay
 
-Original COM help: https://opendss.epri.com/OCPDeviceType.html
+Original COM help: <https://opendss.epri.com/OCPDeviceType.html>
 """
 function OCPDeviceType(dss::DSSContext)::Int
     # TODO: use enum here?
@@ -391,7 +391,7 @@ OCPDeviceType() = OCPDeviceType(DSS_DEFAULT_CTX)
 """
 Array of doubles to set values of Peak Current property
 
-Original COM help: https://opendss.epri.com/Peakcurrent.html
+Original COM help: <https://opendss.epri.com/Peakcurrent.html>
 
 (Getter)
 """
@@ -403,7 +403,7 @@ PeakCurrent() = PeakCurrent(DSS_DEFAULT_CTX)
 """
 Array of doubles to set values of Peak Current property
 
-Original COM help: https://opendss.epri.com/Peakcurrent.html
+Original COM help: <https://opendss.epri.com/Peakcurrent.html>
 
 (Setter)
 """
@@ -420,7 +420,7 @@ See also the enum `EnergyMeterRegisters` for the standard register names.
 Besides those listed in the enumeration, users may need to check `RegisterNames`
 in order to find a specific register index at runtime.
 
-Original COM help: https://opendss.epri.com/RegisterNames1.html
+Original COM help: <https://opendss.epri.com/RegisterNames1.html>
 """
 function RegisterNames(dss::DSSContext)::Vector{String}
     return get_string_array(dss.capi.Meters_Get_RegisterNames, dss)
@@ -430,7 +430,7 @@ RegisterNames() = RegisterNames(DSS_DEFAULT_CTX)
 """
 Array of all the values contained in the Meter registers for the active Meter.
 
-Original COM help: https://opendss.epri.com/RegisterValues1.html
+Original COM help: <https://opendss.epri.com/RegisterValues1.html>
 """
 function RegisterValues(dss::DSSContext)::Vector{Float64}
     return get_float64_array(dss.capi.Meters_Get_RegisterValues, dss)
@@ -440,7 +440,7 @@ RegisterValues() = RegisterValues(DSS_DEFAULT_CTX)
 """
 SAIDI for this meter's zone. Execute DoReliabilityCalc first.
 
-Original COM help: https://opendss.epri.com/SAIDI.html
+Original COM help: <https://opendss.epri.com/SAIDI.html>
 """
 function SAIDI(dss::DSSContext)::Float64
     return @checked dss_ccall(dss.capi.Meters_Get_SAIDI, dss.ctx)
@@ -450,7 +450,7 @@ SAIDI() = SAIDI(DSS_DEFAULT_CTX)
 """
 Returns SAIFI for this meter's Zone. Execute Reliability Calc method first.
 
-Original COM help: https://opendss.epri.com/SAIFI.html
+Original COM help: <https://opendss.epri.com/SAIFI.html>
 """
 function SAIFI(dss::DSSContext)::Float64
     return @checked dss_ccall(dss.capi.Meters_Get_SAIFI, dss.ctx)
@@ -472,7 +472,7 @@ SectSeqidx() = SectSeqidx(DSS_DEFAULT_CTX)
 """
 Total Customers downline from this section
 
-Original COM help: https://opendss.epri.com/SectTotalCust.html
+Original COM help: <https://opendss.epri.com/SectTotalCust.html>
 """
 function SectTotalCust(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Meters_Get_SectTotalCust, dss.ctx)
@@ -482,7 +482,7 @@ SectTotalCust() = SectTotalCust(DSS_DEFAULT_CTX)
 """
 Size of the Sequence List
 
-Original COM help: https://opendss.epri.com/SeqListSize.html
+Original COM help: <https://opendss.epri.com/SeqListSize.html>
 """
 function SeqListSize(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Meters_Get_SeqListSize, dss.ctx)
@@ -509,7 +509,7 @@ const SequenceList = SequenceIndex
 """
 Sum of the branch fault rates in this section of the meter's zone
 
-Original COM help: https://opendss.epri.com/SumBranchFltRates.html
+Original COM help: <https://opendss.epri.com/SumBranchFltRates.html>
 """
 function SumBranchFltRates(dss::DSSContext)::Float64
     return @checked dss_ccall(dss.capi.Meters_Get_SumBranchFltRates, dss.ctx)
@@ -519,7 +519,7 @@ SumBranchFltRates() = SumBranchFltRates(DSS_DEFAULT_CTX)
 """
 Total Number of customers in this zone (downline from the EnergyMeter)
 
-Original COM help: https://opendss.epri.com/TotalCustomers.html
+Original COM help: <https://opendss.epri.com/TotalCustomers.html>
 """
 function TotalCustomers(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Meters_Get_TotalCustomers, dss.ctx)
@@ -529,7 +529,7 @@ TotalCustomers() = TotalCustomers(DSS_DEFAULT_CTX)
 """
 Totals of all registers of all meters
 
-Original COM help: https://opendss.epri.com/Totals.html
+Original COM help: <https://opendss.epri.com/Totals.html>
 """
 function Totals(dss::DSSContext)::Vector{Float64}
     return get_float64_array(dss.capi.Meters_Get_Totals, dss)
@@ -539,7 +539,7 @@ Totals() = Totals(DSS_DEFAULT_CTX)
 """
 Returns the list of all PCE within the area covered by the energy meter
 
-Original COM help: https://opendss.epri.com/ZonePCE.html
+Original COM help: <https://opendss.epri.com/ZonePCE.html>
 """
 function ZonePCE(dss::DSSContext)::Vector{String}
     return get_string_array(dss.capi.Meters_Get_ZonePCE, dss)

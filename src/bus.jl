@@ -16,7 +16,7 @@ Array of names of all Bus objects.
 
 See also `Circuit.AllNodeNames`.
 
-Original COM help: https://opendss.epri.com/AllBusNames.html
+Original COM help: <https://opendss.epri.com/AllBusNames.html>
 
 Equivalent to `Circuit.AllBusnames`
 """
@@ -28,7 +28,7 @@ AllNames() = AllNames(DSS_DEFAULT_CTX)
 """
 Gets the name of the active Bus object.
 
-Original COM help: https://opendss.epri.com/Name1.html
+Original COM help: <https://opendss.epri.com/Name1.html>
 """
 function Name(dss::DSSContext)::String
     return get_string(@checked dss_ccall(dss.capi.Bus_Get_Name, dss.ctx))
@@ -40,7 +40,7 @@ Sets Active bus by name.
 
 Ignores node list. Returns bus index (zero based) compatible with `AllBusNames` and Buses collection.
 
-Original COM help: https://opendss.epri.com/SetActiveBus.html
+Original COM help: <https://opendss.epri.com/SetActiveBus.html>
 
 Equivalent to `Circuit.SetActiveBus`
 """
@@ -52,7 +52,7 @@ Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 """
 Total number of Buses in the circuit.
 
-Original COM help: https://opendss.epri.com/NumBuses.html
+Original COM help: <https://opendss.epri.com/NumBuses.html>
 
 Equivalent to `Circuit.NumBuses`
 """
@@ -107,7 +107,7 @@ Set ActiveBus by an integer value.
 0-based index compatible with SetActiveBus return value and AllBusNames indexing.
 Returns 0 if OK.
 
-Original COM help: https://opendss.epri.com/SetActiveBusi.html
+Original COM help: <https://opendss.epri.com/SetActiveBusi.html>
 
 Equivalent to `Circuit.SetActiveBusi`
 """
@@ -120,7 +120,7 @@ Idx(Value::Int) = Idx(DSS_DEFAULT_CTX, Value)
 Return a unique node number at the active bus to avoid node collisions and adds
 it to the node list for the bus.
 
-Original COM help: https://opendss.epri.com/GetUniqueNodeNumber.html
+Original COM help: <https://opendss.epri.com/GetUniqueNodeNumber.html>
 """
 function GetUniqueNodeNumber(dss::DSSContext, StartNumber::Int)::Int
     return @checked dss_ccall(dss.capi.Bus_GetUniqueNodeNumber, dss.ctx, StartNumber)
@@ -130,7 +130,7 @@ GetUniqueNodeNumber(StartNumber::Int) = GetUniqueNodeNumber(DSS_DEFAULT_CTX, Sta
 """
 Refreshes the Zsc matrix for the active bus.
 
-Original COM help: https://opendss.epri.com/ZscRefresh.html
+Original COM help: <https://opendss.epri.com/ZscRefresh.html>
 """
 function ZscRefresh(dss::DSSContext)::Bool
     return @checked(dss_ccall(dss.capi.Bus_ZscRefresh, dss.ctx)) != 0
@@ -140,7 +140,7 @@ ZscRefresh() = ZscRefresh(DSS_DEFAULT_CTX)
 """
 Indicates whether a coordinate has been defined for this bus
 
-Original COM help: https://opendss.epri.com/Coorddefined.html
+Original COM help: <https://opendss.epri.com/Coorddefined.html>
 """
 function Coorddefined(dss::DSSContext)::Bool
     return @checked(dss_ccall(dss.capi.Bus_Get_Coorddefined, dss.ctx)) != 0
@@ -150,7 +150,7 @@ Coorddefined() = Coorddefined(DSS_DEFAULT_CTX)
 """
 Complex array of Sequence Voltages (0, 1, 2) at this Bus.
 
-Original COM help: https://opendss.epri.com/CplxSeqVoltages.html
+Original COM help: <https://opendss.epri.com/CplxSeqVoltages.html>
 """
 function CplxSeqVoltages(dss::DSSContext)::Vector{ComplexF64}
     return get_complex64_array(dss.capi.Bus_Get_CplxSeqVoltages, dss)
@@ -162,7 +162,7 @@ Accumulated customer outage durations
 
 *Requires a previous call to `RelCalc` command*
 
-Original COM help: https://opendss.epri.com/Cust_Duration.html
+Original COM help: <https://opendss.epri.com/Cust_Duration.html>
 """
 function Cust_Duration(dss::DSSContext)::Float64
     return @checked dss_ccall(dss.capi.Bus_Get_Cust_Duration, dss.ctx)
@@ -174,7 +174,7 @@ Annual number of customer-interruptions from this bus
 
 *Requires a previous call to `RelCalc` command*
 
-Original COM help: https://opendss.epri.com/Cust_Interrupts.html
+Original COM help: <https://opendss.epri.com/Cust_Interrupts.html>
 """
 function Cust_Interrupts(dss::DSSContext)::Float64
     return @checked dss_ccall(dss.capi.Bus_Get_Cust_Interrupts, dss.ctx)
@@ -186,7 +186,7 @@ Distance from EnergyMeter (if non-zero)
 
 *Requires an energy meter with an updated zone.*
 
-Original COM help: https://opendss.epri.com/Distance.html
+Original COM help: <https://opendss.epri.com/Distance.html>
 """
 function Distance(dss::DSSContext)::Float64
     return @checked dss_ccall(dss.capi.Bus_Get_Distance, dss.ctx)
@@ -198,7 +198,7 @@ Average interruption duration, hours.
 
 *Requires a previous call to `RelCalc` command*
 
-Original COM help: https://opendss.epri.com/Int_Duration.html
+Original COM help: <https://opendss.epri.com/Int_Duration.html>
 """
 function Int_Duration(dss::DSSContext)::Float64
     return @checked dss_ccall(dss.capi.Bus_Get_Int_Duration, dss.ctx)
@@ -210,7 +210,7 @@ Short circuit currents at bus; Complex Array.
 
 *Requires a previous solution in `FaultStudy` mode.*
 
-Original COM help: https://opendss.epri.com/Isc.html
+Original COM help: <https://opendss.epri.com/Isc.html>
 """
 function Isc(dss::DSSContext)::Vector{ComplexF64}
     return get_complex64_array(dss.capi.Bus_Get_Isc, dss)
@@ -222,7 +222,7 @@ Accumulated failure rate downstream from this bus; faults per year
 
 *Requires a previous call to `RelCalc` command*
 
-Original COM help: https://opendss.epri.com/Lambda.html
+Original COM help: <https://opendss.epri.com/Lambda.html>
 """
 function Lambda(dss::DSSContext)::Float64
     return @checked dss_ccall(dss.capi.Bus_Get_Lambda, dss.ctx)
@@ -234,7 +234,7 @@ Total numbers of customers served downline from this bus
 
 *Requires a previous call to `RelCalc` command*
 
-Original COM help: https://opendss.epri.com/N_Customers.html
+Original COM help: <https://opendss.epri.com/N_Customers.html>
 """
 function N_Customers(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Bus_Get_N_Customers, dss.ctx)
@@ -246,7 +246,7 @@ Number of interruptions this bus per year
 
 *Requires a previous call to `RelCalc` command*
 
-Original COM help: https://opendss.epri.com/N_interrupts.html
+Original COM help: <https://opendss.epri.com/N_interrupts.html>
 """
 function N_interrupts(dss::DSSContext)::Float64
     return @checked dss_ccall(dss.capi.Bus_Get_N_interrupts, dss.ctx)
@@ -256,7 +256,7 @@ N_interrupts() = N_interrupts(DSS_DEFAULT_CTX)
 """
 Integer Array of Node Numbers defined at the bus in same order as the voltages.
 
-Original COM help: https://opendss.epri.com/Nodes.html
+Original COM help: <https://opendss.epri.com/Nodes.html>
 """
 function Nodes(dss::DSSContext)::Vector{Int}
     return get_int32_array(dss.capi.Bus_Get_Nodes, dss)
@@ -266,7 +266,7 @@ Nodes() = Nodes(DSS_DEFAULT_CTX)
 """
 Number of Nodes this bus.
 
-Original COM help: https://opendss.epri.com/NumNodes.html
+Original COM help: <https://opendss.epri.com/NumNodes.html>
 """
 function NumNodes(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Bus_Get_NumNodes, dss.ctx)
@@ -278,7 +278,7 @@ Integer ID of the feeder section in which this bus is located.
 
 *Requires a previous call to `RelCalc` command*
 
-Original COM help: https://opendss.epri.com/SectionID.html
+Original COM help: <https://opendss.epri.com/SectionID.html>
 """
 function SectionID(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Bus_Get_SectionID, dss.ctx)
@@ -288,7 +288,7 @@ SectionID() = SectionID(DSS_DEFAULT_CTX)
 """
 Double Array of sequence voltages at this bus. Magnitudes only.
 
-Original COM help: https://opendss.epri.com/SeqVoltages.html
+Original COM help: <https://opendss.epri.com/SeqVoltages.html>
 """
 function SeqVoltages(dss::DSSContext)::Vector{Float64}
     return get_float64_array(dss.capi.Bus_Get_SeqVoltages, dss)
@@ -300,7 +300,7 @@ Total length of line downline from this bus, in miles. For recloser siting algor
 
 *Requires a previous call to `RelCalc` command*
 
-Original COM help: https://opendss.epri.com/TotalMiles.html
+Original COM help: <https://opendss.epri.com/TotalMiles.html>
 """
 function TotalMiles(dss::DSSContext)::Float64
     return @checked dss_ccall(dss.capi.Bus_Get_TotalMiles, dss.ctx)
@@ -310,7 +310,7 @@ TotalMiles() = TotalMiles(DSS_DEFAULT_CTX)
 """
 For 2- and 3-phase buses, returns array of complex numbers representing L-L voltages in volts. Returns -1.0 for 1-phase bus. If more than 3 phases, returns only first 3.
 
-Original COM help: https://opendss.epri.com/VLL.html
+Original COM help: <https://opendss.epri.com/VLL.html>
 """
 function VLL(dss::DSSContext)::Vector{ComplexF64}
     return get_complex64_array(dss.capi.Bus_Get_VLL, dss)
@@ -320,7 +320,7 @@ VLL() = VLL(DSS_DEFAULT_CTX)
 """
 Array of doubles containing voltages in Magnitude (VLN), angle (degrees)
 
-Original COM help: https://opendss.epri.com/VMagAngle.html
+Original COM help: <https://opendss.epri.com/VMagAngle.html>
 """
 function VMagAngle(dss::DSSContext)::Vector{Float64}
     return get_float64_array(dss.capi.Bus_Get_VMagAngle, dss)
@@ -332,7 +332,7 @@ Open circuit voltage; Complex array.
 
 *Requires a previous solution in `FaultStudy` mode.*
 
-Original COM help: https://opendss.epri.com/Voc.html
+Original COM help: <https://opendss.epri.com/Voc.html>
 """
 function Voc(dss::DSSContext)::Vector{ComplexF64}
     return get_complex64_array(dss.capi.Bus_Get_Voc, dss)
@@ -342,7 +342,7 @@ Voc() = Voc(DSS_DEFAULT_CTX)
 """
 Complex array of voltages at this bus.
 
-Original COM help: https://opendss.epri.com/Voltages.html
+Original COM help: <https://opendss.epri.com/Voltages.html>
 """
 function Voltages(dss::DSSContext)::Vector{ComplexF64}
     return get_complex64_array(dss.capi.Bus_Get_Voltages, dss)
@@ -354,7 +354,7 @@ Complex array of Ysc matrix at bus. Column by column.
 
 *Requires a previous solution in `FaultStudy` mode or a call to `ZscRefresh`.*
 
-Original COM help: https://opendss.epri.com/YscMatrix.html
+Original COM help: <https://opendss.epri.com/YscMatrix.html>
 """
 function YscMatrix(dss::DSSContext)::Vector{ComplexF64}
     return get_complex64_array(dss.capi.Bus_Get_YscMatrix, dss)
@@ -366,7 +366,7 @@ Complex Zero-Sequence short circuit impedance at bus.
 
 *Requires a previous solution in `FaultStudy` mode or a call to `ZscRefresh`.*
 
-Original COM help: https://opendss.epri.com/Zsc0.html
+Original COM help: <https://opendss.epri.com/Zsc0.html>
 """
 function Zsc0(dss::DSSContext)
     return get_complex64(dss.capi.Bus_Get_Zsc0, dss)
@@ -378,7 +378,7 @@ Complex Positive-Sequence short circuit impedance at bus.
 
 *Requires a previous solution in `FaultStudy` mode or a call to `ZscRefresh`.*
 
-Original COM help: https://opendss.epri.com/Zsc1.html
+Original COM help: <https://opendss.epri.com/Zsc1.html>
 """
 function Zsc1(dss::DSSContext)
     return get_complex64(dss.capi.Bus_Get_Zsc1, dss)
@@ -390,7 +390,7 @@ Complex array of Zsc matrix at bus. Column by column.
 
 *Requires a previous solution in `FaultStudy` mode or a call to `ZscRefresh`.*
 
-Original COM help: https://opendss.epri.com/ZscMatrix.html
+Original COM help: <https://opendss.epri.com/ZscMatrix.html>
 """
 function ZscMatrix(dss::DSSContext)::Vector{ComplexF64}
     return get_complex64_array(dss.capi.Bus_Get_ZscMatrix, dss)
@@ -400,7 +400,7 @@ ZscMatrix() = ZscMatrix(DSS_DEFAULT_CTX)
 """
 Base voltage at bus in kV
 
-Original COM help: https://opendss.epri.com/kVBase.html
+Original COM help: <https://opendss.epri.com/kVBase.html>
 """
 function kVBase(dss::DSSContext)::Float64
     return @checked dss_ccall(dss.capi.Bus_Get_kVBase, dss.ctx)
@@ -410,7 +410,7 @@ kVBase() = kVBase(DSS_DEFAULT_CTX)
 """
 Returns Complex array of pu L-L voltages for 2- and 3-phase buses. Returns -1.0 for 1-phase bus. If more than 3 phases, returns only 3 phases.
 
-Original COM help: https://opendss.epri.com/puVLL.html
+Original COM help: <https://opendss.epri.com/puVLL.html>
 """
 function puVLL(dss::DSSContext)::Vector{ComplexF64}
     return get_complex64_array(dss.capi.Bus_Get_puVLL, dss)
@@ -420,7 +420,7 @@ puVLL() = puVLL(DSS_DEFAULT_CTX)
 """
 Array of doubles containing voltage magnitude, angle (degrees) pairs in per unit
 
-Original COM help: https://opendss.epri.com/puVmagAngle.html
+Original COM help: <https://opendss.epri.com/puVmagAngle.html>
 """
 function puVmagAngle(dss::DSSContext)::Vector{Float64}
     return get_float64_array(dss.capi.Bus_Get_puVmagAngle, dss)
@@ -430,7 +430,7 @@ puVmagAngle() = puVmagAngle(DSS_DEFAULT_CTX)
 """
 Complex Array of pu voltages at the bus.
 
-Original COM help: https://opendss.epri.com/puVoltages.html
+Original COM help: <https://opendss.epri.com/puVoltages.html>
 """
 function PuVoltage(dss::DSSContext)::Vector{ComplexF64}
     return get_complex64_array(dss.capi.Bus_Get_puVoltages, dss)
@@ -440,7 +440,7 @@ PuVoltage() = PuVoltage(DSS_DEFAULT_CTX)
 """
 X Coordinate for bus
 
-Original COM help: https://opendss.epri.com/x.html
+Original COM help: <https://opendss.epri.com/x.html>
 
 (Getter)
 """
@@ -452,7 +452,7 @@ X() = X(DSS_DEFAULT_CTX)
 """
 X Coordinate for bus
 
-Original COM help: https://opendss.epri.com/x.html
+Original COM help: <https://opendss.epri.com/x.html>
 
 (Setter)
 """
@@ -464,7 +464,7 @@ X(Value::Float64) = X(DSS_DEFAULT_CTX, Value)
 """
 Y coordinate for bus
 
-Original COM help: https://opendss.epri.com/y.html
+Original COM help: <https://opendss.epri.com/y.html>
 
 (Getter)
 """
@@ -476,7 +476,7 @@ Y() = Y(DSS_DEFAULT_CTX)
 """
 Y coordinate for bus
 
-Original COM help: https://opendss.epri.com/y.html
+Original COM help: <https://opendss.epri.com/y.html>
 
 (Setter)
 """
@@ -488,7 +488,7 @@ Y(Value::Float64) = Y(DSS_DEFAULT_CTX, Value)
 """
 List of strings: Full Names of LINE elements connected to the active bus.
 
-Original COM help: https://opendss.epri.com/LineList.html
+Original COM help: <https://opendss.epri.com/LineList.html>
 """
 function LineList(dss::DSSContext)::Vector{String}
     return get_string_array(dss.capi.Bus_Get_LineList, dss)
@@ -498,7 +498,7 @@ LineList() = LineList(DSS_DEFAULT_CTX)
 """
 List of strings: Full Names of LOAD elements connected to the active bus.
 
-Original COM help: https://opendss.epri.com/LoadList.html
+Original COM help: <https://opendss.epri.com/LoadList.html>
 """
 function LoadList(dss::DSSContext)::Vector{String}
     return get_string_array(dss.capi.Bus_Get_LoadList, dss)
@@ -508,7 +508,7 @@ LoadList() = LoadList(DSS_DEFAULT_CTX)
 """
 Returns an array with the names of all PCE connected to the active bus
 
-Original COM help: https://opendss.epri.com/AllPCEatBus.html
+Original COM help: <https://opendss.epri.com/AllPCEatBus.html>
 """
 function AllPCEatBus(dss::DSSContext)::Vector{String}
     return get_string_array(dss.capi.Bus_Get_AllPCEatBus, dss)
@@ -518,7 +518,7 @@ AllPCEatBus() = AllPCEatBus(DSS_DEFAULT_CTX)
 """
 Returns an array with the names of all PDE connected to the active bus
 
-Original COM help: https://opendss.epri.com/AllPDEatBus1.html
+Original COM help: <https://opendss.epri.com/AllPDEatBus1.html>
 """
 function AllPDEatBus(dss::DSSContext)::Vector{String}
     return get_string_array(dss.capi.Bus_Get_AllPDEatBus, dss)
@@ -532,7 +532,7 @@ Only available for buses with 3 nodes.
 
 *Requires a previous solution in `FaultStudy` mode or a call to `ZscRefresh`.*
 
-Original COM help: https://opendss.epri.com/ZSC012Matrix.html
+Original COM help: <https://opendss.epri.com/ZSC012Matrix.html>
 """
 function ZSC012Matrix(dss::DSSContext)::Matrix{ComplexF64}
     r = get_complex64_array(dss.capi.Bus_Get_ZSC012Matrix, dss)

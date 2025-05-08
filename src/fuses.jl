@@ -76,7 +76,7 @@ Idx(Value::Int) = Idx(DSS_DEFAULT_CTX, Value)
 """
 Close all phases of the fuse.
 
-Original COM help: https://opendss.epri.com/Close3.html
+Original COM help: <https://opendss.epri.com/Close3.html>
 """
 function Close(dss::DSSContext)
     @checked dss_ccall(dss.capi.Fuses_Close, dss.ctx)
@@ -86,7 +86,7 @@ Close() = Close(DSS_DEFAULT_CTX)
 """
 Current state of the fuses. TRUE if any fuse on any phase is blown. Else FALSE.
 
-Original COM help: https://opendss.epri.com/IsBlown.html
+Original COM help: <https://opendss.epri.com/IsBlown.html>
 """
 function IsBlown(dss::DSSContext)::Bool
     return @checked(dss_ccall(dss.capi.Fuses_IsBlown, dss.ctx)) != 0
@@ -96,7 +96,7 @@ IsBlown() = IsBlown(DSS_DEFAULT_CTX)
 """
 Manual opening of all phases of the fuse.
 
-Original COM help: https://opendss.epri.com/Open2.html
+Original COM help: <https://opendss.epri.com/Open2.html>
 """
 function Open(dss::DSSContext)
     @checked dss_ccall(dss.capi.Fuses_Open, dss.ctx)
@@ -107,7 +107,7 @@ Open() = Open(DSS_DEFAULT_CTX)
 A fixed delay time in seconds added to the fuse blowing time determined by the TCC curve. Default is 0.
 This represents a fuse clear or other delay.
 
-Original COM help: https://opendss.epri.com/Delay1.html
+Original COM help: <https://opendss.epri.com/Delay1.html>
 
 (Getter)
 """
@@ -120,7 +120,7 @@ Delay() = Delay(DSS_DEFAULT_CTX)
 A fixed delay time in seconds added to the fuse blowing time determined by the TCC curve. Default is 0.
 This represents a fuse clear or other delay.
 
-Original COM help: https://opendss.epri.com/Delay1.html
+Original COM help: <https://opendss.epri.com/Delay1.html>
 
 (Setter)
 """
@@ -132,7 +132,7 @@ Delay(Value::Float64) = Delay(DSS_DEFAULT_CTX, Value)
 """
 Full name of the circuit element to which the fuse is connected.
 
-Original COM help: https://opendss.epri.com/MonitoredObj1.html
+Original COM help: <https://opendss.epri.com/MonitoredObj1.html>
 
 (Getter)
 """
@@ -144,7 +144,7 @@ MonitoredObj() = MonitoredObj(DSS_DEFAULT_CTX)
 """
 Full name of the circuit element to which the fuse is connected.
 
-Original COM help: https://opendss.epri.com/MonitoredObj1.html
+Original COM help: <https://opendss.epri.com/MonitoredObj1.html>
 
 (Setter)
 """
@@ -156,7 +156,7 @@ MonitoredObj(Value::String) = MonitoredObj(DSS_DEFAULT_CTX, Value)
 """
 Terminal number to which the fuse is connected.
 
-Original COM help: https://opendss.epri.com/MonitoredTerm1.html
+Original COM help: <https://opendss.epri.com/MonitoredTerm1.html>
 
 (Getter)
 """
@@ -168,7 +168,7 @@ MonitoredTerm() = MonitoredTerm(DSS_DEFAULT_CTX)
 """
 Terminal number to which the fuse is connected.
 
-Original COM help: https://opendss.epri.com/MonitoredTerm1.html
+Original COM help: <https://opendss.epri.com/MonitoredTerm1.html>
 
 (Setter)
 """
@@ -180,7 +180,7 @@ MonitoredTerm(Value::Int) = MonitoredTerm(DSS_DEFAULT_CTX, Value)
 """
 Number of phases, this fuse.
 
-Original COM help: https://opendss.epri.com/NumPhases1.html
+Original COM help: <https://opendss.epri.com/NumPhases1.html>
 """
 function NumPhases(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Fuses_Get_NumPhases, dss.ctx)
@@ -192,7 +192,7 @@ Multiplier or actual amps for the TCCcurve object. Defaults to 1.0.
 
 Multiply current values of TCC curve by this to get actual amps.
 
-Original COM help: https://opendss.epri.com/RatedCurrent.html
+Original COM help: <https://opendss.epri.com/RatedCurrent.html>
 
 (Getter)
 """
@@ -206,7 +206,7 @@ Multiplier or actual amps for the TCCcurve object. Defaults to 1.0.
 
 Multiply current values of TCC curve by this to get actual amps.
 
-Original COM help: https://opendss.epri.com/RatedCurrent.html
+Original COM help: <https://opendss.epri.com/RatedCurrent.html>
 
 (Setter)
 """
@@ -219,7 +219,7 @@ RatedCurrent(Value::Float64) = RatedCurrent(DSS_DEFAULT_CTX, Value)
 Full name of the circuit element switch that the fuse controls.
 Defaults to the MonitoredObj.
 
-Original COM help: https://opendss.epri.com/SwitchedObj.html
+Original COM help: <https://opendss.epri.com/SwitchedObj.html>
 
 (Getter)
 """
@@ -232,7 +232,7 @@ SwitchedObj() = SwitchedObj(DSS_DEFAULT_CTX)
 Full name of the circuit element switch that the fuse controls.
 Defaults to the MonitoredObj.
 
-Original COM help: https://opendss.epri.com/SwitchedObj.html
+Original COM help: <https://opendss.epri.com/SwitchedObj.html>
 
 (Setter)
 """
@@ -244,7 +244,7 @@ SwitchedObj(Value::String) = SwitchedObj(DSS_DEFAULT_CTX, Value)
 """
 Number of the terminal of the controlled element containing the switch controlled by the fuse.
 
-Original COM help: https://opendss.epri.com/SwitchedTerm.html
+Original COM help: <https://opendss.epri.com/SwitchedTerm.html>
 
 (Getter)
 """
@@ -256,7 +256,7 @@ SwitchedTerm() = SwitchedTerm(DSS_DEFAULT_CTX)
 """
 Number of the terminal of the controlled element containing the switch controlled by the fuse.
 
-Original COM help: https://opendss.epri.com/SwitchedTerm.html
+Original COM help: <https://opendss.epri.com/SwitchedTerm.html>
 
 (Setter)
 """
@@ -268,7 +268,7 @@ SwitchedTerm(Value::Int) = SwitchedTerm(DSS_DEFAULT_CTX, Value)
 """
 Name of the TCCcurve object that determines fuse blowing.
 
-Original COM help: https://opendss.epri.com/TCCcurve.html
+Original COM help: <https://opendss.epri.com/TCCcurve.html>
 
 (Getter)
 """
@@ -280,7 +280,7 @@ TCCCurve() = TCCCurve(DSS_DEFAULT_CTX)
 """
 Name of the TCCcurve object that determines fuse blowing.
 
-Original COM help: https://opendss.epri.com/TCCcurve.html
+Original COM help: <https://opendss.epri.com/TCCcurve.html>
 
 (Setter)
 """
@@ -292,7 +292,7 @@ TCCCurve(Value::String) = TCCCurve(DSS_DEFAULT_CTX, Value)
 """
 Array of strings indicating the normal state of each phase of the fuse.
 
-Original COM help: https://opendss.epri.com/NormalState2.html
+Original COM help: <https://opendss.epri.com/NormalState2.html>
 
 (Getter)
 """
@@ -304,7 +304,7 @@ NormalState() = NormalState(DSS_DEFAULT_CTX)
 """
 Array of strings indicating the normal state of each phase of the fuse.
 
-Original COM help: https://opendss.epri.com/NormalState2.html
+Original COM help: <https://opendss.epri.com/NormalState2.html>
 
 (Setter)
 """
@@ -317,7 +317,7 @@ NormalState(Value::Array{String}) = NormalState(DSS_DEFAULT_CTX, Value)
 """
 Array of strings indicating the state of each phase of the fuse.
 
-Original COM help: https://opendss.epri.com/State2.html
+Original COM help: <https://opendss.epri.com/State2.html>
 
 (Getter)
 """
@@ -329,7 +329,7 @@ State() = State(DSS_DEFAULT_CTX)
 """
 Array of strings indicating the state of each phase of the fuse.
 
-Original COM help: https://opendss.epri.com/State2.html
+Original COM help: <https://opendss.epri.com/State2.html>
 
 (Setter)
 """
@@ -342,7 +342,7 @@ State(Value::Array{String}) = State(DSS_DEFAULT_CTX, Value)
 """
 Reset fuse to normal state.
 
-Original COM help: https://opendss.epri.com/Reset7.html
+Original COM help: <https://opendss.epri.com/Reset7.html>
 """
 function Reset(dss::DSSContext)
     @checked dss_ccall(dss.capi.Fuses_Reset, dss.ctx)

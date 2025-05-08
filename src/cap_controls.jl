@@ -76,7 +76,7 @@ Idx(Value::Int) = Idx(DSS_DEFAULT_CTX, Value)
 """
 Force a reset of this CapControl.
 
-Original COM help: https://opendss.epri.com/Reset.html
+Original COM help: <https://opendss.epri.com/Reset.html>
 """
 function Reset(dss::DSSContext)
     @checked dss_ccall(dss.capi.CapControls_Reset, dss.ctx)
@@ -86,7 +86,7 @@ Reset() = Reset(DSS_DEFAULT_CTX)
 """
 Transducer ratio from primary current to control current.
 
-Original COM help: https://opendss.epri.com/CTratio.html
+Original COM help: <https://opendss.epri.com/CTratio.html>
 
 (Getter)
 """
@@ -98,7 +98,7 @@ CTRatio() = CTRatio(DSS_DEFAULT_CTX)
 """
 Transducer ratio from primary current to control current.
 
-Original COM help: https://opendss.epri.com/CTratio.html
+Original COM help: <https://opendss.epri.com/CTratio.html>
 
 (Setter)
 """
@@ -110,7 +110,7 @@ CTRatio(Value::Float64) = CTRatio(DSS_DEFAULT_CTX, Value)
 """
 Name of the Capacitor that is controlled.
 
-Original COM help: https://opendss.epri.com/Capacitor.html
+Original COM help: <https://opendss.epri.com/Capacitor.html>
 
 (Getter)
 """
@@ -122,7 +122,7 @@ Capacitor() = Capacitor(DSS_DEFAULT_CTX)
 """
 Name of the Capacitor that is controlled.
 
-Original COM help: https://opendss.epri.com/Capacitor.html
+Original COM help: <https://opendss.epri.com/Capacitor.html>
 
 (Setter)
 """
@@ -136,7 +136,7 @@ Dead time after capacitor is turned OFF before it can be turned back ON for the 
 
 Default is 300 sec.
 
-Original COM help: https://opendss.epri.com/DeadTime.html
+Original COM help: <https://opendss.epri.com/DeadTime.html>
 
 (Getter)
 """
@@ -150,7 +150,7 @@ Dead time after capacitor is turned OFF before it can be turned back ON for the 
 
 Default is 300 sec.
 
-Original COM help: https://opendss.epri.com/DeadTime.html
+Original COM help: <https://opendss.epri.com/DeadTime.html>
 
 (Setter)
 """
@@ -162,7 +162,7 @@ DeadTime(Value::Float64) = DeadTime(DSS_DEFAULT_CTX, Value)
 """
 Time delay [s] to switch on after arming.  Control may reset before actually switching.
 
-Original COM help: https://opendss.epri.com/Delay.html
+Original COM help: <https://opendss.epri.com/Delay.html>
 
 (Getter)
 """
@@ -174,7 +174,7 @@ Delay() = Delay(DSS_DEFAULT_CTX)
 """
 Time delay [s] to switch on after arming.  Control may reset before actually switching.
 
-Original COM help: https://opendss.epri.com/Delay.html
+Original COM help: <https://opendss.epri.com/Delay.html>
 
 (Setter)
 """
@@ -186,7 +186,7 @@ Delay(Value::Float64) = Delay(DSS_DEFAULT_CTX, Value)
 """
 Time delay [s] before switching off a step. Control may reset before actually switching.
 
-Original COM help: https://opendss.epri.com/DelayOff.html
+Original COM help: <https://opendss.epri.com/DelayOff.html>
 
 (Getter)
 """
@@ -198,7 +198,7 @@ DelayOff() = DelayOff(DSS_DEFAULT_CTX)
 """
 Time delay [s] before switching off a step. Control may reset before actually switching.
 
-Original COM help: https://opendss.epri.com/DelayOff.html
+Original COM help: <https://opendss.epri.com/DelayOff.html>
 
 (Setter)
 """
@@ -210,7 +210,7 @@ DelayOff(Value::Float64) = DelayOff(DSS_DEFAULT_CTX, Value)
 """
 Type of automatic controller.
 
-Original COM help: https://opendss.epri.com/Mode.html
+Original COM help: <https://opendss.epri.com/Mode.html>
 
 (Getter)
 """
@@ -222,7 +222,7 @@ Mode() = Mode(DSS_DEFAULT_CTX)
 """
 Type of automatic controller.
 
-Original COM help: https://opendss.epri.com/Mode.html
+Original COM help: <https://opendss.epri.com/Mode.html>
 
 (Setter)
 """
@@ -235,7 +235,7 @@ Mode(Value::Union{Int,Lib.CapControlModes}) = Mode(DSS_DEFAULT_CTX, Value)
 """
 Full name of the element that PT and CT are connected to.
 
-Original COM help: https://opendss.epri.com/MonitoredObj.html
+Original COM help: <https://opendss.epri.com/MonitoredObj.html>
 
 (Getter)
 """
@@ -247,7 +247,7 @@ MonitoredObj() = MonitoredObj(DSS_DEFAULT_CTX)
 """
 Full name of the element that PT and CT are connected to.
 
-Original COM help: https://opendss.epri.com/MonitoredObj.html
+Original COM help: <https://opendss.epri.com/MonitoredObj.html>
 
 (Setter)
 """
@@ -259,7 +259,7 @@ MonitoredObj(Value::String) = MonitoredObj(DSS_DEFAULT_CTX, Value)
 """
 Terminal number on the element that PT and CT are connected to.
 
-Original COM help: https://opendss.epri.com/MonitoredTerm.html
+Original COM help: <https://opendss.epri.com/MonitoredTerm.html>
 
 (Getter)
 """
@@ -271,7 +271,7 @@ MonitoredTerm() = MonitoredTerm(DSS_DEFAULT_CTX)
 """
 Terminal number on the element that PT and CT are connected to.
 
-Original COM help: https://opendss.epri.com/MonitoredTerm.html
+Original COM help: <https://opendss.epri.com/MonitoredTerm.html>
 
 (Setter)
 """
@@ -283,7 +283,7 @@ MonitoredTerm(Value::Int) = MonitoredTerm(DSS_DEFAULT_CTX, Value)
 """
 Threshold to switch off a step. See Mode for units.
 
-Original COM help: https://opendss.epri.com/OFFSetting.html
+Original COM help: <https://opendss.epri.com/OFFSetting.html>
 
 (Getter)
 """
@@ -295,7 +295,7 @@ OFFSetting() = OFFSetting(DSS_DEFAULT_CTX)
 """
 Threshold to switch off a step. See Mode for units.
 
-Original COM help: https://opendss.epri.com/OFFSetting.html
+Original COM help: <https://opendss.epri.com/OFFSetting.html>
 
 (Setter)
 """
@@ -307,7 +307,7 @@ OFFSetting(Value::Int) = OFFSetting(DSS_DEFAULT_CTX, Value)
 """
 Threshold to arm or switch on a step.  See Mode for units.
 
-Original COM help: https://opendss.epri.com/ONSetting.html
+Original COM help: <https://opendss.epri.com/ONSetting.html>
 
 (Getter)
 """
@@ -319,7 +319,7 @@ ONSetting() = ONSetting(DSS_DEFAULT_CTX)
 """
 Threshold to arm or switch on a step.  See Mode for units.
 
-Original COM help: https://opendss.epri.com/ONSetting.html
+Original COM help: <https://opendss.epri.com/ONSetting.html>
 
 (Setter)
 """
@@ -331,7 +331,7 @@ ONSetting(Value::Int) = ONSetting(DSS_DEFAULT_CTX, Value)
 """
 Transducer ratio from primary feeder to control voltage.
 
-Original COM help: https://opendss.epri.com/PTratio.html
+Original COM help: <https://opendss.epri.com/PTratio.html>
 
 (Getter)
 """
@@ -343,7 +343,7 @@ PTRatio() = PTRatio(DSS_DEFAULT_CTX)
 """
 Transducer ratio from primary feeder to control voltage.
 
-Original COM help: https://opendss.epri.com/PTratio.html
+Original COM help: <https://opendss.epri.com/PTratio.html>
 
 (Setter)
 """
@@ -355,7 +355,7 @@ PTRatio(Value::Float64) = PTRatio(DSS_DEFAULT_CTX, Value)
 """
 Enables Vmin and Vmax to override the control Mode
 
-Original COM help: https://opendss.epri.com/UseVoltOverride.html
+Original COM help: <https://opendss.epri.com/UseVoltOverride.html>
 
 (Getter)
 """
@@ -367,7 +367,7 @@ UseVoltOverride() = UseVoltOverride(DSS_DEFAULT_CTX)
 """
 Enables Vmin and Vmax to override the control Mode
 
-Original COM help: https://opendss.epri.com/UseVoltOverride.html
+Original COM help: <https://opendss.epri.com/UseVoltOverride.html>
 
 (Setter)
 """
@@ -379,7 +379,7 @@ UseVoltOverride(Value::Bool) = UseVoltOverride(DSS_DEFAULT_CTX, Value)
 """
 With VoltOverride, swtich off whenever PT voltage exceeds this level.
 
-Original COM help: https://opendss.epri.com/Vmax.html
+Original COM help: <https://opendss.epri.com/Vmax.html>
 
 (Getter)
 """
@@ -391,7 +391,7 @@ Vmax() = Vmax(DSS_DEFAULT_CTX)
 """
 With VoltOverride, swtich off whenever PT voltage exceeds this level.
 
-Original COM help: https://opendss.epri.com/Vmax.html
+Original COM help: <https://opendss.epri.com/Vmax.html>
 
 (Setter)
 """
@@ -403,7 +403,7 @@ Vmax(Value::Float64) = Vmax(DSS_DEFAULT_CTX, Value)
 """
 With VoltOverride, switch ON whenever PT voltage drops below this level.
 
-Original COM help: https://opendss.epri.com/Vmin.html
+Original COM help: <https://opendss.epri.com/Vmin.html>
 
 (Getter)
 """
@@ -415,7 +415,7 @@ Vmin() = Vmin(DSS_DEFAULT_CTX)
 """
 With VoltOverride, switch ON whenever PT voltage drops below this level.
 
-Original COM help: https://opendss.epri.com/Vmin.html
+Original COM help: <https://opendss.epri.com/Vmin.html>
 
 (Setter)
 """

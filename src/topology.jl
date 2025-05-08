@@ -13,7 +13,7 @@ using ..Utils
 """
 Returns index of the active branch
 
-Original COM help: https://opendss.epri.com/ActiveBranch.html
+Original COM help: <https://opendss.epri.com/ActiveBranch.html>
 """
 function ActiveBranch(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Topology_Get_ActiveBranch, dss.ctx)
@@ -23,7 +23,7 @@ ActiveBranch() = ActiveBranch(DSS_DEFAULT_CTX)
 """
 Topological depth of the active branch
 
-Original COM help: https://opendss.epri.com/ActiveLevel.html
+Original COM help: <https://opendss.epri.com/ActiveLevel.html>
 """
 function ActiveLevel(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Topology_Get_ActiveLevel, dss.ctx)
@@ -33,7 +33,7 @@ ActiveLevel() = ActiveLevel(DSS_DEFAULT_CTX)
 """
 Array of all isolated branch names.
 
-Original COM help: https://opendss.epri.com/AllIsolatedBranches.html
+Original COM help: <https://opendss.epri.com/AllIsolatedBranches.html>
 """
 function AllIsolatedBranches(dss::DSSContext)::Vector{String}
     return get_string_array(dss.capi.Topology_Get_AllIsolatedBranches, dss)
@@ -43,7 +43,7 @@ AllIsolatedBranches() = AllIsolatedBranches(DSS_DEFAULT_CTX)
 """
 Array of all isolated load names.
 
-Original COM help: https://opendss.epri.com/AllIsolatedLoads.html
+Original COM help: <https://opendss.epri.com/AllIsolatedLoads.html>
 """
 function AllIsolatedLoads(dss::DSSContext)::Vector{String}
     return get_string_array(dss.capi.Topology_Get_AllIsolatedLoads, dss)
@@ -53,7 +53,7 @@ AllIsolatedLoads() = AllIsolatedLoads(DSS_DEFAULT_CTX)
 """
 Array of all looped element names, by pairs.
 
-Original COM help: https://opendss.epri.com/AllLoopedPairs.html
+Original COM help: <https://opendss.epri.com/AllLoopedPairs.html>
 """
 function AllLoopedPairs(dss::DSSContext)::Vector{String}
     return get_string_array(dss.capi.Topology_Get_AllLoopedPairs, dss)
@@ -63,7 +63,7 @@ AllLoopedPairs() = AllLoopedPairs(DSS_DEFAULT_CTX)
 """
 Move back toward the source, return index of new active branch, or 0 if no more.
 
-Original COM help: https://opendss.epri.com/BackwardBranch.html
+Original COM help: <https://opendss.epri.com/BackwardBranch.html>
 """
 function BackwardBranch(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Topology_Get_BackwardBranch, dss.ctx)
@@ -73,7 +73,7 @@ BackwardBranch() = BackwardBranch(DSS_DEFAULT_CTX)
 """
 Name of the active branch.
 
-Original COM help: https://opendss.epri.com/BranchName.html
+Original COM help: <https://opendss.epri.com/BranchName.html>
 
 (Getter)
 """
@@ -85,7 +85,7 @@ BranchName() = BranchName(DSS_DEFAULT_CTX)
 """
 Name of the active branch.
 
-Original COM help: https://opendss.epri.com/BranchName.html
+Original COM help: <https://opendss.epri.com/BranchName.html>
 
 (Setter)
 """
@@ -97,7 +97,7 @@ BranchName(Value::String) = BranchName(DSS_DEFAULT_CTX, Value)
 """
 Set the active branch to one containing this bus, return index or 0 if not found
 
-Original COM help: https://opendss.epri.com/BusName.html
+Original COM help: <https://opendss.epri.com/BusName.html>
 
 (Getter)
 """
@@ -109,7 +109,7 @@ BusName() = BusName(DSS_DEFAULT_CTX)
 """
 Set the active branch to one containing this bus, return index or 0 if not found
 
-Original COM help: https://opendss.epri.com/BusName.html
+Original COM help: <https://opendss.epri.com/BusName.html>
 
 (Setter)
 """
@@ -121,7 +121,7 @@ BusName(Value::String) = BusName(DSS_DEFAULT_CTX, Value)
 """
 Sets the first branch active, returns 0 if none.
 
-Original COM help: https://opendss.epri.com/First19.html
+Original COM help: <https://opendss.epri.com/First19.html>
 """
 function First(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Topology_Get_First, dss.ctx)
@@ -131,7 +131,7 @@ First() = First(DSS_DEFAULT_CTX)
 """
 First load at the active branch, return index or 0 if none.
 
-Original COM help: https://opendss.epri.com/FirstLoad.html
+Original COM help: <https://opendss.epri.com/FirstLoad.html>
 """
 function FirstLoad(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Topology_Get_FirstLoad, dss.ctx)
@@ -141,7 +141,7 @@ FirstLoad() = FirstLoad(DSS_DEFAULT_CTX)
 """
 Move forward in the tree, return index of new active branch or 0 if no more
 
-Original COM help: https://opendss.epri.com/ForwardBranch.html
+Original COM help: <https://opendss.epri.com/ForwardBranch.html>
 """
 function ForwardBranch(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Topology_Get_ForwardBranch, dss.ctx)
@@ -151,7 +151,7 @@ ForwardBranch() = ForwardBranch(DSS_DEFAULT_CTX)
 """
 Move to looped branch, return index or 0 if none.
 
-Original COM help: https://opendss.epri.com/LoopedBranch.html
+Original COM help: <https://opendss.epri.com/LoopedBranch.html>
 """
 function LoopedBranch(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Topology_Get_LoopedBranch, dss.ctx)
@@ -161,7 +161,7 @@ LoopedBranch() = LoopedBranch(DSS_DEFAULT_CTX)
 """
 Sets the next branch active, returns 0 if no more.
 
-Original COM help: https://opendss.epri.com/Next18.html
+Original COM help: <https://opendss.epri.com/Next18.html>
 """
 function Next(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Topology_Get_Next, dss.ctx)
@@ -171,7 +171,7 @@ Next() = Next(DSS_DEFAULT_CTX)
 """
 Next load at the active branch, return index or 0 if no more.
 
-Original COM help: https://opendss.epri.com/NextLoad.html
+Original COM help: <https://opendss.epri.com/NextLoad.html>
 """
 function NextLoad(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Topology_Get_NextLoad, dss.ctx)
@@ -181,7 +181,7 @@ NextLoad() = NextLoad(DSS_DEFAULT_CTX)
 """
 Number of isolated branches (PD elements and capacitors).
 
-Original COM help: https://opendss.epri.com/NumIsolatedBranches.html
+Original COM help: <https://opendss.epri.com/NumIsolatedBranches.html>
 """
 function NumIsolatedBranches(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Topology_Get_NumIsolatedBranches, dss.ctx)
@@ -191,7 +191,7 @@ NumIsolatedBranches() = NumIsolatedBranches(DSS_DEFAULT_CTX)
 """
 Number of isolated loads
 
-Original COM help: https://opendss.epri.com/NumIsolatedLoads.html
+Original COM help: <https://opendss.epri.com/NumIsolatedLoads.html>
 """
 function NumIsolatedLoads(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Topology_Get_NumIsolatedLoads, dss.ctx)
@@ -201,7 +201,7 @@ NumIsolatedLoads() = NumIsolatedLoads(DSS_DEFAULT_CTX)
 """
 Number of loops
 
-Original COM help: https://opendss.epri.com/NumLoops.html
+Original COM help: <https://opendss.epri.com/NumLoops.html>
 """
 function NumLoops(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Topology_Get_NumLoops, dss.ctx)
@@ -211,7 +211,7 @@ NumLoops() = NumLoops(DSS_DEFAULT_CTX)
 """
 Move to directly parallel branch, return index or 0 if none.
 
-Original COM help: https://opendss.epri.com/ParallelBranch.html
+Original COM help: <https://opendss.epri.com/ParallelBranch.html>
 """
 function ParallelBranch(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Topology_Get_ParallelBranch, dss.ctx)

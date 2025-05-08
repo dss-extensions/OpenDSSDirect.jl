@@ -82,7 +82,7 @@ Reset() = Reset(DSS_DEFAULT_CTX)
 """
 Open or Close the switch. No effect if switch is locked.  However, Reset removes any lock and then closes the switch (shelf state).
 
-Original COM help: https://opendss.epri.com/Action1.html
+Original COM help: <https://opendss.epri.com/Action1.html>
 
 (Getter)
 """
@@ -94,7 +94,7 @@ Action() = Action(DSS_DEFAULT_CTX)
 """
 Open or Close the switch. No effect if switch is locked.  However, Reset removes any lock and then closes the switch (shelf state).
 
-Original COM help: https://opendss.epri.com/Action1.html
+Original COM help: <https://opendss.epri.com/Action1.html>
 
 (Setter)
 """
@@ -107,7 +107,7 @@ Action(Value::Union{Int,Lib.ActionCodes}) = Action(DSS_DEFAULT_CTX, Value)
 """
 Time delay [s] between arming and opening or closing the switch.  Control may reset before actually operating the switch.
 
-Original COM help: https://opendss.epri.com/Delay3.html
+Original COM help: <https://opendss.epri.com/Delay3.html>
 
 (Getter)
 """
@@ -119,7 +119,7 @@ Delay() = Delay(DSS_DEFAULT_CTX)
 """
 Time delay [s] between arming and opening or closing the switch.  Control may reset before actually operating the switch.
 
-Original COM help: https://opendss.epri.com/Delay3.html
+Original COM help: <https://opendss.epri.com/Delay3.html>
 
 (Setter)
 """
@@ -131,7 +131,7 @@ Delay(Value::Float64) = Delay(DSS_DEFAULT_CTX, Value)
 """
 The lock prevents both manual and automatic switch operation.
 
-Original COM help: https://opendss.epri.com/IsLocked.html
+Original COM help: <https://opendss.epri.com/IsLocked.html>
 
 (Getter)
 """
@@ -143,7 +143,7 @@ IsLocked() = IsLocked(DSS_DEFAULT_CTX)
 """
 The lock prevents both manual and automatic switch operation.
 
-Original COM help: https://opendss.epri.com/IsLocked.html
+Original COM help: <https://opendss.epri.com/IsLocked.html>
 
 (Setter)
 """
@@ -176,7 +176,7 @@ NormalState(Value::Union{Int,Lib.ActionCodes}) = NormalState(DSS_DEFAULT_CTX, Va
 """
 Set it to force the switch to a specified state, otherwise read its present state.
 
-Original COM help: https://opendss.epri.com/State.html
+Original COM help: <https://opendss.epri.com/State.html>
 
 (Getter)
 """
@@ -188,7 +188,7 @@ State() = State(DSS_DEFAULT_CTX)
 """
 Set it to force the switch to a specified state, otherwise read its present state.
 
-Original COM help: https://opendss.epri.com/State.html
+Original COM help: <https://opendss.epri.com/State.html>
 
 (Setter)
 """
@@ -201,7 +201,7 @@ State(Value::Union{Int,Lib.ActionCodes}) = State(DSS_DEFAULT_CTX, Value)
 """
 Full name of the switched element.
 
-Original COM help: https://opendss.epri.com/SwitchedObj3.html
+Original COM help: <https://opendss.epri.com/SwitchedObj3.html>
 
 (Getter)
 """
@@ -213,7 +213,7 @@ SwitchedObj() = SwitchedObj(DSS_DEFAULT_CTX)
 """
 Full name of the switched element.
 
-Original COM help: https://opendss.epri.com/SwitchedObj3.html
+Original COM help: <https://opendss.epri.com/SwitchedObj3.html>
 
 (Setter)
 """
@@ -225,7 +225,7 @@ SwitchedObj(Value::String) = SwitchedObj(DSS_DEFAULT_CTX, Value)
 """
 Terminal number where the switch is located on the SwitchedObj
 
-Original COM help: https://opendss.epri.com/SwitchedTerm3.html
+Original COM help: <https://opendss.epri.com/SwitchedTerm3.html>
 
 (Getter)
 """
@@ -237,7 +237,7 @@ SwitchedTerm() = SwitchedTerm(DSS_DEFAULT_CTX)
 """
 Terminal number where the switch is located on the SwitchedObj
 
-Original COM help: https://opendss.epri.com/SwitchedTerm3.html
+Original COM help: <https://opendss.epri.com/SwitchedTerm3.html>
 
 (Setter)
 """

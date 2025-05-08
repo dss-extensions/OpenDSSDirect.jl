@@ -76,7 +76,7 @@ Idx(Value::Int) = Idx(DSS_DEFAULT_CTX, Value)
 """
 Get/set the present value of the Irradiance property in kW/m²
 
-Original COM help: https://opendss.epri.com/Irradiance.html
+Original COM help: <https://opendss.epri.com/Irradiance.html>
 
 (Getter)
 """
@@ -88,7 +88,7 @@ Irradiance() = Irradiance(DSS_DEFAULT_CTX)
 """
 Get/set the present value of the Irradiance property in kW/m²
 
-Original COM help: https://opendss.epri.com/Irradiance.html
+Original COM help: <https://opendss.epri.com/Irradiance.html>
 
 (Setter)
 """
@@ -101,7 +101,7 @@ Irradiance(Value::Float64) = Irradiance(DSS_DEFAULT_CTX, Value)
 Returns the current irradiance value for the active PVSystem. Use it to
 know what's the current irradiance value for the PV during a simulation.
 
-Original COM help: https://opendss.epri.com/IrradianceNow.html
+Original COM help: <https://opendss.epri.com/IrradianceNow.html>
 """
 function IrradianceNow(dss::DSSContext)::Float64
     return @checked dss_ccall(dss.capi.PVSystems_Get_IrradianceNow, dss.ctx)
@@ -111,7 +111,7 @@ IrradianceNow() = IrradianceNow(DSS_DEFAULT_CTX)
 """
 Get/set the power factor for the active PVSystem
 
-Original COM help: https://opendss.epri.com/PF2.html
+Original COM help: <https://opendss.epri.com/PF2.html>
 
 (Getter)
 """
@@ -123,7 +123,7 @@ pf() = pf(DSS_DEFAULT_CTX)
 """
 Get/set the power factor for the active PVSystem
 
-Original COM help: https://opendss.epri.com/PF2.html
+Original COM help: <https://opendss.epri.com/PF2.html>
 
 (Setter)
 """
@@ -137,7 +137,7 @@ Array of PVSystem energy meter register names
 
 See also the enum `GeneratorRegisters`.
 
-Original COM help: https://opendss.epri.com/RegisterNames2.html
+Original COM help: <https://opendss.epri.com/RegisterNames2.html>
 """
 function RegisterNames(dss::DSSContext)::Vector{String}
     return get_string_array(dss.capi.PVSystems_Get_RegisterNames, dss)
@@ -147,7 +147,7 @@ RegisterNames() = RegisterNames(DSS_DEFAULT_CTX)
 """
 Array of doubles containing values in PVSystem registers.
 
-Original COM help: https://opendss.epri.com/RegisterValues2.html
+Original COM help: <https://opendss.epri.com/RegisterValues2.html>
 """
 function RegisterValues(dss::DSSContext)::Vector{Float64}
     return get_float64_array(dss.capi.PVSystems_Get_RegisterValues, dss)
@@ -157,7 +157,7 @@ RegisterValues() = RegisterValues(DSS_DEFAULT_CTX)
 """
 Get/set Rated kVA of the PVSystem
 
-Original COM help: https://opendss.epri.com/kVArated1.html
+Original COM help: <https://opendss.epri.com/kVArated1.html>
 
 (Getter)
 """
@@ -169,7 +169,7 @@ kVARated() = kVARated(DSS_DEFAULT_CTX)
 """
 Get/set Rated kVA of the PVSystem
 
-Original COM help: https://opendss.epri.com/kVArated1.html
+Original COM help: <https://opendss.epri.com/kVArated1.html>
 
 (Setter)
 """
@@ -181,7 +181,7 @@ kVARated(Value::Float64) = kVARated(DSS_DEFAULT_CTX, Value)
 """
 Get kW output
 
-Original COM help: https://opendss.epri.com/kW2.html
+Original COM help: <https://opendss.epri.com/kW2.html>
 """
 function kW(dss::DSSContext)::Float64
     return @checked dss_ccall(dss.capi.PVSystems_Get_kW, dss.ctx)
@@ -191,7 +191,7 @@ kW() = kW(DSS_DEFAULT_CTX)
 """
 Get/set kvar output value
 
-Original COM help: https://opendss.epri.com/kvar2.html
+Original COM help: <https://opendss.epri.com/kvar2.html>
 
 (Getter)
 """
@@ -203,7 +203,7 @@ kvar() = kvar(DSS_DEFAULT_CTX)
 """
 Get/set kvar output value
 
-Original COM help: https://opendss.epri.com/kvar2.html
+Original COM help: <https://opendss.epri.com/kvar2.html>
 
 (Setter)
 """
@@ -216,7 +216,7 @@ kvar(Value::Float64) = kvar(DSS_DEFAULT_CTX, Value)
 Gets/sets the rated max power of the PV array for 1.0 kW/m² irradiance
 and a user-selected array temperature of the active PVSystem.
 
-Original COM help: https://opendss.epri.com/Pmpp.html
+Original COM help: <https://opendss.epri.com/Pmpp.html>
 
 (Getter)
 """
@@ -229,7 +229,7 @@ Pmpp() = Pmpp(DSS_DEFAULT_CTX)
 Gets/sets the rated max power of the PV array for 1.0 kW/m² irradiance
 and a user-selected array temperature of the active PVSystem.
 
-Original COM help: https://opendss.epri.com/Pmpp.html
+Original COM help: <https://opendss.epri.com/Pmpp.html>
 
 (Setter)
 """
@@ -425,7 +425,7 @@ TYearly(Value::String) = TYearly(DSS_DEFAULT_CTX, Value)
 """
 Name of the sensor monitoring this element.
 
-Original COM help: https://opendss.epri.com/Sensor1.html
+Original COM help: <https://opendss.epri.com/Sensor1.html>
 """
 function Sensor(dss::DSSContext)::String
     return get_string(@checked dss_ccall(dss.capi.PVSystems_Get_Sensor, dss.ctx))
