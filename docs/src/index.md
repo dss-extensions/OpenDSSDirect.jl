@@ -2,14 +2,18 @@
 
 [OpenDSS](http://smartgrid.epri.com/SimulationTool.aspx) is an open-source
 distribution system simulator. This Julia package implements a native, "direct" library
-interface to OpenDSS. Since 2019, this project uses DSS C-API, an alternative API and OpenDSS engine
-implementation maintained by the community. See the [DSS C-API repository](https://github.com/dss-extensions/dss_capi/)
+interface to OpenDSS. Since 2019, this project uses DSS C-API and AltDSS, alternative API and OpenDSS engine
+implementations maintained by the community. See the [AltDSS/DSS C-API repository](https://github.com/dss-extensions/dss_capi/)
 for move information in general, as well as alternatives for other programming languages.
 
 The interface can be faster than the more traditional COM interface, and allows for multi-platform
 support. Currently we support Windows, Linux and macOS, on ARM and x86 processors.
 
 See also the [DSS-Extensions site](https://dss-extensions.org/) for more.
+
+**New:** Besides the AltDSS engine, OpenDSSDirect.jl now supports loading EPRI's OpenDSS engine libraries through
+the new AltDSS subproject [Oddie](https://github.com/dss-extensions/dss_capi/tree/master/src/altdss_oddie). See
+
 
 ## Installation
 
@@ -60,7 +64,7 @@ Julia has several key features for advanced operations with OpenDSS:
 
 * **Optimization** -- Julia has strong support for optimization.
 
-* **Custom solutions and custom models** -- Because Julia compiles to codes
+* **Custom solutions and custom models** -- Because Julia compiles to code
   that run as quickly as C programs, it is possible to implement custom
   solutions, and these custom solutions can contain custom models implemented
   in Julia. The basic idea is to run a custom solution as described in
@@ -114,6 +118,7 @@ Pages = [
     "flags.md",
     "dssmode.md",
     "lowlevel.md",
+    "engines.md",
     "docindex.md"
 ]
 Depth = 1

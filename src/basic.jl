@@ -101,7 +101,7 @@ Indicates whether text output is allowed or forms are used
 
 Currently, forms/windows are only used for EPRI's OpenDSS distribution on Windows.
 
-Original COM help: https://opendss.epri.com/AllowForms.html
+Original COM help: <https://opendss.epri.com/AllowForms.html>
 
 (Getter)
 """
@@ -115,7 +115,7 @@ Indicates whether text output is allowed or forms are used
 
 Currently, forms/windows are only used for EPRI's OpenDSS distribution on Windows.
 
-Original COM help: https://opendss.epri.com/AllowForms.html
+Original COM help: <https://opendss.epri.com/AllowForms.html>
 
 (Setter)
 """

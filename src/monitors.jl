@@ -81,7 +81,7 @@ Array of float64 for the specified channel (usage: MyArray = DSSMonitor.Channel(
 A Save or SaveAll should be executed first. Done automatically by most standard solution modes.
 Channels start at index 1.
 
-Original COM help: https://opendss.epri.com/Channel.html
+Original COM help: <https://opendss.epri.com/Channel.html>
 """
 function Channel(dss::DSSContext, Index::Int)::Vector{Float64}
     return get_float64_array(dss.capi.Monitors_Get_Channel, dss, Index)
@@ -91,7 +91,7 @@ Channel(Index::Int) = Channel(DSS_DEFAULT_CTX, Index)
 """
 Post-process monitor samples taken so far, e.g., Pst for mode=4.
 
-Original COM help: https://opendss.epri.com/Process.html
+Original COM help: <https://opendss.epri.com/Process.html>
 """
 function Process(dss::DSSContext)
     @checked dss_ccall(dss.capi.Monitors_Process, dss.ctx)
@@ -101,7 +101,7 @@ Process() = Process(DSS_DEFAULT_CTX)
 """
 Post-process all monitor samples taken so far, e.g., Pst for mode=4.
 
-Original COM help: https://opendss.epri.com/ProcessAll.html
+Original COM help: <https://opendss.epri.com/ProcessAll.html>
 """
 function ProcessAll(dss::DSSContext)
     @checked dss_ccall(dss.capi.Monitors_ProcessAll, dss.ctx)
@@ -111,7 +111,7 @@ ProcessAll() = ProcessAll(DSS_DEFAULT_CTX)
 """
 Reset active Monitor object.
 
-Original COM help: https://opendss.epri.com/Reset3.html
+Original COM help: <https://opendss.epri.com/Reset3.html>
 """
 function Reset(dss::DSSContext)
     @checked dss_ccall(dss.capi.Monitors_Reset, dss.ctx)
@@ -121,7 +121,7 @@ Reset() = Reset(DSS_DEFAULT_CTX)
 """
 Reset all Monitor objects.
 
-Original COM help: https://opendss.epri.com/ResetAll1.html
+Original COM help: <https://opendss.epri.com/ResetAll1.html>
 """
 function ResetAll(dss::DSSContext)
     @checked dss_ccall(dss.capi.Monitors_ResetAll, dss.ctx)
@@ -131,7 +131,7 @@ ResetAll() = ResetAll(DSS_DEFAULT_CTX)
 """
 Instruct the active Monitor to take a sample of the present state.
 
-Original COM help: https://opendss.epri.com/Sample2.html
+Original COM help: <https://opendss.epri.com/Sample2.html>
 """
 function Sample(dss::DSSContext)
     @checked dss_ccall(dss.capi.Monitors_Sample, dss.ctx)
@@ -141,7 +141,7 @@ Sample() = Sample(DSS_DEFAULT_CTX)
 """
 Instruct all Monitor objects to take a sample of the present state.
 
-Original COM help: https://opendss.epri.com/SampleAll1.html
+Original COM help: <https://opendss.epri.com/SampleAll1.html>
 """
 function SampleAll(dss::DSSContext)
     @checked dss_ccall(dss.capi.Monitors_SampleAll, dss.ctx)
@@ -155,7 +155,7 @@ After the data is on the stream, you can access the ByteStream or channel data.
 
 **Most standard solution modes do this automatically.**
 
-Original COM help: https://opendss.epri.com/Save1.html
+Original COM help: <https://opendss.epri.com/Save1.html>
 """
 function Save(dss::DSSContext)
     @checked dss_ccall(dss.capi.Monitors_Save, dss.ctx)
@@ -167,7 +167,7 @@ Instructs the all monitor objects to save their current sample buffers to the re
 
 **Most standard solution modes do this automatically.**
 
-Original COM help: https://opendss.epri.com/SaveAll1.html
+Original COM help: <https://opendss.epri.com/SaveAll1.html>
 """
 function SaveAll(dss::DSSContext)
     @checked dss_ccall(dss.capi.Monitors_SaveAll, dss.ctx)
@@ -177,7 +177,7 @@ SaveAll() = SaveAll(DSS_DEFAULT_CTX)
 """
 Convert the monitor data to text and displays it with the text editor.
 
-Original COM help: https://opendss.epri.com/Show3.html
+Original COM help: <https://opendss.epri.com/Show3.html>
 """
 function Show(dss::DSSContext)
     @checked dss_ccall(dss.capi.Monitors_Show, dss.ctx)
@@ -187,7 +187,7 @@ Show() = Show(DSS_DEFAULT_CTX)
 """
 Byte Array containing monitor stream values. Make sure a "save" is done first (standard solution modes do this automatically)
 
-Original COM help: https://opendss.epri.com/ByteStream.html
+Original COM help: <https://opendss.epri.com/ByteStream.html>
 """
 function ByteStream(dss::DSSContext)::Vector{Int8}
     return get_int8_array(dss.capi.Monitors_Get_ByteStream, dss)
@@ -197,7 +197,7 @@ ByteStream() = ByteStream(DSS_DEFAULT_CTX)
 """
 Full object name of element being monitored.
 
-Original COM help: https://opendss.epri.com/Element.html
+Original COM help: <https://opendss.epri.com/Element.html>
 
 (Getter)
 """
@@ -210,7 +210,7 @@ Element() = Element(DSS_DEFAULT_CTX)
 """
 Full object name of element being monitored.
 
-Original COM help: https://opendss.epri.com/Element.html
+Original COM help: <https://opendss.epri.com/Element.html>
 
 (Setter)
 """
@@ -222,7 +222,7 @@ Element(Value::String) = Element(DSS_DEFAULT_CTX, Value)
 """
 Name of CSV file associated with active Monitor.
 
-Original COM help: https://opendss.epri.com/FileName.html
+Original COM help: <https://opendss.epri.com/FileName.html>
 """
 function FileName(dss::DSSContext)::String
     return get_string(@checked dss_ccall(dss.capi.Monitors_Get_FileName, dss.ctx))
@@ -232,7 +232,7 @@ FileName() = FileName(DSS_DEFAULT_CTX)
 """
 Monitor File Version (integer)
 
-Original COM help: https://opendss.epri.com/FileVersion.html
+Original COM help: <https://opendss.epri.com/FileVersion.html>
 """
 function FileVersion(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Monitors_Get_FileVersion, dss.ctx)
@@ -242,7 +242,7 @@ FileVersion() = FileVersion(DSS_DEFAULT_CTX)
 """
 Header string;  Array of strings containing Channel names
 
-Original COM help: https://opendss.epri.com/Header.html
+Original COM help: <https://opendss.epri.com/Header.html>
 """
 function Header(dss::DSSContext)::Vector{String}
     return get_string_array(dss.capi.Monitors_Get_Header, dss)
@@ -252,7 +252,7 @@ Header() = Header(DSS_DEFAULT_CTX)
 """
 Monitor mode (bitmask integer - see DSS Help)
 
-Original COM help: https://opendss.epri.com/Mode1.html
+Original COM help: <https://opendss.epri.com/Mode1.html>
 
 (Getter)
 """
@@ -269,7 +269,7 @@ Mode() = Mode(DSS_DEFAULT_CTX)
 """
 Set Monitor mode (bitmask integer - see DSS Help)
 
-Original COM help: https://opendss.epri.com/Mode1.html
+Original COM help: <https://opendss.epri.com/Mode1.html>
 
 (Setter)
 """
@@ -282,7 +282,7 @@ Mode(Value::Union{Int,UInt32,Lib.MonitorModes}) = Mode(DSS_DEFAULT_CTX, Value)
 """
 Number of Channels in the active Monitor
 
-Original COM help: https://opendss.epri.com/NumChannels.html
+Original COM help: <https://opendss.epri.com/NumChannels.html>
 """
 function NumChannels(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Monitors_Get_NumChannels, dss.ctx)
@@ -292,7 +292,7 @@ NumChannels() = NumChannels(DSS_DEFAULT_CTX)
 """
 Size of each record in ByteStream (Integer). Same as NumChannels.
 
-Original COM help: https://opendss.epri.com/RecordSize.html
+Original COM help: <https://opendss.epri.com/RecordSize.html>
 """
 function RecordSize(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Monitors_Get_RecordSize, dss.ctx)
@@ -302,7 +302,7 @@ RecordSize() = RecordSize(DSS_DEFAULT_CTX)
 """
 Number of Samples in Monitor at Present
 
-Original COM help: https://opendss.epri.com/SampleCount.html
+Original COM help: <https://opendss.epri.com/SampleCount.html>
 """
 function SampleCount(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Monitors_Get_SampleCount, dss.ctx)
@@ -312,7 +312,7 @@ SampleCount() = SampleCount(DSS_DEFAULT_CTX)
 """
 Terminal number of element being monitored.
 
-Original COM help: https://opendss.epri.com/Terminal.html
+Original COM help: <https://opendss.epri.com/Terminal.html>
 
 (Getter)
 """
@@ -324,7 +324,7 @@ Terminal() = Terminal(DSS_DEFAULT_CTX)
 """
 Terminal number of element being monitored.
 
-Original COM help: https://opendss.epri.com/Terminal.html
+Original COM help: <https://opendss.epri.com/Terminal.html>
 
 (Setter)
 """
@@ -336,7 +336,7 @@ Terminal(Value::Int) = Terminal(DSS_DEFAULT_CTX, Value)
 """
 Array of doubles containing frequency values for harmonics mode solutions; Empty for time mode solutions (use dblHour)
 
-Original COM help: https://opendss.epri.com/dblFreq.html
+Original COM help: <https://opendss.epri.com/dblFreq.html>
 """
 function DblFreq(dss::DSSContext)::Vector{Float64}
     return get_float64_array(dss.capi.Monitors_Get_dblFreq, dss)
@@ -346,7 +346,7 @@ DblFreq() = DblFreq(DSS_DEFAULT_CTX)
 """
 Array of doubles containing time value in hours for time-sampled monitor values; Empty if frequency-sampled values for harmonics solution (see dblFreq)
 
-Original COM help: https://opendss.epri.com/dblHour.html
+Original COM help: <https://opendss.epri.com/dblHour.html>
 """
 function DblHour(dss::DSSContext)::Vector{Float64}
     return get_float64_array(dss.capi.Monitors_Get_dblHour, dss)

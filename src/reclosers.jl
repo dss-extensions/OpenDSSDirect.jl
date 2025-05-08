@@ -88,7 +88,7 @@ Open() = Open(DSS_DEFAULT_CTX)
 """
 Ground (3I0) instantaneous trip setting - curve multiplier or actual amps.
 
-Original COM help: https://opendss.epri.com/GroundInst.html
+Original COM help: <https://opendss.epri.com/GroundInst.html>
 
 (Getter)
 """
@@ -100,7 +100,7 @@ GroundInst() = GroundInst(DSS_DEFAULT_CTX)
 """
 Ground (3I0) instantaneous trip setting - curve multiplier or actual amps.
 
-Original COM help: https://opendss.epri.com/GroundInst.html
+Original COM help: <https://opendss.epri.com/GroundInst.html>
 
 (Setter)
 """
@@ -112,7 +112,7 @@ GroundInst(Value::Float64) = GroundInst(DSS_DEFAULT_CTX, Value)
 """
 Ground (3I0) trip multiplier or actual amps
 
-Original COM help: https://opendss.epri.com/GroundTrip.html
+Original COM help: <https://opendss.epri.com/GroundTrip.html>
 
 (Getter)
 """
@@ -124,7 +124,7 @@ GroundTrip() = GroundTrip(DSS_DEFAULT_CTX)
 """
 Ground (3I0) trip multiplier or actual amps
 
-Original COM help: https://opendss.epri.com/GroundTrip.html
+Original COM help: <https://opendss.epri.com/GroundTrip.html>
 
 (Setter)
 """
@@ -136,7 +136,7 @@ GroundTrip(Value::Float64) = GroundTrip(DSS_DEFAULT_CTX, Value)
 """
 Full name of object this Recloser to be monitored.
 
-Original COM help: https://opendss.epri.com/MonitoredObj2.html
+Original COM help: <https://opendss.epri.com/MonitoredObj2.html>
 
 (Getter)
 """
@@ -148,7 +148,7 @@ MonitoredObj() = MonitoredObj(DSS_DEFAULT_CTX)
 """
 Full name of object this Recloser to be monitored.
 
-Original COM help: https://opendss.epri.com/MonitoredObj2.html
+Original COM help: <https://opendss.epri.com/MonitoredObj2.html>
 
 (Setter)
 """
@@ -160,7 +160,7 @@ MonitoredObj(Value::String) = MonitoredObj(DSS_DEFAULT_CTX, Value)
 """
 Terminal number of Monitored object for the Recloser
 
-Original COM help: https://opendss.epri.com/MonitoredTerm2.html
+Original COM help: <https://opendss.epri.com/MonitoredTerm2.html>
 
 (Getter)
 """
@@ -172,7 +172,7 @@ MonitoredTerm() = MonitoredTerm(DSS_DEFAULT_CTX)
 """
 Terminal number of Monitored object for the Recloser
 
-Original COM help: https://opendss.epri.com/MonitoredTerm2.html
+Original COM help: <https://opendss.epri.com/MonitoredTerm2.html>
 
 (Setter)
 """
@@ -184,7 +184,7 @@ MonitoredTerm(Value::Int) = MonitoredTerm(DSS_DEFAULT_CTX, Value)
 """
 Number of fast shots
 
-Original COM help: https://opendss.epri.com/NumFast.html
+Original COM help: <https://opendss.epri.com/NumFast.html>
 
 (Getter)
 """
@@ -196,7 +196,7 @@ NumFast() = NumFast(DSS_DEFAULT_CTX)
 """
 Number of fast shots
 
-Original COM help: https://opendss.epri.com/NumFast.html
+Original COM help: <https://opendss.epri.com/NumFast.html>
 
 (Setter)
 """
@@ -208,7 +208,7 @@ NumFast(Value::Int) = NumFast(DSS_DEFAULT_CTX, Value)
 """
 Phase instantaneous curve multiplier or actual amps
 
-Original COM help: https://opendss.epri.com/PhaseInst.html
+Original COM help: <https://opendss.epri.com/PhaseInst.html>
 
 (Getter)
 """
@@ -220,7 +220,7 @@ PhaseInst() = PhaseInst(DSS_DEFAULT_CTX)
 """
 Phase instantaneous curve multiplier or actual amps
 
-Original COM help: https://opendss.epri.com/PhaseInst.html
+Original COM help: <https://opendss.epri.com/PhaseInst.html>
 
 (Setter)
 """
@@ -232,7 +232,7 @@ PhaseInst(Value::Float64) = PhaseInst(DSS_DEFAULT_CTX, Value)
 """
 Phase trip curve multiplier or actual amps
 
-Original COM help: https://opendss.epri.com/PhaseTrip.html
+Original COM help: <https://opendss.epri.com/PhaseTrip.html>
 
 (Getter)
 """
@@ -244,7 +244,7 @@ PhaseTrip() = PhaseTrip(DSS_DEFAULT_CTX)
 """
 Phase trip curve multiplier or actual amps
 
-Original COM help: https://opendss.epri.com/PhaseTrip.html
+Original COM help: <https://opendss.epri.com/PhaseTrip.html>
 
 (Setter)
 """
@@ -256,7 +256,7 @@ PhaseTrip(Value::Float64) = PhaseTrip(DSS_DEFAULT_CTX, Value)
 """
 Array of Doubles: reclose intervals, s, between shots.
 
-Original COM help: https://opendss.epri.com/RecloseIntervals.html
+Original COM help: <https://opendss.epri.com/RecloseIntervals.html>
 """
 function RecloseIntervals(dss::DSSContext)::Vector{Float64}
     return get_float64_array(dss.capi.Reclosers_Get_RecloseIntervals, dss)
@@ -266,7 +266,7 @@ RecloseIntervals() = RecloseIntervals(DSS_DEFAULT_CTX)
 """
 Number of shots to lockout (fast + delayed)
 
-Original COM help: https://opendss.epri.com/Shots.html
+Original COM help: <https://opendss.epri.com/Shots.html>
 
 (Getter)
 """
@@ -278,7 +278,7 @@ Shots() = Shots(DSS_DEFAULT_CTX)
 """
 Number of shots to lockout (fast + delayed)
 
-Original COM help: https://opendss.epri.com/Shots.html
+Original COM help: <https://opendss.epri.com/Shots.html>
 
 (Setter)
 """
@@ -290,7 +290,7 @@ Shots(Value::Int) = Shots(DSS_DEFAULT_CTX, Value)
 """
 Full name of the circuit element that is being switched by the Recloser.
 
-Original COM help: https://opendss.epri.com/SwitchedObj1.html
+Original COM help: <https://opendss.epri.com/SwitchedObj1.html>
 
 (Getter)
 """
@@ -302,7 +302,7 @@ SwitchedObj() = SwitchedObj(DSS_DEFAULT_CTX)
 """
 Full name of the circuit element that is being switched by the Recloser.
 
-Original COM help: https://opendss.epri.com/SwitchedObj1.html
+Original COM help: <https://opendss.epri.com/SwitchedObj1.html>
 
 (Setter)
 """
@@ -314,7 +314,7 @@ SwitchedObj(Value::String) = SwitchedObj(DSS_DEFAULT_CTX, Value)
 """
 Terminal number of the controlled device being switched by the Recloser
 
-Original COM help: https://opendss.epri.com/SwitchedTerm1.html
+Original COM help: <https://opendss.epri.com/SwitchedTerm1.html>
 
 (Getter)
 """
@@ -326,7 +326,7 @@ SwitchedTerm() = SwitchedTerm(DSS_DEFAULT_CTX)
 """
 Terminal number of the controlled device being switched by the Recloser
 
-Original COM help: https://opendss.epri.com/SwitchedTerm1.html
+Original COM help: <https://opendss.epri.com/SwitchedTerm1.html>
 
 (Setter)
 """
@@ -362,7 +362,7 @@ State(Value::Union{Int,Lib.ActionCodes}) = State(DSS_DEFAULT_CTX, Value)
 """
 Normal state (ActionCodes.Open=1, ActionCodes.Close=2) of the recloser.
 
-Original COM help: https://opendss.epri.com/NormalState1.html
+Original COM help: <https://opendss.epri.com/NormalState1.html>
 
 (Getter)
 """
@@ -374,7 +374,7 @@ NormalState() = NormalState(DSS_DEFAULT_CTX)
 """
 Normal state (ActionCodes.Open=1, ActionCodes.Close=2) of the recloser.
 
-Original COM help: https://opendss.epri.com/NormalState1.html
+Original COM help: <https://opendss.epri.com/NormalState1.html>
 
 (Setter)
 """

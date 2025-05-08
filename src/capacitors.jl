@@ -100,7 +100,7 @@ SubtractStep() = SubtractStep(DSS_DEFAULT_CTX)
 """
 Number of Steps available in cap bank to be switched ON.
 
-Original COM help: https://opendss.epri.com/AvailableSteps.html
+Original COM help: <https://opendss.epri.com/AvailableSteps.html>
 """
 function AvailableSteps(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Capacitors_Get_AvailableSteps, dss.ctx)
@@ -110,7 +110,7 @@ AvailableSteps() = AvailableSteps(DSS_DEFAULT_CTX)
 """
 Delta connection or wye?
 
-Original COM help: https://opendss.epri.com/IsDelta.html
+Original COM help: <https://opendss.epri.com/IsDelta.html>
 
 (Getter)
 """
@@ -122,7 +122,7 @@ IsDelta() = IsDelta(DSS_DEFAULT_CTX)
 """
 Delta connection or wye?
 
-Original COM help: https://opendss.epri.com/IsDelta.html
+Original COM help: <https://opendss.epri.com/IsDelta.html>
 
 (Setter)
 """
@@ -134,7 +134,7 @@ IsDelta(Value::Bool) = IsDelta(DSS_DEFAULT_CTX, Value)
 """
 Number of steps (default 1) for distributing and switching the total bank kVAR.
 
-Original COM help: https://opendss.epri.com/NumSteps.html
+Original COM help: <https://opendss.epri.com/NumSteps.html>
 
 (Getter)
 """
@@ -146,7 +146,7 @@ NumSteps() = NumSteps(DSS_DEFAULT_CTX)
 """
 Number of steps (default 1) for distributing and switching the total bank kVAR.
 
-Original COM help: https://opendss.epri.com/NumSteps.html
+Original COM help: <https://opendss.epri.com/NumSteps.html>
 
 (Setter)
 """
@@ -158,7 +158,7 @@ NumSteps(Value::Int) = NumSteps(DSS_DEFAULT_CTX, Value)
 """
 An array of integers [0..NumSteps-1] indicating state of each step. If the read value is -1 an error has occurred.
 
-Original COM help: https://opendss.epri.com/States.html
+Original COM help: <https://opendss.epri.com/States.html>
 
 (Getter)
 """
@@ -170,7 +170,7 @@ States() = States(DSS_DEFAULT_CTX)
 """
 An array of integers [0..NumSteps-1] indicating state of each step. If the read value is -1 an error has occurred.
 
-Original COM help: https://opendss.epri.com/States.html
+Original COM help: <https://opendss.epri.com/States.html>
 
 (Setter)
 """
@@ -183,7 +183,7 @@ States(Value) = States(DSS_DEFAULT_CTX, Value)
 """
 Bank kV rating. Use LL for 2 or 3 phases, or actual can rating for 1 phase.
 
-Original COM help: https://opendss.epri.com/kV.html
+Original COM help: <https://opendss.epri.com/kV.html>
 
 (Getter)
 """
@@ -195,7 +195,7 @@ kV() = kV(DSS_DEFAULT_CTX)
 """
 Bank kV rating. Use LL for 2 or 3 phases, or actual can rating for 1 phase.
 
-Original COM help: https://opendss.epri.com/kV.html
+Original COM help: <https://opendss.epri.com/kV.html>
 
 (Setter)
 """

@@ -76,7 +76,7 @@ Idx(Value::Int) = Idx(DSS_DEFAULT_CTX, Value)
 """
 Indicates whether the generator is forced ON regardless of other dispatch criteria.
 
-Original COM help: https://opendss.epri.com/ForcedON.html
+Original COM help: <https://opendss.epri.com/ForcedON.html>
 
 (Getter)
 """
@@ -88,7 +88,7 @@ ForcedON() = ForcedON(DSS_DEFAULT_CTX)
 """
 Indicates whether the generator is forced ON regardless of other dispatch criteria.
 
-Original COM help: https://opendss.epri.com/ForcedON.html
+Original COM help: <https://opendss.epri.com/ForcedON.html>
 
 (Setter)
 """
@@ -100,7 +100,7 @@ ForcedON(Value::Bool) = ForcedON(DSS_DEFAULT_CTX, Value)
 """
 Generator Model
 
-Original COM help: https://opendss.epri.com/Model.html
+Original COM help: <https://opendss.epri.com/Model.html>
 
 (Getter)
 """
@@ -112,7 +112,7 @@ Model() = Model(DSS_DEFAULT_CTX)
 """
 Generator Model
 
-Original COM help: https://opendss.epri.com/Model.html
+Original COM help: <https://opendss.epri.com/Model.html>
 
 (Setter)
 """
@@ -124,7 +124,7 @@ Model(Value::Int) = Model(DSS_DEFAULT_CTX, Value)
 """
 Power factor (pos. = producing vars). Updates kvar based on present kW value.
 
-Original COM help: https://opendss.epri.com/PF.html
+Original COM help: <https://opendss.epri.com/PF.html>
 
 (Getter)
 """
@@ -136,7 +136,7 @@ PF() = PF(DSS_DEFAULT_CTX)
 """
 Power factor (pos. = producing vars). Updates kvar based on present kW value.
 
-Original COM help: https://opendss.epri.com/PF.html
+Original COM help: <https://opendss.epri.com/PF.html>
 
 (Setter)
 """
@@ -148,7 +148,7 @@ PF(Value::Float64) = PF(DSS_DEFAULT_CTX, Value)
 """
 Number of phases
 
-Original COM help: https://opendss.epri.com/Phases.html
+Original COM help: <https://opendss.epri.com/Phases.html>
 
 (Getter)
 """
@@ -160,7 +160,7 @@ Phases() = Phases(DSS_DEFAULT_CTX)
 """
 Number of phases
 
-Original COM help: https://opendss.epri.com/Phases.html
+Original COM help: <https://opendss.epri.com/Phases.html>
 
 (Setter)
 """
@@ -182,7 +182,7 @@ RegisterNames() = RegisterNames(DSS_DEFAULT_CTX)
 """
 Array of values in generator energy meter registers.
 
-Original COM help: https://opendss.epri.com/RegisterValues.html
+Original COM help: <https://opendss.epri.com/RegisterValues.html>
 """
 function RegisterValues(dss::DSSContext)::Vector{Float64}
     return get_float64_array(dss.capi.Generators_Get_RegisterValues, dss)
@@ -192,7 +192,7 @@ RegisterValues() = RegisterValues(DSS_DEFAULT_CTX)
 """
 Vmaxpu for generator model
 
-Original COM help: https://opendss.epri.com/Vmaxpu.html
+Original COM help: <https://opendss.epri.com/Vmaxpu.html>
 
 (Getter)
 """
@@ -204,7 +204,7 @@ Vmaxpu() = Vmaxpu(DSS_DEFAULT_CTX)
 """
 Vmaxpu for generator model
 
-Original COM help: https://opendss.epri.com/Vmaxpu.html
+Original COM help: <https://opendss.epri.com/Vmaxpu.html>
 
 (Setter)
 """
@@ -216,7 +216,7 @@ Vmaxpu(Value::Float64) = Vmaxpu(DSS_DEFAULT_CTX, Value)
 """
 Vminpu for Generator model
 
-Original COM help: https://opendss.epri.com/Vminpu.html
+Original COM help: <https://opendss.epri.com/Vminpu.html>
 
 (Getter)
 """
@@ -228,7 +228,7 @@ Vminpu() = Vminpu(DSS_DEFAULT_CTX)
 """
 Vminpu for Generator model
 
-Original COM help: https://opendss.epri.com/Vminpu.html
+Original COM help: <https://opendss.epri.com/Vminpu.html>
 
 (Setter)
 """
@@ -240,7 +240,7 @@ Vminpu(Value::Float64) = Vminpu(DSS_DEFAULT_CTX, Value)
 """
 Voltage base for the active generator, kV
 
-Original COM help: https://opendss.epri.com/kV1.html
+Original COM help: <https://opendss.epri.com/kV1.html>
 
 (Getter)
 """
@@ -252,7 +252,7 @@ kV() = kV(DSS_DEFAULT_CTX)
 """
 Voltage base for the active generator, kV
 
-Original COM help: https://opendss.epri.com/kV1.html
+Original COM help: <https://opendss.epri.com/kV1.html>
 
 (Setter)
 """
@@ -264,7 +264,7 @@ kV(Value::Float64) = kV(DSS_DEFAULT_CTX, Value)
 """
 kVA rating of the generator
 
-Original COM help: https://opendss.epri.com/kVArated.html
+Original COM help: <https://opendss.epri.com/kVArated.html>
 
 (Getter)
 """
@@ -276,7 +276,7 @@ kVARated() = kVARated(DSS_DEFAULT_CTX)
 """
 kVA rating of the generator
 
-Original COM help: https://opendss.epri.com/kVArated.html
+Original COM help: <https://opendss.epri.com/kVArated.html>
 
 (Setter)
 """
@@ -288,7 +288,7 @@ kVARated(Value::Float64) = kVARated(DSS_DEFAULT_CTX, Value)
 """
 kW output for the active generator. kvar is updated for current power factor.
 
-Original COM help: https://opendss.epri.com/kW.html
+Original COM help: <https://opendss.epri.com/kW.html>
 
 (Getter)
 """
@@ -300,7 +300,7 @@ kW() = kW(DSS_DEFAULT_CTX)
 """
 kW output for the active generator. kvar is updated for current power factor.
 
-Original COM help: https://opendss.epri.com/kW.html
+Original COM help: <https://opendss.epri.com/kW.html>
 
 (Setter)
 """
@@ -312,7 +312,7 @@ kW(Value::Float64) = kW(DSS_DEFAULT_CTX, Value)
 """
 kvar output for the active generator. Updates power factor based on present kW value.
 
-Original COM help: https://opendss.epri.com/kvar.html
+Original COM help: <https://opendss.epri.com/kvar.html>
 
 (Getter)
 """
@@ -324,7 +324,7 @@ kvar() = kvar(DSS_DEFAULT_CTX)
 """
 kvar output for the active generator. Updates power factor based on present kW value.
 
-Original COM help: https://opendss.epri.com/kvar.html
+Original COM help: <https://opendss.epri.com/kvar.html>
 
 (Setter)
 """

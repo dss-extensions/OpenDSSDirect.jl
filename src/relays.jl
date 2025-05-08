@@ -76,7 +76,7 @@ Idx(Value::Int) = Idx(DSS_DEFAULT_CTX, Value)
 """
 Full name of object this Relay is monitoring.
 
-Original COM help: https://opendss.epri.com/MonitoredObj3.html
+Original COM help: <https://opendss.epri.com/MonitoredObj3.html>
 
 (Getter)
 """
@@ -88,7 +88,7 @@ MonitoredObj() = MonitoredObj(DSS_DEFAULT_CTX)
 """
 Full name of object this Relay is monitoring.
 
-Original COM help: https://opendss.epri.com/MonitoredObj3.html
+Original COM help: <https://opendss.epri.com/MonitoredObj3.html>
 
 (Setter)
 """
@@ -100,7 +100,7 @@ MonitoredObj(Value::String) = MonitoredObj(DSS_DEFAULT_CTX, Value)
 """
 Number of terminal of monitored element that this Relay is monitoring.
 
-Original COM help: https://opendss.epri.com/MonitoredTerm3.html
+Original COM help: <https://opendss.epri.com/MonitoredTerm3.html>
 
 (Getter)
 """
@@ -112,7 +112,7 @@ MonitoredTerm() = MonitoredTerm(DSS_DEFAULT_CTX)
 """
 Number of terminal of monitored element that this Relay is monitoring.
 
-Original COM help: https://opendss.epri.com/MonitoredTerm3.html
+Original COM help: <https://opendss.epri.com/MonitoredTerm3.html>
 
 (Setter)
 """
@@ -124,7 +124,7 @@ MonitoredTerm(Value::Int) = MonitoredTerm(DSS_DEFAULT_CTX, Value)
 """
 Full name of element that will be switched when relay trips.
 
-Original COM help: https://opendss.epri.com/SwitchedObj2.html
+Original COM help: <https://opendss.epri.com/SwitchedObj2.html>
 
 (Getter)
 """
@@ -136,7 +136,7 @@ SwitchedObj() = SwitchedObj(DSS_DEFAULT_CTX)
 """
 Full name of element that will be switched when relay trips.
 
-Original COM help: https://opendss.epri.com/SwitchedObj2.html
+Original COM help: <https://opendss.epri.com/SwitchedObj2.html>
 
 (Setter)
 """
@@ -148,7 +148,7 @@ SwitchedObj(Value::String) = SwitchedObj(DSS_DEFAULT_CTX, Value)
 """
 Terminal number of the switched object that will be opened when the relay trips.
 
-Original COM help: https://opendss.epri.com/SwitchedTerm2.html
+Original COM help: <https://opendss.epri.com/SwitchedTerm2.html>
 
 (Getter)
 """
@@ -160,7 +160,7 @@ SwitchedTerm() = SwitchedTerm(DSS_DEFAULT_CTX)
 """
 Terminal number of the switched object that will be opened when the relay trips.
 
-Original COM help: https://opendss.epri.com/SwitchedTerm2.html
+Original COM help: <https://opendss.epri.com/SwitchedTerm2.html>
 
 (Setter)
 """
@@ -196,7 +196,7 @@ State(Value::Union{Int,Lib.ActionCodes}) = State(DSS_DEFAULT_CTX, Value)
 """
 Normal state of relay.
 
-Original COM help: https://opendss.epri.com/NormalState3.html
+Original COM help: <https://opendss.epri.com/NormalState3.html>
 
 (Getter)
 """
@@ -208,7 +208,7 @@ NormalState() = NormalState(DSS_DEFAULT_CTX)
 """
 Normal state of relay.
 
-Original COM help: https://opendss.epri.com/NormalState3.html
+Original COM help: <https://opendss.epri.com/NormalState3.html>
 
 (Setter)
 """
@@ -220,7 +220,7 @@ NormalState(Value::Union{Int,Lib.ActionCodes}) = NormalState(DSS_DEFAULT_CTX, Va
 """
 Open relay's controlled element and lock out the relay.
 
-Original COM help: https://opendss.epri.com/Open4.html
+Original COM help: <https://opendss.epri.com/Open4.html>
 """
 function Open(dss::DSSContext)
     @checked dss_ccall(dss.capi.Relays_Open, dss.ctx)
@@ -240,7 +240,7 @@ Reset() = Reset(DSS_DEFAULT_CTX)
 """
 Close the switched object controlled by the relay. Resets relay to first operation.
 
-Original COM help: https://opendss.epri.com/Close5.html
+Original COM help: <https://opendss.epri.com/Close5.html>
 """
 function Close(dss::DSSContext)
     @checked dss_ccall(dss.capi.Relays_Close, dss.ctx)

@@ -13,7 +13,7 @@ using ..Utils
 """
 Name of EnergyMeter to use for reduction
 
-Original COM help: https://opendss.epri.com/EnergyMeter1.html
+Original COM help: <https://opendss.epri.com/EnergyMeter1.html>
 
 (Getter)
 """
@@ -25,7 +25,7 @@ EnergyMeter() = EnergyMeter(DSS_DEFAULT_CTX)
 """
 Name of EnergyMeter to use for reduction
 
-Original COM help: https://opendss.epri.com/EnergyMeter1.html
+Original COM help: <https://opendss.epri.com/EnergyMeter1.html>
 
 (Setter)
 """
@@ -37,7 +37,7 @@ EnergyMeter(Value::String) = EnergyMeter(DSS_DEFAULT_CTX, Value)
 """
 Keep load flag for Reduction options that remove branches
 
-Original COM help: https://opendss.epri.com/KeepLoad.html
+Original COM help: <https://opendss.epri.com/KeepLoad.html>
 
 (Getter)
 """
@@ -49,7 +49,7 @@ KeepLoad() = KeepLoad(DSS_DEFAULT_CTX)
 """
 Keep load flag for Reduction options that remove branches
 
-Original COM help: https://opendss.epri.com/KeepLoad.html
+Original COM help: <https://opendss.epri.com/KeepLoad.html>
 
 (Setter)
 """
@@ -61,7 +61,7 @@ KeepLoad(Value::Bool) = KeepLoad(DSS_DEFAULT_CTX, Value)
 """
 Edit String for RemoveBranches functions
 
-Original COM help: https://opendss.epri.com/EditString.html
+Original COM help: <https://opendss.epri.com/EditString.html>
 
 (Getter)
 """
@@ -73,7 +73,7 @@ EditString() = EditString(DSS_DEFAULT_CTX)
 """
 Edit String for RemoveBranches functions
 
-Original COM help: https://opendss.epri.com/EditString.html
+Original COM help: <https://opendss.epri.com/EditString.html>
 
 (Setter)
 """
@@ -85,7 +85,7 @@ EditString(Value::String) = EditString(DSS_DEFAULT_CTX, Value)
 """
 Zmag (ohms) for Reduce Option for Z of short lines
 
-Original COM help: https://opendss.epri.com/Zmag.html
+Original COM help: <https://opendss.epri.com/Zmag.html>
 
 (Getter)
 """
@@ -97,7 +97,7 @@ Zmag() = Zmag(DSS_DEFAULT_CTX)
 """
 Zmag (ohms) for Reduce Option for Z of short lines
 
-Original COM help: https://opendss.epri.com/Zmag.html
+Original COM help: <https://opendss.epri.com/Zmag.html>
 
 (Setter)
 """
@@ -109,7 +109,7 @@ Zmag(Value::Float64) = Zmag(DSS_DEFAULT_CTX, Value)
 """
 Start element for Remove Branch function
 
-Original COM help: https://opendss.epri.com/StartPDElement.html
+Original COM help: <https://opendss.epri.com/StartPDElement.html>
 
 (Getter)
 """
@@ -121,7 +121,7 @@ StartPDElement() = StartPDElement(DSS_DEFAULT_CTX)
 """
 Start element for Remove Branch function
 
-Original COM help: https://opendss.epri.com/StartPDElement.html
+Original COM help: <https://opendss.epri.com/StartPDElement.html>
 
 (Setter)
 """
@@ -180,7 +180,7 @@ DoLoopBreak() = DoLoopBreak(DSS_DEFAULT_CTX)
 """
 Reduce Dangling Algorithm; branches with nothing connected
 
-Original COM help: https://opendss.epri.com/DoDangling.html
+Original COM help: <https://opendss.epri.com/DoDangling.html>
 """
 function DoDangling(dss::DSSContext)
     @checked dss_ccall(dss.capi.ReduceCkt_DoDangling, dss.ctx)
@@ -196,7 +196,7 @@ DoSwitches() = DoSwitches(DSS_DEFAULT_CTX)
 """
 Do Default Reduction algorithm
 
-Original COM help: https://opendss.epri.com/DoDefault.html
+Original COM help: <https://opendss.epri.com/DoDefault.html>
 """
 function DoDefault(dss::DSSContext)
     @checked dss_ccall(dss.capi.ReduceCkt_DoDefault, dss.ctx)
@@ -206,7 +206,7 @@ DoDefault() = DoDefault(DSS_DEFAULT_CTX)
 """
 Do ShortLines algorithm: Set Zmag first if you don't want the default
 
-Original COM help: https://opendss.epri.com/DoShortLines.html
+Original COM help: <https://opendss.epri.com/DoShortLines.html>
 """
 function DoShortLines(dss::DSSContext)
     @checked dss_ccall(dss.capi.ReduceCkt_DoShortLines, dss.ctx)

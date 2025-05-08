@@ -88,7 +88,7 @@ ResetAll() = ResetAll(DSS_DEFAULT_CTX)
 """
 Array of doubles for the line current measurements; don't use with kWS and kVARS.
 
-Original COM help: https://opendss.epri.com/Currents2.html
+Original COM help: <https://opendss.epri.com/Currents2.html>
 
 (Getter)
 """
@@ -100,7 +100,7 @@ Currents() = Currents(DSS_DEFAULT_CTX)
 """
 Array of doubles for the line current measurements; don't use with kWS and kVARS.
 
-Original COM help: https://opendss.epri.com/Currents2.html
+Original COM help: <https://opendss.epri.com/Currents2.html>
 
 (Setter)
 """
@@ -113,7 +113,7 @@ Currents(Value::Vector{Float64}) = Currents(DSS_DEFAULT_CTX, Value)
 """
 True if measured voltages are line-line. Currents are always line currents.
 
-Original COM help: https://opendss.epri.com/IsDelta2.html
+Original COM help: <https://opendss.epri.com/IsDelta2.html>
 
 (Getter)
 """
@@ -125,7 +125,7 @@ IsDelta() = IsDelta(DSS_DEFAULT_CTX)
 """
 True if measured voltages are line-line. Currents are always line currents.
 
-Original COM help: https://opendss.epri.com/IsDelta2.html
+Original COM help: <https://opendss.epri.com/IsDelta2.html>
 
 (Setter)
 """
@@ -137,7 +137,7 @@ IsDelta(Value::Bool) = IsDelta(DSS_DEFAULT_CTX, Value)
 """
 Full Name of the measured element
 
-Original COM help: https://opendss.epri.com/MeteredElement1.html
+Original COM help: <https://opendss.epri.com/MeteredElement1.html>
 
 (Getter)
 """
@@ -149,7 +149,7 @@ MeteredElement() = MeteredElement(DSS_DEFAULT_CTX)
 """
 Full Name of the measured element
 
-Original COM help: https://opendss.epri.com/MeteredElement1.html
+Original COM help: <https://opendss.epri.com/MeteredElement1.html>
 
 (Setter)
 """
@@ -161,7 +161,7 @@ MeteredElement(Value::String) = MeteredElement(DSS_DEFAULT_CTX, Value)
 """
 Number of the measured terminal in the measured element.
 
-Original COM help: https://opendss.epri.com/MeteredTerminal1.html
+Original COM help: <https://opendss.epri.com/MeteredTerminal1.html>
 
 (Getter)
 """
@@ -173,7 +173,7 @@ MeteredTerminal() = MeteredTerminal(DSS_DEFAULT_CTX)
 """
 Number of the measured terminal in the measured element.
 
-Original COM help: https://opendss.epri.com/MeteredTerminal1.html
+Original COM help: <https://opendss.epri.com/MeteredTerminal1.html>
 
 (Setter)
 """
@@ -185,7 +185,7 @@ MeteredTerminal(Value::Int) = MeteredTerminal(DSS_DEFAULT_CTX, Value)
 """
 Assumed percent error in the Sensor measurement. Default is 1.
 
-Original COM help: https://opendss.epri.com/PctError.html
+Original COM help: <https://opendss.epri.com/PctError.html>
 
 (Getter)
 """
@@ -197,7 +197,7 @@ PctError() = PctError(DSS_DEFAULT_CTX)
 """
 Assumed percent error in the Sensor measurement. Default is 1.
 
-Original COM help: https://opendss.epri.com/PctError.html
+Original COM help: <https://opendss.epri.com/PctError.html>
 
 (Setter)
 """
@@ -209,7 +209,7 @@ PctError(Value::Int) = PctError(DSS_DEFAULT_CTX, Value)
 """
 True if voltage measurements are 1-3, 3-2, 2-1.
 
-Original COM help: https://opendss.epri.com/ReverseDelta.html
+Original COM help: <https://opendss.epri.com/ReverseDelta.html>
 
 (Getter)
 """
@@ -221,7 +221,7 @@ ReverseDelta() = ReverseDelta(DSS_DEFAULT_CTX)
 """
 True if voltage measurements are 1-3, 3-2, 2-1.
 
-Original COM help: https://opendss.epri.com/ReverseDelta.html
+Original COM help: <https://opendss.epri.com/ReverseDelta.html>
 
 (Setter)
 """
@@ -233,7 +233,7 @@ ReverseDelta(Value::Bool) = ReverseDelta(DSS_DEFAULT_CTX, Value)
 """
 Weighting factor for this Sensor measurement with respect to other Sensors. Default is 1.
 
-Original COM help: https://opendss.epri.com/Weight.html
+Original COM help: <https://opendss.epri.com/Weight.html>
 
 (Getter)
 """
@@ -245,7 +245,7 @@ Weight() = Weight(DSS_DEFAULT_CTX)
 """
 Weighting factor for this Sensor measurement with respect to other Sensors. Default is 1.
 
-Original COM help: https://opendss.epri.com/Weight.html
+Original COM help: <https://opendss.epri.com/Weight.html>
 
 (Setter)
 """
@@ -278,7 +278,7 @@ kvar(Value::Vector{Float64}) = kvar(DSS_DEFAULT_CTX, Value)
 """
 Array of doubles for the LL or LN (depending on Delta connection) voltage measurements.
 
-Original COM help: https://opendss.epri.com/kVS.html
+Original COM help: <https://opendss.epri.com/kVS.html>
 
 (Getter)
 """
@@ -290,7 +290,7 @@ kVS() = kVS(DSS_DEFAULT_CTX)
 """
 Array of doubles for the LL or LN (depending on Delta connection) voltage measurements.
 
-Original COM help: https://opendss.epri.com/kVS.html
+Original COM help: <https://opendss.epri.com/kVS.html>
 
 (Setter)
 """
@@ -303,7 +303,7 @@ kVS(Value::Vector{Float64}) = kVS(DSS_DEFAULT_CTX, Value)
 """
 Voltage base for the sensor measurements. LL for 2 and 3-phase sensors, LN for 1-phase sensors.
 
-Original COM help: https://opendss.epri.com/kVBase1.html
+Original COM help: <https://opendss.epri.com/kVBase1.html>
 
 (Getter)
 """
@@ -315,7 +315,7 @@ kVBase() = kVBase(DSS_DEFAULT_CTX)
 """
 Voltage base for the sensor measurements. LL for 2 and 3-phase sensors, LN for 1-phase sensors.
 
-Original COM help: https://opendss.epri.com/kVBase1.html
+Original COM help: <https://opendss.epri.com/kVBase1.html>
 
 (Setter)
 """
@@ -349,7 +349,7 @@ kW(Value::Vector{Float64}) = kW(DSS_DEFAULT_CTX, Value)
 """
 Array of doubles for the allocation factors for each phase.
 
-Original COM help: https://opendss.epri.com/AllocationFactor1.html
+Original COM help: <https://opendss.epri.com/AllocationFactor1.html>
 """
 function AllocationFactor(dss::DSSContext)::Vector{Float64}
     return get_float64_array(dss.capi.Sensors_Get_AllocationFactor, dss)

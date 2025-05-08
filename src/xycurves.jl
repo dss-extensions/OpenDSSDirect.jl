@@ -76,7 +76,7 @@ Idx(Value::Int) = Idx(DSS_DEFAULT_CTX, Value)
 """
 Number of points in X-Y curve
 
-Original COM help: https://opendss.epri.com/Npts1.html
+Original COM help: <https://opendss.epri.com/Npts1.html>
 
 (Getter)
 """
@@ -88,7 +88,7 @@ Npts() = Npts(DSS_DEFAULT_CTX)
 """
 Number of points in X-Y curve
 
-Original COM help: https://opendss.epri.com/Npts1.html
+Original COM help: <https://opendss.epri.com/Npts1.html>
 
 (Setter)
 """
@@ -100,7 +100,7 @@ Npts(Value::Int) = Npts(DSS_DEFAULT_CTX, Value)
 """
 Get X values as an array of doubles.
 
-Original COM help: https://opendss.epri.com/Xarray.html
+Original COM help: <https://opendss.epri.com/Xarray.html>
 
 (Getter)
 """
@@ -112,7 +112,7 @@ XArray() = XArray(DSS_DEFAULT_CTX)
 """
 Set X values as an array of doubles. Remember to set Npts to max number expected values.
 
-Original COM help: https://opendss.epri.com/Xarray.html
+Original COM help: <https://opendss.epri.com/Xarray.html>
 
 (Setter)
 """
@@ -125,7 +125,7 @@ XArray(Value::Vector{Float64}) = XArray(DSS_DEFAULT_CTX, Value)
 """
 Factor to scale X values from original curve
 
-Original COM help: https://opendss.epri.com/Xscale.html
+Original COM help: <https://opendss.epri.com/Xscale.html>
 
 (Getter)
 """
@@ -137,7 +137,7 @@ XScale() = XScale(DSS_DEFAULT_CTX)
 """
 Factor to scale X values from original curve
 
-Original COM help: https://opendss.epri.com/Xscale.html
+Original COM help: <https://opendss.epri.com/Xscale.html>
 
 (Setter)
 """
@@ -149,7 +149,7 @@ XScale(Value::Float64) = XScale(DSS_DEFAULT_CTX, Value)
 """
 Amount to shift X value from original curve
 
-Original COM help: https://opendss.epri.com/Xshift.html
+Original COM help: <https://opendss.epri.com/Xshift.html>
 
 (Getter)
 """
@@ -161,7 +161,7 @@ XShift() = XShift(DSS_DEFAULT_CTX)
 """
 Amount to shift X value from original curve
 
-Original COM help: https://opendss.epri.com/Xshift.html
+Original COM help: <https://opendss.epri.com/Xshift.html>
 
 (Setter)
 """
@@ -173,7 +173,7 @@ XShift(Value::Float64) = XShift(DSS_DEFAULT_CTX, Value)
 """
 Get Y values as an array of doubles.
 
-Original COM help: https://opendss.epri.com/Yarray.html
+Original COM help: <https://opendss.epri.com/Yarray.html>
 
 (Getter)
 """
@@ -185,7 +185,7 @@ YArray() = YArray(DSS_DEFAULT_CTX)
 """
 Set Y values as an array of doubles. Remember to set Npts to max number expected values.
 
-Original COM help: https://opendss.epri.com/Yarray.html
+Original COM help: <https://opendss.epri.com/Yarray.html>
 
 (Setter)
 """
@@ -198,7 +198,7 @@ YArray(Value::Vector{Float64}) = YArray(DSS_DEFAULT_CTX, Value)
 """
 Factor to scale Y values from original curve
 
-Original COM help: https://opendss.epri.com/Yscale.html
+Original COM help: <https://opendss.epri.com/Yscale.html>
 
 (Getter)
 """
@@ -210,7 +210,7 @@ YScale() = YScale(DSS_DEFAULT_CTX)
 """
 Factor to scale Y values from original curve
 
-Original COM help: https://opendss.epri.com/Yscale.html
+Original COM help: <https://opendss.epri.com/Yscale.html>
 
 (Setter)
 """
@@ -222,7 +222,7 @@ YScale(Value::Float64) = YScale(DSS_DEFAULT_CTX, Value)
 """
 Amount to shift Y value from original curve
 
-Original COM help: https://opendss.epri.com/Yshift.html
+Original COM help: <https://opendss.epri.com/Yshift.html>
 
 (Getter)
 """
@@ -234,7 +234,7 @@ YShift() = YShift(DSS_DEFAULT_CTX)
 """
 Amount to shift Y value from original curve
 
-Original COM help: https://opendss.epri.com/Yshift.html
+Original COM help: <https://opendss.epri.com/Yshift.html>
 
 (Setter)
 """
@@ -246,7 +246,7 @@ YShift(Value::Float64) = YShift(DSS_DEFAULT_CTX, Value)
 """
 Interpolated X value for a given Y (set Y first).
 
-Original COM help: https://opendss.epri.com/x4.html
+Original COM help: <https://opendss.epri.com/x4.html>
 
 (Getter)
 """
@@ -260,7 +260,7 @@ Set X value
 
 Call Y getter aftewards to get the interpolated Y value according to this X value.
 
-Original COM help: https://opendss.epri.com/x4.html
+Original COM help: <https://opendss.epri.com/x4.html>
 
 (Setter)
 """
@@ -272,7 +272,7 @@ X(Value::Float64) = X(DSS_DEFAULT_CTX, Value)
 """
 Interpolated Y value for a given X (set X first).
 
-Original COM help: https://opendss.epri.com/y1.html
+Original COM help: <https://opendss.epri.com/y1.html>
 
 (Getter)
 """
@@ -286,7 +286,7 @@ Set Y value
 
 Call X getter aftewards to get the interpolated X value according to this Y value.
 
-Original COM help: https://opendss.epri.com/y1.html
+Original COM help: <https://opendss.epri.com/y1.html>
 
 (Setter)
 """

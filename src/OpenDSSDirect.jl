@@ -47,6 +47,7 @@ export Topology
 export TSData 
 export Transformers 
 export Vsources 
+export WindGens
 export WireData 
 export XYCurves 
 export YMatrix 

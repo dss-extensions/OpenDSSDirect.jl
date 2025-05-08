@@ -88,7 +88,7 @@ Normalize() = Normalize(DSS_DEFAULT_CTX)
 """
 Fixed interval time value, in hours.
 
-Original COM help: https://opendss.epri.com/HrInterval.html
+Original COM help: <https://opendss.epri.com/HrInterval.html>
 
 (Getter)
 """
@@ -100,7 +100,7 @@ HrInterval() = HrInterval(DSS_DEFAULT_CTX)
 """
 Fixed interval time value, in hours.
 
-Original COM help: https://opendss.epri.com/HrInterval.html
+Original COM help: <https://opendss.epri.com/HrInterval.html>
 
 (Setter)
 """
@@ -112,7 +112,7 @@ HrInterval(Value::Float64) = HrInterval(DSS_DEFAULT_CTX, Value)
 """
 Fixed Interval time value, in minutes
 
-Original COM help: https://opendss.epri.com/MinInterval.html
+Original COM help: <https://opendss.epri.com/MinInterval.html>
 
 (Getter)
 """
@@ -124,7 +124,7 @@ MinInterval() = MinInterval(DSS_DEFAULT_CTX)
 """
 Fixed Interval time value, in minutes
 
-Original COM help: https://opendss.epri.com/MinInterval.html
+Original COM help: <https://opendss.epri.com/MinInterval.html>
 
 (Setter)
 """
@@ -136,7 +136,7 @@ MinInterval(Value::Float64) = MinInterval(DSS_DEFAULT_CTX, Value)
 """
 Get/set Number of points in active Loadshape.
 
-Original COM help: https://opendss.epri.com/Npts.html
+Original COM help: <https://opendss.epri.com/Npts.html>
 
 (Getter)
 """
@@ -148,7 +148,7 @@ Npts() = Npts(DSS_DEFAULT_CTX)
 """
 Get/set Number of points in active Loadshape.
 
-Original COM help: https://opendss.epri.com/Npts.html
+Original COM help: <https://opendss.epri.com/Npts.html>
 
 (Setter)
 """
@@ -160,7 +160,7 @@ Npts(Value::Int) = Npts(DSS_DEFAULT_CTX, Value)
 """
 Base P value for normalization. Default is zero, meaning the peak will be used.
 
-Original COM help: https://opendss.epri.com/Pbase.html
+Original COM help: <https://opendss.epri.com/Pbase.html>
 
 (Getter)
 """
@@ -172,7 +172,7 @@ PBase() = PBase(DSS_DEFAULT_CTX)
 """
 Base P value for normalization. Default is zero, meaning the peak will be used.
 
-Original COM help: https://opendss.epri.com/Pbase.html
+Original COM help: <https://opendss.epri.com/Pbase.html>
 
 (Setter)
 """
@@ -184,7 +184,7 @@ PBase(Value::Float64) = PBase(DSS_DEFAULT_CTX, Value)
 """
 Array of doubles for the P multiplier in the Loadshape.
 
-Original COM help: https://opendss.epri.com/Pmult.html
+Original COM help: <https://opendss.epri.com/Pmult.html>
 
 (Getter)
 """
@@ -196,7 +196,7 @@ PMult() = PMult(DSS_DEFAULT_CTX)
 """
 Array of doubles for the P multiplier in the Loadshape.
 
-Original COM help: https://opendss.epri.com/Pmult.html
+Original COM help: <https://opendss.epri.com/Pmult.html>
 
 (Setter)
 """
@@ -209,7 +209,7 @@ PMult(Value::Vector{Float64}) = PMult(DSS_DEFAULT_CTX, Value)
 """
 Base for normalizing Q curve. If left at zero, the peak value is used.
 
-Original COM help: https://opendss.epri.com/Qbase.html
+Original COM help: <https://opendss.epri.com/Qbase.html>
 
 (Getter)
 """
@@ -221,7 +221,7 @@ QBase() = QBase(DSS_DEFAULT_CTX)
 """
 Base for normalizing Q curve. If left at zero, the peak value is used.
 
-Original COM help: https://opendss.epri.com/Qbase.html
+Original COM help: <https://opendss.epri.com/Qbase.html>
 
 (Setter)
 """
@@ -233,7 +233,7 @@ QBase(Value::Float64) = QBase(DSS_DEFAULT_CTX, Value)
 """
 Array of doubles containing the Q multipliers.
 
-Original COM help: https://opendss.epri.com/Qmult.html
+Original COM help: <https://opendss.epri.com/Qmult.html>
 
 (Getter)
 """
@@ -245,7 +245,7 @@ QMult() = QMult(DSS_DEFAULT_CTX)
 """
 Array of doubles containing the Q multipliers.
 
-Original COM help: https://opendss.epri.com/Qmult.html
+Original COM help: <https://opendss.epri.com/Qmult.html>
 
 (Setter)
 """
@@ -258,7 +258,7 @@ QMult(Value::Vector{Float64}) = QMult(DSS_DEFAULT_CTX, Value)
 """
 Time array in hours corresponding to P and Q multipliers when the Interval=0.
 
-Original COM help: https://opendss.epri.com/TimeArray.html
+Original COM help: <https://opendss.epri.com/TimeArray.html>
 
 (Getter)
 """
@@ -270,7 +270,7 @@ TimeArray() = TimeArray(DSS_DEFAULT_CTX)
 """
 Time array in hours corresponding to P and Q multipliers when the Interval=0.
 
-Original COM help: https://opendss.epri.com/TimeArray.html
+Original COM help: <https://opendss.epri.com/TimeArray.html>
 
 (Setter)
 """
@@ -283,7 +283,7 @@ TimeArray(Value::Vector{Float64}) = TimeArray(DSS_DEFAULT_CTX, Value)
 """
 Boolean flag to let Loads know to use the actual value in the curve rather than use the value as a multiplier.
 
-Original COM help: https://opendss.epri.com/UseActual.html
+Original COM help: <https://opendss.epri.com/UseActual.html>
 
 (Getter)
 """
@@ -295,7 +295,7 @@ UseActual() = UseActual(DSS_DEFAULT_CTX)
 """
 Boolean flag to let Loads know to use the actual value in the curve rather than use the value as a multiplier.
 
-Original COM help: https://opendss.epri.com/UseActual.html
+Original COM help: <https://opendss.epri.com/UseActual.html>
 
 (Setter)
 """
@@ -307,7 +307,7 @@ UseActual(Value::Bool) = UseActual(DSS_DEFAULT_CTX, Value)
 """
 Fixed interval time value, in seconds.
 
-Original COM help: https://opendss.epri.com/Sinterval.html
+Original COM help: <https://opendss.epri.com/Sinterval.html>
 
 (Getter)
 """
@@ -319,7 +319,7 @@ SInterval() = SInterval(DSS_DEFAULT_CTX)
 """
 Fixed interval time value, in seconds.
 
-Original COM help: https://opendss.epri.com/Sinterval.html
+Original COM help: <https://opendss.epri.com/Sinterval.html>
 
 (Setter)
 """

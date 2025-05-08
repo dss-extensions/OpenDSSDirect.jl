@@ -82,7 +82,7 @@ Reset() = Reset(DSS_DEFAULT_CTX)
 """
 CT primary ampere rating (secondary is 0.2 amperes)
 
-Original COM help: https://opendss.epri.com/CTPrimary.html
+Original COM help: <https://opendss.epri.com/CTPrimary.html>
 
 (Getter)
 """
@@ -94,7 +94,7 @@ CTPrimary() = CTPrimary(DSS_DEFAULT_CTX)
 """
 CT primary ampere rating (secondary is 0.2 amperes)
 
-Original COM help: https://opendss.epri.com/CTPrimary.html
+Original COM help: <https://opendss.epri.com/CTPrimary.html>
 
 (Setter)
 """
@@ -106,7 +106,7 @@ CTPrimary(Value::Float64) = CTPrimary(DSS_DEFAULT_CTX, Value)
 """
 Time delay [s] after arming before the first tap change. Control may reset before actually changing taps.
 
-Original COM help: https://opendss.epri.com/Delay2.html
+Original COM help: <https://opendss.epri.com/Delay2.html>
 
 (Getter)
 """
@@ -118,7 +118,7 @@ Delay() = Delay(DSS_DEFAULT_CTX)
 """
 Time delay [s] after arming before the first tap change. Control may reset before actually changing taps.
 
-Original COM help: https://opendss.epri.com/Delay2.html
+Original COM help: <https://opendss.epri.com/Delay2.html>
 
 (Setter)
 """
@@ -130,7 +130,7 @@ Delay(Value::Float64) = Delay(DSS_DEFAULT_CTX, Value)
 """
 Regulation bandwidth in forward direction, centered on Vreg
 
-Original COM help: https://opendss.epri.com/ForwardBand.html
+Original COM help: <https://opendss.epri.com/ForwardBand.html>
 
 (Getter)
 """
@@ -142,7 +142,7 @@ ForwardBand() = ForwardBand(DSS_DEFAULT_CTX)
 """
 Regulation bandwidth in forward direction, centered on Vreg
 
-Original COM help: https://opendss.epri.com/ForwardBand.html
+Original COM help: <https://opendss.epri.com/ForwardBand.html>
 
 (Setter)
 """
@@ -154,7 +154,7 @@ ForwardBand(Value::Float64) = ForwardBand(DSS_DEFAULT_CTX, Value)
 """
 LDC R setting in Volts
 
-Original COM help: https://opendss.epri.com/ForwardR.html
+Original COM help: <https://opendss.epri.com/ForwardR.html>
 
 (Getter)
 """
@@ -166,7 +166,7 @@ ForwardR() = ForwardR(DSS_DEFAULT_CTX)
 """
 LDC R setting in Volts
 
-Original COM help: https://opendss.epri.com/ForwardR.html
+Original COM help: <https://opendss.epri.com/ForwardR.html>
 
 (Setter)
 """
@@ -178,7 +178,7 @@ ForwardR(Value::Float64) = ForwardR(DSS_DEFAULT_CTX, Value)
 """
 Target voltage in the forward direction, on PT secondary base.
 
-Original COM help: https://opendss.epri.com/ForwardVreg.html
+Original COM help: <https://opendss.epri.com/ForwardVreg.html>
 
 (Getter)
 """
@@ -190,7 +190,7 @@ ForwardVreg() = ForwardVreg(DSS_DEFAULT_CTX)
 """
 Target voltage in the forward direction, on PT secondary base.
 
-Original COM help: https://opendss.epri.com/ForwardVreg.html
+Original COM help: <https://opendss.epri.com/ForwardVreg.html>
 
 (Setter)
 """
@@ -202,7 +202,7 @@ ForwardVreg(Value::Float64) = ForwardVreg(DSS_DEFAULT_CTX, Value)
 """
 LDC X setting in Volts
 
-Original COM help: https://opendss.epri.com/ForwardX.html
+Original COM help: <https://opendss.epri.com/ForwardX.html>
 
 (Getter)
 """
@@ -214,7 +214,7 @@ ForwardX() = ForwardX(DSS_DEFAULT_CTX)
 """
 LDC X setting in Volts
 
-Original COM help: https://opendss.epri.com/ForwardX.html
+Original COM help: <https://opendss.epri.com/ForwardX.html>
 
 (Setter)
 """
@@ -226,7 +226,7 @@ ForwardX(Value::Float64) = ForwardX(DSS_DEFAULT_CTX, Value)
 """
 Time delay is inversely adjusted, proportional to the amount of voltage outside the regulating band.
 
-Original COM help: https://opendss.epri.com/IsInverseTime.html
+Original COM help: <https://opendss.epri.com/IsInverseTime.html>
 
 (Getter)
 """
@@ -238,7 +238,7 @@ IsInverseTime() = IsInverseTime(DSS_DEFAULT_CTX)
 """
 Time delay is inversely adjusted, proportional to the amount of voltage outside the regulating band.
 
-Original COM help: https://opendss.epri.com/IsInverseTime.html
+Original COM help: <https://opendss.epri.com/IsInverseTime.html>
 
 (Setter)
 """
@@ -250,7 +250,7 @@ IsInverseTime(Value::Bool) = IsInverseTime(DSS_DEFAULT_CTX, Value)
 """
 Regulator can use different settings in the reverse direction.  Usually not applicable to substation transformers.
 
-Original COM help: https://opendss.epri.com/IsReversible.html
+Original COM help: <https://opendss.epri.com/IsReversible.html>
 
 (Getter)
 """
@@ -262,7 +262,7 @@ IsReversible() = IsReversible(DSS_DEFAULT_CTX)
 """
 Regulator can use different settings in the reverse direction.  Usually not applicable to substation transformers.
 
-Original COM help: https://opendss.epri.com/IsReversible.html
+Original COM help: <https://opendss.epri.com/IsReversible.html>
 
 (Setter)
 """
@@ -274,7 +274,7 @@ IsReversible(Value::Bool) = IsReversible(DSS_DEFAULT_CTX, Value)
 """
 Maximum tap change per iteration in STATIC solution mode. 1 is more realistic, 16 is the default for a faster solution.
 
-Original COM help: https://opendss.epri.com/MaxTapChange.html
+Original COM help: <https://opendss.epri.com/MaxTapChange.html>
 
 (Getter)
 """
@@ -286,7 +286,7 @@ MaxTapChange() = MaxTapChange(DSS_DEFAULT_CTX)
 """
 Maximum tap change per iteration in STATIC solution mode. 1 is more realistic, 16 is the default for a faster solution.
 
-Original COM help: https://opendss.epri.com/MaxTapChange.html
+Original COM help: <https://opendss.epri.com/MaxTapChange.html>
 
 (Setter)
 """
@@ -298,7 +298,7 @@ MaxTapChange(Value::Float64) = MaxTapChange(DSS_DEFAULT_CTX, Value)
 """
 Name of a remote regulated bus, in lieu of LDC settings
 
-Original COM help: https://opendss.epri.com/MonitoredBus.html
+Original COM help: <https://opendss.epri.com/MonitoredBus.html>
 
 (Getter)
 """
@@ -310,7 +310,7 @@ MonitoredBus() = MonitoredBus(DSS_DEFAULT_CTX)
 """
 Name of a remote regulated bus, in lieu of LDC settings
 
-Original COM help: https://opendss.epri.com/MonitoredBus.html
+Original COM help: <https://opendss.epri.com/MonitoredBus.html>
 
 (Setter)
 """
@@ -322,7 +322,7 @@ MonitoredBus(Value::String) = MonitoredBus(DSS_DEFAULT_CTX, Value)
 """
 PT ratio for voltage control settings
 
-Original COM help: https://opendss.epri.com/PTratio1.html
+Original COM help: <https://opendss.epri.com/PTratio1.html>
 
 (Getter)
 """
@@ -334,7 +334,7 @@ PTRatio() = PTRatio(DSS_DEFAULT_CTX)
 """
 PT ratio for voltage control settings
 
-Original COM help: https://opendss.epri.com/PTratio1.html
+Original COM help: <https://opendss.epri.com/PTratio1.html>
 
 (Setter)
 """
@@ -346,7 +346,7 @@ PTRatio(Value::Float64) = PTRatio(DSS_DEFAULT_CTX, Value)
 """
 Bandwidth in reverse direction, centered on reverse Vreg.
 
-Original COM help: https://opendss.epri.com/ReverseBand.html
+Original COM help: <https://opendss.epri.com/ReverseBand.html>
 
 (Getter)
 """
@@ -358,7 +358,7 @@ ReverseBand() = ReverseBand(DSS_DEFAULT_CTX)
 """
 Bandwidth in reverse direction, centered on reverse Vreg.
 
-Original COM help: https://opendss.epri.com/ReverseBand.html
+Original COM help: <https://opendss.epri.com/ReverseBand.html>
 
 (Setter)
 """
@@ -370,7 +370,7 @@ ReverseBand(Value::Float64) = ReverseBand(DSS_DEFAULT_CTX, Value)
 """
 Reverse LDC R setting in Volts.
 
-Original COM help: https://opendss.epri.com/ReverseR.html
+Original COM help: <https://opendss.epri.com/ReverseR.html>
 
 (Getter)
 """
@@ -382,7 +382,7 @@ ReverseR() = ReverseR(DSS_DEFAULT_CTX)
 """
 Reverse LDC R setting in Volts.
 
-Original COM help: https://opendss.epri.com/ReverseR.html
+Original COM help: <https://opendss.epri.com/ReverseR.html>
 
 (Setter)
 """
@@ -394,7 +394,7 @@ ReverseR(Value::Float64) = ReverseR(DSS_DEFAULT_CTX, Value)
 """
 Target voltage in the revese direction, on PT secondary base.
 
-Original COM help: https://opendss.epri.com/ReverseVreg.html
+Original COM help: <https://opendss.epri.com/ReverseVreg.html>
 
 (Getter)
 """
@@ -406,7 +406,7 @@ ReverseVreg() = ReverseVreg(DSS_DEFAULT_CTX)
 """
 Target voltage in the revese direction, on PT secondary base.
 
-Original COM help: https://opendss.epri.com/ReverseVreg.html
+Original COM help: <https://opendss.epri.com/ReverseVreg.html>
 
 (Setter)
 """
@@ -418,7 +418,7 @@ ReverseVreg(Value::Float64) = ReverseVreg(DSS_DEFAULT_CTX, Value)
 """
 Reverse LDC X setting in volts.
 
-Original COM help: https://opendss.epri.com/ReverseX.html
+Original COM help: <https://opendss.epri.com/ReverseX.html>
 
 (Getter)
 """
@@ -430,7 +430,7 @@ ReverseX() = ReverseX(DSS_DEFAULT_CTX)
 """
 Reverse LDC X setting in volts.
 
-Original COM help: https://opendss.epri.com/ReverseX.html
+Original COM help: <https://opendss.epri.com/ReverseX.html>
 
 (Setter)
 """
@@ -442,7 +442,7 @@ ReverseX(Value::Float64) = ReverseX(DSS_DEFAULT_CTX, Value)
 """
 Time delay [s] for subsequent tap changes in a set. Control may reset before actually changing taps.
 
-Original COM help: https://opendss.epri.com/TapDelay.html
+Original COM help: <https://opendss.epri.com/TapDelay.html>
 
 (Getter)
 """
@@ -454,7 +454,7 @@ TapDelay() = TapDelay(DSS_DEFAULT_CTX)
 """
 Time delay [s] for subsequent tap changes in a set. Control may reset before actually changing taps.
 
-Original COM help: https://opendss.epri.com/TapDelay.html
+Original COM help: <https://opendss.epri.com/TapDelay.html>
 
 (Setter)
 """
@@ -466,7 +466,7 @@ TapDelay(Value::Float64) = TapDelay(DSS_DEFAULT_CTX, Value)
 """
 Integer number of the tap that the controlled transformer winding is currently on.
 
-Original COM help: https://opendss.epri.com/TapNumber.html
+Original COM help: <https://opendss.epri.com/TapNumber.html>
 
 (Getter)
 """
@@ -478,7 +478,7 @@ TapNumber() = TapNumber(DSS_DEFAULT_CTX)
 """
 Integer number of the tap that the controlled transformer winding is currently on.
 
-Original COM help: https://opendss.epri.com/TapNumber.html
+Original COM help: <https://opendss.epri.com/TapNumber.html>
 
 (Setter)
 """
@@ -490,7 +490,7 @@ TapNumber(Value::Int) = TapNumber(DSS_DEFAULT_CTX, Value)
 """
 Tapped winding number
 
-Original COM help: https://opendss.epri.com/TapWinding.html
+Original COM help: <https://opendss.epri.com/TapWinding.html>
 
 (Getter)
 """
@@ -502,7 +502,7 @@ TapWinding() = TapWinding(DSS_DEFAULT_CTX)
 """
 Tapped winding number
 
-Original COM help: https://opendss.epri.com/TapWinding.html
+Original COM help: <https://opendss.epri.com/TapWinding.html>
 
 (Setter)
 """
@@ -514,7 +514,7 @@ TapWinding(Value::Int) = TapWinding(DSS_DEFAULT_CTX, Value)
 """
 Name of the transformer this regulator controls
 
-Original COM help: https://opendss.epri.com/Transformer.html
+Original COM help: <https://opendss.epri.com/Transformer.html>
 
 (Getter)
 """
@@ -526,7 +526,7 @@ Transformer() = Transformer(DSS_DEFAULT_CTX)
 """
 Name of the transformer this regulator controls
 
-Original COM help: https://opendss.epri.com/Transformer.html
+Original COM help: <https://opendss.epri.com/Transformer.html>
 
 (Setter)
 """
@@ -538,7 +538,7 @@ Transformer(Value::String) = Transformer(DSS_DEFAULT_CTX, Value)
 """
 First house voltage limit on PT secondary base.  Setting to 0 disables this function.
 
-Original COM help: https://opendss.epri.com/VoltageLimit.html
+Original COM help: <https://opendss.epri.com/VoltageLimit.html>
 
 (Getter)
 """
@@ -550,7 +550,7 @@ VoltageLimit() = VoltageLimit(DSS_DEFAULT_CTX)
 """
 First house voltage limit on PT secondary base.  Setting to 0 disables this function.
 
-Original COM help: https://opendss.epri.com/VoltageLimit.html
+Original COM help: <https://opendss.epri.com/VoltageLimit.html>
 
 (Setter)
 """
@@ -562,7 +562,7 @@ VoltageLimit(Value::Float64) = VoltageLimit(DSS_DEFAULT_CTX, Value)
 """
 Winding number for PT and CT connections
 
-Original COM help: https://opendss.epri.com/Winding.html
+Original COM help: <https://opendss.epri.com/Winding.html>
 
 (Getter)
 """
@@ -574,7 +574,7 @@ Winding() = Winding(DSS_DEFAULT_CTX)
 """
 Winding number for PT and CT connections
 
-Original COM help: https://opendss.epri.com/Winding.html
+Original COM help: <https://opendss.epri.com/Winding.html>
 
 (Setter)
 """

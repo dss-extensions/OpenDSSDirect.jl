@@ -76,7 +76,7 @@ Idx(Value::Int) = Idx(DSS_DEFAULT_CTX, Value)
 """
 Magnitude of the ISource in amps
 
-Original COM help: https://opendss.epri.com/Amps.html
+Original COM help: <https://opendss.epri.com/Amps.html>
 
 (Getter)
 """
@@ -88,7 +88,7 @@ Amps() = Amps(DSS_DEFAULT_CTX)
 """
 Magnitude of the ISource in amps
 
-Original COM help: https://opendss.epri.com/Amps.html
+Original COM help: <https://opendss.epri.com/Amps.html>
 
 (Setter)
 """
@@ -100,7 +100,7 @@ Amps(Value::Float64) = Amps(DSS_DEFAULT_CTX, Value)
 """
 Phase angle for ISource, degrees
 
-Original COM help: https://opendss.epri.com/AngleDeg.html
+Original COM help: <https://opendss.epri.com/AngleDeg.html>
 
 (Getter)
 """
@@ -112,7 +112,7 @@ AngleDeg() = AngleDeg(DSS_DEFAULT_CTX)
 """
 Phase angle for ISource, degrees
 
-Original COM help: https://opendss.epri.com/AngleDeg.html
+Original COM help: <https://opendss.epri.com/AngleDeg.html>
 
 (Setter)
 """
@@ -124,7 +124,7 @@ AngleDeg(Value::Float64) = AngleDeg(DSS_DEFAULT_CTX, Value)
 """
 The present frequency of the ISource, Hz
 
-Original COM help: https://opendss.epri.com/Frequency.html
+Original COM help: <https://opendss.epri.com/Frequency.html>
 
 (Getter)
 """
@@ -136,7 +136,7 @@ Frequency() = Frequency(DSS_DEFAULT_CTX)
 """
 The present frequency of the ISource, Hz
 
-Original COM help: https://opendss.epri.com/Frequency.html
+Original COM help: <https://opendss.epri.com/Frequency.html>
 
 (Setter)
 """

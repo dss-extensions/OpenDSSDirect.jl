@@ -106,7 +106,7 @@ SolveSnap() = SolveSnap(DSS_DEFAULT_CTX)
 """
 Type of device to add in AutoAdd Mode: {dssGen (Default) | dssCap}
 
-Original COM help: https://opendss.epri.com/AddType.html
+Original COM help: <https://opendss.epri.com/AddType.html>
 
 (Getter)
 """
@@ -118,7 +118,7 @@ AddType() = AddType(DSS_DEFAULT_CTX)
 """
 Type of device to add in AutoAdd Mode: {dssGen (Default) | dssCap}
 
-Original COM help: https://opendss.epri.com/AddType.html
+Original COM help: <https://opendss.epri.com/AddType.html>
 
 (Setter)
 """
@@ -131,7 +131,7 @@ AddType(Value::Union{Int,Lib.AutoAddTypes}) = AddType(DSS_DEFAULT_CTX, Value)
 """
 Base Solution algorithm
 
-Original COM help: https://opendss.epri.com/Algorithm.html
+Original COM help: <https://opendss.epri.com/Algorithm.html>
 
 (Getter)
 """
@@ -143,7 +143,7 @@ Algorithm() = Algorithm(DSS_DEFAULT_CTX)
 """
 Base Solution algorithm
 
-Original COM help: https://opendss.epri.com/Algorithm.html
+Original COM help: <https://opendss.epri.com/Algorithm.html>
 
 (Setter)
 """
@@ -156,7 +156,7 @@ Algorithm(Value::Union{Int,Lib.SolutionAlgorithms}) = Algorithm(DSS_DEFAULT_CTX,
 """
 Capacitor kvar for adding capacitors in AutoAdd mode
 
-Original COM help: https://opendss.epri.com/Capkvar.html
+Original COM help: <https://opendss.epri.com/Capkvar.html>
 
 (Getter)
 """
@@ -168,7 +168,7 @@ Capkvar() = Capkvar(DSS_DEFAULT_CTX)
 """
 Capacitor kvar for adding capacitors in AutoAdd mode
 
-Original COM help: https://opendss.epri.com/Capkvar.html
+Original COM help: <https://opendss.epri.com/Capkvar.html>
 
 (Setter)
 """
@@ -180,7 +180,7 @@ Capkvar(Value::Float64) = Capkvar(DSS_DEFAULT_CTX, Value)
 """
 Flag indicating the control actions are done.
 
-Original COM help: https://opendss.epri.com/ControlActionsDone.html
+Original COM help: <https://opendss.epri.com/ControlActionsDone.html>
 
 (Getter)
 """
@@ -192,7 +192,7 @@ ControlActionsDone() = ControlActionsDone(DSS_DEFAULT_CTX)
 """
 Flag indicating the control actions are done.
 
-Original COM help: https://opendss.epri.com/ControlActionsDone.html
+Original COM help: <https://opendss.epri.com/ControlActionsDone.html>
 
 (Setter)
 """
@@ -204,7 +204,7 @@ ControlActionsDone(Value::Bool) = ControlActionsDone(DSS_DEFAULT_CTX, Value)
 """
 Value of the control iteration counter
 
-Original COM help: https://opendss.epri.com/ControlIterations.html
+Original COM help: <https://opendss.epri.com/ControlIterations.html>
 
 (Getter)
 """
@@ -216,7 +216,7 @@ ControlIterations() = ControlIterations(DSS_DEFAULT_CTX)
 """
 Value of the control iteration counter
 
-Original COM help: https://opendss.epri.com/ControlIterations.html
+Original COM help: <https://opendss.epri.com/ControlIterations.html>
 
 (Setter)
 """
@@ -228,7 +228,7 @@ ControlIterations(Value::Int) = ControlIterations(DSS_DEFAULT_CTX, Value)
 """
 Modes for control devices
 
-Original COM help: https://opendss.epri.com/ControlMode.html
+Original COM help: <https://opendss.epri.com/ControlMode.html>
 
 (Getter)
 """
@@ -240,7 +240,7 @@ ControlMode() = ControlMode(DSS_DEFAULT_CTX)
 """
 Modes for control devices
 
-Original COM help: https://opendss.epri.com/ControlMode.html
+Original COM help: <https://opendss.epri.com/ControlMode.html>
 
 (Setter)
 """
@@ -253,7 +253,7 @@ ControlMode(Value::Union{Int,Lib.ControlModes}) = ControlMode(DSS_DEFAULT_CTX, V
 """
 Flag to indicate whether the circuit solution converged
 
-Original COM help: https://opendss.epri.com/Converged.html
+Original COM help: <https://opendss.epri.com/Converged.html>
 
 (Getter)
 """
@@ -265,7 +265,7 @@ Converged() = Converged(DSS_DEFAULT_CTX)
 """
 Flag to indicate whether the circuit solution converged
 
-Original COM help: https://opendss.epri.com/Converged.html
+Original COM help: <https://opendss.epri.com/Converged.html>
 
 (Setter)
 """
@@ -277,7 +277,7 @@ Converged(Value::Bool) = Converged(DSS_DEFAULT_CTX, Value)
 """
 Default daily load shape (defaults to "Default")
 
-Original COM help: https://opendss.epri.com/DefaultDaily.html
+Original COM help: <https://opendss.epri.com/DefaultDaily.html>
 
 (Getter)
 """
@@ -289,7 +289,7 @@ DefaultDaily() = DefaultDaily(DSS_DEFAULT_CTX)
 """
 Default daily load shape (defaults to "Default")
 
-Original COM help: https://opendss.epri.com/DefaultDaily.html
+Original COM help: <https://opendss.epri.com/DefaultDaily.html>
 
 (Setter)
 """
@@ -301,7 +301,7 @@ DefaultDaily(Value::String) = DefaultDaily(DSS_DEFAULT_CTX, Value)
 """
 Default Yearly load shape (defaults to "Default")
 
-Original COM help: https://opendss.epri.com/DefaultYearly.html
+Original COM help: <https://opendss.epri.com/DefaultYearly.html>
 
 (Getter)
 """
@@ -313,7 +313,7 @@ DefaultYearly() = DefaultYearly(DSS_DEFAULT_CTX)
 """
 Default Yearly load shape (defaults to "Default")
 
-Original COM help: https://opendss.epri.com/DefaultYearly.html
+Original COM help: <https://opendss.epri.com/DefaultYearly.html>
 
 (Setter)
 """
@@ -325,7 +325,7 @@ DefaultYearly(Value::String) = DefaultYearly(DSS_DEFAULT_CTX, Value)
 """
 Array of strings containing the Event Log
 
-Original COM help: https://opendss.epri.com/EventLog.html
+Original COM help: <https://opendss.epri.com/EventLog.html>
 """
 function EventLog(dss::DSSContext)::Vector{String}
     return get_string_array(dss.capi.Solution_Get_EventLog, dss)
@@ -335,7 +335,7 @@ EventLog() = EventLog(DSS_DEFAULT_CTX)
 """
 Set the Frequency for next solution
 
-Original COM help: https://opendss.epri.com/Frequency1.html
+Original COM help: <https://opendss.epri.com/Frequency1.html>
 
 (Getter)
 """
@@ -347,7 +347,7 @@ Frequency() = Frequency(DSS_DEFAULT_CTX)
 """
 Set the Frequency for next solution
 
-Original COM help: https://opendss.epri.com/Frequency1.html
+Original COM help: <https://opendss.epri.com/Frequency1.html>
 
 (Setter)
 """
@@ -359,7 +359,7 @@ Frequency(Value::Float64) = Frequency(DSS_DEFAULT_CTX, Value)
 """
 Default Multiplier applied to generators (like LoadMult)
 
-Original COM help: https://opendss.epri.com/GenMult.html
+Original COM help: <https://opendss.epri.com/GenMult.html>
 
 (Getter)
 """
@@ -371,7 +371,7 @@ GenMult() = GenMult(DSS_DEFAULT_CTX)
 """
 Default Multiplier applied to generators (like LoadMult)
 
-Original COM help: https://opendss.epri.com/GenMult.html
+Original COM help: <https://opendss.epri.com/GenMult.html>
 
 (Setter)
 """
@@ -383,7 +383,7 @@ GenMult(Value::Float64) = GenMult(DSS_DEFAULT_CTX, Value)
 """
 PF for generators in AutoAdd mode
 
-Original COM help: https://opendss.epri.com/GenPF.html
+Original COM help: <https://opendss.epri.com/GenPF.html>
 
 (Getter)
 """
@@ -395,7 +395,7 @@ GenPF() = GenPF(DSS_DEFAULT_CTX)
 """
 PF for generators in AutoAdd mode
 
-Original COM help: https://opendss.epri.com/GenPF.html
+Original COM help: <https://opendss.epri.com/GenPF.html>
 
 (Setter)
 """
@@ -407,7 +407,7 @@ GenPF(Value::Float64) = GenPF(DSS_DEFAULT_CTX, Value)
 """
 Generator kW for AutoAdd mode
 
-Original COM help: https://opendss.epri.com/GenkW.html
+Original COM help: <https://opendss.epri.com/GenkW.html>
 
 (Getter)
 """
@@ -419,7 +419,7 @@ GenkW() = GenkW(DSS_DEFAULT_CTX)
 """
 Generator kW for AutoAdd mode
 
-Original COM help: https://opendss.epri.com/GenkW.html
+Original COM help: <https://opendss.epri.com/GenkW.html>
 
 (Setter)
 """
@@ -431,7 +431,7 @@ GenkW(Value::Float64) = GenkW(DSS_DEFAULT_CTX, Value)
 """
 Set Hour for time series solutions.
 
-Original COM help: https://opendss.epri.com/Hour.html
+Original COM help: <https://opendss.epri.com/Hour.html>
 
 (Getter)
 """
@@ -443,7 +443,7 @@ Hour() = Hour(DSS_DEFAULT_CTX)
 """
 Set Hour for time series solutions.
 
-Original COM help: https://opendss.epri.com/Hour.html
+Original COM help: <https://opendss.epri.com/Hour.html>
 
 (Setter)
 """
@@ -475,7 +475,7 @@ IntervalHrs(Value::Float64) = IntervalHrs(DSS_DEFAULT_CTX, Value)
 """
 Number of iterations taken for last solution. (Same as Totaliterations)
 
-Original COM help: https://opendss.epri.com/Iterations.html
+Original COM help: <https://opendss.epri.com/Iterations.html>
 """
 function Iterations(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Solution_Get_Iterations, dss.ctx)
@@ -485,7 +485,7 @@ Iterations() = Iterations(DSS_DEFAULT_CTX)
 """
 Load-Duration Curve name for LD modes
 
-Original COM help: https://opendss.epri.com/LDCurve.html
+Original COM help: <https://opendss.epri.com/LDCurve.html>
 
 (Getter)
 """
@@ -497,7 +497,7 @@ LDCurve() = LDCurve(DSS_DEFAULT_CTX)
 """
 Load-Duration Curve name for LD modes
 
-Original COM help: https://opendss.epri.com/LDCurve.html
+Original COM help: <https://opendss.epri.com/LDCurve.html>
 
 (Setter)
 """
@@ -509,7 +509,7 @@ LDCurve(Value::String) = LDCurve(DSS_DEFAULT_CTX, Value)
 """
 Load Model: {dssPowerFlow (default) | dssAdmittance}
 
-Original COM help: https://opendss.epri.com/LoadModel.html
+Original COM help: <https://opendss.epri.com/LoadModel.html>
 
 (Getter)
 """
@@ -521,7 +521,7 @@ LoadModel() = LoadModel(DSS_DEFAULT_CTX)
 """
 Load Model: {dssPowerFlow (default) | dssAdmittance}
 
-Original COM help: https://opendss.epri.com/LoadModel.html
+Original COM help: <https://opendss.epri.com/LoadModel.html>
 
 (Setter)
 """
@@ -534,7 +534,7 @@ LoadModel(Value::Union{Int,Lib.SolutionLoadModels}) = LoadModel(DSS_DEFAULT_CTX,
 """
 Default load multiplier applied to all non-fixed loads
 
-Original COM help: https://opendss.epri.com/LoadMult.html
+Original COM help: <https://opendss.epri.com/LoadMult.html>
 
 (Getter)
 """
@@ -546,7 +546,7 @@ LoadMult() = LoadMult(DSS_DEFAULT_CTX)
 """
 Default load multiplier applied to all non-fixed loads
 
-Original COM help: https://opendss.epri.com/LoadMult.html
+Original COM help: <https://opendss.epri.com/LoadMult.html>
 
 (Setter)
 """
@@ -558,7 +558,7 @@ LoadMult(Value::Float64) = LoadMult(DSS_DEFAULT_CTX, Value)
 """
 Maximum allowable control iterations
 
-Original COM help: https://opendss.epri.com/MaxControlIterations.html
+Original COM help: <https://opendss.epri.com/MaxControlIterations.html>
 
 (Getter)
 """
@@ -570,7 +570,7 @@ MaxControlIterations() = MaxControlIterations(DSS_DEFAULT_CTX)
 """
 Maximum allowable control iterations
 
-Original COM help: https://opendss.epri.com/MaxControlIterations.html
+Original COM help: <https://opendss.epri.com/MaxControlIterations.html>
 
 (Setter)
 """
@@ -582,7 +582,7 @@ MaxControlIterations(Value::Int) = MaxControlIterations(DSS_DEFAULT_CTX, Value)
 """
 Max allowable iterations.
 
-Original COM help: https://opendss.epri.com/MaxIterations.html
+Original COM help: <https://opendss.epri.com/MaxIterations.html>
 
 (Getter)
 """
@@ -594,7 +594,7 @@ MaxIterations() = MaxIterations(DSS_DEFAULT_CTX)
 """
 Max allowable iterations.
 
-Original COM help: https://opendss.epri.com/MaxIterations.html
+Original COM help: <https://opendss.epri.com/MaxIterations.html>
 
 (Setter)
 """
@@ -606,7 +606,7 @@ MaxIterations(Value::Int) = MaxIterations(DSS_DEFAULT_CTX, Value)
 """
 Minimum number of iterations required for a power flow solution.
 
-Original COM help: https://opendss.epri.com/MinIterations.html
+Original COM help: <https://opendss.epri.com/MinIterations.html>
 
 (Getter)
 """
@@ -618,7 +618,7 @@ MinIterations() = MinIterations(DSS_DEFAULT_CTX)
 """
 Minimum number of iterations required for a power flow solution.
 
-Original COM help: https://opendss.epri.com/MinIterations.html
+Original COM help: <https://opendss.epri.com/MinIterations.html>
 
 (Setter)
 """
@@ -630,7 +630,7 @@ MinIterations(Value::Int) = MinIterations(DSS_DEFAULT_CTX, Value)
 """
 Set present solution mode
 
-Original COM help: https://opendss.epri.com/Mode2.html
+Original COM help: <https://opendss.epri.com/Mode2.html>
 
 (Getter)
 """
@@ -642,7 +642,7 @@ Mode() = Mode(DSS_DEFAULT_CTX)
 """
 Set present solution mode
 
-Original COM help: https://opendss.epri.com/Mode2.html
+Original COM help: <https://opendss.epri.com/Mode2.html>
 
 (Setter)
 """
@@ -655,7 +655,7 @@ Mode(Value::Union{Int,Lib.SolveModes}) = Mode(DSS_DEFAULT_CTX, Value)
 """
 ID (text) of the present solution mode
 
-Original COM help: https://opendss.epri.com/ModeID.html
+Original COM help: <https://opendss.epri.com/ModeID.html>
 """
 function ModeID(dss::DSSContext)::String
     return get_string(@checked dss_ccall(dss.capi.Solution_Get_ModeID, dss.ctx))
@@ -665,7 +665,7 @@ ModeID() = ModeID(DSS_DEFAULT_CTX)
 """
 Max number of iterations required to converge at any control iteration of the most recent solution.
 
-Original COM help: https://opendss.epri.com/MostIterationsDone.html
+Original COM help: <https://opendss.epri.com/MostIterationsDone.html>
 """
 function MostIterationsDone(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Solution_Get_MostIterationsDone, dss.ctx)
@@ -675,7 +675,7 @@ MostIterationsDone() = MostIterationsDone(DSS_DEFAULT_CTX)
 """
 Number of solutions to perform for Monte Carlo and time series simulations
 
-Original COM help: https://opendss.epri.com/Number1.html
+Original COM help: <https://opendss.epri.com/Number1.html>
 
 (Getter)
 """
@@ -687,7 +687,7 @@ Number() = Number(DSS_DEFAULT_CTX)
 """
 Number of solutions to perform for Monte Carlo and time series simulations
 
-Original COM help: https://opendss.epri.com/Number1.html
+Original COM help: <https://opendss.epri.com/Number1.html>
 
 (Setter)
 """
@@ -705,7 +705,7 @@ ProcessTime() = ProcessTime(DSS_DEFAULT_CTX)
 """
 Randomization mode for random variables "Gaussian" or "Uniform"
 
-Original COM help: https://opendss.epri.com/Random.html
+Original COM help: <https://opendss.epri.com/Random.html>
 
 (Getter)
 """
@@ -717,7 +717,7 @@ Random() = Random(DSS_DEFAULT_CTX)
 """
 Randomization mode for random variables "Gaussian" or "Uniform"
 
-Original COM help: https://opendss.epri.com/Random.html
+Original COM help: <https://opendss.epri.com/Random.html>
 
 (Setter)
 """
@@ -730,7 +730,7 @@ Random(Value::Union{Int,Lib.RandomModes}) = Random(DSS_DEFAULT_CTX, Value)
 """
 Seconds from top of the hour.
 
-Original COM help: https://opendss.epri.com/Seconds.html
+Original COM help: <https://opendss.epri.com/Seconds.html>
 
 (Getter)
 """
@@ -742,7 +742,7 @@ Seconds() = Seconds(DSS_DEFAULT_CTX)
 """
 Seconds from top of the hour.
 
-Original COM help: https://opendss.epri.com/Seconds.html
+Original COM help: <https://opendss.epri.com/Seconds.html>
 
 (Setter)
 """
@@ -754,7 +754,7 @@ Seconds(Value::Float64) = Seconds(DSS_DEFAULT_CTX, Value)
 """
 Time step size in sec
 
-Original COM help: https://opendss.epri.com/StepSize.html
+Original COM help: <https://opendss.epri.com/StepSize.html>
 
 (Getter)
 """
@@ -766,7 +766,7 @@ StepSize() = StepSize(DSS_DEFAULT_CTX)
 """
 Time step size in sec
 
-Original COM help: https://opendss.epri.com/StepSize.html
+Original COM help: <https://opendss.epri.com/StepSize.html>
 
 (Setter)
 """
@@ -778,7 +778,7 @@ StepSize(Value::Float64) = StepSize(DSS_DEFAULT_CTX, Value)
 """
 Flag that indicates if elements of the System Y have been changed by recent activity.
 
-Original COM help: https://opendss.epri.com/SystemYChanged.html
+Original COM help: <https://opendss.epri.com/SystemYChanged.html>
 """
 function SystemYChanged(dss::DSSContext)::Bool
     return @checked(dss_ccall(dss.capi.Solution_Get_SystemYChanged, dss.ctx)) != 0
@@ -837,7 +837,7 @@ TotalTime(Value::Float64) = TotalTime(DSS_DEFAULT_CTX, Value)
 """
 Total iterations including control iterations for most recent solution.
 
-Original COM help: https://opendss.epri.com/Totaliterations.html
+Original COM help: <https://opendss.epri.com/Totaliterations.html>
 """
 function TotalIterations(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.Solution_Get_Totaliterations, dss.ctx)
@@ -847,7 +847,7 @@ TotalIterations() = TotalIterations(DSS_DEFAULT_CTX)
 """
 Set year for planning studies
 
-Original COM help: https://opendss.epri.com/Year.html
+Original COM help: <https://opendss.epri.com/Year.html>
 
 (Getter)
 """
@@ -859,7 +859,7 @@ Year() = Year(DSS_DEFAULT_CTX)
 """
 Set year for planning studies
 
-Original COM help: https://opendss.epri.com/Year.html
+Original COM help: <https://opendss.epri.com/Year.html>
 
 (Setter)
 """
@@ -871,7 +871,7 @@ Year(Value::Int) = Year(DSS_DEFAULT_CTX, Value)
 """
 Hour as a double, including fractional part
 
-Original COM help: https://opendss.epri.com/dblHour1.html
+Original COM help: <https://opendss.epri.com/dblHour1.html>
 
 (Getter)
 """
@@ -883,7 +883,7 @@ DblHour() = DblHour(DSS_DEFAULT_CTX)
 """
 Hour as a double, including fractional part
 
-Original COM help: https://opendss.epri.com/dblHour1.html
+Original COM help: <https://opendss.epri.com/dblHour1.html>
 
 (Setter)
 """
@@ -895,7 +895,7 @@ DblHour(Value::Float64) = DblHour(DSS_DEFAULT_CTX, Value)
 """
 Percent default  annual load growth rate
 
-Original COM help: https://opendss.epri.com/pctGrowth.html
+Original COM help: <https://opendss.epri.com/pctGrowth.html>
 
 (Getter)
 """
@@ -907,7 +907,7 @@ PctGrowth() = PctGrowth(DSS_DEFAULT_CTX)
 """
 Percent default  annual load growth rate
 
-Original COM help: https://opendss.epri.com/pctGrowth.html
+Original COM help: <https://opendss.epri.com/pctGrowth.html>
 
 (Setter)
 """
@@ -945,7 +945,7 @@ SolveAll() = SolveAll(DSS_DEFAULT_CTX)
 """
 Names of the rows of the branch-to-node (B2N) matrix.
 
-Original COM help: https://opendss.epri.com/IncMatrixRows.html
+Original COM help: <https://opendss.epri.com/IncMatrixRows.html>
 """
 function IncMatrixRows(dss::DSSContext)::Vector{String}
     return get_string_array(dss.capi.Solution_Get_IncMatrixRows, dss)
@@ -955,7 +955,7 @@ IncMatrixRows() = IncMatrixRows(DSS_DEFAULT_CTX)
 """
 Names of the columns of the branch-to-node (B2N) matrix.
 
-Original COM help: https://opendss.epri.com/IncMatrixCols.html
+Original COM help: <https://opendss.epri.com/IncMatrixCols.html>
 """
 function IncMatrixCols(dss::DSSContext)::Vector{String}
     return get_string_array(dss.capi.Solution_Get_IncMatrixCols, dss)
@@ -971,7 +971,7 @@ the column and the third is the value, this way, by dividing the number of eleme
 in the array by 3 the user can obtain the number of rows in case of wanting to sort
 the vector values within a matrix.
 
-Original COM help: https://opendss.epri.com/IncMatrix.html
+Original COM help: <https://opendss.epri.com/IncMatrix.html>
 """
 function IncMatrix(dss::DSSContext)::Vector{Int32}
     return get_int32_array(dss.capi.Solution_Get_IncMatrix, dss)
@@ -986,7 +986,7 @@ matrix and they represent the distance from the buses to a reference that goes f
 the feeder head to the farthest bus in the model. The bus level index matches with
 the bus list obtained with the circuit interface.
 
-Original COM help: https://opendss.epri.com/BusLevels.html
+Original COM help: <https://opendss.epri.com/BusLevels.html>
 """
 function BusLevels(dss::DSSContext)::Vector{Int32}
     return get_int32_array(dss.capi.Solution_Get_BusLevels, dss)
@@ -1003,7 +1003,7 @@ in the array by 3 the user can obtain the number of rows in case of wanting to s
 the vector values within a matrix. The tables for the columns and rows are the same
 as the columns for the B2N columns (square matrix).
 
-Original COM help: https://opendss.epri.com/Laplacian.html
+Original COM help: <https://opendss.epri.com/Laplacian.html>
 """
 function Laplacian(dss::DSSContext)::Vector{Int32}
     return get_int32_array(dss.capi.Solution_Get_Laplacian, dss)

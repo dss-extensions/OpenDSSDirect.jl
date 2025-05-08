@@ -73,7 +73,7 @@ Extract(FileName::String) = Extract(DSS_DEFAULT_CTX, FileName)
 List of strings consisting of all names match the regular expression provided in regexp.
 If no expression is provided, all names in the current open ZIP are returned.
 
-See https://regex.sorokin.engineer/en/latest/regular_expressions.html for information on
+See <https://regex.sorokin.engineer/en/latest/regular_expressions.html> for information on
 the expression syntax and options.
 
 **(API Extension)**

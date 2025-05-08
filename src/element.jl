@@ -13,7 +13,7 @@ using ..Utils
 """
 Array of strings containing the names of all properties for the active DSS object.
 
-Original COM help: https://opendss.epri.com/AllPropertyNames1.html
+Original COM help: <https://opendss.epri.com/AllPropertyNames1.html>
 """
 function AllPropertyNames(dss::DSSContext)::Vector{String}
     return get_string_array(dss.capi.DSSElement_Get_AllPropertyNames, dss)
@@ -23,7 +23,7 @@ AllPropertyNames() = AllPropertyNames(DSS_DEFAULT_CTX)
 """
 Full Name of Active DSS Object (general element or circuit element).
 
-Original COM help: https://opendss.epri.com/Name5.html
+Original COM help: <https://opendss.epri.com/Name5.html>
 """
 function Name(dss::DSSContext)::String
     return get_string(dss_ccall(dss.capi.DSSElement_Get_Name, dss.ctx))
@@ -33,7 +33,7 @@ Name() = Name(DSS_DEFAULT_CTX)
 """
 Number of Properties for the active DSS object.
 
-Original COM help: https://opendss.epri.com/NumProperties1.html
+Original COM help: <https://opendss.epri.com/NumProperties1.html>
 """
 function NumProperties(dss::DSSContext)::Int
     return @checked dss_ccall(dss.capi.DSSElement_Get_NumProperties, dss.ctx)

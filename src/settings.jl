@@ -43,7 +43,7 @@ AllowDuplicates(Value::Bool) = AllowDuplicates(DSS_DEFAULT_CTX, Value)
 """
 List of Buses or (File=xxxx) syntax for the AutoAdd solution mode.
 
-Original COM help: https://opendss.epri.com/AutoBusList.html
+Original COM help: <https://opendss.epri.com/AutoBusList.html>
 
 (Getter)
 """
@@ -55,7 +55,7 @@ AutoBusList() = AutoBusList(DSS_DEFAULT_CTX)
 """
 List of Buses or (File=xxxx) syntax for the AutoAdd solution mode.
 
-Original COM help: https://opendss.epri.com/AutoBusList.html
+Original COM help: <https://opendss.epri.com/AutoBusList.html>
 
 (Setter)
 """
@@ -67,7 +67,7 @@ AutoBusList(Value::String) = AutoBusList(DSS_DEFAULT_CTX, Value)
 """
 Indicate if the circuit model is positive sequence.
 
-Original COM help: https://opendss.epri.com/CktModel.html
+Original COM help: <https://opendss.epri.com/CktModel.html>
 
 (Getter)
 """
@@ -79,7 +79,7 @@ CktModel() = CktModel(DSS_DEFAULT_CTX)
 """
 Indicate if the circuit model is positive sequence.
 
-Original COM help: https://opendss.epri.com/CktModel.html
+Original COM help: <https://opendss.epri.com/CktModel.html>
 
 (Setter)
 """
@@ -92,7 +92,7 @@ CktModel(Value::Union{Int,Lib.CktModels}) = CktModel(DSS_DEFAULT_CTX, Value)
 """
 Denotes whether to trace the control actions to a file.
 
-Original COM help: https://opendss.epri.com/ControlTrace.html
+Original COM help: <https://opendss.epri.com/ControlTrace.html>
 
 (Getter)
 """
@@ -104,7 +104,7 @@ ControlTrace() = ControlTrace(DSS_DEFAULT_CTX)
 """
 Denotes whether to trace the control actions to a file.
 
-Original COM help: https://opendss.epri.com/ControlTrace.html
+Original COM help: <https://opendss.epri.com/ControlTrace.html>
 
 (Setter)
 """
@@ -116,7 +116,7 @@ ControlTrace(Value::Bool) = ControlTrace(DSS_DEFAULT_CTX, Value)
 """
 Per Unit maximum voltage for Emergency conditions.
 
-Original COM help: https://opendss.epri.com/EmergVmaxpu.html
+Original COM help: <https://opendss.epri.com/EmergVmaxpu.html>
 
 (Getter)
 """
@@ -128,7 +128,7 @@ EmergVmaxpu() = EmergVmaxpu(DSS_DEFAULT_CTX)
 """
 Per Unit maximum voltage for Emergency conditions.
 
-Original COM help: https://opendss.epri.com/EmergVmaxpu.html
+Original COM help: <https://opendss.epri.com/EmergVmaxpu.html>
 
 (Setter)
 """
@@ -140,7 +140,7 @@ EmergVmaxpu(Value::Float64) = EmergVmaxpu(DSS_DEFAULT_CTX, Value)
 """
 Per Unit minimum voltage for Emergency conditions.
 
-Original COM help: https://opendss.epri.com/EmergVminpu.html
+Original COM help: <https://opendss.epri.com/EmergVminpu.html>
 
 (Getter)
 """
@@ -152,7 +152,7 @@ EmergVminpu() = EmergVminpu(DSS_DEFAULT_CTX)
 """
 Per Unit minimum voltage for Emergency conditions.
 
-Original COM help: https://opendss.epri.com/EmergVminpu.html
+Original COM help: <https://opendss.epri.com/EmergVminpu.html>
 
 (Setter)
 """
@@ -164,7 +164,7 @@ EmergVminpu(Value::Float64) = EmergVminpu(DSS_DEFAULT_CTX, Value)
 """
 Integer array defining which energy meter registers to use for computing losses
 
-Original COM help: https://opendss.epri.com/LossRegs.html
+Original COM help: <https://opendss.epri.com/LossRegs.html>
 
 (Getter)
 """
@@ -176,7 +176,7 @@ LossRegs() = LossRegs(DSS_DEFAULT_CTX)
 """
 Integer array defining which energy meter registers to use for computing losses
 
-Original COM help: https://opendss.epri.com/LossRegs.html
+Original COM help: <https://opendss.epri.com/LossRegs.html>
 
 (Setter)
 """
@@ -189,7 +189,7 @@ LossRegs(Value::Vector{Int}) = LossRegs(DSS_DEFAULT_CTX, Value)
 """
 Weighting factor applied to Loss register values.
 
-Original COM help: https://opendss.epri.com/LossWeight.html
+Original COM help: <https://opendss.epri.com/LossWeight.html>
 
 (Getter)
 """
@@ -201,7 +201,7 @@ LossWeight() = LossWeight(DSS_DEFAULT_CTX)
 """
 Weighting factor applied to Loss register values.
 
-Original COM help: https://opendss.epri.com/LossWeight.html
+Original COM help: <https://opendss.epri.com/LossWeight.html>
 
 (Setter)
 """
@@ -213,7 +213,7 @@ LossWeight(Value::Float64) = LossWeight(DSS_DEFAULT_CTX, Value)
 """
 Per Unit maximum voltage for Normal conditions.
 
-Original COM help: https://opendss.epri.com/NormVmaxpu.html
+Original COM help: <https://opendss.epri.com/NormVmaxpu.html>
 
 (Getter)
 """
@@ -225,7 +225,7 @@ NormVmaxpu() = NormVmaxpu(DSS_DEFAULT_CTX)
 """
 Per Unit maximum voltage for Normal conditions.
 
-Original COM help: https://opendss.epri.com/NormVmaxpu.html
+Original COM help: <https://opendss.epri.com/NormVmaxpu.html>
 
 (Setter)
 """
@@ -237,7 +237,7 @@ NormVmaxpu(Value::Float64) = NormVmaxpu(DSS_DEFAULT_CTX, Value)
 """
 Per Unit minimum voltage for Normal conditions.
 
-Original COM help: https://opendss.epri.com/NormVminpu.html
+Original COM help: <https://opendss.epri.com/NormVminpu.html>
 
 (Getter)
 """
@@ -249,7 +249,7 @@ NormVminpu() = NormVminpu(DSS_DEFAULT_CTX)
 """
 Per Unit minimum voltage for Normal conditions.
 
-Original COM help: https://opendss.epri.com/NormVminpu.html
+Original COM help: <https://opendss.epri.com/NormVminpu.html>
 
 (Setter)
 """
@@ -261,7 +261,7 @@ NormVminpu(Value::Float64) = NormVminpu(DSS_DEFAULT_CTX, Value)
 """
 Name of LoadShape object that serves as the source of price signal data for yearly simulations, etc.
 
-Original COM help: https://opendss.epri.com/PriceCurve.html
+Original COM help: <https://opendss.epri.com/PriceCurve.html>
 
 (Getter)
 """
@@ -273,7 +273,7 @@ PriceCurve() = PriceCurve(DSS_DEFAULT_CTX)
 """
 Name of LoadShape object that serves as the source of price signal data for yearly simulations, etc.
 
-Original COM help: https://opendss.epri.com/PriceCurve.html
+Original COM help: <https://opendss.epri.com/PriceCurve.html>
 
 (Setter)
 """
@@ -285,7 +285,7 @@ PriceCurve(Value::String) = PriceCurve(DSS_DEFAULT_CTX, Value)
 """
 Price Signal for the Circuit
 
-Original COM help: https://opendss.epri.com/PriceSignal.html
+Original COM help: <https://opendss.epri.com/PriceSignal.html>
 
 (Getter)
 """
@@ -297,7 +297,7 @@ PriceSignal() = PriceSignal(DSS_DEFAULT_CTX)
 """
 Price Signal for the Circuit
 
-Original COM help: https://opendss.epri.com/PriceSignal.html
+Original COM help: <https://opendss.epri.com/PriceSignal.html>
 
 (Setter)
 """
@@ -309,7 +309,7 @@ PriceSignal(Value::Float64) = PriceSignal(DSS_DEFAULT_CTX, Value)
 """
 Gets value of trapezoidal integration flag in energy meters. Defaults to `False`.
 
-Original COM help: https://opendss.epri.com/Trapezoidal.html
+Original COM help: <https://opendss.epri.com/Trapezoidal.html>
 
 (Getter)
 """
@@ -321,7 +321,7 @@ Trapezoidal() = Trapezoidal(DSS_DEFAULT_CTX)
 """
 Gets value of trapezoidal integration flag in energy meters. Defaults to `False`.
 
-Original COM help: https://opendss.epri.com/Trapezoidal.html
+Original COM help: <https://opendss.epri.com/Trapezoidal.html>
 
 (Setter)
 """
@@ -333,7 +333,7 @@ Trapezoidal(Value::Bool) = Trapezoidal(DSS_DEFAULT_CTX, Value)
 """
 Array of Integers defining energy meter registers to use for computing UE
 
-Original COM help: https://opendss.epri.com/UEregs.html
+Original COM help: <https://opendss.epri.com/UEregs.html>
 
 (Getter)
 """
@@ -345,7 +345,7 @@ UERegs() = UERegs(DSS_DEFAULT_CTX)
 """
 Array of Integers defining energy meter registers to use for computing UE
 
-Original COM help: https://opendss.epri.com/UEregs.html
+Original COM help: <https://opendss.epri.com/UEregs.html>
 
 (Setter)
 """
@@ -358,7 +358,7 @@ UERegs(Value::Vector{Int}) = UERegs(DSS_DEFAULT_CTX, Value)
 """
 Weighting factor applied to UE register values.
 
-Original COM help: https://opendss.epri.com/UEweight.html
+Original COM help: <https://opendss.epri.com/UEweight.html>
 
 (Getter)
 """
@@ -370,7 +370,7 @@ UEWeight() = UEWeight(DSS_DEFAULT_CTX)
 """
 Weighting factor applied to UE register values.
 
-Original COM help: https://opendss.epri.com/UEweight.html
+Original COM help: <https://opendss.epri.com/UEweight.html>
 
 (Setter)
 """
@@ -382,7 +382,7 @@ UEWeight(Value::Float64) = UEWeight(DSS_DEFAULT_CTX, Value)
 """
 Array of doubles defining the legal voltage bases in kV L-L
 
-Original COM help: https://opendss.epri.com/VoltageBases.html
+Original COM help: <https://opendss.epri.com/VoltageBases.html>
 
 (Getter)
 """
@@ -394,7 +394,7 @@ VoltageBases() = VoltageBases(DSS_DEFAULT_CTX)
 """
 Array of doubles defining the legal voltage bases in kV L-L
 
-Original COM help: https://opendss.epri.com/VoltageBases.html
+Original COM help: <https://opendss.epri.com/VoltageBases.html>
 
 (Setter)
 """
@@ -407,7 +407,7 @@ VoltageBases(Value::Vector{Float64}) = VoltageBases(DSS_DEFAULT_CTX, Value)
 """
 Locks Zones on energy meters to prevent rebuilding if a circuit change occurs.
 
-Original COM help: https://opendss.epri.com/ZoneLock.html
+Original COM help: <https://opendss.epri.com/ZoneLock.html>
 
 (Getter)
 """
@@ -419,7 +419,7 @@ ZoneLock() = ZoneLock(DSS_DEFAULT_CTX)
 """
 Locks Zones on energy meters to prevent rebuilding if a circuit change occurs.
 
-Original COM help: https://opendss.epri.com/ZoneLock.html
+Original COM help: <https://opendss.epri.com/ZoneLock.html>
 
 (Setter)
 """
@@ -504,7 +504,7 @@ commands contained in the file are executed).
 Set to an empty string to reset/disable the filter.
 
 Case-insensitive.
-See https://regex.sorokin.engineer/en/latest/regular_expressions.html for information on 
+See <https://regex.sorokin.engineer/en/latest/regular_expressions.html> for information on 
 the expression syntax and options.
 
 Even if the `clear` command is included in `Settings.SkipCommands()`, the `DSS.ClearAll()` method can 
@@ -529,7 +529,7 @@ commands contained in the file are executed).
 Set to an empty string to reset/disable the filter.
 
 Case-insensitive.
-See https://regex.sorokin.engineer/en/latest/regular_expressions.html for information on 
+See <https://regex.sorokin.engineer/en/latest/regular_expressions.html> for information on 
 the expression syntax and options.
 
 Even if the `clear` command is included in `Settings.SkipCommands()`, the `DSS.ClearAll()` method can 
