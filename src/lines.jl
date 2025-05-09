@@ -181,7 +181,7 @@ Capacitance matrix, nF per unit length
 (Getter)
 """
 function CMatrix(dss::DSSContext)::Matrix{Float64}
-    n = Phases()
+    n = Phases(dss)
     if n == 0
         cmatrix = reshape(Float64[], (0, 0))
     else
@@ -197,7 +197,6 @@ Capacitance matrix, nF per unit length
 (Setter)
 """
 function CMatrix(Value::Matrix{Float64})
-    n = Phases()
     CMatrix(Value[:])
 end
 
@@ -261,7 +260,7 @@ end
 Geometry(Value::String) = Geometry(DSS_DEFAULT_CTX, Value)
 
 """
-Length of line section in units compatible with the LineCode definition.
+Length of line in units compatible with the LineCode definition.
 
 Original COM help: <https://opendss.epri.com/Length.html>
 
@@ -273,7 +272,7 @@ end
 Length() = Length(DSS_DEFAULT_CTX)
 
 """
-Length of line section in units compatible with the LineCode definition.
+Length of line in units compatible with the LineCode definition.
 
 Original COM help: <https://opendss.epri.com/Length.html>
 
@@ -333,7 +332,7 @@ end
 NormAmps(Value::Float64) = NormAmps(DSS_DEFAULT_CTX, Value)
 
 """
-Number of customers on this line section.
+Number of customers on this line.
 
 *Requires an energy meter with an updated zone.*
 
@@ -484,7 +483,7 @@ Original COM help: <https://opendss.epri.com/Rmatrix.html>
 (Getter)
 """
 function RMatrix(dss::DSSContext)::Matrix{Float64}
-    n = Phases()
+    n = Phases(dss)
     if n == 0
         rmatrix = reshape(Float64[], (0, 0))
     else
@@ -544,7 +543,7 @@ end
 Spacing(Value::String) = Spacing(DSS_DEFAULT_CTX, Value)
 
 """
-Total Number of customers served from this line section.
+Total Number of customers served from this line.
 
 Original COM help: <https://opendss.epri.com/TotalCust.html>
 """
@@ -554,7 +553,9 @@ end
 TotalCust() = TotalCust(DSS_DEFAULT_CTX)
 
 """
-Units
+Length units for the active line.
+
+Original COM help: https://opendss.epri.com/Units.html
 
 (Getter)
 """
@@ -564,7 +565,9 @@ end
 Units() = Units(DSS_DEFAULT_CTX)
 
 """
-Units
+Length units for the active line.
+
+Original COM help: https://opendss.epri.com/Units.html
 
 (Setter)
 """
@@ -654,7 +657,7 @@ Original COM help: <https://opendss.epri.com/Xmatrix.html>
 (Getter)
 """
 function XMatrix(dss::DSSContext)::Matrix{Float64}
-    n = Phases()
+    n = Phases(dss)
     if n == 0
         xmatrix = reshape(Float64[], (0, 0))
     else

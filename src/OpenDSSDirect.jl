@@ -83,6 +83,7 @@ end
 module Lib
 
     using CEnum
+    using BitFlags: @bitflag
 
     import ..OpenDSSDirect: LIBRARY
 
@@ -194,7 +195,7 @@ function LoadOpenDSSLib(libpath::String)::DSSContext
     # Create the context    
     new_ctx = dss_ccall(capi.ctx_New)
     if new_ctx == C_NULL
-        error("The OpenDSS library could not be loaded!")
+        error("The OpenDSS library (\"$libpath\") could not be loaded!")
     end
 
     # Always start to avoid issues with OpenDSS-C, or potentially threads in AltDSS
@@ -255,7 +256,7 @@ function __init__()
 
     loaded_status = AltDSSCAPILibInit(LIBRARY, "", rfuncs)
     if loaded_status != 1
-        error("DSS engine could not be loaded (error $loaded_status)!")
+        error("DSS engine (\"$LIBRARY\") could not be loaded (error $loaded_status)!")
     end
     finalizer(Utils.finalize_capi, DSS_DEFAULT_STRUCT)
 
