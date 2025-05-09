@@ -129,7 +129,7 @@ Original COM help: <https://opendss.epri.com/Cmatrix1.html>
 (Getter)
 """
 function Cmatrix(dss::DSSContext)::Matrix{Float64}
-    n = Phases()
+    n = Phases(dss)
     if n == 0
         cmatrix = reshape(Float64[], (0, 0))
     else
@@ -147,7 +147,6 @@ Original COM help: <https://opendss.epri.com/Cmatrix1.html>
 (Setter)
 """
 function Cmatrix(Value::Matrix{Float64})
-    n = Phases()
     Cmatrix(Value[:])
 end
 
@@ -302,7 +301,7 @@ Original COM help: <https://opendss.epri.com/Rmatrix1.html>
 (Getter)
 """
 function Rmatrix(dss::DSSContext)::Matrix{Float64}
-    n = Phases()
+    n = Phases(dss)
     if n == 0
         rmatrix = reshape(Float64[], (0, 0))
     else
@@ -320,7 +319,6 @@ Original COM help: <https://opendss.epri.com/Rmatrix1.html>
 (Setter)
 """
 function Rmatrix(Value::Matrix{Float64})
-    n = Phases()
     Rmatrix(Value[:])
 end
 
@@ -414,7 +412,7 @@ Original COM help: <https://opendss.epri.com/Xmatrix1.html>
 (Getter)
 """
 function Xmatrix(dss::DSSContext)::Matrix{Float64}
-    n = Phases()
+    n = Phases(dss)
     if n == 0
         xmatrix = reshape(Float64[], (0, 0))
     else
@@ -432,7 +430,6 @@ Original COM help: <https://opendss.epri.com/Xmatrix1.html>
 (Setter)
 """
 function Xmatrix(Value::Matrix{Float64})
-    n = Phases()
     Xmatrix(Value[:])
 end
 

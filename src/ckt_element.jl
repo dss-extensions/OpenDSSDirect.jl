@@ -251,7 +251,7 @@ Currents in magnitude, angle (degrees) format as an array of doubles.
 
 Original COM help: <https://opendss.epri.com/CurrentsMagAng.html>
 """
-function CurrentsMagAng(dss::DSSContext)::Array{Float64,2}
+function CurrentsMagAng(dss::DSSContext)::Matrix{Float64}
     r = get_float64_array(dss.capi.CktElement_Get_CurrentsMagAng, dss)
     return reshape(r, (2, Int(length(r) / 2)))
 end
@@ -554,7 +554,7 @@ Residual currents for each terminal: (magnitude, angle in degrees)
 
 Original COM help: <https://opendss.epri.com/Residuals.html>
 """
-function Residuals(dss::DSSContext)::Array{Float64,2}
+function Residuals(dss::DSSContext)::Matrix{Float64}
     r = get_float64_array(dss.capi.CktElement_Get_Residuals, dss)
     return reshape(r, (2, Int(length(r) / 2)))
 end
@@ -615,7 +615,7 @@ Voltages at each conductor in magnitude, angle form as array of doubles.
 
 Original COM help: <https://opendss.epri.com/VoltagesMagAng.html>
 """
-function VoltagesMagAng(dss::DSSContext)::Array{Float64,2}
+function VoltagesMagAng(dss::DSSContext)::Matrix{Float64}
     r = get_float64_array(dss.capi.CktElement_Get_VoltagesMagAng, dss)
     return reshape(r, (2, Int(length(r) / 2)))
 end
@@ -626,7 +626,7 @@ YPrim matrix, column order, complex numbers
 
 Original COM help: <https://opendss.epri.com/Yprim.html>
 """
-function YPrim(dss::DSSContext)::Array{ComplexF64,2}
+function YPrim(dss::DSSContext)::Matrix{ComplexF64}
     r = get_complex64_array(dss.capi.CktElement_Get_Yprim, dss)
         # TODO: should we transpose here?
     return reshape(r, (Int(sqrt(length(r))), Int(sqrt(length(r)))))

@@ -48,11 +48,13 @@ function get_string_array(func::Lib.altdss_func_v_cvp_strs_i32p, dss::DSSContext
             )
         )
     end
-    data = Vector{String}([])
+    data = Vector{String}(undef, cnt[1])
     for i in 1:cnt[1]
         p = unsafe_load(ptr[], i)
         if p != C_NULL
-            push!(data, unsafe_string(p))
+            data[i] = unsafe_string(p)
+        else
+            data[i] = ""
         end
     end
     dss_ccall(dss.capi.DSS_Dispose_PPAnsiChar, ptr, cnt[2])
@@ -73,11 +75,13 @@ function get_string_array(func::Union{Lib.altdss_func_v_cvp_strs_i32p_u16, Lib.a
             )
         )
     end
-    data = Vector{String}([])
+    data = Vector{String}(undef, cnt[1])
     for i in 1:cnt[1]
         p = unsafe_load(ptr[], i)
         if p != C_NULL
-            push!(data, unsafe_string(p))
+            data[i] = unsafe_string(p)
+        else
+            data[i] = ""
         end
     end
     dss_ccall(dss.capi.DSS_Dispose_PPAnsiChar, ptr, cnt[2])
@@ -98,9 +102,9 @@ function get_int32_array(func::Lib.altdss_func_v_cvp_i32pp_i32p, dss::DSSContext
             )
         )
     end
-    data = Vector{Int}([])
+    data = Vector{Int}(undef, cnt[1])
     for i in 1:cnt[1]
-        push!(data, Int(unsafe_load(ptr[], i)))
+        data[i] = Int(unsafe_load(ptr[], i))
     end
     dss_ccall(dss.capi.DSS_Dispose_PInteger, ptr)
     return data
@@ -120,9 +124,9 @@ function get_int8_array(func::Lib.altdss_func_v_cvp_i8pp_i32p, dss::DSSContext):
             )
         )
     end
-    data = Vector{Int8}([])
+    data = Vector{Int8}(undef, cnt[1])
     for i in 1:cnt[1]
-        push!(data, unsafe_load(ptr[], i))
+        data[i] = unsafe_load(ptr[], i)
     end
     dss_ccall(dss.capi.DSS_Dispose_PByte, ptr)
     return data
@@ -142,9 +146,9 @@ function get_int8_array(func::Lib.altdss_func_v_cvp_i8pp_i32p_cstr, dss::DSSCont
             )
         )
     end
-    data = Vector{Int8}([])
+    data = Vector{Int8}(undef, cnt[1])
     for i in 1:cnt[1]
-        push!(data, unsafe_load(ptr[], i))
+        data[i] = unsafe_load(ptr[], i)
     end
     dss_ccall(dss.capi.DSS_Dispose_PByte, ptr)
     return data
@@ -164,9 +168,9 @@ function get_float64_array(func::Lib.altdss_func_v_cvp_f64pp_i32p, dss::DSSConte
             )
         )
     end
-    data = Vector{Float64}([])
+    data = Vector{Float64}(undef, cnt[1])
     for i in 1:cnt[1]
-        push!(data, unsafe_load(ptr[], i))
+        data[i] = unsafe_load(ptr[], i)
     end
     dss_ccall(dss.capi.DSS_Dispose_PDouble, ptr)
     return data
@@ -186,9 +190,9 @@ function get_float64_array(func::Union{Lib.altdss_func_v_cvp_f64pp_i32p_u16,Lib.
             )
         )
     end
-    data = Vector{Float64}([])
+    data = Vector{Float64}(undef, cnt[1])
     for i in 1:cnt[1]
-        push!(data, unsafe_load(ptr[], i))
+        data[i] = unsafe_load(ptr[], i)
     end
     dss_ccall(dss.capi.DSS_Dispose_PDouble, ptr)
     return data
@@ -208,9 +212,9 @@ function get_float64_array(func::Lib.altdss_func_v_cvp_f64pp_i32p_i32p_i32, dss:
             )
         )
     end
-    data = Vector{Float64}([])
+    data = Vector{Float64}(undef, cnt[1])
     for i in 1:cnt[1]
-        push!(data, unsafe_load(ptr[], i))
+        data[i] = unsafe_load(ptr[], i)
     end
     dss_ccall(dss.capi.DSS_Dispose_PDouble, ptr)
     return data
@@ -230,9 +234,9 @@ function get_float64_array(func::Lib.altdss_func_v_cvp_f64pp_i32p_f64_f64_i32, d
             )
         )
     end
-    data = Vector{Float64}([])
+    data = Vector{Float64}(undef, cnt[1])
     for i in 1:cnt[1]
-        push!(data, unsafe_load(ptr[], i))
+        data[i] = unsafe_load(ptr[], i)
     end
     dss_ccall(dss.capi.DSS_Dispose_PDouble, ptr)
     return data

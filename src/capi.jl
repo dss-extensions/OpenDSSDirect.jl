@@ -83,6 +83,7 @@ const altdss_func_v_cvp_size = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, UInt64}, Cvoid}
 const altdss_func_v_cvp_cf64p_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Float64}, Int32}, Cvoid}
 const altdss_func_v_cvp_i8pp_i32p = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Int8}}, Ptr{Int32}}, Cvoid}
 const altdss_func_v_cvp_f64pp_i32p_u16 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}, UInt16}, Cvoid}
+const altdss_func_v_cvp_i32_u16 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, UInt16}, Cvoid}
 const altdss_func_v_cvp_u16_u32p_u32p_i32pp_i32pp_f64pp = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, UInt16, Ptr{UInt32}, Ptr{UInt32}, Ptr{Ptr{Int32}}, Ptr{Ptr{Int32}}, Ptr{Ptr{Float64}}}, Cvoid}
 const altdss_func_v_cvp_f64pp = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Ptr{Float64}}}, Cvoid}
 const altdss_func_i32_cvp_f64p = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Float64}}, Int32}
@@ -1803,6 +1804,7 @@ mutable struct AltDSSCAPI
     Settings_Get_ControlTrace::altdss_func_u16_cvp
     Settings_Get_EmergVmaxpu::altdss_func_f64_cvp
     Settings_Get_EmergVminpu::altdss_func_f64_cvp
+    Settings_Get_Flag::altdss_func_u16_cvp_i32
     Settings_Get_IterateDisabled::altdss_func_i32_cvp
     Settings_Get_LoadsTerminalCheck::altdss_func_u16_cvp
     Settings_Get_LossRegs::altdss_func_v_cvp_i32pp_i32p
@@ -1830,6 +1832,7 @@ mutable struct AltDSSCAPI
     Settings_Set_ControlTrace::altdss_func_v_cvp_u16
     Settings_Set_EmergVmaxpu::altdss_func_v_cvp_f64
     Settings_Set_EmergVminpu::altdss_func_v_cvp_f64
+    Settings_Set_Flag::altdss_func_v_cvp_i32_u16
     Settings_Set_IterateDisabled::altdss_func_v_cvp_i32
     Settings_Set_LoadsTerminalCheck::altdss_func_v_cvp_u16
     Settings_Set_LossRegs::altdss_func_v_cvp_ci32p_i32
@@ -2336,10 +2339,32 @@ mutable struct AltDSSCAPI
     AltDSSCAPI() = new()
 end # struct AltDSSCAPI
 #endregion main_struct
-const LIBRARY_SUFFIX = ""
-const LOADER_LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libaltdss_capi_loader$(LIBRARY_SUFFIX).so"))
-const ODDIE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libaltdss_oddie_capi$(LIBRARY_SUFFIX).so"))
-const ALTDSS_LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libaltdss_capi$(LIBRARY_SUFFIX).so"))
+
+if get(ENV, "DSS_EXTENSIONS_DEBUG", "0") == "1"
+    LIBRARY_SUFFIX = "d"
+    @warn "Environment variable DSS_EXTENSIONS_DEBUG=1 is set: loading the debug version of AltDSS engine library for the default context"
+else
+    LIBRARY_SUFFIX = ""
+end
+
+if Sys.iswindows()
+    const LOADER_LIBRARY = abspath(joinpath(@__DIR__, "../deps/windows/altdss_capi_loader$(LIBRARY_SUFFIX).dll"))
+    const ODDIE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/windows/altdss_oddie_capi$(LIBRARY_SUFFIX).dll"))
+    const ALTDSS_LIBRARY = abspath(joinpath(@__DIR__, "../deps/windows/altdss_capi$(LIBRARY_SUFFIX).dll"))
+    const KLUSOLVE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/windows/libklusolvex.dll"))
+elseif Sys.islinux()
+    const LOADER_LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libaltdss_capi_loader$(LIBRARY_SUFFIX).so"))
+    const ODDIE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libaltdss_oddie_capi$(LIBRARY_SUFFIX).so"))
+    const ALTDSS_LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libaltdss_capi$(LIBRARY_SUFFIX).so"))
+    const KLUSOLVE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/linux/libklusolvex.so"))
+elseif Sys.isapple()
+    const LOADER_LIBRARY = abspath(joinpath(@__DIR__, "../deps/apple/libaltdss_capi_loader$(LIBRARY_SUFFIX).dylib"))
+    const ODDIE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/apple/libaltdss_oddie_capi$(LIBRARY_SUFFIX).dylib"))
+    const ALTDSS_LIBRARY = abspath(joinpath(@__DIR__, "../deps/apple/libaltdss_capi$(LIBRARY_SUFFIX).dylib"))
+    const KLUSOLVE_LIBRARY = abspath(joinpath(@__DIR__, "../deps/apple/libklusolvex.dylib"))
+else
+    error("Unknown operating system. Cannot use OpenDSSDirect")
+end
 
 function AltDSSCAPILibInit(libName::String, libInitFuncName::String, funcs::Ref{AltDSSCAPI})::Int32
     ccall(
@@ -2605,6 +2630,10 @@ end
 
 function dss_ccall(f::altdss_func_v_cvp_f64pp_i32p_u16, x0, x1, x2, x3)
     ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Ptr{Ptr{Float64}}, Ptr{Int32}, UInt16), x0, x1, x2, x3)
+end
+
+function dss_ccall(f::altdss_func_v_cvp_i32_u16, x0, x1, x2)
+    ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Int32, UInt16), x0, x1, x2)
 end
 
 function dss_ccall(f::altdss_func_v_cvp_u16_u32p_u32p_i32pp_i32pp_f64pp, x0, x1, x2, x3, x4, x5, x6)
@@ -3059,4 +3088,6 @@ function dss_ccall(f::altdss_func_v_cstr_u32p, x0, x1)
     ccall(f.cfunc, Cvoid, (Cstring, Ptr{UInt32}), x0, x1)
 end
 
+
 export AltDSSCAPILibInit, AltDSSCAPILibClose, AltDSSCAPI, LOADER_LIBRARY, ALTDSS_LIBRARY, ODDIE_LIBRARY, dss_ccall
+

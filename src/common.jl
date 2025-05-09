@@ -128,7 +128,8 @@ end
     StorageStates_Discharging = 1
 end
 
-@enum DSSJSONFlags::Int32 begin
+@bitflag DSSJSONFlags::UInt32 begin
+    DSSJSONFlags_Default = 0
     DSSJSONFlags_Full = 1
     DSSJSONFlags_SkipRedundant = 2
     DSSJSONFlags_EnumAsInt = 4
@@ -139,7 +140,7 @@ end
     DSSJSONFlags_LowercaseKeys = 128
     DSSJSONFlags_IncludeDefaultObjs = 256
     DSSJSONFlags_SkipTimestamp = 512
-    DSSJSONFlags_SkipBuses = 1024    
+    DSSJSONFlags_SkipBuses = 1024
 end
 
 """
