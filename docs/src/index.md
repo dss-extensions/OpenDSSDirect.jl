@@ -11,9 +11,14 @@ support. Currently we support Windows, Linux and macOS, on ARM and x86 processor
 
 See also the [DSS-Extensions site](https://dss-extensions.org/) for more.
 
-**New:** Besides the AltDSS engine, OpenDSSDirect.jl now supports loading EPRI's OpenDSS engine libraries through
-the new AltDSS subproject [Oddie](https://github.com/dss-extensions/dss_capi/tree/master/src/altdss_oddie). See
 
+## New features in 2025
+
+Besides the AltDSS engine, OpenDSSDirect.jl now supports loading EPRI's OpenDSS engine libraries through
+the new AltDSS subproject [Oddie](https://github.com/dss-extensions/dss_capi/tree/master/src/altdss_oddie). See
+[OpenDSS Engines](@ref).
+
+A new submodule, AltDSS, has been implemented to expose all DSS objects as implemented in AltDSS. See [`AltDSS`: the alternative API](@ref).
 
 ## Installation
 
@@ -33,7 +38,7 @@ To install the latest development version, use the following from within Julia:
 
 This package includes our alternative OpenDSS as a library. You do not have to install OpenDSS
 separately. In particular, it includes the OpenDSSDirect dynamically linked
-library using [dss_capi](https://github.com/dss-extensions/dss_capi) that implements the direct-access API.
+library using [AltDSS/DSS C-API](https://github.com/dss-extensions/dss_capi) that implements the direct-access API.
 
 Users new to OpenDSS are still encouraged to use EPRI's official documentation and examples in general.
 

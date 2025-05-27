@@ -24,8 +24,6 @@ export DSSContext
 export DSS_DEFAULT_CTX
 export @checked
 
-const DSS_DEFAULT_CTX = DSSContext(C_NULL, OpenDSSDirect.DSS_DEFAULT_STRUCT, C_NULL)
-
 function get_string(cstring::Cstring)::String
     if cstring != C_NULL
         return unsafe_string(cstring)

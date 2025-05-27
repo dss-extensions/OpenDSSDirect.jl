@@ -56,7 +56,7 @@ export DSSContext
 
 export dss
 
-export DSS_DEFAULT_STRUCT
+export DSS_DEFAULT_CTX
 
 import Libdl
 
@@ -103,6 +103,7 @@ mutable struct DSSContext
 end
 
 DSS_DEFAULT_STRUCT = AltDSSCAPI()
+DSS_DEFAULT_CTX = DSSContext(C_NULL, DSS_DEFAULT_STRUCT, C_NULL)
 
 include("utils.jl")
 
@@ -159,6 +160,8 @@ include("windgens.jl")
 
 include("repl.jl")
 include("iterators.jl")
+
+include("altdss/altdss.jl")
 
 include("bench.jl")
 
@@ -243,6 +246,19 @@ function LoadAltDSSLib(libpath::String)::DSSContext
     finalizer(Utils.finalize_ctx, wrapped_ctx)
 
     return wrapped_ctx
+end
+
+"""
+Sets the default DSS context.
+
+If the user loads an OpenDSS or AltDSS library, this method can be used to
+set it as the default context for convenience.
+
+**(API Extension)**
+"""
+function SetDefaultContext(dss::DSSContext)
+    global DSS_DEFAULT_CTX
+    DSS_DEFAULT_CTX = dss
 end
 
 function __init__()
