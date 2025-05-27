@@ -72,6 +72,7 @@ makedocs(
                 "api/YMatrix.md",
                 "api/ZIP.md",
               ],
+              "Alt API" => [joinpath("api/altdss", fn) for fn in readdir(joinpath(@__DIR__, "src/api/altdss"))],
               "flags.md",
               "dssmode.md",
               "Low-level API" => "lowlevel.md",
