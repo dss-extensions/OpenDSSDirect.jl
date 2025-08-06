@@ -121,7 +121,7 @@ NormAmps(Value::Float64) = NormAmps(DSS_DEFAULT_CTX, Value)
 
 """Units (Getter)"""
 function Units(dss::DSSContext)::Array{Int}
-    return get_in32_array(Lib.LineGeometries_Get_Units, dss.ctx)
+    return get_int32_array(Lib.LineGeometries_Get_Units, dss.ctx)
 end
 Units() = Units(DSS_DEFAULT_CTX)
 
