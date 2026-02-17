@@ -179,7 +179,7 @@ Units
 (Getter)
 """
 function Units(dss::DSSContext)::Array{Int}
-    return get_in32_array(dss.capi.LineGeometries_Get_Units, dss)
+    return get_int32_array(dss.capi.LineGeometries_Get_Units, dss)
 end
 Units() = Units(DSS_DEFAULT_CTX)
 
