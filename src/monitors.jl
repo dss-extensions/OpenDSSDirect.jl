@@ -10,6 +10,7 @@ using ..Utils
                                  $(DOCSTRING)
                                  """
 
+function Channel end
 
 """Array of names of all Monitor objects."""
 function AllNames(dss::DSSContext)::Vector{String}

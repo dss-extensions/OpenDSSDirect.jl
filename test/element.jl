@@ -4,7 +4,7 @@ init8500()
 
 @testset "Element" begin
 
-@test Element.NumProperties() == 35
+@test Element.NumProperties() == 39
 @test Element.Name() == "RegControl.vreg4_c"
 @test lowercase(Element.AllPropertyNames()[1]) == "transformer"
 

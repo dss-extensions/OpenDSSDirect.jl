@@ -44,6 +44,7 @@ function Base.show(io::IO, obj::ESPVLControlObj)
     print(name)
 end
 
+function Type end
 
 include("dss_object.jl")
 

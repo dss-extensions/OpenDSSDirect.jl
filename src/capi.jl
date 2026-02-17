@@ -197,13 +197,14 @@ const altdss_func_v_strs_i32p_vp = DSSCFunctionPtr{Tuple{Ptr{Ptr{Cstring}}, Ptr{
 const altdss_func_v_vp_i32_f64 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Float64}, Cvoid}
 const altdss_func_v_vp_cstr_f64 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Cstring, Float64}, Cvoid}
 const altdss_func_f64_vp_cstr = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Cstring}, Float64}
+const altdss_func_v_vp_cf64p_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Float64}, Int32}, Cvoid}
 const altdss_func_v_f64pp_i32p_vpp_i32 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32}, Cvoid}
 const altdss_func_f64_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid},}, Float64}
 const altdss_func_f64_vp_b = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32}, Float64}
 const altdss_func_v_f64pp_i32p_vpp_i32_b = DSSCFunctionPtr{Tuple{Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Ptr{Cvoid}}, Int32, Int32}, Cvoid}
 const altdss_func_v_vp_i32_vp_vp_vp_b_b_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Int32, Ptr{Cvoid}, Ptr{Cvoid}, Ptr{Cvoid}, Int32, Int32, Int32}, Cvoid}
+const altdss_func_v_f64pp_i32p_vp_f64 = DSSCFunctionPtr{Tuple{Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Cvoid}, Float64}, Cvoid}
 const altdss_func_v_i8pp_i32p_vp = DSSCFunctionPtr{Tuple{Ptr{Ptr{Int8}}, Ptr{Int32}, Ptr{Cvoid}}, Cvoid}
-const altdss_func_v_vp_cf64p_i32 = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Float64}, Int32}, Cvoid}
 const altdss_func_cstr_cvp_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Cvoid}}, Cstring}
 const altdss_func_i32_cvp_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Cvoid}}, Int32}
 const altdss_func_f64_cvp_vp = DSSCFunctionPtr{Tuple{Ptr{Cvoid}, Ptr{Cvoid}}, Float64}
@@ -345,6 +346,7 @@ mutable struct AltDSSCAPI
     Alt_CE_Open::altdss_func_v_vp_i32_i32
     Alt_CE_Set_BusNames::altdss_func_v_vp_cstrp_i32
     Alt_CE_Set_DisplayName::altdss_func_v_vp_cstr
+    Alt_LoadShape_MultAtHour::altdss_func_v_f64pp_i32p_vp_f64
     Alt_LoadShape_Set_Points::altdss_func_v_vp_i32_vp_vp_vp_b_b_i32
     Alt_LoadShape_UseFloat32::altdss_func_v_vp
     Alt_LoadShape_UseFloat64::altdss_func_v_vp
@@ -380,6 +382,9 @@ mutable struct AltDSSCAPI
     Alt_Monitor_Get_dblFreq::altdss_func_v_f64pp_i32p_vp
     Alt_Monitor_Get_dblHour::altdss_func_v_f64pp_i32p_vp
     Alt_Monitor_Show::altdss_func_v_vp
+    Alt_PCE_ForceITerminal::altdss_func_v_vp_cf64p_i32
+    Alt_PCE_ForceInjCurrents::altdss_func_v_vp_cf64p_i32
+    Alt_PCE_ForceYPrim::altdss_func_v_vp_cf64p_i32
     Alt_PCE_Get_EnergyMeter::altdss_func_vp_vp
     Alt_PCE_Get_EnergyMeterName::altdss_func_cstr_vp
     Alt_PCE_Get_VariableName::altdss_func_cstr_vp_i32
@@ -399,6 +404,7 @@ mutable struct AltDSSCAPI
     Alt_PDE_Get_Lambda::altdss_func_f64_vp
     Alt_PDE_Get_NumCustomers::altdss_func_i32_vp
     Alt_PDE_Get_ParentPDElement::altdss_func_vp_vp
+    Alt_PDE_Get_SeasonRatings::altdss_func_f64_vp
     Alt_PDE_Get_SectionID::altdss_func_i32_vp
     Alt_PDE_Get_TotalCustomers::altdss_func_i32_vp
     Alt_PDE_Get_TotalMiles::altdss_func_f64_vp
@@ -2304,17 +2310,25 @@ mutable struct AltDSSCAPI
     YMatrix_GetCompressedYMatrix::altdss_func_v_cvp_u16_u32p_u32p_i32pp_i32pp_f64pp
     YMatrix_GetPCInjCurr::altdss_func_v_cvp
     YMatrix_GetSourceInjCurrents::altdss_func_v_cvp
+    YMatrix_Get_ControlIteration::altdss_func_i32_cvp
     YMatrix_Get_Handle::altdss_func_vp_cvp
     YMatrix_Get_Iteration::altdss_func_i32_cvp
+    YMatrix_Get_IterationFlag::altdss_func_i32_cvp
     YMatrix_Get_LoadsNeedUpdating::altdss_func_u16_cvp
+    YMatrix_Get_SolutionAbort::altdss_func_u16_cvp
     YMatrix_Get_SolutionInitialized::altdss_func_u16_cvp
     YMatrix_Get_SolverOptions::altdss_func_u64_cvp
     YMatrix_Get_SystemYChanged::altdss_func_u16_cvp
     YMatrix_Get_UseAuxCurrents::altdss_func_u16_cvp
+    YMatrix_IncrementTime::altdss_func_v_cvp_f64
+    YMatrix_IntegratePCStates::altdss_func_v_cvp
     YMatrix_SaveAsMarketFiles::altdss_func_v_cvp_cstr
     YMatrix_SetGeneratordQdV::altdss_func_v_cvp
+    YMatrix_Set_ControlIteration::altdss_func_v_cvp_i32
     YMatrix_Set_Iteration::altdss_func_v_cvp_i32
+    YMatrix_Set_IterationFlag::altdss_func_v_cvp_i32
     YMatrix_Set_LoadsNeedUpdating::altdss_func_v_cvp_u16
+    YMatrix_Set_SolutionAbort::altdss_func_v_cvp_u16
     YMatrix_Set_SolutionInitialized::altdss_func_v_cvp_u16
     YMatrix_Set_SolverOptions::altdss_func_v_cvp_u64
     YMatrix_Set_SystemYChanged::altdss_func_v_cvp_u16
@@ -2340,11 +2354,13 @@ mutable struct AltDSSCAPI
 end # struct AltDSSCAPI
 #endregion main_struct
 
-if get(ENV, "DSS_EXTENSIONS_DEBUG", "0") == "1"
-    LIBRARY_SUFFIX = "d"
-    @warn "Environment variable DSS_EXTENSIONS_DEBUG=1 is set: loading the debug version of AltDSS engine library for the default context"
-else
-    LIBRARY_SUFFIX = ""
+LIBRARY_SUFFIX = ""
+
+function __init__()
+    if get(ENV, "DSS_EXTENSIONS_DEBUG", "0") == "1"
+        LIBRARY_SUFFIX = "d"
+        @warn "Environment variable DSS_EXTENSIONS_DEBUG=1 is set: loading the debug version of AltDSS engine library for the default context"
+    end
 end
 
 if Sys.iswindows()
@@ -3022,6 +3038,10 @@ end
 
 function dss_ccall(f::altdss_func_v_vp_i32_vp_vp_vp_b_b_i32, x0, x1, x2, x3, x4, x5, x6, x7)
     ccall(f.cfunc, Cvoid, (Ptr{Cvoid}, Int32, Ptr{Cvoid}, Ptr{Cvoid}, Ptr{Cvoid}, Int32, Int32, Int32), x0, x1, x2, x3, x4, x5, x6, x7)
+end
+
+function dss_ccall(f::altdss_func_v_f64pp_i32p_vp_f64, x0, x1, x2, x3)
+    ccall(f.cfunc, Cvoid, (Ptr{Ptr{Float64}}, Ptr{Int32}, Ptr{Cvoid}, Float64), x0, x1, x2, x3)
 end
 
 function dss_ccall(f::altdss_func_v_i8pp_i32p_vp, x0, x1, x2)

@@ -10,6 +10,9 @@ using ..Utils
                                  $(DOCSTRING)
                                  """
 
+
+function Number end
+
 """Build Y Matrix"""
 function BuildYMatrix(dss::DSSContext, BuildOption::Int, AllocateVI::Int)
     @checked dss_ccall(dss.capi.Solution_BuildYMatrix, dss.ctx, BuildOption, AllocateVI)

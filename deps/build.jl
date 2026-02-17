@@ -8,7 +8,7 @@ abstract type Windows <: AbstractOS end
 abstract type MacOS <: BSD end
 abstract type Linux <: BSD end
 
-const DSS_CAPI_TAG = "0.14.3"
+const DSS_CAPI_TAG = "0.15.0b1"
 
 function download(::Type{MacOS})
     if Sys.ARCH == :aarch64
@@ -27,8 +27,12 @@ function download(::Type{MacOS})
     rm(joinpath(@__DIR__, "dss_capi.tar.gz"), force=true)
 
     mkpath(joinpath(@__DIR__, "apple"))
-    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/darwin_$(DSS_CAPI_ARCH)/libdss_capi.dylib")), normpath(joinpath(@__DIR__, "apple", "libdss_capi.dylib")), force=true)
-    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/darwin_$(DSS_CAPI_ARCH)/libdss_capid.dylib")), normpath(joinpath(@__DIR__, "apple", "libdss_capid.dylib")), force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/darwin_$(DSS_CAPI_ARCH)/libaltdss_capi_loader.dylib")), normpath(joinpath(@__DIR__, "apple", "libaltdss_capi_loader.dylib")), force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/darwin_$(DSS_CAPI_ARCH)/libaltdss_capi_loaderd.dylib")), normpath(joinpath(@__DIR__, "apple", "libaltdss_capi_loaderd.dylib")), force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/darwin_$(DSS_CAPI_ARCH)/libaltdss_capi.dylib")), normpath(joinpath(@__DIR__, "apple", "libaltdss_capi.dylib")), force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/darwin_$(DSS_CAPI_ARCH)/libaltdss_capid.dylib")), normpath(joinpath(@__DIR__, "apple", "libaltdss_capid.dylib")), force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/darwin_$(DSS_CAPI_ARCH)/libaltdss_oddie_capi.dylib")), normpath(joinpath(@__DIR__, "apple", "libaltdss_oddie_capi.dylib")), force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/darwin_$(DSS_CAPI_ARCH)/libaltdss_oddie_capid.dylib")), normpath(joinpath(@__DIR__, "apple", "libaltdss_oddie_capid.dylib")), force=true)
     cp(normpath(joinpath(@__DIR__, "dss_capi/lib/darwin_$(DSS_CAPI_ARCH)/libklusolvex.dylib")), normpath(joinpath(@__DIR__, "apple", "libklusolvex.dylib")), force=true)
     rm(joinpath(@__DIR__, "dss_capi"), force=true, recursive=true)
     println("Success")
@@ -51,8 +55,12 @@ function download(::Type{Linux})
     rm(joinpath(@__DIR__, "dss_capi.tar.gz"), force=true)
 
     mkpath(joinpath(@__DIR__, "linux"))
-    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/linux_$(DSS_CAPI_ARCH)/libdss_capi.so")), normpath(joinpath(@__DIR__, "linux", "libdss_capi.so")), force=true)
-    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/linux_$(DSS_CAPI_ARCH)/libdss_capid.so")), normpath(joinpath(@__DIR__, "linux", "libdss_capid.so")), force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/linux_$(DSS_CAPI_ARCH)/libaltdss_capi_loader.so")), normpath(joinpath(@__DIR__, "linux", "libaltdss_capi_loader.so")), force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/linux_$(DSS_CAPI_ARCH)/libaltdss_capi_loaderd.so")), normpath(joinpath(@__DIR__, "linux", "libaltdss_capi_loaderd.so")), force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/linux_$(DSS_CAPI_ARCH)/libaltdss_capi.so")), normpath(joinpath(@__DIR__, "linux", "libaltdss_capi.so")), force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/linux_$(DSS_CAPI_ARCH)/libaltdss_capid.so")), normpath(joinpath(@__DIR__, "linux", "libaltdss_capid.so")), force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/linux_$(DSS_CAPI_ARCH)/libaltdss_oddie_capi.so")), normpath(joinpath(@__DIR__, "linux", "libaltdss_oddie_capi.so")), force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/linux_$(DSS_CAPI_ARCH)/libaltdss_oddie_capid.so")), normpath(joinpath(@__DIR__, "linux", "libaltdss_oddie_capid.so")), force=true)
     cp(normpath(joinpath(@__DIR__, "dss_capi/lib/linux_$(DSS_CAPI_ARCH)/libklusolvex.so")), normpath(joinpath(@__DIR__, "linux", "libklusolvex.so")), force=true)
     rm(joinpath(@__DIR__, "dss_capi"), force=true, recursive=true)
     println("Success")
@@ -100,8 +108,12 @@ function download(::Type{Windows})
     filename = joinpath(directory, basename(filename)[1:end-4])
 
     mkpath(joinpath(@__DIR__, "windows"))
-    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/win_$(BIT)/dss_capi.dll")), normpath(joinpath(@__DIR__, "windows", "dss_capi.dll")), force=true)
-    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/win_$(BIT)/dss_capid.dll")), normpath(joinpath(@__DIR__, "windows", "dss_capid.dll")), force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/win_$(BIT)/altdss_capi_loader.dll")), normpath(joinpath(@__DIR__, "windows", "altdss_capi_loader.dll")), force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/win_$(BIT)/altdss_capi_loaderd.dll")), normpath(joinpath(@__DIR__, "windows", "altdss_capi_loaderd.dll")), force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/win_$(BIT)/altdss_capi.dll")), normpath(joinpath(@__DIR__, "windows", "altdss_capi.dll")), force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/win_$(BIT)/altdss_capid.dll")), normpath(joinpath(@__DIR__, "windows", "altdss_capid.dll")), force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/win_$(BIT)/altdss_oddie_capi.dll")), normpath(joinpath(@__DIR__, "windows", "altdss_oddie_capi.dll")), force=true)
+    cp(normpath(joinpath(@__DIR__, "dss_capi/lib/win_$(BIT)/altdss_oddie_capid.dll")), normpath(joinpath(@__DIR__, "windows", "altdss_oddie_capid.dll")), force=true)
     cp(normpath(joinpath(@__DIR__, "dss_capi/lib/win_$(BIT)/libklusolvex.dll")), normpath(joinpath(@__DIR__, "windows", "libklusolvex.dll")), force=true)
     rm(joinpath(@__DIR__, "dss_capi"), force=true, recursive=true)
     println("Success")
