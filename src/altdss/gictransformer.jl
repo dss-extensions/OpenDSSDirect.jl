@@ -55,6 +55,7 @@ function Base.show(io::IO, obj::GICTransformerObj)
     print(name)
 end
 
+function Type end
 
 include("dss_object.jl")
 

@@ -58,6 +58,7 @@ function Base.show(io::IO, obj::CapControlObj)
     print(name)
 end
 
+function Type end
 
 include("dss_object.jl")
 

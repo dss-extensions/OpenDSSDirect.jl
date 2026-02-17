@@ -84,6 +84,7 @@ function Base.show(io::IO, obj::RelayObj)
     print(name)
 end
 
+function Type end
 
 include("dss_object.jl")
 

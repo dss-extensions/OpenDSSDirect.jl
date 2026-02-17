@@ -1,3 +1,5 @@
+function Channel end
+
 """
 Convert the monitor data to text and displays it with the text editor.
 

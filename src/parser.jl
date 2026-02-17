@@ -14,6 +14,9 @@ function Vector end
                                  $(DOCSTRING)
                                  """
 
+function Matrix end
+function Vector end
+
 """
 Use this property to parse a Matrix token in OpenDSS format.
 Returns square matrix of order specified. Order same as default Fortran order: column by column.

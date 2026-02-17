@@ -13,6 +13,8 @@ function Number end
                                  $(DOCSTRING)
                                  """
 
+function Number end
+
 """
 Description of error for last operation
 
