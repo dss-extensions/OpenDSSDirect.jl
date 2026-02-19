@@ -8,7 +8,7 @@ abstract type Windows <: AbstractOS end
 abstract type MacOS <: BSD end
 abstract type Linux <: BSD end
 
-const DSS_CAPI_TAG = "0.15.0b1"
+const DSS_CAPI_TAG = "0.15.0b2"
 
 function download(::Type{MacOS})
     if Sys.ARCH == :aarch64
