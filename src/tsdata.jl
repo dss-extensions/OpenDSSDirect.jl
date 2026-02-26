@@ -11,255 +11,413 @@ using ..Utils
                                  """
 
 
-"""Array of names of all TSData objects."""
+"""
+Array of names of all TSData objects.
+"""
 function AllNames(dss::DSSContext)::Vector{String}
-    return get_string_array(Lib.TSData_Get_AllNames, dss.ctx)
+    return get_string_array(dss.capi.TSData_Get_AllNames, dss)
 end
 AllNames() = AllNames(DSS_DEFAULT_CTX)
 
-"""Sets a TSData active by name."""
+"""
+Gets the name of the active TSData object.
+"""
 function Name(dss::DSSContext)::String
-    return get_string(@checked Lib.TSData_Get_Name(dss.ctx))
+    return get_string(@checked dss_ccall(dss.capi.TSData_Get_Name, dss.ctx))
 end
 Name() = Name(DSS_DEFAULT_CTX)
 
-"""Sets a TSData active by name."""
+"""
+Sets a TSData object active by name.
+"""
 function Name(dss::DSSContext, Value::String)
-    @checked Lib.TSData_Set_Name(dss.ctx, Cstring(pointer(Value)))
+    @checked dss_ccall(dss.capi.TSData_Set_Name, dss.ctx, Value)
 end
 Name(Value::String) = Name(DSS_DEFAULT_CTX, Value)
 
-"""Number of TSData Objects in Active Circuit"""
+"""
+Number of TSData objects in Active Circuit
+"""
 function Count(dss::DSSContext)::Int
-    return @checked Lib.TSData_Get_Count(dss.ctx)
+    return @checked dss_ccall(dss.capi.TSData_Get_Count, dss.ctx)
 end
 Count() = Count(DSS_DEFAULT_CTX)
 
-"""Sets first TSData to be active.  Returns 0 if none."""
+"""
+Sets first TSData to be active.
+Returns 0 if none.
+"""
 function First(dss::DSSContext)::Int
-    return @checked Lib.TSData_Get_First(dss.ctx)
+    return @checked dss_ccall(dss.capi.TSData_Get_First, dss.ctx)
 end
 First() = First(DSS_DEFAULT_CTX)
 
-"""Sets next TSData to be active.  Returns 0 if no more."""
+"""
+Sets next TSData to be active.
+Returns 0 if no more.
+"""
 function Next(dss::DSSContext)::Int
-    return @checked Lib.TSData_Get_Next(dss.ctx)
+    return @checked dss_ccall(dss.capi.TSData_Get_Next, dss.ctx)
 end
 Next() = Next(DSS_DEFAULT_CTX)
 
-"""Active TSData by index.  1..Count (Getter)"""
+"""
+Returns the index of the current active TSData (1-based)
+
+(Getter)
+"""
 function Idx(dss::DSSContext)::Int
-    return @checked Lib.TSData_Get_idx(dss.ctx)
+    return @checked dss_ccall(dss.capi.TSData_Get_idx, dss.ctx)
 end
 Idx() = Idx(DSS_DEFAULT_CTX)
 
-"""Active TSData by index.  1..Count (Setter)"""
+"""
+Activate TSData by index (1-based)
+
+(Setter)
+"""
 function Idx(dss::DSSContext, Value::Int)
-    @checked Lib.TSData_Set_idx(dss.ctx, Value)
+    @checked dss_ccall(dss.capi.TSData_Set_idx, dss.ctx, Value)
 end
 Idx(Value::Int) = Idx(DSS_DEFAULT_CTX, Value)
 
-"""Normal Ampere rating (Getter)"""
+"""
+Normal Ampere rating
+
+(Getter)
+"""
 function NormAmps(dss::DSSContext)::Float64
-    return @checked Lib.TSData_Get_NormAmps(dss.ctx)
+    return @checked dss_ccall(dss.capi.TSData_Get_NormAmps, dss.ctx)
 end
 NormAmps() = NormAmps(DSS_DEFAULT_CTX)
 
-"""Normal Ampere rating (Setter)"""
+"""
+Normal Ampere rating
+
+(Setter)
+"""
 function NormAmps(dss::DSSContext, Value::Float64)
-    return @checked Lib.TSData_Set_NormAmps(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.TSData_Set_NormAmps, dss.ctx, Value)
 end
 NormAmps(Value::Float64) = NormAmps(DSS_DEFAULT_CTX, Value)
 
-"""GMRac (Getter)"""
+"""
+GMRac
+
+(Getter)
+"""
 function GMRac(dss::DSSContext)::Float64
-    return @checked Lib.TSData_Get_GMRac(dss.ctx)
+    return @checked dss_ccall(dss.capi.TSData_Get_GMRac, dss.ctx)
 end
 GMRac() = GMRac(DSS_DEFAULT_CTX)
 
-"""GMRac (Setter)"""
+"""
+GMRac
+
+(Setter)
+"""
 function GMRac(dss::DSSContext, Value::Float64)
-    return @checked Lib.TSData_Set_GMRac(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.TSData_Set_GMRac, dss.ctx, Value)
 end
 GMRac(Value::Float64) = GMRac(DSS_DEFAULT_CTX, Value)
 
-"""Diameter (Getter)"""
+"""
+Diameter
+
+(Getter)
+"""
 function Diameter(dss::DSSContext)::Float64
-    return @checked Lib.TSData_Get_Diameter(dss.ctx)
+    return @checked dss_ccall(dss.capi.TSData_Get_Diameter, dss.ctx)
 end
 Diameter() = Diameter(DSS_DEFAULT_CTX)
 
-"""Diameter (Setter)"""
+"""
+Diameter
+
+(Setter)
+"""
 function Diameter(dss::DSSContext, Value::Float64)
-    return @checked Lib.TSData_Set_Diameter(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.TSData_Set_Diameter, dss.ctx, Value)
 end
 Diameter(Value::Float64) = Diameter(DSS_DEFAULT_CTX, Value)
 
-"""InsLayer (Getter)"""
+"""
+InsLayer
+
+(Getter)
+"""
 function InsLayer(dss::DSSContext)::Float64
-    return @checked Lib.TSData_Get_InsLayer(dss.ctx)
+    return @checked dss_ccall(dss.capi.TSData_Get_InsLayer, dss.ctx)
 end
 InsLayer() = InsLayer(DSS_DEFAULT_CTX)
 
-"""InsLayer (Setter)"""
+"""
+InsLayer
+
+(Setter)
+"""
 function InsLayer(dss::DSSContext, Value::Float64)
-    return @checked Lib.TSData_Set_InsLayer(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.TSData_Set_InsLayer, dss.ctx, Value)
 end
 InsLayer(Value::Float64) = InsLayer(DSS_DEFAULT_CTX, Value)
 
-"""EpsR (Getter)"""
+"""
+EpsR
+
+(Getter)
+"""
 function EpsR(dss::DSSContext)::Float64
-    return @checked Lib.TSData_Get_EpsR(dss.ctx)
+    return @checked dss_ccall(dss.capi.TSData_Get_EpsR, dss.ctx)
 end
 EpsR() = EpsR(DSS_DEFAULT_CTX)
 
-"""EpsR (Setter)"""
+"""
+EpsR
+
+(Setter)
+"""
 function EpsR(dss::DSSContext, Value::Float64)
-    return @checked Lib.TSData_Set_EpsR(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.TSData_Set_EpsR, dss.ctx, Value)
 end
 EpsR(Value::Float64) = EpsR(DSS_DEFAULT_CTX, Value)
 
-"""TapeLayer (Getter)"""
+"""
+TapeLayer
+
+(Getter)
+"""
 function TapeLayer(dss::DSSContext)::Float64
-    return @checked Lib.TSData_Get_TapeLayer(dss.ctx)
+    return @checked dss_ccall(dss.capi.TSData_Get_TapeLayer, dss.ctx)
 end
 TapeLayer() = TapeLayer(DSS_DEFAULT_CTX)
 
-"""TapeLayer (Setter)"""
+"""
+TapeLayer
+
+(Setter)
+"""
 function TapeLayer(dss::DSSContext, Value::Float64)
-    return @checked Lib.TSData_Set_TapeLayer(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.TSData_Set_TapeLayer, dss.ctx, Value)
 end
 TapeLayer(Value::Float64) = TapeLayer(DSS_DEFAULT_CTX, Value)
 
-"""GMRUnits (Getter)"""
+"""
+GMRUnits
+
+(Getter)
+"""
 function GMRUnits(dss::DSSContext)::Lib.LineUnits
-    return @checked Lib.TSData_Get_GMRUnits(dss.ctx)
+    return @checked dss_ccall(dss.capi.TSData_Get_GMRUnits, dss.ctx)
 end
 GMRUnits() = GMRUnits(DSS_DEFAULT_CTX)
 
-"""GMRUnits (Setter)"""
+"""
+GMRUnits
+
+(Setter)
+"""
 function GMRUnits(dss::DSSContext, Value::Union{Int,Lib.LineUnits})
-    return @checked Lib.TSData_Set_GMRUnits(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.TSData_Set_GMRUnits, dss.ctx, Value)
 end
 GMRUnits(Value::Union{Int,Lib.LineUnits}) = GMRUnits(DSS_DEFAULT_CTX, Value)
 
-"""TapeLap (Getter)"""
+"""
+TapeLap
+
+(Getter)
+"""
 function TapeLap(dss::DSSContext)::Float64
-    return @checked Lib.TSData_Get_TapeLap(dss.ctx)
+    return @checked dss_ccall(dss.capi.TSData_Get_TapeLap, dss.ctx)
 end
 TapeLap() = TapeLap(DSS_DEFAULT_CTX)
 
-"""TapeLap (Setter)"""
+"""
+TapeLap
+
+(Setter)
+"""
 function TapeLap(dss::DSSContext, Value::Float64)
-    return @checked Lib.TSData_Set_TapeLap(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.TSData_Set_TapeLap, dss.ctx, Value)
 end
 TapeLap(Value::Float64) = TapeLap(DSS_DEFAULT_CTX, Value)
 
-"""DiaCable (Getter)"""
+"""
+DiaCable
+
+(Getter)
+"""
 function DiaCable(dss::DSSContext)::Float64
-    return @checked Lib.TSData_Get_DiaCable(dss.ctx)
+    return @checked dss_ccall(dss.capi.TSData_Get_DiaCable, dss.ctx)
 end
 DiaCable() = DiaCable(DSS_DEFAULT_CTX)
 
-"""DiaCable (Setter)"""
+"""
+DiaCable
+
+(Setter)
+"""
 function DiaCable(dss::DSSContext, Value::Float64)
-    return @checked Lib.TSData_Set_DiaCable(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.TSData_Set_DiaCable, dss.ctx, Value)
 end
 DiaCable(Value::Float64) = DiaCable(DSS_DEFAULT_CTX, Value)
 
-"""ResistanceUnits (Getter)"""
+"""
+ResistanceUnits
+
+(Getter)
+"""
 function ResistanceUnits(dss::DSSContext)::Lib.LineUnits
-    return @checked Lib.TSData_Get_ResistanceUnits(dss.ctx)
+    return @checked dss_ccall(dss.capi.TSData_Get_ResistanceUnits, dss.ctx)
 end
 ResistanceUnits() = ResistanceUnits(DSS_DEFAULT_CTX)
 
-"""ResistanceUnits (Setter)"""
+"""
+ResistanceUnits
+
+(Setter)
+"""
 function ResistanceUnits(dss::DSSContext, Value::Union{Int,Lib.LineUnits})
-    return @checked Lib.TSData_Set_ResistanceUnits(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.TSData_Set_ResistanceUnits, dss.ctx, Value)
 end
 ResistanceUnits(Value::Union{Int,Lib.LineUnits}) = ResistanceUnits(DSS_DEFAULT_CTX, Value)
 
-"""Rac (Getter)"""
+"""
+Rac
+
+(Getter)
+"""
 function Rac(dss::DSSContext)::Float64
-    return @checked Lib.TSData_Get_Rac(dss.ctx)
+    return @checked dss_ccall(dss.capi.TSData_Get_Rac, dss.ctx)
 end
 Rac() = Rac(DSS_DEFAULT_CTX)
 
-"""Rac (Setter)"""
+"""
+Rac
+
+(Setter)
+"""
 function Rac(dss::DSSContext, Value::Float64)
-    return @checked Lib.TSData_Set_Rac(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.TSData_Set_Rac, dss.ctx, Value)
 end
 Rac(Value::Float64) = Rac(DSS_DEFAULT_CTX, Value)
 
-"""Radius (Getter)"""
+"""
+Radius
+
+(Getter)
+"""
 function Radius(dss::DSSContext)::Float64
-    return @checked Lib.TSData_Get_Radius(dss.ctx)
+    return @checked dss_ccall(dss.capi.TSData_Get_Radius, dss.ctx)
 end
 Radius() = Radius(DSS_DEFAULT_CTX)
 
-"""Radius (Setter)"""
+"""
+Radius
+
+(Setter)
+"""
 function Radius(dss::DSSContext, Value::Float64)
-    return @checked Lib.TSData_Set_Radius(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.TSData_Set_Radius, dss.ctx, Value)
 end
 Radius(Value::Float64) = Radius(DSS_DEFAULT_CTX, Value)
 
-"""DiaShield (Getter)"""
+"""
+DiaShield
+
+(Getter)
+"""
 function DiaShield(dss::DSSContext)::Float64
-    return @checked Lib.TSData_Get_DiaShield(dss.ctx)
+    return @checked dss_ccall(dss.capi.TSData_Get_DiaShield, dss.ctx)
 end
 DiaShield() = DiaShield(DSS_DEFAULT_CTX)
 
-"""DiaShield (Setter)"""
+"""
+DiaShield
+
+(Setter)
+"""
 function DiaShield(dss::DSSContext, Value::Float64)
-    return @checked Lib.TSData_Set_DiaShield(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.TSData_Set_DiaShield, dss.ctx, Value)
 end
 DiaShield(Value::Float64) = DiaShield(DSS_DEFAULT_CTX, Value)
 
-"""RadiusUnits (Getter)"""
+"""
+RadiusUnits
+
+(Getter)
+"""
 function RadiusUnits(dss::DSSContext)::Lib.LineUnits
-    return @checked Lib.TSData_Get_RadiusUnits(dss.ctx)
+    return @checked dss_ccall(dss.capi.TSData_Get_RadiusUnits, dss.ctx)
 end
 RadiusUnits() = RadiusUnits(DSS_DEFAULT_CTX)
 
-"""RadiusUnits (Setter)"""
+"""
+RadiusUnits
+
+(Setter)
+"""
 function RadiusUnits(dss::DSSContext, Value::Union{Int,Lib.LineUnits})
-    return @checked Lib.TSData_Set_RadiusUnits(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.TSData_Set_RadiusUnits, dss.ctx, Value)
 end
 RadiusUnits(Value::Union{Int,Lib.LineUnits}) = RadiusUnits(DSS_DEFAULT_CTX, Value)
 
-"""Emergency ampere rating (Getter)"""
+"""
+Emergency ampere rating
+
+(Getter)
+"""
 function EmergAmps(dss::DSSContext)::Float64
-    return @checked Lib.TSData_Get_EmergAmps(dss.ctx)
+    return @checked dss_ccall(dss.capi.TSData_Get_EmergAmps, dss.ctx)
 end
 EmergAmps() = EmergAmps(DSS_DEFAULT_CTX)
 
-"""Emergency ampere rating (Setter)"""
+"""
+Emergency ampere rating
+
+(Setter)
+"""
 function EmergAmps(dss::DSSContext, Value::Float64)
-    return @checked Lib.TSData_Set_EmergAmps(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.TSData_Set_EmergAmps, dss.ctx, Value)
 end
 EmergAmps(Value::Float64) = EmergAmps(DSS_DEFAULT_CTX, Value)
 
-"""DiaIns (Getter)"""
+"""
+DiaIns
+
+(Getter)
+"""
 function DiaIns(dss::DSSContext)::Float64
-    return @checked Lib.TSData_Get_DiaIns(dss.ctx)
+    return @checked dss_ccall(dss.capi.TSData_Get_DiaIns, dss.ctx)
 end
 DiaIns() = DiaIns(DSS_DEFAULT_CTX)
 
-"""DiaIns (Setter)"""
+"""
+DiaIns
+
+(Setter)
+"""
 function DiaIns(dss::DSSContext, Value::Float64)
-    return @checked Lib.TSData_Set_DiaIns(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.TSData_Set_DiaIns, dss.ctx, Value)
 end
 DiaIns(Value::Float64) = DiaIns(DSS_DEFAULT_CTX, Value)
 
-"""Rdc (Getter)"""
+"""
+Rdc
+
+(Getter)
+"""
 function Rdc(dss::DSSContext)::Float64
-    return @checked Lib.TSData_Get_Rdc(dss.ctx)
+    return @checked dss_ccall(dss.capi.TSData_Get_Rdc, dss.ctx)
 end
 Rdc() = Rdc(DSS_DEFAULT_CTX)
 
-"""Rdc (Setter)"""
+"""
+Rdc
+
+(Setter)
+"""
 function Rdc(dss::DSSContext, Value::Float64)
-    return @checked Lib.TSData_Set_Rdc(dss.ctx, Value)
+    return @checked dss_ccall(dss.capi.TSData_Set_Rdc, dss.ctx, Value)
 end
 Rdc(Value::Float64) = Rdc(DSS_DEFAULT_CTX, Value)
 

@@ -128,7 +128,8 @@ end
     StorageStates_Discharging = 1
 end
 
-@enum DSSJSONFlags::Int32 begin
+@bitflag DSSJSONFlags::UInt32 begin
+    DSSJSONFlags_Default = 0
     DSSJSONFlags_Full = 1
     DSSJSONFlags_SkipRedundant = 2
     DSSJSONFlags_EnumAsInt = 4
@@ -139,9 +140,18 @@ end
     DSSJSONFlags_LowercaseKeys = 128
     DSSJSONFlags_IncludeDefaultObjs = 256
     DSSJSONFlags_SkipTimestamp = 512
-    DSSJSONFlags_SkipBuses = 1024    
+    DSSJSONFlags_SkipBuses = 1024
 end
 
+"""
+`SolverOptions` enum
+
+Controls some aspects of the DSS sparse solver and the base library KLU.
+
+`AlwaysResetYPrimInvalid` is a bit flag, while the other values are sequential.
+
+Currently applies to AltDSS and OpenDSS-C. More info and examples to come in the future.
+"""
 @cenum SolverOptions::UInt32 begin
     SolverOptions_ReuseNothing = 0
     SolverOptions_ReuseCompressedMatrix = 1
@@ -150,7 +160,8 @@ end
     SolverOptions_AlwaysResetYPrimInvalid = 268435456
 end
 
-@cenum DSSCompatFlags::UInt32 begin
+@bitflag DSSCompatFlags::UInt32 begin
+    DSSCompatFlags_Default = 0
     DSSCompatFlags_NoSolverFloatChecks = 1
     DSSCompatFlags_BadPrecision = 2
     DSSCompatFlags_InvControl9611 = 4

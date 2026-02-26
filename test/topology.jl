@@ -24,8 +24,11 @@ init8500()
 @test Topology.AllLoopedPairs()[end] == "Transformer.feeder_regc"
 @test Topology.AllIsolatedBranches()[end] == "" # TODO: Why is this an empty string?
 @test Topology.AllIsolatedBranches()[1] == "Line.wd701_48332_sw"
-@test Topology.AllIsolatedLoads() == ["NONE"] # TODO: should this return empty array instead of ["NONE"]
-
+if Basic.COMErrorResults()
+    @test Topology.AllIsolatedLoads() == ["NONE"]
+else
+    @test Topology.AllIsolatedLoads() == []
+end
 arr = String[]
 for i in OpenDSSDirect.EachMember(Topology); push!(arr, Topology.BusName()); end
 for (i, n) in enumerate(OpenDSSDirect.EachMember(Topology, Topology.BusName))

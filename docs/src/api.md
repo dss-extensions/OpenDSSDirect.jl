@@ -3,7 +3,7 @@
 CurrentModule = OpenDSSDirect
 ```
 
-# Main API (module DSS)
+# Main API (module OpenDSSDirect)
 
 The `dss` function is the main function for passing commands to OpenDSS. You can
 pass multi-line commands with `dss`. You can also splice in Julia values with
@@ -137,8 +137,15 @@ For using multiple DSS circuits and potentially multiple circuits, provide the c
 
 Here is a list of modules supported by this API. Each module has several functions.
 
-Functions or modules that are not present in the official OpenDSS implementation 
-are marked "(API Extension)".
+Functions or modules that are not present on EPRI's OpenDSS implementation are marked "**(API Extension)**".
+The official engine on DSS-Extensions, AltDSS, implements those natively. For EPRI's distribution, some of
+the functions are still implemented for convenience of the users, but may incurr in some overhead. The rest
+of the function should raise "Not implemented" errors.
+
+On DSS-Extensions, the following API is now called the *classic* API. For new OpenDSS or AltDSS users, 
+the document [OpenDSS COM/classic APIs](https://dss-extensions.org/classic_api.html) is a recommended read.
+Although OpenDSSDirect.jl **does not** use COM on its implementation, the API implements most of the concepts
+and basic organization from the original OpenDSS COM (Component Object Model) API.
 
 ## `dss`
 
@@ -146,345 +153,62 @@ are marked "(API Extension)".
 OpenDSSDirect.dss
 ```
 
-## `ActiveClass`
+## Module documentation
 
-```@autodocs
-Modules = [ActiveClass]
-Order   = [:function, :type]
+```@index
+Pages = [
+    "api/ActiveClass.md",
+    "api/Basic.md",
+    "api/Bus.md",
+    "api/Capacitors.md",
+    "api/CapControls.md",
+    "api/Circuit.md",
+    "api/CktElement.md",
+    "api/CNData.md",
+    "api/CtrlQueue.md",
+    "api/Element.md",
+    "api/Error.md",
+    "api/Executive.md",
+    "api/Fuses.md",
+    "api/Generators.md",
+    "api/GICSources.md",
+    "api/Isource.md",
+    "api/LineCodes.md",
+    "api/LineGeometries.md",
+    "api/Lines.md",
+    "api/LineSpacings.md",
+    "api/LoadShape.md",
+    "api/Loads.md",
+    "api/Meters.md",
+    "api/Monitors.md",
+    "api/Parallel.md",
+    "api/Parser.md",
+    "api/PDElements.md",
+    "api/Progress.md",
+    "api/Properties.md",
+    "api/PVsystems.md",
+    "api/Reactors.md",
+    "api/Reclosers.md",
+    "api/ReduceCkt.md",
+    "api/RegControls.md",
+    "api/Relays.md",
+    "api/Sensors.md",
+    "api/Settings.md",
+    "api/Solution.md",
+    "api/Storages.md",
+    "api/SwtControls.md",
+    "api/Text.md",
+    "api/Topology.md",
+    "api/Transformers.md",
+    "api/TSData.md",
+    "api/Vsources.md",
+    "api/WindGens.md",
+    "api/WireData.md",
+    "api/XYCurves.md",
+    "api/YMatrix.md",
+    "api/ZIP.md",
+]
 ```
 
-## `Basic`
 
-```@autodocs
-Modules = [Basic]
-Order   = [:function, :type]
-```
 
-## `Bus`
-
-```@autodocs
-Modules = [Bus]
-Order   = [:function, :type]
-```
-
-## `Capacitors`
-
-```@autodocs
-Modules = [Capacitors]
-Order   = [:function, :type]
-```
-
-## `CapControls`
-
-```@autodocs
-Modules = [CapControls]
-Order   = [:function, :type]
-```
-
-## `Circuit`
-
-```@autodocs
-Modules = [Circuit]
-Order   = [:function, :type]
-```
-
-## `CktElement`
-
-```@autodocs
-Modules = [CktElement]
-Order   = [:function, :type]
-```
-
-## `CNData`
-
-```@autodocs
-Modules = [CNData]
-Order   = [:function, :type]
-```
-
-## `CtrlQueue`
-
-```@autodocs
-Modules = [CtrlQueue]
-Order   = [:function, :type]
-```
-
-## `Element`
-
-```@autodocs
-Modules = [Element]
-Order   = [:function, :type]
-```
-
-## `Error`
-
-```@autodocs
-Modules = [Error]
-Order   = [:function, :type]
-```
-
-## `Executive`
-
-```@autodocs
-Modules = [Executive]
-Order   = [:function, :type]
-```
-
-## `Fuses`
-
-```@autodocs
-Modules = [Fuses]
-Order   = [:function, :type]
-```
-
-## `Generators`
-
-```@autodocs
-Modules = [Generators]
-Order   = [:function, :type]
-```
-
-## `GICSources`
-
-```@autodocs
-Modules = [GICSources]
-Order   = [:function, :type]
-```
-
-## `Isource`
-
-```@autodocs
-Modules = [Isource]
-Order   = [:function, :type]
-```
-
-## `LineCodes`
-
-```@autodocs
-Modules = [LineCodes]
-Order   = [:function, :type]
-```
-
-## `LineGeometries`
-
-```@autodocs
-Modules = [LineGeometries]
-Order   = [:function, :type]
-```
-
-## `Lines`
-
-```@autodocs
-Modules = [Lines]
-Order   = [:function, :type]
-```
-
-## `LineSpacings`
-
-```@autodocs
-Modules = [LineSpacings]
-Order   = [:function, :type]
-```
-
-## `Loads`
-
-```@autodocs
-Modules = [Loads]
-Order   = [:function, :type]
-```
-
-## `LoadShape`
-
-```@autodocs
-Modules = [LoadShape]
-Order   = [:function, :type]
-```
-
-## `Meters`
-
-```@autodocs
-Modules = [Meters]
-Order   = [:function, :type]
-```
-
-## `Monitors`
-
-```@autodocs
-Modules = [Monitors]
-Order   = [:function, :type]
-```
-
-## `Parallel`
-
-```@autodocs
-Modules = [Parallel]
-Order   = [:function, :type]
-```
-
-## `Parser`
-
-```@autodocs
-Modules = [Parser]
-Order   = [:function, :type]
-```
-
-## `PDElements`
-
-```@autodocs
-Modules = [PDElements]
-Order   = [:function, :type]
-```
-
-## `Progress`
-
-```@autodocs
-Modules = [Progress]
-Order   = [:function, :type]
-```
-
-## `Properties`
-
-```@autodocs
-Modules = [Properties]
-Order   = [:function, :type]
-```
-
-## `PVsystems`
-
-```@autodocs
-Modules = [PVsystems]
-Order   = [:function, :type]
-```
-
-## `Reactors`
-
-```@autodocs
-Modules = [Reactors]
-Order   = [:function, :type]
-```
-
-## `Reclosers`
-
-```@autodocs
-Modules = [Reclosers]
-Order   = [:function, :type]
-```
-
-## `ReduceCkt`
-
-```@autodocs
-Modules = [ReduceCkt]
-Order   = [:function, :type]
-```
-
-## `RegControls`
-
-```@autodocs
-Modules = [RegControls]
-Order   = [:function, :type]
-```
-
-## `Relays`
-
-```@autodocs
-Modules = [Relays]
-Order   = [:function, :type]
-```
-
-## `Sensors`
-
-```@autodocs
-Modules = [Sensors]
-Order   = [:function, :type]
-```
-
-## `Settings`
-
-```@autodocs
-Modules = [Settings]
-Order   = [:function, :type]
-```
-
-## `Solution`
-
-```@autodocs
-Modules = [Solution]
-Order   = [:function, :type]
-```
-
-## `Storages`
-
-```@autodocs
-Modules = [Storages]
-Order   = [:function, :type]
-```
-
-## `SwtControls`
-
-```@autodocs
-Modules = [SwtControls]
-Order   = [:function, :type]
-```
-
-## `Text`
-
-```@autodocs
-Modules = [Text]
-Order   = [:function, :type]
-```
-
-## `Topology`
-
-```@autodocs
-Modules = [Topology]
-Order   = [:function, :type]
-```
-
-## `TSData`
-
-```@autodocs
-Modules = [TSData]
-Order   = [:function, :type]
-```
-
-## `Transformers`
-
-```@autodocs
-Modules = [Transformers]
-Order   = [:function, :type]
-```
-
-## `Vsources`
-
-```@autodocs
-Modules = [Vsources]
-Order   = [:function, :type]
-```
-
-## `WireData`
-
-```@autodocs
-Modules = [WireData]
-Order   = [:function, :type]
-```
-
-## `XYCurves`
-
-```@autodocs
-Modules = [XYCurves]
-Order   = [:function, :type]
-```
-
-## `YMatrix`
-
-```@autodocs
-Modules = [YMatrix]
-Order   = [:function, :type]
-```
-
-## `ZIP`
-
-```@autodocs
-Modules = [ZIP]
-Order   = [:function, :type]
-```

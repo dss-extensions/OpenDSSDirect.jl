@@ -1,6 +1,26 @@
-**Please also read the [DSS C-API engine changelog](https://github.com/dss-extensions/dss_capi/blob/master/docs/changelog.md) which tracks the engine changes.** Most of the engine changes do not affect the API code on the Julia level.**
+**Please also read the [DSS C-API engine changelog](https://github.com/dss-extensions/dss_capi/blob/master/docs/changelog.md) which tracks the engine changes.** Most of the engine changes do not affect the API code on the Julia level.
 
 For a more complete list of changes, visit the [Git repository and Releases page on GitHub](https://github.com/dss-extensions/OpenDSSDirect.jl).
+
+### OpenDSSDirect v0.10.0 Release Notes
+
+- Update the engine to AltDSS/DSS C-API v0.15.0, matching most of OpenDSS v10.2.0.1 and some extra commits (up to r4055). Please check its changelog for the changes in the engine.
+- **Major new feature**: Initial (experimental, incomplete) support for the Alt API when using AltDSS; we need user feedback, please see https://github.com/dss-extensions/OpenDSSDirect.jl/issues/82 -- currently supports all DSS objects, more features to come. For some context, please read https://dss-extensions.org/classic_api (especially the "Alternative API" section).
+- **Major new feature**: Now supports loading both AltDSS and EPRI's OpenDSS implementations. A new backend implementation was adopted to allow this (it dynamically loads the functions). The Classic API is supported by all engines (AltDSS, OpenDSS, OpenDSS-C), while the new Alt API is supported only by AltDSS.
+- Most of the API documentation updated to include links to [EPRI's OpenDSS online help](https://opendss.epri.com/).
+- Classic API: Add new functions in the Storages module.
+- Classic API: Add new module WindGens.
+- New dependency: we use `BitFlags.jl` in some of the new API. Other enumerations will be adjusted in future releases to avoid poputing the scope.
+- Defaults updated when using the default engine
+    - `COMErrorResults` now defaults to false. Some functions already had special handling, most users shouldn't notice this.
+    - Properties: by default, the new style of capitalization is now used. Use `OpenDSSDirect.Settings.SetPropertyNameStyle` to adjust this if required.
+- Minor fixes and improvements across several files
+    - Fixes issues with error handling when using multiple engines.
+    - Some matrix functions were not using the correct DSS context
+    - Potential performance improvements for vectors (instead of push, create undef vectors and populate)
+    - Some missing enum to int `convert`s
+    - LineGeometries: fix `Conductors`
+    - PDElements: fix `AllCurrents`
 
 ### OpenDSSDirect v0.9.9 Release Notes
 
