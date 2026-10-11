@@ -1,6 +1,7 @@
 using Test
 
 include("init.jl")
+include("api_function_names.jl")
 
 println(OpenDSSDirect.Basic.Version())
 
