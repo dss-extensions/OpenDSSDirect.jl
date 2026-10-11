@@ -5,6 +5,9 @@ using DocStringExtensions
 using ..Lib
 using ..Utils
 
+# These API functions are independent of the similarly named Base types.
+function Channel end
+
 @template (FUNCTIONS, METHODS) = """
                                  $(TYPEDSIGNATURES)
                                  $(DOCSTRING)

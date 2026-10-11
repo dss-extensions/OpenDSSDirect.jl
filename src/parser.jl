@@ -5,25 +5,29 @@ using DocStringExtensions
 using ..Lib
 using ..Utils
 
+# These API functions are independent of the similarly named Base types.
+function Matrix end
+function Vector end
+
 @template (FUNCTIONS, METHODS) = """
                                  $(TYPEDSIGNATURES)
                                  $(DOCSTRING)
                                  """
 
 """Use this property to parse a Matrix token in OpenDSS format.  Returns square matrix of order specified. Order same as default Fortran order: column by column."""
-function Matrix(dss::DSSContext, ExpectedOrder)::Vector{Float64}
+function Matrix(dss::DSSContext, ExpectedOrder)::Base.Vector{Float64}
     return get_float64_array(Lib.Parser_Get_Matrix, dss.ctx, ExpectedOrder)
 end
 Matrix(ExpectedOrder) = Matrix(DSS_DEFAULT_CTX, ExpectedOrder)
 
 """Use this property to parse a matrix token specified in lower triangle form. Symmetry is forced."""
-function SymMatrix(dss::DSSContext, ExpectedOrder)::Vector{Float64}
+function SymMatrix(dss::DSSContext, ExpectedOrder)::Base.Vector{Float64}
     return get_float64_array(Lib.Parser_Get_SymMatrix, dss.ctx, ExpectedOrder)
 end
 SymMatrix(ExpectedOrder) = SymMatrix(DSS_DEFAULT_CTX, ExpectedOrder)
 
 """Returns token as array of doubles. For parsing quoted array syntax."""
-function Vector(dss::DSSContext, ExpectedSize)::Vector{Float64}
+function Vector(dss::DSSContext, ExpectedSize)::Base.Vector{Float64}
     return get_float64_array(Lib.Parser_Get_Vector, dss.ctx, ExpectedSize)
 end
 Vector(ExpectedSize) = Vector(DSS_DEFAULT_CTX, ExpectedSize)
