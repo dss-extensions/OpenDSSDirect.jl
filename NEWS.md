@@ -2,6 +2,13 @@
 
 For a more complete list of changes, visit the [Git repository and Releases page on GitHub](https://github.com/dss-extensions/OpenDSSDirect.jl).
 
+### OpenDSSDirect v0.9.10 Release Notes
+
+Only Julia minor code changes, the engine remains as v0.14.3.
+
+- Fix API function name collisions with Base types on Julia 1.12 (thanks to @NLaws)
+- Fix typo in LineGeometries module (thanks to @MohamedNumair)
+
 ### OpenDSSDirect v0.9.9 Release Notes
 
 Only Julia code changes, the engine remains as v0.14.3.
