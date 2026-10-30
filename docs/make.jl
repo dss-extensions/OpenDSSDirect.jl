@@ -10,8 +10,8 @@ makedocs(
     clean = false,
     checkdocs=:exports,
     format = Documenter.HTML(
-        size_threshold_warn = 250_000,
-        size_threshold=500_000,
+        size_threshold_warn = 1_000_000,
+        size_threshold=2_000_000,
         sidebar_sitename = false
     ),
     sitename = "OpenDSSDirect.jl",
