@@ -17,7 +17,7 @@ n = "ln5835135-2"
 ...
 ```
 
-This also works without a function. By default, it returns the index of the elment.
+This also works without a function. By default, it returns the index of the element.
 
 ```julia
 julia> for i in OpenDSSDirect.EachMember(Lines)

@@ -33,7 +33,6 @@ Lib.RandomModes
 Lib.SolutionAlgorithms
 Lib.SolutionLoadModels
 Lib.SolveModes
+Lib.SolverOptions
 Lib.StorageStates
 ```
-
-<!-- TODO: DSSCompatFlags, DSSJSONFlags, SolverOptions -->

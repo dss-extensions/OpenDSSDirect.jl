@@ -8,3 +8,4 @@ deps/*
 !deps/build.jl
 examples/electricdss-tst-master/*
 Manifest.toml
+electricdss-tst
